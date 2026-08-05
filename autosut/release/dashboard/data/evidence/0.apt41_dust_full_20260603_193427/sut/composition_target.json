@@ -1,0 +1,55 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "testuser",
+      "secret": "password123",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (testuser:password123).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/testuser/documents/financial_report.xlsx",
+      "content_text": "(binary financial report placeholder)\n",
+      "content_b64": null,
+      "owner": "testuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/testuser/documents/financial_report.xlsx).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/testuser/.ssh/id_rsa",
+      "content_text": "SIMULATED SSH KEY MATERIAL\nLAB_DECOY_KEY\nEND SIMULATED SSH KEY MATERIAL\n",
+      "content_b64": null,
+      "owner": "testuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/testuser/.ssh/id_rsa).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.apt41_dust_full \u2014 extended APT41 DUST chain (discovery, collection, exfil, impact) on minimal Linux SUT."
+}

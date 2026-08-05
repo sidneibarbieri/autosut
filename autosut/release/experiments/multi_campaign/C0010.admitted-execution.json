@@ -1,0 +1,190 @@
+{
+  "schema_version": "1",
+  "generated_at": "2026-07-28T03:31:33+00:00",
+  "campaign_id": "C0010",
+  "source_plan_sha256": "7ab29a9aae22da4affabe7a986297c534c8b8549cf8e91290bd1640c25573cc6",
+  "allowed_domains": [
+    "attacker",
+    "target_or_boundary"
+  ],
+  "admitted_step_count": 9,
+  "attempted_step_count": 9,
+  "successful_with_evidence": 7,
+  "rows": [
+    {
+      "technique_id": "T1583.001",
+      "template_id": "record-controlled-domain",
+      "status": "success",
+      "execution_mode": "naive_simulated",
+      "execution_fidelity": "inspired",
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/domain_registration.json",
+          "present": true,
+          "kind": "file",
+          "sha256": "cd9206a9fa28373c86e060480b86da7daddb018d4b133ba05af983c92926369d",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1584.001",
+      "template_id": "record-controlled-compromised-domain",
+      "status": "success",
+      "execution_mode": "naive_simulated",
+      "execution_fidelity": "inspired",
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_compromise"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/0.c0010_compromised_domain.json",
+          "present": true,
+          "kind": "file",
+          "sha256": "4aa1fc698bd05bedc9b4f2d6fcfc5454e40e59d11c1f5c4e039fc069614efa64",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1587.001",
+      "template_id": "specify-benign-capability",
+      "status": "success",
+      "execution_mode": "naive_simulated",
+      "execution_fidelity": "inspired",
+      "evidence_predicates": [
+        "specification_hash_recorded",
+        "no_harmful_payload_present"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/0.c0010_malware_spec.md",
+          "present": true,
+          "kind": "file",
+          "sha256": "35cfb33e65361251e56cc2451ea6c41839e785bdea14e5443742748af1cae164",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1588.002",
+      "template_id": "stage-benign-toolkit",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/recon_toolkit",
+          "present": true,
+          "kind": "directory",
+          "sha256": "ce7c6a46e1d7f169e57bdb23f6be3484a346783a11a53cfd221e4b01909829dc",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1608.001",
+      "template_id": "stage-benign-payload",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "payload_policy_verified"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/staging/benign_payload.bin",
+          "present": true,
+          "kind": "file",
+          "sha256": "17aafd9596778e23d4e5c098663eef26ab3fe3165ec845ebfed4c3699b08d487",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1608.002",
+      "template_id": "stage-benign-tool",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "tool_policy_verified"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/staging/0.c0010_tool.sh",
+          "present": true,
+          "kind": "file",
+          "sha256": "14fb445c342a4302cad0df855bb9b8fcfb2674a0245f6afe25d3df8b3c71a4d9",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1608.004",
+      "template_id": "stage-lab-web-target",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "web_asset_hash_recorded",
+        "lab_scope_verified"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/0.c0010_watering_hole/index.html",
+          "present": true,
+          "kind": "file",
+          "sha256": "5796eda3761a4cf80e678cc0e128b004944067a6bef47db1f56b9eb28b4a60ab",
+          "cleaned": true
+        },
+        {
+          "path": "data/artifacts/0.c0010_watering_hole/exploit.js",
+          "present": true,
+          "kind": "file",
+          "sha256": "bb41e80403d21de048cfd23a2c00047853dad58896f8fead37aebf2c90605384",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1189",
+      "template_id": "visit-declared-web-target",
+      "status": "error",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "http_request_logged",
+        "no_exploit_delivered"
+      ],
+      "artifact_records": []
+    },
+    {
+      "technique_id": "T1105",
+      "template_id": "transfer-staged-benign-tool",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "artifact_records": [
+        {
+          "path": "target-vm:/tmp/sticks_downloaded_payload.sh",
+          "present": false
+        }
+      ]
+    }
+  ],
+  "content_sha256": "e52af92d4fe85f93564ceaec419498910814021a666207e32c0f0ab60e1ddadd"
+}

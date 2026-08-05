@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /root/.ssh/known_hosts) && cat > /root/.ssh/known_hosts <<'AUTOSUT_ART_EOF'
+10.0.0.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabKnownHostKey
+
+AUTOSUT_ART_EOF
+chmod 0644 /root/.ssh/known_hosts && chown root:root /root/.ssh/known_hosts 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

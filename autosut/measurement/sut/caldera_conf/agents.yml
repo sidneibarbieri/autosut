@@ -1,0 +1,24 @@
+# Basic agent configuration
+- paw: agent_001
+  platform: linux
+  server: http://caldera:8888
+  group: red
+  username: root
+  host: target-1
+  contact: http
+
+- paw: agent_002
+  platform: linux
+  server: http://caldera:8888
+  group: red
+  username: root
+  host: target-2
+  contact: http
+
+- paw: agent_003
+  platform: linux
+  server: http://caldera:8888
+  group: red
+  username: root
+  host: target-3
+  contact: http

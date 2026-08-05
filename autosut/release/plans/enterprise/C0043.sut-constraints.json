@@ -1,0 +1,98 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0043",
+  "source_plan_sha256": "8fc4ade59de421e858f5d61ebb22f49282c553a64b1e5d63511adf95ca954aec",
+  "platform_resolution": {
+    "selected_platforms": [
+      "Linux",
+      "Network Devices"
+    ],
+    "materializable_platforms": [
+      "Linux"
+    ],
+    "unsupported_platforms": [
+      "Network Devices"
+    ],
+    "uncovered_technique_ids": [
+      "T1599"
+    ],
+    "complete": false
+  },
+  "requirements": [
+    {
+      "requirement_id": "T1599.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Network Devices"
+      ],
+      "technique_ids": [
+        "T1599"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1071.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1071.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1568.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1568"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1571.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1571"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1573.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1573.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "0c240cf4c334958d93b97aee0b482019ed46f9c4274d5fb016f31b362cbfe902"
+}

@@ -1,0 +1,1997 @@
+{
+  "generated_at": "2026-04-02T17:58:04.006634",
+  "bundle_path": "data/stix/enterprise-attack.json",
+  "campaign_count": 14,
+  "total_steps": 140,
+  "steps_with_missing_metadata": 0,
+  "steps_with_noncanonical_tactic": 0,
+  "steps_without_mitre_support": 0,
+  "steps_with_tactic_mismatch": 0,
+  "campaigns": [
+    {
+      "campaign_id": "0.apt41_dust",
+      "technique_count": 23,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1593.002",
+          "missing_fields": [],
+          "tactic": "reconnaissance",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Search Engines",
+          "mitre_tactics": [
+            "reconnaissance"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1594",
+          "missing_fields": [],
+          "tactic": "reconnaissance",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Search Victim-Owned Websites",
+          "mitre_tactics": [
+            "reconnaissance"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1596.005",
+          "missing_fields": [],
+          "tactic": "reconnaissance",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Scan Databases",
+          "mitre_tactics": [
+            "reconnaissance"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1583.007",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Serverless",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1586.003",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Cloud Accounts",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1588.003",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Code Signing Certificates",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1505.003",
+          "missing_fields": [],
+          "tactic": "persistence",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Web Shell",
+          "mitre_tactics": [
+            "persistence"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1543.003",
+          "missing_fields": [],
+          "tactic": "persistence",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Windows Service",
+          "mitre_tactics": [
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1574.001",
+          "missing_fields": [],
+          "tactic": "persistence",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "DLL",
+          "mitre_tactics": [
+            "defense-evasion",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1569.002",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Service Execution",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 11,
+          "technique_id": "T1027.013",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Encrypted/Encoded File",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 12,
+          "technique_id": "T1036.004",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Masquerade Task or Service",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 13,
+          "technique_id": "T1553.002",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Code Signing",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 14,
+          "technique_id": "T1070.004",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File Deletion",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 15,
+          "technique_id": "T1213.006",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Databases",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 16,
+          "technique_id": "T1119",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Automated Collection",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 17,
+          "technique_id": "T1074.001",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Local Data Staging",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 18,
+          "technique_id": "T1560.001",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Archive via Utility",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 19,
+          "technique_id": "T1102",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Web Service",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 20,
+          "technique_id": "T1071.001",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Web Protocols",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 21,
+          "technique_id": "T1573.002",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Asymmetric Cryptography",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 22,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 23,
+          "technique_id": "T1567.002",
+          "missing_fields": [],
+          "tactic": "exfiltration",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Exfiltration to Cloud Storage",
+          "mitre_tactics": [
+            "exfiltration"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "technique_count": 10,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1059.004",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1083",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File and Directory Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1016",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "System Network Configuration Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1007",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "System Service Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1033",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "System Owner/User Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1027",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Obfuscated Files or Information",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1564.001",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Hidden Files and Directories",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1119",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Automated Collection",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1020",
+          "missing_fields": [],
+          "tactic": "exfiltration",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Automated Exfiltration",
+          "mitre_tactics": [
+            "exfiltration"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1490",
+          "missing_fields": [],
+          "tactic": "impact",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Inhibit System Recovery",
+          "mitre_tactics": [
+            "impact"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0010",
+      "technique_count": 9,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1584.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domains",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1608.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Upload Malware",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1608.004",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Drive-by Target",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1189",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Drive-by Compromise",
+          "mitre_tactics": [
+            "initial-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1587.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Malware",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1583.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domains",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1608.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Upload Tool",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1588.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Tool",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0011",
+      "technique_count": 11,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1587.003",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Digital Certificates",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1583.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domains",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1608.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Upload Malware",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1566.002",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Spearphishing Link",
+          "mitre_tactics": [
+            "initial-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1566.001",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Spearphishing Attachment",
+          "mitre_tactics": [
+            "initial-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1204.001",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Malicious Link",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1204.002",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Malicious File",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1059.005",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Visual Basic",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1059.001",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "PowerShell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1059.007",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "JavaScript",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 11,
+          "technique_id": "T1574",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Hijack Execution Flow",
+          "mitre_tactics": [
+            "defense-evasion",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0012",
+      "technique_count": 3,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1059.004",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1083",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File and Directory Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1016",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "System Network Configuration Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0013",
+      "technique_count": 4,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1059.004",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1083",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File and Directory Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1055",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Process Injection",
+          "mitre_tactics": [
+            "defense-evasion",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0015",
+      "technique_count": 5,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1059.004",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1083",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File and Directory Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1068",
+          "missing_fields": [],
+          "tactic": "privilege-escalation",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Exploitation for Privilege Escalation",
+          "mitre_tactics": [
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1548",
+          "missing_fields": [],
+          "tactic": "privilege-escalation",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Abuse Elevation Control Mechanism",
+          "mitre_tactics": [
+            "defense-evasion",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1113",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Screen Capture",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0017",
+      "technique_count": 6,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1059.004",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1083",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File and Directory Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1053",
+          "missing_fields": [],
+          "tactic": "persistence",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Scheduled Task/Job",
+          "mitre_tactics": [
+            "execution",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1543",
+          "missing_fields": [],
+          "tactic": "persistence",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Create or Modify System Process",
+          "mitre_tactics": [
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1027",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Obfuscated Files or Information",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1564",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Hide Artifacts",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0026",
+      "technique_count": 6,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1583.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domains",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1568",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Dynamic Resolution",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1005",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Data from Local System",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1560.001",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Archive via Utility",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1030",
+          "missing_fields": [],
+          "tactic": "exfiltration",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Data Transfer Size Limits",
+          "mitre_tactics": [
+            "exfiltration"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.costaricto",
+      "technique_count": 10,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1046",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Network Service Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1090.003",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Multi-hop Proxy",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1053.005",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Scheduled Task",
+          "mitre_tactics": [
+            "execution",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1588.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Tool",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1133",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "External Remote Services",
+          "mitre_tactics": [
+            "initial-access",
+            "persistence"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1583.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domains",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1587.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Malware",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1005",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Data from Local System",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1572",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Protocol Tunneling",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "technique_count": 17,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1584.003",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Virtual Private Server",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1584.006",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Web Services",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1588.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Tool",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1190",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Exploit Public-Facing Application",
+          "mitre_tactics": [
+            "initial-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1078",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Valid Accounts",
+          "mitre_tactics": [
+            "defense-evasion",
+            "initial-access",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1078.002",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domain Accounts",
+          "mitre_tactics": [
+            "defense-evasion",
+            "initial-access",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1059.004",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1053.003",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Cron",
+          "mitre_tactics": [
+            "execution",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1559",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Inter-Process Communication",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1003.003",
+          "missing_fields": [],
+          "tactic": "credential-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "NTDS",
+          "mitre_tactics": [
+            "credential-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 11,
+          "technique_id": "T1021.002",
+          "missing_fields": [],
+          "tactic": "lateral-movement",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "SMB/Windows Admin Shares",
+          "mitre_tactics": [
+            "lateral-movement"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 12,
+          "technique_id": "T1021.006",
+          "missing_fields": [],
+          "tactic": "lateral-movement",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Windows Remote Management",
+          "mitre_tactics": [
+            "lateral-movement"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 13,
+          "technique_id": "T1005",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Data from Local System",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 14,
+          "technique_id": "T1074.001",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Local Data Staging",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 15,
+          "technique_id": "T1090",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Proxy",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 16,
+          "technique_id": "T1071.001",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Web Protocols",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 17,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.outer_space",
+      "technique_count": 8,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1584.004",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Server",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1217",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Browser Information Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1071.001",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Web Protocols",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1585.003",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Cloud Accounts",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1027.013",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Encrypted/Encoded File",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1587.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Malware",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1059.005",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Visual Basic",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "technique_count": 18,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1598.004",
+          "missing_fields": [],
+          "tactic": "reconnaissance",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Spearphishing Voice",
+          "mitre_tactics": [
+            "reconnaissance"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1585",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Establish Accounts",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1585.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Email Accounts",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1586.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Email Accounts",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1587.001",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Malware",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1588.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Tool",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1608.005",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Link Target",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1671",
+          "missing_fields": [],
+          "tactic": "persistence",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Cloud Application Integration",
+          "mitre_tactics": [
+            "persistence"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1059.006",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Python",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1036",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Masquerading",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 11,
+          "technique_id": "T1078.002",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Domain Accounts",
+          "mitre_tactics": [
+            "defense-evasion",
+            "initial-access",
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 12,
+          "technique_id": "T1656",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Impersonation",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 13,
+          "technique_id": "T1083",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "File and Directory Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 14,
+          "technique_id": "T1213.004",
+          "missing_fields": [],
+          "tactic": "collection",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Customer Relationship Management Software",
+          "mitre_tactics": [
+            "collection"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 15,
+          "technique_id": "T1090",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Proxy",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 16,
+          "technique_id": "T1090.003",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Multi-hop Proxy",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 17,
+          "technique_id": "T1020",
+          "missing_fields": [],
+          "tactic": "exfiltration",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Automated Exfiltration",
+          "mitre_tactics": [
+            "exfiltration"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 18,
+          "technique_id": "T1567",
+          "missing_fields": [],
+          "tactic": "exfiltration",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Exfiltration Over Web Service",
+          "mitre_tactics": [
+            "exfiltration"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.shadowray",
+      "technique_count": 10,
+      "steps_with_missing_metadata": 0,
+      "steps_with_noncanonical_tactic": 0,
+      "steps_without_mitre_support": 0,
+      "steps_with_tactic_mismatch": 0,
+      "steps": [
+        {
+          "order": 1,
+          "technique_id": "T1190",
+          "missing_fields": [],
+          "tactic": "initial-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Exploit Public-Facing Application",
+          "mitre_tactics": [
+            "initial-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 2,
+          "technique_id": "T1027.013",
+          "missing_fields": [],
+          "tactic": "defense-evasion",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Encrypted/Encoded File",
+          "mitre_tactics": [
+            "defense-evasion"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 3,
+          "technique_id": "T1003.008",
+          "missing_fields": [],
+          "tactic": "credential-access",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "/etc/passwd and /etc/shadow",
+          "mitre_tactics": [
+            "credential-access"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 4,
+          "technique_id": "T1546.004",
+          "missing_fields": [],
+          "tactic": "privilege-escalation",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Unix Shell Configuration Modification",
+          "mitre_tactics": [
+            "persistence",
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 5,
+          "technique_id": "T1588.002",
+          "missing_fields": [],
+          "tactic": "resource-development",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Tool",
+          "mitre_tactics": [
+            "resource-development"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 6,
+          "technique_id": "T1105",
+          "missing_fields": [],
+          "tactic": "command-and-control",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Ingress Tool Transfer",
+          "mitre_tactics": [
+            "command-and-control"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 7,
+          "technique_id": "T1059.006",
+          "missing_fields": [],
+          "tactic": "execution",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Python",
+          "mitre_tactics": [
+            "execution"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 8,
+          "technique_id": "T1016",
+          "missing_fields": [],
+          "tactic": "discovery",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "System Network Configuration Discovery",
+          "mitre_tactics": [
+            "discovery"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 9,
+          "technique_id": "T1068",
+          "missing_fields": [],
+          "tactic": "privilege-escalation",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Exploitation for Privilege Escalation",
+          "mitre_tactics": [
+            "privilege-escalation"
+          ],
+          "tactic_matches_mitre": true
+        },
+        {
+          "order": 10,
+          "technique_id": "T1496.001",
+          "missing_fields": [],
+          "tactic": "impact",
+          "tactic_is_slug": true,
+          "supported_by_mitre": true,
+          "mitre_name": "Compute Hijacking",
+          "mitre_tactics": [
+            "impact"
+          ],
+          "tactic_matches_mitre": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+# Multi-Host Docker Compose for Campaign Execution
+# Complete IaC for reproducible experiments
+#
+# Usage:
+#   docker compose -f docker-compose.multi-host.yml up -d
+
+services:
+  caldera:
+    image: mitre/caldera:latest
+    container_name: caldera_server
+    platform: linux/amd64
+    ports:
+      - "8888:8888"
+    environment:
+      - CALDERA_SERVER_IP=caldera
+      - CALDERA_USERNAME=admin
+      - CALDERA_PASSWORD=admin
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - caldera_data:/opt/caldera
+    networks:
+      - campaign_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  target-1:
+    image: kalilinux/kali-rolling:latest
+    container_name: target_linux_1
+    hostname: target-1
+    privileged: true
+    networks:
+      - campaign_net
+    depends_on:
+      caldera:
+        condition: service_healthy
+    entrypoint: ["/bin/sleep", "infinity"]
+
+  target-2:
+    image: kalilinux/kali-rolling:latest
+    container_name: target_linux_2
+    hostname: target-2
+    privileged: true
+    networks:
+      - campaign_net
+    depends_on:
+      caldera:
+        condition: service_healthy
+    entrypoint: ["/bin/sleep", "infinity"]
+
+  target-3:
+    image: kalilinux/kali-rolling:latest
+    container_name: target_linux_3
+    hostname: target-3
+    privileged: true
+    networks:
+      - campaign_net
+    depends_on:
+      caldera:
+        condition: service_healthy
+    entrypoint: ["/bin/sleep", "infinity"]
+
+volumes:
+  caldera_data:
+
+networks:
+  campaign_net:
+    driver: bridge

@@ -1,0 +1,5 @@
+docker stop autosut-target2-bbac5c
+exit_code: 0
+stdout: autosut-target2-bbac5c
+
+stderr: 

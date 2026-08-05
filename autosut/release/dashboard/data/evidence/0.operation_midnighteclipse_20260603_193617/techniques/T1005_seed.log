@@ -1,0 +1,8 @@
+$ mkdir -p /var/lab && echo 'exfil_seed_T1005' > /var/lab/secret_T1005.txt && cd /var/lab && nohup python3 -m http.server 9090 > /tmp/T1005_srv.log 2>&1 & sleep 2 && ls /var/lab/
+exit_code: 0
+--- stdout ---
+T1588.002
+secret_T1005.txt
+
+--- stderr ---
+

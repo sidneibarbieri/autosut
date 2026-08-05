@@ -1,0 +1,6 @@
+{
+  "port": 443,
+  "protocol": "tcp",
+  "service": "globalprotect_https_surrogate",
+  "expose_to": "private_network"
+}

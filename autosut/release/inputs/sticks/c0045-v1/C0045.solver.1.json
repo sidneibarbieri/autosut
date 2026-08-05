@@ -1,0 +1,1051 @@
+{
+  "schema_version": "1",
+  "ordering_policy": "causal_topological_then_source_order",
+  "campaign_id": "C0045",
+  "source_plan_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+  "binding_catalog_sha256": "ee9cbd4a64e308e332d7f3df1259208fdc9085d8e5d8d8e01fef8a9cc83c87aa",
+  "action_catalog_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+  "steps": [
+    {
+      "sequence": 1,
+      "technique_id": "T1588.002",
+      "template_id": "stage-benign-toolkit",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.toolkit.ready",
+        "artifacts:recon_toolkit",
+        "system:toolkit"
+      ],
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1190",
+      "template_id": "probe-declared-public-service",
+      "bindings": {
+        "actor": "actor.primary",
+        "endpoint": "endpoint.public_service",
+        "target": "target.primary"
+      },
+      "requires": [
+        "sut.ray_dashboard.reachable",
+        "network:http_available"
+      ],
+      "produces": [
+        "access.target.shell",
+        "access:initial"
+      ],
+      "evidence_predicates": [
+        "service_request_logged",
+        "bounded_effect_observed"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1059.006",
+      "template_id": "run-benign-python",
+      "bindings": {
+        "runtime": "runtime.python3",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "execution.target.python",
+        "artifacts:python_script",
+        "system:recon_data"
+      ],
+      "evidence_predicates": [
+        "process_exit_recorded",
+        "stdout_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1546.004",
+      "template_id": "write-lab-shell-config",
+      "bindings": {
+        "artifact": "artifact.shell_config",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "persistence.target.shell_config",
+        "artifacts:modified_config",
+        "persistence:shell_config"
+      ],
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "cleanup_verified"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1068",
+      "template_id": "assess-privilege-boundary",
+      "bindings": {
+        "boundary": "boundary.no_live_exploit",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell",
+        "access:initial"
+      ],
+      "produces": [
+        "assessment.target.privilege_boundary",
+        "access:privileged",
+        "system:root_access"
+      ],
+      "evidence_predicates": [
+        "boundary_check_recorded"
+      ],
+      "fidelity_ceiling": "inspired",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1027.013",
+      "template_id": "encode-benign-artifact",
+      "bindings": {
+        "artifact": "artifact.encoded",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "artifact.target.encoded",
+        "artifacts:obfuscated_file",
+        "artifacts:decoder"
+      ],
+      "evidence_predicates": [
+        "source_and_encoded_hashes_recorded"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 7,
+      "technique_id": "T1003.008",
+      "template_id": "read-declared-credential-fixture",
+      "bindings": {
+        "credential_source": "credential.synthetic_fixture",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "collection.target.credential_files",
+        "credentials:dumped",
+        "artifacts:credential_file"
+      ],
+      "evidence_predicates": [
+        "fixture_access_logged",
+        "no_host_credentials_read"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 8,
+      "technique_id": "T1016",
+      "template_id": "inspect-declared-network",
+      "bindings": {
+        "interface": "network.private_interface",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "discovery.target.network",
+        "discovery:network_config"
+      ],
+      "evidence_predicates": [
+        "interface_snapshot_recorded"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 9,
+      "technique_id": "T1105",
+      "template_id": "transfer-benign-payload",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.shell",
+        "actor.toolkit.ready",
+        "c2_channel",
+        "network:http_available"
+      ],
+      "produces": [
+        "transfer.target.payload",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 10,
+      "technique_id": "T1496.001",
+      "template_id": "run-bounded-compute-workload",
+      "bindings": {
+        "target": "target.primary",
+        "workload": "workload.bounded_hash"
+      },
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "impact.target.compute",
+        "artifacts:mining_log",
+        "system:cpu_usage"
+      ],
+      "evidence_predicates": [
+        "duration_and_cpu_bound_recorded",
+        "no_pool_traffic"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    }
+  ],
+  "unresolved_technique_ids": [],
+  "rejected_candidates": [
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-over-resolved-lab-channel",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: channel.resolved"
+        }
+      ],
+      "assumption_count": 1
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-staged-benign-tool",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: access.target.browser_context, actor.tool.staged"
+        }
+      ],
+      "assumption_count": 1
+    }
+  ],
+  "retrieval_traces": [
+    {
+      "technique_id": "T1588.002",
+      "query_sha256": "71164dc981a7517b5545e840057e81b7b23bf79cc412381a1ae8dc2a67af1813",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1588.002",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "tool"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1190",
+      "query_sha256": "92a9b49cc2b8eb838c42c7bf26e613199a42ccf6c2b50cf0ff66565c3eaac3cc",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1190"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1059.006",
+      "query_sha256": "1a94dbb045d29f6c0b5d12b3cf13ac5da8c43eeba7176fcaea661a387b8c5c4a",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "run-benign-python",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "python",
+            "t1059.006",
+            "the"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1546.004",
+      "query_sha256": "98fb4dbadd0ad720f3e6aea0d8641741bc441951a0a35c1fcc971ebae1c9e14f",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "and",
+            "configuration",
+            "persistence",
+            "shell",
+            "t1546.004"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "and"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1068",
+      "query_sha256": "24d86082abda62e777f7ad48f85d3c1e1c1dde81b1952019e96862b9e847fe03",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "privilege",
+            "t1068"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1027.013",
+      "query_sha256": "24813342c2593819a2e034585d3258909c4b1d895bdeaae815d300a5ac7be2c2",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1027.013"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "python"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1003.008",
+      "query_sha256": "3a233787ff56eb460b73c566ae67238499a39f2f64478023fb90682744b17fd1",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1003.008"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "and",
+            "hashes."
+          ]
+        },
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "and"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1016",
+      "query_sha256": "ee4b043e20e1f85a2afff2df305d82f23d22b29792b5432cb37f4b879ef2ed30",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "inspect-declared-network",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "discovery",
+            "t1016"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "discovery"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "system"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "discovery"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "system"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "query_sha256": "7af2e945eda6330935e479bf2c83bb1e0bdf0e9ea0d754f015ddfbfc4e16ff5f",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "the",
+            "tool",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1496.001",
+      "query_sha256": "f80270f8203f02f5592567dfbe5b926914d5cd43ef76971a39df2a9e24c92433",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "run-bounded-compute-workload",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1496.001"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    }
+  ],
+  "planning_certificate": {
+    "initial_facts": [
+      "actor.ready",
+      "c2_channel",
+      "network:http_available",
+      "sut.ray_dashboard.reachable",
+      "sut.ready"
+    ],
+    "goal_facts": [
+      "impact.target.compute"
+    ],
+    "transitions": [
+      {
+        "sequence": 1,
+        "technique_id": "T1588.002",
+        "state_before_sha256": "0914d46dc85fd17b7e4285454ba4b869d2b444172be536cb9875bb23a742fc43",
+        "state_after_sha256": "7960009e06c2a611b6170354370be515237e6752ec4441986a66146dbbcb1662",
+        "added_facts": [
+          "actor.toolkit.ready",
+          "artifacts:recon_toolkit",
+          "system:toolkit"
+        ]
+      },
+      {
+        "sequence": 2,
+        "technique_id": "T1190",
+        "state_before_sha256": "7960009e06c2a611b6170354370be515237e6752ec4441986a66146dbbcb1662",
+        "state_after_sha256": "a7d2498fe2b50931bafbc1ebf1ec0e39a795df754b57563a08c4130a7d655fb0",
+        "added_facts": [
+          "access.target.shell",
+          "access:initial"
+        ]
+      },
+      {
+        "sequence": 3,
+        "technique_id": "T1059.006",
+        "state_before_sha256": "a7d2498fe2b50931bafbc1ebf1ec0e39a795df754b57563a08c4130a7d655fb0",
+        "state_after_sha256": "f8c96caef2ecfe5ba70dfa81405fd2fabeb4dcdc11adc25cc2dd78d0e767c730",
+        "added_facts": [
+          "artifacts:python_script",
+          "execution.target.python",
+          "system:recon_data"
+        ]
+      },
+      {
+        "sequence": 4,
+        "technique_id": "T1546.004",
+        "state_before_sha256": "f8c96caef2ecfe5ba70dfa81405fd2fabeb4dcdc11adc25cc2dd78d0e767c730",
+        "state_after_sha256": "64e6846717cb9779fa86a95d87abcdc4ad87ce994e1de18ca490cafc8acccf8e",
+        "added_facts": [
+          "artifacts:modified_config",
+          "persistence.target.shell_config",
+          "persistence:shell_config"
+        ]
+      },
+      {
+        "sequence": 5,
+        "technique_id": "T1068",
+        "state_before_sha256": "64e6846717cb9779fa86a95d87abcdc4ad87ce994e1de18ca490cafc8acccf8e",
+        "state_after_sha256": "e3f04c0ed3ad8aad11c022936269918789d86841299edc4c2f1a13e8aca6edb4",
+        "added_facts": [
+          "access:privileged",
+          "assessment.target.privilege_boundary",
+          "system:root_access"
+        ]
+      },
+      {
+        "sequence": 6,
+        "technique_id": "T1027.013",
+        "state_before_sha256": "e3f04c0ed3ad8aad11c022936269918789d86841299edc4c2f1a13e8aca6edb4",
+        "state_after_sha256": "161cd66716482da245c99c1a9ae4b061b5e40b707e388a5f2fed5eb6936e2f77",
+        "added_facts": [
+          "artifact.target.encoded",
+          "artifacts:decoder",
+          "artifacts:obfuscated_file"
+        ]
+      },
+      {
+        "sequence": 7,
+        "technique_id": "T1003.008",
+        "state_before_sha256": "161cd66716482da245c99c1a9ae4b061b5e40b707e388a5f2fed5eb6936e2f77",
+        "state_after_sha256": "a36362b89849bc1e37b5e29ead82907078d104d41dcdfc9dcfa939b48f091c87",
+        "added_facts": [
+          "artifacts:credential_file",
+          "collection.target.credential_files",
+          "credentials:dumped"
+        ]
+      },
+      {
+        "sequence": 8,
+        "technique_id": "T1016",
+        "state_before_sha256": "a36362b89849bc1e37b5e29ead82907078d104d41dcdfc9dcfa939b48f091c87",
+        "state_after_sha256": "9753b5aa106894a9ef2db5ac10df3a05bddfcffcc0857a4c6dfc4e00d5397e23",
+        "added_facts": [
+          "discovery.target.network",
+          "discovery:network_config"
+        ]
+      },
+      {
+        "sequence": 9,
+        "technique_id": "T1105",
+        "state_before_sha256": "9753b5aa106894a9ef2db5ac10df3a05bddfcffcc0857a4c6dfc4e00d5397e23",
+        "state_after_sha256": "6a272759f98d8ff2ccdb48583ca42f59e5d8a0c18b2ded1139966f6d8bce0dda",
+        "added_facts": [
+          "artifacts:downloaded_tool",
+          "artifacts:tool_script",
+          "payload:staged",
+          "transfer.target.payload"
+        ]
+      },
+      {
+        "sequence": 10,
+        "technique_id": "T1496.001",
+        "state_before_sha256": "6a272759f98d8ff2ccdb48583ca42f59e5d8a0c18b2ded1139966f6d8bce0dda",
+        "state_after_sha256": "a60b82ae7127f124de97db6ff3b8e488f3b5346170cfdf35a80a6faee0025cb1",
+        "added_facts": [
+          "artifacts:mining_log",
+          "impact.target.compute",
+          "system:cpu_usage"
+        ]
+      }
+    ],
+    "causal_links": [
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 1
+      },
+      {
+        "fact_id": "sut.ray_dashboard.reachable",
+        "producer_sequence": 0,
+        "consumer_sequence": 2
+      },
+      {
+        "fact_id": "network:http_available",
+        "producer_sequence": 0,
+        "consumer_sequence": 2
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 3
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 4
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 5
+      },
+      {
+        "fact_id": "access:initial",
+        "producer_sequence": 2,
+        "consumer_sequence": 5
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 6
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 7
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 8
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "actor.toolkit.ready",
+        "producer_sequence": 1,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "c2_channel",
+        "producer_sequence": 0,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "network:http_available",
+        "producer_sequence": 0,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "access.target.shell",
+        "producer_sequence": 2,
+        "consumer_sequence": 10
+      }
+    ],
+    "final_facts": [
+      "access.target.shell",
+      "access:initial",
+      "access:privileged",
+      "actor.ready",
+      "actor.toolkit.ready",
+      "artifact.target.encoded",
+      "artifacts:credential_file",
+      "artifacts:decoder",
+      "artifacts:downloaded_tool",
+      "artifacts:mining_log",
+      "artifacts:modified_config",
+      "artifacts:obfuscated_file",
+      "artifacts:python_script",
+      "artifacts:recon_toolkit",
+      "artifacts:tool_script",
+      "assessment.target.privilege_boundary",
+      "c2_channel",
+      "collection.target.credential_files",
+      "credentials:dumped",
+      "discovery.target.network",
+      "discovery:network_config",
+      "execution.target.python",
+      "impact.target.compute",
+      "network:http_available",
+      "payload:staged",
+      "persistence.target.shell_config",
+      "persistence:shell_config",
+      "sut.ray_dashboard.reachable",
+      "sut.ready",
+      "system:cpu_usage",
+      "system:recon_data",
+      "system:root_access",
+      "system:toolkit",
+      "transfer.target.payload"
+    ],
+    "unresolved_goals": [],
+    "valid": true,
+    "content_sha256": "2ae0c95d0c6b5d7d3b5888fd74936c4ad0453d343e75eafed351102d5657b5dc"
+  },
+  "llm_call_sha256": null,
+  "execution_semantic_sha256": "bd1c1e91353ecf9f764215a16d526a798a95f38e3e311d5e30ff6a25b53df551",
+  "content_sha256": "62b77fbb16169f7b855ec089ed20732e88913aa68294e755bba944fbaac2368d"
+}

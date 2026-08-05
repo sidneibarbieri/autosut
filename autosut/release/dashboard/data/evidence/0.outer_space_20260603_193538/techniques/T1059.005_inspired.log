@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1059_005.marker && echo 'T1059.005 (Visual Basic) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1059_005.marker && cat /tmp/c0011_T1059_005.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:35:57Z
+T1059.005 (Visual Basic) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

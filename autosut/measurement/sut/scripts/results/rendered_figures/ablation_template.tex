@@ -1,0 +1,42 @@
+% RQ3 sensitivity over nested profile subsets. Values come from results/values.tex.
+\providecolor{figureBlue}{HTML}{4477AA}
+\providecolor{figureInk}{HTML}{333333}
+\providecolor{figureAxis}{HTML}{667085}
+\providecolor{figureGrid}{HTML}{D9DDE2}
+
+\begin{tikzpicture}[x=0.53cm,y=0.78cm,font=\sffamily\footnotesize]
+  \path[use as bounding box] (-3.05,-1.35) rectangle (13.50,4.85);
+
+  \foreach \x in {0,2,4,6,8,10} {
+    \draw[figureGrid] (\x,0.25) -- (\x,4.15);
+    \node[below,text=figureAxis] at (\x,0.20) {\x};
+  }
+  \draw[->,figureAxis,line width=0.8pt] (0,0.20) -- (10.45,0.20);
+  \node[anchor=west,font=\sffamily\footnotesize\bfseries,text=figureAxis]
+    at (-2.90,4.52) {Nested subset};
+  \node[anchor=east,font=\sffamily\footnotesize\bfseries,text=figureAxis]
+    at (13.35,4.52) {Population};
+
+  % #1=y, #2=subset label, #3=rate, #4=population size
+  \newcommand{\ablationrow}[4]{%
+    \node[anchor=east] at (-0.22,#1) {#2};
+    \draw[figureBlue,line width=2.0pt,line cap=round] (0,#1) -- (#3,#1);
+    \fill[figureBlue] (#3,#1) circle (0.105);
+    \node[anchor=east,font=\sffamily\footnotesize\bfseries]
+      at (10.65,#1) {#3\%};
+    \node[anchor=east,text=figureAxis] at (13.35,#1) {$n=#4$};
+  }
+
+  \ablationrow{3.70}{All active profiles}
+    {\sutprofileconfusionsoftwarepercentage}{\enterpriseactiveintrusionsetcount}
+  \ablationrow{2.75}{$k\geq1$}
+    {\thresholdkoneconfusionpct}{\thresholdkonesample}
+  \ablationrow{1.80}{$k\geq2$}
+    {\thresholdktwoconfusionpct}{\thresholdktwosample}
+  \ablationrow{0.85}{$k\geq3$}
+    {\thresholdkthreeconfusionpct}{\thresholdkthreesample}
+
+  \node[text=figureAxis] at (5.0,-0.46) {Nearest-neighbor confusion (\%)};
+  \node[anchor=west,text=figureAxis] at (-2.90,-1.07)
+    {$k$ counts linked software objects; each row recomputes neighbors.};
+\end{tikzpicture}

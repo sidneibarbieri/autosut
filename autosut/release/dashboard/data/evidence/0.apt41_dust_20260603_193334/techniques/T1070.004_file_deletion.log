@@ -1,0 +1,8 @@
+$ f=/tmp/autosut_T1070_004_indicator.log; echo 'lab activity to be erased' > $f; sha256sum $f; rm -f $f; if [ -e $f ]; then echo DELETE_FAILED; else echo DELETED_OK; fi
+exit_code: 0
+--- stdout ---
+b874fe4d5873b1f9eb0c35dd1c0b6acec075710a3327fec3433402ee5f1abb3d  /tmp/autosut_T1070_004_indicator.log
+DELETED_OK
+
+--- stderr ---
+

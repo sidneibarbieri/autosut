@@ -1,0 +1,4467 @@
+{
+  "generated_at": "2026-03-19T00:17:21.653044",
+  "campaigns": {
+    "0.apt41_dust": {
+      "total": 13,
+      "consistent": 3,
+      "mismatches": 10,
+      "distribution": {
+        "inspired": 10,
+        "adapted": 3
+      },
+      "techniques": [
+        {
+          "technique_id": "T1102",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1583.006",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.apt41_dust",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.apt41_dust",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1007",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1055",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1564.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1113",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1119",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1020",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "0.apt41_dust",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1486",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.apt41_dust_full": {
+      "total": 10,
+      "consistent": 2,
+      "mismatches": 8,
+      "distribution": {
+        "adapted": 2,
+        "inspired": 8
+      },
+      "techniques": [
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1007",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1033",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1027",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1564.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1119",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1020",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1490",
+          "technique_name": "Unknown",
+          "campaign_id": "0.apt41_dust_full",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.c0010": {
+      "total": 9,
+      "consistent": 4,
+      "mismatches": 5,
+      "distribution": {
+        "inspired": 6,
+        "adapted": 3
+      },
+      "techniques": [
+        {
+          "technique_id": "T1584.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0010",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1608.001",
+          "technique_name": "Stage Capabilities: Upload Malware",
+          "campaign_id": "0.c0010",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1608.004",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0010",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1189",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0010",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1587.001",
+          "technique_name": "Develop Capabilities: Malware",
+          "campaign_id": "0.c0010",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1583.001",
+          "technique_name": "Acquire Infrastructure: Domains",
+          "campaign_id": "0.c0010",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1608.002",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0010",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1588.002",
+          "technique_name": "Obtain Capabilities: Tool",
+          "campaign_id": "0.c0010",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "inspired",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "campaign_id": "0.c0010",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        }
+      ]
+    },
+    "0.c0011": {
+      "total": 11,
+      "consistent": 9,
+      "mismatches": 2,
+      "distribution": {
+        "adapted": 2,
+        "inspired": 9
+      },
+      "techniques": [
+        {
+          "technique_id": "T1587.003",
+          "technique_name": "Digital Certificates",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1583.001",
+          "technique_name": "Acquire Infrastructure: Domains",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1608.001",
+          "technique_name": "Stage Capabilities: Upload Malware",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1566.002",
+          "technique_name": "Phishing: Spearphishing Link",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1566.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0011",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1204.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0011",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1204.002",
+          "technique_name": "User Execution: Malicious File",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1059.005",
+          "technique_name": "Command and Scripting Interpreter: Visual Basic",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "Command and Scripting Interpreter: PowerShell",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1059.007",
+          "technique_name": "Command and Scripting Interpreter: JavaScript",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1574",
+          "technique_name": "Hijack Execution Flow",
+          "campaign_id": "0.c0011",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        }
+      ]
+    },
+    "0.c0012": {
+      "total": 3,
+      "consistent": 2,
+      "mismatches": 1,
+      "distribution": {
+        "adapted": 2,
+        "inspired": 1
+      },
+      "techniques": [
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.c0012",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.c0012",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0012",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.c0013": {
+      "total": 4,
+      "consistent": 3,
+      "mismatches": 1,
+      "distribution": {
+        "adapted": 3,
+        "inspired": 1
+      },
+      "techniques": [
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.c0013",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.c0013",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "campaign_id": "0.c0013",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1055",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0013",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.c0015": {
+      "total": 5,
+      "consistent": 2,
+      "mismatches": 3,
+      "distribution": {
+        "adapted": 2,
+        "inspired": 3
+      },
+      "techniques": [
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.c0015",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.c0015",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1068",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0015",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1548",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0015",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1113",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0015",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.c0017": {
+      "total": 6,
+      "consistent": 2,
+      "mismatches": 4,
+      "distribution": {
+        "adapted": 2,
+        "inspired": 4
+      },
+      "techniques": [
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.c0017",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.c0017",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1053",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0017",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1543",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0017",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1027",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0017",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1564",
+          "technique_name": "Unknown",
+          "campaign_id": "0.c0017",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.c0026": {
+      "total": 6,
+      "consistent": 6,
+      "mismatches": 0,
+      "distribution": {
+        "inspired": 1,
+        "adapted": 5
+      },
+      "techniques": [
+        {
+          "technique_id": "T1583.001",
+          "technique_name": "Acquire Infrastructure: Domains",
+          "campaign_id": "0.c0026",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1568",
+          "technique_name": "Dynamic Resolution",
+          "campaign_id": "0.c0026",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "campaign_id": "0.c0026",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1005",
+          "technique_name": "Data from Local System",
+          "campaign_id": "0.c0026",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1560.001",
+          "technique_name": "Archive Collected Data: Archive via Utility",
+          "campaign_id": "0.c0026",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1030",
+          "technique_name": "Data Transfer Size Limits",
+          "campaign_id": "0.c0026",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        }
+      ]
+    },
+    "0.costaricto": {
+      "total": 10,
+      "consistent": 8,
+      "mismatches": 2,
+      "distribution": {
+        "inspired": 7,
+        "adapted": 3
+      },
+      "techniques": [
+        {
+          "technique_id": "T1046",
+          "technique_name": "Unknown",
+          "campaign_id": "0.costaricto",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1090.003",
+          "technique_name": "Proxy: Multi-hop Proxy",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1053.005",
+          "technique_name": "Scheduled Task/Job: Scheduled Task",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1588.002",
+          "technique_name": "Obtain Capabilities: Tool",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "inspired",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1133",
+          "technique_name": "External Remote Services",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1583.001",
+          "technique_name": "Acquire Infrastructure: Domains",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1587.001",
+          "technique_name": "Develop Capabilities: Malware",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1005",
+          "technique_name": "Data from Local System",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1572",
+          "technique_name": "Protocol Tunneling",
+          "campaign_id": "0.costaricto",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        }
+      ]
+    },
+    "0.operation_midnighteclipse": {
+      "total": 18,
+      "consistent": 4,
+      "mismatches": 14,
+      "distribution": {
+        "adapted": 4,
+        "inspired": 14
+      },
+      "techniques": [
+        {
+          "technique_id": "T1190",
+          "technique_name": "Exploit Public-Facing Application",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1078.003",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1007",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1033",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1055",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1564.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1027",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1113",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1119",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1056.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1020",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1567.002",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1486",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1491",
+          "technique_name": "Unknown",
+          "campaign_id": "0.operation_midnighteclipse",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.outer_space": {
+      "total": 8,
+      "consistent": 6,
+      "mismatches": 2,
+      "distribution": {
+        "adapted": 2,
+        "inspired": 6
+      },
+      "techniques": [
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "campaign_id": "0.outer_space",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1584.004",
+          "technique_name": "Compromise Infrastructure: Server",
+          "campaign_id": "0.outer_space",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1217",
+          "technique_name": "Browser Information Discovery",
+          "campaign_id": "0.outer_space",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1071.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.outer_space",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1585.003",
+          "technique_name": "Establish Accounts: Cloud Accounts",
+          "campaign_id": "0.outer_space",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1027.013",
+          "technique_name": "Unknown",
+          "campaign_id": "0.outer_space",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1587.001",
+          "technique_name": "Develop Capabilities: Malware",
+          "campaign_id": "0.outer_space",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1059.005",
+          "technique_name": "Command and Scripting Interpreter: Visual Basic",
+          "campaign_id": "0.outer_space",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        }
+      ]
+    },
+    "0.salesforce_data_exfiltration": {
+      "total": 12,
+      "consistent": 3,
+      "mismatches": 9,
+      "distribution": {
+        "inspired": 9,
+        "adapted": 3
+      },
+      "techniques": [
+        {
+          "technique_id": "T1078.003",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1059.004",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1033",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1056.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1113",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1119",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1020",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1567.002",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1486",
+          "technique_name": "Unknown",
+          "campaign_id": "0.salesforce_data_exfiltration",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "0.shadowray": {
+      "total": 10,
+      "consistent": 4,
+      "mismatches": 6,
+      "distribution": {
+        "adapted": 5,
+        "inspired": 5
+      },
+      "techniques": [
+        {
+          "technique_id": "T1190",
+          "technique_name": "Exploit Public-Facing Application",
+          "campaign_id": "0.shadowray",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1027.013",
+          "technique_name": "Unknown",
+          "campaign_id": "0.shadowray",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1003.008",
+          "technique_name": "Unknown",
+          "campaign_id": "0.shadowray",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1546.004",
+          "technique_name": "Modify Existing System Service: Unix Shell Configuration Modification",
+          "campaign_id": "0.shadowray",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1588.002",
+          "technique_name": "Obtain Capabilities: Tool",
+          "campaign_id": "0.shadowray",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "inspired",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "campaign_id": "0.shadowray",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1059.006",
+          "technique_name": "Command and Scripting Interpreter: Python",
+          "campaign_id": "0.shadowray",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "Unknown",
+          "campaign_id": "0.shadowray",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1068",
+          "technique_name": "Unknown",
+          "campaign_id": "0.shadowray",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1496.001",
+          "technique_name": "Unknown",
+          "campaign_id": "0.shadowray",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "C0001": {
+      "total": 4,
+      "consistent": 4,
+      "mismatches": 0,
+      "distribution": {
+        "adapted": 3,
+        "inspired": 1
+      },
+      "techniques": [
+        {
+          "technique_id": "T1190",
+          "technique_name": "Exploit Public-Facing Application",
+          "campaign_id": "C0001",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "Command and Scripting Interpreter: PowerShell",
+          "campaign_id": "C0001",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "C0001",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "C0001",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        }
+      ]
+    },
+    "C0002": {
+      "total": 5,
+      "consistent": 5,
+      "mismatches": 0,
+      "distribution": {
+        "adapted": 5
+      },
+      "techniques": [
+        {
+          "technique_id": "T1190",
+          "technique_name": "Exploit Public-Facing Application",
+          "campaign_id": "C0002",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1059.003",
+          "technique_name": "Command and Scripting Interpreter: Unix Shell",
+          "campaign_id": "C0002",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "C0002",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1560.001",
+          "technique_name": "Archive Collected Data: Archive via Utility",
+          "campaign_id": "C0002",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "C0002",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        }
+      ]
+    },
+    "C0003": {
+      "total": 5,
+      "consistent": 5,
+      "mismatches": 0,
+      "distribution": {
+        "inspired": 3,
+        "adapted": 2
+      },
+      "techniques": [
+        {
+          "technique_id": "T1566.002",
+          "technique_name": "Phishing: Spearphishing Link",
+          "campaign_id": "C0003",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "Command and Scripting Interpreter: PowerShell",
+          "campaign_id": "C0003",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "C0003",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "C0003",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1204.002",
+          "technique_name": "User Execution: Malicious File",
+          "campaign_id": "C0003",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        }
+      ]
+    },
+    "C0004": {
+      "total": 6,
+      "consistent": 4,
+      "mismatches": 2,
+      "distribution": {
+        "inspired": 3,
+        "adapted": 3
+      },
+      "techniques": [
+        {
+          "technique_id": "T1566.001",
+          "technique_name": "Unknown",
+          "campaign_id": "C0004",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        },
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "Command and Scripting Interpreter: PowerShell",
+          "campaign_id": "C0004",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "C0004",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1546.004",
+          "technique_name": "Modify Existing System Service: Unix Shell Configuration Modification",
+          "campaign_id": "C0004",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "C0004",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1204.001",
+          "technique_name": "Unknown",
+          "campaign_id": "C0004",
+          "answers": [],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "unknown",
+          "consistent": false,
+          "platform_mismatch": false,
+          "execution_mode": "unknown"
+        }
+      ]
+    },
+    "C0005": {
+      "total": 5,
+      "consistent": 5,
+      "mismatches": 0,
+      "distribution": {
+        "adapted": 4,
+        "inspired": 1
+      },
+      "techniques": [
+        {
+          "technique_id": "T1190",
+          "technique_name": "Exploit Public-Facing Application",
+          "campaign_id": "C0005",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "Command and Scripting Interpreter: PowerShell",
+          "campaign_id": "C0005",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": false,
+              "justification": "Execution mode: naive_simulated"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": false,
+              "justification": "Substrate mismatch: technique requires windows"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": false,
+              "justification": "Simulated: log entry rather than operational effect"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "inspired",
+          "declared_fidelity": "inspired",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "naive_simulated"
+        },
+        {
+          "technique_id": "T1083",
+          "technique_name": "File and Directory Discovery",
+          "campaign_id": "C0005",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1560.001",
+          "technique_name": "Archive Collected Data: Archive via Utility",
+          "campaign_id": "C0005",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        },
+        {
+          "technique_id": "T1041",
+          "technique_name": "Exfiltration Over C2 Channel",
+          "campaign_id": "C0005",
+          "answers": [
+            {
+              "question_id": "Q1",
+              "question": "Was the central mechanism of the technique preserved?",
+              "answer": true,
+              "justification": "Real execution of technique mechanism on compatible platform"
+            },
+            {
+              "question_id": "Q2",
+              "question": "Was the relevant substrate (OS, runtime, service) preserved?",
+              "answer": true,
+              "justification": "Substrate matches technique requirements"
+            },
+            {
+              "question_id": "Q3",
+              "question": "Did the required preconditions arise operationally (not pre-staged)?",
+              "answer": false,
+              "justification": "Lab context: preconditions (credentials, files, weaknesses) are pre-staged by SUT profile, not discovered operationally"
+            },
+            {
+              "question_id": "Q4",
+              "question": "Does the observed effect follow from the mechanism, not a semantic shortcut?",
+              "answer": true,
+              "justification": "Effect produced by actual execution of technique"
+            },
+            {
+              "question_id": "Q5",
+              "question": "Can the evidence be independently audited and verified?",
+              "answer": true,
+              "justification": "Executor produces artifacts, logs, timestamps, and fidelity justification"
+            }
+          ],
+          "computed_fidelity": "adapted",
+          "declared_fidelity": "adapted",
+          "consistent": true,
+          "platform_mismatch": false,
+          "execution_mode": "real_controlled"
+        }
+      ]
+    }
+  }
+}

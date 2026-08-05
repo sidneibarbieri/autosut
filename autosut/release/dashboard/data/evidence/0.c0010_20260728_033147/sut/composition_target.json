@@ -1,0 +1,73 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "ubuntu",
+      "secret": "ubuntu",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/var/www/html/index.html",
+      "content_text": "<html><body>Welcome to the lab landing page.</body></html>\n",
+      "content_b64": null,
+      "owner": "www-data",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/var/www/html/index.html).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/ubuntu/shipping_notice.txt",
+      "content_text": "Shipping notice \u2014 internal use only.\n",
+      "content_b64": null,
+      "owner": "ubuntu",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/shipping_notice.txt).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "apache_httpd",
+      "version": "default",
+      "recipe": "apache_default_site",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.c0010 \u2014 APT20 Operation Wocao watering-hole chain. Linux web target with weak ssh + apache landing page."
+}

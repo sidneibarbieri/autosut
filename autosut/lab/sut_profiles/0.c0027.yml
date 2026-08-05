@@ -1,0 +1,83 @@
+# =============================================================================
+# SUT Profile: 0.c0027 (Multi-Host Lateral Pivot)
+# =============================================================================
+
+campaign_id: "0.c0027"
+description: "Multi-host Linux SUT for SSH pivot and post-lateral collection flow"
+
+requirements:
+  min_hosts: 4
+  required_vms: ["caldera", "attacker", "target-1", "target-2"]
+  extra_vms: ["target-2"]
+  estimated_duration_minutes: 10
+
+sut_configuration:
+  target-1:
+    os: "ubuntu-2204"
+    role: "initial_compromise"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "testuser"
+        password: "password123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/home/testuser/.ssh/id_rsa"
+        content: "SIMULATED-SSH-KEY-MATERIAL"
+        owner: "testuser"
+        permissions: "600"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "testuser"
+        password: "password123"
+        description: "Controlled weak account for initial SSH compromise"
+
+  target-2:
+    os: "ubuntu-2204"
+    role: "lateral_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "key_auth_enabled"
+
+    users:
+      - username: "target2user"
+        password: "target2pass"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/tmp/sensitive_data.txt"
+        content: "Lateral target sensitive content"
+        owner: "target2user"
+        permissions: "644"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+fidelity_expectations:
+  T1078.001: "ADAPTED"
+  T1021.004: "ADAPTED"
+  T1059.003: "ADAPTED"
+  T1083: "ADAPTED"
+  T1560.001: "ADAPTED"
+  T1041: "ADAPTED"
+
+methodology_notes: |
+  Multi-host profile for controlled SSH pivot demonstration with explicit
+  lateral path and reproducible post-pivot collection chain.
+
+execution_mode: "real_controlled"

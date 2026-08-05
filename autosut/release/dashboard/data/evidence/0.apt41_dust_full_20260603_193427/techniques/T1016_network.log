@@ -1,0 +1,15 @@
+$ (hostname -a 2>/dev/null || hostname) > /tmp/T1016_network.txt; (hostname -I 2>/dev/null || true) >> /tmp/T1016_network.txt; (ip addr show 2>/dev/null || ifconfig -a 2>/dev/null || true) >> /tmp/T1016_network.txt; (ip route show 2>/dev/null || route -n 2>/dev/null || true) >> /tmp/T1016_network.txt; cat /etc/hosts >> /tmp/T1016_network.txt; cat /tmp/T1016_network.txt
+exit_code: 0
+--- stdout ---
+
+172.17.0.3 
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::	ip6-localnet
+ff00::	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+172.17.0.3	aa0221c3b0ae
+
+--- stderr ---
+

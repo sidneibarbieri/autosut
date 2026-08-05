@@ -1,0 +1,85 @@
+{
+  "campaign_id": "0.dmz_segmentation_demo",
+  "description": "S28 topology-realism reference. Three Docker bridge networks (internet_edge, dmz, enterprise) materialise three explicit trust zones. The attacker is in internet_edge only; nginx is dual-homed between internet_edge and dmz; app_server is dual-homed between dmz and enterprise; db is in enterprise only. The campaign verifies (a) the attacker has L2 reachability to nginx, (b) the attacker has NO L2 path to db, (c) nginx and app_server can pivot inward. This is declarative topology parity with the predecessor dual-homed-gateway shape without claiming firewall enforcement.",
+  "plan_origin": "autosut_internal_topology_demo",
+  "sut": {
+    "topology": "internet_edge -> nginx -> dmz -> app_server -> enterprise -> db",
+    "estimated_duration_minutes": 4
+  },
+  "execution_contract": {
+    "scope": "segmented_multi_host_stateful_witness",
+    "initial_facts": [
+      "sut.ready",
+      "actor.ready",
+      "topology.zones.materialized"
+    ],
+    "techniques": [
+      {
+        "technique_id": "T1018",
+        "requires": ["actor.ready", "topology.zones.materialized"],
+        "produces": ["reachability.nginx.ssh"]
+      },
+      {
+        "technique_id": "T1135",
+        "requires": ["topology.zones.materialized"],
+        "produces": ["segmentation.db.blocked"]
+      },
+      {
+        "technique_id": "T1021.004",
+        "requires": ["reachability.nginx.ssh", "segmentation.db.blocked"],
+        "produces": ["access.app_server.shell"]
+      },
+      {
+        "technique_id": "T1210",
+        "requires": ["access.app_server.shell"],
+        "produces": ["access.db.shell"]
+      }
+    ]
+  },
+  "techniques": [
+    {
+      "technique_id": "T1018",
+      "name": "Remote System Discovery — reach edge from attacker zone",
+      "tactic": "discovery",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "topology_attacker_reaches_nginx",
+      "description": "From the attacker (internet_edge), confirm L2 reachability to nginx on its internet_edge interface."
+    },
+    {
+      "technique_id": "T1135",
+      "name": "Network Share Discovery — confirm attacker is BLOCKED from db",
+      "tactic": "discovery",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "topology_attacker_cannot_reach_db",
+      "description": "Confirm attacker has NO L2 path to db (db is in enterprise zone only, attacker is in internet_edge only)."
+    },
+    {
+      "technique_id": "T1021.004",
+      "name": "Remote Services: SSH — pivot through nginx",
+      "tactic": "lateral-movement",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "topology_pivot_nginx_to_app_server",
+      "description": "From nginx (which IS in dmz), reach app_server. Demonstrates lateral movement constrained by zone membership."
+    },
+    {
+      "technique_id": "T1210",
+      "name": "Exploitation of Remote Services — reach db via app_server",
+      "tactic": "lateral-movement",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "topology_pivot_app_server_to_db",
+      "description": "From app_server (which IS in enterprise), reach db. Final hop in the segmented kill chain."
+    }
+  ]
+}

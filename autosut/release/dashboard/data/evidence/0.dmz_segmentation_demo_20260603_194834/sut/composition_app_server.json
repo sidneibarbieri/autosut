@@ -1,0 +1,25 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "labuser",
+      "secret": "Zone-Demo-2026!",
+      "location": null,
+      "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries.",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [],
+  "notes": "Pivot target \u2014 accepts lab SSH credential."
+}

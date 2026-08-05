@@ -1,0 +1,5 @@
+docker stop autosut-webtarget-daa8ba
+exit_code: 0
+stdout: autosut-webtarget-daa8ba
+
+stderr: 

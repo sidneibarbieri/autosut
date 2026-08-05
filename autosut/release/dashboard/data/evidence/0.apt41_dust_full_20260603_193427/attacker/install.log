@@ -1,0 +1,3 @@
+# attacker bring-up
+image: autosut/dmz-host:s28
+name: autosut-att-8aa8b9db

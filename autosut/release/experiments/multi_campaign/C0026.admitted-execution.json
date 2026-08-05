@@ -1,0 +1,144 @@
+{
+  "schema_version": "1",
+  "generated_at": "2026-07-28T03:31:35+00:00",
+  "campaign_id": "C0026",
+  "source_plan_sha256": "fc2511f7746b8b08d75811df8df9c93c7fa6c94b57cbd2e351f2c0bfb3220278",
+  "allowed_domains": [
+    "attacker",
+    "target_or_boundary"
+  ],
+  "admitted_step_count": 6,
+  "attempted_step_count": 6,
+  "successful_with_evidence": 2,
+  "rows": [
+    {
+      "technique_id": "T1583.001",
+      "template_id": "record-controlled-domain",
+      "status": "success",
+      "execution_mode": "naive_simulated",
+      "execution_fidelity": "inspired",
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/domain_registration.json",
+          "present": true,
+          "kind": "file",
+          "sha256": "18d2562725599fad10de8b1808e0d057abbb1f5f5c41f9f48f2f925d4a5397aa",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1568",
+      "template_id": "resolve-lab-domain",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "resolver_query_logged",
+        "external_dns_absent"
+      ],
+      "artifact_records": [
+        {
+          "path": "target-vm:/tmp/sticks_dynamic_resolution.txt",
+          "present": false
+        }
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "template_id": "transfer-over-resolved-lab-channel",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "artifact_records": [
+        {
+          "path": "target-vm:/tmp/sticks_downloaded_payload.sh",
+          "present": false
+        }
+      ]
+    },
+    {
+      "technique_id": "T1005",
+      "template_id": "collect-declared-data-fixture",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "fixture_hash_recorded",
+        "no_host_data_collected"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/0.c0026/local_data_collection.json",
+          "present": true,
+          "kind": "file",
+          "sha256": "758bf97caa1d335ee0ddafea2f7d1d78686c45807a7564870d09626902e92fb3",
+          "cleaned": true
+        },
+        {
+          "path": "data/artifacts/0.c0026/bounded_collection/accounts.csv",
+          "present": true,
+          "kind": "file",
+          "sha256": "4fa572653bb783bd797fd907d66cb751398a49e2398bf71ae24d18e79e9395d4",
+          "cleaned": true
+        },
+        {
+          "path": "data/artifacts/0.c0026/bounded_collection/opportunities.txt",
+          "present": true,
+          "kind": "file",
+          "sha256": "fb9e53bbc6de1440ea527c91c7cc96a326e6c14ffe9ada1901c3e9f283928ee9",
+          "cleaned": true
+        },
+        {
+          "path": "data/artifacts/0.c0026/bounded_collection/operator_notes.txt",
+          "present": true,
+          "kind": "file",
+          "sha256": "6449fe4f39388b931fedaedfa11a1e52ff531dd5b9188cf46538b7c8f36fa7ce",
+          "cleaned": true
+        }
+      ]
+    },
+    {
+      "technique_id": "T1560.001",
+      "template_id": "archive-declared-collection",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "archive_hash_recorded",
+        "input_manifest_recorded"
+      ],
+      "artifact_records": [
+        {
+          "path": "target-vm:/tmp/sticks_collected_data.tar.gz",
+          "present": false
+        }
+      ]
+    },
+    {
+      "technique_id": "T1030",
+      "template_id": "split-declared-archive",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "chunk_manifest_recorded",
+        "no_external_transfer"
+      ],
+      "artifact_records": [
+        {
+          "path": "target-vm:==> target1: Instance is not created. Please run `vagrant up` first.",
+          "present": false
+        }
+      ]
+    }
+  ],
+  "content_sha256": "a16c0913ed3706ac63ce63445be98c8e524609f9785aa12b9c66cc16f0ef92de"
+}

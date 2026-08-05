@@ -1,0 +1,49 @@
+{
+  "campaign_id": "0.c0012",
+  "description": "APT28 - Sophisticated adversary with multiple techniques",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 8
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "open_ports",
+      "target": "target",
+      "config": {
+        "ports": [22, 80, 443]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "name": "Unix Shell",
+      "tactic": "execution",
+      "platform": "linux",
+      "description": "Command execution via bash"
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Discover files and directories"
+    },
+    {
+      "technique_id": "T1016",
+      "name": "System Network Configuration Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Discover network configuration"
+    }
+  ]
+}

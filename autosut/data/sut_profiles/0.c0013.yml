@@ -1,0 +1,52 @@
+# SUT Profile: 0.c0013 (Lazarus Group Linux Intrusion)
+
+campaign_id: "0.c0013"
+description: "Linux SUT for Lazarus-style intrusion with shell access, tool transfer, and process injection"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 10
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "intrusion_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache2"
+        version: "default"
+
+    users:
+      - username: "ubuntu"
+        password: "ubuntu"
+        sudo: false
+        home_files: true
+
+    network:
+      ingress: [22, 80]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "ubuntu"
+        password: "ubuntu"
+        description: "Weak SSH credentials for reproducible initial access"
+      - type: "misconfigured_services"
+        description: "Apache running with default config for web-based staging"
+
+fidelity_expectations:
+  T1059.004: "adapted"
+  T1083: "adapted"
+  T1105: "adapted"
+  T1055: "inspired"
+
+methodology_notes: |
+  Four-technique chain covering shell execution, discovery, tool staging,
+  and process injection. T1055 is classified as inspired because Linux
+  ptrace-based injection requires elevated privileges not provisioned here.
+
+execution_mode: "real_controlled"

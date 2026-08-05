@@ -1,0 +1,9 @@
+$ sshpass -p 'Lab-44cb63!' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser_44cb63@target1 'uname -a && id && hostname'
+exit_code: 0
+--- stdout ---
+Linux target1 6.8.0-100-generic #100-Ubuntu SMP PREEMPT_DYNAMIC Tue Jan 13 16:39:21 UTC 2026 aarch64 Linux
+uid=1000(labuser_44cb63) gid=1000(labuser_44cb63) groups=1000(labuser_44cb63)
+target1
+
+--- stderr ---
+

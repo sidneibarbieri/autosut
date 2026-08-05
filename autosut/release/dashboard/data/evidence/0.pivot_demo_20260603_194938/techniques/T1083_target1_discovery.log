@@ -1,0 +1,32 @@
+$ ls -la /etc /home /var/log 2>&1 | head -25 && getent hosts target2
+exit_code: 0
+--- stdout ---
+/etc:
+total 224
+drwxr-xr-x    1 root     root          4096 Jun  3 19:49 .
+drwxr-xr-x    1 root     root          4096 Jun  3 19:49 ..
+-rw-r--r--    1 root     root             7 Oct  8  2025 alpine-release
+drwxr-xr-x    1 root     root          4096 Jun  3 19:49 apk
+drwxr-xr-x    2 root     root          4096 Jun  3 19:49 bash
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 busybox-paths.d
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 conf.d
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 crontabs
+-rw-r--r--    1 root     root            97 Oct  5  2023 environment
+-rw-r--r--    1 root     root            89 Sep 27  2023 fstab
+-rw-r--r--    1 root     root           713 Jun  3 19:49 group
+-rw-r--r--    1 root     root           697 Sep 27  2023 group-
+-rw-r--r--    1 root     root             8 Jun  3 19:49 hostname
+-rw-r--r--    1 root     root           167 Jun  3 19:49 hosts
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 init.d
+-rw-r--r--    1 root     root           570 Sep 27  2023 inittab
+-rw-r--r--    1 root     root          1748 May 15  2023 inputrc
+-rw-r--r--    1 root     root            54 Oct  8  2025 issue
+-rw-r--r--    1 root     root            20 Oct 31  2023 login.defs
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 logrotate.d
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 modprobe.d
+-rw-r--r--    1 root     root            15 Sep 27  2023 modules
+drwxr-xr-x    2 root     root          4096 Oct  8  2025 modules-load.d
+172.18.0.4        target2  target2
+
+--- stderr ---
+

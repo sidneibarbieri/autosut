@@ -1,0 +1,7 @@
+$ python3 -c "import urllib.request as u, sys; r = u.urlopen(\"http://172.17.0.3:8265/\", timeout=10); sys.stdout.write(f\"status={r.status}\\n\")"
+exit_code: 0
+--- stdout ---
+status=200
+
+--- stderr ---
+

@@ -1,0 +1,38 @@
+networks:
+  - name: net-172-20
+    cidr: 172.20.0.0/24
+  - name: net-172-21
+    cidr: 172.21.0.0/24
+  - name: net-172-22
+    cidr: 172.22.0.0/24
+
+hosts:
+  caldera:
+    networks: [net-172-20]
+    ip:
+      net-172-20: 172.20.0.10
+    role: c2
+    box: jammy-server-cloudimg-arm64
+
+  kali:
+    networks: [net-172-20, net-172-21]
+    ip:
+      net-172-20: 172.20.0.20
+      net-172-21: 172.21.0.20
+    role: attacker
+    box: jammy-server-cloudimg-arm64
+
+  nginx:
+    networks: [net-172-21, net-172-22]
+    ip:
+      net-172-21: 172.21.0.30
+      net-172-22: 172.22.0.30
+    role: pivot
+    box: jammy-server-cloudimg-arm64
+
+  db:
+    networks: [net-172-22]
+    ip:
+      net-172-22: 172.22.0.40
+    role: target
+    box: jammy-server-cloudimg-arm64

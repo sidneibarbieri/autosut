@@ -1,0 +1,26 @@
+{
+  "schema_version": "autosut.snapshot-metadata.v1",
+  "dataset": "MITRE FiGHT",
+  "version": "3.1.0",
+  "source_url": "https://fight.mitre.org/fight.yaml",
+  "source_information_url": "https://fight.mitre.org/resources/info/",
+  "source_terms_url": "https://fight.mitre.org/resources/terms/",
+  "retrieved_at": "2026-07-18T13:04:28Z",
+  "source_last_modified": "2025-11-14T17:50:50Z",
+  "license": "MITRE grants a non-exclusive, royalty-free license for research, development, and commercial use; copies must reproduce its copyright designation and license.",
+  "marking": "MITRE FiGHT is a trademark of The MITRE Corporation; approved for public release, distribution unlimited, case 22-2192.",
+  "authoritative_file": "fight-3.1.0.yaml",
+  "authoritative_format": "YAML",
+  "authoritative_sha256": "59a9addbd75d8680091797d66d5b237d9d026512990c61a6f51692ca94d2a7a8",
+  "derived_file": "fight-3.1.0.normalized.json",
+  "derived_sha256": "92f39d2371923acb73bd6281ab3e97a97652fe66119f0ca3df178b20d8d0ad6d",
+  "counts": {
+    "techniques": 183,
+    "with_platforms": 140,
+    "with_architecture_segments": 163,
+    "with_software": 25,
+    "with_cves": 5,
+    "fight_namespace_ids": 183
+  },
+  "refresh_policy": "Pinned paper snapshot; update version, hash, denominators, and claims together."
+}

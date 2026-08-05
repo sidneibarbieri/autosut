@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1110_001.marker && echo 'T1110.001 (Brute Force: Password Guessing) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1110_001.marker && cat /tmp/c0011_T1110_001.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:47:05Z
+T1110.001 (Brute Force: Password Guessing) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

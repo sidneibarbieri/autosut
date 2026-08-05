@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1588_002.marker && echo 'T1588.002 (Tool) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1588_002.marker && cat /tmp/c0011_T1588_002.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:35:15Z
+T1588.002 (Tool) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

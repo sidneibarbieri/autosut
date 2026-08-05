@@ -1,0 +1,43 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "salesops",
+      "secret": "SalesOps123!",
+      "location": null,
+      "purpose": "Operator account for the Salesforce-style API surrogate.",
+      "source": "autosut_concretized"
+    },
+    {
+      "kind": "api_token",
+      "user": "api_consumer",
+      "secret": "LAB-TOKEN",
+      "location": null,
+      "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe.",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/opt/crm/records.json",
+      "content_text": "{\"records\":[{\"Name\":\"Acme\",\"Email\":\"contact@acme.test\"}]}\n",
+      "content_b64": null,
+      "owner": "root",
+      "mode": "0644",
+      "purpose": "Decoy CRM record the API surrogate serves.",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 8443,
+      "protocol": "tcp",
+      "service": "crm_rest_api_surrogate",
+      "expose_to": "private_network",
+      "purpose": "Named-product surrogate CRM REST surface the exfiltration campaign targets (no disclosed CVE).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "applications": [],
+  "notes": "Realism for the Salesforce-style CRM surrogate."
+}

@@ -1,0 +1,165 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# =============================================================================
+# STICKS Base Infrastructure - Reproducible Foundation for the STICKS Artifact
+#
+# This Vagrantfile defines the BASE infrastructure: 3 VMs reusable across
+# all campaigns. SUT-specific configurations are applied via profiles.
+#
+# Base VMs:
+#   - caldera: Orchestration server (Caldera 5.3.0)
+#   - attacker: Kali-based attack platform
+#   - target-base: Ubuntu target (clean slate for SUT profiles)
+#
+# Usage:
+#   BASE_ONLY=1 vagrant up              # Start base infrastructure
+#   ./provision_sut.sh <campaign_id>    # Apply SUT profile
+# =============================================================================
+
+Vagrant.configure("2") do |config|
+
+  # ========================================================================
+  # VM 1: Caldera Server (Orchestration)
+  # ========================================================================
+  config.vm.define "caldera", primary: true do |caldera|
+    caldera.vm.box = "ubuntu/jammy64"
+    caldera.vm.hostname = "caldera-server"
+    caldera.vm.network "private_network", ip: "192.168.56.10"
+    caldera.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1"
+
+    caldera.vm.provider "virtualbox" do |vb|
+      vb.name = "sticks-caldera"
+      vb.memory = 4096
+      vb.cpus = 2
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    end
+
+    caldera.vm.provision "shell", name: "caldera-base", inline: <<-SHELL
+      set -euo pipefail
+      export DEBIAN_FRONTEND=noninteractive
+
+      apt-get update -qq
+      apt-get install -y -qq python3-pip git curl wget netcat jq
+
+      # Install Caldera 5.3.0
+      if [ ! -d /opt/caldera ]; then
+        git clone --branch 5.3.0 --depth 1 https://github.com/mitre/caldera.git /opt/caldera 2>/dev/null || \
+        git clone --depth 1 https://github.com/mitre/caldera.git /opt/caldera
+      fi
+
+      cd /opt/caldera
+      pip3 install -q -r requirements.txt 2>/dev/null || pip3 install -q -r requirements.txt --break-system-packages 2>/dev/null || true
+
+      # Base configuration
+      mkdir -p /opt/caldera/conf
+      cat > /opt/caldera/conf/local.yml << 'EOF'
+ability_refresh: 60
+plugins:
+  - sandcat
+  - stockpile
+  - atomic
+port: 8888
+users:
+  red:
+    admin: ADMIN123
+  blue:
+    admin: ADMIN123
+EOF
+
+      # Create systemd service
+      cat > /etc/systemd/system/caldera.service << 'EOF'
+[Unit]
+Description=Caldera Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/caldera
+ExecStart=/usr/bin/python3 server.py --insecure
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+      systemctl daemon-reload
+      systemctl enable caldera
+      systemctl start caldera || nohup python3 server.py --insecure --build > /var/log/caldera.log 2>&1 &
+
+      sleep 10
+      echo "[STICKS-BASE] Caldera ready at http://192.168.56.10:8888"
+    SHELL
+  end
+
+  # ========================================================================
+  # VM 2: Attacker Platform
+  # ========================================================================
+  config.vm.define "attacker" do |attacker|
+    attacker.vm.box = "kalilinux/rolling"
+    attacker.vm.hostname = "attacker"
+    attacker.vm.network "private_network", ip: "192.168.56.30"
+
+    attacker.vm.provider "virtualbox" do |vb|
+      vb.name = "sticks-attacker"
+      vb.memory = 2048
+      vb.cpus = 1
+    end
+
+    attacker.vm.provision "shell", name: "attacker-base", inline: <<-SHELL
+      set -euo pipefail
+
+      apt-get update -qq
+      apt-get install -y -qq python3 python3-pip curl wget netcat nmap sshpass hydra john 2>/dev/null || true
+
+      # Create Caldera agent directory
+      mkdir -p /opt/caldera-agent
+
+      # Install Python packages for automation
+      pip3 install -q requests pyyaml 2>/dev/null || true
+
+      # Create base attack tools directory
+      mkdir -p /opt/attacks
+
+      echo "[STICKS-BASE] Attacker platform ready"
+      echo "[STICKS-BASE] Tools: nmap, hydra, sshpass, nc"
+    SHELL
+  end
+
+  # ========================================================================
+  # VM 3: Target Base (Clean Slate)
+  # ========================================================================
+  config.vm.define "target-base" do |target|
+    target.vm.box = "ubuntu/jammy64"
+    target.vm.hostname = "target"
+    target.vm.network "private_network", ip: "192.168.56.20"
+
+    target.vm.provider "virtualbox" do |vb|
+      vb.name = "sticks-target-base"
+      vb.memory = 1024
+      vb.cpus = 1
+    end
+
+    target.vm.provision "shell", name: "target-base", inline: <<-SHELL
+      set -euo pipefail
+      export DEBIAN_FRONTEND=noninteractive
+
+      apt-get update -qq
+      apt-get install -y -qq openssh-server python3 sudo curl wget netcat
+
+      # Create base user (no weak creds yet - applied by SUT profile)
+      useradd -m -s /bin/bash sticksuser 2>/dev/null || true
+
+      # Ensure SSH is running
+      systemctl enable ssh
+      systemctl start ssh
+
+      echo "[STICKS-BASE] Target base ready (clean slate)"
+      echo "[STICKS-BASE] IP: 192.168.56.20"
+      echo "[STICKS-BASE] User: sticksuser (no weak password yet)"
+    SHELL
+  end
+
+end

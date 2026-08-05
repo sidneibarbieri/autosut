@@ -1,0 +1,178 @@
+{
+  "campaign_id": "0.operation_midnighteclipse",
+  "description": "Operation MidnightEclipse - Sophisticated APT campaign with advanced TTPs",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 30
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": ["ssh", "apache2", "mysql", "postgresql", "redis"]
+      }
+    },
+    {
+      "type": "privilege_escalation",
+      "target": "target",
+      "config": {
+        "method": "sudo_misconfiguration"
+      }
+    },
+    {
+      "type": "open_ports",
+      "target": "target",
+      "config": {
+        "ports": [22, 80, 443, 3306, 5432, 6379]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1584.003",
+      "name": "Virtual Private Server",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Virtual Private Server adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1584.006",
+      "name": "Web Services",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Web Services adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1588.002",
+      "name": "Tool",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Tool adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "tactic": "initial-access",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Exploit Public-Facing Application adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1078",
+      "name": "Valid Accounts",
+      "tactic": "initial-access",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Valid Accounts adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1078.002",
+      "name": "Domain Accounts",
+      "tactic": "initial-access",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Domain Accounts adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1059.004",
+      "name": "Unix Shell",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Unix Shell adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1053.003",
+      "name": "Cron",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Cron adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1559",
+      "name": "Inter-Process Communication",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Inter-Process Communication adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1003.003",
+      "name": "NTDS",
+      "tactic": "credential-access",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "NTDS adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1021.002",
+      "name": "SMB/Windows Admin Shares",
+      "tactic": "lateral-movement",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "SMB/Windows Admin Shares adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1021.006",
+      "name": "Windows Remote Management",
+      "tactic": "lateral-movement",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Windows Remote Management adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1005",
+      "name": "Data from Local System",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Data from Local System adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1074.001",
+      "name": "Local Data Staging",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Local Data Staging adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1090",
+      "name": "Proxy",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Proxy adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1071.001",
+      "name": "Web Protocols",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Web Protocols adapted for the published MidnightEclipse lab substrate"
+    },
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Ingress Tool Transfer adapted for the published MidnightEclipse lab substrate"
+    }
+  ]
+}

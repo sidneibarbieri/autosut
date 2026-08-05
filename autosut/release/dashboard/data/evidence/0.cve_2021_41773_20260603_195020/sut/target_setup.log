@@ -1,0 +1,5 @@
+# host bring-up: target (target)
+image: httpd:2.4.49
+container: autosut-target-1886c8
+network: autosut-net-1e6815c4
+container_id: 76543d126ce029f281976d3f5404c910d2d6c978d5d8cbd68f7f6c87ccc4b617

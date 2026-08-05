@@ -1,0 +1,7 @@
+$ mkdir -p /var/lab/T1588.002 && printf '#!/bin/sh\necho lab_payload\n' > /var/lab/T1588.002/artifact && chmod +x /var/lab/T1588.002/artifact && sha256sum /var/lab/T1588.002/artifact
+exit_code: 0
+--- stdout ---
+ae92ad326aa6968b674b4394cdde490edb24a326ca98fb74468f5b994c14914a  /var/lab/T1588.002/artifact
+
+--- stderr ---
+

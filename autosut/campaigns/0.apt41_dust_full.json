@@ -1,0 +1,137 @@
+{
+  "campaign_id": "0.apt41_dust_full",
+  "description": "APT41 DUST — full campaign with real executor commands (Stage 2 of paper methodology)",
+  "reference": "https://attack.mitre.org/campaigns/C0001/",
+  "sut": {
+    "required_vms": ["attacker", "target"],
+    "agent_group": "red",
+    "target_packages": ["openssh-server", "curl"],
+    "estimated_duration_minutes": 10
+  },
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "name": "Unix Shell",
+      "tactic": "execution",
+      "platform": "linux",
+      "description": "Execute commands via bash to enumerate the system",
+      "executor": {
+        "platform": "linux",
+        "command": "uname -a && id && whoami && cat /etc/os-release | head -5",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Discover files and directories for sensitive data",
+      "executor": {
+        "platform": "linux",
+        "command": "find /home /tmp /var/tmp -maxdepth 3 -type f 2>/dev/null | head -30",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1016",
+      "name": "System Network Configuration Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Discover network configuration to map topology",
+      "executor": {
+        "platform": "linux",
+        "command": "ip addr show && ip route show && cat /etc/hosts",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1007",
+      "name": "System Service Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Enumerate running services to identify attack surface",
+      "executor": {
+        "platform": "linux",
+        "command": "systemctl list-units --type=service --state=running 2>/dev/null | head -20",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1033",
+      "name": "System Owner/User Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Enumerate users for lateral movement planning",
+      "executor": {
+        "platform": "linux",
+        "command": "cat /etc/passwd | grep -v nologin | grep -v false && who && last | head -10",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1027",
+      "name": "Obfuscated Files or Information",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "description": "Encode payload to evade string-based detection",
+      "executor": {
+        "platform": "linux",
+        "command": "echo 'aWQgJiYgaG9zdG5hbWU=' | base64 -d | bash",
+        "cleanup": "rm -f /tmp/autosut_obfuscated_*",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1564.001",
+      "name": "Hidden Files and Directories",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "description": "Create hidden directory to store staged files",
+      "executor": {
+        "platform": "linux",
+        "command": "mkdir -p /tmp/.autosut_stage && touch /tmp/.autosut_stage/.beacon && ls -la /tmp/.autosut_stage/",
+        "cleanup": "rm -rf /tmp/.autosut_stage",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1119",
+      "name": "Automated Collection",
+      "tactic": "collection",
+      "platform": "linux",
+      "description": "Collect configuration files from system",
+      "executor": {
+        "platform": "linux",
+        "command": "find /etc -name '*.conf' -readable 2>/dev/null | head -10 | xargs ls -la 2>/dev/null",
+        "cleanup": "rm -f /tmp/autosut_collected_*",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1020",
+      "name": "Automated Exfiltration",
+      "tactic": "exfiltration",
+      "platform": "linux",
+      "description": "Stage collected data for exfiltration",
+      "executor": {
+        "platform": "linux",
+        "command": "tar czf /tmp/autosut_exfil_$(date +%s).tar.gz /etc/hostname /etc/os-release 2>/dev/null && ls -la /tmp/autosut_exfil_*.tar.gz",
+        "cleanup": "rm -f /tmp/autosut_exfil_*.tar.gz",
+        "timeout": 30
+      }
+    },
+    {
+      "technique_id": "T1490",
+      "name": "Inhibit System Recovery",
+      "tactic": "impact",
+      "platform": "linux",
+      "description": "Simulate disabling backup — list and check backup tools",
+      "executor": {
+        "platform": "linux",
+        "command": "which rsync || echo 'rsync not present'; systemctl status cron 2>/dev/null | head -5 || echo 'cron check complete'",
+        "timeout": 30
+      }
+    }
+  ]
+}

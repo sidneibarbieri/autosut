@@ -1,0 +1,166 @@
+{
+  "campaign_id": "0.cve_2021_41773",
+  "run_id": "0.cve_2021_41773-v2_20260803_172129",
+  "timestamp": "2026-08-03T17:21:55.313258Z",
+  "attacker": {
+    "profile_id": "cve_2021_41773_attacker",
+    "capabilities": [
+      "http_client",
+      "path_traversal"
+    ],
+    "notes": "alpine + curl/wget; explores the path traversal disclosed in the Apache Security advisory for CVE-2021-41773."
+  },
+  "sut": {
+    "sut_id": "0.cve_2021_41773-s2",
+    "base_image": "httpd:2.4.49",
+    "platform_source": "analyst_authored",
+    "services": [
+      "http"
+    ],
+    "memory_mb": 512,
+    "smp": 1,
+    "backend": null,
+    "hosts": [
+      {
+        "name": "attacker",
+        "base_image": "autosut/dmz-host:s28",
+        "platform_source": "analyst_authored",
+        "role": "attacker",
+        "services": [],
+        "memory_mb": 256,
+        "smp": 1,
+        "startup_commands": [
+          "apk add --no-cache curl >/dev/null 2>&1 && echo attacker_curl_ok"
+        ],
+        "composition": null,
+        "zones": []
+      },
+      {
+        "name": "target",
+        "base_image": "httpd:2.4.49",
+        "platform_source": "analyst_authored",
+        "role": "target",
+        "services": [
+          "http"
+        ],
+        "memory_mb": 512,
+        "smp": 1,
+        "startup_commands": [],
+        "composition": {
+          "credentials": [],
+          "artifacts": [
+            {
+              "path": "/usr/local/apache2/cgi-bin/decoy_1cf44d.txt",
+              "content_text": "lab decoy 1cf44d\n",
+              "content_b64": null,
+              "owner": "root",
+              "mode": "0755",
+              "purpose": "Decoy CGI to confirm script alias mounted.",
+              "source": "analyst_authored"
+            }
+          ],
+          "exposures": [
+            {
+              "port": 80,
+              "protocol": "tcp",
+              "service": "http",
+              "expose_to": "private_network",
+              "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49.",
+              "source": "external_reference"
+            }
+          ],
+          "applications": [
+            {
+              "name": "apache_httpd",
+              "version": "2.4.49",
+              "recipe": "apache_httpd_2.4.49_cve_2021_41773",
+              "cve_pins": [
+                "CVE-2021-41773"
+              ],
+              "config": {},
+              "image_override": null,
+              "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents.",
+              "source": "external_reference"
+            }
+          ],
+          "notes": "Reference composition: every realism element is declared, applied, and audit-logged."
+        },
+        "zones": []
+      }
+    ],
+    "composition": null,
+    "topology": null,
+    "notes": "Two-host CVE-2021-41773 reference. Target uses the canonical vulnerable httpd:2.4.49 multi-arch image; the SUT composer applies a vulnerable httpd.conf the advisory documents."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1595.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1595.002_version_probe.log"
+      ],
+      "duration_sec": 0.03786304104141891,
+      "notes": "Server header confirms Apache/2.4.49 \u2014 the exact vulnerable build",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1190",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1190_path_traversal.log"
+      ],
+      "duration_sec": 0.04036674997769296,
+      "notes": "CVE-2021-41773 path-traversal succeeded; HTTP 200 returned and /etc/passwd content (root/daemon entries) leaked in body",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1083_enumerate.log"
+      ],
+      "duration_sec": 0.03764370805583894,
+      "notes": "Path-traversal re-used to enumerate /etc/{hostname,issue,group}; at least one returned HTTP 200 with content",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1005",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1005_loot.log"
+      ],
+      "duration_sec": 0.03241762507241219,
+      "notes": "Exfiltrated /etc/passwd persisted under /loot on the attacker; sha256 recorded for chain-of-custody",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

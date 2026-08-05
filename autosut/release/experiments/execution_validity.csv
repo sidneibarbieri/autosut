@@ -1,0 +1,5 @@
+campaign_id,source_kind,source_campaign_id,run_id,total_steps,status_success,evidence_backed_success,adapted_success,marker_only,contract_declared,contract_valid,context_observations,teardown_clean,evidence_path
+0.shadowray,stix_campaign,C0045,0.shadowray_20260731_223638,10,10,10,9,0,True,True,0,True,release/evidence/0.shadowray_20260731_223638/manifest.json
+0.pivot_demo,engineering_witness,,0.pivot_demo_20260603_194938,6,6,6,6,0,False,,0,True,release/evidence/0.pivot_demo_20260603_194938/manifest.json
+0.dmz_segmentation_demo,engineering_witness,,0.dmz_segmentation_demo_20260603_194834,4,4,4,4,0,False,,0,True,release/evidence/0.dmz_segmentation_demo_20260603_194834/manifest.json
+0.salesforce_data_exfiltration,stix_campaign,C0059,0.salesforce_data_exfiltration_20260603_193647,18,18,8,8,10,False,,0,True,release/evidence/0.salesforce_data_exfiltration_20260603_193647/manifest.json

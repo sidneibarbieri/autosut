@@ -1,0 +1,154 @@
+{
+  "generated_at": "2026-03-16T15:15:31.020871",
+  "methodology": "separated_corpus",
+  "primary_corpus": {
+    "type": "campaign_objects",
+    "description": "ATT&CK Enterprise campaign objects - methodologically precise",
+    "campaigns": [
+      {
+        "campaign_id": "0.c0010",
+        "mitre_id": "C0010",
+        "name": "ATT&CK Campaign",
+        "total": 4,
+        "successful": 4,
+        "failed": 0,
+        "success_rate": 100.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0011",
+        "mitre_id": "C0011",
+        "name": "Transparent Tribe",
+        "total": 11,
+        "successful": 9,
+        "failed": 2,
+        "success_rate": 81.81818181818183,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0015",
+        "mitre_id": "C0015",
+        "name": "ATT&CK Campaign",
+        "total": 5,
+        "successful": 5,
+        "failed": 0,
+        "success_rate": 100.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0017",
+        "mitre_id": "C0017",
+        "name": "ATT&CK Campaign",
+        "total": 5,
+        "successful": 3,
+        "failed": 2,
+        "success_rate": 60.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0018",
+        "mitre_id": "C0018",
+        "name": "ATT&CK Campaign",
+        "total": 4,
+        "successful": 4,
+        "failed": 0,
+        "success_rate": 100.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0021",
+        "mitre_id": "C0021",
+        "name": "ATT&CK Campaign",
+        "total": 6,
+        "successful": 5,
+        "failed": 1,
+        "success_rate": 83.33333333333334,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0026",
+        "mitre_id": "C0026",
+        "name": "ATT&CK Campaign",
+        "total": 5,
+        "successful": 5,
+        "failed": 0,
+        "success_rate": 100.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0027",
+        "mitre_id": "C0027",
+        "name": "ATT&CK Campaign",
+        "total": 6,
+        "successful": 6,
+        "failed": 0,
+        "success_rate": 100.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.pikabot_realistic",
+        "mitre_id": "C0036",
+        "name": "Pikabot Feb 2024",
+        "total": 11,
+        "successful": 11,
+        "failed": 0,
+        "success_rate": 100.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.shadowray",
+        "mitre_id": "C0045",
+        "name": "ShadowRay AI/ML Attack",
+        "total": 10,
+        "successful": 1,
+        "failed": 9,
+        "success_rate": 10.0,
+        "type": "campaign_object"
+      },
+      {
+        "campaign_id": "0.c0047",
+        "mitre_id": "C0047",
+        "name": "RedDelta Modified PlugX",
+        "total": 8,
+        "successful": 6,
+        "failed": 2,
+        "success_rate": 75.0,
+        "type": "campaign_object"
+      }
+    ],
+    "summary": {
+      "count": 11,
+      "total_techniques": 75,
+      "successful_techniques": 59,
+      "success_rate": 78.66666666666666
+    }
+  },
+  "extended_validation": {
+    "type": "intrusion_set_profiles",
+    "description": "Intrusion set profiles - behaviorally sparser CTI representations",
+    "campaigns": [
+      {
+        "campaign_id": "0.fox_kitten",
+        "mitre_id": "G0117",
+        "name": "Fox Kitten",
+        "total": 14,
+        "successful": 7,
+        "failed": 7,
+        "success_rate": 50.0,
+        "type": "intrusion_set"
+      }
+    ],
+    "summary": {
+      "count": 1,
+      "total_techniques": 14,
+      "successful_techniques": 7,
+      "success_rate": 50.0
+    }
+  },
+  "overall": {
+    "total_campaigns": 12,
+    "total_techniques": 89,
+    "successful_techniques": 66,
+    "overall_success_rate": 74.15730337078652
+  }
+}

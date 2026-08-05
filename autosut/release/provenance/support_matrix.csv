@@ -1,0 +1,9 @@
+dimension,total,corpus_supported,external_reference,autosut_concretized,analyst_authored,inferred
+platform,27,0,0,0,27,0
+software,23,0,1,0,22,0
+vulnerability,3,2,1,0,0,0
+credentials,22,0,1,21,0,0
+exposures,29,1,2,1,25,0
+artifacts,32,0,0,0,32,0
+topology,3,0,0,0,3,0
+ALL,139,3,5,22,109,0

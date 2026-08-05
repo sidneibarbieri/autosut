@@ -1,0 +1,16 @@
+sut_profile_id: C0003
+name: SUT for Operation Shady RAT
+description: IaC environment for reproducing Operation Shady RAT
+platform: linux
+architecture: multi_vm
+required_vms:
+- target
+- attacker
+vulnerabilities: []
+services:
+- postfix
+capabilities:
+- network:http_available
+- network:ssh_available
+- resources:staging_directory
+- email:smtp_available

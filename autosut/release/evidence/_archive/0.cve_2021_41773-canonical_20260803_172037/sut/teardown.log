@@ -1,0 +1,5 @@
+docker stop autosut-target-769e2f
+exit_code: 0
+stdout: autosut-target-769e2f
+
+stderr: 

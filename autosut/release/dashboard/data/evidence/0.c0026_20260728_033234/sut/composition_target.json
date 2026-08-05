@@ -1,0 +1,55 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "ubuntu",
+      "secret": "ubuntu",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/ubuntu/andromeda_notes.txt",
+      "content_text": "Operation notes\n",
+      "content_b64": null,
+      "owner": "ubuntu",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/andromeda_notes.txt).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/ubuntu/staged_docs/report_2021.txt",
+      "content_text": "Quarterly report \u2014 internal\n",
+      "content_b64": null,
+      "owner": "ubuntu",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/staged_docs/report_2021.txt).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.c0026 \u2014 Linux collection / archive / chunked exfil flow."
+}

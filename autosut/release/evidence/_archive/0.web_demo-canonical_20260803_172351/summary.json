@@ -1,0 +1,13 @@
+{
+  "campaign_id": "0.web_demo",
+  "timestamp": "2026-08-03T17:24:20+00:00",
+  "total_techniques": 4,
+  "successful": 4,
+  "evidence_backed_successful": 4,
+  "adapted_successful": 4,
+  "marker_only_successful": 0,
+  "fidelity_distribution": {
+    "adapted": 4
+  },
+  "evidence_directory": "."
+}

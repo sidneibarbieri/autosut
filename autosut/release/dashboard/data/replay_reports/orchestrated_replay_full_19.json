@@ -1,0 +1,242 @@
+[
+  {
+    "campaign_id": "0.c0010",
+    "elapsed_seconds": 36.600907166999605,
+    "evidence_manifest": "release/evidence/0.c0010_20260603_192801/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 3,
+      "inspired": 6
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 9,
+    "total": 9
+  },
+  {
+    "campaign_id": "0.c0011",
+    "elapsed_seconds": 29.175998167000216,
+    "evidence_manifest": "release/evidence/0.c0011_20260603_192838/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 2,
+      "inspired": 9
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 11,
+    "total": 11
+  },
+  {
+    "campaign_id": "0.c0012",
+    "elapsed_seconds": 28.57326545900014,
+    "evidence_manifest": "release/evidence/0.c0012_20260603_192907/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 3
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 3,
+    "total": 3
+  },
+  {
+    "campaign_id": "0.c0013",
+    "elapsed_seconds": 130.00913750000018,
+    "evidence_manifest": "release/evidence/0.c0013_20260603_192951/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 1,
+      "inspired": 3
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 4,
+    "total": 4
+  },
+  {
+    "campaign_id": "0.c0015",
+    "elapsed_seconds": 30.69435599999997,
+    "evidence_manifest": "release/evidence/0.c0015_20260603_193201/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 3,
+      "inspired": 2
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 5,
+    "total": 5
+  },
+  {
+    "campaign_id": "0.c0017",
+    "elapsed_seconds": 30.501925208000102,
+    "evidence_manifest": "release/evidence/0.c0017_20260603_193232/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 6
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 6,
+    "total": 6
+  },
+  {
+    "campaign_id": "0.c0026",
+    "elapsed_seconds": 31.125718541000424,
+    "evidence_manifest": "release/evidence/0.c0026_20260603_193302/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 4,
+      "inspired": 2
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 6,
+    "total": 6
+  },
+  {
+    "campaign_id": "0.apt41_dust",
+    "elapsed_seconds": 53.16580362500008,
+    "evidence_manifest": "release/evidence/0.apt41_dust_20260603_193334/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 14,
+      "inspired": 9
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 23,
+    "total": 23
+  },
+  {
+    "campaign_id": "0.apt41_dust_full",
+    "elapsed_seconds": 31.010306541999853,
+    "evidence_manifest": "release/evidence/0.apt41_dust_full_20260603_193427/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 9,
+      "inspired": 1
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 10,
+    "total": 10
+  },
+  {
+    "campaign_id": "0.costaricto",
+    "elapsed_seconds": 39.93941674999951,
+    "evidence_manifest": "release/evidence/0.costaricto_20260603_193458/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 3,
+      "inspired": 7
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 10,
+    "total": 10
+  },
+  {
+    "campaign_id": "0.outer_space",
+    "elapsed_seconds": 39.079785666000134,
+    "evidence_manifest": "release/evidence/0.outer_space_20260603_193538/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 2,
+      "inspired": 6
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 8,
+    "total": 8
+  },
+  {
+    "campaign_id": "0.operation_midnighteclipse",
+    "elapsed_seconds": 30.265528416999587,
+    "evidence_manifest": "release/evidence/0.operation_midnighteclipse_20260603_193617/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 5,
+      "inspired": 12
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 17,
+    "total": 17
+  },
+  {
+    "campaign_id": "0.salesforce_data_exfiltration",
+    "elapsed_seconds": 33.348625874999925,
+    "evidence_manifest": "release/evidence/0.salesforce_data_exfiltration_20260603_193647/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 8,
+      "inspired": 10
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 18,
+    "total": 18
+  },
+  {
+    "campaign_id": "0.caldera_linux_demo",
+    "elapsed_seconds": 413.0626040420002,
+    "evidence_manifest": "release/evidence/0.caldera_linux_demo_20260603_193736/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 6
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 6,
+    "total": 6
+  },
+  {
+    "campaign_id": "0.fin6_emulation",
+    "elapsed_seconds": 229.3443861249998,
+    "evidence_manifest": "release/evidence/0.fin6_emulation_20260603_194445/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 3,
+      "inspired": 9
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 12,
+    "total": 12
+  },
+  {
+    "campaign_id": "0.dmz_segmentation_demo",
+    "elapsed_seconds": 63.851893375000145,
+    "evidence_manifest": "release/evidence/0.dmz_segmentation_demo_20260603_194834/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 4
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 4,
+    "total": 4
+  },
+  {
+    "campaign_id": "0.pivot_demo",
+    "elapsed_seconds": 41.96225645800041,
+    "evidence_manifest": "release/evidence/0.pivot_demo_20260603_194938/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 6
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 6,
+    "total": 6
+  },
+  {
+    "campaign_id": "0.cve_2021_41773",
+    "elapsed_seconds": 25.5354567079994,
+    "evidence_manifest": "release/evidence/0.cve_2021_41773_20260603_195020/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 4
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 4,
+    "total": 4
+  },
+  {
+    "campaign_id": "0.shadowray",
+    "elapsed_seconds": 85.22121250000055,
+    "evidence_manifest": "release/evidence/0.shadowray_20260603_195045/manifest.json",
+    "fidelity_distribution": {
+      "adapted": 3
+    },
+    "notes": "ok",
+    "status": "PASS",
+    "successful": 3,
+    "total": 3
+  }
+]

@@ -1,0 +1,46 @@
+# =============================================================================
+# STICKS SUT Profiles - Campaign-Specific System Under Test Configurations
+#
+# Each profile defines the minimal environment required for a campaign.
+# Profiles are declarative and reproducible.
+#
+# Format: YAML
+# Location: sut_profiles/<campaign_id>.yml
+# =============================================================================
+
+# Example profile structure:
+
+# campaign_id: "0.c0011"                    # Matches STIX campaign ID
+# description: "Transparent Tribe baseline"
+#
+# requirements:
+#   min_hosts: 3                            # caldera + attacker + target
+#   required_vms: ["caldera", "attacker", "target-base"]
+#
+# sut_configuration:
+#   target-base:
+#     os: "ubuntu-2204"
+#     services:
+#       - name: "apache2"
+#         version: "2.4.52"                   # System default, no CVE
+#         config: "default"
+#     users:
+#       - username: "vulnuser"
+#         password: "vulnpass123"             # Weak creds for T1078.001
+#         sudo: false
+#     files:
+#       - path: "/home/vulnuser/documents"
+#         content: "dummy_data"
+#     network:
+#       ingress: [22, 80]                     # SSH and HTTP open
+#       egress: ["*"]
+#
+# deliberate_weaknesses: []                   # No CVEs for baseline
+#
+# fidelity_expectations:
+#   T1587.003: "ADAPTED"                     # Self-signed cert (not CA compromised)
+#   T1608.001: "ADAPTED"                     # Real staging, benign payload
+#   T1566.002: "INSPIRED"                    # URL file only
+#   T1204.001: "INSPIRED"                    # Log entry only
+#
+# execution_mode: "real_controlled"          # Default for all techniques

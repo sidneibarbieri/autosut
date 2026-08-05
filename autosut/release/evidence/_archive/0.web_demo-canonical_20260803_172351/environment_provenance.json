@@ -1,0 +1,103 @@
+{
+  "campaign_id": "0.web_demo",
+  "total_elements": 4,
+  "by_source": {
+    "corpus_supported": 0,
+    "external_reference": 0,
+    "analyst_authored": 4,
+    "autosut_concretized": 0,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 0.0,
+    "external_reference": 0.0,
+    "analyst_authored": 100.0,
+    "autosut_concretized": 0.0,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "attacker.platform.linux",
+      "value": "linux",
+      "source": "analyst_authored",
+      "host": "attacker",
+      "purpose": "materialised as alpine:3.19"
+    },
+    {
+      "dimension": "platform",
+      "identifier": "webtarget.platform.linux",
+      "value": "linux",
+      "source": "analyst_authored",
+      "host": "webtarget",
+      "purpose": "materialised as alpine:3.19"
+    },
+    {
+      "dimension": "software",
+      "identifier": "webtarget.software.apache_httpd@default",
+      "value": "apache_httpd@default",
+      "source": "analyst_authored",
+      "host": "webtarget",
+      "purpose": "The edge HTTP service whose Basic Auth realm the attacker brute-forces (T1110.001) and authenticates to (T1078) before exfiltrating the protected secret (T1005). A FREE, analyst-authored implementation choice: the corpus pins only that an edge HTTP service must exist, not which web server realises it. The non-uniqueness witness substitutes it (Apache <-> Nginx) and executes both to completion under one corpus fingerprint."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "webtarget.exposure.80",
+      "value": "80/tcp http",
+      "source": "analyst_authored",
+      "host": "webtarget",
+      "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target."
+    }
+  ]
+}

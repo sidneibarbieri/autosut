@@ -1,0 +1,6 @@
+$ apk add --no-cache openssh openssh-server bash shadow >/dev/null 2>&1
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

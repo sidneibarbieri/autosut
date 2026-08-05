@@ -1,0 +1,6 @@
+{
+  "port": 3306,
+  "protocol": "tcp",
+  "service": "mysql",
+  "expose_to": "private_network"
+}

@@ -1,0 +1,1461 @@
+{
+  "generated_at": "2026-08-03T17:24:52+00:00",
+  "proofs": {
+    "0.cve_2021_41773": {
+      "campaign_id": "0.cve_2021_41773",
+      "invariant_fingerprint": "7638232862a781ea17fdffe5a47901eb345e5999ea0e9de3acb57855c5b0f877",
+      "invariant_count": 2,
+      "free_count": 3,
+      "free_fraction": 60.0,
+      "canonical": {
+        "variant_id": "0.cve_2021_41773#canonical",
+        "seed": 0,
+        "sut_profile": {
+          "sut_id": "0.cve_2021_41773",
+          "base_image": "httpd:2.4.49",
+          "platform_source": "analyst_authored",
+          "services": [
+            "http"
+          ],
+          "memory_mb": 512,
+          "smp": 1,
+          "backend": null,
+          "hosts": [
+            {
+              "name": "attacker",
+              "base_image": "autosut/dmz-host:s28",
+              "platform_source": "analyst_authored",
+              "role": "attacker",
+              "services": [],
+              "memory_mb": 256,
+              "smp": 1,
+              "startup_commands": [
+                "apk add --no-cache curl >/dev/null 2>&1 && echo attacker_curl_ok"
+              ],
+              "composition": null,
+              "zones": []
+            },
+            {
+              "name": "target",
+              "base_image": "httpd:2.4.49",
+              "platform_source": "analyst_authored",
+              "role": "target",
+              "services": [
+                "http"
+              ],
+              "memory_mb": 512,
+              "smp": 1,
+              "startup_commands": [],
+              "composition": {
+                "credentials": [],
+                "artifacts": [
+                  {
+                    "path": "/usr/local/apache2/cgi-bin/lab.sh",
+                    "content_text": "#!/bin/sh\necho Content-Type: text/plain\necho\necho LAB_CGI_OK\n",
+                    "content_b64": null,
+                    "owner": "root",
+                    "mode": "0755",
+                    "purpose": "Decoy CGI to confirm script alias mounted.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "exposures": [
+                  {
+                    "port": 80,
+                    "protocol": "tcp",
+                    "service": "http",
+                    "expose_to": "private_network",
+                    "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49.",
+                    "source": "external_reference"
+                  }
+                ],
+                "applications": [
+                  {
+                    "name": "apache_httpd",
+                    "version": "2.4.49",
+                    "recipe": "apache_httpd_2.4.49_cve_2021_41773",
+                    "cve_pins": [
+                      "CVE-2021-41773"
+                    ],
+                    "config": {},
+                    "image_override": null,
+                    "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents.",
+                    "source": "external_reference"
+                  }
+                ],
+                "notes": "Reference composition: every realism element is declared, applied, and audit-logged."
+              },
+              "zones": []
+            }
+          ],
+          "composition": null,
+          "topology": null,
+          "notes": "Two-host CVE-2021-41773 reference. Target uses the canonical vulnerable httpd:2.4.49 multi-arch image; the SUT composer applies a vulnerable httpd.conf the advisory documents."
+        },
+        "free_elements_changed": [],
+        "free_fraction": 60.0
+      },
+      "variants": [
+        {
+          "variant_id": "0.cve_2021_41773#seed1",
+          "seed": 1,
+          "sut_profile": {
+            "sut_id": "0.cve_2021_41773-s1",
+            "base_image": "httpd:2.4.49",
+            "platform_source": "analyst_authored",
+            "services": [
+              "http"
+            ],
+            "memory_mb": 512,
+            "smp": 1,
+            "backend": null,
+            "hosts": [
+              {
+                "name": "attacker",
+                "base_image": "autosut/dmz-host:s28",
+                "platform_source": "analyst_authored",
+                "role": "attacker",
+                "services": [],
+                "memory_mb": 256,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache curl >/dev/null 2>&1 && echo attacker_curl_ok"
+                ],
+                "composition": null,
+                "zones": []
+              },
+              {
+                "name": "target",
+                "base_image": "httpd:2.4.49",
+                "platform_source": "analyst_authored",
+                "role": "target",
+                "services": [
+                  "http"
+                ],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [],
+                "composition": {
+                  "credentials": [],
+                  "artifacts": [
+                    {
+                      "path": "/usr/local/apache2/cgi-bin/decoy_44cb63.txt",
+                      "content_text": "lab decoy 44cb63\n",
+                      "content_b64": null,
+                      "owner": "root",
+                      "mode": "0755",
+                      "purpose": "Decoy CGI to confirm script alias mounted.",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "exposures": [
+                    {
+                      "port": 80,
+                      "protocol": "tcp",
+                      "service": "http",
+                      "expose_to": "private_network",
+                      "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49.",
+                      "source": "external_reference"
+                    }
+                  ],
+                  "applications": [
+                    {
+                      "name": "apache_httpd",
+                      "version": "2.4.49",
+                      "recipe": "apache_httpd_2.4.49_cve_2021_41773",
+                      "cve_pins": [
+                        "CVE-2021-41773"
+                      ],
+                      "config": {},
+                      "image_override": null,
+                      "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents.",
+                      "source": "external_reference"
+                    }
+                  ],
+                  "notes": "Reference composition: every realism element is declared, applied, and audit-logged."
+                },
+                "zones": []
+              }
+            ],
+            "composition": null,
+            "topology": null,
+            "notes": "Two-host CVE-2021-41773 reference. Target uses the canonical vulnerable httpd:2.4.49 multi-arch image; the SUT composer applies a vulnerable httpd.conf the advisory documents."
+          },
+          "free_elements_changed": [
+            "target.artifact./usr/local/apache2/cgi-bin/lab.sh"
+          ],
+          "free_fraction": 60.0
+        },
+        {
+          "variant_id": "0.cve_2021_41773#seed2",
+          "seed": 2,
+          "sut_profile": {
+            "sut_id": "0.cve_2021_41773-s2",
+            "base_image": "httpd:2.4.49",
+            "platform_source": "analyst_authored",
+            "services": [
+              "http"
+            ],
+            "memory_mb": 512,
+            "smp": 1,
+            "backend": null,
+            "hosts": [
+              {
+                "name": "attacker",
+                "base_image": "autosut/dmz-host:s28",
+                "platform_source": "analyst_authored",
+                "role": "attacker",
+                "services": [],
+                "memory_mb": 256,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache curl >/dev/null 2>&1 && echo attacker_curl_ok"
+                ],
+                "composition": null,
+                "zones": []
+              },
+              {
+                "name": "target",
+                "base_image": "httpd:2.4.49",
+                "platform_source": "analyst_authored",
+                "role": "target",
+                "services": [
+                  "http"
+                ],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [],
+                "composition": {
+                  "credentials": [],
+                  "artifacts": [
+                    {
+                      "path": "/usr/local/apache2/cgi-bin/decoy_1cf44d.txt",
+                      "content_text": "lab decoy 1cf44d\n",
+                      "content_b64": null,
+                      "owner": "root",
+                      "mode": "0755",
+                      "purpose": "Decoy CGI to confirm script alias mounted.",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "exposures": [
+                    {
+                      "port": 80,
+                      "protocol": "tcp",
+                      "service": "http",
+                      "expose_to": "private_network",
+                      "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49.",
+                      "source": "external_reference"
+                    }
+                  ],
+                  "applications": [
+                    {
+                      "name": "apache_httpd",
+                      "version": "2.4.49",
+                      "recipe": "apache_httpd_2.4.49_cve_2021_41773",
+                      "cve_pins": [
+                        "CVE-2021-41773"
+                      ],
+                      "config": {},
+                      "image_override": null,
+                      "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents.",
+                      "source": "external_reference"
+                    }
+                  ],
+                  "notes": "Reference composition: every realism element is declared, applied, and audit-logged."
+                },
+                "zones": []
+              }
+            ],
+            "composition": null,
+            "topology": null,
+            "notes": "Two-host CVE-2021-41773 reference. Target uses the canonical vulnerable httpd:2.4.49 multi-arch image; the SUT composer applies a vulnerable httpd.conf the advisory documents."
+          },
+          "free_elements_changed": [
+            "target.artifact./usr/local/apache2/cgi-bin/lab.sh"
+          ],
+          "free_fraction": 60.0
+        }
+      ],
+      "execution_runs": [
+        {
+          "variant_id": "0.cve_2021_41773#canonical",
+          "run_id": "0.cve_2021_41773-canonical_20260803_172037",
+          "manifest_path": "release/evidence/_archive/0.cve_2021_41773-canonical_20260803_172037/manifest.json",
+          "manifest_sha256": "871ce1c923433f6c60be3fb31b1138a29709c600bd496229bc48cce815395ff2",
+          "summary_path": "release/evidence/_archive/0.cve_2021_41773-canonical_20260803_172037/summary.json",
+          "summary_sha256": "e57d51adbb2560396799d0992a880846eda06fecd02c0c1601f35da16820a53f",
+          "evidence_sha256": {
+            "techniques/T1005_loot.log": "a9d8270e1b70e21177e53e36e35cc34506435d4bf1e9c0813544f9b847d66ce3",
+            "techniques/T1083_enumerate.log": "0879cb506f28bfae71ed131caf0624a917f8bb6ab677b5e313fa44e1a0316b97",
+            "techniques/T1190_path_traversal.log": "bf7528b3b8fd09c285a82b71e158234999f584ec15ce32979ec95a3ae73a2092",
+            "techniques/T1595.002_version_probe.log": "1d22ba847053066f0517350194b4fcc2b2da9b3f02ce30278b50d368f3b1b97e"
+          },
+          "containment_path": "release/evidence/_archive/0.cve_2021_41773-canonical_20260803_172037/sut/containment.log",
+          "containment_sha256": "fcf5e3c0578f7849d9aff9c4b32b0078bc41ad79570ab5323742e6bc3f9f21a3",
+          "containment_sealed": true,
+          "techniques_total": 4,
+          "techniques_success": 4,
+          "evidence_backed_successful": 4,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        },
+        {
+          "variant_id": "0.cve_2021_41773#seed1",
+          "run_id": "0.cve_2021_41773-v1_20260803_172102",
+          "manifest_path": "release/evidence/_archive/0.cve_2021_41773-v1_20260803_172102/manifest.json",
+          "manifest_sha256": "5cd91328366a3ec7651cf5b5f398d04ea0085e45dee63295a1c2f5ac7e3545bc",
+          "summary_path": "release/evidence/_archive/0.cve_2021_41773-v1_20260803_172102/summary.json",
+          "summary_sha256": "daf88e4c850dd634164139bdacfb18da5255493bfce0c1552235d4ba1afacc4f",
+          "evidence_sha256": {
+            "techniques/T1005_loot.log": "a9d8270e1b70e21177e53e36e35cc34506435d4bf1e9c0813544f9b847d66ce3",
+            "techniques/T1083_enumerate.log": "0879cb506f28bfae71ed131caf0624a917f8bb6ab677b5e313fa44e1a0316b97",
+            "techniques/T1190_path_traversal.log": "bf7528b3b8fd09c285a82b71e158234999f584ec15ce32979ec95a3ae73a2092",
+            "techniques/T1595.002_version_probe.log": "2ec137f9f78e5d7e8fc051a2ea2c42268c23a4027f3521b680557fd49c6ae362"
+          },
+          "containment_path": "release/evidence/_archive/0.cve_2021_41773-v1_20260803_172102/sut/containment.log",
+          "containment_sha256": "a3ddc989d988b0aa3cdd125d64b57beb6efeff18be138b24025a731c5ee3de3c",
+          "containment_sealed": true,
+          "techniques_total": 4,
+          "techniques_success": 4,
+          "evidence_backed_successful": 4,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        },
+        {
+          "variant_id": "0.cve_2021_41773#seed2",
+          "run_id": "0.cve_2021_41773-v2_20260803_172129",
+          "manifest_path": "release/evidence/_archive/0.cve_2021_41773-v2_20260803_172129/manifest.json",
+          "manifest_sha256": "c76486b2cacb0ba3caf0df5b0dc30eb4ae0ee4bd410f5faa5fb1293c40fb879c",
+          "summary_path": "release/evidence/_archive/0.cve_2021_41773-v2_20260803_172129/summary.json",
+          "summary_sha256": "0397ebe9e2bc89f3107047f7e85edd26a1ea25faafcea7bd502d631ec159bfff",
+          "evidence_sha256": {
+            "techniques/T1005_loot.log": "a9d8270e1b70e21177e53e36e35cc34506435d4bf1e9c0813544f9b847d66ce3",
+            "techniques/T1083_enumerate.log": "0879cb506f28bfae71ed131caf0624a917f8bb6ab677b5e313fa44e1a0316b97",
+            "techniques/T1190_path_traversal.log": "bf7528b3b8fd09c285a82b71e158234999f584ec15ce32979ec95a3ae73a2092",
+            "techniques/T1595.002_version_probe.log": "11176d5c694d142b880eec38ae07bf774216419a1cda1a7f2a7f295daf144de8"
+          },
+          "containment_path": "release/evidence/_archive/0.cve_2021_41773-v2_20260803_172129/sut/containment.log",
+          "containment_sha256": "e6c69ef92a102d5f63c58228488a0273d3055e9130041766a045d89df0efa2a7",
+          "containment_sealed": true,
+          "techniques_total": 4,
+          "techniques_success": 4,
+          "evidence_backed_successful": 4,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        }
+      ],
+      "executable": true
+    },
+    "0.pivot_demo": {
+      "campaign_id": "0.pivot_demo",
+      "invariant_fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "invariant_count": 0,
+      "free_count": 9,
+      "free_fraction": 100.0,
+      "canonical": {
+        "variant_id": "0.pivot_demo#canonical",
+        "seed": 0,
+        "sut_profile": {
+          "sut_id": "0.pivot_demo",
+          "base_image": "alpine:3.19",
+          "platform_source": "analyst_authored",
+          "services": [
+            "ssh"
+          ],
+          "memory_mb": 512,
+          "smp": 1,
+          "backend": null,
+          "hosts": [
+            {
+              "name": "attacker",
+              "base_image": "alpine:3.19",
+              "platform_source": "analyst_authored",
+              "role": "attacker",
+              "services": [],
+              "memory_mb": 512,
+              "smp": 1,
+              "startup_commands": [
+                "apk add --no-cache openssh-client sshpass netcat-openbsd bash >/dev/null 2>&1 && echo attacker_tools_installed"
+              ],
+              "composition": {
+                "credentials": [],
+                "artifacts": [],
+                "exposures": [],
+                "applications": [],
+                "notes": "Attacker host has no pre-staged credentials of its own; the campaign's recipes harvest target credentials by brute force."
+              },
+              "zones": []
+            },
+            {
+              "name": "target1",
+              "base_image": "alpine:3.19",
+              "platform_source": "analyst_authored",
+              "role": "target",
+              "services": [
+                "ssh"
+              ],
+              "memory_mb": 512,
+              "smp": 1,
+              "startup_commands": [
+                "apk add --no-cache bash shadow openssh-client sshpass >/dev/null 2>&1"
+              ],
+              "composition": {
+                "credentials": [
+                  {
+                    "kind": "password",
+                    "user": "labuser",
+                    "secret": "Lab-Demo-2026!",
+                    "location": null,
+                    "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service.",
+                    "source": "autosut_concretized"
+                  }
+                ],
+                "artifacts": [],
+                "exposures": [
+                  {
+                    "port": 22,
+                    "protocol": "tcp",
+                    "service": "ssh",
+                    "expose_to": "private_network",
+                    "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "applications": [
+                  {
+                    "name": "openssh",
+                    "version": "default",
+                    "recipe": "openssh_weak_password",
+                    "cve_pins": [],
+                    "config": {},
+                    "image_override": null,
+                    "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "notes": "Pivot target realism: weak SSH credential + listening port 22 on the per-run private Docker network."
+              },
+              "zones": []
+            },
+            {
+              "name": "target2",
+              "base_image": "alpine:3.19",
+              "platform_source": "analyst_authored",
+              "role": "target",
+              "services": [
+                "ssh"
+              ],
+              "memory_mb": 512,
+              "smp": 1,
+              "startup_commands": [
+                "apk add --no-cache bash shadow openssh-client sshpass >/dev/null 2>&1"
+              ],
+              "composition": {
+                "credentials": [
+                  {
+                    "kind": "password",
+                    "user": "labuser",
+                    "secret": "Lab-Demo-2026!",
+                    "location": null,
+                    "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service.",
+                    "source": "autosut_concretized"
+                  }
+                ],
+                "artifacts": [],
+                "exposures": [
+                  {
+                    "port": 22,
+                    "protocol": "tcp",
+                    "service": "ssh",
+                    "expose_to": "private_network",
+                    "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "applications": [
+                  {
+                    "name": "openssh",
+                    "version": "default",
+                    "recipe": "openssh_weak_password",
+                    "cve_pins": [],
+                    "config": {},
+                    "image_override": null,
+                    "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "notes": "Pivot target realism: weak SSH credential + listening port 22 on the per-run private Docker network."
+              },
+              "zones": []
+            }
+          ],
+          "composition": null,
+          "topology": null,
+          "notes": "Three-host SSH pivot reference. Lab pre-stages a single weak password on both targets to satisfy a minimal Q3 audit trail \u2014 the attacker still has to discover it via T1110.001."
+        },
+        "free_elements_changed": [],
+        "free_fraction": 100.0
+      },
+      "variants": [
+        {
+          "variant_id": "0.pivot_demo#seed1",
+          "seed": 1,
+          "sut_profile": {
+            "sut_id": "0.pivot_demo-s1",
+            "base_image": "alpine:3.19",
+            "platform_source": "analyst_authored",
+            "services": [
+              "ssh"
+            ],
+            "memory_mb": 512,
+            "smp": 1,
+            "backend": null,
+            "hosts": [
+              {
+                "name": "attacker",
+                "base_image": "alpine:3.19",
+                "platform_source": "analyst_authored",
+                "role": "attacker",
+                "services": [],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache openssh-client sshpass netcat-openbsd bash >/dev/null 2>&1 && echo attacker_tools_installed"
+                ],
+                "composition": {
+                  "credentials": [],
+                  "artifacts": [],
+                  "exposures": [],
+                  "applications": [],
+                  "notes": "Attacker host has no pre-staged credentials of its own; the campaign's recipes harvest target credentials by brute force."
+                },
+                "zones": []
+              },
+              {
+                "name": "target1",
+                "base_image": "alpine:3.19",
+                "platform_source": "analyst_authored",
+                "role": "target",
+                "services": [
+                  "ssh"
+                ],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache bash shadow openssh-client sshpass >/dev/null 2>&1"
+                ],
+                "composition": {
+                  "credentials": [
+                    {
+                      "kind": "password",
+                      "user": "labuser_44cb63",
+                      "secret": "Lab-44cb63!",
+                      "location": null,
+                      "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service.",
+                      "source": "autosut_concretized"
+                    }
+                  ],
+                  "artifacts": [],
+                  "exposures": [
+                    {
+                      "port": 22,
+                      "protocol": "tcp",
+                      "service": "ssh",
+                      "expose_to": "private_network",
+                      "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target.",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "applications": [
+                    {
+                      "name": "dropbear",
+                      "version": "default",
+                      "recipe": "dropbear_equivalent",
+                      "cve_pins": [],
+                      "config": {},
+                      "image_override": null,
+                      "purpose": "Realises the same abstract precondition: remote authenticated service (SSH).",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "notes": "Pivot target realism: weak SSH credential + listening port 22 on the per-run private Docker network."
+                },
+                "zones": []
+              },
+              {
+                "name": "target2",
+                "base_image": "alpine:3.19",
+                "platform_source": "analyst_authored",
+                "role": "target",
+                "services": [
+                  "ssh"
+                ],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache bash shadow openssh-client sshpass >/dev/null 2>&1"
+                ],
+                "composition": {
+                  "credentials": [
+                    {
+                      "kind": "password",
+                      "user": "labuser_44cb63",
+                      "secret": "Lab-44cb63!",
+                      "location": null,
+                      "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service.",
+                      "source": "autosut_concretized"
+                    }
+                  ],
+                  "artifacts": [],
+                  "exposures": [
+                    {
+                      "port": 22,
+                      "protocol": "tcp",
+                      "service": "ssh",
+                      "expose_to": "private_network",
+                      "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target.",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "applications": [
+                    {
+                      "name": "dropbear",
+                      "version": "default",
+                      "recipe": "dropbear_equivalent",
+                      "cve_pins": [],
+                      "config": {},
+                      "image_override": null,
+                      "purpose": "Realises the same abstract precondition: remote authenticated service (SSH).",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "notes": "Pivot target realism: weak SSH credential + listening port 22 on the per-run private Docker network."
+                },
+                "zones": []
+              }
+            ],
+            "composition": null,
+            "topology": null,
+            "notes": "Three-host SSH pivot reference. Lab pre-stages a single weak password on both targets to satisfy a minimal Q3 audit trail \u2014 the attacker still has to discover it via T1110.001."
+          },
+          "free_elements_changed": [
+            "target1.software.openssh@default",
+            "target1.credential.labuser",
+            "target2.software.openssh@default",
+            "target2.credential.labuser"
+          ],
+          "free_fraction": 100.0
+        }
+      ],
+      "execution_runs": [
+        {
+          "variant_id": "0.pivot_demo#canonical",
+          "run_id": "0.pivot_demo-canonical_20260803_172155",
+          "manifest_path": "release/evidence/_archive/0.pivot_demo-canonical_20260803_172155/manifest.json",
+          "manifest_sha256": "6a55f9ba41b3e6bdde681e73a7f0cb3c3dbc1efeb5d4b926937d4fdc05bec851",
+          "summary_path": "release/evidence/_archive/0.pivot_demo-canonical_20260803_172155/summary.json",
+          "summary_sha256": "7611e0d017f7f99560a556647470e3d344ae851a2ee89948badac4e50b6aaa0c",
+          "evidence_sha256": {
+            "techniques/T1021.004_ssh.log": "ae488a1052e61dade35a5dfd04b0a08b0959790eea4b40d83b27d2bdc40f3987",
+            "techniques/T1046_scan.log": "52dbc06c39cc7b3b24500a029de59e77a9eacda29e9a1087dae0ea3ad1226b73",
+            "techniques/T1059.004_remote_exec.log": "45283e299be0e199cfdc6b7ac83cd1c8d47f3cd347d1204cacc6f0b6dd060d5b",
+            "techniques/T1083_target1_discovery.log": "2e341d8d40f995a7cbdc5dc72d45ed92b5487d694f5148f1a2bda62e61b84d34",
+            "techniques/T1110.001_bruteforce.log": "7a5eb42dc8e8c36a094efef55a27af13c447ec7e2f3d1cedd1cc8ea28c2db930",
+            "techniques/T1110.001_wordlist.log": "1042f0aae5fd956bb36e6a0172988e9288a19cf52839e3d85e608861325d7ace",
+            "techniques/T1570_scp_attacker_to_target1.log": "1e9c70353788b479c19cd9706adc37d160b3fef1b977ecfa3f2720de437a751a",
+            "techniques/T1570_scp_target1_to_target2.log": "c761ccba37516b968c37a39ccfb85c320d22c92da218dec855a9392359e0e10f",
+            "techniques/T1570_stage_payload.log": "5184a185924f52ff2045089ba7087b8007bc4bec3a554f0f5f577324bf53569d"
+          },
+          "containment_path": "release/evidence/_archive/0.pivot_demo-canonical_20260803_172155/sut/containment.log",
+          "containment_sha256": "5be3547f5e286ffc4221d765430fa4957f645d3f31c4ab744cfc92214f4f9ec3",
+          "containment_sealed": true,
+          "techniques_total": 6,
+          "techniques_success": 6,
+          "evidence_backed_successful": 6,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        },
+        {
+          "variant_id": "0.pivot_demo#seed1",
+          "run_id": "0.pivot_demo-v1_20260803_172247",
+          "manifest_path": "release/evidence/_archive/0.pivot_demo-v1_20260803_172247/manifest.json",
+          "manifest_sha256": "ed2710dc831b789c5281680e39033ef326ea14b58b07868d4ae05fe8825b0885",
+          "summary_path": "release/evidence/_archive/0.pivot_demo-v1_20260803_172247/summary.json",
+          "summary_sha256": "b8f2ba9e7a6e19c7b62ce4b77a32ea26b5330467c8bf77a202824d724d092905",
+          "evidence_sha256": {
+            "techniques/T1021.004_ssh.log": "502bd781235ea14490c851a3d6bc7256ad52e3983a35d0cc4c9acd1a4398e01f",
+            "techniques/T1046_scan.log": "52dbc06c39cc7b3b24500a029de59e77a9eacda29e9a1087dae0ea3ad1226b73",
+            "techniques/T1059.004_remote_exec.log": "a32e6f3b5e5fda3d4e3a2e69c5531141f4da66c57ac232ea059457b428cce12e",
+            "techniques/T1083_target1_discovery.log": "4602e9a5f40d996598d2dad43ab8e4863802a44c282eaca436ab331ab5d72e17",
+            "techniques/T1110.001_bruteforce.log": "28479777d8e4bd636095747d059a521080720866ee7c6c8680589416ea332b84",
+            "techniques/T1110.001_wordlist.log": "c4ca5a605653da39d45e400f3dc7fa15742a2d9bc33b1138e3ce090d1e975dbd",
+            "techniques/T1570_scp_attacker_to_target1.log": "f949b0dfe7b41066aac35b60e4dfaf083fbcbe39ea125e86653e92d8dc3b90c4",
+            "techniques/T1570_scp_target1_to_target2.log": "95e2ffa17fc61df9143966660a67323272a735a01ac3f56184a52351cce73fc6",
+            "techniques/T1570_stage_payload.log": "5184a185924f52ff2045089ba7087b8007bc4bec3a554f0f5f577324bf53569d"
+          },
+          "containment_path": "release/evidence/_archive/0.pivot_demo-v1_20260803_172247/sut/containment.log",
+          "containment_sha256": "974984fd11b15af8f50762f189deaf1f67536a8c95673b3fe8cbcadb1ac3f702",
+          "containment_sealed": true,
+          "techniques_total": 6,
+          "techniques_success": 6,
+          "evidence_backed_successful": 6,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        }
+      ],
+      "executable": true
+    },
+    "0.web_demo": {
+      "campaign_id": "0.web_demo",
+      "invariant_fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "invariant_count": 0,
+      "free_count": 4,
+      "free_fraction": 100.0,
+      "canonical": {
+        "variant_id": "0.web_demo#canonical",
+        "seed": 0,
+        "sut_profile": {
+          "sut_id": "0.web_demo",
+          "base_image": "alpine:3.19",
+          "platform_source": "analyst_authored",
+          "services": [
+            "http"
+          ],
+          "memory_mb": 512,
+          "smp": 1,
+          "backend": null,
+          "hosts": [
+            {
+              "name": "attacker",
+              "base_image": "alpine:3.19",
+              "platform_source": "analyst_authored",
+              "role": "attacker",
+              "services": [],
+              "memory_mb": 512,
+              "smp": 1,
+              "startup_commands": [
+                "apk add --no-cache curl bash >/dev/null 2>&1 && echo attacker_tools_installed"
+              ],
+              "composition": {
+                "credentials": [],
+                "artifacts": [],
+                "exposures": [],
+                "applications": [],
+                "notes": "Attacker host has no pre-staged credentials of its own; the campaign's recipes recover the web credential by brute force."
+              },
+              "zones": []
+            },
+            {
+              "name": "webtarget",
+              "base_image": "alpine:3.19",
+              "platform_source": "analyst_authored",
+              "role": "target",
+              "services": [
+                "http"
+              ],
+              "memory_mb": 512,
+              "smp": 1,
+              "startup_commands": [
+                "apk add --no-cache bash >/dev/null 2>&1 || true"
+              ],
+              "composition": {
+                "credentials": [],
+                "artifacts": [],
+                "exposures": [
+                  {
+                    "port": 80,
+                    "protocol": "tcp",
+                    "service": "http",
+                    "expose_to": "private_network",
+                    "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "applications": [
+                  {
+                    "name": "apache_httpd",
+                    "version": "default",
+                    "recipe": "apache_basic_auth",
+                    "cve_pins": [],
+                    "config": {},
+                    "image_override": null,
+                    "purpose": "The edge HTTP service whose Basic Auth realm the attacker brute-forces (T1110.001) and authenticates to (T1078) before exfiltrating the protected secret (T1005). A FREE, analyst-authored implementation choice: the corpus pins only that an edge HTTP service must exist, not which web server realises it. The non-uniqueness witness substitutes it (Apache <-> Nginx) and executes both to completion under one corpus fingerprint.",
+                    "source": "analyst_authored"
+                  }
+                ],
+                "notes": "Web target realism: HTTP Basic Auth realm with a pre-staged weak credential and a protected secret on the per-run private network."
+              },
+              "zones": []
+            }
+          ],
+          "composition": null,
+          "topology": null,
+          "notes": "Two-host edge-HTTP witness. Lab pre-stages a weak HTTP Basic Auth credential on the web target; the attacker discovers it via T1110.001 and exfiltrates the protected secret."
+        },
+        "free_elements_changed": [],
+        "free_fraction": 100.0
+      },
+      "variants": [
+        {
+          "variant_id": "0.web_demo#seed1",
+          "seed": 1,
+          "sut_profile": {
+            "sut_id": "0.web_demo-s1",
+            "base_image": "alpine:3.19",
+            "platform_source": "analyst_authored",
+            "services": [
+              "http"
+            ],
+            "memory_mb": 512,
+            "smp": 1,
+            "backend": null,
+            "hosts": [
+              {
+                "name": "attacker",
+                "base_image": "alpine:3.19",
+                "platform_source": "analyst_authored",
+                "role": "attacker",
+                "services": [],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache curl bash >/dev/null 2>&1 && echo attacker_tools_installed"
+                ],
+                "composition": {
+                  "credentials": [],
+                  "artifacts": [],
+                  "exposures": [],
+                  "applications": [],
+                  "notes": "Attacker host has no pre-staged credentials of its own; the campaign's recipes recover the web credential by brute force."
+                },
+                "zones": []
+              },
+              {
+                "name": "webtarget",
+                "base_image": "alpine:3.19",
+                "platform_source": "analyst_authored",
+                "role": "target",
+                "services": [
+                  "http"
+                ],
+                "memory_mb": 512,
+                "smp": 1,
+                "startup_commands": [
+                  "apk add --no-cache bash >/dev/null 2>&1 || true"
+                ],
+                "composition": {
+                  "credentials": [],
+                  "artifacts": [],
+                  "exposures": [
+                    {
+                      "port": 80,
+                      "protocol": "tcp",
+                      "service": "http",
+                      "expose_to": "private_network",
+                      "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target.",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "applications": [
+                    {
+                      "name": "nginx",
+                      "version": "default",
+                      "recipe": "nginx_equivalent",
+                      "cve_pins": [],
+                      "config": {},
+                      "image_override": null,
+                      "purpose": "Realises the same abstract precondition: edge HTTP service.",
+                      "source": "analyst_authored"
+                    }
+                  ],
+                  "notes": "Web target realism: HTTP Basic Auth realm with a pre-staged weak credential and a protected secret on the per-run private network."
+                },
+                "zones": []
+              }
+            ],
+            "composition": null,
+            "topology": null,
+            "notes": "Two-host edge-HTTP witness. Lab pre-stages a weak HTTP Basic Auth credential on the web target; the attacker discovers it via T1110.001 and exfiltrates the protected secret."
+          },
+          "free_elements_changed": [
+            "webtarget.software.apache_httpd@default"
+          ],
+          "free_fraction": 100.0
+        }
+      ],
+      "execution_runs": [
+        {
+          "variant_id": "0.web_demo#canonical",
+          "run_id": "0.web_demo-canonical_20260803_172351",
+          "manifest_path": "release/evidence/_archive/0.web_demo-canonical_20260803_172351/manifest.json",
+          "manifest_sha256": "629f80f0a7228b8015c56e7d6990d4f40769e780e47a1b2c7ca97aa5b5392def",
+          "summary_path": "release/evidence/_archive/0.web_demo-canonical_20260803_172351/summary.json",
+          "summary_sha256": "9d5084e57294e17ec73df970ca28308c7b7ae6c33334056264ee5daa38def7ec",
+          "evidence_sha256": {
+            "techniques/T1005_web_exfil.log": "9b519851dea0c6940be69415116b67b2fa8a8cd5995537e5c4b97c08ead5463d",
+            "techniques/T1046_web_scan.log": "50046ac693efdbfca759c5bb444d029f0c6866df47df4c44b929ae25466e2d14",
+            "techniques/T1078_web_auth.log": "45b1929a98bf6b87253b24d6bb268e25bba7c308872aff34c75bfc81ec82b4f7",
+            "techniques/T1110.001_web_bruteforce.log": "3b64b8d0fd9ff9b87cee9b32af4d3afe1221f0bbbe4e7d6f63222d9e628fd42f",
+            "techniques/T1110.001_web_wordlist.log": "e093acfd8a58221e0d87fbc2076dc5828eae3823882a3363a0ffeede85de4590"
+          },
+          "containment_path": "release/evidence/_archive/0.web_demo-canonical_20260803_172351/sut/containment.log",
+          "containment_sha256": "ec2bc614a94d06934a5e30d35e6da35bdba3553e050ea5bf353e6085d52da6a0",
+          "containment_sealed": true,
+          "techniques_total": 4,
+          "techniques_success": 4,
+          "evidence_backed_successful": 4,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        },
+        {
+          "variant_id": "0.web_demo#seed1",
+          "run_id": "0.web_demo-v1_20260803_172420",
+          "manifest_path": "release/evidence/_archive/0.web_demo-v1_20260803_172420/manifest.json",
+          "manifest_sha256": "380229f1d01de0b68bb5589849aed8b4f75179ea18d92f2d0c7bd82996aaecc0",
+          "summary_path": "release/evidence/_archive/0.web_demo-v1_20260803_172420/summary.json",
+          "summary_sha256": "6adbee281ac9c1d168c4ee397121a61228d3d4ac624b774d139faf8793cbe123",
+          "evidence_sha256": {
+            "techniques/T1005_web_exfil.log": "9b519851dea0c6940be69415116b67b2fa8a8cd5995537e5c4b97c08ead5463d",
+            "techniques/T1046_web_scan.log": "50046ac693efdbfca759c5bb444d029f0c6866df47df4c44b929ae25466e2d14",
+            "techniques/T1078_web_auth.log": "45b1929a98bf6b87253b24d6bb268e25bba7c308872aff34c75bfc81ec82b4f7",
+            "techniques/T1110.001_web_bruteforce.log": "3b64b8d0fd9ff9b87cee9b32af4d3afe1221f0bbbe4e7d6f63222d9e628fd42f",
+            "techniques/T1110.001_web_wordlist.log": "e093acfd8a58221e0d87fbc2076dc5828eae3823882a3363a0ffeede85de4590"
+          },
+          "containment_path": "release/evidence/_archive/0.web_demo-v1_20260803_172420/sut/containment.log",
+          "containment_sha256": "44c8465661ac8b8d1f180a5f165ca01194024aa6b9279b5fe021992da298d48b",
+          "containment_sealed": true,
+          "techniques_total": 4,
+          "techniques_success": 4,
+          "evidence_backed_successful": 4,
+          "mode_status_consistent": true,
+          "teardown_clean": true
+        }
+      ],
+      "executable": true
+    },
+    "0.apt41_dust": {
+      "campaign_id": "0.apt41_dust",
+      "invariant_fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "invariant_count": 0,
+      "free_count": 11,
+      "free_fraction": 100.0,
+      "canonical": {
+        "variant_id": "0.apt41_dust#canonical",
+        "seed": 0,
+        "sut_profile": {
+          "sut_id": "apt41_dust_dual_ops",
+          "base_image": "python:3.11-slim",
+          "platform_source": "analyst_authored",
+          "services": [
+            "ssh",
+            "apache2",
+            "mysql"
+          ],
+          "memory_mb": 1024,
+          "smp": 1,
+          "backend": null,
+          "hosts": null,
+          "composition": {
+            "credentials": [
+              {
+                "kind": "password",
+                "user": "dustops",
+                "secret": "Dust2024!",
+                "location": null,
+                "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!).",
+                "source": "autosut_concretized"
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "/home/dustops/intel/targets.txt",
+                "content_text": "Targets: target-financial-01, target-financial-02\n",
+                "content_b64": null,
+                "owner": "dustops",
+                "mode": "0644",
+                "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt).",
+                "source": "analyst_authored"
+              },
+              {
+                "path": "/home/dustops/intel/financials.csv",
+                "content_text": "Q,Account,Amount\nQ1,A123,1000\n",
+                "content_b64": null,
+                "owner": "dustops",
+                "mode": "0644",
+                "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv).",
+                "source": "analyst_authored"
+              },
+              {
+                "path": "/tmp/staged_payload.sh",
+                "content_text": "#!/bin/sh\necho payload_ran\n",
+                "content_b64": null,
+                "owner": "dustops",
+                "mode": "0644",
+                "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh).",
+                "source": "analyst_authored"
+              }
+            ],
+            "exposures": [
+              {
+                "port": 22,
+                "protocol": "tcp",
+                "service": "ssh",
+                "expose_to": "private_network",
+                "purpose": "SSH service with password authentication enabled.",
+                "source": "analyst_authored"
+              },
+              {
+                "port": 80,
+                "protocol": "tcp",
+                "service": "http",
+                "expose_to": "private_network",
+                "purpose": "HTTP web surface required by this lab profile.",
+                "source": "analyst_authored"
+              },
+              {
+                "port": 3306,
+                "protocol": "tcp",
+                "service": "mysql",
+                "expose_to": "private_network",
+                "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+                "source": "analyst_authored"
+              }
+            ],
+            "applications": [
+              {
+                "name": "openssh",
+                "version": "default",
+                "recipe": "openssh_weak_password",
+                "cve_pins": [],
+                "config": {},
+                "image_override": null,
+                "purpose": "ssh service with password authentication enabled.",
+                "source": "analyst_authored"
+              },
+              {
+                "name": "apache_httpd",
+                "version": "default",
+                "recipe": "apache_default_site",
+                "cve_pins": [],
+                "config": {},
+                "image_override": null,
+                "purpose": "HTTP web surface required by this lab profile.",
+                "source": "analyst_authored"
+              },
+              {
+                "name": "mysql",
+                "version": "default",
+                "recipe": "mysql_default_instance",
+                "cve_pins": [],
+                "config": {},
+                "image_override": null,
+                "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+                "source": "analyst_authored"
+              }
+            ],
+            "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+          },
+          "topology": null,
+          "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+        },
+        "free_elements_changed": [],
+        "free_fraction": 100.0
+      },
+      "variants": [
+        {
+          "variant_id": "0.apt41_dust#seed1",
+          "seed": 1,
+          "sut_profile": {
+            "sut_id": "apt41_dust_dual_ops-s1",
+            "base_image": "python:3.11-slim",
+            "platform_source": "analyst_authored",
+            "services": [
+              "ssh",
+              "apache2",
+              "mysql"
+            ],
+            "memory_mb": 1024,
+            "smp": 1,
+            "backend": null,
+            "hosts": null,
+            "composition": {
+              "credentials": [
+                {
+                  "kind": "password",
+                  "user": "labuser_44cb63",
+                  "secret": "Lab-44cb63!",
+                  "location": null,
+                  "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!).",
+                  "source": "autosut_concretized"
+                }
+              ],
+              "artifacts": [
+                {
+                  "path": "/home/dustops/intel/decoy_204f89.txt",
+                  "content_text": "lab decoy 204f89\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "path": "/home/dustops/intel/decoy_829868.txt",
+                  "content_text": "lab decoy 829868\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "path": "/tmp/decoy_3c5fd7.txt",
+                  "content_text": "lab decoy 3c5fd7\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh).",
+                  "source": "analyst_authored"
+                }
+              ],
+              "exposures": [
+                {
+                  "port": 22,
+                  "protocol": "tcp",
+                  "service": "ssh",
+                  "expose_to": "private_network",
+                  "purpose": "SSH service with password authentication enabled.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "port": 80,
+                  "protocol": "tcp",
+                  "service": "http",
+                  "expose_to": "private_network",
+                  "purpose": "HTTP web surface required by this lab profile.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "port": 3306,
+                  "protocol": "tcp",
+                  "service": "mysql",
+                  "expose_to": "private_network",
+                  "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+                  "source": "analyst_authored"
+                }
+              ],
+              "applications": [
+                {
+                  "name": "dropbear",
+                  "version": "default",
+                  "recipe": "dropbear_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: remote authenticated service (SSH).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "name": "nginx",
+                  "version": "default",
+                  "recipe": "nginx_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: edge HTTP service.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "name": "mariadb",
+                  "version": "default",
+                  "recipe": "mariadb_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: relational database service.",
+                  "source": "analyst_authored"
+                }
+              ],
+              "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+            },
+            "topology": null,
+            "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+          },
+          "free_elements_changed": [
+            "software.openssh@default",
+            "software.apache_httpd@default",
+            "software.mysql@default",
+            "credential.dustops",
+            "artifact./home/dustops/intel/targets.txt",
+            "artifact./home/dustops/intel/financials.csv",
+            "artifact./tmp/staged_payload.sh"
+          ],
+          "free_fraction": 100.0
+        },
+        {
+          "variant_id": "0.apt41_dust#seed2",
+          "seed": 2,
+          "sut_profile": {
+            "sut_id": "apt41_dust_dual_ops-s2",
+            "base_image": "python:3.11-slim",
+            "platform_source": "analyst_authored",
+            "services": [
+              "ssh",
+              "apache2",
+              "mysql"
+            ],
+            "memory_mb": 1024,
+            "smp": 1,
+            "backend": null,
+            "hosts": null,
+            "composition": {
+              "credentials": [
+                {
+                  "kind": "password",
+                  "user": "labuser_1cf44d",
+                  "secret": "Lab-1cf44d!",
+                  "location": null,
+                  "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!).",
+                  "source": "autosut_concretized"
+                }
+              ],
+              "artifacts": [
+                {
+                  "path": "/home/dustops/intel/decoy_2ee433.txt",
+                  "content_text": "lab decoy 2ee433\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "path": "/home/dustops/intel/decoy_2b7457.txt",
+                  "content_text": "lab decoy 2b7457\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "path": "/tmp/decoy_b8dc86.txt",
+                  "content_text": "lab decoy b8dc86\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh).",
+                  "source": "analyst_authored"
+                }
+              ],
+              "exposures": [
+                {
+                  "port": 22,
+                  "protocol": "tcp",
+                  "service": "ssh",
+                  "expose_to": "private_network",
+                  "purpose": "SSH service with password authentication enabled.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "port": 80,
+                  "protocol": "tcp",
+                  "service": "http",
+                  "expose_to": "private_network",
+                  "purpose": "HTTP web surface required by this lab profile.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "port": 3306,
+                  "protocol": "tcp",
+                  "service": "mysql",
+                  "expose_to": "private_network",
+                  "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+                  "source": "analyst_authored"
+                }
+              ],
+              "applications": [
+                {
+                  "name": "dropbear",
+                  "version": "default",
+                  "recipe": "dropbear_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: remote authenticated service (SSH).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "name": "nginx",
+                  "version": "default",
+                  "recipe": "nginx_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: edge HTTP service.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "name": "mariadb",
+                  "version": "default",
+                  "recipe": "mariadb_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: relational database service.",
+                  "source": "analyst_authored"
+                }
+              ],
+              "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+            },
+            "topology": null,
+            "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+          },
+          "free_elements_changed": [
+            "software.openssh@default",
+            "software.apache_httpd@default",
+            "software.mysql@default",
+            "credential.dustops",
+            "artifact./home/dustops/intel/targets.txt",
+            "artifact./home/dustops/intel/financials.csv",
+            "artifact./tmp/staged_payload.sh"
+          ],
+          "free_fraction": 100.0
+        },
+        {
+          "variant_id": "0.apt41_dust#seed3",
+          "seed": 3,
+          "sut_profile": {
+            "sut_id": "apt41_dust_dual_ops-s3",
+            "base_image": "python:3.11-slim",
+            "platform_source": "analyst_authored",
+            "services": [
+              "ssh",
+              "apache2",
+              "mysql"
+            ],
+            "memory_mb": 1024,
+            "smp": 1,
+            "backend": null,
+            "hosts": null,
+            "composition": {
+              "credentials": [
+                {
+                  "kind": "password",
+                  "user": "labuser_79d67f",
+                  "secret": "Lab-79d67f!",
+                  "location": null,
+                  "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!).",
+                  "source": "autosut_concretized"
+                }
+              ],
+              "artifacts": [
+                {
+                  "path": "/home/dustops/intel/decoy_42c6c6.txt",
+                  "content_text": "lab decoy 42c6c6\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "path": "/home/dustops/intel/decoy_bd6ac3.txt",
+                  "content_text": "lab decoy bd6ac3\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "path": "/tmp/decoy_f2b725.txt",
+                  "content_text": "lab decoy f2b725\n",
+                  "content_b64": null,
+                  "owner": "dustops",
+                  "mode": "0644",
+                  "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh).",
+                  "source": "analyst_authored"
+                }
+              ],
+              "exposures": [
+                {
+                  "port": 22,
+                  "protocol": "tcp",
+                  "service": "ssh",
+                  "expose_to": "private_network",
+                  "purpose": "SSH service with password authentication enabled.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "port": 80,
+                  "protocol": "tcp",
+                  "service": "http",
+                  "expose_to": "private_network",
+                  "purpose": "HTTP web surface required by this lab profile.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "port": 3306,
+                  "protocol": "tcp",
+                  "service": "mysql",
+                  "expose_to": "private_network",
+                  "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+                  "source": "analyst_authored"
+                }
+              ],
+              "applications": [
+                {
+                  "name": "dropbear",
+                  "version": "default",
+                  "recipe": "dropbear_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: remote authenticated service (SSH).",
+                  "source": "analyst_authored"
+                },
+                {
+                  "name": "nginx",
+                  "version": "default",
+                  "recipe": "nginx_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: edge HTTP service.",
+                  "source": "analyst_authored"
+                },
+                {
+                  "name": "mariadb",
+                  "version": "default",
+                  "recipe": "mariadb_equivalent",
+                  "cve_pins": [],
+                  "config": {},
+                  "image_override": null,
+                  "purpose": "Realises the same abstract precondition: relational database service.",
+                  "source": "analyst_authored"
+                }
+              ],
+              "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+            },
+            "topology": null,
+            "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+          },
+          "free_elements_changed": [
+            "software.openssh@default",
+            "software.apache_httpd@default",
+            "software.mysql@default",
+            "credential.dustops",
+            "artifact./home/dustops/intel/targets.txt",
+            "artifact./home/dustops/intel/financials.csv",
+            "artifact./tmp/staged_payload.sh"
+          ],
+          "free_fraction": 100.0
+        }
+      ],
+      "execution_runs": [],
+      "executable": false
+    }
+  }
+}

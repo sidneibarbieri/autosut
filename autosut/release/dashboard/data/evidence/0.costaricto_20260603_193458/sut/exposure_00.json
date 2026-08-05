@@ -1,0 +1,6 @@
+{
+  "port": 22,
+  "protocol": "tcp",
+  "service": "ssh",
+  "expose_to": "private_network"
+}

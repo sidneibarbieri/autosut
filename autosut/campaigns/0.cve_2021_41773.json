@@ -1,0 +1,56 @@
+{
+  "campaign_id": "0.cve_2021_41773",
+  "description": "Apache httpd 2.4.49 path-traversal exploitation. Centerpiece of the S17 composable-SUT story: the target host runs the real httpd:2.4.49 official image, the SUT composer drops the vulnerable httpd.conf the original Apache Security advisory describes, and the attacker exploits the disclosed path-traversal pattern over HTTP. Every step has audit-friendly evidence — the request URLs, the response body containing /etc/passwd contents, and the configuration that enabled the vulnerability.",
+  "plan_origin": "autosut_internal_cve_real",
+  "sut": {
+    "topology": "two-host",
+    "estimated_duration_minutes": 3,
+    "private_network": true
+  },
+  "techniques": [
+    {
+      "technique_id": "T1595.002",
+      "name": "Active Scanning: Vulnerability Scanning",
+      "tactic": "reconnaissance",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "probe_apache_version",
+      "description": "Probe the target's Server header to confirm the vulnerable Apache version."
+    },
+    {
+      "technique_id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "tactic": "initial-access",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "exploit_cve_2021_41773",
+      "description": "Send the canonical CVE-2021-41773 path-traversal request and verify /etc/passwd contents in the response."
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "enumerate_via_traversal",
+      "description": "Use the same traversal pattern to enumerate sensitive files (e.g., /etc/shadow if readable, /etc/hostname)."
+    },
+    {
+      "technique_id": "T1005",
+      "name": "Data from Local System",
+      "tactic": "collection",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "exfil_passwd_to_attacker_disk",
+      "description": "Persist the exfiltrated /etc/passwd on the attacker side as the collection artifact."
+    }
+  ]
+}

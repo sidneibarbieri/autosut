@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /var/www/html/index.html) && cat > /var/www/html/index.html <<'AUTOSUT_ART_EOF'
+<html><body>Welcome to the lab landing page.</body></html>
+
+AUTOSUT_ART_EOF
+chmod 0644 /var/www/html/index.html && chown www-data:www-data /var/www/html/index.html 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

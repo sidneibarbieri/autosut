@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1490.marker && echo 'T1490 (Inhibit System Recovery) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1490.marker && cat /tmp/c0011_T1490.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:34:38Z
+T1490 (Inhibit System Recovery) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

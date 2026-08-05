@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /home/vulnuser/documents/passwords.txt) && cat > /home/vulnuser/documents/passwords.txt <<'AUTOSUT_ART_EOF'
+admin:admin123
+dbuser:dbpass456
+
+AUTOSUT_ART_EOF
+chmod 0600 /home/vulnuser/documents/passwords.txt && chown vulnuser:vulnuser /home/vulnuser/documents/passwords.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

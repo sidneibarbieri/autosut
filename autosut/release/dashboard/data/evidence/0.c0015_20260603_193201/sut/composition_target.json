@@ -1,0 +1,55 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "testuser",
+      "secret": "password123",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (testuser:password123).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/tmp/sensitive_data.txt",
+      "content_text": "Confidential data \u2014 staging\n",
+      "content_b64": null,
+      "owner": "testuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/tmp/sensitive_data.txt).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/credentials.txt",
+      "content_text": "admin:admin\nroot:toor\n",
+      "content_b64": null,
+      "owner": "testuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/tmp/credentials.txt).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.c0015 \u2014 minimal Linux SUT for credentialed access and post-compromise enumeration / collection."
+}

@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: 3e78e4ef-16d0-41d2-8da7-abb1427ec094
+link_id: a7aa0f80-f2cd-42ee-badf-2dd59f958480
+ability_id: 47d08617-5ce1-424a-8cc5-c9c978ce6bf9
+ability_name: Leave note
+command: echo "proof that this machine was hacked." > message.txt
+status: 0
+exit_code: None
+--- stdout ---
+
+--- stderr ---
+

@@ -1,0 +1,82 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "clouduser",
+      "secret": "cloudpass123",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (clouduser:cloudpass123).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/clouduser/.mozilla/firefox/profiles.ini",
+      "content_text": "[General]\nStartWithLastProfile=1\n[Profile0]\nName=default\n",
+      "content_b64": null,
+      "owner": "clouduser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.mozilla/firefox/profiles.ini).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/clouduser/.config/google-chrome/Default/Preferences",
+      "content_text": "{\"profile\":{\"name\":\"Default\"}}\n",
+      "content_b64": null,
+      "owner": "clouduser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.config/google-chrome/Default/Preferences).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/clouduser/staging/encoded_payload.b64",
+      "content_text": "TEFCX1BBWUxPQUQK\n",
+      "content_b64": null,
+      "owner": "clouduser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/staging/encoded_payload.b64).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "apache_httpd",
+      "version": "default",
+      "recipe": "apache_default_site",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.outer_space \u2014 browser discovery, tool staging, cloud infrastructure artefacts on Linux SUT."
+}

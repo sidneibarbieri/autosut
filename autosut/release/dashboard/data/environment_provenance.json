@@ -1,0 +1,3731 @@
+{
+  "generated_at": "2026-07-18T00:00:00Z",
+  "policy": "evidence_4category",
+  "dimensions": [
+    "platform",
+    "software",
+    "vulnerability",
+    "credentials",
+    "exposures",
+    "artifacts",
+    "topology"
+  ],
+  "skipped_unimplemented": [],
+  "global": {
+    "campaign_id": "ALL",
+    "total_elements": 139,
+    "by_source": {
+      "corpus_supported": 3,
+      "external_reference": 5,
+      "analyst_authored": 109,
+      "autosut_concretized": 22,
+      "inferred": 0
+    },
+    "percentages": {
+      "corpus_supported": 2.2,
+      "external_reference": 3.6,
+      "analyst_authored": 78.4,
+      "autosut_concretized": 15.8,
+      "inferred": 0.0
+    },
+    "by_dimension": {
+      "platform": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 27,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "software": {
+        "corpus_supported": 0,
+        "external_reference": 1,
+        "analyst_authored": 22,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "vulnerability": {
+        "corpus_supported": 2,
+        "external_reference": 1,
+        "analyst_authored": 0,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "credentials": {
+        "corpus_supported": 0,
+        "external_reference": 1,
+        "analyst_authored": 0,
+        "autosut_concretized": 21,
+        "inferred": 0
+      },
+      "exposures": {
+        "corpus_supported": 1,
+        "external_reference": 2,
+        "analyst_authored": 25,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "artifacts": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 32,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "topology": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 3,
+        "autosut_concretized": 0,
+        "inferred": 0
+      }
+    },
+    "elements": [
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.ray",
+        "value": "api_token:ray",
+        "source": "external_reference",
+        "host": null,
+        "purpose": "Ray dashboard ships without authentication on the unauthenticated job-submission endpoint exploited by CVE-2023-48022."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.8265",
+        "value": "8265/tcp ray_dashboard_http",
+        "source": "external_reference",
+        "host": null,
+        "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./opt/sensitive/credentials.txt",
+        "value": "/opt/sensitive/credentials.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./opt/sensitive/manifest.txt",
+        "value": "/opt/sensitive/manifest.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation."
+      },
+      {
+        "dimension": "vulnerability",
+        "identifier": "vulnerability.CVE-2023-48022",
+        "value": "CVE-2023-48022",
+        "source": "external_reference",
+        "host": null,
+        "purpose": "real_cve / ray"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.apache_httpd@default",
+        "value": "apache_httpd@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.ubuntu",
+        "value": "password:ubuntu",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.80",
+        "value": "80/tcp http",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./var/www/html/index.html",
+        "value": "/var/www/html/index.html",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/var/www/html/index.html)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/ubuntu/shipping_notice.txt",
+        "value": "/home/ubuntu/shipping_notice.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/shipping_notice.txt)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.vulnuser",
+        "value": "password:vulnuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service the lab weak credential reaches (port 22)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+        "value": "/home/vulnuser/documents/confidential.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+        "value": "/home/vulnuser/documents/passwords.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./root/.ssh/known_hosts",
+        "value": "/root/.ssh/known_hosts",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.ubuntu",
+        "value": "password:ubuntu",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.apache_httpd@default",
+        "value": "apache_httpd@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.ubuntu",
+        "value": "password:ubuntu",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.80",
+        "value": "80/tcp http",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.testuser",
+        "value": "password:testuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (testuser:password123)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./tmp/sensitive_data.txt",
+        "value": "/tmp/sensitive_data.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/tmp/sensitive_data.txt)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./tmp/credentials.txt",
+        "value": "/tmp/credentials.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/tmp/credentials.txt)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.testuser",
+        "value": "password:testuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (testuser:password123)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./tmp/phishing_context.txt",
+        "value": "/tmp/phishing_context.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/tmp/phishing_context.txt)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.ubuntu",
+        "value": "password:ubuntu",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/ubuntu/andromeda_notes.txt",
+        "value": "/home/ubuntu/andromeda_notes.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/andromeda_notes.txt)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/ubuntu/staged_docs/report_2021.txt",
+        "value": "/home/ubuntu/staged_docs/report_2021.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/staged_docs/report_2021.txt)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.apache_httpd@default",
+        "value": "apache_httpd@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.mysql@default",
+        "value": "mysql@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "MySQL instance the lab profile declares (default_instance_exposed)."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.dustops",
+        "value": "password:dustops",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.80",
+        "value": "80/tcp http",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.3306",
+        "value": "3306/tcp mysql",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "MySQL instance the lab profile declares (default_instance_exposed)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/dustops/intel/targets.txt",
+        "value": "/home/dustops/intel/targets.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/dustops/intel/financials.csv",
+        "value": "/home/dustops/intel/financials.csv",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./tmp/staged_payload.sh",
+        "value": "/tmp/staged_payload.sh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.testuser",
+        "value": "password:testuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (testuser:password123)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/testuser/documents/financial_report.xlsx",
+        "value": "/home/testuser/documents/financial_report.xlsx",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/testuser/documents/financial_report.xlsx)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/testuser/.ssh/id_rsa",
+        "value": "/home/testuser/.ssh/id_rsa",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/testuser/.ssh/id_rsa)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.apache_httpd@default",
+        "value": "apache_httpd@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.reconuser",
+        "value": "password:reconuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (reconuser:reconpass123)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.80",
+        "value": "80/tcp http",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/reconuser/collection/finance_notes.txt",
+        "value": "/home/reconuser/collection/finance_notes.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/collection/finance_notes.txt)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/reconuser/proxy/multi_hop_proxy.conf",
+        "value": "/home/reconuser/proxy/multi_hop_proxy.conf",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/proxy/multi_hop_proxy.conf)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/reconuser/tools/network_scan.sh",
+        "value": "/home/reconuser/tools/network_scan.sh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/tools/network_scan.sh)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service with password authentication enabled."
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.apache_httpd@default",
+        "value": "apache_httpd@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.clouduser",
+        "value": "password:clouduser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account declared by the lab profile declaration (clouduser:cloudpass123)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service with password authentication enabled."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.80",
+        "value": "80/tcp http",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "HTTP web surface required by this lab profile."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/clouduser/.mozilla/firefox/profiles.ini",
+        "value": "/home/clouduser/.mozilla/firefox/profiles.ini",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.mozilla/firefox/profiles.ini)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/clouduser/.config/google-chrome/Default/Preferences",
+        "value": "/home/clouduser/.config/google-chrome/Default/Preferences",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.config/google-chrome/Default/Preferences)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/clouduser/staging/encoded_payload.b64",
+        "value": "/home/clouduser/staging/encoded_payload.b64",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/staging/encoded_payload.b64)."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.eclipseops",
+        "value": "password:eclipseops",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account for the GlobalProtect surrogate (eclipseops:Eclipse123!)."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.443",
+        "value": "443/tcp globalprotect_https_surrogate",
+        "source": "corpus_supported",
+        "host": null,
+        "purpose": "Documented CVE-2024-3400 GlobalProtect HTTPS exploit surface (realised by the surrogate)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./var/lib/eclipseops/network_inventory.txt",
+        "value": "/var/lib/eclipseops/network_inventory.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy network inventory the CVE-2024-3400 attacker would enumerate post-exploitation."
+      },
+      {
+        "dimension": "vulnerability",
+        "identifier": "vulnerability.CVE-2024-3400",
+        "value": "CVE-2024-3400",
+        "source": "corpus_supported",
+        "host": null,
+        "purpose": "surrogate / Palo Alto GlobalProtect (surrogate)"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.salesops",
+        "value": "password:salesops",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Operator account for the Salesforce-style API surrogate."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.api_consumer",
+        "value": "api_token:api_consumer",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.8443",
+        "value": "8443/tcp crm_rest_api_surrogate",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "Named-product surrogate CRM REST surface the exfiltration campaign targets (no disclosed CVE)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./opt/crm/records.json",
+        "value": "/opt/crm/records.json",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy CRM record the API surrogate serves."
+      },
+      {
+        "dimension": "vulnerability",
+        "identifier": "vulnerability.N/A_salesforce_surrogate",
+        "value": "N/A_salesforce_surrogate",
+        "source": "corpus_supported",
+        "host": null,
+        "purpose": "surrogate / Salesforce REST API (surrogate)"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.vulnuser",
+        "value": "password:vulnuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service the lab weak credential reaches (port 22)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+        "value": "/home/vulnuser/documents/confidential.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+        "value": "/home/vulnuser/documents/passwords.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./root/.ssh/known_hosts",
+        "value": "/root/.ssh/known_hosts",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "materialised as python:3.11-slim"
+      },
+      {
+        "dimension": "software",
+        "identifier": "software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "credential.vulnuser",
+        "value": "password:vulnuser",
+        "source": "autosut_concretized",
+        "host": null,
+        "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "SSH service the lab weak credential reaches (port 22)."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+        "value": "/home/vulnuser/documents/confidential.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+        "value": "/home/vulnuser/documents/passwords.txt",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "artifact./root/.ssh/known_hosts",
+        "value": "/root/.ssh/known_hosts",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "attacker.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "attacker",
+        "purpose": "materialised as autosut/dmz-host:s28"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "nginx.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "nginx",
+        "purpose": "materialised as autosut/dmz-host:s28"
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "nginx.credential.labuser",
+        "value": "password:labuser",
+        "source": "autosut_concretized",
+        "host": "nginx",
+        "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "nginx.exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": "nginx",
+        "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "app_server.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "app_server",
+        "purpose": "materialised as autosut/dmz-host:s28"
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "app_server.credential.labuser",
+        "value": "password:labuser",
+        "source": "autosut_concretized",
+        "host": "app_server",
+        "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "app_server.exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": "app_server",
+        "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "db.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "db",
+        "purpose": "materialised as autosut/dmz-host:s28"
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "db.credential.labuser",
+        "value": "password:labuser",
+        "source": "autosut_concretized",
+        "host": "db",
+        "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "db.exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": "db",
+        "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+      },
+      {
+        "dimension": "topology",
+        "identifier": "topology.zone.internet_edge",
+        "value": "internet_edge",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Where the attacker originates. Has no enterprise access."
+      },
+      {
+        "dimension": "topology",
+        "identifier": "topology.zone.dmz",
+        "value": "dmz",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Bridges internet_edge and enterprise. Hosts edge-facing services."
+      },
+      {
+        "dimension": "topology",
+        "identifier": "topology.zone.enterprise",
+        "value": "enterprise",
+        "source": "analyst_authored",
+        "host": null,
+        "purpose": "Backend zone. No direct path from internet_edge."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "attacker.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "attacker",
+        "purpose": "materialised as alpine:3.19"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "target1.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "target1",
+        "purpose": "materialised as alpine:3.19"
+      },
+      {
+        "dimension": "software",
+        "identifier": "target1.software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": "target1",
+        "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "target1.credential.labuser",
+        "value": "password:labuser",
+        "source": "autosut_concretized",
+        "host": "target1",
+        "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "target1.exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": "target1",
+        "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "target2.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "target2",
+        "purpose": "materialised as alpine:3.19"
+      },
+      {
+        "dimension": "software",
+        "identifier": "target2.software.openssh@default",
+        "value": "openssh@default",
+        "source": "analyst_authored",
+        "host": "target2",
+        "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint."
+      },
+      {
+        "dimension": "credentials",
+        "identifier": "target2.credential.labuser",
+        "value": "password:labuser",
+        "source": "autosut_concretized",
+        "host": "target2",
+        "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "target2.exposure.22",
+        "value": "22/tcp ssh",
+        "source": "analyst_authored",
+        "host": "target2",
+        "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "attacker.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "attacker",
+        "purpose": "materialised as alpine:3.19"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "webtarget.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "webtarget",
+        "purpose": "materialised as alpine:3.19"
+      },
+      {
+        "dimension": "software",
+        "identifier": "webtarget.software.apache_httpd@default",
+        "value": "apache_httpd@default",
+        "source": "analyst_authored",
+        "host": "webtarget",
+        "purpose": "The edge HTTP service whose Basic Auth realm the attacker brute-forces (T1110.001) and authenticates to (T1078) before exfiltrating the protected secret (T1005). A FREE, analyst-authored implementation choice: the corpus pins only that an edge HTTP service must exist, not which web server realises it. The non-uniqueness witness substitutes it (Apache <-> Nginx) and executes both to completion under one corpus fingerprint."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "webtarget.exposure.80",
+        "value": "80/tcp http",
+        "source": "analyst_authored",
+        "host": "webtarget",
+        "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target."
+      },
+      {
+        "dimension": "platform",
+        "identifier": "attacker.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "attacker",
+        "purpose": "materialised as autosut/dmz-host:s28"
+      },
+      {
+        "dimension": "platform",
+        "identifier": "target.platform.linux",
+        "value": "linux",
+        "source": "analyst_authored",
+        "host": "target",
+        "purpose": "materialised as httpd:2.4.49"
+      },
+      {
+        "dimension": "software",
+        "identifier": "target.software.apache_httpd@2.4.49",
+        "value": "apache_httpd@2.4.49",
+        "source": "external_reference",
+        "host": "target",
+        "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
+      },
+      {
+        "dimension": "exposures",
+        "identifier": "target.exposure.80",
+        "value": "80/tcp http",
+        "source": "external_reference",
+        "host": "target",
+        "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49."
+      },
+      {
+        "dimension": "artifacts",
+        "identifier": "target.artifact./usr/local/apache2/cgi-bin/lab.sh",
+        "value": "/usr/local/apache2/cgi-bin/lab.sh",
+        "source": "analyst_authored",
+        "host": "target",
+        "purpose": "Decoy CGI to confirm script alias mounted."
+      }
+    ]
+  },
+  "campaigns": [
+    {
+      "campaign_id": "0.shadowray",
+      "total_elements": 6,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 3,
+        "analyst_authored": 3,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 50.0,
+        "analyst_authored": 50.0,
+        "autosut_concretized": 0.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 1,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 1,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 1,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.ray",
+          "value": "api_token:ray",
+          "source": "external_reference",
+          "host": null,
+          "purpose": "Ray dashboard ships without authentication on the unauthenticated job-submission endpoint exploited by CVE-2023-48022."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.8265",
+          "value": "8265/tcp ray_dashboard_http",
+          "source": "external_reference",
+          "host": null,
+          "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./opt/sensitive/credentials.txt",
+          "value": "/opt/sensitive/credentials.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./opt/sensitive/manifest.txt",
+          "value": "/opt/sensitive/manifest.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation."
+        },
+        {
+          "dimension": "vulnerability",
+          "identifier": "vulnerability.CVE-2023-48022",
+          "value": "CVE-2023-48022",
+          "source": "external_reference",
+          "host": null,
+          "purpose": "real_cve / ray"
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0010",
+      "total_elements": 8,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 7,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 87.5,
+        "autosut_concretized": 12.5,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.apache_httpd@default",
+          "value": "apache_httpd@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.ubuntu",
+          "value": "password:ubuntu",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.80",
+          "value": "80/tcp http",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./var/www/html/index.html",
+          "value": "/var/www/html/index.html",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/var/www/html/index.html)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/ubuntu/shipping_notice.txt",
+          "value": "/home/ubuntu/shipping_notice.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/shipping_notice.txt)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0011",
+      "total_elements": 7,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 6,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 85.7,
+        "autosut_concretized": 14.3,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.vulnuser",
+          "value": "password:vulnuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service the lab weak credential reaches (port 22)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+          "value": "/home/vulnuser/documents/confidential.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+          "value": "/home/vulnuser/documents/passwords.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./root/.ssh/known_hosts",
+          "value": "/root/.ssh/known_hosts",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0012",
+      "total_elements": 4,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 3,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 75.0,
+        "autosut_concretized": 25.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.ubuntu",
+          "value": "password:ubuntu",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0013",
+      "total_elements": 6,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 5,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 83.3,
+        "autosut_concretized": 16.7,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.apache_httpd@default",
+          "value": "apache_httpd@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.ubuntu",
+          "value": "password:ubuntu",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.80",
+          "value": "80/tcp http",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0015",
+      "total_elements": 6,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 5,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 83.3,
+        "autosut_concretized": 16.7,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.testuser",
+          "value": "password:testuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (testuser:password123)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./tmp/sensitive_data.txt",
+          "value": "/tmp/sensitive_data.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/sensitive_data.txt)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./tmp/credentials.txt",
+          "value": "/tmp/credentials.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/credentials.txt)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0017",
+      "total_elements": 5,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 4,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 80.0,
+        "autosut_concretized": 20.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.testuser",
+          "value": "password:testuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (testuser:password123)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./tmp/phishing_context.txt",
+          "value": "/tmp/phishing_context.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/phishing_context.txt)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.c0026",
+      "total_elements": 6,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 5,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 83.3,
+        "autosut_concretized": 16.7,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.ubuntu",
+          "value": "password:ubuntu",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/ubuntu/andromeda_notes.txt",
+          "value": "/home/ubuntu/andromeda_notes.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/andromeda_notes.txt)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/ubuntu/staged_docs/report_2021.txt",
+          "value": "/home/ubuntu/staged_docs/report_2021.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/staged_docs/report_2021.txt)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.apt41_dust",
+      "total_elements": 11,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 10,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 90.9,
+        "autosut_concretized": 9.1,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.apache_httpd@default",
+          "value": "apache_httpd@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.mysql@default",
+          "value": "mysql@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "MySQL instance the lab profile declares (default_instance_exposed)."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.dustops",
+          "value": "password:dustops",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.80",
+          "value": "80/tcp http",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.3306",
+          "value": "3306/tcp mysql",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "MySQL instance the lab profile declares (default_instance_exposed)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/dustops/intel/targets.txt",
+          "value": "/home/dustops/intel/targets.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/dustops/intel/financials.csv",
+          "value": "/home/dustops/intel/financials.csv",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./tmp/staged_payload.sh",
+          "value": "/tmp/staged_payload.sh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "total_elements": 6,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 5,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 83.3,
+        "autosut_concretized": 16.7,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.testuser",
+          "value": "password:testuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (testuser:password123)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/testuser/documents/financial_report.xlsx",
+          "value": "/home/testuser/documents/financial_report.xlsx",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/testuser/documents/financial_report.xlsx)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/testuser/.ssh/id_rsa",
+          "value": "/home/testuser/.ssh/id_rsa",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/testuser/.ssh/id_rsa)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.costaricto",
+      "total_elements": 9,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 8,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 88.9,
+        "autosut_concretized": 11.1,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.apache_httpd@default",
+          "value": "apache_httpd@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.reconuser",
+          "value": "password:reconuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (reconuser:reconpass123)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.80",
+          "value": "80/tcp http",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/reconuser/collection/finance_notes.txt",
+          "value": "/home/reconuser/collection/finance_notes.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/collection/finance_notes.txt)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/reconuser/proxy/multi_hop_proxy.conf",
+          "value": "/home/reconuser/proxy/multi_hop_proxy.conf",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/proxy/multi_hop_proxy.conf)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/reconuser/tools/network_scan.sh",
+          "value": "/home/reconuser/tools/network_scan.sh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/tools/network_scan.sh)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.outer_space",
+      "total_elements": 9,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 8,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 88.9,
+        "autosut_concretized": 11.1,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service with password authentication enabled."
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.apache_httpd@default",
+          "value": "apache_httpd@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.clouduser",
+          "value": "password:clouduser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account declared by the lab profile declaration (clouduser:cloudpass123)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service with password authentication enabled."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.80",
+          "value": "80/tcp http",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "HTTP web surface required by this lab profile."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/clouduser/.mozilla/firefox/profiles.ini",
+          "value": "/home/clouduser/.mozilla/firefox/profiles.ini",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.mozilla/firefox/profiles.ini)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/clouduser/.config/google-chrome/Default/Preferences",
+          "value": "/home/clouduser/.config/google-chrome/Default/Preferences",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.config/google-chrome/Default/Preferences)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/clouduser/staging/encoded_payload.b64",
+          "value": "/home/clouduser/staging/encoded_payload.b64",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/staging/encoded_payload.b64)."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "total_elements": 5,
+      "by_source": {
+        "corpus_supported": 2,
+        "external_reference": 0,
+        "analyst_authored": 2,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 40.0,
+        "external_reference": 0.0,
+        "analyst_authored": 40.0,
+        "autosut_concretized": 20.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 1,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 1,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.eclipseops",
+          "value": "password:eclipseops",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account for the GlobalProtect surrogate (eclipseops:Eclipse123!)."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.443",
+          "value": "443/tcp globalprotect_https_surrogate",
+          "source": "corpus_supported",
+          "host": null,
+          "purpose": "Documented CVE-2024-3400 GlobalProtect HTTPS exploit surface (realised by the surrogate)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./var/lib/eclipseops/network_inventory.txt",
+          "value": "/var/lib/eclipseops/network_inventory.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy network inventory the CVE-2024-3400 attacker would enumerate post-exploitation."
+        },
+        {
+          "dimension": "vulnerability",
+          "identifier": "vulnerability.CVE-2024-3400",
+          "value": "CVE-2024-3400",
+          "source": "corpus_supported",
+          "host": null,
+          "purpose": "surrogate / Palo Alto GlobalProtect (surrogate)"
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "total_elements": 6,
+      "by_source": {
+        "corpus_supported": 1,
+        "external_reference": 0,
+        "analyst_authored": 2,
+        "autosut_concretized": 3,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 16.7,
+        "external_reference": 0.0,
+        "analyst_authored": 33.3,
+        "autosut_concretized": 50.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 1,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 2,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.salesops",
+          "value": "password:salesops",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Operator account for the Salesforce-style API surrogate."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.api_consumer",
+          "value": "api_token:api_consumer",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.8443",
+          "value": "8443/tcp crm_rest_api_surrogate",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "Named-product surrogate CRM REST surface the exfiltration campaign targets (no disclosed CVE)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./opt/crm/records.json",
+          "value": "/opt/crm/records.json",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy CRM record the API surrogate serves."
+        },
+        {
+          "dimension": "vulnerability",
+          "identifier": "vulnerability.N/A_salesforce_surrogate",
+          "value": "N/A_salesforce_surrogate",
+          "source": "corpus_supported",
+          "host": null,
+          "purpose": "surrogate / Salesforce REST API (surrogate)"
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.caldera_linux_demo",
+      "total_elements": 7,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 6,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 85.7,
+        "autosut_concretized": 14.3,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.vulnuser",
+          "value": "password:vulnuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service the lab weak credential reaches (port 22)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+          "value": "/home/vulnuser/documents/confidential.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+          "value": "/home/vulnuser/documents/passwords.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./root/.ssh/known_hosts",
+          "value": "/root/.ssh/known_hosts",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.fin6_emulation",
+      "total_elements": 7,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 6,
+        "autosut_concretized": 1,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 85.7,
+        "autosut_concretized": 14.3,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 1,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "materialised as python:3.11-slim"
+        },
+        {
+          "dimension": "software",
+          "identifier": "software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "credential.vulnuser",
+          "value": "password:vulnuser",
+          "source": "autosut_concretized",
+          "host": null,
+          "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "SSH service the lab weak credential reaches (port 22)."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+          "value": "/home/vulnuser/documents/confidential.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+          "value": "/home/vulnuser/documents/passwords.txt",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "artifact./root/.ssh/known_hosts",
+          "value": "/root/.ssh/known_hosts",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.dmz_segmentation_demo",
+      "total_elements": 13,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 10,
+        "autosut_concretized": 3,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 76.9,
+        "autosut_concretized": 23.1,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 4,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 3,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "attacker.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "attacker",
+          "purpose": "materialised as autosut/dmz-host:s28"
+        },
+        {
+          "dimension": "platform",
+          "identifier": "nginx.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "nginx",
+          "purpose": "materialised as autosut/dmz-host:s28"
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "nginx.credential.labuser",
+          "value": "password:labuser",
+          "source": "autosut_concretized",
+          "host": "nginx",
+          "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "nginx.exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": "nginx",
+          "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+        },
+        {
+          "dimension": "platform",
+          "identifier": "app_server.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "app_server",
+          "purpose": "materialised as autosut/dmz-host:s28"
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "app_server.credential.labuser",
+          "value": "password:labuser",
+          "source": "autosut_concretized",
+          "host": "app_server",
+          "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "app_server.exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": "app_server",
+          "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+        },
+        {
+          "dimension": "platform",
+          "identifier": "db.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "db",
+          "purpose": "materialised as autosut/dmz-host:s28"
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "db.credential.labuser",
+          "value": "password:labuser",
+          "source": "autosut_concretized",
+          "host": "db",
+          "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "db.exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": "db",
+          "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+        },
+        {
+          "dimension": "topology",
+          "identifier": "topology.zone.internet_edge",
+          "value": "internet_edge",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Where the attacker originates. Has no enterprise access."
+        },
+        {
+          "dimension": "topology",
+          "identifier": "topology.zone.dmz",
+          "value": "dmz",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Bridges internet_edge and enterprise. Hosts edge-facing services."
+        },
+        {
+          "dimension": "topology",
+          "identifier": "topology.zone.enterprise",
+          "value": "enterprise",
+          "source": "analyst_authored",
+          "host": null,
+          "purpose": "Backend zone. No direct path from internet_edge."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.pivot_demo",
+      "total_elements": 9,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 7,
+        "autosut_concretized": 2,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 77.8,
+        "autosut_concretized": 22.2,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 3,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 2,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "attacker.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "attacker",
+          "purpose": "materialised as alpine:3.19"
+        },
+        {
+          "dimension": "platform",
+          "identifier": "target1.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "target1",
+          "purpose": "materialised as alpine:3.19"
+        },
+        {
+          "dimension": "software",
+          "identifier": "target1.software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": "target1",
+          "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "target1.credential.labuser",
+          "value": "password:labuser",
+          "source": "autosut_concretized",
+          "host": "target1",
+          "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "target1.exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": "target1",
+          "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target."
+        },
+        {
+          "dimension": "platform",
+          "identifier": "target2.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "target2",
+          "purpose": "materialised as alpine:3.19"
+        },
+        {
+          "dimension": "software",
+          "identifier": "target2.software.openssh@default",
+          "value": "openssh@default",
+          "source": "analyst_authored",
+          "host": "target2",
+          "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint."
+        },
+        {
+          "dimension": "credentials",
+          "identifier": "target2.credential.labuser",
+          "value": "password:labuser",
+          "source": "autosut_concretized",
+          "host": "target2",
+          "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "target2.exposure.22",
+          "value": "22/tcp ssh",
+          "source": "analyst_authored",
+          "host": "target2",
+          "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.web_demo",
+      "total_elements": 4,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 0,
+        "analyst_authored": 4,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 0.0,
+        "analyst_authored": 100.0,
+        "autosut_concretized": 0.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "attacker.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "attacker",
+          "purpose": "materialised as alpine:3.19"
+        },
+        {
+          "dimension": "platform",
+          "identifier": "webtarget.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "webtarget",
+          "purpose": "materialised as alpine:3.19"
+        },
+        {
+          "dimension": "software",
+          "identifier": "webtarget.software.apache_httpd@default",
+          "value": "apache_httpd@default",
+          "source": "analyst_authored",
+          "host": "webtarget",
+          "purpose": "The edge HTTP service whose Basic Auth realm the attacker brute-forces (T1110.001) and authenticates to (T1078) before exfiltrating the protected secret (T1005). A FREE, analyst-authored implementation choice: the corpus pins only that an edge HTTP service must exist, not which web server realises it. The non-uniqueness witness substitutes it (Apache <-> Nginx) and executes both to completion under one corpus fingerprint."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "webtarget.exposure.80",
+          "value": "80/tcp http",
+          "source": "analyst_authored",
+          "host": "webtarget",
+          "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target."
+        }
+      ]
+    },
+    {
+      "campaign_id": "0.cve_2021_41773",
+      "total_elements": 5,
+      "by_source": {
+        "corpus_supported": 0,
+        "external_reference": 2,
+        "analyst_authored": 3,
+        "autosut_concretized": 0,
+        "inferred": 0
+      },
+      "percentages": {
+        "corpus_supported": 0.0,
+        "external_reference": 40.0,
+        "analyst_authored": 60.0,
+        "autosut_concretized": 0.0,
+        "inferred": 0.0
+      },
+      "by_dimension": {
+        "platform": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 2,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "software": {
+          "corpus_supported": 0,
+          "external_reference": 1,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "vulnerability": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "credentials": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "exposures": {
+          "corpus_supported": 0,
+          "external_reference": 1,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "artifacts": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 1,
+          "autosut_concretized": 0,
+          "inferred": 0
+        },
+        "topology": {
+          "corpus_supported": 0,
+          "external_reference": 0,
+          "analyst_authored": 0,
+          "autosut_concretized": 0,
+          "inferred": 0
+        }
+      },
+      "elements": [
+        {
+          "dimension": "platform",
+          "identifier": "attacker.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "attacker",
+          "purpose": "materialised as autosut/dmz-host:s28"
+        },
+        {
+          "dimension": "platform",
+          "identifier": "target.platform.linux",
+          "value": "linux",
+          "source": "analyst_authored",
+          "host": "target",
+          "purpose": "materialised as httpd:2.4.49"
+        },
+        {
+          "dimension": "software",
+          "identifier": "target.software.apache_httpd@2.4.49",
+          "value": "apache_httpd@2.4.49",
+          "source": "external_reference",
+          "host": "target",
+          "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
+        },
+        {
+          "dimension": "exposures",
+          "identifier": "target.exposure.80",
+          "value": "80/tcp http",
+          "source": "external_reference",
+          "host": "target",
+          "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49."
+        },
+        {
+          "dimension": "artifacts",
+          "identifier": "target.artifact./usr/local/apache2/cgi-bin/lab.sh",
+          "value": "/usr/local/apache2/cgi-bin/lab.sh",
+          "source": "analyst_authored",
+          "host": "target",
+          "purpose": "Decoy CGI to confirm script alias mounted."
+        }
+      ]
+    }
+  ]
+}

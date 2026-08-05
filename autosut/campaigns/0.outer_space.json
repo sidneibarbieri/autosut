@@ -1,0 +1,107 @@
+{
+  "campaign_id": "0.outer_space",
+  "description": "Outer Space Campaign - Cloud-based operations with encrypted file transfers",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 18
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": ["ssh", "apache2"]
+      }
+    },
+    {
+      "type": "privilege_escalation",
+      "target": "target",
+      "config": {
+        "method": "sudo_misconfiguration"
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "description": "Transfer tools into the target environment for execution"
+    },
+    {
+      "technique_id": "T1584.004",
+      "name": "Server",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Compromise or create servers for command and control infrastructure"
+    },
+    {
+      "technique_id": "T1217",
+      "name": "Browser Information Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "description": "Discover browser information and stored credentials"
+    },
+    {
+      "technique_id": "T1071.001",
+      "name": "Web Protocols",
+      "tactic": "command-and-control",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Use web protocols for command and control communications"
+    },
+    {
+      "technique_id": "T1585.003",
+      "name": "Cloud Accounts",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Create or compromise cloud accounts for infrastructure"
+    },
+    {
+      "technique_id": "T1027.013",
+      "name": "Encrypted/Encoded File",
+      "tactic": "defense-evasion",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Use encrypted or encoded files to evade detection"
+    },
+    {
+      "technique_id": "T1587.001",
+      "name": "Malware",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Develop or acquire malware for cloud-based operations"
+    },
+    {
+      "technique_id": "T1059.005",
+      "name": "Visual Basic",
+      "tactic": "execution",
+      "platform": "windows",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Execute Visual Basic scripts for system automation"
+    }
+  ]
+}

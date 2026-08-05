@@ -1,0 +1,18 @@
+{
+  "status": "pending_manual_labels",
+  "label_semantics": "CF/VMR/ID are heuristic routing-policy labels, not observed minimum-backend requirements or validated ground truth",
+  "sample_csv": "results/audit/compatibility_validation_sample.csv",
+  "total_sample_rows": 36,
+  "annotated_rows": 0,
+  "manual_label_completion_pct": 0.0,
+  "rows_used_for_metrics": 0,
+  "pending_rows": 36,
+  "agreement_count": 0,
+  "agreement_pct": null,
+  "cohen_kappa": null,
+  "explicit_rule_rows": 0,
+  "explicit_rule_agreement_pct": null,
+  "fallback_rows": 0,
+  "fallback_agreement_pct": null,
+  "disagreement_rows": 0
+}

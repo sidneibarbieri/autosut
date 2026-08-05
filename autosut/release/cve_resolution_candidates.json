@@ -1,0 +1,246 @@
+{
+  "generated_from": {
+    "campaign_cves": "measurement/sut/scripts/results/audit/campaign_cves.csv",
+    "campaign_factual_structure": "measurement/sut/scripts/results/audit/campaign_factual_structure.csv",
+    "attack_bundle": "measurement/sut/scripts/data/enterprise-attack.json",
+    "rules": "data/cve_resolution_rules.yml"
+  },
+  "totals": {
+    "total_cve_positive_campaigns": 5,
+    "total_campaign_cve_pairs": 8,
+    "automatic_candidate_pairs": 1,
+    "automatic_candidate_campaigns": 1,
+    "direct_attck_binding_pairs": 0,
+    "curated_only_pairs": 1,
+    "appliance_or_server_pairs": 7,
+    "open_package_pairs": 1,
+    "open_package_campaigns": 1
+  },
+  "rows": [
+    {
+      "campaign_name": "Versa Director Zero Day Exploitation",
+      "campaign_id": "campaign--af0ec65a-caa9-40ef-b1c7-21b71fbf3a10",
+      "cve_id": "CVE-2024-39717",
+      "resolution_kind": "appliance",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 1,
+      "linked_software_ids": [
+        "S1154"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-39717"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    },
+    {
+      "campaign_name": "APT28 Nearest Neighbor Campaign",
+      "campaign_id": "campaign--a010610e-22cb-437e-bfde-b78861bdca7a",
+      "cve_id": "CVE-2022-38028",
+      "resolution_kind": "windows_component",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 2,
+      "linked_software_ids": [
+        "S0108",
+        "S1205"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-38028"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    },
+    {
+      "campaign_name": "ShadowRay",
+      "campaign_id": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "cve_id": "CVE-2023-48022",
+      "resolution_kind": "open_package",
+      "automatic_sut_support": true,
+      "ecosystem": "pip",
+      "package_name": "ray",
+      "install_channel": "pip",
+      "version_strategy": "explicit_versions_from_advisory",
+      "candidate_versions": [
+        "2.6.3",
+        "2.8.0"
+      ],
+      "linked_software_count": 0,
+      "linked_software_ids": [],
+      "linked_software_names": [],
+      "attck_binding_status": "cve_only_curated_binding",
+      "binding_rationale": "The campaign exposes a CVE but no ATT&CK software object names the target product, so the binding comes only from the curated CVE rule.",
+      "overlay_template": "ray_jobs_api_exposure",
+      "overlay_summary": "Expose the Ray-like Jobs API boundary before T1190.",
+      "source_basis": "NVD CVE record plus PyPI package metadata and release tags",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-48022",
+        "https://pypi.org/project/ray/",
+        "https://github.com/ray-project/ray/releases/tag/ray-2.6.3",
+        "https://github.com/ray-project/ray/releases/tag/ray-2.8.0"
+      ],
+      "notes": "The current artifact can materialize this as a candidate vulnerable surface through a curated package-to-SUT mapping."
+    },
+    {
+      "campaign_name": "Operation MidnightEclipse",
+      "campaign_id": "campaign--455b011a-2510-49ab-a96f-2f84d6a80189",
+      "cve_id": "CVE-2024-3400",
+      "resolution_kind": "appliance",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 1,
+      "linked_software_ids": [
+        "S1164"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-3400"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    },
+    {
+      "campaign_name": "SharePoint ToolShell Exploitation",
+      "campaign_id": "campaign--1a0576df-df21-4775-843e-844d8a58a94b",
+      "cve_id": "CVE-2025-49704",
+      "resolution_kind": "enterprise_server",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 4,
+      "linked_software_ids": [
+        "S0002",
+        "S0029",
+        "S0357",
+        "S0508"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-49704"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    },
+    {
+      "campaign_name": "SharePoint ToolShell Exploitation",
+      "campaign_id": "campaign--1a0576df-df21-4775-843e-844d8a58a94b",
+      "cve_id": "CVE-2025-49706",
+      "resolution_kind": "enterprise_server",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 4,
+      "linked_software_ids": [
+        "S0002",
+        "S0029",
+        "S0357",
+        "S0508"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-49706"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    },
+    {
+      "campaign_name": "SharePoint ToolShell Exploitation",
+      "campaign_id": "campaign--1a0576df-df21-4775-843e-844d8a58a94b",
+      "cve_id": "CVE-2025-53770",
+      "resolution_kind": "enterprise_server",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 4,
+      "linked_software_ids": [
+        "S0002",
+        "S0029",
+        "S0357",
+        "S0508"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-53770"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    },
+    {
+      "campaign_name": "SharePoint ToolShell Exploitation",
+      "campaign_id": "campaign--1a0576df-df21-4775-843e-844d8a58a94b",
+      "cve_id": "CVE-2025-53771",
+      "resolution_kind": "enterprise_server",
+      "automatic_sut_support": false,
+      "ecosystem": "",
+      "package_name": "",
+      "install_channel": "",
+      "version_strategy": "",
+      "candidate_versions": [],
+      "linked_software_count": 4,
+      "linked_software_ids": [
+        "S0002",
+        "S0029",
+        "S0357",
+        "S0508"
+      ],
+      "linked_software_names": [],
+      "attck_binding_status": "no_attck_software_link",
+      "binding_rationale": "The campaign carries CVE evidence but no ATT&CK software link.",
+      "overlay_template": "",
+      "overlay_summary": "",
+      "source_basis": "NVD CVE record",
+      "evidence_sources": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-53771"
+      ],
+      "notes": "This pair remains outside the current automatic public artifact path and still requires product-specific reconstruction."
+    }
+  ]
+}

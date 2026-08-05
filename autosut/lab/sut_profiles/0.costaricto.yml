@@ -1,0 +1,75 @@
+# =============================================================================
+# SUT Profile: 0.costaricto (expanded executable profile)
+# =============================================================================
+
+campaign_id: "0.costaricto"
+description: "Linux SUT for service discovery, tool staging, local collection, and proxy artifacts"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 8
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "network_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache2"
+        version: "2.4"
+        config: "default_site_enabled"
+
+    users:
+      - username: "reconuser"
+        password: "reconpass123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/home/reconuser/collection/finance_notes.txt"
+        content: "Quarterly revenue notes for controlled collection testing."
+        owner: "reconuser"
+        permissions: "640"
+      - path: "/home/reconuser/proxy/multi_hop_proxy.conf"
+        content: "ProxyJump attacker-hop\nLocalForward 8080 127.0.0.1:80\n"
+        owner: "reconuser"
+        permissions: "644"
+      - path: "/home/reconuser/tools/network_scan.sh"
+        content: "#!/bin/bash\nss -tlnp\n"
+        owner: "reconuser"
+        permissions: "755"
+
+    network:
+      ingress: [22, 80]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        description: "Controlled credentials for remote-service profile materialization"
+      - type: "writable_directory"
+        description: "Writable workspace for staged tools and collection artifacts"
+
+fidelity_expectations:
+  T1046: "ADAPTED"
+  T1105: "ADAPTED"
+  T1090.003: "INSPIRED"
+  T1053.005: "INSPIRED"
+  T1588.002: "INSPIRED"
+  T1133: "INSPIRED"
+  T1583.001: "INSPIRED"
+  T1587.001: "INSPIRED"
+  T1005: "ADAPTED"
+  T1572: "INSPIRED"
+
+methodology_notes: |
+  This profile prioritizes exact campaign coverage from the legacy Docker corpus
+  while keeping every step honest on a Linux substrate. Local discovery and
+  collection execute with real commands. Infrastructure-acquisition, proxy, and
+  tunneling stages are represented as controlled artifacts rather than external
+  abuse.
+
+execution_mode: "real_controlled"

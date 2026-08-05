@@ -1,0 +1,70 @@
+# =============================================================================
+# SUT Profile: 0.outer_space (expanded executable profile)
+# =============================================================================
+
+campaign_id: "0.outer_space"
+description: "Linux SUT for browser discovery, tool staging, and cloud-infrastructure artifacts"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 7
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "cloud_operations_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache2"
+        version: "2.4"
+        config: "default_site_enabled"
+
+    users:
+      - username: "clouduser"
+        password: "cloudpass123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/home/clouduser/.mozilla/firefox/profiles.ini"
+        content: "[Profile0]\nName=default-release\nPath=abcd1234.default-release\n"
+        owner: "clouduser"
+        permissions: "644"
+      - path: "/home/clouduser/.config/google-chrome/Default/Preferences"
+        content: "{\"homepage\":\"https://workspace.test\",\"browser\":{\"check_default_browser\":false}}"
+        owner: "clouduser"
+        permissions: "644"
+      - path: "/home/clouduser/staging/encoded_payload.b64"
+        content: "U1RJS0tTIGVuY29kZWQgcGF5bG9hZAo="
+        owner: "clouduser"
+        permissions: "644"
+
+    network:
+      ingress: [22, 80]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        description: "Controlled credentials for reviewer-friendly target access"
+
+fidelity_expectations:
+  T1105: "ADAPTED"
+  T1584.004: "INSPIRED"
+  T1217: "ADAPTED"
+  T1071.001: "INSPIRED"
+  T1585.003: "INSPIRED"
+  T1027.013: "INSPIRED"
+  T1587.001: "INSPIRED"
+  T1059.005: "INSPIRED"
+
+methodology_notes: |
+  This profile keeps Linux-native discovery and artifact staging real while
+  representing cloud-account, server, and Windows-script steps as explicit
+  inspired artifacts. The result preserves the published legacy technique set
+  without overstating substrate realism.
+
+execution_mode: "real_controlled"

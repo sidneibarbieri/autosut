@@ -1,0 +1,36 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "labuser_44cb63",
+      "secret": "Lab-44cb63!",
+      "location": null,
+      "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service.",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "dropbear",
+      "version": "default",
+      "recipe": "dropbear_equivalent",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "Realises the same abstract precondition: remote authenticated service (SSH).",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "Pivot target realism: weak SSH credential + listening port 22 on the per-run private Docker network."
+}

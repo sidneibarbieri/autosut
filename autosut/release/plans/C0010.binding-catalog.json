@@ -1,0 +1,177 @@
+{
+  "schema_version": "1",
+  "sut_id": "0.c0010",
+  "source_sha256": "919bd63427deb64fa24562ca7f0b8bdf245d51e3bcd16705fa1faabff746efc8",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "network:http_available",
+    "c2_channel"
+  ],
+  "goal_facts": [
+    "transfer.target.payload"
+  ],
+  "bindings": [
+    {
+      "binding_id": "actor.primary",
+      "kind": "actor_host",
+      "value": "lab://actor-1",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "target.primary",
+      "kind": "target_host",
+      "value": "lab://target-1",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "endpoint.public_service",
+      "kind": "endpoint",
+      "value": "lab://target-1/service/public-facing-application",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "runtime.python3",
+      "kind": "runtime",
+      "value": "lab://target-1/runtime/python3",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "toolkit.benign",
+      "kind": "toolkit",
+      "value": "artifact://actor-1/toolkit/pinned-benign",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "artifact.shell_config",
+      "kind": "shell_config_artifact",
+      "value": "artifact://target-1/shell-config/lab-only",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "artifact.encoded",
+      "kind": "encoded_artifact",
+      "value": "artifact://target-1/encoded/benign",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "boundary.no_live_exploit",
+      "kind": "privilege_boundary",
+      "value": "policy://target-1/no-live-local-exploit",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "credential.synthetic_fixture",
+      "kind": "credential_source",
+      "value": "secret://sut/0.c0010/credential-fixture",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": true
+    },
+    {
+      "binding_id": "network.private_interface",
+      "kind": "network_interface",
+      "value": "lab://target-1/network/private",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "channel.private_http",
+      "kind": "channel",
+      "value": "lab://actor-1/to/target-1/http",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "payload.benign",
+      "kind": "payload",
+      "value": "artifact://actor-1/payload/pinned-benign",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "workload.bounded_hash",
+      "kind": "compute_workload",
+      "value": "workload://target-1/bounded-hash-5s",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "infrastructure.lab_manifest",
+      "kind": "infrastructure_artifact",
+      "value": "artifact://actor-1/infrastructure/lab-only",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "capability.benign_specification",
+      "kind": "capability_specification",
+      "value": "artifact://actor-1/capability/benign-specification",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "web_asset.benign_landing",
+      "kind": "web_asset",
+      "value": "artifact://actor-1/web/benign-landing",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "data.synthetic_fixture",
+      "kind": "data_source",
+      "value": "artifact://target-1/data/synthetic-fixture",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "archive_tool.local",
+      "kind": "archive_tool",
+      "value": "lab://target-1/utility/archive",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "archive.synthetic_collection",
+      "kind": "archive_artifact",
+      "value": "artifact://target-1/archive/synthetic-collection",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "chunk_policy.bounded_local",
+      "kind": "chunk_policy",
+      "value": "policy://target-1/chunks/local-bounded",
+      "source": "system_choice",
+      "scope": "lab",
+      "secret_reference": false
+    }
+  ],
+  "content_sha256": "f91aec5a875259e1e634d84663284b81c385912747034826faf094e368093a9a"
+}

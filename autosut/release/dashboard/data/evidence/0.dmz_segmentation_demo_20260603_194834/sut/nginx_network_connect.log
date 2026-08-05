@@ -1,0 +1,5 @@
+docker network connect autosut-dmz-56212a autosut-nginx-6e1a38
+exit_code: 0
+stdout: 
+stderr: 
+---

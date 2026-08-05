@@ -1,0 +1,215 @@
+{
+  "schema_version": "2",
+  "generated_at": "2026-07-31T22:40:03.468006Z",
+  "experimental_unit": "one C0045 technique sequence under a frozen action catalog, resolver policy, and campaign-conditioned surrogate laboratory",
+  "comparison_kind": "deterministic_plan_synthesis_ablation_with_arm_c_execution",
+  "execution_claim_scope": "Arms A and B are verified resolver outputs only. Arm C alone has step-level execution evidence; therefore this is not a three-arm execution comparison.",
+  "controls": [
+    "same vendored procedural plan",
+    "same vendored action-template catalog",
+    "same finite-domain resolver policy",
+    "same campaign technique sequence",
+    "no online LLM proposals"
+  ],
+  "input_audit": {
+    "input_set_id": "sticks-c0045-v1",
+    "manifest_path": "release/inputs/sticks/c0045-v1/manifest.json",
+    "manifest_sha256": "dca7fe7cd3b697eda8e308bcf27c702d7b15f3df5fab2df86f5e8b01fdb5c693",
+    "manifest_content_sha256": "3391fda175660616c3dcd1565b9e5ef1cd176a8138553caa2a296df30acbd4c9",
+    "upstream_project": "STICKS",
+    "upstream_git_revision": "ce204a9b4b99ede934c5d98841ee1593909a5e57",
+    "verified_file_count": 11,
+    "verified_roles": [
+      "action_catalog",
+      "autosut_binding_catalog",
+      "autosut_repetition_1",
+      "autosut_repetition_2",
+      "autosut_resolver_output",
+      "fixed_reference_binding_catalog",
+      "fixed_reference_resolver_output",
+      "fixed_reference_sut",
+      "procedural_plan",
+      "raw_binding_catalog",
+      "raw_resolver_output"
+    ]
+  },
+  "execution_audit": {
+    "run_id": "0.shadowray_20260731_223638",
+    "execution_timestamp": "2026-07-31T22:40:03.468006Z",
+    "execution_validity_path": "release/experiments/execution_validity.json",
+    "execution_validity_sha256": "286f6fbabfa3ee75e92ec0006a213564fb9c293ab7dcd785c35d29beaa9c595d",
+    "manifest_path": "release/evidence/0.shadowray_20260731_223638/manifest.json",
+    "manifest_sha256": "a7f51dfbd1ac50d4c01339bc79eff6b70b11d1a5bd90b20df12102d4b03db331",
+    "summary_path": "release/evidence/0.shadowray_20260731_223638/summary.json",
+    "summary_sha256": "6854bd62953b6ded6e82c7091efe19481044a769532a03187ef3af3838306863",
+    "campaign_state_path": "release/evidence/0.shadowray_20260731_223638/campaign_state.json",
+    "campaign_state_sha256": "9f2e22c881a7f7bf655ec5444becf80f45bc29ba042af0dabe54e97e8514918b",
+    "fidelity_report_path": "release/evidence/0.shadowray_20260731_223638/fidelity_report.json",
+    "fidelity_report_sha256": "4722fedf441ca95a60037411e7a2e5dd74f8721a76f2fd766be7cba033b6b191",
+    "evidence_file_sha256": {
+      "techniques/T1003.008_job_submit.log": "29accddab647fad1f23b9df06caa6fb3e40723b86b4dd6b7a3253b3d1646334a",
+      "techniques/T1003.008_verify.log": "3497d9e8b4fe064410833bff0b7e32ff0df0476b857b2ddbfcf22e81e8a80540",
+      "techniques/T1016_job_submit.log": "c6e9ea186f76f20bf0d2c6a8a12e6124ac524b3f27d4ae812f5cd9a6405e964d",
+      "techniques/T1016_verify.log": "cc2ba29829305c3fa1faa79b3a089147b62f1f9a18446fb904d27fc8a51ff8ca",
+      "techniques/T1027.013_job_submit.log": "9c6ee126c6a0fb53e1cc8313af088f46db5611b8d1a104fe7039316643a0af29",
+      "techniques/T1027.013_verify.log": "3d9a992d1d1efcdf4a13b54c6df236c89613da8fe0716e4058f2e6a299380cc6",
+      "techniques/T1059.006_job_submit.log": "9aff8434a72bea9fbe213597984417e136afd72dca304bf7b4222a1568b96da2",
+      "techniques/T1059.006_verify.log": "bc2d46748c67d32c60bfaab4613a46734ff375228af8da69a994e551c16ed7e9",
+      "techniques/T1068_job_submit.log": "4e0fc4541e8d1f8790cee8f837d132cedac659e1fb7a0c817a3d34bde280489f",
+      "techniques/T1068_verify.log": "7f42267a093f7753acadc568a751f3cee2fbbfe145a56953d939d8421de72bcb",
+      "techniques/T1105_job_submit.log": "c42a69fb4df6001a5086e46818bb8319df7afbb30443f9b78d42af45e1d1bca9",
+      "techniques/T1105_server.log": "62d22ffc65887cf4cf13119cb0bc578c211d3ecf023288d67ca2fb9d53db17e5",
+      "techniques/T1105_verify.log": "46134f2725f2ecacc598acba2658165f475de4e0ed32ed0d051d6727d1471991",
+      "techniques/T1190_dashboard_probe.log": "311fbdf9308ed6a7674d5df3010219d8f8f1338c7eed86bc006dc713c2c228c6",
+      "techniques/T1190_job_submit.log": "1d04ad3d184a8e5da68041a44aa53f53c0627593ce061216308ba666d4744f78",
+      "techniques/T1190_verify_rce.log": "5ff417b0ee8d667faff0757d96225b2f0933f6270a769999df4502b42e453818",
+      "techniques/T1496.001_job_submit.log": "b9c3944e045b93bce0b3d1b3305dd122ad94af37e2198eef78d37aee6d18b691",
+      "techniques/T1496.001_verify.log": "2df1a75086df1c2d38accacf315e06d9b8fafe745efddb9fc0b0e06a982ec980",
+      "techniques/T1546.004_job_submit.log": "e79ed5e1854468f1b711ea41e8e95debceb99a3b1ab4d94d8ce41dcad4814de8",
+      "techniques/T1546.004_verify.log": "c9bd078a397ec14658246e80453caa047256e6b4e0993121603beaf5a0c2e3e7",
+      "techniques/T1588.002_toolkit.log": "4401ef4f62107cbf5d768c0ba64537bbbad494ed5fa6d0a2d28c4bd9ffc32aab"
+    },
+    "technique_count": 10,
+    "evidence_backed_success_count": 10,
+    "fidelity_distribution": {
+      "adapted": 9,
+      "inspired": 1
+    },
+    "realization_distribution": {
+      "surrogate": 10
+    },
+    "fidelity_rubric_mismatch_count": 1,
+    "fidelity_overclaim_count": 0,
+    "real_cve_attempted": true,
+    "real_cve_succeeded": false,
+    "surrogate_succeeded": true,
+    "contract_valid": true,
+    "teardown_clean": true
+  },
+  "arms": [
+    {
+      "arm_id": "A",
+      "treatment": "raw_stix_plan_with_empty_binding_catalog",
+      "campaign_id": "C0045",
+      "technique_count": 10,
+      "verified_procedure_count": 0,
+      "precondition_resolved_count": 0,
+      "executable_step_count": 0,
+      "executed_with_evidence_count": null,
+      "resolver_output_verified": true,
+      "execution_attempted": false,
+      "campaign_completed": null,
+      "unresolved_technique_ids": [
+        "T1588.002",
+        "T1190",
+        "T1059.006",
+        "T1546.004",
+        "T1068",
+        "T1027.013",
+        "T1003.008",
+        "T1016",
+        "T1105",
+        "T1496.001"
+      ],
+      "assumption_count": 0,
+      "assumption_bearing_step_count": 0,
+      "plan_fidelity_ceiling_distribution": {},
+      "execution_fidelity_distribution": {},
+      "realization_distribution": {},
+      "execution_semantic_sha256": "b1021a3158d0241a1e28e11ccfb75d374c0d49d2fa7dfdf8ddad8a1ebe0beee4",
+      "evidence_manifest_path": null,
+      "evidence_manifest_sha256": null,
+      "interpretation": "Verified deterministic resolver output: all source techniques remain unresolved without environment bindings. This arm was not executed."
+    },
+    {
+      "arm_id": "B",
+      "treatment": "sticks_plan_on_fixed_non_campaign_reference_sut",
+      "campaign_id": "C0045",
+      "technique_count": 10,
+      "verified_procedure_count": 1,
+      "precondition_resolved_count": 1,
+      "executable_step_count": 1,
+      "executed_with_evidence_count": null,
+      "resolver_output_verified": true,
+      "execution_attempted": false,
+      "campaign_completed": null,
+      "unresolved_technique_ids": [
+        "T1190",
+        "T1059.006",
+        "T1546.004",
+        "T1068",
+        "T1027.013",
+        "T1003.008",
+        "T1016",
+        "T1105",
+        "T1496.001"
+      ],
+      "assumption_count": 1,
+      "assumption_bearing_step_count": 1,
+      "plan_fidelity_ceiling_distribution": {
+        "adapted": 1
+      },
+      "execution_fidelity_distribution": {},
+      "realization_distribution": {},
+      "execution_semantic_sha256": "bdb5441343209b327c835135c8a2d887479ee5b0ea67d4a29b04562bd67ece6d",
+      "evidence_manifest_path": null,
+      "evidence_manifest_sha256": null,
+      "interpretation": "Verified deterministic resolver output: the fixed reference admits only steps supported by its declared initial facts. This arm was not executed."
+    },
+    {
+      "arm_id": "C",
+      "treatment": "sticks_plan_with_autosut_campaign_conditioned_witness",
+      "campaign_id": "C0045",
+      "technique_count": 10,
+      "verified_procedure_count": 10,
+      "precondition_resolved_count": 10,
+      "executable_step_count": 10,
+      "executed_with_evidence_count": 10,
+      "resolver_output_verified": true,
+      "execution_attempted": true,
+      "campaign_completed": true,
+      "unresolved_technique_ids": [],
+      "assumption_count": 6,
+      "assumption_bearing_step_count": 6,
+      "plan_fidelity_ceiling_distribution": {
+        "adapted": 9,
+        "inspired": 1
+      },
+      "execution_fidelity_distribution": {
+        "adapted": 9,
+        "inspired": 1
+      },
+      "realization_distribution": {
+        "surrogate": 10
+      },
+      "execution_semantic_sha256": "bd1c1e91353ecf9f764215a16d526a798a95f38e3e311d5e30ff6a25b53df551",
+      "evidence_manifest_path": "release/evidence/0.shadowray_20260731_223638/manifest.json",
+      "evidence_manifest_sha256": "a7f51dfbd1ac50d4c01339bc79eff6b70b11d1a5bd90b20df12102d4b03db331",
+      "interpretation": "Verified deterministic plan plus a separate surrogate-backed execution record. It is not evidence of real-Ray exploitation or historical replay."
+    }
+  ],
+  "treatment_effects": [
+    {
+      "comparison": "A_to_B",
+      "executable_step_delta": 1,
+      "verified_procedure_delta": 1,
+      "completed_with_evidence_delta": null
+    },
+    {
+      "comparison": "B_to_C",
+      "executable_step_delta": 9,
+      "verified_procedure_delta": 9,
+      "completed_with_evidence_delta": null
+    }
+  ],
+  "repeated_execution_semantic_hashes": [
+    "bd1c1e91353ecf9f764215a16d526a798a95f38e3e311d5e30ff6a25b53df551",
+    "bd1c1e91353ecf9f764215a16d526a798a95f38e3e311d5e30ff6a25b53df551"
+  ],
+  "semantically_identical_across_repetitions": true,
+  "plan_synthesis_gate_passed": true,
+  "execution_evidence_gate_passed": true,
+  "three_arm_execution_comparison_supported": false,
+  "primary_gate_passed": true,
+  "content_sha256": "e6f3328d4e1bffc10ca1e9f5cd6119a864360d6f64c2f9ea03321e93cbb29614"
+}

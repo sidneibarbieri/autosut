@@ -1,0 +1,5 @@
+# host bring-up: attacker (attacker)
+image: alpine:3.19
+container: autosut-attacker-f20483
+network: autosut-net-3b833258
+container_id: a7e6af00283d54a75f7161d47a6d1ab077202b0bb98539ed61c2ece4f0a33c01

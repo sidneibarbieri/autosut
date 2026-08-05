@@ -1,0 +1,75 @@
+$ cat > /usr/local/apache2/conf/httpd.conf <<'AUTOSUT_CONF_EOF'
+ServerName lab.local
+Listen 80
+
+LoadModule mpm_event_module modules/mod_mpm_event.so
+LoadModule authn_file_module modules/mod_authn_file.so
+LoadModule authn_core_module modules/mod_authn_core.so
+LoadModule authz_host_module modules/mod_authz_host.so
+LoadModule authz_groupfile_module modules/mod_authz_groupfile.so
+LoadModule authz_user_module modules/mod_authz_user.so
+LoadModule authz_core_module modules/mod_authz_core.so
+LoadModule access_compat_module modules/mod_access_compat.so
+LoadModule auth_basic_module modules/mod_auth_basic.so
+LoadModule reqtimeout_module modules/mod_reqtimeout.so
+LoadModule filter_module modules/mod_filter.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule log_config_module modules/mod_log_config.so
+LoadModule env_module modules/mod_env.so
+LoadModule headers_module modules/mod_headers.so
+LoadModule setenvif_module modules/mod_setenvif.so
+LoadModule version_module modules/mod_version.so
+LoadModule unixd_module modules/mod_unixd.so
+LoadModule status_module modules/mod_status.so
+LoadModule autoindex_module modules/mod_autoindex.so
+LoadModule cgid_module modules/mod_cgid.so
+LoadModule cgi_module modules/mod_cgi.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule alias_module modules/mod_alias.so
+
+User daemon
+Group daemon
+
+ServerAdmin lab@lab.local
+ServerRoot "/usr/local/apache2"
+DocumentRoot "/usr/local/apache2/htdocs"
+
+<Directory />
+    AllowOverride none
+    # NOTE: 'Require all denied' is the post-patch default. CVE-2021-41773
+    # affects the pre-patch 2.4.49 default — this lab config deliberately
+    # opens the path so the reviewer can exercise the exact disclosed
+    # vulnerability.
+    Require all granted
+</Directory>
+
+# CVE-2021-41773: this Alias mapping plus the URL-decode bug in 2.4.49 lets
+# an unauthenticated GET on /icons/.%2e/.%2e/etc/passwd escape DocumentRoot.
+Alias /icons/ "/usr/local/apache2/icons/"
+<Directory "/usr/local/apache2/icons">
+    Options Indexes MultiViews
+    AllowOverride None
+    Require all granted
+</Directory>
+
+# Also enable cgi-bin so the RCE escalation path described in the advisory
+# is reachable when mod_cgi is loaded (it is, above).
+ScriptAlias /cgi-bin/ "/usr/local/apache2/cgi-bin/"
+<Directory "/usr/local/apache2/cgi-bin">
+    AllowOverride None
+    Options None
+    Require all granted
+</Directory>
+
+ErrorLog /proc/self/fd/2
+LogLevel warn
+AUTOSUT_CONF_EOF
+httpd -t 2>&1 | head -5 && (httpd -k stop 2>/dev/null; sleep 1; httpd -k start) && sleep 1 && pgrep -a httpd | head -3
+exit_code: 0
+--- stdout ---
+Syntax OK
+httpd (no pid file) not running
+
+--- stderr ---
+sh: 67: pgrep: not found
+

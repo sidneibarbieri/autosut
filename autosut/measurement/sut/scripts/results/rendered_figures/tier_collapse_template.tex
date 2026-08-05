@@ -1,0 +1,47 @@
+% Campaigns meeting increasingly specific evidence tiers.
+\providecolor{figureBlue}{HTML}{4477AA}
+\providecolor{figureInk}{HTML}{333333}
+\providecolor{figureAxis}{HTML}{667085}
+\providecolor{figureNotMet}{HTML}{F2F4F7}
+\providecolor{figureNotMetBorder}{HTML}{8A94A6}
+
+\begin{tikzpicture}[x=0.064cm,y=0.88cm,font=\sffamily\footnotesize]
+  \path[use as bounding box] (-0.8,-1.22) rectangle (107.0,4.68);
+  \foreach \x in {0,20,40,60,80,100} {
+    \draw[figureAxis!25] (\x,0.45) -- (\x,4.15);
+    \node[below,text=figureAxis] at (\x,0.38) {\x};
+  }
+  \draw[->,figureAxis] (0,0.38) -- (103.0,0.38);
+
+  % #1=y, #2=tier, #3=percentage, #4=count, #5=label inside bar
+  \newcommand{\tierbar}[5]{%
+    \node[anchor=west,font=\sffamily\footnotesize\bfseries]
+      at (0,{#1+0.42}) {#2};
+    \draw[fill=figureNotMet,draw=figureNotMetBorder,line width=0.55pt]
+      (0,{#1-0.22}) rectangle (100,{#1+0.22});
+    \fill[figureBlue] (0,{#1-0.22}) rectangle (#3,{#1+0.22});
+    \ifnum#5=1
+      \node[anchor=west,text=white,font=\sffamily\footnotesize\bfseries]
+        at (1.2,#1) {#3\% (#4)};
+    \else
+      \node[anchor=west,text=figureBlue,font=\sffamily\footnotesize\bfseries]
+        at ({#3+1.2},#1) {#3\% (#4)};
+    \fi
+  }
+
+  \tierbar{3.55}{Coarse: OS + product family}
+    {\campaignsuttiercoarsepct}{\campaignsuttiercoarsecount}{1}
+  \tierbar{2.35}{Reference-enriched: version/CPE or campaign CVE}
+    {\campaignsuttierreferenceenrichedpct}{\campaignsuttierreferenceenrichedcount}{0}
+  \tierbar{1.15}{CVE-associated: campaign CVE + software + platform}
+    {\campaignsuttiercveassociatedpct}{\campaignsuttiercveassociatedcount}{0}
+
+  \node[text=figureAxis] at (50,-0.68)
+    {Share of active Enterprise campaigns ($N=\enterpriseactivecampaigncount$)};
+  \fill[figureBlue] (0.0,4.37) rectangle (3.8,4.62);
+  \node[anchor=west] at (4.8,4.50) {meet tier};
+  \fill[figureNotMet] (22.0,4.37) rectangle (25.8,4.62);
+  \draw[figureNotMetBorder,line width=0.55pt]
+    (22.0,4.37) rectangle (25.8,4.62);
+  \node[anchor=west] at (26.8,4.50) {do not meet tier};
+\end{tikzpicture}

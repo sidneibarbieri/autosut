@@ -1,0 +1,38 @@
+# Canonical Caldera runtime slice for the STICKS VM-backed path.
+#
+# Source baseline: Caldera 5.3.0 core requirements plus the enabled plugin set
+# configured in shared/caldera.sh:
+#   sandcat, stockpile, response, gameboard, training, access, atomic
+#
+# Intentionally excluded from the default validation path:
+# - docs-only packages: Sphinx, sphinx_rtd_theme, myst-parser
+# - debrief-only packages: reportlab, lxml, svglib
+# - stockpile donut-shellcode: unsupported on ARM64 and not required by the
+#   current canonical campaign path
+
+aiohttp-jinja2==1.5.1
+aiohttp==3.13.3
+aiohttp_session==2.12.0
+aiohttp-security==0.4.0
+aiohttp-apispec==3.0.0b2
+argon2-cffi==25.1.0
+jinja2==3.1.6
+pyyaml==6.0.1
+cryptography==46.0.5
+websockets==15.0
+marshmallow==3.26.2
+dirhash==0.2.1
+marshmallow-enum==1.5.1
+ldap3==2.9.1
+pyasn1~=0.5.1
+rich==13.7.0
+Markdown==3.8.1
+dnspython==2.6.1
+asyncssh==2.20.0
+aioftp~=0.20.0
+packaging==23.2
+croniter~=3.0.3
+setuptools==78.1.1
+networkx==2.8.5
+numpy>=1.20
+matplotlib>=3.5.2

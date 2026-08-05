@@ -1,0 +1,6 @@
+docker network create autosut-net-1e6815c4  # zone=_default_
+exit_code: 0
+stdout: db955732da57cb9425b17d382e3a4050fd4ff090eab2db0f062992f2bc6fb382
+
+stderr: 
+---

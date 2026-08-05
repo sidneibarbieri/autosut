@@ -1,0 +1,116 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.shadowray",
+  "source_campaign_id": "C0045",
+  "source_plan_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+  "scope": "validated_controlled_slice",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "sut.ray_dashboard.reachable"
+  ],
+  "transitions": [
+    {
+      "technique_id": "T1588.002",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.toolkit.ready"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1190",
+      "requires": [
+        "sut.ray_dashboard.reachable"
+      ],
+      "produces": [
+        "access.target.shell"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1059.006",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "execution.target.python"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1546.004",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "persistence.target.shell_config"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1068",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "assessment.target.privilege_boundary"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1027.013",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "artifact.target.encoded"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1003.008",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "collection.target.credential_files"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1016",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "discovery.target.network"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1105",
+      "requires": [
+        "access.target.shell",
+        "actor.toolkit.ready"
+      ],
+      "produces": [
+        "transfer.target.payload"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    },
+    {
+      "technique_id": "T1496.001",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "impact.target.compute"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files"
+    }
+  ],
+  "content_sha256": "a15f1eb4dbc45b00ff34af951ab31c0a8d29689d5e69a04b0044891064e95e8e"
+}

@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  target:
+    build: ./target
+    container_name: campaign-target
+    hostname: target
+    networks:
+    - campaign-network
+    ports:
+    - 8080:80
+    - '2222:22'
+    volumes:
+    - target_artifacts:/tmp/artifacts
+    environment:
+      TZ: UTC
+  attacker:
+    build: ./attacker
+    container_name: campaign-attacker
+    hostname: attacker
+    networks:
+    - campaign-network
+    volumes:
+    - attacker_artifacts:/tmp/artifacts
+    - ../../software:/workspace/campaign_code
+    environment:
+      TZ: UTC
+    depends_on:
+    - target
+networks:
+  campaign-network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.20.0.0/16
+volumes:
+  target_artifacts: {}
+  attacker_artifacts: {}

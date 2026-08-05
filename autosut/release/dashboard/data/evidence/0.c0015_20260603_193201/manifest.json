@@ -1,0 +1,167 @@
+{
+  "campaign_id": "0.c0015",
+  "run_id": "0.c0015_20260603_193201",
+  "timestamp": "2026-06-03T19:32:32.222099Z",
+  "attacker": {
+    "profile_id": "c0015_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh client for credentialed access."
+  },
+  "sut": {
+    "sut_id": "c0015_credentialed_postcompromise",
+    "base_image": "python:3.11-slim",
+    "services": [
+      "ssh"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "testuser",
+          "secret": "password123",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (testuser:password123).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/tmp/sensitive_data.txt",
+          "content_text": "Confidential data \u2014 staging\n",
+          "content_b64": null,
+          "owner": "testuser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/sensitive_data.txt).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/tmp/credentials.txt",
+          "content_text": "admin:admin\nroot:toor\n",
+          "content_b64": null,
+          "owner": "testuser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/credentials.txt).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.c0015 \u2014 minimal Linux SUT for credentialed access and post-compromise enumeration / collection."
+    },
+    "topology": null,
+    "notes": "0.c0015 \u2014 minimal Linux SUT for credentialed access and post-compromise enumeration / collection."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.004_shell.log"
+      ],
+      "duration_sec": 0.07371758299996145,
+      "notes": "Adapted: real shell + python interpreter execution.",
+      "caldera_ability_id": "b1d41972-3ad9-4aa1-8f7f-05f049a2980e",
+      "caldera_ability_name": "Start 54ndc47"
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1083_discovery.log"
+      ],
+      "duration_sec": 0.026734667000710033,
+      "notes": "Adapted: real filesystem enumeration via ls + find.",
+      "caldera_ability_id": "52177cc1-b9ab-4411-ac21-2eadc4b5d3b8",
+      "caldera_ability_name": "List Directory"
+    },
+    {
+      "technique_id": "T1068",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1068_inspired.log"
+      ],
+      "duration_sec": 0.02897179200044775,
+      "notes": "Inspired emulation of Exploitation for Privilege Escalation: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1548",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1548_elevation.log"
+      ],
+      "duration_sec": 0.09523783300028299,
+      "notes": "Adapted: the real privilege context and setuid surface are enumerated and the no-password sudo path is probed.",
+      "caldera_ability_id": "7f6ea111-1528-4bf7-9ae1-3ee9c3eb3218",
+      "caldera_ability_name": "Abuse Linux Capability: Python3"
+    },
+    {
+      "technique_id": "T1113",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1113_inspired.log"
+      ],
+      "duration_sec": 0.02644991699980892,
+      "notes": "Inspired emulation of Screen Capture: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "/workspace/autosut/autosut/release/evidence/0.c0015_20260603_193201/manifest.json",
+  "summary_path": "/workspace/autosut/autosut/release/evidence/0.c0015_20260603_193201/summary.json"
+}

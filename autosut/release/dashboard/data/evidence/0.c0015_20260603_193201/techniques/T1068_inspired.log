@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1068.marker && echo 'T1068 (Exploitation for Privilege Escalation) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1068.marker && cat /tmp/c0011_T1068.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:32:11Z
+T1068 (Exploitation for Privilege Escalation) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

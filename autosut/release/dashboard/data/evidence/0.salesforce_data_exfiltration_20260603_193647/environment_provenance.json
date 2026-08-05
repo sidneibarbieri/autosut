@@ -1,0 +1,110 @@
+{
+  "campaign_id": "0.salesforce_data_exfiltration",
+  "total_elements": 6,
+  "by_source": {
+    "corpus_supported": 1,
+    "analyst_authored": 1,
+    "autosut_concretized": 4,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 16.7,
+    "analyst_authored": 16.7,
+    "autosut_concretized": 66.7,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 2,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.salesops",
+      "value": "password:salesops",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Operator account for the Salesforce-style API surrogate."
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.api_consumer",
+      "value": "api_token:api_consumer",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.8443",
+      "value": "8443/tcp crm_rest_api_surrogate",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Named-product surrogate CRM REST surface the exfiltration campaign targets (no disclosed CVE)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./opt/crm/records.json",
+      "value": "/opt/crm/records.json",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy CRM record the API surrogate serves."
+    },
+    {
+      "dimension": "vulnerability",
+      "identifier": "vulnerability.N/A_salesforce_surrogate",
+      "value": "N/A_salesforce_surrogate",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "surrogate / Salesforce REST API (surrogate)"
+    }
+  ]
+}

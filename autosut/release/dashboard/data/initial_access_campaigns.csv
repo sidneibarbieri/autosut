@@ -1,0 +1,53 @@
+campaign_name,campaign_id,has_initial_access,has_social_proxy,campaign_cve_count,initial_access_technique_count,initial_access_techniques
+C0027,campaign--df74f7ad-b10d-431c-9f1d-a2bc18dadefa,True,True,0,4,T1078.004:Cloud Accounts;T1133:External Remote Services;T1190:Exploit Public-Facing Application;T1566.004:Spearphishing Voice
+Operation Wocao,campaign--b03d5112-e23a-4ac8-add0-be7502d24eff,True,False,0,5,T1078.002:Domain Accounts;T1078.003:Local Accounts;T1078:Valid Accounts;T1133:External Remote Services;T1190:Exploit Public-Facing Application
+APT41 DUST,campaign--add4d9de-1256-4166-83b8-57087288dced,False,False,0,0,
+FunnyDream,campaign--8d2bc130-89fe-466e-a4f9-6bce6129c2b8,False,False,0,0,
+ArcaneDoor,campaign--a543ef15-91ea-4aa9-9c10-267d56e1ee82,True,False,0,2,T1133:External Remote Services;T1190:Exploit Public-Facing Application
+SolarWinds Compromise,campaign--808d6b30-df4e-4341-8248-724da4bac650,True,True,0,8,T1078.002:Domain Accounts;T1078.003:Local Accounts;T1078.004:Cloud Accounts;T1078:Valid Accounts;T1133:External Remote Services;T1190:Exploit Public-Facing Application;T1195.002:Compromise Software Supply Chain;T1199:Trusted Relationship
+C0010,campaign--ab747e62-1bcb-479f-a26b-1cd39d413d81,True,False,0,1,T1189:Drive-by Compromise
+Operation CuckooBees,campaign--93c23946-49af-41f4-ac03-40f9ffc7419b,True,False,0,3,T1078.002:Domain Accounts;T1133:External Remote Services;T1190:Exploit Public-Facing Application
+Juicy Mix,campaign--7ab2f1a1-26af-4204-ad84-d640fde391da,False,False,0,0,
+CostaRicto,campaign--f9cc545e-b0ef-4b92-8884-a3a4427609f6,True,False,0,1,T1133:External Remote Services
+Operation Honeybee,campaign--4553292d-12c6-4a93-934d-12160370d4e0,False,False,0,0,
+2016 Ukraine Electric Power Attack,campaign--aa73efef-1418-4dbe-b43c-87a498e97234,False,False,0,0,
+RedDelta Modified PlugX Infection Chain Operations,campaign--276671b5-5425-48db-ad65-c8c2564a969b,True,True,0,2,T1566.001:Spearphishing Attachment;T1566.002:Spearphishing Link
+2015 Ukraine Electric Power Attack,campaign--46421788-b6e1-4256-b351-f8beffd1afba,True,True,0,3,T1078:Valid Accounts;T1133:External Remote Services;T1566.001:Spearphishing Attachment
+C0018,campaign--519ee082-8ab6-439b-988f-a8a3f02c8d30,True,False,0,1,T1190:Exploit Public-Facing Application
+Operation Dust Storm,campaign--4603cf2f-06d0-4970-9c5d-5071b08c817f,True,True,0,3,T1189:Drive-by Compromise;T1566.001:Spearphishing Attachment;T1566.002:Spearphishing Link
+Operation Dream Job,campaign--0257b35b-93ef-4a70-80dd-ad5258e6045b,True,True,0,3,T1566.001:Spearphishing Attachment;T1566.002:Spearphishing Link;T1566.003:Spearphishing via Service
+FLORAHOX Activity,campaign--f494272a-c110-4574-be90-42c4957f7ae7,True,False,0,1,T1190:Exploit Public-Facing Application
+C0015,campaign--78068e68-4124-4243-b6f4-76e4e5be8a06,True,True,0,1,T1566.001:Spearphishing Attachment
+RedPenguin,campaign--35879bf3-0a21-4cc1-9e42-6de917a22501,True,False,0,1,T1078:Valid Accounts
+Versa Director Zero Day Exploitation,campaign--af0ec65a-caa9-40ef-b1c7-21b71fbf3a10,True,False,1,1,T1190:Exploit Public-Facing Application
+C0021,campaign--712e38c3-a656-426a-9b3b-a6bfb63294c6,True,True,0,1,T1566.002:Spearphishing Link
+Frankenstein,campaign--26d9ebae-de59-427f-ae9a-349456bae4b1,True,True,0,1,T1566.001:Spearphishing Attachment
+Outer Space,campaign--a1f5df89-ec82-45ef-b229-4ca6a407dc4f,False,False,0,0,
+APT28 Nearest Neighbor Campaign,campaign--a010610e-22cb-437e-bfde-b78861bdca7a,True,False,1,1,T1669:Wi-Fi Networks
+Night Dragon,campaign--ae407e32-87e0-4d92-8705-3ae25d504d8a,True,True,0,5,T1078.002:Domain Accounts;T1078:Valid Accounts;T1133:External Remote Services;T1190:Exploit Public-Facing Application;T1566.002:Spearphishing Link
+Operation Ghost,campaign--7854c1a0-f06c-4876-98a4-4bbd34751b05,True,False,0,1,T1078.002:Domain Accounts
+Indian Critical Infrastructure Intrusions,campaign--4b7f9839-4822-4c19-8a1f-70bb61ba97e1,False,False,0,0,
+Leviathan Australian Intrusions,campaign--b66bc597-399c-4e4d-828a-1ed4a7f1fb15,True,False,0,4,T1078.002:Domain Accounts;T1078.003:Local Accounts;T1078:Valid Accounts;T1190:Exploit Public-Facing Application
+Water Curupira Pikabot Distribution,campaign--57541e3b-657e-463a-a4ab-ca08d7ea9965,True,True,0,1,T1566.001:Spearphishing Attachment
+ShadowRay,campaign--57899965-b171-48ed-bbb4-8faffa3d836a,True,False,1,1,T1190:Exploit Public-Facing Application
+Operation MidnightEclipse,campaign--455b011a-2510-49ab-a96f-2f84d6a80189,True,False,1,3,T1078.002:Domain Accounts;T1078:Valid Accounts;T1190:Exploit Public-Facing Application
+C0032,campaign--7ec2826c-0bf0-4b47-acae-fd683431a4ca,True,False,0,2,T1078:Valid Accounts;T1133:External Remote Services
+Quad7 Activity,campaign--e7511089-1076-4a3b-984d-1a0a8afe31e9,True,False,0,1,T1190:Exploit Public-Facing Application
+HomeLand Justice,campaign--7e21077d-2589-43a7-a5f9-490061289526,True,False,0,3,T1078.001:Default Accounts;T1078:Valid Accounts;T1190:Exploit Public-Facing Application
+Salesforce Data Exfiltration,campaign--9cea8bec-07c5-422b-84b8-99d3128ce570,True,False,0,1,T1078.002:Domain Accounts
+SharePoint ToolShell Exploitation,campaign--1a0576df-df21-4775-843e-844d8a58a94b,True,False,4,1,T1190:Exploit Public-Facing Application
+C0017,campaign--ba6dfa37-f401-4140-88b0-8938f2895e61,True,False,0,1,T1190:Exploit Public-Facing Application
+Operation Spalax,campaign--4c840263-bbda-440d-a22b-674679ddebf1,True,True,0,2,T1566.001:Spearphishing Attachment;T1566.002:Spearphishing Link
+Operation Sharpshooter,campaign--37764c78-2a99-46d1-a7ea-6454b9bf93a0,False,False,0,0,
+Cutting Edge,campaign--4fdd2487-26c1-494e-8702-ec5abe9aa1d9,True,False,0,2,T1078.002:Domain Accounts;T1190:Exploit Public-Facing Application
+2022 Ukraine Electric Power Attack,campaign--df8eb785-70f8-4300-b444-277ba849083d,False,False,0,0,
+3CX Supply Chain Attack,campaign--4fd53ccc-c6b1-4e3c-abe8-a456d46d789e,True,False,0,3,T1078:Valid Accounts;T1189:Drive-by Compromise;T1195.002:Compromise Software Supply Chain
+C0011,campaign--b4e5a4a9-f3be-4631-ba8f-da6ebb067fac,True,True,0,2,T1566.001:Spearphishing Attachment;T1566.002:Spearphishing Link
+J-magic Campaign,campaign--58c4fd17-88f5-433a-8242-e9cac31f3c45,False,False,0,0,
+Triton Safety Instrumented System Attack,campaign--45a98f02-852f-49b2-94c0-c63207bebbbf,False,False,0,0,
+FrostyGoop Incident,campaign--1169ff24-b35f-4d8d-8cf3-643a2834227f,True,False,0,1,T1190:Exploit Public-Facing Application
+KV Botnet Activity,campaign--0c259854-4044-4f6c-ac49-118d484b3e3b,False,False,0,0,
+C0026,campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e,False,False,0,0,
+SPACEHOP Activity,campaign--83e1f587-34da-44cc-b65b-a72479cb1616,True,False,0,1,T1190:Exploit Public-Facing Application
+Pikabot Distribution February 2024,campaign--81e89fb4-8d07-4d8a-82f4-bf084f9d5d53,True,True,0,1,T1566.002:Spearphishing Link
+C0033,campaign--a82bc5ad-5f95-4c6a-9f25-aaf6f476a3c4,False,False,0,0,

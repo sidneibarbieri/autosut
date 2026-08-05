@@ -1,0 +1,7 @@
+$ mkdir -p /var/lab/T1074.001_src && echo 'sensitive_a=T1074.001' > /var/lab/T1074.001_src/data.txt && tar czf /tmp/T1074.001_collected.tgz -C /var/lab T1074.001_src 2>&1 && ls -la /tmp/T1074.001_collected.tgz
+exit_code: 0
+--- stdout ---
+-rw-r--r-- 1 root root 176 Jun  3 19:34 /tmp/T1074.001_collected.tgz
+
+--- stderr ---
+

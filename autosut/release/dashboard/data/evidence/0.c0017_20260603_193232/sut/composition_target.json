@@ -1,0 +1,46 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "testuser",
+      "secret": "password123",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (testuser:password123).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/tmp/phishing_context.txt",
+      "content_text": "Phishing payload context \u2014 staging\n",
+      "content_b64": null,
+      "owner": "testuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/tmp/phishing_context.txt).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.c0017 \u2014 APT29-style stealth execution and persistence flow on a minimal Linux SUT."
+}

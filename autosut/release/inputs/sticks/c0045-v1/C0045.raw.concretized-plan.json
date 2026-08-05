@@ -1,0 +1,548 @@
+{
+  "schema_version": "1",
+  "ordering_policy": "causal_topological_then_source_order",
+  "campaign_id": "C0045",
+  "source_plan_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+  "binding_catalog_sha256": "e6773e8c0611786456cc14e05c900d286e2fbccb2ebca7348a531394eee58d3a",
+  "action_catalog_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+  "steps": [],
+  "unresolved_technique_ids": [
+    "T1588.002",
+    "T1190",
+    "T1059.006",
+    "T1546.004",
+    "T1068",
+    "T1027.013",
+    "T1003.008",
+    "T1016",
+    "T1105",
+    "T1496.001"
+  ],
+  "rejected_candidates": [],
+  "retrieval_traces": [
+    {
+      "technique_id": "T1588.002",
+      "query_sha256": "71164dc981a7517b5545e840057e81b7b23bf79cc412381a1ae8dc2a67af1813",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1588.002",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "tool"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1190",
+      "query_sha256": "92a9b49cc2b8eb838c42c7bf26e613199a42ccf6c2b50cf0ff66565c3eaac3cc",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1190"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1059.006",
+      "query_sha256": "1a94dbb045d29f6c0b5d12b3cf13ac5da8c43eeba7176fcaea661a387b8c5c4a",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "run-benign-python",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "python",
+            "t1059.006",
+            "the"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1546.004",
+      "query_sha256": "98fb4dbadd0ad720f3e6aea0d8641741bc441951a0a35c1fcc971ebae1c9e14f",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "and",
+            "configuration",
+            "persistence",
+            "shell",
+            "t1546.004"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "and"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1068",
+      "query_sha256": "24d86082abda62e777f7ad48f85d3c1e1c1dde81b1952019e96862b9e847fe03",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "privilege",
+            "t1068"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1027.013",
+      "query_sha256": "24813342c2593819a2e034585d3258909c4b1d895bdeaae815d300a5ac7be2c2",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1027.013"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "python"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1003.008",
+      "query_sha256": "3a233787ff56eb460b73c566ae67238499a39f2f64478023fb90682744b17fd1",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1003.008"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "and",
+            "hashes."
+          ]
+        },
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "and"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1016",
+      "query_sha256": "ee4b043e20e1f85a2afff2df305d82f23d22b29792b5432cb37f4b879ef2ed30",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "inspect-declared-network",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "discovery",
+            "t1016"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "discovery"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "system"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "discovery"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "system"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "query_sha256": "7af2e945eda6330935e479bf2c83bb1e0bdf0e9ea0d754f015ddfbfc4e16ff5f",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "the",
+            "tool",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1496.001",
+      "query_sha256": "f80270f8203f02f5592567dfbe5b926914d5cd43ef76971a39df2a9e24c92433",
+      "index_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0",
+      "candidates": [
+        {
+          "template_id": "run-bounded-compute-workload",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1496.001"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    }
+  ],
+  "planning_certificate": {
+    "initial_facts": [],
+    "goal_facts": [],
+    "transitions": [],
+    "causal_links": [],
+    "final_facts": [],
+    "unresolved_goals": [],
+    "valid": true,
+    "content_sha256": "63d43d5d1271a84974c1c35727a22892c1b582d364d0236c061f51d403301a21"
+  },
+  "llm_call_sha256": null,
+  "execution_semantic_sha256": "b1021a3158d0241a1e28e11ccfb75d374c0d49d2fa7dfdf8ddad8a1ebe0beee4",
+  "content_sha256": "11e49e4e9d4f2a5b9f12027cb75fccaebe2087bd9db7e1f5c2d59cad6aacb9c6"
+}

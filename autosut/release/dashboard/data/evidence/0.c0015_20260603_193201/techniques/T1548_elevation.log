@@ -1,0 +1,14 @@
+$ id; if sudo -n true 2>/dev/null; then echo SUDO_NOPASSWD; else echo NO_NOPASSWD_SUDO; fi; echo '--- setuid surface ---'; find / -perm -4000 -type f 2>/dev/null | head -5
+exit_code: 0
+--- stdout ---
+uid=0(root) gid=0(root) groups=0(root)
+NO_NOPASSWD_SUDO
+--- setuid surface ---
+/usr/bin/gpasswd
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chfn
+/usr/bin/chsh
+
+--- stderr ---
+

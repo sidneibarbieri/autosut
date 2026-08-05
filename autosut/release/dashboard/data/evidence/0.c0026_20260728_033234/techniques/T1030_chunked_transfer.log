@@ -1,0 +1,8 @@
+$ d=/tmp/autosut_T1030; rm -rf $d; mkdir -p $d; dd if=/dev/urandom of=$d/blob bs=1024 count=8 2>/dev/null; split -b 1024 $d/blob $d/chunk_; n=$(ls $d/chunk_* 2>/dev/null | wc -l); if [ "$n" -ge 2 ]; then echo CHUNKS_OK; else echo CHUNKS_FEW; fi; echo n=$n
+exit_code: 0
+--- stdout ---
+CHUNKS_OK
+n=8
+
+--- stderr ---
+

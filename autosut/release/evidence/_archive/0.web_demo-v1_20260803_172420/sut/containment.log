@@ -1,0 +1,4 @@
+[setup-egress] connect bridge autosut-attacker-a88819 (attacker) exit=0 
+[setup-egress] connect bridge autosut-webtarget-daa8ba (webtarget) exit=0 
+[seal] attacker (autosut-attacker-a88819): disconnect bridge exit=0; egress=SEALED
+[seal] webtarget (autosut-webtarget-daa8ba): disconnect bridge exit=0; egress=SEALED

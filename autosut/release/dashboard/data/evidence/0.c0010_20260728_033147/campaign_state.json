@@ -1,0 +1,189 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.c0010",
+  "run_id": "0.c0010_20260728_033147",
+  "initial_facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "technique_id": "T1584.001",
+      "status": "marker_only",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1584.001_inspired.log"
+      ]
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1608.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "actor.payload.ready"
+      ],
+      "evidence_files": [
+        "techniques/T1608.001_artifact.log"
+      ]
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1608.004",
+      "status": "marker_only",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1608.004_inspired.log"
+      ]
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1189",
+      "status": "marker_only",
+      "missing_requirements": [
+        "web.target.ready"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1189_inspired.log"
+      ]
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1587.001",
+      "status": "marker_only",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1587.001_inspired.log"
+      ]
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1583.001",
+      "status": "marker_only",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1583.001_inspired.log"
+      ]
+    },
+    {
+      "sequence": 7,
+      "technique_id": "T1608.002",
+      "status": "marker_only",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1608.002_inspired.log"
+      ]
+    },
+    {
+      "sequence": 8,
+      "technique_id": "T1588.002",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "actor.toolkit.ready"
+      ],
+      "evidence_files": [
+        "techniques/T1588.002_artifact.log"
+      ]
+    },
+    {
+      "sequence": 9,
+      "technique_id": "T1105",
+      "status": "success",
+      "missing_requirements": [
+        "access.target.browser_context",
+        "actor.tool.staged"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.payload.ready",
+      "subject": "actor",
+      "predicate": "payload.ready",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1608.001_artifact.log"
+      ]
+    },
+    {
+      "fact_id": "actor.toolkit.ready",
+      "subject": "actor",
+      "predicate": "toolkit.ready",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1588.002_artifact.log"
+      ]
+    }
+  ],
+  "context_observations": [],
+  "contract_coverage": "declared",
+  "declared_technique_ids": [
+    "T1583.001",
+    "T1584.001",
+    "T1587.001",
+    "T1588.002",
+    "T1608.001",
+    "T1608.002",
+    "T1608.004",
+    "T1189",
+    "T1105"
+  ],
+  "executed_technique_ids": [
+    "T1584.001",
+    "T1608.001",
+    "T1608.004",
+    "T1189",
+    "T1587.001",
+    "T1583.001",
+    "T1608.002",
+    "T1588.002",
+    "T1105"
+  ],
+  "source_plan_sha256": "0078e77de3eb4560ebe0ad7bebdbe896e4d648be1dc0a0ce7321c96aeb05b581",
+  "executable_contract_sha256": "7ebe679388c8d522fac76a35ea9e9ef2db941b23003fab9f978f20fed0d1699d",
+  "content_sha256": "bd2e97d25d12a1657afda94c65abdd6b42df7766197884a80247f63db9e3d684"
+}

@@ -1,0 +1,6 @@
+docker network rm autosut-net-1e6815c4  # zone=_default_
+exit_code: 0
+stdout: autosut-net-1e6815c4
+
+stderr: 
+---

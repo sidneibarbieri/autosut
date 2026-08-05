@@ -1,0 +1,110 @@
+{
+  "campaign_id": "0.c0013",
+  "total_elements": 6,
+  "by_source": {
+    "corpus_supported": 1,
+    "analyst_authored": 4,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 16.7,
+    "analyst_authored": 66.7,
+    "autosut_concretized": 16.7,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.openssh@default",
+      "value": "openssh@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "ssh service with password authentication enabled."
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.apache_httpd@default",
+      "value": "apache_httpd@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "HTTP web surface required by this lab profile."
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.ubuntu",
+      "value": "password:ubuntu",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu)."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "SSH service with password authentication enabled."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.80",
+      "value": "80/tcp http",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "HTTP web surface required by this lab profile."
+    }
+  ]
+}

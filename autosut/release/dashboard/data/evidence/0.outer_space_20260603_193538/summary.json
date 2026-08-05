@@ -1,0 +1,11 @@
+{
+  "campaign_id": "0.outer_space",
+  "timestamp": "2026-06-03T19:36:17+00:00",
+  "total_techniques": 8,
+  "successful": 8,
+  "fidelity_distribution": {
+    "adapted": 2,
+    "inspired": 6
+  },
+  "evidence_directory": "release/evidence/0.outer_space_20260603_193538"
+}

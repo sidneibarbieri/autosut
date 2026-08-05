@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/clouduser/staging/encoded_payload.b64) && cat > /home/clouduser/staging/encoded_payload.b64 <<'AUTOSUT_ART_EOF'
+TEFCX1BBWUxPQUQK
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/clouduser/staging/encoded_payload.b64 && chown clouduser:clouduser /home/clouduser/staging/encoded_payload.b64 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

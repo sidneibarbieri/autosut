@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /home/dustops/intel/financials.csv) && cat > /home/dustops/intel/financials.csv <<'AUTOSUT_ART_EOF'
+Q,Account,Amount
+Q1,A123,1000
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/dustops/intel/financials.csv && chown dustops:dustops /home/dustops/intel/financials.csv 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

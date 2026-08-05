@@ -1,0 +1,5 @@
+# host bring-up: db (target)
+image: autosut/dmz-host:s28
+container: autosut-db-3cd59a
+network: autosut-enterprise-fc2a61
+container_id: c29fe4c56f33014a60dc312e51ab47562850b24e281fa7ccce3a634bd9341781

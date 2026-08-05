@@ -1,0 +1,7 @@
+$ nc -zv -w 3 target1 22 2>&1 | head -3
+exit_code: 0
+--- stdout ---
+Connection to target1 (172.18.0.3) 22 port [tcp/ssh] succeeded!
+
+--- stderr ---
+

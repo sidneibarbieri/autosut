@@ -1,0 +1,15 @@
+campaign_id,sut_profile_id,pair_valid,pair_error,declared_runtime_vms,runtime_vm_count,target_hosts,target_host_count,topology_kind,min_hosts,base_service_count,base_user_count,base_file_count,base_weakness_count,step_overlay_count,overlay_service_count,overlay_file_count,overlay_weakness_count,has_latest_evidence
+0.apt41_dust,0.apt41_dust,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,3,1,3,3,0,0,0,0,True
+0.apt41_dust_full,0.apt41_dust_full,False,"Fidelity mismatch for T1490: campaign expects adapted, SUT expects inspired",caldera;attacker;target-linux-1,3,target-base,1,single_target,3,1,1,2,1,0,0,0,0,True
+0.c0010,0.c0010,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,2,1,2,2,0,0,0,0,True
+0.c0011,0.c0011,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,1,1,2,1,0,0,0,0,True
+0.c0012,0.c0012,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,1,1,0,2,0,0,0,0,True
+0.c0013,0.c0013,False,"Fidelity mismatch for T1059.004: campaign expects inspired, SUT expects adapted; Fidelity mismatch for T1105: campaign expects inspired, SUT expects adapted",caldera;attacker;target-linux-1,3,target-base,1,single_target,3,2,1,0,2,0,0,0,0,True
+0.c0015,0.c0015,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,1,1,2,1,0,0,0,0,True
+0.c0017,0.c0017,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,1,1,1,1,0,0,0,0,True
+0.c0026,0.c0026,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,1,1,2,2,0,0,0,0,True
+0.costaricto,0.costaricto,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,2,1,3,2,0,0,0,0,True
+0.operation_midnighteclipse,0.operation_midnighteclipse,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,5,1,3,3,0,0,0,0,True
+0.outer_space,0.outer_space,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,2,1,3,1,0,0,0,0,True
+0.salesforce_data_exfiltration,0.salesforce_data_exfiltration,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,3,2,1,2,2,0,0,0,0,True
+0.shadowray,0.shadowray,True,,caldera;attacker;target-linux-1,3,target-base,1,single_target,1,1,1,0,1,1,1,0,1,True

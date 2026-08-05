@@ -1,0 +1,5 @@
+docker stop autosut-target-1886c8
+exit_code: 0
+stdout: autosut-target-1886c8
+
+stderr: 

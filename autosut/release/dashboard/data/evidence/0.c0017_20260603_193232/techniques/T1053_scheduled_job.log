@@ -1,0 +1,9 @@
+$ mkdir -p /etc/cron.d /var/lab; printf '#!/bin/sh\necho autosut-T1053 >> /tmp/autosut_T1053.log\n' > /var/lab/autosut_T1053.sh; chmod +x /var/lab/autosut_T1053.sh; printf '* * * * * root /var/lab/autosut_T1053.sh\n' > /etc/cron.d/autosut_T1053; cat /etc/cron.d/autosut_T1053; sha256sum /var/lab/autosut_T1053.sh /etc/cron.d/autosut_T1053
+exit_code: 0
+--- stdout ---
+* * * * * root /var/lab/autosut_T1053.sh
+467cf29fe001b8b60d0e8965ca6fa2154912aa599cd009deef2d1f7346084e5d  /var/lab/autosut_T1053.sh
+a0695b6099905e71c689bc25c9348e495efc9bdf94ad9595335f1a06667faf8c  /etc/cron.d/autosut_T1053
+
+--- stderr ---
+

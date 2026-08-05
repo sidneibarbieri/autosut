@@ -1,0 +1,31 @@
+$ ls -la /etc /var /tmp > /tmp/T1083_discovery.txt 2>&1 && find /etc -type f -name '*.conf' 2>/dev/null | head -10 >> /tmp/T1083_discovery.txt && head -25 /tmp/T1083_discovery.txt
+exit_code: 0
+--- stdout ---
+/etc:
+total 384
+drwxr-xr-x 1 root root    4096 Jun  3 19:34 .
+drwxr-xr-x 1 root root    4096 Jun  3 19:34 ..
+-rw------- 1 root root       0 May 18 00:00 .pwd.lock
+-rw-r--r-- 1 root root    3981 May  6  2025 adduser.conf
+drwxr-xr-x 2 root root    4096 May 18 00:00 alternatives
+drwxr-xr-x 8 root root    4096 May 18 00:00 apt
+-rw-r--r-- 1 root root    1997 May  9 10:58 bash.bashrc
+-rw-r--r-- 1 root root     367 Apr 27 20:09 bindresvport.blacklist
+drwxr-xr-x 2 root root    4096 Apr 13 19:38 binfmt.d
+drwxr-xr-x 3 root root    4096 May 19 23:48 ca-certificates
+-rw-r--r-- 1 root root    6422 May 19 23:48 ca-certificates.conf
+drwx------ 2 root root    4096 Apr 13 19:38 credstore
+drwx------ 2 root root    4096 Apr 13 19:38 credstore.encrypted
+drwxr-xr-x 2 root root    4096 May 18 00:00 cron.daily
+-rw-r--r-- 1 root root    2967 Mar 10  2025 debconf.conf
+-rw-r--r-- 1 root root       5 May  8 16:10 debian_version
+drwxr-xr-x 1 root root    4096 Jun  3 19:34 default
+-rw-r--r-- 1 root root    1706 May  6  2025 deluser.conf
+drwxr-xr-x 4 root root    4096 May 18 00:00 dpkg
+-rw-r--r-- 1 root root       0 May 18 00:00 environment
+-rw-r--r-- 1 root root    1936 Mar 15  2025 ethertypes
+-rw-r--r-- 1 root root      37 May 18 00:00 fstab
+-rw-r--r-- 1 root root    2584 Jan 28  2025 gai.conf
+
+--- stderr ---
+

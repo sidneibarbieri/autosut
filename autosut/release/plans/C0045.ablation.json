@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0045",
+  "raw_stix_arm": {
+    "steps": 10,
+    "target_boundary_known": false,
+    "ordering_policy": "source-links-without-total-order",
+    "sut_ready": false,
+    "reason": "STIX procedure links alone do not specify a materialized SUT."
+  },
+  "enriched_autosut_arm": {
+    "steps": 9,
+    "attacker_steps_excluded": 1,
+    "selected_platforms": [
+      "Linux"
+    ],
+    "uncovered_techniques": [],
+    "sut_ready": true,
+    "constraint_count": 11
+  },
+  "interpretation": "The arms are compared on readiness and coverage; execution evidence is produced only by the enriched arm."
+}

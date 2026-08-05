@@ -1,0 +1,134 @@
+{
+  "campaign_id": "0.c0011",
+  "name": "0.c0011",
+  "description": "Transparent Tribe baseline campaign for the canonical smoke validation path.",
+  "objective": "Exercise the end-to-end AutoSUT execution and evidence pipeline with one adapted Linux path and several explicitly inspired Windows-compatible steps.",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target-base"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 5
+  },
+  "techniques": [
+    {
+      "technique_id": "T1587.003",
+      "name": "Digital Certificates",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "description": "Generate a local certificate artifact for controlled infrastructure staging.",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["resources:openssl_available"],
+      "produces": ["infrastructure:certificate"]
+    },
+    {
+      "technique_id": "T1583.001",
+      "name": "Acquire Infrastructure: Domains",
+      "tactic": "resource-development",
+      "platform": "any",
+      "description": "Create a local domain-registration artifact for infrastructure preparation.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["resources:domain_registered"]
+    },
+    {
+      "technique_id": "T1608.001",
+      "name": "Stage Capabilities: Upload Malware",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "description": "Stage a benign payload artifact for subsequent steps.",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["resources:staging_directory"],
+      "produces": ["resources:payload_prepared"]
+    },
+    {
+      "technique_id": "T1566.002",
+      "name": "Phishing: Spearphishing Link",
+      "tactic": "initial-access",
+      "platform": "any",
+      "description": "Create a local phishing-link artifact for the user-execution branch.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["artifacts:spearphish_link"]
+    },
+    {
+      "technique_id": "T1566.001",
+      "name": "Phishing: Spearphishing Attachment",
+      "tactic": "initial-access",
+      "platform": "any",
+      "description": "Create a local spearphishing email and attachment artifact.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["artifacts:spearphish_attachment"]
+    },
+    {
+      "technique_id": "T1204.001",
+      "name": "User Execution: Malicious Link",
+      "tactic": "execution",
+      "platform": "windows",
+      "description": "Log a controlled user-link access event.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["artifacts:spearphish_link"],
+      "produces": ["artifacts:malicious_link_accessed"]
+    },
+    {
+      "technique_id": "T1204.002",
+      "name": "User Execution: Malicious File",
+      "tactic": "execution",
+      "platform": "windows",
+      "description": "Log a controlled malicious-file execution event.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["artifacts:malicious_file_executed"]
+    },
+    {
+      "technique_id": "T1059.005",
+      "name": "Command and Scripting Interpreter: Visual Basic",
+      "tactic": "execution",
+      "platform": "windows",
+      "description": "Simulate Visual Basic execution semantics on the Linux substrate.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["code_execution"]
+    },
+    {
+      "technique_id": "T1059.001",
+      "name": "Command and Scripting Interpreter: PowerShell",
+      "tactic": "execution",
+      "platform": "windows",
+      "description": "Simulate PowerShell execution semantics on the Linux substrate.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["code_execution"]
+    },
+    {
+      "technique_id": "T1059.007",
+      "name": "Command and Scripting Interpreter: JavaScript",
+      "tactic": "execution",
+      "platform": "windows",
+      "description": "Simulate Windows Script Host JavaScript execution semantics on the Linux substrate.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["code_execution"]
+    },
+    {
+      "technique_id": "T1574",
+      "name": "Hijack Execution Flow",
+      "tactic": "defense-evasion",
+      "platform": "windows",
+      "description": "Simulate an execution-flow hijack artifact for persistence and privilege-escalation reasoning.",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["persistence", "privilege_escalation"]
+    }
+  ]
+}

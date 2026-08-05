@@ -1,0 +1,1 @@
+# STICKS abilities registry package

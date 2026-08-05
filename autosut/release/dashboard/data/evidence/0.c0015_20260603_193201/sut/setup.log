@@ -1,0 +1,5 @@
+# container bring-up
+image: python:3.11-slim
+name: autosut-5e8be9f2dd
+platform: default
+container_id: efbb0d5aafeb0eff27e9ed2412e8ffa27d720f72b7567c07125e64018d5688e7

@@ -1,0 +1,292 @@
+{
+  "campaign_id": "0.fin6_emulation",
+  "run_id": "0.fin6_emulation_20260603_194445",
+  "timestamp": "2026-06-03T19:48:34.371904Z",
+  "attacker": {
+    "profile_id": "generic_kill_chain_attacker",
+    "capabilities": [
+      "cert_gen",
+      "web_rce"
+    ],
+    "notes": "OpenSSL for certificate generation; curl/python3 for staging."
+  },
+  "sut": {
+    "sut_id": "linux_generic_workstation",
+    "base_image": "python:3.11-slim",
+    "services": [
+      "ssh",
+      "openssl"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "vulnuser",
+          "secret": "vulnpass123",
+          "location": null,
+          "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair.",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/home/vulnuser/documents/confidential.txt",
+          "content_text": "CONFIDENTIAL DATA - Company Secrets\nAPI Keys: LAB_DECOY_API_KEY\n",
+          "content_b64": null,
+          "owner": "vulnuser",
+          "mode": "0644",
+          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213.",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/vulnuser/documents/passwords.txt",
+          "content_text": "admin:admin123\ndbuser:dbpass456\n",
+          "content_b64": null,
+          "owner": "vulnuser",
+          "mode": "0600",
+          "purpose": "Decoy credentials store \u2014 collection target for T1552.001.",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/root/.ssh/known_hosts",
+          "content_text": "10.0.0.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabKnownHostKey\n",
+          "content_b64": null,
+          "owner": "root",
+          "mode": "0644",
+          "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI.",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service the lab weak credential reaches (port 22).",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service the lab weak credential reaches (password authentication enabled).",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "Applies each declared weak-credential and service element through the SUT composer and records per-element evidence."
+    },
+    "topology": null,
+    "notes": "c0011 \u2014 realistic Linux workstation with weak SSH, decoy sensitive files, and ssh service. Base is python:3.11-slim because the c0011 technique recipes assume openssl and python3."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1190",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1190_inspired.log"
+      ],
+      "duration_sec": 0.06470412500038947,
+      "notes": "Inspired emulation of Exploit Public-Facing Application: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1133",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1133_inspired.log"
+      ],
+      "duration_sec": 0.06442366600003879,
+      "notes": "Inspired emulation of External Remote Services: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.004",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.004_inspired.log"
+      ],
+      "duration_sec": 0.06645412500074599,
+      "notes": "Inspired emulation of Unix Shell: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": "b1d41972-3ad9-4aa1-8f7f-05f049a2980e",
+      "caldera_ability_name": "Start 54ndc47"
+    },
+    {
+      "technique_id": "T1078",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1078_inspired.log"
+      ],
+      "duration_sec": 0.06627483300053427,
+      "notes": "Inspired emulation of Valid Accounts: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1083_e87f0294-7a4c-41dc-ad91-64627b896fbf_report.json",
+        "caldera/T1083_d01a3426-fcac-46b3-846b-6f6a0e9f0684.log"
+      ],
+      "duration_sec": 65.38097199999993,
+      "notes": "Caldera operation e87f0294-7a4c-41dc-ad91-64627b896fbf link d01a3426-fcac-46b3-846b-6f6a0e9f0684 status=0 exit_code=0",
+      "caldera_ability_id": "52177cc1-b9ab-4411-ac21-2eadc4b5d3b8",
+      "caldera_ability_name": "List Directory"
+    },
+    {
+      "technique_id": "T1087.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1087.001_3c9e1930-2b63-4d1d-876e-0bac467cc252_report.json",
+        "caldera/T1087.001_ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169.log"
+      ],
+      "duration_sec": 44.01883133299998,
+      "notes": "Caldera operation 3c9e1930-2b63-4d1d-876e-0bac467cc252 link ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169 status=0 exit_code=0",
+      "caldera_ability_id": "c1cd6388-3ced-48c7-a511-0434c6ba8f48",
+      "caldera_ability_name": "Find local users"
+    },
+    {
+      "technique_id": "T1003.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1003.001_inspired.log"
+      ],
+      "duration_sec": 0.0690972079992207,
+      "notes": "Inspired emulation of OS Credential Dumping: LSASS Memory: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1110.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1110.001_inspired.log"
+      ],
+      "duration_sec": 0.07174170899997989,
+      "notes": "Inspired emulation of Brute Force: Password Guessing: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1071.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1071.001_e69f9158-d067-4dd5-b05d-b690a34e7795_report.json",
+        "caldera/T1071.001_2b19981d-10ee-4d61-9f5f-45169fe427f9.log"
+      ],
+      "duration_sec": 68.2026452909995,
+      "notes": "Caldera operation e69f9158-d067-4dd5-b05d-b690a34e7795 link 2b19981d-10ee-4d61-9f5f-45169fe427f9 status=0 exit_code=0",
+      "caldera_ability_id": "0ab383be-b819-41bf-91b9-1bd4404d83bf",
+      "caldera_ability_name": "Ragdoll"
+    },
+    {
+      "technique_id": "T1573",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1573_inspired.log"
+      ],
+      "duration_sec": 0.07793920800031628,
+      "notes": "Inspired emulation of Encrypted Channel: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1486",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1486_inspired.log"
+      ],
+      "duration_sec": 0.06137849999959144,
+      "notes": "Inspired emulation of Data Encrypted for Impact: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1490",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1490_inspired.log"
+      ],
+      "duration_sec": 0.06248849999974482,
+      "notes": "Inspired emulation of Inhibit System Recovery: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "/workspace/autosut/autosut/release/evidence/0.fin6_emulation_20260603_194445/manifest.json",
+  "summary_path": "/workspace/autosut/autosut/release/evidence/0.fin6_emulation_20260603_194445/summary.json"
+}

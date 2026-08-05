@@ -1,0 +1,2 @@
+campaign_id,source_kind,source_campaign_id,run_id,total_steps,status_success,evidence_backed_success,adapted_success,marker_only,contract_declared,contract_valid,context_observations,teardown_clean,evidence_path
+0.shadowray,stix_campaign,C0045,0.shadowray_20260728_004450,10,10,10,9,0,True,True,0,True,release/evidence/_reviewer_runs/0.shadowray_20260728_004450/manifest.json

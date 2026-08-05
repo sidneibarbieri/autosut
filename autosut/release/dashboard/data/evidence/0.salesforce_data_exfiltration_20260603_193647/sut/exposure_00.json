@@ -1,0 +1,6 @@
+{
+  "port": 8443,
+  "protocol": "tcp",
+  "service": "crm_rest_api_surrogate",
+  "expose_to": "private_network"
+}

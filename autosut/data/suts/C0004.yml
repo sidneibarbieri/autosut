@@ -1,0 +1,16 @@
+sut_profile_id: C0004
+name: SUT for Red October
+description: IaC environment for reproducing Red October
+platform: linux
+architecture: multi_vm
+required_vms:
+- target
+- attacker
+vulnerabilities: []
+services:
+- postfix
+capabilities:
+- network:http_available
+- network:ssh_available
+- resources:staging_directory
+- email:smtp_available

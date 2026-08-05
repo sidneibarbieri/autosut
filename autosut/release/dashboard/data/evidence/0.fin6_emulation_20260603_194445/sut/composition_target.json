@@ -1,0 +1,64 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "vulnuser",
+      "secret": "vulnpass123",
+      "location": null,
+      "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair.",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/vulnuser/documents/confidential.txt",
+      "content_text": "CONFIDENTIAL DATA - Company Secrets\nAPI Keys: LAB_DECOY_API_KEY\n",
+      "content_b64": null,
+      "owner": "vulnuser",
+      "mode": "0644",
+      "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213.",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/vulnuser/documents/passwords.txt",
+      "content_text": "admin:admin123\ndbuser:dbpass456\n",
+      "content_b64": null,
+      "owner": "vulnuser",
+      "mode": "0600",
+      "purpose": "Decoy credentials store \u2014 collection target for T1552.001.",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/root/.ssh/known_hosts",
+      "content_text": "10.0.0.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabKnownHostKey\n",
+      "content_b64": null,
+      "owner": "root",
+      "mode": "0644",
+      "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI.",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service the lab weak credential reaches (port 22).",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service the lab weak credential reaches (password authentication enabled).",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "Applies each declared weak-credential and service element through the SUT composer and records per-element evidence."
+}

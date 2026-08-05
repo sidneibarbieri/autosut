@@ -1,0 +1,65 @@
+# Campaign Registry - executable baseline campaigns.
+# This file documents campaigns available for local execution and their
+# methodological classification (faithful/adapted/inspired).
+
+# Format:
+#   campaign_id: unique campaign identifier
+#   name: descriptive name
+#   runner: execution script
+#   techniques: MITRE ATT&CK technique list
+#   classification: faithful | adapted | inspired
+#   justification: short rationale for the classification
+
+campaigns:
+  0.c0011:
+    name: "C0011 - Transparent Tribe Education Campaign"
+    runner: "campaign_runner.py"
+    technique_count: 8
+    techniques:
+      - T1608.001  # Upload Malware
+      - T1566.002  # Spearphishing Link
+      - T1204.001  # Malicious Link
+      - T1204.002  # Malicious File
+      - T1566.001  # Spearphishing Attachment
+      - T1059.005  # Visual Basic
+      - T1583.001  # Domains
+      - T1587.003  # Digital Certificates
+    classification: "adapted"
+    justification: |
+      Linux execution of techniques documented for Windows. T1059.005 (VB)
+      and phishing techniques are represented through artifact creation rather
+      than real code execution. T1587.003 uses openssl to generate a
+      self-signed certificate, not a real certificate authority.
+    execution_mode: "local_deterministic"
+    status: "validated"
+    evidence_location: "data/campaign_evidence/"
+
+  0.pikabot_distribution_february_2024:
+    name: "Pikabot Distribution February 2024 Campaign"
+    runner: "campaign_runner_0pikabot.py"
+    technique_count: 4
+    techniques:
+      - T1574      # Hijack Execution Flow
+      - T1059.007  # JavaScript
+      - T1059.001  # PowerShell
+      - T1566.002  # Spearphishing Link
+    classification: "adapted"
+    justification: |
+      Windows techniques (PowerShell, Windows JavaScript, DLL hijacking)
+      executed on Linux through file-level representation. T1574 uses a
+      simulated .dll artifact rather than a real PE file. T1059.001 generates
+      a .ps1 file without PowerShell execution.
+    execution_mode: "local_deterministic"
+    status: "validated"
+    evidence_location: "data/campaign_evidence/"
+
+# Classifications:
+#   faithful: identical or equivalent execution of the documented behavior
+#   adapted:  execution modified for a different substrate (Linux vs Windows)
+#   inspired: surface-level representation that captures intent, not mechanism
+
+# Method note:
+# Current baseline campaigns are classified as adapted because they execute
+# Windows-documented techniques on Linux. The goal is not literal forensic
+# reconstruction; it is to verify that CTI-derived steps form coherent,
+# executable behavior under the declared substrate.

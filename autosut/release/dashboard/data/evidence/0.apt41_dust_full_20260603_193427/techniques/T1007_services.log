@@ -1,0 +1,14 @@
+$ ps -eo pid,comm,args | head -30 > /tmp/T1007_services.txt; (cat /proc/1/comm 2>/dev/null || true) >> /tmp/T1007_services.txt; (ss -ltnp 2>/dev/null || netstat -ltnp 2>/dev/null || true) >> /tmp/T1007_services.txt; cat /tmp/T1007_services.txt
+exit_code: 0
+--- stdout ---
+    PID COMMAND         COMMAND
+      1 sleep           sleep infinity
+     80 dpkg-preconfigu [dpkg-preconfigu] <defunct>
+    554 sshd            sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+    593 sh              sh -c ps -eo pid,comm,args | head -30 > /tmp/T1007_services.txt; (cat /proc/1/comm 2>/dev/null || true) >> /tmp/T1007_services.txt; (ss -ltnp 2>/dev/null || netstat -ltnp 2>/dev/null || true) >> /tmp/T1007_services.txt; cat /tmp/T1007_services.txt
+    599 ps              ps -eo pid,comm,args
+    600 head            head -30
+sleep
+
+--- stderr ---
+

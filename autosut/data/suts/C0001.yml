@@ -1,0 +1,18 @@
+sut_profile_id: C0001
+name: SUT for Operation Aurora
+description: IaC environment for reproducing Operation Aurora
+platform: linux
+architecture: multi_vm
+required_vms:
+- target
+- attacker
+vulnerabilities:
+- type: web_vulnerability
+  service: apache
+  description: Intentionally vulnerable web application for exploitation
+services:
+- apache
+capabilities:
+- network:http_available
+- network:ssh_available
+- resources:staging_directory

@@ -1,0 +1,1436 @@
+{
+  "schema_version": "1",
+  "generated_at": "2026-07-29T04:52:27+00:00",
+  "campaign_id": "C0010",
+  "experimental_unit": "one applicable semantic field on one campaign procedure",
+  "controls": [
+    "same campaign and relationship set",
+    "same ATT&CK snapshot",
+    "same dimension applicability policy",
+    "same parser and closure metric"
+  ],
+  "arms": [
+    {
+      "arm_id": "A",
+      "treatment": "native_stix_structured_fields",
+      "applicable_cells": 98,
+      "resolved_cells": 27,
+      "closure_rate": 0.27551,
+      "unresolved_cells": 71,
+      "resolved_by_dimension": {
+        "platform_options": 9,
+        "procedure_description": 9,
+        "technique_identifier": 9
+      }
+    },
+    {
+      "arm_id": "B",
+      "treatment": "native_stix_plus_bounded_text_mining",
+      "applicable_cells": 98,
+      "resolved_cells": 27,
+      "closure_rate": 0.27551,
+      "unresolved_cells": 71,
+      "resolved_by_dimension": {
+        "platform_options": 9,
+        "procedure_description": 9,
+        "technique_identifier": 9
+      }
+    },
+    {
+      "arm_id": "C",
+      "treatment": "sticks_procedure_extension",
+      "applicable_cells": 98,
+      "resolved_cells": 90,
+      "closure_rate": 0.918367,
+      "unresolved_cells": 8,
+      "resolved_by_dimension": {
+        "action_template": 9,
+        "effects": 9,
+        "evidence_policy": 9,
+        "fidelity_ceiling": 9,
+        "parameter_schema": 9,
+        "platform_options": 9,
+        "preconditions": 9,
+        "procedure_description": 9,
+        "sequence": 9,
+        "technique_identifier": 9
+      }
+    },
+    {
+      "arm_id": "D",
+      "treatment": "sticks_plus_autosut_environment_extension",
+      "applicable_cells": 98,
+      "resolved_cells": 98,
+      "closure_rate": 1.0,
+      "unresolved_cells": 0,
+      "resolved_by_dimension": {
+        "action_template": 9,
+        "backend_cue": 2,
+        "effects": 9,
+        "environment_requirements": 2,
+        "evidence_policy": 9,
+        "fidelity_ceiling": 9,
+        "parameter_bindings": 2,
+        "parameter_schema": 9,
+        "platform_options": 9,
+        "preconditions": 9,
+        "procedure_description": 9,
+        "selected_platform": 2,
+        "sequence": 9,
+        "technique_identifier": 9
+      }
+    }
+  ],
+  "ablations": [
+    {
+      "removed_dimension": "action_template",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "backend_cue",
+      "resolved_cell_drop": 2,
+      "closure_rate_drop": 0.020408
+    },
+    {
+      "removed_dimension": "candidate_versions",
+      "resolved_cell_drop": 0,
+      "closure_rate_drop": 0.0
+    },
+    {
+      "removed_dimension": "cpe23_uri",
+      "resolved_cell_drop": 0,
+      "closure_rate_drop": 0.0
+    },
+    {
+      "removed_dimension": "cve_relationship",
+      "resolved_cell_drop": 0,
+      "closure_rate_drop": 0.0
+    },
+    {
+      "removed_dimension": "effects",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "environment_requirements",
+      "resolved_cell_drop": 2,
+      "closure_rate_drop": 0.020408
+    },
+    {
+      "removed_dimension": "evidence_policy",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "fidelity_ceiling",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "install_channel",
+      "resolved_cell_drop": 0,
+      "closure_rate_drop": 0.0
+    },
+    {
+      "removed_dimension": "package_name",
+      "resolved_cell_drop": 0,
+      "closure_rate_drop": 0.0
+    },
+    {
+      "removed_dimension": "parameter_bindings",
+      "resolved_cell_drop": 2,
+      "closure_rate_drop": 0.020408
+    },
+    {
+      "removed_dimension": "parameter_schema",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "preconditions",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "selected_platform",
+      "resolved_cell_drop": 2,
+      "closure_rate_drop": 0.020408
+    },
+    {
+      "removed_dimension": "sequence",
+      "resolved_cell_drop": 9,
+      "closure_rate_drop": 0.091837
+    },
+    {
+      "removed_dimension": "version_range",
+      "resolved_cell_drop": 0,
+      "closure_rate_drop": 0.0
+    }
+  ],
+  "full_arm_cells": [
+    {
+      "technique_id": "T1583.001",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1583.001",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1584.001",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1588.002",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.001",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.002",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "backend_cue",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "environment_requirements",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "parameter_bindings",
+      "applicable": false,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "selected_platform",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1608.004",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "backend_cue",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "environment_requirements",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "parameter_bindings",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "selected_platform",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1189",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "technique_identifier",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship_and_attack_pattern"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "procedure_description",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_relationship"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "platform_options",
+      "applicable": true,
+      "resolved": true,
+      "source": "stix_attack_pattern"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "action_template",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "backend_cue",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "candidate_versions",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "cpe23_uri",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "cve_relationship",
+      "applicable": false,
+      "resolved": false,
+      "source": "absent_from_structured_stix"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "effects",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "environment_requirements",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "evidence_policy",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "fidelity_ceiling",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "install_channel",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "package_name",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "parameter_bindings",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "parameter_schema",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "preconditions",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "selected_platform",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_autosut_environment"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "sequence",
+      "applicable": true,
+      "resolved": true,
+      "source": "x_sticks_procedure"
+    },
+    {
+      "technique_id": "T1105",
+      "dimension": "version_range",
+      "applicable": false,
+      "resolved": false,
+      "source": "x_autosut_environment"
+    }
+  ],
+  "unresolved_full_arm_cells": [],
+  "scope_statement": "This experiment measures representational closure for one campaign. It does not establish corpus-wide inference accuracy or historical replay fidelity.",
+  "content_sha256": "a0942591a5530ed86c7f5208bc214c1c2c417241117282f8f2c0348d5adea621"
+}

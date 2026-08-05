@@ -1,0 +1,18 @@
+docker network create autosut-internet_edge-8e9fdd  # zone=internet_edge
+exit_code: 0
+stdout: 097a9936eb20e945015706eeb871104e35f771539d59546e9488117f8d9f8a88
+
+stderr: 
+---
+docker network create autosut-dmz-56212a  # zone=dmz
+exit_code: 0
+stdout: b8dc29872cb95e3789415969b548a7c38e8b22b42d66f980ba8d4b63733d6f16
+
+stderr: 
+---
+docker network create autosut-enterprise-fc2a61  # zone=enterprise
+exit_code: 0
+stdout: 60d6e769e6209edf6e0b3d14ece9ad51966ea262dfca356a0530e44a3c8b5019
+
+stderr: 
+---

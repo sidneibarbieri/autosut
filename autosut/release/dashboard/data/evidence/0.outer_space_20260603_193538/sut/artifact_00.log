@@ -1,0 +1,13 @@
+$ mkdir -p $(dirname /home/clouduser/.mozilla/firefox/profiles.ini) && cat > /home/clouduser/.mozilla/firefox/profiles.ini <<'AUTOSUT_ART_EOF'
+[General]
+StartWithLastProfile=1
+[Profile0]
+Name=default
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/clouduser/.mozilla/firefox/profiles.ini && chown clouduser:clouduser /home/clouduser/.mozilla/firefox/profiles.ini 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

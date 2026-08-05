@@ -1,0 +1,48 @@
+# Docker Compose for Caldera Campaign Execution
+# Infrastructure as Code for reproducible campaign execution
+#
+# Usage:
+#   docker compose -f docker-compose.caldera.yml up -d
+#   docker compose -f docker-compose.caldera.yml logs -f
+#   docker compose -f docker-compose.caldera.yml down
+
+services:
+  caldera:
+    image: mitre/caldera:latest
+    container_name: caldera_server
+    platform: linux/amd64
+    ports:
+      - "8888:8888"
+    environment:
+      - CALDERA_SERVER_IP=caldera
+      - CALDERA_USERNAME=admin
+      - CALDERA_PASSWORD=admin
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - caldera_data:/opt/caldera
+    networks:
+      - caldera_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  linux_agent:
+    image: kalilinux/kali-rolling
+    container_name: linux_agent
+    hostname: target-linux
+    privileged: true
+    networks:
+      - caldera_net
+    depends_on:
+      caldera:
+        condition: service_healthy
+    entrypoint: ["/bin/sleep", "infinity"]
+
+volumes:
+  caldera_data:
+
+networks:
+  caldera_net:
+    driver: bridge

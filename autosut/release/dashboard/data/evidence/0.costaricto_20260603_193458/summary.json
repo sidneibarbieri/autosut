@@ -1,0 +1,11 @@
+{
+  "campaign_id": "0.costaricto",
+  "timestamp": "2026-06-03T19:35:38+00:00",
+  "total_techniques": 10,
+  "successful": 10,
+  "fidelity_distribution": {
+    "adapted": 3,
+    "inspired": 7
+  },
+  "evidence_directory": "release/evidence/0.costaricto_20260603_193458"
+}

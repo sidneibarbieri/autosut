@@ -1,0 +1,65 @@
+campaign_id: "0.c0010"
+description: "Linux SUT for the legacy C0010 infrastructure-preparation and watering-hole chain"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 12
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "shipping_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache2"
+        version: "2.4"
+        config: "default_site_available"
+
+    users:
+      - username: "ubuntu"
+        password: "ubuntu"
+        sudo: true
+        home_files: true
+
+    files:
+      - path: "/var/www/html/index.html"
+        content: "<html><body><h1>Israeli Shipping Login</h1></body></html>"
+        owner: "www-data"
+        permissions: "644"
+      - path: "/home/ubuntu/shipping_notice.txt"
+        content: "Synthetic shipping operations notice for C0010."
+        owner: "ubuntu"
+        permissions: "644"
+
+    network:
+      ingress: [22, 80]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        description: "Deterministic SSH access for controlled lab execution."
+      - type: "watering_hole_placeholder"
+        description: "Benign HTTP content may be staged to emulate the compromised login page."
+
+fidelity_expectations:
+  T1584.001: "INSPIRED"
+  T1608.001: "ADAPTED"
+  T1608.004: "ADAPTED"
+  T1189: "ADAPTED"
+  T1587.001: "INSPIRED"
+  T1583.001: "INSPIRED"
+  T1608.002: "ADAPTED"
+  T1588.002: "ADAPTED"
+  T1105: "ADAPTED"
+
+methodology_notes: |
+  This profile re-aligns C0010 with the legacy Docker corpus while keeping the
+  execution substrate safe. Infrastructure acquisition and compromise remain
+  inspired, while staging, watering-hole interaction, and transfer use
+  controlled lab artifacts and HTTP activity.
+
+execution_mode: "real_controlled"

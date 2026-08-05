@@ -1,0 +1,8 @@
+$ test -s /tmp/T1068.out && cat /tmp/T1068.out
+exit_code: 0
+--- stdout ---
+uid=0(root) gid=0(root) groups=0(root)
+NO_LOCAL_EXPLOIT_EXECUTED
+
+--- stderr ---
+

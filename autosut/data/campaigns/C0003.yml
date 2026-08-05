@@ -1,0 +1,58 @@
+campaign_id: C0003
+name: 'Campaign C0003: Operation Shady RAT'
+description: 'Official MITRE ATT&CK Campaign C0003: Long-term cyber espionage campaign
+  targeting diplomatic entities'
+threat_actors:
+- G0019
+start_date: '2002-01-01'
+end_date: '2012-12-31'
+sut_profile_id: C0003
+objective: Reproduce Operation Shady RAT attack chain with MITRE ATT&CK techniques
+steps:
+- technique_id: T1566.002
+  technique_name: 'Phishing: Spearphishing Attachment'
+  order: 1
+  requires:
+  - resources:staging_directory
+  produces:
+  - user:compromised
+  expected_fidelity: adapted
+  expected_mode: real_controlled
+  fidelity_rationale: Real technique implementation in lab environment
+- technique_id: T1059.001
+  technique_name: 'Command and Scripting Interpreter: PowerShell'
+  order: 2
+  requires: []
+  produces:
+  - code_execution
+  expected_fidelity: adapted
+  expected_mode: real_controlled
+  fidelity_rationale: Real technique implementation in lab environment
+- technique_id: T1083
+  technique_name: File and Directory Discovery
+  order: 3
+  requires: []
+  produces:
+  - discovery:file_listing
+  expected_fidelity: adapted
+  expected_mode: real_controlled
+  fidelity_rationale: Real technique implementation in lab environment
+- technique_id: T1041
+  technique_name: Exfiltration Over C2 Channel
+  order: 4
+  requires: []
+  produces:
+  - exfiltration:complete
+  expected_fidelity: adapted
+  expected_mode: real_controlled
+  fidelity_rationale: Real technique implementation in lab environment
+- technique_id: T1204.002
+  technique_name: 'User Execution: Malicious File'
+  order: 5
+  requires:
+  - user:compromised
+  produces:
+  - code_execution
+  expected_fidelity: adapted
+  expected_mode: real_controlled
+  fidelity_rationale: Real technique implementation in lab environment

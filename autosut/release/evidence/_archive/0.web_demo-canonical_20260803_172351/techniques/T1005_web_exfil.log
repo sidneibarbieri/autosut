@@ -1,0 +1,8 @@
+$ curl -s -m 5 -u webadmin:Lab-Web-2026! http://webtarget/secret/flag.txt | tee /tmp/web_loot.txt; echo
+exit_code: 0
+--- stdout ---
+LAB-WEB-SECRET-c0ffee
+
+
+--- stderr ---
+

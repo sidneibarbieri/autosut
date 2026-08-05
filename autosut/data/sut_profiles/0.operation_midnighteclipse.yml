@@ -1,0 +1,94 @@
+campaign_id: "0.operation_midnighteclipse"
+description: "Linux multi-service SUT for the published Operation MidnightEclipse campaign"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 10
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache"
+        version: "default"
+        config: "default_site_enabled"
+      - name: "mysql"
+        version: "default"
+        config: "default_instance_exposed"
+      - name: "postgresql"
+        version: "default"
+        config: "default_instance_exposed"
+      - name: "redis"
+        version: "default"
+        config: "default_instance_exposed"
+    users:
+      - username: "eclipseops"
+        password: "Eclipse123!"
+        sudo: true
+        home_files: true
+    files:
+      - path: "/var/www/html/index.html"
+        content: |
+          <html><body><h1>MidnightEclipse Portal</h1><p>Status: normal</p></body></html>
+        owner: "www-data"
+        permissions: "644"
+      - path: "/home/eclipseops/briefings/ops_notes.txt"
+        content: |
+          Internal operations briefing
+          - staging node inventory
+          - maintenance windows
+          - rollback contacts
+        owner: "eclipseops"
+        permissions: "640"
+      - path: "/srv/customer_exports/partner_registry.csv"
+        content: |
+          partner_id,name,region
+          5001,Helios Transit,NA
+          5002,Polar Freight,EMEA
+          5003,Atlas Marine,APAC
+        owner: "eclipseops"
+        permissions: "640"
+    network:
+      ingress: [22, 80, 443, 3306, 5432, 6379]
+      egress: ["*"]
+    deliberate_weaknesses:
+      - type: "weak_ssh_password"
+        description: "Weak operator credentials support the adapted access path"
+      - type: "writable_directory"
+        path: "/var/www/html"
+        description: "Writable web root enables bounded defacement and staging artifacts"
+      - type: "sudo_misconfiguration"
+        description: "Adapted privilege-escalation surface preserved for bounded experimentation"
+
+fidelity_expectations:
+  T1584.003: "INSPIRED"
+  T1584.006: "INSPIRED"
+  T1588.002: "ADAPTED"
+  T1190: "ADAPTED"
+  T1078: "ADAPTED"
+  T1078.002: "INSPIRED"
+  T1059.004: "ADAPTED"
+  T1053.003: "ADAPTED"
+  T1559: "ADAPTED"
+  T1003.003: "INSPIRED"
+  T1021.002: "INSPIRED"
+  T1021.006: "INSPIRED"
+  T1005: "ADAPTED"
+  T1074.001: "ADAPTED"
+  T1090: "INSPIRED"
+  T1071.001: "INSPIRED"
+  T1105: "ADAPTED"
+
+methodology_notes: |
+  This SUT restores the Docker-aligned MidnightEclipse technique set inside a
+  bounded Linux multi-service substrate. External infrastructure acquisition,
+  domain-bound credentials, and Windows-only remote-management steps remain
+  inspired. Public-facing access, shell execution, IPC, data collection,
+  staging, and ingress transfer run with bounded artifacts and auditable local
+  side effects.
+
+execution_mode: "real_controlled"

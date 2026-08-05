@@ -1,0 +1,135 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.c0026",
+  "run_id": "0.c0026_20260728_033234",
+  "initial_facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "technique_id": "T1583.001",
+      "status": "marker_only",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1583.001_inspired.log"
+      ]
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1568",
+      "status": "marker_only",
+      "missing_requirements": [
+        "infrastructure.domain"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1568_inspired.log"
+      ]
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1105",
+      "status": "success",
+      "missing_requirements": [
+        "channel.resolved"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ]
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1005",
+      "status": "success",
+      "missing_requirements": [
+        "payload.target.staged"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1005_seed.log",
+        "techniques/T1005_exfil.log"
+      ]
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1560.001",
+      "status": "success",
+      "missing_requirements": [
+        "collection.local"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1560.001_archive.log"
+      ]
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1030",
+      "status": "success",
+      "missing_requirements": [
+        "collection.archive"
+      ],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1030_chunked_transfer.log"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "context_observations": [],
+  "contract_coverage": "declared",
+  "declared_technique_ids": [
+    "T1583.001",
+    "T1568",
+    "T1105",
+    "T1005",
+    "T1560.001",
+    "T1030"
+  ],
+  "executed_technique_ids": [
+    "T1583.001",
+    "T1568",
+    "T1105",
+    "T1005",
+    "T1560.001",
+    "T1030"
+  ],
+  "source_plan_sha256": "479dd62002be23fb5c950a6fa433b41d43be3c82a19c50aa4a493bead3521aeb",
+  "executable_contract_sha256": "4ba01c88d24343808b066b8ca78e18bbaf7276a64c691973974390a2da47903b",
+  "content_sha256": "070b7e5bdab8c5a1b965238d4fa3ed6cf0c7ab779d91ac44688f62f6ab9a322e"
+}

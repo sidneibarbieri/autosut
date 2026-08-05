@@ -1,0 +1,11 @@
+{
+  "campaign_id": "0.operation_midnighteclipse",
+  "timestamp": "2026-06-03T19:36:47+00:00",
+  "total_techniques": 17,
+  "successful": 17,
+  "fidelity_distribution": {
+    "inspired": 12,
+    "adapted": 5
+  },
+  "evidence_directory": "release/evidence/0.operation_midnighteclipse_20260603_193617"
+}

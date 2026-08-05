@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1027_013.marker && echo 'T1027.013 (Encrypted/Encoded File) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1027_013.marker && cat /tmp/c0011_T1027_013.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:35:57Z
+T1027.013 (Encrypted/Encoded File) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

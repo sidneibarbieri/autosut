@@ -1,0 +1,14 @@
+$ test -s /tmp/T1003.008.out && cat /tmp/T1003.008.out
+exit_code: 0
+--- stdout ---
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+root:*:20647:0:99999:7:::
+daemon:*:20647:0:99999:7:::
+bin:*:20647:0:99999:7:::
+
+--- stderr ---
+

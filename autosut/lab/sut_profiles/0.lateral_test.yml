@@ -1,0 +1,135 @@
+# =============================================================================
+# SUT Profile: 0.lateral_test (Multi-Host Lateral Movement)
+# =============================================================================
+# Description: Multi-host campaign with lateral movement demonstration
+# Fidelity: ADAPTED for network-based techniques
+# Infrastructure: 4 VMs (caldera, attacker, target-1, target-2)
+# =============================================================================
+
+campaign_id: "0.lateral_test"
+description: "Multi-Host Lateral Movement Test - SSH pivoting demonstration"
+
+requirements:
+  min_hosts: 4
+  required_vms: ["caldera", "attacker", "target-1", "target-2"]
+  extra_vms: ["target-2"]  # Beyond base 3
+  estimated_duration_minutes: 10
+
+sut_configuration:
+  target-1:
+    os: "ubuntu-2204"
+    role: "initial_compromise"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "user1"
+        password: "password1"
+        sudo: false
+
+      - username: "pivotuser"
+        password: "pivotpass123"
+        sudo: true
+
+    files:
+      - path: "/home/pivotuser/.ssh/id_rsa"
+        content: |
+          SIMULATED OPENSSH KEY MATERIAL
+          b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+          QyNTUxOQAAACB8nBGj5vH8n2xP9QJL7rH0z1Y9v3dF5Kj8f2xHn1jP9QAAAARwO...
+          END SIMULATED OPENSSH KEY MATERIAL
+        owner: "pivotuser"
+        permissions: "600"
+
+      - path: "/home/pivotuser/.ssh/id_rsa.pub"
+        content: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHycEaPm8fyfbE/1AkTusfTPVj2/d0XkqPx/bEefWM/1 pivot@target-1"
+        owner: "pivotuser"
+        permissions: "644"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_ssh_password"
+        description: "T1078.001 - Valid Accounts for initial access"
+
+      - type: "ssh_key_pivot"
+        description: "T1021.004 - SSH key for lateral movement to target-2"
+
+  target-2:
+    os: "ubuntu-2204"
+    role: "lateral_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "key_auth_enabled"
+
+    users:
+      - username: "target2user"
+        password: "NOT_USED_KEYS_ONLY"
+        sudo: false
+
+      - username: "privileged"
+        password: "privilegedpass"
+        sudo: true
+
+    files:
+      - path: "/home/target2user/.ssh/authorized_keys"
+        content: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHycEaPm8fyfbE/1AkTusfTPVj2/d0XkqPx/bEefWM/1 pivot@target-1"
+        owner: "target2user"
+        permissions: "600"
+
+      # Sensitive data on target-2
+      - path: "/opt/database/production.sql"
+        content: |
+          CREATE TABLE users (id INT, username VARCHAR(50), password VARCHAR(100));
+          INSERT INTO users VALUES (1, 'admin', 'bcrypt_hash_here');
+          INSERT INTO users VALUES (2, 'ceo', 'ceo_password_123');
+        owner: "privileged"
+        permissions: "600"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "ssh_key_trust"
+        description: "T1021.004 - SSH key from target-1 authorized on target-2"
+
+network_topology:
+  subnet: "192.168.56.0/24"
+  connectivity:
+    attacker: ["target-1", "target-2"]
+    target-1: ["target-2"]  # Lateral movement path
+    target-2: []  # Isolated except from target-1
+
+fidelity_expectations:
+  T1021.004: "ADAPTED"      # Real SSH lateral movement
+  T1078.001: "ADAPTED"      # Real SSH authentication
+  T1059.003: "ADAPTED"      # Real shell execution
+  T1083: "ADAPTED"          # Real file discovery
+  T1560.001: "ADAPTED"      # Real archive creation
+  T1041: "ADAPTED"          # Real exfiltration
+
+methodology_notes: |
+  This profile demonstrates lateral movement (T1021.004) in a controlled
+  multi-host environment. The key feature is the SSH key relationship
+  between target-1 and target-2:
+
+  1. Attacker compromises target-1 with weak password
+  2. Discovers SSH private key for 'pivotuser' on target-1
+  3. Uses key to authenticate to target-2 without password
+  4. Accesses sensitive data on target-2
+
+  This models real APT lateral movement while remaining controlled
+  and reproducible. No Windows required for this demonstration.
+
+execution_mode: "real_controlled"
+
+# Note: Requires Vagrant configuration for 4th VM (target-2)
+# Base Vagrantfile needs extension for this profile

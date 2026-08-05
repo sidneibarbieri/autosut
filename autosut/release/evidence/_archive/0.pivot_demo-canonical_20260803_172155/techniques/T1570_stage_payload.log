@@ -1,0 +1,13 @@
+$ cat > /tmp/payload.sh <<'PAYLOAD_EOF'
+#!/bin/sh
+echo PAYLOAD_RAN_ON_target2_AT_`date -u +%FT%TZ`
+id
+hostname
+PAYLOAD_EOF
+chmod +x /tmp/payload.sh && sha256sum /tmp/payload.sh
+exit_code: 0
+--- stdout ---
+6be725fd16cc8aa5a571bfd2249fc57d192ac5db6dae103dcbe7c52f08b5bcac  /tmp/payload.sh
+
+--- stderr ---
+

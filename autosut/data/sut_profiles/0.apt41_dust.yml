@@ -1,0 +1,93 @@
+campaign_id: "0.apt41_dust"
+description: "Linux multi-service SUT for APT41 DUST: dual espionage and financial operations"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 15
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "espionage_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache2"
+        version: "default"
+        config: "default_site_enabled"
+      - name: "mysql"
+        version: "default"
+        config: "default_instance_exposed"
+
+    users:
+      - username: "dustops"
+        password: "Dust2024!"
+        sudo: true
+        home_files: true
+
+    files:
+      - path: "/home/dustops/intel/targets.txt"
+        content: "Controlled intelligence collection seed for APT41 DUST."
+        owner: "dustops"
+        permissions: "640"
+      - path: "/home/dustops/intel/financials.csv"
+        content: "entity,amount,date\nAlpha Corp,125000,2024-01-15\nBeta Ltd,87500,2024-02-03"
+        owner: "dustops"
+        permissions: "640"
+      - path: "/tmp/staged_payload.sh"
+        content: "#!/bin/bash\necho sticks_apt41_dust_marker"
+        owner: "dustops"
+        permissions: "644"
+
+    network:
+      ingress: [22, 80, 443, 3306]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "dustops"
+        password: "Dust2024!"
+        description: "Enables reproducible SSH access for the espionage/financial chain"
+      - type: "writable_directory"
+        path: "/var/www/html"
+        description: "Writable web root supports staging and C2 simulation"
+      - type: "sudo_misconfiguration"
+        description: "Adapted privilege surface for bounded post-exploitation steps"
+
+fidelity_expectations:
+  T1593.002: "INSPIRED"
+  T1594: "INSPIRED"
+  T1596.005: "INSPIRED"
+  T1583.007: "INSPIRED"
+  T1586.003: "INSPIRED"
+  T1588.003: "ADAPTED"
+  T1505.003: "ADAPTED"
+  T1543.003: "ADAPTED"
+  T1574.001: "ADAPTED"
+  T1569.002: "ADAPTED"
+  T1027.013: "ADAPTED"
+  T1036.004: "ADAPTED"
+  T1553.002: "ADAPTED"
+  T1070.004: "ADAPTED"
+  T1213.006: "ADAPTED"
+  T1119: "ADAPTED"
+  T1074.001: "ADAPTED"
+  T1560.001: "ADAPTED"
+  T1102: "INSPIRED"
+  T1071.001: "INSPIRED"
+  T1573.002: "ADAPTED"
+  T1105: "ADAPTED"
+  T1567.002: "ADAPTED"
+
+methodology_notes: |
+  APT41 DUST remains a controlled Linux adaptation of the published campaign.
+  Reconnaissance, external account compromise, and web-service C2 stay
+  inspired because they depend on infrastructure that the lab does not claim
+  to reproduce. Post-compromise persistence, collection, staging, encryption,
+  transfer, and exfiltration execute over bounded local artifacts with
+  auditable evidence.
+
+execution_mode: "real_controlled"

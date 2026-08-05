@@ -1,0 +1,94 @@
+rules:
+  - cve: CVE-2022-38028
+    vendor: Microsoft
+    product: Windows Print Spooler
+    resolution_kind: windows_component
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2022-38028
+    attck_binding_names:
+      - Windows Print Spooler
+  - cve: CVE-2023-48022
+    vendor: Anyscale
+    product: Ray
+    resolution_kind: open_package
+    automatic_sut_support: true
+    ecosystem: pip
+    package_name: ray
+    install_channel: pip
+    version_strategy: explicit_versions_from_advisory
+    candidate_versions:
+      - "2.6.3"
+      - "2.8.0"
+    overlay_template: ray_jobs_api_exposure
+    overlay_summary: Expose the Ray-like Jobs API boundary before T1190.
+    source_basis: NVD CVE record plus PyPI package metadata and release tags
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2023-48022
+      - https://pypi.org/project/ray/
+      - https://github.com/ray-project/ray/releases/tag/ray-2.6.3
+      - https://github.com/ray-project/ray/releases/tag/ray-2.8.0
+    attck_binding_names:
+      - Ray
+      - ray
+  - cve: CVE-2024-3400
+    vendor: Palo Alto Networks
+    product: PAN-OS GlobalProtect
+    resolution_kind: appliance
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2024-3400
+    attck_binding_names:
+      - PAN-OS GlobalProtect
+  - cve: CVE-2024-39717
+    vendor: Versa Networks
+    product: Versa Director
+    resolution_kind: appliance
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2024-39717
+    attck_binding_names:
+      - Versa Director
+  - cve: CVE-2025-49704
+    vendor: Microsoft
+    product: SharePoint Server
+    resolution_kind: enterprise_server
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2025-49704
+    attck_binding_names:
+      - SharePoint Server
+  - cve: CVE-2025-49706
+    vendor: Microsoft
+    product: SharePoint Server
+    resolution_kind: enterprise_server
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2025-49706
+    attck_binding_names:
+      - SharePoint Server
+  - cve: CVE-2025-53770
+    vendor: Microsoft
+    product: SharePoint Server
+    resolution_kind: enterprise_server
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2025-53770
+    attck_binding_names:
+      - SharePoint Server
+  - cve: CVE-2025-53771
+    vendor: Microsoft
+    product: SharePoint Server
+    resolution_kind: enterprise_server
+    automatic_sut_support: false
+    source_basis: NVD CVE record
+    evidence_sources:
+      - https://nvd.nist.gov/vuln/detail/CVE-2025-53771
+    attck_binding_names:
+      - SharePoint Server

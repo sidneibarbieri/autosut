@@ -1,0 +1,7 @@
+$ apk add --no-cache openssh-client sshpass netcat-openbsd bash >/dev/null 2>&1 && echo attacker_tools_installed
+exit_code: 0
+--- stdout ---
+attacker_tools_installed
+
+--- stderr ---
+

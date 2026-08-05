@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1071_001.marker && echo 'T1071.001 (Web Protocols) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1071_001.marker && cat /tmp/c0011_T1071_001.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:34:04Z
+T1071.001 (Web Protocols) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1055.marker && echo 'T1055 (Process Injection) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1055.marker && cat /tmp/c0011_T1055.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:31:41Z
+T1055 (Process Injection) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

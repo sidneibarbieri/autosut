@@ -1,0 +1,7 @@
+$ apk add --no-cache curl >/dev/null 2>&1 && echo attacker_curl_ok
+exit_code: 0
+--- stdout ---
+attacker_curl_ok
+
+--- stderr ---
+

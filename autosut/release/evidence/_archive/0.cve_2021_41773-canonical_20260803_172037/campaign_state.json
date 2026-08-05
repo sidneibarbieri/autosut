@@ -1,0 +1,79 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.cve_2021_41773",
+  "run_id": "0.cve_2021_41773-canonical_20260803_172037",
+  "initial_facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "state",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "technique_id": "T1595.002",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1595.002_version_probe.log"
+      ]
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1190",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1190_path_traversal.log"
+      ]
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1083",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1083_enumerate.log"
+      ]
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1005",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1005_loot.log"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "state",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "context_observations": [],
+  "contract_coverage": "not_declared",
+  "declared_technique_ids": [],
+  "executed_technique_ids": [
+    "T1595.002",
+    "T1190",
+    "T1083",
+    "T1005"
+  ],
+  "source_plan_sha256": null,
+  "executable_contract_sha256": null,
+  "content_sha256": "d9a7cf2b5f64671c8d74851f2a66468bc13d76156dee031603624e17def3a046"
+}

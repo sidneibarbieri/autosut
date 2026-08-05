@@ -1,0 +1,5 @@
+# host bring-up: target1 (target)
+image: alpine:3.19
+container: autosut-target1-4cc2c0
+network: autosut-net-3b833258
+container_id: d7cc78a534abf480010398a13c0ed14e19931e7725bd553d3cd9513fb88d6ef5

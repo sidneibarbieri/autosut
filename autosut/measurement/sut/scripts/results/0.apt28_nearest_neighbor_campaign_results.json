@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-03-13T21:32:07.389617",
+  "campaign": "0.apt28_nearest_neighbor_campaign",
+  "operation_name": "exp_0.apt28_nearest_neighbor_campaign_1773451897",
+  "execution": {
+    "state": "running",
+    "start_time": "2026-03-14 01:31:37",
+    "host_count": 3,
+    "hosts": [
+      {
+        "paw": "xrzked",
+        "links_count": 1,
+        "links": [
+          {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "technique_id": "T1070.003",
+            "status": 0,
+            "output": "False"
+          }
+        ]
+      },
+      {
+        "paw": "iiuahg",
+        "links_count": 1,
+        "links": [
+          {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "technique_id": "T1070.003",
+            "status": 0,
+            "output": "False"
+          }
+        ]
+      },
+      {
+        "paw": "wqilcm",
+        "links_count": 1,
+        "links": [
+          {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "technique_id": "T1070.003",
+            "status": 0,
+            "output": "False"
+          }
+        ]
+      }
+    ]
+  },
+  "agents": [
+    "xrzked",
+    "iiuahg",
+    "wqilcm"
+  ]
+}

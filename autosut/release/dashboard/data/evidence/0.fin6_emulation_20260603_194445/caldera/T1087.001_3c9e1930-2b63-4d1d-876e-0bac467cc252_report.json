@@ -1,0 +1,704 @@
+{
+  "name": "autosut-T1087.001-1780515985",
+  "host_group": [
+    {
+      "paw": "autosut57d437ee",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "autosut57d437ee",
+      "architecture": "amd64",
+      "platform": "linux",
+      "server": "http://172.17.0.2:8888",
+      "upstream_dest": "http://172.17.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 1549,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "d252fad2970f",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.17.0.3"
+      ],
+      "display_name": "d252fad2970f$root",
+      "created": "2026-06-03T19:46:24Z",
+      "last_seen": "2026-06-03T19:47:03Z",
+      "links": [
+        {
+          "id": "d08416c3-011d-48e7-a3af-9e72f0e1827d",
+          "paw": "autosut57d437ee",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-06-03T19:46:24Z",
+          "pin": 0,
+          "pid": "1559",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "d08416c3-011d-48e7-a3af-9e72f0e1827d",
+          "collect": "2026-06-03T19:46:24Z",
+          "finish": "2026-06-03T19:46:24Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "d252fad2970f",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-06-03T19:46:24Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    }
+  ],
+  "start": "2026-06-03T19:46:26Z",
+  "steps": {
+    "autosut57d437ee": {
+      "steps": [
+        {
+          "link_id": "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169",
+          "ability_id": "c1cd6388-3ced-48c7-a511-0434c6ba8f48",
+          "command": "cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'",
+          "plaintext_command": "cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'",
+          "delegated": "2026-06-03T19:46:26Z",
+          "run": "2026-06-03T19:47:03Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 1562,
+          "description": "Get a list of all local users",
+          "name": "Find local users",
+          "attack": {
+            "tactic": "discovery",
+            "technique_name": "Account Discovery: Local Account",
+            "technique_id": "T1087.001"
+          },
+          "output": {
+            "stdout": "rootdaemonbinsyssyncgamesmanlpmailnewsuucpproxywww-databackuplistircnobodyvulnusersystemd-networksshd",
+            "stderr": "",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-06-03T19:47:03Z"
+        }
+      ]
+    }
+  },
+  "finish": null,
+  "planner": "atomic",
+  "adversary": {
+    "adversary_id": "a3964c3d-c75b-4532-8dbb-7e744f1855f2",
+    "name": "autosut-T1087.001-6692c6",
+    "description": "AutoSUT one-off adversary for T1087.001",
+    "atomic_ordering": [
+      "c1cd6388-3ced-48c7-a511-0434c6ba8f48"
+    ],
+    "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "tags": [
+      "autosut"
+    ],
+    "has_repeatable_abilities": false,
+    "plugin": ""
+  },
+  "jitter": "0/0",
+  "objectives": {
+    "id": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "name": "default",
+    "description": "This is a default objective that runs forever.",
+    "goals": [
+      {
+        "target": "exhaustion",
+        "value": "complete",
+        "count": 1048576,
+        "operator": "==",
+        "achieved": false
+      }
+    ],
+    "percentage": 0.0
+  },
+  "facts": [
+    {
+      "unique": "file.sensitive.extensionwav",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "wav",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionyml",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "yml",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionpng",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "png",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "server.malicious.urlkeyloggedsite.com",
+      "trait": "server.malicious.url",
+      "name": "server.malicious.url",
+      "value": "keyloggedsite.com",
+      "created": "2026-06-03T19:44:38Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "host.user.nameroot",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "root",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(root)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namedaemon",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "daemon",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(daemon)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namebin",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "bin",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(bin)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namesys",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "sys",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(sys)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namesync",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "sync",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(sync)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namegames",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "games",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(games)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.nameman",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "man",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(man)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namelp",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "lp",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(lp)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namemail",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "mail",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(mail)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namenews",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "news",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(news)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.nameuucp",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "uucp",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(uucp)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.nameproxy",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "proxy",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(proxy)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namewww-data",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "www-data",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(www-data)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namebackup",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "backup",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(backup)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namelist",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "list",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(list)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.nameirc",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "irc",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(irc)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namenobody",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "nobody",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(nobody)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namevulnuser",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "vulnuser",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(vulnuser)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namesystemd-network",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "systemd-network",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(systemd-network)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    },
+    {
+      "unique": "host.user.namesshd",
+      "trait": "host.user.name",
+      "name": "host.user.name",
+      "value": "sshd",
+      "created": "2026-06-03T19:47:03Z",
+      "score": 1,
+      "source": "3c9e1930-2b63-4d1d-876e-0bac467cc252",
+      "origin_type": "LEARNED",
+      "links": [
+        "ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169"
+      ],
+      "relationships": [
+        "host.user.name(sshd)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "autosut57d437ee"
+      ],
+      "technique_id": "T1087.001"
+    }
+  ],
+  "skipped_abilities": [
+    {
+      "autosut57d437ee": []
+    }
+  ]
+}

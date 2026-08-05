@@ -1,0 +1,7 @@
+$ wget -qS -O /dev/null http://127.0.0.1/ 2>&1 | head -10
+exit_code: 0
+--- stdout ---
+sh: 1: wget: not found
+
+--- stderr ---
+

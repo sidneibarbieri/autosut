@@ -1,0 +1,6 @@
+$ adduser -D -s /bin/sh labuser && echo 'labuser:Zone-Demo-2026!' | chpasswd && sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config && /usr/sbin/sshd
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

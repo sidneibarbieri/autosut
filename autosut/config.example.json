@@ -1,0 +1,29 @@
+{
+  "integration": {
+    "sticks_input_manifest": "release/inputs/sticks/c0045-v1/manifest.json"
+  },
+  "experiment": {
+    "repetitions": 3,
+    "allow_online_llm": false,
+    "reference_sut_profile": "0.shadowray"
+  },
+  "llm": {
+    "provider": "azure_openai",
+    "model": "gpt-4.1-mini",
+    "deployment": "chat",
+    "base_url": "https://YOUR-RESOURCE.openai.azure.com",
+    "api_version": "2024-02-15-preview",
+    "api_key_env": "AZURE_OPENAI_API_KEY",
+    "temperature": 0.0,
+    "max_output_tokens": 1200,
+    "timeout_seconds": 60,
+    "budget": {
+      "max_requests": 20,
+      "max_prompt_tokens": 100000,
+      "max_completion_tokens": 24000,
+      "max_estimated_usd": 5.0,
+      "input_usd_per_million_tokens": 0.0,
+      "output_usd_per_million_tokens": 0.0
+    }
+  }
+}

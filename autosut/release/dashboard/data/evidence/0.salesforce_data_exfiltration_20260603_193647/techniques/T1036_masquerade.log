@@ -1,0 +1,9 @@
+$ mkdir -p /usr/local/bin/lab && printf '#!/bin/sh\necho fake-sshd-banner\n' > /usr/local/bin/lab/sshd && chmod +x /usr/local/bin/lab/sshd && sha256sum /usr/local/bin/lab/sshd && file /usr/local/bin/lab/sshd 2>&1 || echo "file cmd missing"
+exit_code: 0
+--- stdout ---
+c01ebf479b6fa7a9f504fe6342c44dd8bb5d5aa83a4cac8715f9867484f6fe64  /usr/local/bin/lab/sshd
+sh: 1: file: not found
+file cmd missing
+
+--- stderr ---
+

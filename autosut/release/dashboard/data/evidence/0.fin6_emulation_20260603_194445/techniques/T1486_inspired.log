@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1486.marker && echo 'T1486 (Data Encrypted for Impact) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1486.marker && cat /tmp/c0011_T1486.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:48:14Z
+T1486 (Data Encrypted for Impact) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /var/lib/eclipseops/network_inventory.txt) && cat > /var/lib/eclipseops/network_inventory.txt <<'AUTOSUT_ART_EOF'
+vpn-gateway-01
+vpn-gateway-02
+
+AUTOSUT_ART_EOF
+chmod 0644 /var/lib/eclipseops/network_inventory.txt && chown root:root /var/lib/eclipseops/network_inventory.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

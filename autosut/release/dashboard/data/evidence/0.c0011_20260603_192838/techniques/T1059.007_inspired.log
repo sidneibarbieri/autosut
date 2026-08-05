@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1059_007.marker && echo 'T1059.007 (Command and Scripting Interpreter: JavaScript) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1059_007.marker && cat /tmp/c0011_T1059_007.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:28:47Z
+T1059.007 (Command and Scripting Interpreter: JavaScript) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

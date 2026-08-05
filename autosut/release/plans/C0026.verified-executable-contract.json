@@ -1,0 +1,137 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.c0026",
+  "source_campaign_id": "C0026",
+  "source_plan_sha256": "479dd62002be23fb5c950a6fa433b41d43be3c82a19c50aa4a493bead3521aeb",
+  "concretized_plan_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+  "binding_catalog_sha256": "5f6db3b48ce81b3e6c3b03872cefe62690fec4180a34b8481cdcb634173c4a53",
+  "planning_certificate_sha256": "195ff198f995239648ea0462a805e3b1082c9d5eadaf6db580d94967f027aef2",
+  "scope": "validated_controlled_slice",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready"
+  ],
+  "transitions": [
+    {
+      "technique_id": "T1583.001",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.domain"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "record-controlled-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1568",
+      "requires": [
+        "infrastructure.domain"
+      ],
+      "produces": [
+        "channel.resolved"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "resolve-lab-domain",
+      "bindings": {
+        "domain": "infrastructure.lab_manifest",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "resolver_query_logged",
+        "external_dns_absent"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1105",
+      "requires": [
+        "channel.resolved"
+      ],
+      "produces": [
+        "payload.target.staged"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "transfer-over-resolved-lab-channel",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1005",
+      "requires": [
+        "payload.target.staged"
+      ],
+      "produces": [
+        "collection.local"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "collect-declared-data-fixture",
+      "bindings": {
+        "data_source": "data.synthetic_fixture",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "fixture_hash_recorded",
+        "no_host_data_collected"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1560.001",
+      "requires": [
+        "collection.local"
+      ],
+      "produces": [
+        "collection.archive"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "archive-declared-collection",
+      "bindings": {
+        "archive_tool": "archive_tool.local",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "archive_hash_recorded",
+        "input_manifest_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1030",
+      "requires": [
+        "collection.archive"
+      ],
+      "produces": [
+        "exfiltration.chunked"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "split-declared-archive",
+      "bindings": {
+        "archive": "archive.synthetic_collection",
+        "chunk_policy": "chunk_policy.bounded_local"
+      },
+      "evidence_predicates": [
+        "chunk_manifest_recorded",
+        "no_external_transfer"
+      ],
+      "fidelity_ceiling": "adapted"
+    }
+  ],
+  "content_sha256": "4ba01c88d24343808b066b8ca78e18bbaf7276a64c691973974390a2da47903b"
+}

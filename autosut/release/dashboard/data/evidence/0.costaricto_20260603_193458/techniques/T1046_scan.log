@@ -1,0 +1,13 @@
+$ python3 -c "import socket; results = [];
+import sys;
+[results.append((p, (lambda: (lambda s:(s.settimeout(0.3), s.connect_ex(('127.0.0.1',p)))[1])(socket.socket()))())) for p in (22, 80, 443, 8265)];
+[sys.stdout.write(f'port {p} open={'yes' if rc==0 else 'no'}\\n') for p,rc in results]" > /tmp/scan.log 2>&1; cat /tmp/scan.log
+exit_code: 0
+--- stdout ---
+  File "<string>", line 4
+    [sys.stdout.write(f'port {p} open={'yes' if rc==0 else 'no'}\n') for p,rc in results]
+                                        ^^^
+SyntaxError: f-string: expecting '}'
+
+--- stderr ---
+

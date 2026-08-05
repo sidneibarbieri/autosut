@@ -1,0 +1,14 @@
+metric,value,note
+campaigns_with_platform_signal_count,47,Campaigns with at least one software-derived platform tag.
+campaigns_unknown_platform_count,5,Campaigns with no software-derived platform signal.
+campaigns_with_os_family_signal_count,44,Campaigns with OS-family (Windows/Linux/macOS) signal.
+campaigns_with_single_os_family_count,22,Campaigns with exactly one inferred OS family.
+campaigns_with_dual_os_family_count,2,Campaigns with two inferred OS families.
+campaigns_with_triple_os_family_count,20,Campaigns with Linux+Windows+macOS inferred families.
+platform_ablation_technique_unknown_count,0,Campaigns still platform-unknown when technique-level tags are admitted with software tags.
+platform_ablation_technique_single_os_count,1,Campaigns with a single inferred OS family under software-plus-technique tags.
+platform_ablation_technique_triple_os_count,51,Campaigns with Linux+Windows+macOS under software-plus-technique tags.
+one_software_campaigns_with_os_signal_count,17,Campaigns whose platform inference is driven by exactly one linked software item.
+one_software_campaigns_single_os_count,10,One-software campaigns with single-OS inference.
+one_software_campaigns_triple_os_count,7,One-software campaigns with Linux+Windows+macOS inference.
+campaigns_with_non_os_only_platform_signal_count,3,"Campaigns where platform evidence is only non-OS tags (e.g., Network Devices)."

@@ -1,0 +1,8 @@
+$ d=/root/.config/lab-browser/Default; mkdir -p $d; printf '%s\n' '[{"name":"intranet","url":"http://intranet.lab"},{"name":"wiki","url":"http://wiki.lab"}]' > $d/Bookmarks; find / -name Bookmarks 2>/dev/null | head -3; cat $d/Bookmarks
+exit_code: 0
+--- stdout ---
+/root/.config/lab-browser/Default/Bookmarks
+[{"name":"intranet","url":"http://intranet.lab"},{"name":"wiki","url":"http://wiki.lab"}]
+
+--- stderr ---
+

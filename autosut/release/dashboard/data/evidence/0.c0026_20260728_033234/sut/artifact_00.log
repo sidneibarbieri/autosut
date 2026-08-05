@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/ubuntu/andromeda_notes.txt) && cat > /home/ubuntu/andromeda_notes.txt <<'AUTOSUT_ART_EOF'
+Operation notes
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/ubuntu/andromeda_notes.txt && chown ubuntu:ubuntu /home/ubuntu/andromeda_notes.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

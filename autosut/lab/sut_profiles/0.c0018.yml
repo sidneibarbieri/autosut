@@ -1,0 +1,49 @@
+# =============================================================================
+# SUT Profile: 0.c0018 (Windows Script Chain Inspired on Linux)
+# =============================================================================
+
+campaign_id: "0.c0018"
+description: "Linux substrate for Windows-oriented scripting/persistence inspired flow"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 5
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "windows_intent_emulation_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "testuser"
+        password: "password123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/tmp/windows_intent_marker.txt"
+        content: "Inspired-only Windows technique intent in Linux substrate"
+        owner: "testuser"
+        permissions: "644"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+fidelity_expectations:
+  T1059.007: "INSPIRED"
+  T1059.001: "INSPIRED"
+  T1059.005: "INSPIRED"
+  T1574: "INSPIRED"
+
+methodology_notes: |
+  All techniques in this profile are intentionally marked inspired due to
+  platform mismatch between Windows-native mechanisms and Linux substrate.
+
+execution_mode: "naive_simulated"

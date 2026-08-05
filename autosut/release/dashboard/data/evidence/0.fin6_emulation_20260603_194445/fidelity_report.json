@@ -1,0 +1,445 @@
+{
+  "campaign_id": "0.fin6_emulation",
+  "run_id": "0.fin6_emulation_20260603_194445",
+  "summary": {
+    "total": 12,
+    "consistent": 12,
+    "mismatches": 0,
+    "fidelity_distribution": {
+      "inspired": 9,
+      "adapted": 3
+    },
+    "questions": [
+      {
+        "id": "Q1",
+        "text": "Was the central mechanism of the technique preserved?"
+      },
+      {
+        "id": "Q2",
+        "text": "Was the relevant substrate (OS / runtime / service) preserved?"
+      },
+      {
+        "id": "Q3",
+        "text": "Did the required preconditions arise operationally (not pre-staged)?"
+      },
+      {
+        "id": "Q4",
+        "text": "Does the observed effect follow from the mechanism, not a semantic shortcut?"
+      },
+      {
+        "id": "Q5",
+        "text": "Can the evidence be independently audited and verified?"
+      }
+    ]
+  },
+  "techniques": [
+    {
+      "technique_id": "T1190",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1133",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1059.004",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=b1d41972-3ad9-4aa1-8f7f-05f049a2980e"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1078",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1083",
+      "computed_fidelity": "adapted",
+      "declared_fidelity": "adapted",
+      "consistent": true,
+      "yes_count": 3,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": true,
+          "justification": "Real execution mode produced the documented effect"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": true,
+          "justification": "Effect observable on target (file written, link executed, exit_code=0)"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "2 evidence file(s); caldera_ability_id=52177cc1-b9ab-4411-ac21-2eadc4b5d3b8"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1087.001",
+      "computed_fidelity": "adapted",
+      "declared_fidelity": "adapted",
+      "consistent": true,
+      "yes_count": 3,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": true,
+          "justification": "Real execution mode produced the documented effect"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": true,
+          "justification": "Effect observable on target (file written, link executed, exit_code=0)"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "2 evidence file(s); caldera_ability_id=c1cd6388-3ced-48c7-a511-0434c6ba8f48"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1003.001",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1110.001",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1071.001",
+      "computed_fidelity": "adapted",
+      "declared_fidelity": "adapted",
+      "consistent": true,
+      "yes_count": 3,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": true,
+          "justification": "Real execution mode produced the documented effect"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": true,
+          "justification": "Effect observable on target (file written, link executed, exit_code=0)"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "2 evidence file(s); caldera_ability_id=0ab383be-b819-41bf-91b9-1bd4404d83bf"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1573",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1486",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    },
+    {
+      "technique_id": "T1490",
+      "computed_fidelity": "inspired",
+      "declared_fidelity": "inspired",
+      "consistent": true,
+      "yes_count": 1,
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": false,
+          "justification": "executed_mode=naive_simulated, status=success: mechanism not executed mechanistically"
+        },
+        {
+          "question_id": "Q2",
+          "answer": false,
+          "justification": "Generic primitive substrate \u2014 not the specific product the technique originally targets"
+        },
+        {
+          "question_id": "Q3",
+          "answer": false,
+          "justification": "Lab pre-staging: SUT profile + injector configure preconditions, not the adversary's actions"
+        },
+        {
+          "question_id": "Q4",
+          "answer": false,
+          "justification": "Marker-only or failure \u2014 no operational effect observed"
+        },
+        {
+          "question_id": "Q5",
+          "answer": true,
+          "justification": "1 evidence file(s); caldera_ability_id=none"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /opt/crm/records.json) && cat > /opt/crm/records.json <<'AUTOSUT_ART_EOF'
+{"records":[{"Name":"Acme","Email":"contact@acme.test"}]}
+
+AUTOSUT_ART_EOF
+chmod 0644 /opt/crm/records.json && chown root:root /opt/crm/records.json 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

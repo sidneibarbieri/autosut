@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0050",
+  "source_plan_sha256": "d28020ade628663e1a29007eeb5338d15d34adf2dd133814504c086c38839ed8",
+  "platform_resolution": {
+    "selected_platforms": [
+      "Linux"
+    ],
+    "materializable_platforms": [
+      "Linux"
+    ],
+    "unsupported_platforms": [],
+    "uncovered_technique_ids": [],
+    "complete": true
+  },
+  "requirements": [
+    {
+      "requirement_id": "T1036.005.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Containers",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1036.005"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "aec79e2aa90b956c4c9a3c6097e1b55e092edffac67c89f09cda329e9c099d9c"
+}

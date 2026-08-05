@@ -1,0 +1,143 @@
+{
+  "campaign_id": "0.pivot_demo",
+  "description": "Multi-host pivot demonstration — the canonical S14 reference. Exercises real SSH lateral movement between three networked hosts (attacker → target1 → target2) on a private Docker bridge. Every technique runs on a declared host and produces per-host evidence. This closes the gap the predecessor artifact documented but never demonstrated in published evidence (single-host examples only).",
+  "plan_origin": "autosut_internal",
+  "sut": {
+    "topology": "three-host",
+    "estimated_duration_minutes": 4,
+    "private_network": true
+  },
+  "execution_contract": {
+    "scope": "multi_host_stateful_witness",
+    "initial_facts": [
+      "sut.ready",
+      "actor.ready",
+      "network.private.ready"
+    ],
+    "techniques": [
+      {
+        "technique_id": "T1046",
+        "requires": ["actor.ready", "network.private.ready"],
+        "produces": ["service.target1.ssh"]
+      },
+      {
+        "technique_id": "T1110.001",
+        "requires": ["service.target1.ssh"],
+        "produces": ["credential.targets.ssh"]
+      },
+      {
+        "technique_id": "T1021.004",
+        "requires": ["credential.targets.ssh"],
+        "produces": ["access.target1.shell"]
+      },
+      {
+        "technique_id": "T1083",
+        "requires": ["access.target1.shell"],
+        "produces": ["discovery.target1.files"]
+      },
+      {
+        "technique_id": "T1570",
+        "requires": ["credential.targets.ssh", "access.target1.shell"],
+        "produces": ["transfer.target2.payload"]
+      },
+      {
+        "technique_id": "T1059.004",
+        "requires": ["transfer.target2.payload"],
+        "produces": ["execution.target2.shell"]
+      }
+    ]
+  },
+  "context_contract": {
+    "purpose": "Preserve declared benign administrative traffic separately from attack transitions.",
+    "background_activities": [
+      {
+        "activity_id": "wazuh_agent_heartbeat",
+        "recipe": "bounded_tcp_observation",
+        "source_host": "target1",
+        "destination_host": "target2",
+        "protocol": "tcp",
+        "port": 1514,
+        "payload": "{\"kind\":\"wazuh-heartbeat\",\"agent\":\"target1\",\"status\":\"active\"}",
+        "purpose": "Declared security-telemetry heartbeat; it must not be counted as command-and-control or exfiltration."
+      },
+      {
+        "activity_id": "software_update_check",
+        "recipe": "bounded_tcp_observation",
+        "source_host": "target1",
+        "destination_host": "target2",
+        "protocol": "tcp",
+        "port": 18081,
+        "payload": "{\"kind\":\"software-update\",\"package\":\"lab-agent\",\"action\":\"metadata-check\"}",
+        "purpose": "Declared maintenance traffic; it must remain distinguishable from the later lateral payload transfer."
+      }
+    ]
+  },
+  "techniques": [
+    {
+      "technique_id": "T1046",
+      "name": "Network Service Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "scan_target1_ssh",
+      "description": "From the attacker host, probe target1 for an open SSH service."
+    },
+    {
+      "technique_id": "T1110.001",
+      "name": "Brute Force: Password Guessing",
+      "tactic": "credential-access",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "guess_target1_password",
+      "description": "Lab pre-stages a weak password on target1; the attacker iterates a tiny wordlist until it succeeds."
+    },
+    {
+      "technique_id": "T1021.004",
+      "name": "Remote Services: SSH",
+      "tactic": "lateral-movement",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "ssh_lateral_to_target1",
+      "description": "Real SSH session from attacker to target1 with the guessed password. Captures the remote uname."
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "target_host": "target1",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "ls_on_target1",
+      "description": "Once on target1, enumerate the filesystem to plan further movement."
+    },
+    {
+      "technique_id": "T1570",
+      "name": "Lateral Tool Transfer",
+      "tactic": "lateral-movement",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "scp_payload_to_target2",
+      "description": "Stage a tiny shell payload on the attacker, push it to target2 via SCP/SSH using the lab-pre-staged credentials."
+    },
+    {
+      "technique_id": "T1059.004",
+      "name": "Command and Scripting Interpreter: Unix Shell",
+      "tactic": "execution",
+      "platform": "linux",
+      "target_host": "attacker",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "recipe": "ssh_exec_payload_on_target2",
+      "description": "Execute the dropped payload on target2 over SSH; capture stdout as evidence of cross-host code execution."
+    }
+  ]
+}

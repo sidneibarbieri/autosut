@@ -1,0 +1,166 @@
+{
+  "campaign_id": "0.dmz_segmentation_demo",
+  "total_elements": 13,
+  "by_source": {
+    "corpus_supported": 4,
+    "analyst_authored": 6,
+    "autosut_concretized": 3,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 30.8,
+    "analyst_authored": 46.2,
+    "autosut_concretized": 23.1,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 4,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 3,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "attacker.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "attacker",
+      "purpose": "materialised as autosut/dmz-host:s28"
+    },
+    {
+      "dimension": "platform",
+      "identifier": "nginx.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "nginx",
+      "purpose": "materialised as autosut/dmz-host:s28"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "nginx.credential.labuser",
+      "value": "password:labuser",
+      "source": "autosut_concretized",
+      "host": "nginx",
+      "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "nginx.exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": "nginx",
+      "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+    },
+    {
+      "dimension": "platform",
+      "identifier": "app_server.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "app_server",
+      "purpose": "materialised as autosut/dmz-host:s28"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "app_server.credential.labuser",
+      "value": "password:labuser",
+      "source": "autosut_concretized",
+      "host": "app_server",
+      "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "app_server.exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": "app_server",
+      "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+    },
+    {
+      "dimension": "platform",
+      "identifier": "db.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "db",
+      "purpose": "materialised as autosut/dmz-host:s28"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "db.credential.labuser",
+      "value": "password:labuser",
+      "source": "autosut_concretized",
+      "host": "db",
+      "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "db.exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": "db",
+      "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries."
+    },
+    {
+      "dimension": "topology",
+      "identifier": "topology.zone.internet_edge",
+      "value": "internet_edge",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Where the attacker originates. Has no enterprise access."
+    },
+    {
+      "dimension": "topology",
+      "identifier": "topology.zone.dmz",
+      "value": "dmz",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Bridges internet_edge and enterprise. Hosts edge-facing services."
+    },
+    {
+      "dimension": "topology",
+      "identifier": "topology.zone.enterprise",
+      "value": "enterprise",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Backend zone. No direct path from internet_edge."
+    }
+  ]
+}

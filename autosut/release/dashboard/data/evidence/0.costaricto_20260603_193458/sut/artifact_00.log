@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/reconuser/collection/finance_notes.txt) && cat > /home/reconuser/collection/finance_notes.txt <<'AUTOSUT_ART_EOF'
+Finance reconnaissance notes — internal
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/reconuser/collection/finance_notes.txt && chown reconuser:reconuser /home/reconuser/collection/finance_notes.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

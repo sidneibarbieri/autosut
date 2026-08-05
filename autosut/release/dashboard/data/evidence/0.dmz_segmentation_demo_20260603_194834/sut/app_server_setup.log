@@ -1,0 +1,5 @@
+# host bring-up: app_server (gateway)
+image: autosut/dmz-host:s28
+container: autosut-app_server-0bded7
+network: autosut-dmz-56212a
+container_id: 2bfa7e0ad8c1319bd7ee8de51bd8a0efd46bb1473db67f24fb9bb4dad4b0a76e

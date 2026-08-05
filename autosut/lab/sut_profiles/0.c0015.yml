@@ -1,0 +1,60 @@
+# =============================================================================
+# SUT Profile: 0.c0015 (Credentialed Linux Post-Compromise)
+# =============================================================================
+
+campaign_id: "0.c0015"
+description: "Minimal Linux SUT for credentialed access and post-compromise flow"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 7
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "post_compromise_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "testuser"
+        password: "password123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/tmp/sensitive_data.txt"
+        content: "Simulated sensitive data for archive test"
+        owner: "testuser"
+        permissions: "644"
+      - path: "/tmp/credentials.txt"
+        content: "api_key=simulated_key_123"
+        owner: "testuser"
+        permissions: "600"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "testuser"
+        password: "password123"
+        description: "Enables reproducible SSH authentication"
+
+fidelity_expectations:
+  T1078.001: "ADAPTED"
+  T1059.003: "ADAPTED"
+  T1083: "ADAPTED"
+  T1560.001: "ADAPTED"
+  T1041: "ADAPTED"
+
+methodology_notes: |
+  Profile designed for deterministic credentialed access and post-compromise
+  collection pipeline in Linux lab substrate.
+
+execution_mode: "real_controlled"

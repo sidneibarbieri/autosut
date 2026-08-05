@@ -1,0 +1,219 @@
+{
+  "campaign_id": "0.apt41_dust",
+  "description": "APT41 DUST - Sophisticated multi-stage operation with dual espionage and financial motivation",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 30
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": ["ssh", "apache2", "mysql"]
+      }
+    },
+    {
+      "type": "privilege_escalation",
+      "target": "target",
+      "config": {
+        "method": "sudo_misconfiguration"
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1593.002",
+      "name": "Search Engines",
+      "tactic": "reconnaissance",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST used search engines to research victim servers"
+    },
+    {
+      "technique_id": "T1594",
+      "name": "Search Victim-Owned Websites",
+      "tactic": "reconnaissance",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST accessed external victim websites for target development"
+    },
+    {
+      "technique_id": "T1596.005",
+      "name": "Scan Databases",
+      "tactic": "reconnaissance",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST used internet scan data for target development"
+    },
+    {
+      "technique_id": "T1583.007",
+      "name": "Serverless",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST used infrastructure behind Cloudflare or Cloudflare Workers for C2"
+    },
+    {
+      "technique_id": "T1586.003",
+      "name": "Compromise Accounts: Cloud Accounts",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST used compromised Google Workspace accounts for C2"
+    },
+    {
+      "technique_id": "T1588.003",
+      "name": "Code Signing Certificates",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used stolen code signing certificates to sign DUSTTRAP malware"
+    },
+    {
+      "technique_id": "T1505.003",
+      "name": "Web Shell",
+      "tactic": "persistence",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used web shells such as ANTSWORD and BLUEBEAM for persistence"
+    },
+    {
+      "technique_id": "T1543.003",
+      "name": "Windows Service",
+      "tactic": "persistence",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used Windows Services named 'Windows Defend' for DUSTPAN persistence"
+    },
+    {
+      "technique_id": "T1574.001",
+      "name": "DLL Search Order Hijacking",
+      "tactic": "persistence",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used DLL search order hijacking and side-loading for DUSTTRAP"
+    },
+    {
+      "technique_id": "T1569.002",
+      "name": "Service Execution",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used Windows services to execute DUSTPAN"
+    },
+    {
+      "technique_id": "T1027.013",
+      "name": "Encrypted/Encoded File",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used encrypted payloads decrypted and executed in memory"
+    },
+    {
+      "technique_id": "T1036.004",
+      "name": "Masquerade Task or Service",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST disguised DUSTPAN as legitimate Windows binaries like w3wp.exe"
+    },
+    {
+      "technique_id": "T1553.002",
+      "name": "Code Signing",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used stolen code signing certificates for DUSTTRAP and payloads"
+    },
+    {
+      "technique_id": "T1070.004",
+      "name": "File Deletion",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST deleted various artifacts from victim systems following use"
+    },
+    {
+      "technique_id": "T1213.006",
+      "name": "Databases",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST collected data from victim Oracle databases using SQLULDR2"
+    },
+    {
+      "technique_id": "T1119",
+      "name": "Automated Collection",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used SQLULDR2 and PINEGROVE to gather system and database data"
+    },
+    {
+      "technique_id": "T1074.001",
+      "name": "Local Data Staging",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST exported Oracle database data to local CSV files before exfiltration"
+    },
+    {
+      "technique_id": "T1560.001",
+      "name": "Archive via Utility",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used rar to compress data from internal Oracle databases"
+    },
+    {
+      "technique_id": "T1102",
+      "name": "Web Service",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST used compromised Google Workspace accounts for C2"
+    },
+    {
+      "technique_id": "T1071.001",
+      "name": "Web Protocols",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "APT41 DUST used HTTPS for command and control"
+    },
+    {
+      "technique_id": "T1573.002",
+      "name": "Asymmetric Cryptography",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used HTTPS with asymmetric cryptography for C2"
+    },
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST used certutil.exe via web shell to download the DUSTPAN dropper"
+    },
+    {
+      "technique_id": "T1567.002",
+      "name": "Exfiltration to Cloud Storage",
+      "tactic": "exfiltration",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "APT41 DUST exfiltrated collected information to OneDrive"
+    }
+  ]
+}

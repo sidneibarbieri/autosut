@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /tmp/staged_payload.sh) && cat > /tmp/staged_payload.sh <<'AUTOSUT_ART_EOF'
+#!/bin/sh
+echo payload_ran
+
+AUTOSUT_ART_EOF
+chmod 0644 /tmp/staged_payload.sh && chown dustops:dustops /tmp/staged_payload.sh 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

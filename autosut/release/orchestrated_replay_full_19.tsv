@@ -1,0 +1,20 @@
+campaign	status	successful	total	fidelity_distribution	elapsed_seconds	evidence_manifest	notes
+0.c0010	PASS	9	9	"{""adapted"": 3, ""inspired"": 6}"	36.6	release/evidence/0.c0010_20260603_192801/manifest.json	ok
+0.c0011	PASS	11	11	"{""adapted"": 2, ""inspired"": 9}"	29.2	release/evidence/0.c0011_20260603_192838/manifest.json	ok
+0.c0012	PASS	3	3	"{""adapted"": 3}"	28.6	release/evidence/0.c0012_20260603_192907/manifest.json	ok
+0.c0013	PASS	4	4	"{""adapted"": 1, ""inspired"": 3}"	130.0	release/evidence/0.c0013_20260603_192951/manifest.json	ok
+0.c0015	PASS	5	5	"{""adapted"": 3, ""inspired"": 2}"	30.7	release/evidence/0.c0015_20260603_193201/manifest.json	ok
+0.c0017	PASS	6	6	"{""adapted"": 6}"	30.5	release/evidence/0.c0017_20260603_193232/manifest.json	ok
+0.c0026	PASS	6	6	"{""adapted"": 4, ""inspired"": 2}"	31.1	release/evidence/0.c0026_20260603_193302/manifest.json	ok
+0.apt41_dust	PASS	23	23	"{""adapted"": 14, ""inspired"": 9}"	53.2	release/evidence/0.apt41_dust_20260603_193334/manifest.json	ok
+0.apt41_dust_full	PASS	10	10	"{""adapted"": 9, ""inspired"": 1}"	31.0	release/evidence/0.apt41_dust_full_20260603_193427/manifest.json	ok
+0.costaricto	PASS	10	10	"{""adapted"": 3, ""inspired"": 7}"	39.9	release/evidence/0.costaricto_20260603_193458/manifest.json	ok
+0.outer_space	PASS	8	8	"{""adapted"": 2, ""inspired"": 6}"	39.1	release/evidence/0.outer_space_20260603_193538/manifest.json	ok
+0.operation_midnighteclipse	PASS	17	17	"{""adapted"": 5, ""inspired"": 12}"	30.3	release/evidence/0.operation_midnighteclipse_20260603_193617/manifest.json	ok
+0.salesforce_data_exfiltration	PASS	18	18	"{""adapted"": 8, ""inspired"": 10}"	33.3	release/evidence/0.salesforce_data_exfiltration_20260603_193647/manifest.json	ok
+0.caldera_linux_demo	PASS	6	6	"{""adapted"": 6}"	413.1	release/evidence/0.caldera_linux_demo_20260603_193736/manifest.json	ok
+0.fin6_emulation	PASS	12	12	"{""adapted"": 3, ""inspired"": 9}"	229.3	release/evidence/0.fin6_emulation_20260603_194445/manifest.json	ok
+0.dmz_segmentation_demo	PASS	4	4	"{""adapted"": 4}"	63.9	release/evidence/0.dmz_segmentation_demo_20260603_194834/manifest.json	ok
+0.pivot_demo	PASS	6	6	"{""adapted"": 6}"	42.0	release/evidence/0.pivot_demo_20260603_194938/manifest.json	ok
+0.cve_2021_41773	PASS	4	4	"{""adapted"": 4}"	25.5	release/evidence/0.cve_2021_41773_20260603_195020/manifest.json	ok
+0.shadowray	PASS	3	3	"{""adapted"": 3}"	85.2	release/evidence/0.shadowray_20260603_195045/manifest.json	ok

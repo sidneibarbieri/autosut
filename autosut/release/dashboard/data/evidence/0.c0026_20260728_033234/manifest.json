@@ -1,0 +1,185 @@
+{
+  "campaign_id": "0.c0026",
+  "run_id": "0.c0026_20260728_033234",
+  "timestamp": "2026-07-28T03:33:06.315187Z",
+  "attacker": {
+    "profile_id": "c0026_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh client for collection / archive / chunk."
+  },
+  "sut": {
+    "sut_id": "c0026_collection_archive_chunk",
+    "base_image": "python:3.11-slim",
+    "services": [
+      "ssh"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "ubuntu",
+          "secret": "ubuntu",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/home/ubuntu/andromeda_notes.txt",
+          "content_text": "Operation notes\n",
+          "content_b64": null,
+          "owner": "ubuntu",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/andromeda_notes.txt).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/ubuntu/staged_docs/report_2021.txt",
+          "content_text": "Quarterly report \u2014 internal\n",
+          "content_b64": null,
+          "owner": "ubuntu",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/staged_docs/report_2021.txt).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.c0026 \u2014 Linux collection / archive / chunked exfil flow."
+    },
+    "topology": null,
+    "notes": "0.c0026 \u2014 Linux collection / archive / chunked exfil flow."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1583.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1583.001_inspired.log"
+      ],
+      "duration_sec": 0.05458666698541492,
+      "notes": "Inspired emulation of Domains: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1568",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1568_inspired.log"
+      ],
+      "duration_sec": 0.033677415922284126,
+      "notes": "Inspired emulation of Dynamic Resolution: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ],
+      "duration_sec": 0.034825833048671484,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1005",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1005_seed.log",
+        "techniques/T1005_exfil.log"
+      ],
+      "duration_sec": 2.1604174999520183,
+      "notes": "Adapted: real HTTP exfil of staged file from target to attacker.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1560.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1560.001_archive.log"
+      ],
+      "duration_sec": 0.03359474998433143,
+      "notes": "Adapted: real tar+gzip archive of lab data.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1030",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1030_chunked_transfer.log"
+      ],
+      "duration_sec": 0.034355750074610114,
+      "notes": "Adapted: staged data is really split into size-limited chunks for bounded transfer.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "<local-workspace>/release/evidence/0.c0026_20260728_033234/manifest.json",
+  "summary_path": "<local-workspace>/release/evidence/0.c0026_20260728_033234/summary.json",
+  "campaign_state_path": "<local-workspace>/release/evidence/0.c0026_20260728_033234/campaign_state.json"
+}

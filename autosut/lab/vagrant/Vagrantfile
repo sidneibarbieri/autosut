@@ -1,0 +1,114 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile for macOS with QEMU TCG
+# Optimized for MITRE campaign execution
+
+Vagrant.configure("2") do |config|
+
+  # Use Ubuntu box
+  config.vm.box = "ubuntu/focal64"
+
+  # Disable synced folders for macOS compatibility
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  # Configure VM resources
+  config.vm.provider "libvirt" do |libvirt|
+    # Use QEMU TCG instead of KVM for macOS
+    libvirt.driver = "qemu"
+    libvirt.cpu_mode = "host-passthrough"
+    libvirt.machine_virtual_size = 20
+
+    # Memory and CPU
+    libvirt.memory = 2048
+    libvirt.cpus = 2
+
+    # Network configuration
+    libvirt.management_network_name = "vagrant-libvirt"
+    libvirt.management_network_address = "192.168.121.0/24"
+
+    # Use QEMU specific settings for macOS
+    libvirt.nested = false
+    libvirt.machine_type = "pc"
+    libvirt.machine_arch = "x86_64"
+  end
+
+  # Target VM
+  config.vm.define "target" do |target|
+    target.vm.hostname = "target"
+
+    # Network configuration
+    target.vm.network "private_network", ip: "192.168.56.10"
+    target.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+    target.vm.network "forwarded_port", guest: 22, host: 2222, auto_correct: true
+
+    # Provisioning
+    target.vm.provision "shell", inline: <<-SHELL
+      echo "=== PROVISIONING TARGET VM ==="
+
+      # Update system
+      export DEBIAN_FRONTEND=noninteractive
+      apt-get update
+      apt-get install -y apache2 php python3 openssh-server
+
+      # Configure Apache
+      a2enmod php7.4 rewrite
+      systemctl restart apache2
+
+      # Create vulnerable application
+      cat > /var/www/html/vulnerable.php << 'EOF'
+<?php
+// Vulnerable web application for campaign testing
+if (isset($_GET['cmd'])) {
+  system($_GET['cmd']);
+}
+?>
+EOF
+
+      # Create staging directory
+      mkdir -p /tmp/staging
+      chmod 777 /tmp/staging
+
+      # Create user accounts
+      useradd -m -s /bin/bash labuser
+      echo "labuser:weakpass123" | chpasswd
+
+      # Create files for discovery
+      echo "sensitive_data_$(date)" > /home/labuser/secrets.txt
+
+      echo "=== TARGET PROVISIONED ==="
+    SHELL
+  end
+
+  # Attacker VM
+  config.vm.define "attacker" do |attacker|
+    attacker.vm.hostname = "attacker"
+
+    # Network configuration
+    attacker.vm.network "private_network", ip: "192.168.56.20"
+    attacker.vm.network "forwarded_port", guest: 22, host: 2201, auto_correct: true
+
+    # Provisioning
+    attacker.vm.provision "shell", inline: <<-SHELL
+      echo "=== PROVISIONING ATTACKER VM ==="
+
+      # Update system
+      export DEBIAN_FRONTEND=noninteractive
+      apt-get update
+      apt-get install -y python3 python3-pip curl wget nmap openssh-client
+
+      # Install attack tools
+      pip3 install requests paramiko
+
+      # Create directories
+      mkdir -p /tmp/staging
+      mkdir -p /tmp/artifacts
+
+      # Create SSH keys
+      ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
+
+      echo "=== ATTACKER PROVISIONED ==="
+    SHELL
+  end
+
+end

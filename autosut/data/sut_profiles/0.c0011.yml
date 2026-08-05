@@ -1,0 +1,76 @@
+# =============================================================================
+# SUT Profile: 0.c0011 (Transparent Tribe - Baseline)
+# =============================================================================
+# Description: Baseline campaign with minimal Linux-focused techniques
+# Fidelity: ADAPTED for real execution, INSPIRED for Windows techniques
+# Infrastructure: 3 VMs (caldera, attacker, target-base)
+# =============================================================================
+
+campaign_id: "0.c0011"
+description: "Transparent Tribe Education Campaign - Baseline Linux execution"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 5
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "vulnuser"
+        password: "vulnpass123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/home/vulnuser/documents/confidential.txt"
+        content: "CONFIDENTIAL DATA - Company Secrets\nAPI Keys: LAB_DECOY_API_KEY\n"
+        owner: "vulnuser"
+        permissions: "644"
+
+      - path: "/home/vulnuser/documents/passwords.txt"
+        content: "admin:admin123\ndbuser:dbpass456\n"
+        owner: "vulnuser"
+        permissions: "600"
+
+    network:
+      ingress: [22, 80]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_ssh_password"
+        description: "T1078.001 - Valid Accounts with weak credentials"
+
+# No CVEs for baseline - clean but weak configuration
+deliberate_weaknesses_global: []
+
+fidelity_expectations:
+  T1587.003: "ADAPTED"      # Self-signed cert (not compromised CA)
+  T1608.001: "ADAPTED"      # Real payload staging
+  T1566.002: "INSPIRED"     # URL file only (no real web server)
+  T1204.001: "INSPIRED"     # Log entry (no real access)
+  T1204.002: "INSPIRED"     # Log entry (no real execution)
+  T1566.001: "INSPIRED"     # Email file (no real SMTP)
+  T1583.001: "INSPIRED"     # JSON file (no real DNS)
+  T1059.005: "INSPIRED"     # VBScript (Windows - no execution)
+  T1059.001: "INSPIRED"     # PowerShell (Windows - no execution)
+  T1059.007: "INSPIRED"     # JavaScript WScript (Windows)
+  T1574: "INSPIRED"        # DLL Hijack (Windows - fake DLL)
+
+methodology_notes: |
+  This baseline campaign demonstrates the AutoSUT methodology with minimal
+  infrastructure. Windows techniques are included for completeness but
+  explicitly marked as INSPIRED due to Linux substrate limitations.
+
+  Real execution occurs for:
+  - T1587.003: openssl generates real certificate
+  - T1608.001: Real file staging (functional payload)
+
+execution_mode: "real_controlled"

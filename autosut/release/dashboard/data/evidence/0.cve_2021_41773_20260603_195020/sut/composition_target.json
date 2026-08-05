@@ -1,0 +1,39 @@
+{
+  "credentials": [],
+  "artifacts": [
+    {
+      "path": "/usr/local/apache2/cgi-bin/lab.sh",
+      "content_text": "#!/bin/sh\necho Content-Type: text/plain\necho\necho LAB_CGI_OK\n",
+      "content_b64": null,
+      "owner": "root",
+      "mode": "0755",
+      "purpose": "Decoy CGI to confirm script alias mounted.",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49.",
+      "source": "corpus_supported"
+    }
+  ],
+  "applications": [
+    {
+      "name": "apache_httpd",
+      "version": "2.4.49",
+      "recipe": "apache_httpd_2.4.49_cve_2021_41773",
+      "cve_pins": [
+        "CVE-2021-41773"
+      ],
+      "config": {},
+      "image_override": null,
+      "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents.",
+      "source": "corpus_supported"
+    }
+  ],
+  "notes": "Reference composition: every realism element is declared, applied, and audit-logged."
+}

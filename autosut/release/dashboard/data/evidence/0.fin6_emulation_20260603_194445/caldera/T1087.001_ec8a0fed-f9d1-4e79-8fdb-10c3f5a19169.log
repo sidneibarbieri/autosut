@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: 3c9e1930-2b63-4d1d-876e-0bac467cc252
+link_id: ec8a0fed-f9d1-4e79-8fdb-10c3f5a19169
+ability_id: c1cd6388-3ced-48c7-a511-0434c6ba8f48
+ability_name: Find local users
+command: cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
+status: 0
+exit_code: 0
+--- stdout ---
+rootdaemonbinsyssyncgamesmanlpmailnewsuucpproxywww-databackuplistircnobodyvulnusersystemd-networksshd
+--- stderr ---
+

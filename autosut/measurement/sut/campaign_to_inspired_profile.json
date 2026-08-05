@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "description": "Mapping from campaign to inspired profile",
+  "mappings": [
+    {
+      "campaign_id": "0.solarwinds_compromise",
+      "inspired_profile": "default.alice",
+      "adversary_id": "50855e29-3b4e-4562-aa55-b3d7f93c26b8",
+      "techniques_covered": ["T1070.003"],
+      "techniques_planned": 8,
+      "rationale": "Default adversary used for infrastructure validation",
+      "current_validation_status": "infrastructure_validated"
+    },
+    {
+      "campaign_id": "0.apt28_nearest_neighbor_campaign",
+      "inspired_profile": "default.alice",
+      "adversary_id": "50855e29-3b4e-4562-aa55-b3d7f93c26b8",
+      "techniques_covered": ["T1070.003"],
+      "techniques_planned": 8,
+      "rationale": "Default adversary used for infrastructure validation",
+      "current_validation_status": "infrastructure_validated"
+    }
+  ],
+  "notes": [
+    "Current approach uses default adversary for pipeline validation",
+    "Only 1 technique observed (T1070.003) due to environment constraints",
+    "Custom inspired profiles needed for semantic differentiation",
+    "State 'running' is due to default objective (runs forever)"
+  ],
+  "planned_improvements": [
+    "Create custom inspired profiles with 2-3 techniques",
+    "Map each campaign to specific profile",
+    "Add custom objective for finite execution"
+  ]
+}

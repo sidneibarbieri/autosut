@@ -1,0 +1,4 @@
+[setup-egress] connect bridge autosut-attacker-268ecf (attacker) exit=0 
+[setup-egress] connect bridge autosut-target-4e8a91 (target) exit=0 
+[seal] attacker (autosut-attacker-268ecf): disconnect bridge exit=0; egress=SEALED
+[seal] target (autosut-target-4e8a91): disconnect bridge exit=0; egress=SEALED

@@ -1,0 +1,247 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.pivot_demo",
+  "run_id": "0.pivot_demo-canonical_20260803_172155",
+  "initial_facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "network.private.ready",
+      "subject": "network",
+      "predicate": "private.ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "technique_id": "T1046",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "service.target1.ssh"
+      ],
+      "evidence_files": [
+        "techniques/T1046_scan.log"
+      ]
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1110.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "credential.targets.ssh"
+      ],
+      "evidence_files": [
+        "techniques/T1110.001_wordlist.log",
+        "techniques/T1110.001_bruteforce.log"
+      ]
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1021.004",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "access.target1.shell"
+      ],
+      "evidence_files": [
+        "techniques/T1021.004_ssh.log"
+      ]
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1083",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "discovery.target1.files"
+      ],
+      "evidence_files": [
+        "techniques/T1083_target1_discovery.log"
+      ]
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1570",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "transfer.target2.payload"
+      ],
+      "evidence_files": [
+        "techniques/T1570_stage_payload.log",
+        "techniques/T1570_scp_attacker_to_target1.log",
+        "techniques/T1570_scp_target1_to_target2.log"
+      ]
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1059.004",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "execution.target2.shell"
+      ],
+      "evidence_files": [
+        "techniques/T1059.004_remote_exec.log"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "network.private.ready",
+      "subject": "network",
+      "predicate": "private.ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "service.target1.ssh",
+      "subject": "service",
+      "predicate": "target1.ssh",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1046_scan.log"
+      ]
+    },
+    {
+      "fact_id": "credential.targets.ssh",
+      "subject": "credential",
+      "predicate": "targets.ssh",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1110.001_wordlist.log",
+        "techniques/T1110.001_bruteforce.log"
+      ]
+    },
+    {
+      "fact_id": "access.target1.shell",
+      "subject": "access",
+      "predicate": "target1.shell",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1021.004_ssh.log"
+      ]
+    },
+    {
+      "fact_id": "discovery.target1.files",
+      "subject": "discovery",
+      "predicate": "target1.files",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1083_target1_discovery.log"
+      ]
+    },
+    {
+      "fact_id": "transfer.target2.payload",
+      "subject": "transfer",
+      "predicate": "target2.payload",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1570_stage_payload.log",
+        "techniques/T1570_scp_attacker_to_target1.log",
+        "techniques/T1570_scp_target1_to_target2.log"
+      ]
+    },
+    {
+      "fact_id": "execution.target2.shell",
+      "subject": "execution",
+      "predicate": "target2.shell",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1059.004_remote_exec.log"
+      ]
+    }
+  ],
+  "context_observations": [
+    {
+      "activity_id": "wazuh_agent_heartbeat",
+      "source_host": "target1",
+      "destination_host": "target2",
+      "protocol": "tcp",
+      "port": 1514,
+      "purpose": "Declared security-telemetry heartbeat; it must not be counted as command-and-control or exfiltration.",
+      "status": "success",
+      "evidence_files": [
+        "context/wazuh_agent_heartbeat_listener.log",
+        "context/wazuh_agent_heartbeat_sender.log",
+        "context/wazuh_agent_heartbeat_verify.log"
+      ]
+    },
+    {
+      "activity_id": "software_update_check",
+      "source_host": "target1",
+      "destination_host": "target2",
+      "protocol": "tcp",
+      "port": 18081,
+      "purpose": "Declared maintenance traffic; it must remain distinguishable from the later lateral payload transfer.",
+      "status": "success",
+      "evidence_files": [
+        "context/software_update_check_listener.log",
+        "context/software_update_check_sender.log",
+        "context/software_update_check_verify.log"
+      ]
+    }
+  ],
+  "contract_coverage": "declared",
+  "declared_technique_ids": [
+    "T1046",
+    "T1110.001",
+    "T1021.004",
+    "T1083",
+    "T1570",
+    "T1059.004"
+  ],
+  "executed_technique_ids": [
+    "T1046",
+    "T1110.001",
+    "T1021.004",
+    "T1083",
+    "T1570",
+    "T1059.004"
+  ],
+  "source_plan_sha256": null,
+  "executable_contract_sha256": null,
+  "content_sha256": "1645bb83863f1db5710b44b0043718c1d42d5f29311aa953495738edb1870f13"
+}

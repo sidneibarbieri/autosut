@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /tmp/sensitive_data.txt) && cat > /tmp/sensitive_data.txt <<'AUTOSUT_ART_EOF'
+Confidential data — staging
+
+AUTOSUT_ART_EOF
+chmod 0644 /tmp/sensitive_data.txt && chown testuser:testuser /tmp/sensitive_data.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

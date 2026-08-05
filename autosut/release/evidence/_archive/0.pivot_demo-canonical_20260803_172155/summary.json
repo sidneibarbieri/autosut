@@ -1,0 +1,13 @@
+{
+  "campaign_id": "0.pivot_demo",
+  "timestamp": "2026-08-03T17:22:47+00:00",
+  "total_techniques": 6,
+  "successful": 6,
+  "evidence_backed_successful": 6,
+  "adapted_successful": 6,
+  "marker_only_successful": 0,
+  "fidelity_distribution": {
+    "adapted": 6
+  },
+  "evidence_directory": "."
+}

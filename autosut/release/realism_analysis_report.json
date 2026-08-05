@@ -1,0 +1,152 @@
+{
+  "summary": {
+    "docker_campaigns": 8,
+    "current_campaigns": 11,
+    "docker_avg_realism": 74.0,
+    "current_avg_realism": 39.654545454545456,
+    "realism_improvement": -34.345454545454544,
+    "verdict": "\u274c Current campaigns need improvement to match Docker version realism"
+  },
+  "docker_campaigns": [
+    {
+      "campaign_id": "Outer Space",
+      "total_techniques": 8,
+      "tactic_diversity": 5,
+      "technique_complexity": 130.00000000000003,
+      "realism_score": 61.0
+    },
+    {
+      "campaign_id": "C0010",
+      "total_techniques": 9,
+      "tactic_diversity": 3,
+      "technique_complexity": 211.20000000000002,
+      "realism_score": 57.0
+    },
+    {
+      "campaign_id": "ShadowRay",
+      "total_techniques": 10,
+      "tactic_diversity": 9,
+      "technique_complexity": 214.20000000000002,
+      "realism_score": 77.0
+    },
+    {
+      "campaign_id": "Salesforce Data Exfiltration",
+      "total_techniques": 18,
+      "tactic_diversity": 9,
+      "technique_complexity": 289.7,
+      "realism_score": 93.0
+    },
+    {
+      "campaign_id": "C0026",
+      "total_techniques": 6,
+      "tactic_diversity": 4,
+      "technique_complexity": 96.39999999999999,
+      "realism_score": 54.0
+    },
+    {
+      "campaign_id": "APT41 DUST",
+      "total_techniques": 23,
+      "tactic_diversity": 8,
+      "technique_complexity": 382.59999999999997,
+      "realism_score": 94.0
+    },
+    {
+      "campaign_id": "Operation MidnightEclipse",
+      "total_techniques": 17,
+      "tactic_diversity": 8,
+      "technique_complexity": 246.79999999999998,
+      "realism_score": 88.0
+    },
+    {
+      "campaign_id": "CostaRicto",
+      "total_techniques": 10,
+      "tactic_diversity": 6,
+      "technique_complexity": 209.3,
+      "realism_score": 68.0
+    }
+  ],
+  "current_campaigns": [
+    {
+      "campaign_id": "0.c0011",
+      "total_techniques": 2,
+      "tactic_diversity": 1,
+      "technique_complexity": 2.8,
+      "realism_score": 8.68
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "total_techniques": 12,
+      "tactic_diversity": 6,
+      "technique_complexity": 18.400000000000002,
+      "realism_score": 53.04
+    },
+    {
+      "campaign_id": "0.c0010",
+      "total_techniques": 9,
+      "tactic_diversity": 7,
+      "technique_complexity": 14.9,
+      "realism_score": 47.94
+    },
+    {
+      "campaign_id": "0.c0017",
+      "total_techniques": 6,
+      "tactic_diversity": 1,
+      "technique_complexity": 8.7,
+      "realism_score": 20.22
+    },
+    {
+      "campaign_id": "0.c0015",
+      "total_techniques": 5,
+      "tactic_diversity": 1,
+      "technique_complexity": 6.0,
+      "realism_score": 16.6
+    },
+    {
+      "campaign_id": "0.shadowray",
+      "total_techniques": 10,
+      "tactic_diversity": 5,
+      "technique_complexity": 17.1,
+      "realism_score": 45.260000000000005
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "total_techniques": 18,
+      "tactic_diversity": 7,
+      "technique_complexity": 25.999999999999996,
+      "realism_score": 72.6
+    },
+    {
+      "campaign_id": "0.c0013",
+      "total_techniques": 4,
+      "tactic_diversity": 1,
+      "technique_complexity": 4.699999999999999,
+      "realism_score": 13.82
+    },
+    {
+      "campaign_id": "0.apt41_dust",
+      "total_techniques": 13,
+      "tactic_diversity": 8,
+      "technique_complexity": 20.5,
+      "realism_score": 62.3
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "total_techniques": 22,
+      "tactic_diversity": 8,
+      "technique_complexity": 33.800000000000004,
+      "realism_score": 84.28
+    },
+    {
+      "campaign_id": "0.c0012",
+      "total_techniques": 3,
+      "tactic_diversity": 1,
+      "technique_complexity": 4.1,
+      "realism_score": 11.459999999999999
+    }
+  ],
+  "recommendations": [
+    "Add more techniques per campaign to match Docker version complexity",
+    "Increase tactic diversity by using techniques from multiple MITRE ATT&CK tactics",
+    "Add more complex techniques with prerequisites and detailed descriptions"
+  ]
+}

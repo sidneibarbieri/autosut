@@ -1,0 +1,66 @@
+{
+  "campaign_id": "0.caldera_linux_demo",
+  "description": "AutoSUT demonstration of Caldera-driven dispatch on Linux. Every technique runs through a real MITRE Caldera operation against a sandcat agent registered live in the SUT container; no local recipes are used. The set is curated from Caldera's stock Atomic Red Team Linux abilities that are self-contained (no fact-source dependency, no parsers, no payload retrieval).",
+  "sut": {
+    "required_vms": ["caldera", "target"],
+    "min_hosts": 2,
+    "estimated_duration_minutes": 6
+  },
+  "vulnerabilities": [],
+  "techniques": [
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "caldera_driven",
+      "description": "Enumerate root filesystem via Caldera 'List Directory' ability."
+    },
+    {
+      "technique_id": "T1033",
+      "name": "System Owner/User Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "caldera_driven",
+      "description": "Identify current user via Caldera 'Current User' ability (whoami)."
+    },
+    {
+      "technique_id": "T1069.001",
+      "name": "Local Permission Groups Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "caldera_driven",
+      "description": "Enumerate group memberships via Caldera 'Permission Groups Discovery' ability."
+    },
+    {
+      "technique_id": "T1018",
+      "name": "Remote System Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "caldera_driven",
+      "description": "Parse known SSH hosts via Caldera 'Parse SSH known_hosts' ability."
+    },
+    {
+      "technique_id": "T1491",
+      "name": "Defacement",
+      "tactic": "impact",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "caldera_driven",
+      "description": "Drop a 'this machine was hacked' note via Caldera 'Leave note' ability."
+    },
+    {
+      "technique_id": "T1518",
+      "name": "Software Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "caldera_driven",
+      "description": "Probe for Go toolchain via Caldera 'Check Go' ability."
+    }
+  ]
+}

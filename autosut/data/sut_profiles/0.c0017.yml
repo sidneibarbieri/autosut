@@ -1,0 +1,58 @@
+# =============================================================================
+# SUT Profile: 0.c0017 (APT29 Linux Stealth Baseline)
+# =============================================================================
+
+campaign_id: "0.c0017"
+description: "Minimal Linux SUT for APT29-style stealth execution and persistence flow"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 5
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "delivery_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "testuser"
+        password: "password123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/tmp/phishing_context.txt"
+        content: "Simulated delivery context for inspired workflow"
+        owner: "testuser"
+        permissions: "644"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "testuser"
+        password: "password123"
+        description: "Enables reproducible SSH authentication for post-compromise chain"
+
+fidelity_expectations:
+  T1059.004: "ADAPTED"
+  T1083: "ADAPTED"
+  T1053: "ADAPTED"
+  T1543: "ADAPTED"
+  T1027: "ADAPTED"
+  T1564: "ADAPTED"
+
+methodology_notes: |
+  Profile aligned with the published 0.c0017 Linux technique chain.
+  It preserves deterministic execution in a controlled substrate while
+  keeping technique-level fidelity expectations explicit.
+
+execution_mode: "real_controlled"

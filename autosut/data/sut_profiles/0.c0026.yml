@@ -1,0 +1,59 @@
+campaign_id: "0.c0026"
+description: "Linux SUT for the legacy C0026 domain-resolution, collection, archive, and chunked-exfil chain"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 12
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "collection_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "ubuntu"
+        password: "ubuntu"
+        sudo: true
+        home_files: true
+
+    files:
+      - path: "/home/ubuntu/andromeda_notes.txt"
+        content: "Controlled collection seed for C0026."
+        owner: "ubuntu"
+        permissions: "644"
+      - path: "/home/ubuntu/staged_docs/report_2021.txt"
+        content: "Synthetic report staged for archive and chunking validation."
+        owner: "ubuntu"
+        permissions: "644"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        description: "Deterministic SSH access for controlled lab execution."
+      - type: "local_resolution_override"
+        description: "Local resolver path may be adapted for lab-only dynamic resolution."
+
+fidelity_expectations:
+  T1583.001: "INSPIRED"
+  T1568: "ADAPTED"
+  T1105: "ADAPTED"
+  T1005: "ADAPTED"
+  T1560.001: "ADAPTED"
+  T1030: "ADAPTED"
+
+methodology_notes: |
+  This profile re-aligns C0026 with the legacy Docker corpus while keeping the
+  execution substrate safe and reproducible. Resource development remains
+  inspired, while resolution, transfer, collection, archive, and chunking run
+  with controlled Linux commands in the target substrate when available.
+
+execution_mode: "real_controlled"

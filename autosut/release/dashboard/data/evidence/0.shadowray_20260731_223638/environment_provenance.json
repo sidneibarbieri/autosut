@@ -1,0 +1,110 @@
+{
+  "campaign_id": "0.shadowray",
+  "total_elements": 6,
+  "by_source": {
+    "corpus_supported": 4,
+    "analyst_authored": 2,
+    "autosut_concretized": 0,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 66.7,
+    "analyst_authored": 33.3,
+    "autosut_concretized": 0.0,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.ray",
+      "value": "api_token:ray",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "Ray dashboard ships without authentication on the unauthenticated job-submission endpoint exploited by CVE-2023-48022."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.8265",
+      "value": "8265/tcp ray_dashboard_http",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./opt/sensitive/credentials.txt",
+      "value": "/opt/sensitive/credentials.txt",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./opt/sensitive/manifest.txt",
+      "value": "/opt/sensitive/manifest.txt",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation."
+    },
+    {
+      "dimension": "vulnerability",
+      "identifier": "vulnerability.CVE-2023-48022",
+      "value": "CVE-2023-48022",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "real_cve / ray"
+    }
+  ]
+}

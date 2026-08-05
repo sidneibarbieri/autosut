@@ -1,0 +1,36 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "labuser",
+      "secret": "Lab-Demo-2026!",
+      "location": null,
+      "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service.",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "The remote authenticated SSH service the attacker brute-forces (T1110.001) and pivots through (T1021.004). A FREE, analyst-authored implementation choice: the corpus pins only that a remote authenticated service must exist, not which SSH server realises it. The non-uniqueness witness substitutes it (OpenSSH <-> Dropbear) and executes both to completion under one corpus fingerprint.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "Pivot target realism: weak SSH credential + listening port 22 on the per-run private Docker network."
+}

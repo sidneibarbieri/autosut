@@ -1,0 +1,5 @@
+# host bring-up: attacker (attacker)
+image: autosut/dmz-host:s28
+container: autosut-attacker-92ccae
+network: autosut-internet_edge-8e9fdd
+container_id: 827cbac84391b28d5702ad378840e69aef67f3d0a140b39fa60e66a51d52a602

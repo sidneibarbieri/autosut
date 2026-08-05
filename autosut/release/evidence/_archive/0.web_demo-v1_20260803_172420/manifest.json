@@ -1,0 +1,163 @@
+{
+  "campaign_id": "0.web_demo",
+  "run_id": "0.web_demo-v1_20260803_172420",
+  "timestamp": "2026-08-03T17:24:52.153713Z",
+  "attacker": {
+    "profile_id": "web_attacker",
+    "capabilities": [
+      "http_client",
+      "basic_auth_bruteforce"
+    ],
+    "notes": "alpine with curl for the HTTP Basic Auth brute-force and exfil chain."
+  },
+  "sut": {
+    "sut_id": "0.web_demo-s1",
+    "base_image": "alpine:3.19",
+    "platform_source": "analyst_authored",
+    "services": [
+      "http"
+    ],
+    "memory_mb": 512,
+    "smp": 1,
+    "backend": null,
+    "hosts": [
+      {
+        "name": "attacker",
+        "base_image": "alpine:3.19",
+        "platform_source": "analyst_authored",
+        "role": "attacker",
+        "services": [],
+        "memory_mb": 512,
+        "smp": 1,
+        "startup_commands": [
+          "apk add --no-cache curl bash >/dev/null 2>&1 && echo attacker_tools_installed"
+        ],
+        "composition": {
+          "credentials": [],
+          "artifacts": [],
+          "exposures": [],
+          "applications": [],
+          "notes": "Attacker host has no pre-staged credentials of its own; the campaign's recipes recover the web credential by brute force."
+        },
+        "zones": []
+      },
+      {
+        "name": "webtarget",
+        "base_image": "alpine:3.19",
+        "platform_source": "analyst_authored",
+        "role": "target",
+        "services": [
+          "http"
+        ],
+        "memory_mb": 512,
+        "smp": 1,
+        "startup_commands": [
+          "apk add --no-cache bash >/dev/null 2>&1 || true"
+        ],
+        "composition": {
+          "credentials": [],
+          "artifacts": [],
+          "exposures": [
+            {
+              "port": 80,
+              "protocol": "tcp",
+              "service": "http",
+              "expose_to": "private_network",
+              "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target.",
+              "source": "analyst_authored"
+            }
+          ],
+          "applications": [
+            {
+              "name": "nginx",
+              "version": "default",
+              "recipe": "nginx_equivalent",
+              "cve_pins": [],
+              "config": {},
+              "image_override": null,
+              "purpose": "Realises the same abstract precondition: edge HTTP service.",
+              "source": "analyst_authored"
+            }
+          ],
+          "notes": "Web target realism: HTTP Basic Auth realm with a pre-staged weak credential and a protected secret on the per-run private network."
+        },
+        "zones": []
+      }
+    ],
+    "composition": null,
+    "topology": null,
+    "notes": "Two-host edge-HTTP witness. Lab pre-stages a weak HTTP Basic Auth credential on the web target; the attacker discovers it via T1110.001 and exfiltrates the protected secret."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1046",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1046_web_scan.log"
+      ],
+      "duration_sec": 0.03983345895539969,
+      "notes": "webtarget:80 answered HTTP 401",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1110.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1110.001_web_wordlist.log",
+        "techniques/T1110.001_web_bruteforce.log"
+      ],
+      "duration_sec": 0.07584329193923622,
+      "notes": "matched the HTTP Basic Auth password from a 6-entry wordlist",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1078",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1078_web_auth.log"
+      ],
+      "duration_sec": 0.03298770892433822,
+      "notes": "authenticated to the protected resource with the recovered credentials (HTTP 200)",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1005",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1005_web_exfil.log"
+      ],
+      "duration_sec": 0.03519691701512784,
+      "notes": "exfiltrated the protected secret over the authenticated HTTP channel",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

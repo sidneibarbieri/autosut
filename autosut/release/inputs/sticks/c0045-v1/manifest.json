@@ -1,0 +1,84 @@
+{
+  "schema_version": "1",
+  "input_set_id": "sticks-c0045-v1",
+  "campaign_id": "C0045",
+  "upstream_project": "STICKS",
+  "upstream_git_revision": "ce204a9b4b99ede934c5d98841ee1593909a5e57",
+  "scope": "Versioned deterministic planning inputs and resolver outputs; no entry is an execution record.",
+  "files": [
+    {
+      "role": "action_catalog",
+      "path": "action_templates.json",
+      "sha256": "d6328b86449000a0759853a6f680b27e6cdd311f65975c419aa631b644a86979",
+      "source_path": "data/concretization/action_templates.json",
+      "semantic_sha256": "258ebefdd50226fee4583d0b65abefd2d93959466c584db460d8e4bbb37303b0"
+    },
+    {
+      "role": "procedural_plan",
+      "path": "C0045.procedural-plan.json",
+      "sha256": "6897a9754af2a2f9efb95decd80ed612722d5df66850e3b007488ee431f0471f",
+      "source_path": "release/plans/C0045.procedural-plan.json",
+      "internal_content_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911"
+    },
+    {
+      "role": "raw_binding_catalog",
+      "path": "C0045.raw.binding-catalog.json",
+      "sha256": "bdd68201a0fd3d0692474ff72e4fac1fe83ab8ba23d24eb4bc3c707731787009",
+      "source_path": "release/plans/C0045.raw.binding-catalog.json",
+      "internal_content_sha256": "e6773e8c0611786456cc14e05c900d286e2fbccb2ebca7348a531394eee58d3a"
+    },
+    {
+      "role": "raw_resolver_output",
+      "path": "C0045.raw.concretized-plan.json",
+      "sha256": "e1d36e579ce8270dff006178383562d3d55b1d87e45bdfdef22c197a153c3212",
+      "source_path": "release/plans/C0045.raw.concretized-plan.json",
+      "internal_content_sha256": "11e49e4e9d4f2a5b9f12027cb75fccaebe2087bd9db7e1f5c2d59cad6aacb9c6"
+    },
+    {
+      "role": "autosut_binding_catalog",
+      "path": "C0045.binding-catalog.json",
+      "sha256": "a7839d03def8c3b139a84122b8e2d97a1aea131285d10df57dc5677bb308313f",
+      "source_path": "release/plans/C0045.binding-catalog.json",
+      "internal_content_sha256": "ee9cbd4a64e308e332d7f3df1259208fdc9085d8e5d8d8e01fef8a9cc83c87aa"
+    },
+    {
+      "role": "autosut_resolver_output",
+      "path": "C0045.concretized-plan.json",
+      "sha256": "097cc32caf509b62b6abb26e7028e677f68fb6af531780d299018f068601e62c",
+      "source_path": "release/plans/C0045.concretized-plan.json",
+      "internal_content_sha256": "62b77fbb16169f7b855ec089ed20732e88913aa68294e755bba944fbaac2368d"
+    },
+    {
+      "role": "autosut_repetition_1",
+      "path": "C0045.solver.1.json",
+      "sha256": "097cc32caf509b62b6abb26e7028e677f68fb6af531780d299018f068601e62c",
+      "source_path": "release/plans/repetitions/C0045.solver.1.json",
+      "internal_content_sha256": "62b77fbb16169f7b855ec089ed20732e88913aa68294e755bba944fbaac2368d"
+    },
+    {
+      "role": "autosut_repetition_2",
+      "path": "C0045.solver.2.json",
+      "sha256": "097cc32caf509b62b6abb26e7028e677f68fb6af531780d299018f068601e62c",
+      "source_path": "release/plans/repetitions/C0045.solver.2.json",
+      "internal_content_sha256": "62b77fbb16169f7b855ec089ed20732e88913aa68294e755bba944fbaac2368d"
+    },
+    {
+      "role": "fixed_reference_sut",
+      "path": "C0045.fixed-reference-sut.json",
+      "sha256": "b35a78215e43d814f36d33485b2f2ea38c872386f4aa7fd6cebe9372b1803b87"
+    },
+    {
+      "role": "fixed_reference_binding_catalog",
+      "path": "C0045.fixed-reference.binding-catalog.json",
+      "sha256": "0b26827292e647a85102738e5f09958be429384c2d7349d36269932bf0c65d8d",
+      "internal_content_sha256": "639157934a0b5c947faf5f80e285302c6b409b42a173336f4ffb8f5912f458e6"
+    },
+    {
+      "role": "fixed_reference_resolver_output",
+      "path": "C0045.fixed-reference.concretized-plan.json",
+      "sha256": "03d603d8b3d1a4241587af78ea45fcfdd62e37a602d0f80306036fd4b8f1a58d",
+      "internal_content_sha256": "d17cc11a4b9bf023672634d8c143c8aa8b7addb8bcfebf9744194c3503b77f3a"
+    }
+  ],
+  "content_sha256": "3391fda175660616c3dcd1565b9e5ef1cd176a8138553caa2a296df30acbd4c9"
+}

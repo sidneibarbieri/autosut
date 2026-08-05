@@ -1,0 +1,2032 @@
+{
+  "type": "bundle",
+  "id": "bundle--19202835-c75e-4110-86b5-0853759b73fc",
+  "objects": [
+    {
+      "modified": "2024-12-02T22:01:07.830Z",
+      "name": "ShadowRay",
+      "description": "[ShadowRay](https://attack.mitre.org/campaigns/C0045) was a campaign that began in late 2023 targeting the education, cryptocurrency, biopharma, and other sectors through a vulnerability (CVE-2023-48022) in the Ray AI framework named ShadowRay. According to security researchers [ShadowRay](https://attack.mitre.org/campaigns/C0045) was the first known instance of AI workloads being activley exploited in the wild through vulnerabilities in AI infrastructure. CVE-2023-48022, which allows access to compute resources and sensitive data for exposed instances, remains unpatched and has been disputed by the vendor as they maintain that Ray is not intended for use outside of a strictly controlled network environment.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "aliases": [
+        "ShadowRay"
+      ],
+      "first_seen": "2023-09-01T04:00:00.000Z",
+      "last_seen": "2024-03-01T05:00:00.000Z",
+      "x_mitre_first_seen_citation": "(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "x_mitre_last_seen_citation": "(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "x_mitre_deprecated": false,
+      "x_mitre_version": "1.0",
+      "x_mitre_contributors": [
+        "Shun Miyazaki, NEC Corporation",
+        "Sareena Karapoola, NEC Corporation India",
+        "Pooja Natarajan, NEC Corporation India"
+      ],
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "created": "2024-12-02T19:35:14.473Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/campaigns/C0045",
+          "external_id": "C0045"
+        },
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "created": "2020-10-01T02:08:33.977Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1588/002",
+          "external_id": "T1588.002"
+        },
+        {
+          "source_name": "Sentinel Labs Top Tier Target 2025",
+          "description": " Tom Hegel, Aleksandar Milenkoski & Jim Walter. (2025, April 28). Top Tier Target | What It Takes to Defend a Cybersecurity Company from Today\u2019s Adversaries. Retrieved May 22, 2025.",
+          "url": "https://www.sentinelone.com/labs/top-tier-target-what-it-takes-to-defend-a-cybersecurity-company-from-todays-adversaries/"
+        },
+        {
+          "source_name": "Analyzing CS Dec 2020",
+          "description": "Maynier, E. (2020, December 20). Analyzing Cobalt Strike for Fun and Profit. Retrieved October 12, 2021.",
+          "url": "https://www.randhome.io/blog/2020/12/20/analyzing-cobalt-strike-for-fun-and-profit/"
+        },
+        {
+          "source_name": "Recorded Future Beacon 2019",
+          "description": "Recorded Future. (2019, June 20). Out of the Blue: How Recorded Future Identified Rogue Cobalt Strike Servers. Retrieved September 16, 2024.",
+          "url": "https://www.recordedfuture.com/blog/identifying-cobalt-strike-servers"
+        },
+        {
+          "source_name": "Forescout Conti Leaks 2022",
+          "description": "Vedere Labs. (2022, March 11). Analysis of Conti Leaks. Retrieved May 22, 2025.",
+          "url": "https://www.forescout.com/resources/analysis-of-conti-leaks/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:10.900Z",
+      "name": "Tool",
+      "description": "Adversaries may buy, steal, or download software tools that can be used during targeting. Tools can be open or closed source, free or commercial. A tool can be used for malicious purposes by an adversary, but (unlike malware) were not intended to be used for those purposes (ex: [PsExec](https://attack.mitre.org/software/S0029)). \n\nAdversaries may obtain tools to support their operations, including to support execution of post-compromise behaviors. Tools may also be leveraged for testing \u2013 for example, evaluating malware against commercial antivirus or endpoint detection and response (EDR) applications.(Citation: Forescout Conti Leaks 2022)(Citation: Sentinel Labs Top Tier Target 2025)\n\nTool acquisition may involve the procurement of commercial software licenses, including for red teaming tools such as Cobalt Strike. In addition to freely downloading or purchasing software, adversaries may steal software and/or software licenses from third-party entities (including other adversaries). Threat actors may also crack trial versions of software.(Citation: Recorded Future Beacon 2019)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "resource-development"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.3.0",
+      "x_mitre_contributors": [
+        "SOCCRATES",
+        "Mnemonic AS",
+        "Menachem Goldstein"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "PRE"
+      ],
+      "x_mitre_version": "1.2"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--7e2a54af-5e8f-4431-810d-7fcaa4c1eca0",
+      "created": "2024-12-02T19:57:36.274Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:26:50.935Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used tools including the XMRig miner and Interactsh.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 1,
+        "technique_id": "T1588.002",
+        "action_template_id": "stage-benign-toolkit",
+        "parameter_kinds": {
+          "actor": "actor_host",
+          "toolkit": "toolkit"
+        },
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "actor.toolkit.ready"
+        ],
+        "evidence_predicates": [
+          "artifact_hash_recorded"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--7e2a54af-5e8f-4431-810d-7fcaa4c1eca0"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "10633a069af3601cb4391e2c594c7ef11ec718c968c05ee97b6e411541633e7f"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1588.002",
+        "selected_platform": {
+          "status": "not_applicable",
+          "values": [],
+          "provenance": null
+        },
+        "backend_cue": {
+          "status": "not_applicable",
+          "values": [],
+          "provenance": null
+        },
+        "requirements": [],
+        "parameter_bindings": {
+          "actor": "actor.primary",
+          "toolkit": "toolkit.benign"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "faacaf7ea33de090f7df4399259ec959cf83daca207cd5f4724d4260a41cc14c"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c",
+      "created": "2018-04-18T17:59:24.739Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1190",
+          "external_id": "T1190"
+        },
+        {
+          "source_name": "CWE top 25",
+          "description": "Christey, S., Brown, M., Kirby, D., Martin, B., Paller, A.. (2011, September 13). 2011 CWE/SANS Top 25 Most Dangerous Software Errors. Retrieved April 10, 2019.",
+          "url": "https://cwe.mitre.org/top25/index.html"
+        },
+        {
+          "source_name": "CIS Multiple SMB Vulnerabilities",
+          "description": "CIS. (2017, May 15). Multiple Vulnerabilities in Microsoft Windows SMB Server Could Allow for Remote Code Execution. Retrieved April 3, 2018.",
+          "url": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-microsoft-windows-smb-server-could-allow-for-remote-code-execution/"
+        },
+        {
+          "source_name": "Ars Technica VMWare Code Execution Vulnerability 2021",
+          "description": "Dan Goodin . (2021, February 25). Code-execution flaw in VMware has a severity rating of 9.8 out of 10. Retrieved April 8, 2025.",
+          "url": "https://arstechnica.com/information-technology/2021/02/armed-with-exploits-hackers-on-the-prowl-for-a-critical-vmware-vulnerability/"
+        },
+        {
+          "source_name": "Recorded Future ESXiArgs Ransomware 2023",
+          "description": "German Hoeffner, Aaron Soehnen and Gianni Perez. (2023, February 7). ESXiArgs Ransomware Targets Publicly-Exposed ESXi OpenSLP Servers. Retrieved March 26, 2025.",
+          "url": "https://www.recordedfuture.com/blog/esxiargs-ransomware-targets-vmware-esxi-openslp-servers"
+        },
+        {
+          "source_name": "Wired Russia Cyberwar",
+          "description": "Greenberg, A. (2022, November 10). Russia\u2019s New Cyberwarfare in Ukraine Is Fast, Dirty, and Relentless. Retrieved March 22, 2023.",
+          "url": "https://www.wired.com/story/russia-ukraine-cyberattacks-mandiant/"
+        },
+        {
+          "source_name": "Mandiant Fortinet Zero Day",
+          "description": "Marvi, A. et al.. (2023, March 16). Fortinet Zero-Day and Custom Malware Used by Suspected Chinese Actor in Espionage Operation. Retrieved March 22, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/fortinet-malware-ecosystem"
+        },
+        {
+          "source_name": "NVD CVE-2016-6662",
+          "description": "National Vulnerability Database. (2017, February 2). CVE-2016-6662 Detail. Retrieved April 3, 2018.",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2016-6662"
+        },
+        {
+          "source_name": "NVD CVE-2014-7169",
+          "description": "National Vulnerability Database. (2017, September 24). CVE-2014-7169 Detail. Retrieved April 3, 2018.",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2014-7169"
+        },
+        {
+          "source_name": "Cisco Blog Legacy Device Attacks",
+          "description": "Omar Santos. (2020, October 19). Attackers Continue to Target Legacy Devices. Retrieved October 20, 2020.",
+          "url": "https://community.cisco.com/t5/security-blogs/attackers-continue-to-target-legacy-devices/ba-p/4169954"
+        },
+        {
+          "source_name": "OWASP Top 10",
+          "description": "OWASP. (2018, February 23). OWASP Top Ten Project. Retrieved April 3, 2018.",
+          "url": "https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project"
+        },
+        {
+          "source_name": "US-CERT TA18-106A Network Infrastructure Devices 2018",
+          "description": "US-CERT. (2018, April 20). Russian State-Sponsored Cyber Actors Targeting Network Infrastructure Devices. Retrieved October 19, 2020.",
+          "url": "https://us-cert.cisa.gov/ncas/alerts/TA18-106A"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:48:41.788Z",
+      "name": "Exploit Public-Facing Application",
+      "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.\n\nExploited applications are often websites/web servers, but can also include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other system with Internet-accessible open sockets.(Citation: NVD CVE-2016-6662)(Citation: CIS Multiple SMB Vulnerabilities)(Citation: US-CERT TA18-106A Network Infrastructure Devices 2018)(Citation: Cisco Blog Legacy Device Attacks)(Citation: NVD CVE-2014-7169) On ESXi infrastructure, adversaries may exploit exposed OpenSLP services; they may alternatively exploit exposed VMware vCenter servers.(Citation: Recorded Future ESXiArgs Ransomware 2023)(Citation: Ars Technica VMWare Code Execution Vulnerability 2021) Depending on the flaw being exploited, this may also involve [Exploitation for Defense Evasion](https://attack.mitre.org/techniques/T1211) or [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203).\n\nIf an application is hosted on cloud-based infrastructure and/or is containerized, then exploiting it may lead to compromise of the underlying instance or container. This can allow an adversary a path to access the cloud or container APIs (e.g., via the [Cloud Instance Metadata API](https://attack.mitre.org/techniques/T1552/005)), exploit container host access via [Escape to Host](https://attack.mitre.org/techniques/T1611), or take advantage of weak identity and access management policies.\n\nAdversaries may also exploit edge network infrastructure and related appliances, specifically targeting devices that do not support robust host-based defenses.(Citation: Mandiant Fortinet Zero Day)(Citation: Wired Russia Cyberwar)\n\nFor websites and databases, the OWASP top 10 and CWE top 25 highlight the most common web-based vulnerabilities.(Citation: OWASP Top 10)(Citation: CWE top 25)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "initial-access"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.3.0",
+      "x_mitre_contributors": [
+        "Praetorian",
+        "Yossi Weizman, Azure Defender Research Team",
+        "Don Le, Stifel Financial"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "x_mitre_version": "2.8"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--0beabd79-c7a6-449b-806b-c50979cbc3d7",
+      "created": "2024-12-02T19:41:07.938Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T21:55:54.879Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors exploited CVE-2023-48022 on publicly exposed Ray servers to steal computing power and to expose sensitive data.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 2,
+        "technique_id": "T1190",
+        "action_template_id": "probe-declared-public-service",
+        "parameter_kinds": {
+          "actor": "actor_host",
+          "endpoint": "endpoint",
+          "target": "target_host"
+        },
+        "requires": [
+          "sut.ray_dashboard.reachable"
+        ],
+        "produces": [
+          "access.target.shell"
+        ],
+        "evidence_predicates": [
+          "service_request_logged",
+          "bounded_effect_observed"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--0beabd79-c7a6-449b-806b-c50979cbc3d7"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "bb1ee2c1522931cbd16de2710d16d835a1b09c81bd651892742c8b9a91634519"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1190",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1190.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Network Devices",
+              "Containers",
+              "IaaS",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          },
+          {
+            "requirement_id": "T1190.service.1",
+            "kind": "service",
+            "acceptable_values": [
+              "public-facing-application"
+            ],
+            "source": "curated_rule"
+          }
+        ],
+        "parameter_bindings": {
+          "actor": "actor.primary",
+          "endpoint": "endpoint.public_service",
+          "target": "target.primary"
+        },
+        "software": [
+          {
+            "cve_id": "CVE-2023-48022",
+            "product": "Ray",
+            "package_name": {
+              "status": "resolved",
+              "values": [
+                "ray"
+              ],
+              "provenance": {
+                "source_kind": "curated_cve_resolution_rule",
+                "source_ids": [
+                  "CVE-2023-48022",
+                  "https://nvd.nist.gov/vuln/detail/CVE-2023-48022",
+                  "https://pypi.org/project/ray/",
+                  "https://github.com/ray-project/ray/releases/tag/ray-2.6.3",
+                  "https://github.com/ray-project/ray/releases/tag/ray-2.8.0"
+                ],
+                "source_sha256": "58a22118244dcac975f2311e62da09f6e400b450692fc4c554b59083b19fd6bf",
+                "method": "exact CVE identifier lookup in a frozen rule table"
+              }
+            },
+            "candidate_versions": {
+              "status": "resolved",
+              "values": [
+                "2.6.3",
+                "2.8.0"
+              ],
+              "provenance": {
+                "source_kind": "curated_cve_resolution_rule",
+                "source_ids": [
+                  "CVE-2023-48022",
+                  "https://nvd.nist.gov/vuln/detail/CVE-2023-48022",
+                  "https://pypi.org/project/ray/",
+                  "https://github.com/ray-project/ray/releases/tag/ray-2.6.3",
+                  "https://github.com/ray-project/ray/releases/tag/ray-2.8.0"
+                ],
+                "source_sha256": "58a22118244dcac975f2311e62da09f6e400b450692fc4c554b59083b19fd6bf",
+                "method": "exact CVE identifier lookup in a frozen rule table"
+              }
+            },
+            "version_range": {
+              "status": "unresolved",
+              "values": [],
+              "provenance": null
+            },
+            "cpe23_uri": {
+              "status": "unresolved",
+              "values": [],
+              "provenance": null
+            },
+            "install_channel": {
+              "status": "resolved",
+              "values": [
+                "pip"
+              ],
+              "provenance": {
+                "source_kind": "curated_cve_resolution_rule",
+                "source_ids": [
+                  "CVE-2023-48022",
+                  "https://nvd.nist.gov/vuln/detail/CVE-2023-48022",
+                  "https://pypi.org/project/ray/",
+                  "https://github.com/ray-project/ray/releases/tag/ray-2.6.3",
+                  "https://github.com/ray-project/ray/releases/tag/ray-2.8.0"
+                ],
+                "source_sha256": "58a22118244dcac975f2311e62da09f6e400b450692fc4c554b59083b19fd6bf",
+                "method": "exact CVE identifier lookup in a frozen rule table"
+              }
+            }
+          }
+        ],
+        "unresolved_applicable_fields": [
+          "cpe23_uri",
+          "version_range"
+        ],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "c6eeae9e0613b6d247e3cde08e18c43c46e96281e097108346754930434d042a"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+      "created": "2020-03-09T14:38:24.334Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1059/006",
+          "external_id": "T1059.006"
+        },
+        {
+          "source_name": "Zscaler APT31 Covid-19 October 2020",
+          "description": "Singh, S. and Antil, S. (2020, October 27). APT-31 Leverages COVID-19 Vaccine Theme and Abuses Legitimate Online Services. Retrieved March 24, 2021.",
+          "url": "https://www.zscaler.com/blogs/security-research/apt-31-leverages-covid-19-vaccine-theme-and-abuses-legitimate-online"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:23.660Z",
+      "name": "Python",
+      "description": "Adversaries may abuse Python commands and scripts for execution. Python is a very popular scripting/programming language, with capabilities to perform many functions. Python can be executed interactively from the command-line (via the <code>python.exe</code> interpreter) or via scripts (.py) that can be written and distributed to different systems. Python code can also be compiled into binary executables.(Citation: Zscaler APT31 Covid-19 October 2020)\n\nPython comes with many built-in packages to interact with the underlying system, such as file operations and device I/O. Adversaries can use these libraries to download and execute commands or other scripts as well as perform various malicious behaviors.",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "execution"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "x_mitre_version": "1.1",
+      "x_mitre_remote_support": false
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--c4d89012-734f-472c-9e07-f99fcdcf7077",
+      "created": "2024-12-02T21:29:47.146Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:45:34.588Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used the Python `pty` module to open reverse shells.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 3,
+        "technique_id": "T1059.006",
+        "action_template_id": "run-benign-python",
+        "parameter_kinds": {
+          "runtime": "runtime",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "execution.target.python"
+        ],
+        "evidence_predicates": [
+          "process_exit_recorded",
+          "stdout_hash_recorded"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--c4d89012-734f-472c-9e07-f99fcdcf7077"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "ed71d71d973664d7340c5ab9bf342131931fc37c357ca1d2ae4baf81b46541f3"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1059.006",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1059.006.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "runtime": "runtime.python3",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "7fc8642f2f1de41d99a03da6324950df2e70d2f97b8b26818b97d5e7922ab9e8"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b63a34e8-0a61-4c97-a23b-bf8a2ed812e2",
+      "created": "2020-01-24T14:13:45.936Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1546/004",
+          "external_id": "T1546.004"
+        },
+        {
+          "source_name": "anomali-linux-rabbit",
+          "description": "Anomali Threat Research. (2018, December 6). Pulling Linux Rabbit/Rabbot Malware Out of a Hat. Retrieved December 17, 2020.",
+          "url": "https://www.anomali.com/blog/pulling-linux-rabbit-rabbot-malware-out-of-a-hat"
+        },
+        {
+          "source_name": "anomali-rocke-tactics",
+          "description": "Anomali Threat Research. (2019, October 15). Illicit Cryptomining Threat Actor Rocke Changes Tactics, Now More Difficult to Detect. Retrieved December 17, 2020.",
+          "url": "https://www.anomali.com/blog/illicit-cryptomining-threat-actor-rocke-changes-tactics-now-more-difficult-to-detect"
+        },
+        {
+          "source_name": "Linux manual bash invocation",
+          "description": "ArchWiki. (2021, January 19). Bash. Retrieved February 25, 2021.",
+          "url": "https://wiki.archlinux.org/index.php/Bash#Invocation"
+        },
+        {
+          "source_name": "ScriptingOSX zsh",
+          "description": "Armin Briegel. (2019, June 5). Moving to zsh, part 2: Configuration Files. Retrieved February 25, 2021.",
+          "url": "https://scriptingosx.com/2019/06/moving-to-zsh-part-2-configuration-files/"
+        },
+        {
+          "source_name": "bencane blog bashrc",
+          "description": "Benjamin Cane. (2013, September 16). Understanding a little more about /etc/profile and /etc/bashrc. Retrieved September 25, 2024.",
+          "url": "https://web.archive.org/web/20220316014323/http://bencane.com/2013/09/16/understanding-a-little-more-about-etcprofile-and-etcbashrc/"
+        },
+        {
+          "source_name": "macOS MS office sandbox escape",
+          "description": "Cedric Owens. (2021, May 22). macOS MS Office Sandbox Brain Dump. Retrieved August 20, 2021.",
+          "url": "https://cedowens.medium.com/macos-ms-office-sandbox-brain-dump-4509b5fed49a"
+        },
+        {
+          "source_name": "Magento",
+          "description": "Cesar Anjos. (2018, May 31). Shell Logins as a Magento Reinfection Vector. Retrieved December 17, 2020.",
+          "url": "https://blog.sucuri.net/2018/05/shell-logins-as-a-magento-reinfection-vector.html"
+        },
+        {
+          "source_name": "Tsunami",
+          "description": "Claud Xiao and Cong Zheng. (2017, April 6). New IoT/Linux Malware Targets DVRs, Forms Botnet. Retrieved December 17, 2020.",
+          "url": "https://unit42.paloaltonetworks.com/unit42-new-iotlinux-malware-targets-dvrs-forms-botnet/"
+        },
+        {
+          "source_name": "PersistentJXA_leopitt",
+          "description": "Leo Pitt. (2020, August 6). Persistent JXA - A poor man's Powershell for macOS. Retrieved January 11, 2021.",
+          "url": "https://posts.specterops.io/persistent-jxa-66e1c3cd1cf5"
+        },
+        {
+          "source_name": "code_persistence_zsh",
+          "description": "Leo Pitt. (2020, November 11). Github - PersistentJXA/BashProfilePersist.js. Retrieved January 11, 2021.",
+          "url": "https://github.com/D00MFist/PersistentJXA/blob/master/BashProfilePersist.js"
+        },
+        {
+          "source_name": "ESF_filemonitor",
+          "description": "Patrick Wardle. (2019, September 17). Writing a File Monitor with Apple's Endpoint Security Framework. Retrieved December 17, 2020.",
+          "url": "https://objective-see.com/blog/blog_0x48.html"
+        },
+        {
+          "source_name": "intezer-kaiji-malware",
+          "description": "Paul Litvak. (2020, May 4). Kaiji: New Chinese Linux malware turning to Golang. Retrieved December 17, 2020.",
+          "url": "https://www.intezer.com/blog/research/kaiji-new-chinese-linux-malware-turning-to-golang/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:15.960Z",
+      "name": "Unix Shell Configuration Modification",
+      "description": "Adversaries may establish persistence through executing malicious commands triggered by a user\u2019s shell. User [Unix Shell](https://attack.mitre.org/techniques/T1059/004)s execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (<code>/etc</code>) and the user\u2019s home directory (<code>~/</code>) to configure the environment. All login shells on a system use /etc/profile when initiated. These configuration scripts run at the permission level of their directory and are often used to set environment variables, create aliases, and customize the user\u2019s environment. When the shell exits or terminates, additional shell scripts are executed to ensure the shell exits appropriately. \n\nAdversaries may attempt to establish persistence by inserting commands into scripts automatically executed by shells. Using bash as an example, the default shell for most GNU/Linux systems, adversaries may add commands that launch malicious binaries into the <code>/etc/profile</code> and <code>/etc/profile.d</code> files.(Citation: intezer-kaiji-malware)(Citation: bencane blog bashrc) These files typically require root permissions to modify and are executed each time any shell on a system launches. For user level permissions, adversaries can insert malicious commands into <code>~/.bash_profile</code>, <code>~/.bash_login</code>, or <code>~/.profile</code> which are sourced when a user opens a command-line interface or connects remotely.(Citation: anomali-rocke-tactics)(Citation: Linux manual bash invocation) Since the system only executes the first existing file in the listed order, adversaries have used <code>~/.bash_profile</code> to ensure execution. Adversaries have also leveraged the <code>~/.bashrc</code> file which is additionally executed if the connection is established remotely or an additional interactive shell is opened, such as a new tab in the command-line interface.(Citation: Tsunami)(Citation: anomali-rocke-tactics)(Citation: anomali-linux-rabbit)(Citation: Magento) Some malware targets the termination of a program to trigger execution, adversaries can use the <code>~/.bash_logout</code> file to execute malicious commands at the end of a session. \n\nFor macOS, the functionality of this technique is similar but may leverage zsh, the default shell for macOS 10.15+. When the Terminal.app is opened, the application launches a zsh login shell and a zsh interactive shell. The login shell configures the system environment using <code>/etc/profile</code>, <code>/etc/zshenv</code>, <code>/etc/zprofile</code>, and <code>/etc/zlogin</code>.(Citation: ScriptingOSX zsh)(Citation: PersistentJXA_leopitt)(Citation: code_persistence_zsh)(Citation: macOS MS office sandbox escape) The login shell then configures the user environment with <code>~/.zprofile</code> and <code>~/.zlogin</code>. The interactive shell uses the <code>~/.zshrc</code> to configure the user environment. Upon exiting, <code>/etc/zlogout</code> and <code>~/.zlogout</code> are executed. For legacy programs, macOS executes <code>/etc/bashrc</code> on startup.",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "privilege-escalation"
+        },
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "persistence"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "Robert Wilson",
+        "Tony Lambert, Red Canary"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Linux",
+        "macOS"
+      ],
+      "x_mitre_version": "2.2"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--5fc5853a-6936-4a4c-bd3b-5e961bffb6c2",
+      "created": "2024-12-02T21:44:24.416Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:18:42.260Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors executed commands on interactive and reverse shells.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--b63a34e8-0a61-4c97-a23b-bf8a2ed812e2",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 4,
+        "technique_id": "T1546.004",
+        "action_template_id": "write-lab-shell-config",
+        "parameter_kinds": {
+          "artifact": "shell_config_artifact",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "persistence.target.shell_config"
+        ],
+        "evidence_predicates": [
+          "artifact_hash_recorded",
+          "cleanup_verified"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--5fc5853a-6936-4a4c-bd3b-5e961bffb6c2"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "87455fe159b531f5a85853a43a2d1e8b5400c5f2921db2e7da10073b412e2741"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1546.004",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1546.004.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "macOS"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "artifact": "artifact.shell_config",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "366b0c7bdeb64b7fd3f7301c058f1ad9bae6cde2c922c0b9f5d681836d596b82"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--b21c3b2d-02e6-45b1-980b-e69051040839",
+      "created": "2017-05-31T21:30:55.066Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1068",
+          "external_id": "T1068"
+        },
+        {
+          "source_name": "ESET InvisiMole June 2020",
+          "description": "Hromcova, Z. and Cherpanov, A. (2020, June). INVISIMOLE: THE HIDDEN PART OF THE STORY. Retrieved July 16, 2020.",
+          "url": "https://www.welivesecurity.com/wp-content/uploads/2020/06/ESET_InvisiMole.pdf"
+        },
+        {
+          "source_name": "Microsoft Driver Block Rules",
+          "description": "Microsoft. (2020, October 15). Microsoft recommended driver block rules. Retrieved March 16, 2021.",
+          "url": "https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/microsoft-recommended-driver-block-rules"
+        },
+        {
+          "source_name": "Unit42 AcidBox June 2020",
+          "description": "Reichel, D. and Idrizovic, E. (2020, June 17). AcidBox: Rare Malware Repurposing Turla Group Exploit Targeted Russian Organizations. Retrieved March 16, 2021.",
+          "url": "https://unit42.paloaltonetworks.com/acidbox-rare-malware/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:14.643Z",
+      "name": "Exploitation for Privilege Escalation",
+      "description": "Adversaries may exploit software vulnerabilities in an attempt to elevate privileges. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and use of certain techniques, so adversaries will likely need to perform privilege escalation to include use of software exploitation to circumvent those restrictions.\n\nWhen initially gaining access to a system, an adversary may be operating within a lower privileged process which will prevent them from accessing certain resources on the system. Vulnerabilities may exist, usually in operating system components and software commonly running at higher permissions, that can be exploited to gain higher levels of access on the system. This could enable someone to move from unprivileged or user level permissions to SYSTEM or root permissions depending on the component that is vulnerable. This could also enable an adversary to move from a virtualized environment, such as within a virtual machine or container, onto the underlying host. This may be a necessary step for an adversary compromising an endpoint system that has been properly configured and limits other privilege escalation methods.\n\nAdversaries may bring a signed vulnerable driver onto a compromised machine so that they can exploit the vulnerability to execute code in kernel mode. This process is sometimes referred to as Bring Your Own Vulnerable Driver (BYOVD).(Citation: ESET InvisiMole June 2020)(Citation: Unit42 AcidBox June 2020) Adversaries may include the vulnerable driver with files delivered during Initial Access or download it to a compromised system via [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105) or [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570).",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "privilege-escalation"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "Joas Antonio dos Santos, @C0d3Cr4zy, Inmetrics",
+        "Yaniv Agman, @AgmanYaniv, Team Nautilus Aqua Security",
+        "Idan Revivo, @idanr86, Team Nautilus Aqua Security",
+        "David Tayouri"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Containers",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "x_mitre_version": "1.6"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--dd6e1e11-1022-4a67-9a4d-197a9dcf14dc",
+      "created": "2024-12-02T21:42:48.854Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:51:49.951Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors downloaded a privilege escalation payload to gain root access.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--b21c3b2d-02e6-45b1-980b-e69051040839",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 5,
+        "technique_id": "T1068",
+        "action_template_id": "assess-privilege-boundary",
+        "parameter_kinds": {
+          "boundary": "privilege_boundary",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "assessment.target.privilege_boundary"
+        ],
+        "evidence_predicates": [
+          "boundary_check_recorded"
+        ],
+        "fidelity_ceiling": "inspired",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--dd6e1e11-1022-4a67-9a4d-197a9dcf14dc"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "c7b53437a97bfe42b7c3357e40485067d1fa6a7a1340b72fd09298ecdaebfb9f"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1068",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1068.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Containers"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "boundary": "boundary.no_live_exploit",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "f73c32dc663d406d8b0beb74049e3f4950c91a8846c6046d4c07caf227732dcb"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+      "created": "2024-03-29T12:38:17.135Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1027/013",
+          "external_id": "T1027.013"
+        },
+        {
+          "source_name": "File obfuscation",
+          "description": "Aspen Lindblom, Joseph Goodwin, and Chris Sheldon. (2021, July 19). Shlayer Malvertising Campaigns Still Using Flash Update Disguise. Retrieved March 29, 2024.",
+          "url": "https://www.crowdstrike.com/blog/shlayer-malvertising-campaigns-still-using-flash-update-disguise/"
+        },
+        {
+          "source_name": "SFX - Encrypted/Encoded File",
+          "description": "Jai Minton. (2023, March 31). How Falcon OverWatch Investigates Malicious Self-Extracting Archives, Decoy Files and Their Hidden Payloads. Retrieved March 29, 2024.",
+          "url": "https://www.crowdstrike.com/blog/self-extracting-archives-decoy-files-and-their-hidden-payloads/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-15T19:58:05.840Z",
+      "name": "Encrypted/Encoded File",
+      "description": "Adversaries may encrypt or encode files to obfuscate strings, bytes, and other specific patterns to impede detection. Encrypting and/or encoding file content aims to conceal malicious artifacts within a file used in an intrusion. Many other techniques, such as [Software Packing](https://attack.mitre.org/techniques/T1027/002), [Steganography](https://attack.mitre.org/techniques/T1027/003), and [Embedded Payloads](https://attack.mitre.org/techniques/T1027/009), share this same broad objective. Encrypting and/or encoding files could lead to a lapse in detection of static signatures, only for this malicious content to be revealed (i.e., [Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140)) at the time of execution/use.\n\nThis type of file obfuscation can be applied to many file artifacts present on victim hosts, such as malware log/configuration and payload files.(Citation: File obfuscation) Files can be encrypted with a hardcoded or user-supplied key, as well as otherwise obfuscated using standard encoding schemes such as Base64.\n\nThe entire content of a file may be obfuscated, or just specific functions or values (such as C2 addresses). Encryption and encoding may also be applied in redundant layers for additional protection.\n\nFor example, adversaries may abuse password-protected Word documents or self-extracting (SFX) archives as a method of encrypting/encoding a file such as a [Phishing](https://attack.mitre.org/techniques/T1566) payload. These files typically function by attaching the intended archived content to a decompressor stub that is executed when the file is invoked (e.g., [User Execution](https://attack.mitre.org/techniques/T1204)).(Citation: SFX - Encrypted/Encoded File) \n\nAdversaries may also abuse file-specific as well as custom encoding schemes. For example, Byte Order Mark (BOM) headers in text files may be abused to manipulate and obfuscate file content until [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) execution.",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "defense-evasion"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "David Galazin @themalwareman1",
+        "Andrew Northern, @ex_raritas",
+        "Jai Minton, @Cyberraiju"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "x_mitre_version": "1.1"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--153487c1-62aa-4465-8f8a-61674796df69",
+      "created": "2024-12-02T21:34:23.069Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T21:58:23.895Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used Base64-encrypted Python code to evade detection.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 6,
+        "technique_id": "T1027.013",
+        "action_template_id": "encode-benign-artifact",
+        "parameter_kinds": {
+          "artifact": "encoded_artifact",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "artifact.target.encoded"
+        ],
+        "evidence_predicates": [
+          "source_and_encoded_hashes_recorded"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--153487c1-62aa-4465-8f8a-61674796df69"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "ff5be3816ad2447fcd728e53c698f1469bd583a90026c4307bd4d7833cde7621"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1027.013",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1027.013.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "artifact": "artifact.encoded",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "0a41a806bfcd8a129c61a2786d3b7305d26b049bd7dadf1584aa83adf0dce0ef"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--d0b4fcdb-d67d-4ed2-99ce-788b12f8c0f4",
+      "created": "2020-02-11T18:46:56.263Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1003/008",
+          "external_id": "T1003.008"
+        },
+        {
+          "source_name": "Arctic Wolf",
+          "description": "Julian Tuin, Stefan Hostetler, Jon Grimm, Aaron Diaz, and Trevor Daher. (2024, November 22). Arctic Wolf Observes Threat Campaign Targeting Palo Alto Networks Firewall Devices. Retrieved January 8, 2025.",
+          "url": "https://arcticwolf.com/resources/blog/arctic-wolf-observes-threat-campaign-targeting-palo-alto-networks-firewall-devices/"
+        },
+        {
+          "source_name": "Linux Password and Shadow File Formats",
+          "description": "The Linux Documentation Project. (n.d.). Linux Password and Shadow File Formats. Retrieved February 19, 2020.",
+          "url": "https://www.tldp.org/LDP/lame/LAME/linux-admin-made-easy/shadow-file-formats.html"
+        },
+        {
+          "source_name": "nixCraft - John the Ripper",
+          "description": "Vivek Gite. (2014, September 17). Linux Password Cracking: Explain unshadow and john Commands (John the Ripper Tool). Retrieved February 19, 2020.",
+          "url": "https://www.cyberciti.biz/faq/unix-linux-password-cracking-john-the-ripper/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:25.253Z",
+      "name": "/etc/passwd and /etc/shadow",
+      "description": "Adversaries may attempt to dump the contents of <code>/etc/passwd</code> and <code>/etc/shadow</code> to enable offline password cracking. Most modern Linux operating systems use a combination of <code>/etc/passwd</code> and <code>/etc/shadow</code> to store user account information, including password hashes in <code>/etc/shadow</code>. By default, <code>/etc/shadow</code> is only readable by the root user.(Citation: Linux Password and Shadow File Formats)\n\nLinux stores user information such as user ID, group ID, home directory path, and login shell in <code>/etc/passwd</code>. A \"user\" on the system may belong to a person or a service. All password hashes are stored in <code>/etc/shadow</code> - including entries for users with no passwords and users with locked or disabled accounts.(Citation: Linux Password and Shadow File Formats)\n\nAdversaries may attempt to read or dump the <code>/etc/passwd</code> and <code>/etc/shadow</code> files on Linux systems via command line utilities such as the <code>cat</code> command.(Citation: Arctic Wolf) Additionally, the Linux utility <code>unshadow</code> can be used to combine the two files in a format suited for password cracking utilities such as John the Ripper - for example, via the command <code>/usr/bin/unshadow /etc/passwd /etc/shadow > /tmp/crack.password.db</code>(Citation: nixCraft - John the Ripper). Since the user information stored in <code>/etc/passwd</code> are linked to the password hashes in <code>/etc/shadow</code>, an adversary would need to have access to both.",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "credential-access"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Linux"
+      ],
+      "x_mitre_version": "1.2"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--3f175143-5655-4017-8e93-305f903d143f",
+      "created": "2024-12-02T19:44:11.018Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:09:42.307Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used `cat /etc/shadow` to steal password hashes.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--d0b4fcdb-d67d-4ed2-99ce-788b12f8c0f4",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 7,
+        "technique_id": "T1003.008",
+        "action_template_id": "read-declared-credential-fixture",
+        "parameter_kinds": {
+          "credential_source": "credential_source",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "collection.target.credential_files"
+        ],
+        "evidence_predicates": [
+          "fixture_access_logged",
+          "no_host_credentials_read"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--3f175143-5655-4017-8e93-305f903d143f"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "97065fb35073ae9eebc5865f1a066b133722821695e6276ed290197f3fb9c420"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1003.008",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1003.008.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "credential_source": "credential.synthetic_fixture",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "4f6d4ebc74a161758a54a91d15681608a151b84faa4ea5e9990c8540cf7f648e"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--707399d6-ab3e-4963-9315-d9d3818cd6a0",
+      "created": "2017-05-31T21:30:27.342Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1016",
+          "external_id": "T1016"
+        },
+        {
+          "source_name": "Mandiant APT41 Global Intrusion ",
+          "description": "Gyler, C.,Perez D.,Jones, S.,Miller, S.. (2021, February 25). This is Not a Test: APT41 Initiates Global Intrusion Campaign Using Multiple Exploits. Retrieved February 17, 2022.",
+          "url": "https://www.mandiant.com/resources/apt41-initiates-global-intrusion-campaign-using-multiple-exploits"
+        },
+        {
+          "source_name": "Trellix Rnasomhouse 2024",
+          "description": "Pham Duy Phuc, Max Kersten, No\u00ebl Keijzer, and Micha\u00ebl Schrijver. (2024, February 14). RansomHouse am See. Retrieved March 26, 2025.",
+          "url": "https://www.trellix.com/en-au/blogs/research/ransomhouse-am-see/"
+        },
+        {
+          "source_name": "US-CERT-TA18-106A",
+          "description": "US-CERT. (2018, April 20). Alert (TA18-106A) Russian State-Sponsored Cyber Actors Targeting Network Infrastructure Devices. Retrieved October 19, 2020.",
+          "url": "https://www.us-cert.gov/ncas/alerts/TA18-106A"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:48:56.618Z",
+      "name": "System Network Configuration Discovery",
+      "description": "Adversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).\n\nAdversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)\n\nAdversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. ",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "discovery"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "Austin Clark, @c2defense"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "x_mitre_version": "1.7"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--d1b967b3-3b02-4b35-8b91-520e17fb7f52",
+      "created": "2024-12-02T21:37:59.627Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:48:57.024Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors invoked DNS queries from targeted machines to identify their IP addresses.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--707399d6-ab3e-4963-9315-d9d3818cd6a0",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 8,
+        "technique_id": "T1016",
+        "action_template_id": "inspect-declared-network",
+        "parameter_kinds": {
+          "interface": "network_interface",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "discovery.target.network"
+        ],
+        "evidence_predicates": [
+          "interface_snapshot_recorded"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--d1b967b3-3b02-4b35-8b91-520e17fb7f52"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "1ad4abdbe4866ac3beb746ad99cab745a9c6bc0702064bfe8d25adb0e6c0adac"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1016",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1016.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Network Devices",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "interface": "network.private_interface",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "9a3e3caa35b0e60497710cb6e920bb0544b44eb77f0703501a9342b195433977"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "created": "2017-05-31T21:31:16.408Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1105",
+          "external_id": "T1105"
+        },
+        {
+          "source_name": "T1105: Trellix_search-ms",
+          "description": " Mathanraj Thangaraju, Sijo Jacob. (2023, July 26). Beyond File Search: A Novel Method for Exploiting the \"search-ms\" URI Protocol Handler. Retrieved March 15, 2024.",
+          "url": "https://www.trellix.com/blogs/research/beyond-file-search-a-novel-method/"
+        },
+        {
+          "source_name": "Google Cloud Threat Intelligence COSCMICENERGY 2023",
+          "description": "COSMICENERGY: New OT Malware Possibly Related To Russian Emergency Response Exercises. (2023, May 25). Ken Proska, Daniel Kapellmann Zafra, Keith Lunden, Corey Hildebrandt, Rushikesh Nandedkar, Nathan Brubaker. Retrieved March 18, 2025.",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/cosmicenergy-ot-malware-russian-response/"
+        },
+        {
+          "source_name": "Dropbox Malware Sync",
+          "description": "David Talbot. (2013, August 21). Dropbox and Similar Services Can Sync Malware. Retrieved May 31, 2023.",
+          "url": "https://www.technologyreview.com/2013/08/21/83143/dropbox-and-similar-services-can-sync-malware/"
+        },
+        {
+          "source_name": "University of Birmingham C2",
+          "description": "Gardiner, J.,  Cova, M., Nagaraja, S. (2014, February). Command & Control Understanding, Denying and Detecting. Retrieved April 20, 2016.",
+          "url": "https://arxiv.org/ftp/arxiv/papers/1408/1408.1136.pdf"
+        },
+        {
+          "source_name": "t1105_lolbas",
+          "description": "LOLBAS. (n.d.). LOLBAS Mapped to T1105. Retrieved March 11, 2022.",
+          "url": "https://lolbas-project.github.io/#t1105"
+        },
+        {
+          "source_name": "PTSecurity Cobalt Dec 2016",
+          "description": "Positive Technologies. (2016, December 16). Cobalt Snatch. Retrieved October 9, 2018.",
+          "url": "https://www.ptsecurity.com/upload/corporate/ww-en/analytics/Cobalt-Snatch-eng.pdf"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:32.714Z",
+      "name": "Ingress Tool Transfer",
+      "description": "Adversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). \n\nOn Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)\n\nAdversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)\n\nFiles can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "command-and-control"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.3.0",
+      "x_mitre_contributors": [
+        "Alain Homewood",
+        "Jeremy Hedges",
+        "Joe Wise",
+        "John Page (aka hyp3rlinx), ApparitionSec",
+        "Mark Wee",
+        "Peter Oakes",
+        "Selena Larson, @selenalarson",
+        "Shailesh Tiwary (Indian Army)",
+        "The DFIR Report",
+        "Don Le, Stifel Financial"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "x_mitre_version": "2.6"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--9ef645f2-0d90-45e8-bf8f-1c1f6b244c2e",
+      "created": "2024-12-02T19:58:40.746Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:35:43.895Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors downloaded and executed the XMRig miner on targeted hosts.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 9,
+        "technique_id": "T1105",
+        "action_template_id": "transfer-benign-payload",
+        "parameter_kinds": {
+          "channel": "channel",
+          "payload": "payload",
+          "target": "target_host"
+        },
+        "requires": [
+          "access.target.shell",
+          "actor.toolkit.ready"
+        ],
+        "produces": [
+          "transfer.target.payload"
+        ],
+        "evidence_predicates": [
+          "source_and_destination_hashes_match"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--9ef645f2-0d90-45e8-bf8f-1c1f6b244c2e"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "bc45858956284e3c3413c788ee0b6898fa8b37a13c36419332f52e634f89aa13"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1105",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1105.network.1",
+            "kind": "network",
+            "acceptable_values": [
+              "controlled-ingress-channel"
+            ],
+            "source": "curated_rule"
+          },
+          {
+            "requirement_id": "T1105.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Network Devices",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "952b3a5552fa22b5f56a60c9ab9971833bf8e0c8d19acbfda5b7197bdb8eadbb"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--a718a0c8-5768-41a1-9958-a1cc3f995e99",
+      "created": "2024-09-25T13:34:30.100Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1496/001",
+          "external_id": "T1496.001"
+        },
+        {
+          "source_name": "Unit 42 Hildegard Malware",
+          "description": "Chen, J. et al. (2021, February 3). Hildegard: New TeamTNT Cryptojacking Malware Targeting Kubernetes. Retrieved April 5, 2021.",
+          "url": "https://unit42.paloaltonetworks.com/hildegard-malware-teamtnt/"
+        },
+        {
+          "source_name": "CloudSploit - Unused AWS Regions",
+          "description": "CloudSploit. (2019, June 8). The Danger of Unused AWS Regions. Retrieved October 8, 2019.",
+          "url": "https://medium.com/cloudsploit/the-danger-of-unused-aws-regions-af0bf1b878fc"
+        },
+        {
+          "source_name": "Kaspersky Lazarus Under The Hood Blog 2017",
+          "description": "GReAT. (2017, April 3). Lazarus Under the Hood. Retrieved April 17, 2019.",
+          "url": "https://securelist.com/lazarus-under-the-hood/77908/"
+        },
+        {
+          "source_name": "Trend Micro Exposed Docker APIs",
+          "description": "Oliveira, A. (2019, May 30). Infected Containers Target Docker via Exposed APIs. Retrieved April 6, 2021.",
+          "url": "https://www.trendmicro.com/en_us/research/19/e/infected-cryptocurrency-mining-containers-target-docker-hosts-with-exposed-apis-use-shodan-to-find-additional-victims.html"
+        },
+        {
+          "source_name": "Trend Micro War of Crypto Miners",
+          "description": "Oliveira, A., Fiser, D. (2020, September 10). War of Linux Cryptocurrency Miners: A Battle for Resources. Retrieved April 6, 2021.",
+          "url": "https://www.trendmicro.com/en_us/research/20/i/war-of-linux-cryptocurrency-miners-a-battle-for-resources.html"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-15T22:08:46.014Z",
+      "name": "Compute Hijacking",
+      "description": "Adversaries may leverage the compute resources of co-opted systems to complete resource-intensive tasks, which may impact system and/or hosted service availability. \n\nOne common purpose for [Compute Hijacking](https://attack.mitre.org/techniques/T1496/001) is to validate transactions of cryptocurrency networks and earn virtual currency. Adversaries may consume enough system resources to negatively impact and/or cause affected machines to become unresponsive.(Citation: Kaspersky Lazarus Under The Hood Blog 2017) Servers and cloud-based systems are common targets because of the high potential for available resources, but user endpoint systems may also be compromised and used for [Compute Hijacking](https://attack.mitre.org/techniques/T1496/001) and cryptocurrency mining.(Citation: CloudSploit - Unused AWS Regions) Containerized environments may also be targeted due to the ease of deployment via exposed APIs and the potential for scaling mining activities by deploying or compromising multiple containers within an environment or cluster.(Citation: Unit 42 Hildegard Malware)(Citation: Trend Micro Exposed Docker APIs)\n\nAdditionally, some cryptocurrency mining malware identify then kill off processes for competing malware to ensure it\u2019s not competing for resources.(Citation: Trend Micro War of Crypto Miners)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "impact"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers"
+      ],
+      "x_mitre_version": "1.0",
+      "x_mitre_impact_type": [
+        "Availability"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--f503a9ba-4761-4932-8ebc-53b03680a316",
+      "created": "2024-12-02T19:49:57.715Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Oligo ShadowRay Campaign MAR 2024",
+          "description": "Lumelsly, A. et al. (2024, March 26). ShadowRay: First Known Attack Campaign Targeting AI Workloads Actively Exploited In The Wild. Retrieved December 2, 2024.",
+          "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:57:53.515Z",
+      "description": "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors leveraged graphics processing units (GPU) on compromised nodes for cryptocurrency mining.(Citation: Oligo ShadowRay Campaign MAR 2024)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+      "target_ref": "attack-pattern--a718a0c8-5768-41a1-9958-a1cc3f995e99",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 10,
+        "technique_id": "T1496.001",
+        "action_template_id": "run-bounded-compute-workload",
+        "parameter_kinds": {
+          "target": "target_host",
+          "workload": "compute_workload"
+        },
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "impact.target.compute"
+        ],
+        "evidence_predicates": [
+          "duration_and_cpu_bound_recorded",
+          "no_pool_traffic"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--f503a9ba-4761-4932-8ebc-53b03680a316"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "05366000c9884b1d01825f7ff47522a2f6b0c61d9d69bf21401f6ea317786ea7"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1496.001",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0045"
+            ],
+            "source_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1496.001.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Containers",
+              "IaaS"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "target": "target.primary",
+          "workload": "workload.bounded_hash"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0045",
+            "C0045",
+            "0.shadowray"
+          ],
+          "source_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "b29f6643528d3015b054109a30b50682d14d208ca01cd3d9dac7a2dbca18299e"
+      }
+    }
+  ],
+  "x_sticks_export": {
+    "schema_version": "1",
+    "campaign_id": "C0045",
+    "source_bundle_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+    "procedural_plan_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+    "concretized_plan_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+    "planning_certificate_sha256": "86fdd916407579eb4bfe36f7902dca3a37804f1eeca9b0b40d3f2697f7b925d7"
+  },
+  "x_autosut_export": {
+    "schema_version": "1",
+    "campaign_id": "C0045",
+    "constraint_sha256": "d66c279e20853400c9f75d52a5eeee08f95295d85d0d875be3e58ddcfbcc438f",
+    "blueprint_sha256": "894cf4ab9551a4113e0109fa775250d3332bf885b14d9e95770929ef447cb8c8",
+    "binding_catalog_sha256": "67870965f226c8a8f0a6ca0e0fd56c124c84b6982688e1319642357a6b40c9d8",
+    "concretized_plan_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+    "cve_rules_sha256": "58a22118244dcac975f2311e62da09f6e400b450692fc4c554b59083b19fd6bf"
+  }
+}

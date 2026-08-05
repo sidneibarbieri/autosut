@@ -1,0 +1,27 @@
+{
+  "credentials": [],
+  "artifacts": [],
+  "exposures": [
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "nginx",
+      "version": "default",
+      "recipe": "nginx_equivalent",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "Realises the same abstract precondition: edge HTTP service.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "Web target realism: HTTP Basic Auth realm with a pre-staged weak credential and a protected secret on the per-run private network."
+}

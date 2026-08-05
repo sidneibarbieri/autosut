@@ -1,0 +1,9 @@
+$ mkdir -p /var/lab && echo 'exfil_seed_T1020' > /var/lab/secret_T1020.txt && cd /var/lab && nohup python3 -m http.server 9090 > /tmp/T1020_srv.log 2>&1 & sleep 2 && ls /var/lab/
+exit_code: 0
+--- stdout ---
+T1027
+T1119_src
+secret_T1020.txt
+
+--- stderr ---
+

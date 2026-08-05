@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "description": "Campaign to adversary mapping",
+  "mappings": [
+    {
+      "campaign_id": "0.solarwinds_compromise",
+      "corpus_exists": true,
+      "caldera_adversary_id": "50855e29-3b4e-4562-aa55-b3d7f93c26b8",
+      "adversary_name": "Alice 2.0",
+      "mapping_type": "default_adversary",
+      "techniques_covered": ["T1070.003"],
+      "techniques_in_campaign": 71,
+      "fidelity": "low",
+      "status": "inspired_execution"
+    },
+    {
+      "campaign_id": "0.3cx_supply_chain_attack",
+      "corpus_exists": true,
+      "caldera_adversary_id": "50855e29-3b4e-4562-aa55-b3d7f93c26b8",
+      "adversary_name": "Alice 2.0",
+      "mapping_type": "default_adversary",
+      "techniques_covered": ["T1070.003"],
+      "techniques_in_campaign": 21,
+      "fidelity": "low",
+      "status": "inspired_execution"
+    },
+    {
+      "campaign_id": "0.apt28_nearest_neighbor_campaign",
+      "corpus_exists": true,
+      "caldera_adversary_id": "50855e29-3b4e-4562-aa55-b3d7f93c26b8",
+      "adversary_name": "Alice 2.0",
+      "mapping_type": "default_adversary",
+      "techniques_covered": ["T1070.003"],
+      "techniques_in_campaign": 15,
+      "fidelity": "low",
+      "status": "inspired_execution"
+    }
+  ],
+  "notes": [
+    "All campaigns currently map to default adversary Alice 2.0",
+    "Only 1 technique observed (T1070.003)",
+    "Campaign YAML contains many more techniques but not executed",
+    "True campaign-to-adversary mapping requires custom adversary creation"
+  ]
+}

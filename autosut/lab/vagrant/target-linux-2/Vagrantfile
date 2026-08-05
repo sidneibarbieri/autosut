@@ -1,0 +1,68 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Target Linux 2 Vagrantfile
+# Second target for lateral movement testing
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "perk/ubuntu-2204-arm64"
+
+  config.vm.hostname = "target-linux-2"
+  config.vm.define "target2"
+
+  # Network - different IP from target-1
+  config.vm.network "private_network", ip: "192.168.56.31"
+
+  # Provider settings - libvirt for ARM64
+  config.vm.provider "libvirt" do |libvirt|
+    libvirt.memory = "1024"
+    libvirt.cpus = 1
+    libvirt.machine_arch = "aarch64"
+    libvirt.machine_type = "virt"
+    libvirt.cpu_mode = "custom"
+    libvirt.cpu_model = "cortex-a72"
+    libvirt.nic_model_type = "virtio"
+    libvirt.driver = "qemu"
+    libvirt.uri = "qemu:///session"
+  end
+
+  config.vm.provider "qemu" do |qemu|
+    qemu.memory = "1024"
+    qemu.cpus = 1
+    qemu.arch = "aarch64"
+    qemu.machine = "virt"
+    qemu.cpu = "cortex-a72"
+    qemu.ssh_port = 50025
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.cpus = 1
+    vb.name = "sticks-target-linux-2"
+  end
+
+  # Provisioning
+  config.vm.provision "file", source: "../shared/apt_guard.sh", destination: "/tmp/apt_guard.sh"
+  config.vm.provision "shell", path: "../shared/base.sh"
+  config.vm.provision "shell", path: "../shared/target.sh"
+
+  # Additional provisioning for lateral movement scenario
+  config.vm.provision "shell", inline: <<-SHELL
+    # Create shared NFS-like directory for lateral movement testing
+    mkdir -p /shared_data
+    chmod 777 /shared_data
+
+    # Add SSH key from attacker (will be configured via SUT profile)
+    mkdir -p /home/vagrant/.ssh
+    chmod 700 /home/vagrant/.ssh
+
+    # Create decoy sensitive data
+    echo "DATABASE_PASSWORD=LAB_DECOY_DATABASE_PASSWORD" > /shared_data/credentials.txt
+    echo "API_KEY=LAB_DECOY_API_KEY" >> /shared_data/credentials.txt
+
+    # Set up cron for persistence testing
+    (crontab -l 2>/dev/null; echo "*/5 * * * * /bin/true") | crontab - 2>/dev/null || true
+
+    echo "Target Linux 2 configured for lateral movement testing"
+  SHELL
+end

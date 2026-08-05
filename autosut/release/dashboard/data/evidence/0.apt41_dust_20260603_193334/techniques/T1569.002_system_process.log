@@ -1,0 +1,15 @@
+$ u=/etc/systemd/system/autosut_T1569_002.service; mkdir -p /etc/systemd/system; printf '[Unit]\nDescription=autosut T1569_002\n[Service]\nType=oneshot\nExecStart=/bin/sh -c "echo T1569_002-ran >> /tmp/autosut_T1569_002.log"\n[Install]\nWantedBy=multi-user.target\n' > $u; cat $u; /bin/sh -c 'echo T1569_002-ran >> /tmp/autosut_T1569_002.log'; cat /tmp/autosut_T1569_002.log; sha256sum $u
+exit_code: 0
+--- stdout ---
+[Unit]
+Description=autosut T1569_002
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo T1569_002-ran >> /tmp/autosut_T1569_002.log"
+[Install]
+WantedBy=multi-user.target
+T1569_002-ran
+5b3a43e1c054b3e3358f006d78de294ea00a96e2cc2c9307b88a78257b8e821b  /etc/systemd/system/autosut_T1569_002.service
+
+--- stderr ---
+

@@ -1,0 +1,70 @@
+{
+  "campaign_id": "0.c0017",
+  "description": "APT29 - Sophisticated stealth operations",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 15
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "persistence_mechanisms",
+      "target": "target",
+      "config": {
+        "methods": ["cron_jobs", "systemd_services"]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "name": "Unix Shell",
+      "tactic": "execution",
+      "platform": "linux",
+      "description": "Command execution via bash"
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Discover files and directories"
+    },
+    {
+      "technique_id": "T1053",
+      "name": "Scheduled Task/Job",
+      "tactic": "persistence",
+      "platform": "linux",
+      "description": "Create scheduled tasks for persistence"
+    },
+    {
+      "technique_id": "T1543",
+      "name": "Create or Modify System Service",
+      "tactic": "persistence",
+      "platform": "linux",
+      "description": "Create or modify system services"
+    },
+    {
+      "technique_id": "T1027",
+      "name": "Obfuscated Files or Information",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "description": "Obfuscate files to hide content"
+    },
+    {
+      "technique_id": "T1564",
+      "name": "Hide Artifacts",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "description": "Hide artifacts from detection"
+    }
+  ]
+}

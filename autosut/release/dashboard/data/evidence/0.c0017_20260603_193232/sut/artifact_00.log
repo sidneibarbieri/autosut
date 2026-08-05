@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /tmp/phishing_context.txt) && cat > /tmp/phishing_context.txt <<'AUTOSUT_ART_EOF'
+Phishing payload context — staging
+
+AUTOSUT_ART_EOF
+chmod 0644 /tmp/phishing_context.txt && chown testuser:testuser /tmp/phishing_context.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

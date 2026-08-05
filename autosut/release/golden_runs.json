@@ -1,0 +1,648 @@
+{
+  "generated_at": "2026-07-31T22:48:16+00:00",
+  "claim_scope": "Campaign emulation instantiates a declared subset of ATT&CK-linked behaviors in a SUT whose software, credentials, services, topology, and vulnerability state are explicitly composed and logged. The goal is bounded, auditable replay of the environment-conditioned behaviors supported by the CTI scope \u2014 not historical reconstruction of the original intrusion.",
+  "criteria": [
+    "manifest.json exists and parses",
+    "summary.json exists",
+    "fidelity_report.json exists",
+    "manifest has at least one technique",
+    "every technique status == success",
+    "sut/teardown.log exists",
+    "at least one sut/composition_*.json present"
+  ],
+  "tiering": {
+    "tier_1_full_real": "every technique executed via real_controlled, caldera_driven or atomic_red_team",
+    "tier_2_declared_limitations": "100% success but contains naive_simulated markers for techniques the substrate cannot execute (Windows-only TTP on Linux, etc.); honest limitation, not failure"
+  },
+  "cti_scope_types": {
+    "campaign": "specific historical event with CVE-anchored attribution and timeline (e.g. ShadowRay, CVE-2021-41773, Operation MidnightEclipse)",
+    "intrusion_set": "behavioral aggregate of a documented adversary group (e.g. FIN6/G0037, APT41); less specific than campaign attribution"
+  },
+  "provenance_taxonomy": {
+    "corpus_supported": "anchored in CTI/ATT&CK/STIX evidence (CVE pin, MITRE-attributed software, campaign attribution detail)",
+    "analyst_authored": "deliberate analyst choice not constrained by the corpus (topology zones, decoy files, lab credential strategy)",
+    "autosut_concretized": "AutoSUT picked a defensible concrete value when the corpus said only 'weak credentials' or 'web service'",
+    "inferred": "lower-confidence heuristic inference from the corpus the reviewer should treat as assumption"
+  },
+  "campaigns": [
+    {
+      "campaign_id": "0.apt41_dust",
+      "golden_run_id": "0.apt41_dust_20260603_193334",
+      "evidence_path": "release/evidence/0.apt41_dust_20260603_193334",
+      "cti_scope_type": "intrusion_set",
+      "techniques_total": 23,
+      "techniques_pass": 23,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 9,
+        "adapted": 14
+      },
+      "execution_modes": {
+        "naive_simulated": 9,
+        "real_controlled": 8,
+        "atomic_red_team": 6
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 3
+        },
+        "applications": {
+          "analyst_authored": 3
+        },
+        "exposures": {
+          "analyst_authored": 3
+        }
+      }
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "golden_run_id": "0.apt41_dust_full_20260603_193427",
+      "evidence_path": "release/evidence/0.apt41_dust_full_20260603_193427",
+      "cti_scope_type": "intrusion_set",
+      "techniques_total": 10,
+      "techniques_pass": 10,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 9,
+        "inspired": 1
+      },
+      "execution_modes": {
+        "atomic_red_team": 5,
+        "real_controlled": 4,
+        "naive_simulated": 1
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 2
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0010",
+      "golden_run_id": "0.c0010_20260728_033147",
+      "evidence_path": "release/evidence/0.c0010_20260728_033147",
+      "cti_scope_type": "campaign",
+      "techniques_total": 9,
+      "techniques_pass": 9,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 6,
+        "adapted": 3
+      },
+      "execution_modes": {
+        "naive_simulated": 6,
+        "real_controlled": 3
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 2
+        },
+        "applications": {
+          "analyst_authored": 2
+        },
+        "exposures": {
+          "analyst_authored": 2
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0011",
+      "golden_run_id": "0.c0011_20260603_192838",
+      "evidence_path": "release/evidence/0.c0011_20260603_192838",
+      "cti_scope_type": "campaign",
+      "techniques_total": 11,
+      "techniques_pass": 11,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 2,
+        "inspired": 9
+      },
+      "execution_modes": {
+        "real_controlled": 2,
+        "naive_simulated": 9
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 3
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0012",
+      "golden_run_id": "0.c0012_20260603_192907",
+      "evidence_path": "release/evidence/0.c0012_20260603_192907",
+      "cti_scope_type": "campaign",
+      "techniques_total": 3,
+      "techniques_pass": 3,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 3
+      },
+      "execution_modes": {
+        "atomic_red_team": 3
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {},
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0013",
+      "golden_run_id": "0.c0013_20260603_192951",
+      "evidence_path": "release/evidence/0.c0013_20260603_192951",
+      "cti_scope_type": "campaign",
+      "techniques_total": 4,
+      "techniques_pass": 4,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 3,
+        "adapted": 1
+      },
+      "execution_modes": {
+        "naive_simulated": 3,
+        "caldera_driven": 1
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {},
+        "applications": {
+          "analyst_authored": 2
+        },
+        "exposures": {
+          "analyst_authored": 2
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0015",
+      "golden_run_id": "0.c0015_20260603_193201",
+      "evidence_path": "release/evidence/0.c0015_20260603_193201",
+      "cti_scope_type": "campaign",
+      "techniques_total": 5,
+      "techniques_pass": 5,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 3,
+        "inspired": 2
+      },
+      "execution_modes": {
+        "atomic_red_team": 3,
+        "naive_simulated": 2
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 2
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0017",
+      "golden_run_id": "0.c0017_20260603_193232",
+      "evidence_path": "release/evidence/0.c0017_20260603_193232",
+      "cti_scope_type": "campaign",
+      "techniques_total": 6,
+      "techniques_pass": 6,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 6
+      },
+      "execution_modes": {
+        "atomic_red_team": 2,
+        "real_controlled": 4
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 1
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.c0026",
+      "golden_run_id": "0.c0026_20260728_033234",
+      "evidence_path": "release/evidence/0.c0026_20260728_033234",
+      "cti_scope_type": "campaign",
+      "techniques_total": 6,
+      "techniques_pass": 6,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 2,
+        "adapted": 4
+      },
+      "execution_modes": {
+        "naive_simulated": 2,
+        "real_controlled": 4
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 2
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.caldera_linux_demo",
+      "golden_run_id": "0.caldera_linux_demo_20260603_193736",
+      "evidence_path": "release/evidence/0.caldera_linux_demo_20260603_193736",
+      "cti_scope_type": "campaign",
+      "techniques_total": 6,
+      "techniques_pass": 6,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 6
+      },
+      "execution_modes": {
+        "caldera_driven": 6
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 3
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.costaricto",
+      "golden_run_id": "0.costaricto_20260603_193458",
+      "evidence_path": "release/evidence/0.costaricto_20260603_193458",
+      "cti_scope_type": "intrusion_set",
+      "techniques_total": 10,
+      "techniques_pass": 10,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 3,
+        "inspired": 7
+      },
+      "execution_modes": {
+        "atomic_red_team": 3,
+        "naive_simulated": 7
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 3
+        },
+        "applications": {
+          "analyst_authored": 2
+        },
+        "exposures": {
+          "analyst_authored": 2
+        }
+      }
+    },
+    {
+      "campaign_id": "0.cve_2021_41773",
+      "golden_run_id": "0.cve_2021_41773_20260603_195020",
+      "evidence_path": "release/evidence/0.cve_2021_41773_20260603_195020",
+      "cti_scope_type": "campaign",
+      "techniques_total": 4,
+      "techniques_pass": 4,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 4
+      },
+      "execution_modes": {
+        "real_controlled": 4
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {},
+        "artifacts": {
+          "analyst_authored": 1
+        },
+        "applications": {
+          "corpus_supported": 1
+        },
+        "exposures": {
+          "corpus_supported": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.dmz_segmentation_demo",
+      "golden_run_id": "0.dmz_segmentation_demo_20260603_194834",
+      "evidence_path": "release/evidence/0.dmz_segmentation_demo_20260603_194834",
+      "cti_scope_type": "campaign",
+      "techniques_total": 4,
+      "techniques_pass": 4,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 4
+      },
+      "execution_modes": {
+        "real_controlled": 4
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 3
+        },
+        "artifacts": {},
+        "applications": {},
+        "exposures": {
+          "analyst_authored": 3
+        }
+      }
+    },
+    {
+      "campaign_id": "0.fin6_emulation",
+      "golden_run_id": "0.fin6_emulation_20260603_194445",
+      "evidence_path": "release/evidence/0.fin6_emulation_20260603_194445",
+      "cti_scope_type": "intrusion_set",
+      "techniques_total": 12,
+      "techniques_pass": 12,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 9,
+        "adapted": 3
+      },
+      "execution_modes": {
+        "naive_simulated": 9,
+        "caldera_driven": 3
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 3
+        },
+        "applications": {
+          "analyst_authored": 1
+        },
+        "exposures": {
+          "analyst_authored": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "golden_run_id": "0.operation_midnighteclipse_20260603_193617",
+      "evidence_path": "release/evidence/0.operation_midnighteclipse_20260603_193617",
+      "cti_scope_type": "campaign",
+      "techniques_total": 17,
+      "techniques_pass": 17,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 12,
+        "adapted": 5
+      },
+      "execution_modes": {
+        "naive_simulated": 12,
+        "real_controlled": 1,
+        "atomic_red_team": 4
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 1
+        },
+        "applications": {},
+        "exposures": {
+          "corpus_supported": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.outer_space",
+      "golden_run_id": "0.outer_space_20260603_193538",
+      "evidence_path": "release/evidence/0.outer_space_20260603_193538",
+      "cti_scope_type": "intrusion_set",
+      "techniques_total": 8,
+      "techniques_pass": 8,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 2,
+        "inspired": 6
+      },
+      "execution_modes": {
+        "atomic_red_team": 1,
+        "naive_simulated": 6,
+        "real_controlled": 1
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 1
+        },
+        "artifacts": {
+          "analyst_authored": 3
+        },
+        "applications": {
+          "analyst_authored": 2
+        },
+        "exposures": {
+          "analyst_authored": 2
+        }
+      }
+    },
+    {
+      "campaign_id": "0.pivot_demo",
+      "golden_run_id": "0.pivot_demo_20260603_194938",
+      "evidence_path": "release/evidence/0.pivot_demo_20260603_194938",
+      "cti_scope_type": "campaign",
+      "techniques_total": 6,
+      "techniques_pass": 6,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 6
+      },
+      "execution_modes": {
+        "real_controlled": 6
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 2
+        },
+        "artifacts": {},
+        "applications": {},
+        "exposures": {
+          "analyst_authored": 2
+        }
+      }
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "golden_run_id": "0.salesforce_data_exfiltration_20260603_193647",
+      "evidence_path": "release/evidence/0.salesforce_data_exfiltration_20260603_193647",
+      "cti_scope_type": "campaign",
+      "techniques_total": 18,
+      "techniques_pass": 18,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "inspired": 10,
+        "adapted": 8
+      },
+      "execution_modes": {
+        "naive_simulated": 10,
+        "real_controlled": 7,
+        "atomic_red_team": 1
+      },
+      "tier": "tier_2_declared_limitations",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "autosut_concretized": 2
+        },
+        "artifacts": {
+          "analyst_authored": 1
+        },
+        "applications": {},
+        "exposures": {
+          "autosut_concretized": 1
+        }
+      }
+    },
+    {
+      "campaign_id": "0.shadowray",
+      "golden_run_id": "0.shadowray_20260731_223638",
+      "evidence_path": "release/evidence/0.shadowray_20260731_223638",
+      "cti_scope_type": "campaign",
+      "techniques_total": 10,
+      "techniques_pass": 10,
+      "techniques_fail": 0,
+      "fidelity_distribution": {
+        "adapted": 9,
+        "inspired": 1
+      },
+      "execution_modes": {
+        "real_controlled": 10
+      },
+      "tier": "tier_1_full_real",
+      "has_composition": true,
+      "has_teardown": true,
+      "provenance_per_element_class": {
+        "credentials": {
+          "corpus_supported": 1
+        },
+        "artifacts": {
+          "analyst_authored": 2
+        },
+        "applications": {},
+        "exposures": {
+          "corpus_supported": 1
+        }
+      }
+    }
+  ]
+}

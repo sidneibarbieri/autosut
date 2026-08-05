@@ -1,0 +1,7 @@
+$ echo dmz_tools_baked_in_image
+exit_code: 0
+--- stdout ---
+dmz_tools_baked_in_image
+
+--- stderr ---
+

@@ -1,0 +1,50 @@
+% Canonical paper template. Values are generated in results/values.tex.
+\providecolor{figureBlue}{HTML}{4477AA}
+\providecolor{figureGreen}{HTML}{228833}
+\providecolor{figureOrange}{HTML}{A64000}
+\providecolor{figureNeutral}{HTML}{6F7782}
+\providecolor{figureAxis}{HTML}{667085}
+\providecolor{figureGrid}{HTML}{D9DDE2}
+
+\begin{tikzpicture}[x=0.205cm,y=0.66cm,font=\sffamily\footnotesize]
+  \pgfmathsetmacro{\cveDetected}{\cveuniquecount}
+  \pgfmathsetmacro{\cveAssociated}{\cveenvironmentassociatedcount}
+  \pgfmathsetmacro{\cveCampaignAssociated}{\campaignlinkedcvecount}
+  \pgfmathsetmacro{\campaignsWithCve}{\entcampaignswithcvecount}
+
+  \path[use as bounding box] (-1.0,-1.35) rectangle (40.5,10.75);
+
+  \node[anchor=west,font=\sffamily\footnotesize\bfseries,text=figureAxis]
+    at (0,10.25) {CVE-identifier counts};
+
+  \foreach \x in {0,5,10,15,20,25,30} {
+    \draw[figureGrid] (\x,0) -- (\x,9.65);
+    \node[below,text=figureAxis] at (\x,0) {\x};
+  }
+  \draw[->] (0,0) -- (32.0,0);
+  \node at (16.0,-0.92) {Count};
+
+  \node[anchor=west] at (0,9.25) {Detected identifiers};
+  \fill[figureBlue] (0,8.30) rectangle (\cveDetected,8.92);
+  \node[anchor=west] at ({\cveDetected+0.7},8.61)
+    {\cveuniquecount{} (100\%)};
+
+  \node[anchor=west] at (0,7.15) {Environment-associated identifiers};
+  \fill[figureGreen] (0,6.20) rectangle (\cveAssociated,6.82);
+  \node[anchor=west] at ({\cveAssociated+0.7},6.51)
+    {\cveenvironmentassociatedcount{} (\cveenvironmentassociatedpercentage\% of detected)};
+
+  \node[anchor=west] at (0,5.05) {Campaign-associated identifiers};
+  \fill[figureOrange] (0,4.10) rectangle (\cveCampaignAssociated,4.72);
+  \node[anchor=west] at ({\cveCampaignAssociated+0.7},4.41)
+    {\campaignlinkedcvecount{} (\campaignlinkedcveenvironmentpercentage\% of associated)};
+
+  % The final row changes unit from CVE identifiers to campaigns.
+  \draw[densely dashed,figureAxis!65] (0,3.28) -- (39.5,3.28);
+  \node[anchor=west,font=\sffamily\footnotesize\bfseries,text=figureAxis]
+    at (0,2.83) {Campaign count};
+  \node[anchor=west] at (0,2.05) {Campaigns with $\geq$1 CVE};
+  \fill[figureNeutral] (0,1.10) rectangle (\campaignsWithCve,1.72);
+  \node[anchor=west] at ({\campaignsWithCve+0.7},1.41)
+    {\entcampaignswithcvecount{} (\entcampaignswithcvepct\% of \enterpriseactivecampaigncount{})};
+\end{tikzpicture}

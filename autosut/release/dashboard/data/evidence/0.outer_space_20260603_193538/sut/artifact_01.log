@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/clouduser/.config/google-chrome/Default/Preferences) && cat > /home/clouduser/.config/google-chrome/Default/Preferences <<'AUTOSUT_ART_EOF'
+{"profile":{"name":"Default"}}
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/clouduser/.config/google-chrome/Default/Preferences && chown clouduser:clouduser /home/clouduser/.config/google-chrome/Default/Preferences 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

@@ -1,0 +1,66 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Auto-generated from infra/topology.yaml — DO NOT EDIT MANUALLY
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "net-20" do |net_cfg|
+    net_cfg.vm.network "private_network", type: "static", ip: "172.20.0.1", virtualbox__intnet: "net-172-20"
+  end
+
+  config.vm.define "net-21" do |net_cfg|
+    net_cfg.vm.network "private_network", type: "static", ip: "172.21.0.1", virtualbox__intnet: "net-172-21"
+  end
+
+  config.vm.define "net-22" do |net_cfg|
+    net_cfg.vm.network "private_network", type: "static", ip: "172.22.0.1", virtualbox__intnet: "net-172-22"
+  end
+
+  config.vm.define "caldera" do |cfg|
+    cfg.vm.box = "jammy-server-cloudimg-arm64"
+    cfg.ssh.insert_key = false
+    cfg.vm.network "private_network", ip: "172.20.0.10", virtualbox__intnet: "net-172-20"
+
+    cfg.vm.provision "shell", inline: <<-SHELL
+      echo 'role=c2' | sudo tee /etc/sticks-role
+      hostnamectl set-hostname caldera
+    SHELL
+  end
+
+  config.vm.define "kali" do |cfg|
+    cfg.vm.box = "jammy-server-cloudimg-arm64"
+    cfg.ssh.insert_key = false
+    cfg.vm.network "private_network", ip: "172.20.0.20", virtualbox__intnet: "net-172-20"
+    cfg.vm.network "private_network", ip: "172.21.0.20", virtualbox__intnet: "net-172-21"
+
+    cfg.vm.provision "shell", inline: <<-SHELL
+      echo 'role=attacker' | sudo tee /etc/sticks-role
+      hostnamectl set-hostname kali
+    SHELL
+  end
+
+  config.vm.define "nginx" do |cfg|
+    cfg.vm.box = "jammy-server-cloudimg-arm64"
+    cfg.ssh.insert_key = false
+    cfg.vm.network "private_network", ip: "172.21.0.30", virtualbox__intnet: "net-172-21"
+    cfg.vm.network "private_network", ip: "172.22.0.30", virtualbox__intnet: "net-172-22"
+
+    cfg.vm.provision "shell", inline: <<-SHELL
+      echo 'role=pivot' | sudo tee /etc/sticks-role
+      hostnamectl set-hostname nginx
+    SHELL
+  end
+
+  config.vm.define "db" do |cfg|
+    cfg.vm.box = "jammy-server-cloudimg-arm64"
+    cfg.ssh.insert_key = false
+    cfg.vm.network "private_network", ip: "172.22.0.40", virtualbox__intnet: "net-172-22"
+
+    cfg.vm.provision "shell", inline: <<-SHELL
+      echo 'role=target' | sudo tee /etc/sticks-role
+      hostnamectl set-hostname db
+    SHELL
+  end
+
+end

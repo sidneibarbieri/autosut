@@ -1,0 +1,102 @@
+{
+  "campaign_id": "0.operation_midnighteclipse",
+  "total_elements": 5,
+  "by_source": {
+    "corpus_supported": 3,
+    "analyst_authored": 1,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 60.0,
+    "analyst_authored": 20.0,
+    "autosut_concretized": 20.0,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.eclipseops",
+      "value": "password:eclipseops",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Operator account for the GlobalProtect surrogate (eclipseops:Eclipse123!)."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.443",
+      "value": "443/tcp globalprotect_https_surrogate",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "Documented CVE-2024-3400 GlobalProtect HTTPS exploit surface (realised by the surrogate)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./var/lib/eclipseops/network_inventory.txt",
+      "value": "/var/lib/eclipseops/network_inventory.txt",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy network inventory the CVE-2024-3400 attacker would enumerate post-exploitation."
+    },
+    {
+      "dimension": "vulnerability",
+      "identifier": "vulnerability.CVE-2024-3400",
+      "value": "CVE-2024-3400",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "surrogate / Palo Alto GlobalProtect (surrogate)"
+    }
+  ]
+}

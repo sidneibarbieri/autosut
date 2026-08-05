@@ -1,0 +1,78 @@
+campaign_id: "0.salesforce_data_exfiltration"
+description: "Linux-focused SUT for the published Salesforce data exfiltration campaign"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 8
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+      - name: "apache"
+        version: "default"
+        config: "default_site_enabled"
+    users:
+      - username: "salesops"
+        password: "SalesOps123!"
+        sudo: false
+        home_files: true
+    files:
+      - path: "/home/salesops/documents/accounts.csv"
+        content: |
+          account_id,name,region,owner
+          1001,Northwind Logistics,NA,alice
+          1002,Blue Solar,EMEA,bob
+          1003,River Analytics,APAC,carol
+        owner: "salesops"
+        permissions: "640"
+      - path: "/home/salesops/documents/opportunities.txt"
+        content: |
+          Q2 pipeline summary
+          - Northwind Logistics renewal: $125000
+          - Blue Solar expansion: $98000
+          - River Analytics migration: $143000
+        owner: "salesops"
+        permissions: "640"
+    network:
+      ingress: [22, 80, 443]
+      egress: ["*"]
+    deliberate_weaknesses:
+      - type: "weak_ssh_password"
+        description: "Weak operator password supporting credential reuse and collection flow"
+      - type: "writable_directory"
+        path: "/tmp/salesforce-staging"
+        description: "Writable staging area for bounded collection and exfiltration artifacts"
+
+fidelity_expectations:
+  T1598.004: "INSPIRED"
+  T1585: "INSPIRED"
+  T1585.002: "INSPIRED"
+  T1586.002: "INSPIRED"
+  T1587.001: "INSPIRED"
+  T1588.002: "ADAPTED"
+  T1608.005: "ADAPTED"
+  T1671: "INSPIRED"
+  T1059.006: "ADAPTED"
+  T1036: "ADAPTED"
+  T1078.002: "INSPIRED"
+  T1656: "INSPIRED"
+  T1083: "ADAPTED"
+  T1213.004: "ADAPTED"
+  T1090: "INSPIRED"
+  T1090.003: "INSPIRED"
+  T1020: "ADAPTED"
+  T1567: "ADAPTED"
+
+methodology_notes: |
+  This SUT models the published Salesforce data-theft campaign as a bounded
+  Linux-hosted adaptation. Account establishment, email compromise, proxying,
+  and cloud integration remain inspired because they depend on external SaaS
+  or voice infrastructure. Discovery, CRM collection, staging, and web-service
+  transfer execute over bounded local artifacts with reproducible evidence.
+
+execution_mode: "real_controlled"

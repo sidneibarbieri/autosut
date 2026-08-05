@@ -1,0 +1,10 @@
+{
+  "campaign_id": "0.cve_2021_41773",
+  "timestamp": "2026-06-03T19:50:45+00:00",
+  "total_techniques": 4,
+  "successful": 4,
+  "fidelity_distribution": {
+    "adapted": 4
+  },
+  "evidence_directory": "release/evidence/0.cve_2021_41773_20260603_195020"
+}

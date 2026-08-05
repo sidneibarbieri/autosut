@@ -1,0 +1,6 @@
+{
+  "port": 8265,
+  "protocol": "tcp",
+  "service": "ray_dashboard_http",
+  "expose_to": "private_network"
+}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-08-03T17:21:29+00:00",
+  "git_commit": "ce204a9b4b99ede934c5d98841ee1593909a5e57",
+  "host_os": "Darwin arm64",
+  "caldera": {
+    "url": "http://localhost:8888",
+    "reachable": false,
+    "api_ok": false,
+    "server_version": null,
+    "agent_count": 0,
+    "ability_count": 0
+  }
+}

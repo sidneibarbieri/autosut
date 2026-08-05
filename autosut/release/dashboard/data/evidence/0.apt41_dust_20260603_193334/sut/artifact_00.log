@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/dustops/intel/targets.txt) && cat > /home/dustops/intel/targets.txt <<'AUTOSUT_ART_EOF'
+Targets: target-financial-01, target-financial-02
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/dustops/intel/targets.txt && chown dustops:dustops /home/dustops/intel/targets.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

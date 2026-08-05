@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# =============================================================================
+# Vagrantfile - Dynamic SUT Provisioning
+#
+# Automatically provisions based on campaign requirements:
+#   - Single-host: attacker + 1 target
+#   - Multi-host: attacker + 2+ targets
+#
+# Usage:
+#   # Auto-detect from campaign
+#   SUT_TYPE=multi-host vagrant up
+#   SUT_TYPE=single-host vagrant up
+#
+#   # Or use campaign config
+#   python3 sut_provisioner.py campaign.yml > sut_config.yml
+#   vagrant up --provision-with=sut
+# =============================================================================
+
+# Configuration from environment or defaults
+SUT_TYPE = ENV.fetch("SUT_TYPE", "single-host")
+NUM_TARGETS = ENV.fetch("NUM_TARGETS", SUT_TYPE == "multi-host" ? "2" : "1").to_i
+
+Vagrant.configure("2") do |config|
+
+  # -----------------------------------------------------------------------------
+  # Caldera Server (Attacker Infrastructure)
+  # -----------------------------------------------------------------------------
+  config.vm.define "caldera" do |caldera|
+    caldera.vm.box = "ubuntu/jammy64"
+    caldera.vm.hostname = "caldera"
+
+    caldera.vm.network "private_network", ip: "192.168.56.10"
+    caldera.vm.network "forwarded_port", guest: 8888, host: 8888
+
+    caldera.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+      vb.name = "caldera-server"
+    end
+
+    caldera.vm.provision "caldera", type: "shell", inline: <<-SHELL
+      # Install Caldera
+      apt-get update
+      apt-get install -y python3 python3-pip git curl
+
+      # Clone Caldera
+      cd /opt
+      git clone https://github.com/mitre/caldera.git --branch 5.3.0
+      cd caldera
+      pip3 install -r requirements.txt
+
+      # Start Caldera
+      cd /opt/caldera
+      nohup python3 server.py --port 8888 > /var/log/caldera.log 2>&1 &
+
+      echo "Caldera installed at http://localhost:8888"
+    SHELL
+  end
+
+  # -----------------------------------------------------------------------------
+  # Target Hosts (System Under Test)
+  # -----------------------------------------------------------------------------
+  (1..NUM_TARGETS).each do |i|
+    config.vm.define "host#{i}" do |host|
+      host.vm.box = "ubuntu/jammy64"
+      host.vm.hostname = "target-host-#{i}"
+
+      host.vm.network "private_network", ip: "192.168.56.#{10 + i}"
+
+      host.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+        vb.cpus = 1
+        vb.name = "target-host-#{i}"
+      end
+
+      # Base provisioning for all targets
+      host.vm.provision "base", type: "shell", inline: <<-SHELL
+        apt-get update
+        apt-get install -y python3 python3-pip net-tools curl wget
+        useradd -m -s /bin/bash simulation
+        echo "simulation ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+        echo "Target host #{i} ready"
+      SHELL
+
+      # Service-specific provisioning
+      host.vm.provision "services", type: "shell", inline: <<-SHELL
+        # Install common services based on campaign requirements
+        apt-get install -y openssh-server vsftpd apache2 nginx
+
+        # Configure weak/default credentials for testing
+        echo "testuser:testpass" | chpasswd
+
+        # Start services
+        service ssh start
+        service vsftpd start
+        service apache2 start
+
+        echo "Services provisioned"
+      SHELL
+    end
+  end
+
+end

@@ -1,0 +1,150 @@
+{
+  "campaign_id": "0.apt41_dust",
+  "total_elements": 11,
+  "by_source": {
+    "corpus_supported": 1,
+    "analyst_authored": 9,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 9.1,
+    "analyst_authored": 81.8,
+    "autosut_concretized": 9.1,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.openssh@default",
+      "value": "openssh@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "ssh service with password authentication enabled."
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.apache_httpd@default",
+      "value": "apache_httpd@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "HTTP web surface required by this lab profile."
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.mysql@default",
+      "value": "mysql@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "MySQL instance the lab profile declares (default_instance_exposed)."
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.dustops",
+      "value": "password:dustops",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!)."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "SSH service with password authentication enabled."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.80",
+      "value": "80/tcp http",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "HTTP web surface required by this lab profile."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.3306",
+      "value": "3306/tcp mysql",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "MySQL instance the lab profile declares (default_instance_exposed)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/dustops/intel/targets.txt",
+      "value": "/home/dustops/intel/targets.txt",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/dustops/intel/financials.csv",
+      "value": "/home/dustops/intel/financials.csv",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./tmp/staged_payload.sh",
+      "value": "/tmp/staged_payload.sh",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh)."
+    }
+  ]
+}

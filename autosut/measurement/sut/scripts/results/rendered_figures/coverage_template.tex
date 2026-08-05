@@ -1,0 +1,66 @@
+\definecolor{acmBlue}{HTML}{4477AA}
+\definecolor{acmTeal}{HTML}{228833}
+\definecolor{acmSand}{HTML}{D55E00}
+\definecolor{acmGrid}{HTML}{D9DDE2}
+\begin{tikzpicture}[x=0.50cm,y=0.028cm,font=\sffamily\small]
+  \path[use as bounding box] (-1.55,-33.0) rectangle (18.55,139.0);
+  \draw[->] (0,0) -- (18.0,0);
+  \draw[->] (0,0) -- (0,118);
+  \node[rotate=90,font=\small] at (-1.10,59) {Share with signal (\%)};
+  \foreach \yy in {0,20,40,60,80,100} {
+    \draw[acmGrid] (0,\yy) -- (17.6,\yy);
+    \node[anchor=east,font=\small,text=gray,inner xsep=0.8pt,inner ysep=0.2pt] at (-0.14,\yy) {\yy};
+  }
+  \fill[acmBlue]   (1.0,0) rectangle (1.8,\enterpriseplatformpct);
+  \fill[acmTeal]   (1.9,0) rectangle (2.7,\enterprisesoftwarelinkpct);
+  \fill[acmSand]   (2.8,0) rectangle (3.6,\enterprisecvelinkpct);
+  \node[above,font=\small] at (1.4,\enterpriseplatformpct) {\enterpriseplatformpct};
+  \node[above,font=\small] at (2.45,\enterprisesoftwarelinkpct) {\enterprisesoftwarelinkpct};
+  \node[above,font=\small] at (3.2,2.70) {\enterprisecvelinkpct};
+  \fill[acmBlue]   (4.0,0) rectangle (4.8,\mobileplatformpct);
+  \fill[acmTeal]   (4.9,0) rectangle (5.7,\mobilesoftwarelinkpct);
+  \fill[acmSand]   (5.8,0) rectangle (6.6,\mobilecvelinkpct);
+  \node[above,font=\small] at (4.4,\mobileplatformpct) {\mobileplatformpct};
+  \node[above,font=\small] at (5.45,\mobilesoftwarelinkpct) {\mobilesoftwarelinkpct};
+  % Mobile's CVE signal is exactly 0.0 (zero-height bar); label it explicitly
+  % like every other group so a zero measurement is never silently omitted.
+  \node[above,font=\small] at (6.2,1.5) {\mobilecvelinkpct};
+  \fill[acmBlue]   (7.0,0) rectangle (7.8,\icsplatformpercentage);
+  \fill[acmTeal]   (7.9,0) rectangle (8.7,\icssoftwarelinkpct);
+  \fill[acmSand]   (8.8,0) rectangle (9.6,\icscvelinkpct);
+  \node[above,font=\small] at (7.4,\icsplatformpercentage) {\icsplatformpercentage};
+  \node[above,font=\small] at (8.45,\icssoftwarelinkpct) {\icssoftwarelinkpct};
+  \node[above,font=\small] at (9.2,1.70) {\icscvelinkpct};
+  % CAPEC has zero observations for all three measured signals. The group is
+  % shifted right of ICS (and FiGHT right of CAPEC) so the compact zero label
+  % clears the ICS CVE-signal label with margin, matching the caption's
+  % "0/0/0" wording rather than a wider decimal form.
+  \draw[acmBlue,line width=0.7pt] (10.8,0) -- (11.6,0);
+  \draw[acmTeal,line width=0.7pt] (11.7,0) -- (12.5,0);
+  \draw[acmSand,line width=0.7pt] (12.6,0) -- (13.4,0);
+  \node[above,font=\small,text=gray] at (12.1,2) {0/0/0};
+  \fill[acmBlue]   (14.6,0) rectangle (15.4,\fightplatformpercentage);
+  \fill[acmTeal]   (15.5,0) rectangle (16.3,\fightsoftwarelinkpercentage);
+  \fill[acmSand]   (16.4,0) rectangle (17.2,\fightcvesignalpercentage);
+  \node[above,font=\small] at (15.0,\fightplatformpercentage) {\fightplatformpercentage};
+  \node[above,font=\small] at (16.05,\fightsoftwarelinkpercentage) {\fightsoftwarelinkpercentage};
+  \node[above,font=\small] at (16.8,3.2) {\fightcvesignalpercentage};
+  \node[font=\footnotesize] at (2.3,-8) {Enterprise};
+  \node[font=\footnotesize] at (5.3,-8) {Mobile};
+  \node[font=\footnotesize] at (8.3,-8) {ICS};
+  \node[font=\footnotesize,text=gray] at (12.1,-8) {CAPEC};
+  \node[font=\footnotesize] at (15.9,-8) {FiGHT};
+  \node[below,font=\small,text=gray] at (2.3,-12) {$n=\enterpriseactivetechniquecount$};
+  \node[below,font=\small,text=gray] at (5.3,-12) {$n=\mobileactivetechniquecount$};
+  \node[below,font=\small,text=gray] at (8.3,-12) {$n=\icsactivetechniquecount$};
+  \node[below,font=\small,text=gray] at (12.1,-12) {$n=\capecactiveattackpatterncount$};
+  \node[below,font=\small,text=gray] at (15.9,-12) {$n=\fighttechniquecount$};
+  \node[font=\small,text=black] at (9.0,-33.0) {Corpus};
+  \node[anchor=north,fill=white,fill opacity=0.95,text opacity=1,inner sep=2.2pt] at (9.0,136.0) {
+    \begin{tabular}{@{}c@{\hspace{0.8em}}c@{\hspace{0.8em}}c@{}}
+      \textcolor{acmBlue}{\rule{0.95em}{0.72em}}\ \ Platform &
+      \textcolor{acmTeal}{\rule{0.95em}{0.72em}}\ \ Software link &
+      \textcolor{acmSand}{\rule{0.95em}{0.72em}}\ \ CVE signal
+    \end{tabular}
+  };
+\end{tikzpicture}

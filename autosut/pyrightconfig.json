@@ -1,0 +1,32 @@
+{
+    "exclude": [
+        "**/__pycache__",
+        "**/*.pyc",
+        "**/.pytest_cache",
+        "**/.mypy_cache",
+        "**/.coverage",
+        "**/node_modules",
+        "**/venv",
+        "**/.venv",
+        "**/site-packages",
+        "**/.git",
+        "**/.DS_Store",
+        "**/lab/qemu/runtime",
+        "**/evidence/qemu-multi",
+        "**/results",
+        "**/.sticks-runtime",
+        "**/caldera/plugins/**/data",
+        "**/caldera/venv",
+        "**/downloads",
+        "**/temp",
+        "**/tmp",
+        "**/*.log",
+        "**/*.qcow2",
+        "**/*.iso",
+        "**/*.fd"
+    ],
+    "reportMissingImports": "none",
+    "reportMissingTypeStubs": "none",
+    "pythonVersion": "3.11",
+    "typeCheckingMode": "basic"
+}

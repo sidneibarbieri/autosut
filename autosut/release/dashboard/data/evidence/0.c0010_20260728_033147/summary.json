@@ -1,0 +1,14 @@
+{
+  "campaign_id": "0.c0010",
+  "timestamp": "2026-07-28T03:32:26+00:00",
+  "total_techniques": 9,
+  "successful": 9,
+  "evidence_backed_successful": 3,
+  "adapted_successful": 3,
+  "marker_only_successful": 6,
+  "fidelity_distribution": {
+    "inspired": 6,
+    "adapted": 3
+  },
+  "evidence_directory": "release/evidence/0.c0010_20260728_033147"
+}

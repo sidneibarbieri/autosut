@@ -1,0 +1,398 @@
+{
+  "generated_from": {
+    "campaign_dir": "campaigns/",
+    "sut_profile_dir": "data/sut_profiles/",
+    "evidence_dir": "release/evidence/"
+  },
+  "totals": {
+    "published_campaigns": 14,
+    "campaigns_with_sut": 14,
+    "campaigns_with_strict_pair_validation": 12,
+    "campaigns_with_base_weaknesses": 14,
+    "campaigns_with_step_overlays": 1,
+    "campaigns_with_latest_evidence": 14,
+    "campaigns_with_single_target_host": 14,
+    "campaigns_with_multi_target_host": 0,
+    "campaigns_with_multi_vm_runtime": 14
+  },
+  "rows": [
+    {
+      "campaign_id": "0.apt41_dust",
+      "sut_profile_id": "0.apt41_dust",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 3,
+      "base_user_count": 1,
+      "base_file_count": 3,
+      "base_weakness_count": 3,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "sut_profile_id": "0.apt41_dust_full",
+      "pair_valid": false,
+      "pair_error": "Fidelity mismatch for T1490: campaign expects adapted, SUT expects inspired",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 2,
+      "base_weakness_count": 1,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0010",
+      "sut_profile_id": "0.c0010",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 2,
+      "base_user_count": 1,
+      "base_file_count": 2,
+      "base_weakness_count": 2,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0011",
+      "sut_profile_id": "0.c0011",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 2,
+      "base_weakness_count": 1,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0012",
+      "sut_profile_id": "0.c0012",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 0,
+      "base_weakness_count": 2,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0013",
+      "sut_profile_id": "0.c0013",
+      "pair_valid": false,
+      "pair_error": "Fidelity mismatch for T1059.004: campaign expects inspired, SUT expects adapted; Fidelity mismatch for T1105: campaign expects inspired, SUT expects adapted",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 2,
+      "base_user_count": 1,
+      "base_file_count": 0,
+      "base_weakness_count": 2,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0015",
+      "sut_profile_id": "0.c0015",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 2,
+      "base_weakness_count": 1,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0017",
+      "sut_profile_id": "0.c0017",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 1,
+      "base_weakness_count": 1,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.c0026",
+      "sut_profile_id": "0.c0026",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 2,
+      "base_weakness_count": 2,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.costaricto",
+      "sut_profile_id": "0.costaricto",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 2,
+      "base_user_count": 1,
+      "base_file_count": 3,
+      "base_weakness_count": 2,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "sut_profile_id": "0.operation_midnighteclipse",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 5,
+      "base_user_count": 1,
+      "base_file_count": 3,
+      "base_weakness_count": 3,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.outer_space",
+      "sut_profile_id": "0.outer_space",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 2,
+      "base_user_count": 1,
+      "base_file_count": 3,
+      "base_weakness_count": 1,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "sut_profile_id": "0.salesforce_data_exfiltration",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 3,
+      "base_service_count": 2,
+      "base_user_count": 1,
+      "base_file_count": 2,
+      "base_weakness_count": 2,
+      "step_overlay_count": 0,
+      "overlay_service_count": 0,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 0,
+      "has_latest_evidence": true
+    },
+    {
+      "campaign_id": "0.shadowray",
+      "sut_profile_id": "0.shadowray",
+      "pair_valid": true,
+      "pair_error": "",
+      "declared_runtime_vms": [
+        "caldera",
+        "attacker",
+        "target-linux-1"
+      ],
+      "runtime_vm_count": 3,
+      "target_hosts": [
+        "target-base"
+      ],
+      "target_host_count": 1,
+      "topology_kind": "single_target",
+      "min_hosts": 1,
+      "base_service_count": 1,
+      "base_user_count": 1,
+      "base_file_count": 0,
+      "base_weakness_count": 1,
+      "step_overlay_count": 1,
+      "overlay_service_count": 1,
+      "overlay_file_count": 0,
+      "overlay_weakness_count": 1,
+      "has_latest_evidence": true
+    }
+  ]
+}

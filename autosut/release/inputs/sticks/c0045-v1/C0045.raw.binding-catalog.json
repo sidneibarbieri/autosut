@@ -1,0 +1,9 @@
+{
+  "schema_version": "1",
+  "sut_id": "raw-stix-no-sut",
+  "source_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+  "initial_facts": [],
+  "goal_facts": [],
+  "bindings": [],
+  "content_sha256": "e6773e8c0611786456cc14e05c900d286e2fbccb2ebca7348a531394eee58d3a"
+}

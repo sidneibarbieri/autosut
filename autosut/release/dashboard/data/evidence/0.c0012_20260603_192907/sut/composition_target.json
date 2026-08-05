@@ -1,0 +1,36 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "ubuntu",
+      "secret": "ubuntu",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.c0012 \u2014 APT28-style reconnaissance against minimal Linux SUT with weak ssh."
+}

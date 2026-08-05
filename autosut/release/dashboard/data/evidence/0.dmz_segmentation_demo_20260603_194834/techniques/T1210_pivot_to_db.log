@@ -1,0 +1,9 @@
+$ sshpass -p 'Zone-Demo-2026!' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser@nginx "sshpass -p 'Zone-Demo-2026!' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser@app_server "sshpass -p 'Zone-Demo-2026!' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser@db "hostname && id"""
+exit_code: 0
+--- stdout ---
+db
+uid=1000(labuser) gid=1000(labuser) groups=1000(labuser)
+
+--- stderr ---
+Warning: Permanently added 'db' (ED25519) to the list of known hosts.
+

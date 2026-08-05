@@ -1,0 +1,63 @@
+{
+  "campaign_id": "0.c0015",
+  "description": "Carbanak - Financial sector targeted attacks",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 12
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "privilege_escalation",
+      "target": "target",
+      "config": {
+        "method": "sudo_misconfiguration"
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "name": "Unix Shell",
+      "tactic": "execution",
+      "platform": "linux",
+      "description": "Command execution via bash"
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "description": "Discover files and directories"
+    },
+    {
+      "technique_id": "T1068",
+      "name": "Exploitation for Privilege Escalation",
+      "tactic": "privilege-escalation",
+      "platform": "linux",
+      "description": "Exploit vulnerabilities to elevate privileges"
+    },
+    {
+      "technique_id": "T1548",
+      "name": "Abuse Elevation Control Mechanism",
+      "tactic": "privilege-escalation",
+      "platform": "linux",
+      "description": "Abuse elevation control mechanisms"
+    },
+    {
+      "technique_id": "T1113",
+      "name": "Screen Capture",
+      "tactic": "collection",
+      "platform": "linux",
+      "description": "Capture screen contents"
+    }
+  ]
+}

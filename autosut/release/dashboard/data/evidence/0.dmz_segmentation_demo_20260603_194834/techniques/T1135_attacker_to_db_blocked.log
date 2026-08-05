@@ -1,0 +1,8 @@
+$ nc -zv -w 3 db 22 2>&1; echo exit=$?
+exit_code: 0
+--- stdout ---
+nc: getaddrinfo for host "db" port 22: Name does not resolve
+exit=1
+
+--- stderr ---
+

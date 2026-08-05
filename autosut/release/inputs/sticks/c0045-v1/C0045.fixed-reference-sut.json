@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "sut_id": "c0045-fixed-reference-v1",
+  "purpose": "Fixed non-campaign-conditioned reference environment for the C0045 planning ablation.",
+  "initial_facts": [
+    "actor.ready",
+    "sut.ready"
+  ],
+  "goal_facts": [
+    "impact.target.compute"
+  ],
+  "scope": "Planning input only; this descriptor is not an execution record."
+}

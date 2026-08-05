@@ -1,0 +1,5 @@
+docker network connect autosut-enterprise-fc2a61 autosut-app_server-0bded7
+exit_code: 0
+stdout: 
+stderr: 
+---

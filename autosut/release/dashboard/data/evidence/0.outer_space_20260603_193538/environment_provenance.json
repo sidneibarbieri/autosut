@@ -1,0 +1,134 @@
+{
+  "campaign_id": "0.outer_space",
+  "total_elements": 9,
+  "by_source": {
+    "corpus_supported": 1,
+    "analyst_authored": 7,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 11.1,
+    "analyst_authored": 77.8,
+    "autosut_concretized": 11.1,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.openssh@default",
+      "value": "openssh@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "ssh service with password authentication enabled."
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.apache_httpd@default",
+      "value": "apache_httpd@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "HTTP web surface required by this lab profile."
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.clouduser",
+      "value": "password:clouduser",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "Operator account declared by the lab profile declaration (clouduser:cloudpass123)."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "SSH service with password authentication enabled."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.80",
+      "value": "80/tcp http",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "HTTP web surface required by this lab profile."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/clouduser/.mozilla/firefox/profiles.ini",
+      "value": "/home/clouduser/.mozilla/firefox/profiles.ini",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.mozilla/firefox/profiles.ini)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/clouduser/.config/google-chrome/Default/Preferences",
+      "value": "/home/clouduser/.config/google-chrome/Default/Preferences",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.config/google-chrome/Default/Preferences)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/clouduser/staging/encoded_payload.b64",
+      "value": "/home/clouduser/staging/encoded_payload.b64",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/staging/encoded_payload.b64)."
+    }
+  ]
+}

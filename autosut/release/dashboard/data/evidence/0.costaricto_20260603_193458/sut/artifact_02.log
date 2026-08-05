@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /home/reconuser/tools/network_scan.sh) && cat > /home/reconuser/tools/network_scan.sh <<'AUTOSUT_ART_EOF'
+#!/bin/sh
+for host in target1 target2; do nc -z -w 1 $host 22; done
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/reconuser/tools/network_scan.sh && chown reconuser:reconuser /home/reconuser/tools/network_scan.sh 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

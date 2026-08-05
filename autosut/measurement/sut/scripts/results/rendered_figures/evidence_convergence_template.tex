@@ -1,0 +1,26 @@
+\definecolor{acmBlue}{HTML}{4477AA}
+\definecolor{acmSand}{HTML}{EE7733}
+\definecolor{acmGrid}{HTML}{D9DDE2}
+\definecolor{acmAxis}{HTML}{555555}
+\begin{tikzpicture}[x=0.075cm,y=0.82cm,font=\footnotesize]
+  \path[use as bounding box] (-13.5,-0.82) rectangle (51,2.25);
+  \draw[->,acmAxis] (0,0) -- (50,0);
+  \node[font=\small,text=acmAxis] at (24.0,-0.62) {Campaign count};
+  \node[anchor=west,font=\small,text=acmAxis] at (-13.2,2.02) {Agreement outcome};
+  \draw[acmGrid] (0,0) -- (0,1.75);
+  \node[below,font=\small] at (0,-0.08) {0};
+  \draw[acmGrid] (10,0) -- (10,1.75);
+  \node[below,font=\small] at (10,-0.08) {10};
+  \draw[acmGrid] (20,0) -- (20,1.75);
+  \node[below,font=\small] at (20,-0.08) {20};
+  \draw[acmGrid] (30,0) -- (30,1.75);
+  \node[below,font=\small] at (30,-0.08) {30};
+  \draw[acmGrid] (40,0) -- (40,1.75);
+  \node[below,font=\small] at (40,-0.08) {40};
+  \node[anchor=east] at (-1.2,1.40) {Convergent};
+  \fill[acmBlue] (0,1.18) rectangle (46,1.62);
+  \node[anchor=west,font=\small] at (47,1.40) {46 (95.8\%)};
+  \node[anchor=east] at (-1.2,0.55) {Divergent};
+  \fill[acmSand] (0,0.33) rectangle (2,0.77);
+  \node[anchor=west,font=\small] at (3,0.55) {2 (4.2\%)};
+\end{tikzpicture}

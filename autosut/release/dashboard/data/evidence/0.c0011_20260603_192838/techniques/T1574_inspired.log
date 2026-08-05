@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1574.marker && echo 'T1574 (Hijack Execution Flow) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1574.marker && cat /tmp/c0011_T1574.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:28:47Z
+T1574 (Hijack Execution Flow) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

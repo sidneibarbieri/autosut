@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /home/reconuser/proxy/multi_hop_proxy.conf) && cat > /home/reconuser/proxy/multi_hop_proxy.conf <<'AUTOSUT_ART_EOF'
+# multi-hop proxy configuration
+frontends=proxy1,proxy2
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/reconuser/proxy/multi_hop_proxy.conf && chown reconuser:reconuser /home/reconuser/proxy/multi_hop_proxy.conf 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

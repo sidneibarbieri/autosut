@@ -1,0 +1,216 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.shadowray",
+  "source_campaign_id": "C0045",
+  "source_plan_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+  "concretized_plan_sha256": "19202835c75ee11006b50853759b73fc595d6ef1301be6f2ea416efa7f21526e",
+  "binding_catalog_sha256": "67870965f226c8a8f0a6ca0e0fd56c124c84b6982688e1319642357a6b40c9d8",
+  "planning_certificate_sha256": "86fdd916407579eb4bfe36f7902dca3a37804f1eeca9b0b40d3f2697f7b925d7",
+  "scope": "validated_controlled_slice",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "sut.ray_dashboard.reachable"
+  ],
+  "transitions": [
+    {
+      "technique_id": "T1588.002",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.toolkit.ready"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "stage-benign-toolkit",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1190",
+      "requires": [
+        "sut.ray_dashboard.reachable"
+      ],
+      "produces": [
+        "access.target.shell"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "probe-declared-public-service",
+      "bindings": {
+        "actor": "actor.primary",
+        "endpoint": "endpoint.public_service",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "service_request_logged",
+        "bounded_effect_observed"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1059.006",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "execution.target.python"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "run-benign-python",
+      "bindings": {
+        "runtime": "runtime.python3",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "process_exit_recorded",
+        "stdout_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1546.004",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "persistence.target.shell_config"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "write-lab-shell-config",
+      "bindings": {
+        "artifact": "artifact.shell_config",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "cleanup_verified"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1068",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "assessment.target.privilege_boundary"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "assess-privilege-boundary",
+      "bindings": {
+        "boundary": "boundary.no_live_exploit",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "boundary_check_recorded"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1027.013",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "artifact.target.encoded"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "encode-benign-artifact",
+      "bindings": {
+        "artifact": "artifact.encoded",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_encoded_hashes_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1003.008",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "collection.target.credential_files"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "read-declared-credential-fixture",
+      "bindings": {
+        "credential_source": "credential.synthetic_fixture",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "fixture_access_logged",
+        "no_host_credentials_read"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1016",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "discovery.target.network"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "inspect-declared-network",
+      "bindings": {
+        "interface": "network.private_interface",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "interface_snapshot_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1105",
+      "requires": [
+        "access.target.shell",
+        "actor.toolkit.ready"
+      ],
+      "produces": [
+        "transfer.target.payload"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "transfer-benign-payload",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1496.001",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "impact.target.compute"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "run-bounded-compute-workload",
+      "bindings": {
+        "target": "target.primary",
+        "workload": "workload.bounded_hash"
+      },
+      "evidence_predicates": [
+        "duration_and_cpu_bound_recorded",
+        "no_pool_traffic"
+      ],
+      "fidelity_ceiling": "adapted"
+    }
+  ],
+  "content_sha256": "d6d93f2d0406c5754eeb35281f90ada9855d2250b0d86bd6098ab0cfd5baed85"
+}

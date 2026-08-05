@@ -1,0 +1,118 @@
+{
+  "campaign_id": "0.pivot_demo",
+  "total_elements": 7,
+  "by_source": {
+    "corpus_supported": 3,
+    "analyst_authored": 2,
+    "autosut_concretized": 2,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 42.9,
+    "analyst_authored": 28.6,
+    "autosut_concretized": 28.6,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 3,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 2,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "attacker.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "attacker",
+      "purpose": "materialised as alpine:3.19"
+    },
+    {
+      "dimension": "platform",
+      "identifier": "target1.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "target1",
+      "purpose": "materialised as alpine:3.19"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "target1.credential.labuser",
+      "value": "password:labuser",
+      "source": "autosut_concretized",
+      "host": "target1",
+      "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "target1.exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": "target1",
+      "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target."
+    },
+    {
+      "dimension": "platform",
+      "identifier": "target2.platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": "target2",
+      "purpose": "materialised as alpine:3.19"
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "target2.credential.labuser",
+      "value": "password:labuser",
+      "source": "autosut_concretized",
+      "host": "target2",
+      "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "target2.exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": "target2",
+      "purpose": "SSH service the attacker brute-forces (T1110.001) on the pivot target."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "credentials": [],
+  "artifacts": [],
+  "exposures": [
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "HTTP service the attacker brute-forces (T1110.001) on the web target.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "apache_httpd",
+      "version": "default",
+      "recipe": "apache_basic_auth",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "The edge HTTP service whose Basic Auth realm the attacker brute-forces (T1110.001) and authenticates to (T1078) before exfiltrating the protected secret (T1005). A FREE, analyst-authored implementation choice: the corpus pins only that an edge HTTP service must exist, not which web server realises it. The non-uniqueness witness substitutes it (Apache <-> Nginx) and executes both to completion under one corpus fingerprint.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "Web target realism: HTTP Basic Auth realm with a pre-staged weak credential and a protected secret on the per-run private network."
+}

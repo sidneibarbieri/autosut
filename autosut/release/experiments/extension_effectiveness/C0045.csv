@@ -1,0 +1,5 @@
+arm_id,treatment,applicable_cells,resolved_cells,unresolved_cells,closure_rate
+A,native_stix_structured_fields,142,30,112,0.211268
+B,native_stix_plus_bounded_text_mining,142,31,111,0.21831
+C,sticks_procedure_extension,142,101,41,0.711268
+D,sticks_plus_autosut_environment_extension,142,140,2,0.985915

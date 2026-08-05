@@ -1,0 +1,18 @@
+sut_profile_id: C0005
+name: SUT for Operation Cloud Atlas
+description: IaC environment for reproducing Operation Cloud Atlas
+platform: linux
+architecture: multi_vm
+required_vms:
+- target
+- attacker
+vulnerabilities:
+- type: web_vulnerability
+  service: apache
+  description: Intentionally vulnerable web application for exploitation
+services:
+- apache
+capabilities:
+- network:http_available
+- network:ssh_available
+- resources:staging_directory

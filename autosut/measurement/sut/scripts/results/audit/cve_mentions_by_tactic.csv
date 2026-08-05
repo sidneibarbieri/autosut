@@ -1,0 +1,15 @@
+tactic,technique_count,techniques_with_any_cve_mention,techniques_with_any_cve_pct,total_cve_mentions
+defense-evasion,215,7,3.3,7
+persistence,126,3,2.4,3
+privilege-escalation,109,2,1.8,2
+credential-access,67,1,1.5,1
+discovery,49,1,2.0,1
+resource-development,47,0,0.0,0
+execution,46,1,2.2,1
+command-and-control,45,2,4.4,4
+reconnaissance,45,0,0.0,0
+collection,41,0,0.0,0
+impact,33,0,0.0,0
+lateral-movement,23,1,4.3,3
+initial-access,22,1,4.5,2
+exfiltration,19,0,0.0,0

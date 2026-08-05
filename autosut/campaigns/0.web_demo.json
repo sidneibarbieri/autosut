@@ -1,0 +1,56 @@
+{
+    "campaign_id": "0.web_demo",
+    "description": "Two-host edge-HTTP witness. The attacker brute-forces HTTP Basic Auth on a web target and exfiltrates a protected secret over the authenticated channel. The web server is a free element: the canonical SUT runs Apache, a generated variant substitutes Nginx, and both serve the same Basic Auth attack chain to completion under one unchanged corpus fingerprint.",
+    "plan_origin": "autosut_internal",
+    "sut": {
+        "topology": "two-host",
+        "estimated_duration_minutes": 3,
+        "private_network": true
+    },
+    "techniques": [
+        {
+            "technique_id": "T1046",
+            "name": "Network Service Discovery",
+            "tactic": "discovery",
+            "platform": "linux",
+            "target_host": "attacker",
+            "expected_fidelity": "adapted",
+            "expected_mode": "real_controlled",
+            "recipe": "scan_webtarget_http",
+            "description": "From the attacker host, probe the web target for an HTTP service answering on :80."
+        },
+        {
+            "technique_id": "T1110.001",
+            "name": "Brute Force: Password Guessing",
+            "tactic": "credential-access",
+            "platform": "linux",
+            "target_host": "attacker",
+            "expected_fidelity": "adapted",
+            "expected_mode": "real_controlled",
+            "recipe": "guess_web_basic_auth",
+            "description": "Lab pre-stages a weak HTTP Basic Auth credential; the attacker iterates a tiny wordlist until one entry returns HTTP 200."
+        },
+        {
+            "technique_id": "T1078",
+            "name": "Valid Accounts",
+            "tactic": "initial-access",
+            "platform": "linux",
+            "target_host": "attacker",
+            "expected_fidelity": "adapted",
+            "expected_mode": "real_controlled",
+            "recipe": "web_valid_accounts",
+            "description": "Authenticate to the protected resource with the recovered credentials."
+        },
+        {
+            "technique_id": "T1005",
+            "name": "Data from Local System",
+            "tactic": "collection",
+            "platform": "linux",
+            "target_host": "attacker",
+            "expected_fidelity": "adapted",
+            "expected_mode": "real_controlled",
+            "recipe": "web_exfil_secret",
+            "description": "Read the protected secret over the authenticated HTTP channel."
+        }
+    ]
+}

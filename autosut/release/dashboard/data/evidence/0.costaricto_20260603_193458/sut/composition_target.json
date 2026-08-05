@@ -1,0 +1,82 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "reconuser",
+      "secret": "reconpass123",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (reconuser:reconpass123).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/reconuser/collection/finance_notes.txt",
+      "content_text": "Finance reconnaissance notes \u2014 internal\n",
+      "content_b64": null,
+      "owner": "reconuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/collection/finance_notes.txt).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/reconuser/proxy/multi_hop_proxy.conf",
+      "content_text": "# multi-hop proxy configuration\nfrontends=proxy1,proxy2\n",
+      "content_b64": null,
+      "owner": "reconuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/proxy/multi_hop_proxy.conf).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/reconuser/tools/network_scan.sh",
+      "content_text": "#!/bin/sh\nfor host in target1 target2; do nc -z -w 1 $host 22; done\n",
+      "content_b64": null,
+      "owner": "reconuser",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/reconuser/tools/network_scan.sh).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "apache_httpd",
+      "version": "default",
+      "recipe": "apache_default_site",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.costaricto \u2014 service discovery, tool staging, local collection and proxy artefacts on Linux SUT."
+}

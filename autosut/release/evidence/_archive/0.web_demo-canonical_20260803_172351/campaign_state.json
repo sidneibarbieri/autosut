@@ -1,0 +1,80 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.web_demo",
+  "run_id": "0.web_demo-canonical_20260803_172351",
+  "initial_facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "state",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "technique_id": "T1046",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1046_web_scan.log"
+      ]
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1110.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1110.001_web_wordlist.log",
+        "techniques/T1110.001_web_bruteforce.log"
+      ]
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1078",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1078_web_auth.log"
+      ]
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1005",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [],
+      "evidence_files": [
+        "techniques/T1005_web_exfil.log"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "state",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "context_observations": [],
+  "contract_coverage": "not_declared",
+  "declared_technique_ids": [],
+  "executed_technique_ids": [
+    "T1046",
+    "T1110.001",
+    "T1078",
+    "T1005"
+  ],
+  "source_plan_sha256": null,
+  "executable_contract_sha256": null,
+  "content_sha256": "e634ab8c93ed68639fe968cbbf528be7c7bbf8f6f1bb3dc8a155bcfdb7ba64b3"
+}

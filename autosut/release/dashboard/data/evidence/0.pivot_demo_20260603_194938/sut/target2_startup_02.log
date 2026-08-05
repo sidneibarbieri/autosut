@@ -1,0 +1,6 @@
+$ echo 'labuser:Lab-Demo-2026!' | chpasswd
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

@@ -1,0 +1,10 @@
+{
+  "campaign_id": "0.caldera_linux_demo",
+  "timestamp": "2026-06-03T19:44:29+00:00",
+  "total_techniques": 6,
+  "successful": 6,
+  "fidelity_distribution": {
+    "adapted": 6
+  },
+  "evidence_directory": "release/evidence/0.caldera_linux_demo_20260603_193736"
+}

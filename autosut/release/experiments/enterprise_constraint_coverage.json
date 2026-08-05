@@ -1,0 +1,974 @@
+{
+  "schema_version": "1",
+  "evaluation_claim": "platform_constraint_and_blueprint_skeleton_coverage_not_replay_ready_sut_or_campaign_execution",
+  "materializable_platforms": [
+    "Linux"
+  ],
+  "plan_count": 51,
+  "platform_constraint_complete_count": 12,
+  "blueprint_skeleton_available_count": 12,
+  "rows": [
+    {
+      "campaign_id": "C0001",
+      "campaign_name": "Frankenstein",
+      "step_count": 27,
+      "target_or_boundary_steps": 26,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 26,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 26,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "d5fb3679d4b22af68d39b6c87100c9e789b4d1ed884cc216cdbc069e3b7bb5f8",
+      "constraint_path": "release/plans/enterprise/C0001.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0002",
+      "campaign_name": "Night Dragon",
+      "step_count": 29,
+      "target_or_boundary_steps": 24,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 24,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 24,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "a7e96c3d0b26b38f7c4ff5602f0707d6884947cca8e87d5ecacc66c6e63b54f3",
+      "constraint_path": "release/plans/enterprise/C0002.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0004",
+      "campaign_name": "CostaRicto",
+      "step_count": 10,
+      "target_or_boundary_steps": 7,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 7,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 7,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "ffc0d8cd19f210fec513a6c63a9e52c0c99e1d0a90def775e2708db6e53346c5",
+      "constraint_path": "release/plans/enterprise/C0004.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0005",
+      "campaign_name": "Operation Spalax",
+      "step_count": 17,
+      "target_or_boundary_steps": 13,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 13,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 13,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "25be9a7171ff2a1a21b31a8cf649c58d27e171310064fe53d2e08a67117a3b66",
+      "constraint_path": "release/plans/enterprise/C0005.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0006",
+      "campaign_name": "Operation Honeybee",
+      "step_count": 28,
+      "target_or_boundary_steps": 24,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 24,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 24,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "6a6900fdd42319cc6bbd20c947e11f033f08aeb3e2446d225f62edf2aff7c381",
+      "constraint_path": "release/plans/enterprise/C0006.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0007",
+      "campaign_name": "FunnyDream",
+      "step_count": 14,
+      "target_or_boundary_steps": 10,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 10,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 10,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "9cc4f3a0191083be882901722fe09bf97e95b698d4a2cd8d894afcf8e4d21940",
+      "constraint_path": "release/plans/enterprise/C0007.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0010",
+      "campaign_name": "C0010",
+      "step_count": 9,
+      "target_or_boundary_steps": 2,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 2,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "d6bff93a7d0bef29db03a20d5beca46de64c95fee3c2b5b01471eba730fd523d",
+      "constraint_path": "release/plans/enterprise/C0010.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0011",
+      "campaign_name": "C0011",
+      "step_count": 8,
+      "target_or_boundary_steps": 5,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 5,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "3a2e002f52568fde189fdbe7f19f4491cfe9781b057eb6475f8f7be6aca14b90",
+      "constraint_path": "release/plans/enterprise/C0011.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0012",
+      "campaign_name": "Operation CuckooBees",
+      "step_count": 33,
+      "target_or_boundary_steps": 32,
+      "selected_platforms": [
+        "Linux",
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 5,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 32,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "d476f29103e0a67da85f301d05386a86849b2efc1eed5f5a8351d68942d4a3c6",
+      "constraint_path": "release/plans/enterprise/C0012.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0013",
+      "campaign_name": "Operation Sharpshooter",
+      "step_count": 13,
+      "target_or_boundary_steps": 9,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 9,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 9,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "581ce7a3ef791ab88e404487f6b77d21dd44fd77b0dbdfbf68b7e82912e99c12",
+      "constraint_path": "release/plans/enterprise/C0013.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0014",
+      "campaign_name": "Operation Wocao",
+      "step_count": 70,
+      "target_or_boundary_steps": 65,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 65,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 65,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "9068132d9c132870ae98c691ce28c19e23fc6202644af1d29a82ad0e7dc16e7f",
+      "constraint_path": "release/plans/enterprise/C0014.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0015",
+      "campaign_name": "C0015",
+      "step_count": 34,
+      "target_or_boundary_steps": 32,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 32,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 32,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "bb8695d57a105a8d5288d12df53919d66285c34c32b68ce3f0639003ef92370f",
+      "constraint_path": "release/plans/enterprise/C0015.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0016",
+      "campaign_name": "Operation Dust Storm",
+      "step_count": 17,
+      "target_or_boundary_steps": 15,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 15,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 15,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "cf6cbc77b8b8547cb2597b6138dcce5ba19fc878971089a25a929b2397b3d506",
+      "constraint_path": "release/plans/enterprise/C0016.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0017",
+      "campaign_name": "C0017",
+      "step_count": 29,
+      "target_or_boundary_steps": 28,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 28,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 28,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "0e43441b87621e914a3fdc7d53e0e913bf33508ca11e7e9a5f70debe2781e5fa",
+      "constraint_path": "release/plans/enterprise/C0017.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0018",
+      "campaign_name": "C0018",
+      "step_count": 19,
+      "target_or_boundary_steps": 18,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 18,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 18,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "6760a66d3f1ad4eb2109a933c94d073d301197092fb158d7793829b8cb21bcfb",
+      "constraint_path": "release/plans/enterprise/C0018.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0021",
+      "campaign_name": "C0021",
+      "step_count": 15,
+      "target_or_boundary_steps": 11,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 11,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 11,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "e1479c582246ea698529631830a0a71f3881d48dfb393801581d3ce41082e47f",
+      "constraint_path": "release/plans/enterprise/C0021.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0022",
+      "campaign_name": "Operation Dream Job",
+      "step_count": 55,
+      "target_or_boundary_steps": 38,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 38,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 38,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "38863020de29d474a3914325e56280188437c9b474ee5cbac97e98099be4e9d9",
+      "constraint_path": "release/plans/enterprise/C0022.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0023",
+      "campaign_name": "Operation Ghost",
+      "step_count": 8,
+      "target_or_boundary_steps": 5,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 5,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 5,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "3b29998e7f97c5c727d56650cf1d5e6e84bdba0261e247c5f75b3d5926163420",
+      "constraint_path": "release/plans/enterprise/C0023.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0024",
+      "campaign_name": "SolarWinds Compromise",
+      "step_count": 71,
+      "target_or_boundary_steps": 67,
+      "selected_platforms": [
+        "Windows",
+        "SaaS"
+      ],
+      "unsupported_platforms": [
+        "Windows",
+        "SaaS"
+      ],
+      "uncovered_technique_count": 67,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 67,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "d9c792ebc64cc30c1f0774f6051ab27561ae8cebbfb8d703800fa1a498a93a5c",
+      "constraint_path": "release/plans/enterprise/C0024.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0025",
+      "campaign_name": "2016 Ukraine Electric Power Attack",
+      "step_count": 21,
+      "target_or_boundary_steps": 21,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 21,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 21,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "fc8341dc6cdc961253fc4f9ea5aa2fc8dfd196ea9d437ed2ad2af4cc4e7c7489",
+      "constraint_path": "release/plans/enterprise/C0025.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0026",
+      "campaign_name": "C0026",
+      "step_count": 6,
+      "target_or_boundary_steps": 5,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 5,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "b3b20c2386bd1fae80c07b4ac881f8b156aa53c84224b8d4ee3f2ec5d23c2987",
+      "constraint_path": "release/plans/enterprise/C0026.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0027",
+      "campaign_name": "C0027",
+      "step_count": 28,
+      "target_or_boundary_steps": 24,
+      "selected_platforms": [
+        "Windows",
+        "IaaS"
+      ],
+      "unsupported_platforms": [
+        "Windows",
+        "IaaS"
+      ],
+      "uncovered_technique_count": 24,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 24,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "72f730d376aea1bbd94cde848431d0ba0227f5b47ec25fee1d0af2ac4fada865",
+      "constraint_path": "release/plans/enterprise/C0027.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0028",
+      "campaign_name": "2015 Ukraine Electric Power Attack",
+      "step_count": 17,
+      "target_or_boundary_steps": 17,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 17,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 17,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "29ff4dff7c33c3cb166f4def0e7f65f5bd9d057109a2778f6eb811a20932c83c",
+      "constraint_path": "release/plans/enterprise/C0028.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0029",
+      "campaign_name": "Cutting Edge",
+      "step_count": 31,
+      "target_or_boundary_steps": 27,
+      "selected_platforms": [
+        "Linux",
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 4,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 27,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "1e91dd72a5e0016c7bb9ce9943db8b561d3ad6a09cd5af93e99c8c5f4147ce00",
+      "constraint_path": "release/plans/enterprise/C0029.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0030",
+      "campaign_name": "Triton Safety Instrumented System Attack",
+      "step_count": 10,
+      "target_or_boundary_steps": 7,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 7,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 7,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "61fa5ae1fa1d1f95bca4652b2e20ded507353f3fea72527b0e95218bdca6eb22",
+      "constraint_path": "release/plans/enterprise/C0030.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0032",
+      "campaign_name": "C0032",
+      "step_count": 17,
+      "target_or_boundary_steps": 15,
+      "selected_platforms": [
+        "Linux",
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 5,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 15,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "eb6f7160769f807cc61e6909f503f9add1e064083166664deab5ff78e652aa6b",
+      "constraint_path": "release/plans/enterprise/C0032.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0034",
+      "campaign_name": "2022 Ukraine Electric Power Attack",
+      "step_count": 10,
+      "target_or_boundary_steps": 10,
+      "selected_platforms": [
+        "Linux",
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 3,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 10,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "51b56ba20ee7daeff8834f042630e2d306c50de63df547a4dd1688f3157c22f5",
+      "constraint_path": "release/plans/enterprise/C0034.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0035",
+      "campaign_name": "KV Botnet Activity",
+      "step_count": 20,
+      "target_or_boundary_steps": 18,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 18,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "c84b1e7523d9a99ddc39ce8d82b28531fbfcd8442967a300ad2de65e97f6d2fc",
+      "constraint_path": "release/plans/enterprise/C0035.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0036",
+      "campaign_name": "Pikabot Distribution February 2024",
+      "step_count": 4,
+      "target_or_boundary_steps": 4,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 4,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 4,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "cdf06cf76d77eb3f3a678b196c755f2bba61d3969e929ee69a67e0d9153b5bb2",
+      "constraint_path": "release/plans/enterprise/C0036.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0037",
+      "campaign_name": "Water Curupira Pikabot Distribution",
+      "step_count": 10,
+      "target_or_boundary_steps": 9,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 9,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 9,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "6c0f1dd9a0996cb4423d207fe935328831d69a57d9051936aabfd10621abbfd2",
+      "constraint_path": "release/plans/enterprise/C0037.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0038",
+      "campaign_name": "HomeLand Justice",
+      "step_count": 25,
+      "target_or_boundary_steps": 23,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 23,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 23,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "f1397070d1642b878670a07180a8c7aea6359fcf926692c0568caff89294332f",
+      "constraint_path": "release/plans/enterprise/C0038.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0039",
+      "campaign_name": "Versa Director Zero Day Exploitation",
+      "step_count": 8,
+      "target_or_boundary_steps": 6,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 6,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "c631d74e094c29dcc68c3c55a5bc930e3ccf2533e2aeda94f21e8719f08a92fc",
+      "constraint_path": "release/plans/enterprise/C0039.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0040",
+      "campaign_name": "APT41 DUST",
+      "step_count": 23,
+      "target_or_boundary_steps": 17,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 17,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 17,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "d59a870a87f2f506d432abe86726442516296b2fb7694550f7036844b8dd7854",
+      "constraint_path": "release/plans/enterprise/C0040.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0041",
+      "campaign_name": "FrostyGoop Incident",
+      "step_count": 5,
+      "target_or_boundary_steps": 5,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 5,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 5,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "5d7c323da50c4d91d230c609627d9e6aea3369739c359e0d0640edd0368f63bd",
+      "constraint_path": "release/plans/enterprise/C0041.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0042",
+      "campaign_name": "Outer Space",
+      "step_count": 8,
+      "target_or_boundary_steps": 5,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 5,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "975459942337fee25111fe1209c5233b5f1c455a00e4d25b908655e298ad8cf8",
+      "constraint_path": "release/plans/enterprise/C0042.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0043",
+      "campaign_name": "Indian Critical Infrastructure Intrusions",
+      "step_count": 8,
+      "target_or_boundary_steps": 5,
+      "selected_platforms": [
+        "Linux",
+        "Network Devices"
+      ],
+      "unsupported_platforms": [
+        "Network Devices"
+      ],
+      "uncovered_technique_count": 1,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 5,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "0c240cf4c334958d93b97aee0b482019ed46f9c4274d5fb016f31b362cbfe902",
+      "constraint_path": "release/plans/enterprise/C0043.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0044",
+      "campaign_name": "Juicy Mix",
+      "step_count": 14,
+      "target_or_boundary_steps": 12,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 12,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 12,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "de17a69912a8d0574435ca6cbe2c84fc05dfc330a10e6910a992dc858a7d68ec",
+      "constraint_path": "release/plans/enterprise/C0044.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0045",
+      "campaign_name": "ShadowRay",
+      "step_count": 10,
+      "target_or_boundary_steps": 9,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 9,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "d66c279e20853400c9f75d52a5eeee08f95295d85d0d875be3e58ddcfbcc438f",
+      "constraint_path": "release/plans/enterprise/C0045.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0046",
+      "campaign_name": "ArcaneDoor",
+      "step_count": 25,
+      "target_or_boundary_steps": 21,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 21,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "c588662ea872b5c75f9acf4869c2dd305a77f2000c6b653c0b3fd5b2cb508d1f",
+      "constraint_path": "release/plans/enterprise/C0046.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0047",
+      "campaign_name": "RedDelta Modified PlugX Infection Chain Operations",
+      "step_count": 22,
+      "target_or_boundary_steps": 19,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 19,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 19,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "14ee8ee831309b688f9c1bb1979c2acefb20acc1da4e0c0e9c652538e52009d4",
+      "constraint_path": "release/plans/enterprise/C0047.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0048",
+      "campaign_name": "Operation MidnightEclipse",
+      "step_count": 17,
+      "target_or_boundary_steps": 14,
+      "selected_platforms": [
+        "Linux",
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 3,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 14,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "917ad97e1facc9c1e5406c39364372433ae7b160873952245309e6d904aa4710",
+      "constraint_path": "release/plans/enterprise/C0048.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0049",
+      "campaign_name": "Leviathan Australian Intrusions",
+      "step_count": 26,
+      "target_or_boundary_steps": 24,
+      "selected_platforms": [
+        "Linux",
+        "Windows",
+        "Containers"
+      ],
+      "unsupported_platforms": [
+        "Windows",
+        "Containers"
+      ],
+      "uncovered_technique_count": 5,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 24,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "d13db38e3acf088a368470ed889e457d67e7a7ca6e89c3378ed315f2ecc962d1",
+      "constraint_path": "release/plans/enterprise/C0049.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0050",
+      "campaign_name": "J-magic Campaign",
+      "step_count": 4,
+      "target_or_boundary_steps": 1,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 1,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "aec79e2aa90b956c4c9a3c6097e1b55e092edffac67c89f09cda329e9c099d9c",
+      "constraint_path": "release/plans/enterprise/C0050.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0051",
+      "campaign_name": "APT28 Nearest Neighbor Campaign",
+      "step_count": 18,
+      "target_or_boundary_steps": 17,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 17,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 17,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "4074649d30502ec02e5e5545e1fbe5bcab06139aa3a3bd1101e4cbc4f456ac9c",
+      "constraint_path": "release/plans/enterprise/C0051.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0052",
+      "campaign_name": "SPACEHOP Activity",
+      "step_count": 4,
+      "target_or_boundary_steps": 2,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 2,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "ab50306632aee882b9d27c337a54900e4e7833af2cc0e78788c5df0e2a42e109",
+      "constraint_path": "release/plans/enterprise/C0052.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0053",
+      "campaign_name": "FLORAHOX Activity",
+      "step_count": 6,
+      "target_or_boundary_steps": 4,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 4,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "c7e90736341d09dcfdef90244e4ea125173cbade2f008a893d293dff54aa92c3",
+      "constraint_path": "release/plans/enterprise/C0053.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0055",
+      "campaign_name": "Quad7 Activity",
+      "step_count": 15,
+      "target_or_boundary_steps": 12,
+      "selected_platforms": [
+        "Linux"
+      ],
+      "unsupported_platforms": [],
+      "uncovered_technique_count": 0,
+      "platform_constraint_complete": true,
+      "blueprint_skeleton_available": true,
+      "stix_requirement_count": 12,
+      "curated_requirement_count": 2,
+      "constraint_sha256": "f35722f734641877bd0ab19614c80fcf49fc961e2bbb596770e46c744d8ba40b",
+      "constraint_path": "release/plans/enterprise/C0055.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0056",
+      "campaign_name": "RedPenguin",
+      "step_count": 26,
+      "target_or_boundary_steps": 25,
+      "selected_platforms": [
+        "Linux",
+        "Network Devices"
+      ],
+      "unsupported_platforms": [
+        "Network Devices"
+      ],
+      "uncovered_technique_count": 1,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 25,
+      "curated_requirement_count": 1,
+      "constraint_sha256": "69f627d06a3805b0573ea1e3fec765abffc30bc8e9c2ffd4a11f06a3b9865048",
+      "constraint_path": "release/plans/enterprise/C0056.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0057",
+      "campaign_name": "3CX Supply Chain Attack",
+      "step_count": 22,
+      "target_or_boundary_steps": 22,
+      "selected_platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "unsupported_platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "uncovered_technique_count": 22,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 22,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "a60b11fabc72ea6d4e1d310d7e0365b0eab50b21a2c897cb868c7de0820ae293",
+      "constraint_path": "release/plans/enterprise/C0057.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0058",
+      "campaign_name": "SharePoint ToolShell Exploitation",
+      "step_count": 35,
+      "target_or_boundary_steps": 31,
+      "selected_platforms": [
+        "Windows"
+      ],
+      "unsupported_platforms": [
+        "Windows"
+      ],
+      "uncovered_technique_count": 31,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 31,
+      "curated_requirement_count": 3,
+      "constraint_sha256": "ab8442fe02bfe2d8790515edd6694f699df7dfc09a0b827b88fbb670d9e8532c",
+      "constraint_path": "release/plans/enterprise/C0058.sut-constraints.json"
+    },
+    {
+      "campaign_id": "C0059",
+      "campaign_name": "Salesforce Data Exfiltration",
+      "step_count": 18,
+      "target_or_boundary_steps": 11,
+      "selected_platforms": [
+        "Linux",
+        "SaaS"
+      ],
+      "unsupported_platforms": [
+        "SaaS"
+      ],
+      "uncovered_technique_count": 2,
+      "platform_constraint_complete": false,
+      "blueprint_skeleton_available": false,
+      "stix_requirement_count": 11,
+      "curated_requirement_count": 0,
+      "constraint_sha256": "a5d4dbc2fb58c61d238e6044b1ade07a7ca78aaeb6f48a6556a0483b8581acab",
+      "constraint_path": "release/plans/enterprise/C0059.sut-constraints.json"
+    }
+  ]
+}

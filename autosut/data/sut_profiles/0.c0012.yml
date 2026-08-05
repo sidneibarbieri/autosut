@@ -1,0 +1,48 @@
+# SUT Profile: 0.c0012 (APT28 Linux Reconnaissance)
+
+campaign_id: "0.c0012"
+description: "Linux SUT for APT28-style reconnaissance chain with shell access and discovery"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 8
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "reconnaissance_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "ubuntu"
+        password: "ubuntu"
+        sudo: false
+        home_files: true
+
+    network:
+      ingress: [22, 80, 443]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "ubuntu"
+        password: "ubuntu"
+        description: "Weak SSH credentials for reproducible initial access"
+      - type: "open_ports"
+        description: "HTTP and HTTPS ports open for service enumeration"
+
+fidelity_expectations:
+  T1059.004: "adapted"
+  T1083: "adapted"
+  T1016: "adapted"
+
+methodology_notes: |
+  Minimal three-technique chain covering shell execution and host discovery.
+  All techniques are Linux-native and execute directly on the target VM.
+
+execution_mode: "real_controlled"

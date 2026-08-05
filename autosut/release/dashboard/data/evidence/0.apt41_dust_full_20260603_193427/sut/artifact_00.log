@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/testuser/documents/financial_report.xlsx) && cat > /home/testuser/documents/financial_report.xlsx <<'AUTOSUT_ART_EOF'
+(binary financial report placeholder)
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/testuser/documents/financial_report.xlsx && chown testuser:testuser /home/testuser/documents/financial_report.xlsx 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

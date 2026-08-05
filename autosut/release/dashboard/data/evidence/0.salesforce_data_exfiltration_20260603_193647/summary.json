@@ -1,0 +1,11 @@
+{
+  "campaign_id": "0.salesforce_data_exfiltration",
+  "timestamp": "2026-06-03T19:37:21+00:00",
+  "total_techniques": 18,
+  "successful": 18,
+  "fidelity_distribution": {
+    "inspired": 10,
+    "adapted": 8
+  },
+  "evidence_directory": "release/evidence/0.salesforce_data_exfiltration_20260603_193647"
+}

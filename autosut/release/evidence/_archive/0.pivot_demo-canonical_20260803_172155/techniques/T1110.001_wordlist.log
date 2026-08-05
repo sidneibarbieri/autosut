@@ -1,0 +1,12 @@
+$ printf 'Password1
+admin
+letmein
+Lab-Demo-2026!
+guest
+ubuntu\n' > /tmp/wordlist.txt && wc -l /tmp/wordlist.txt
+exit_code: 0
+--- stdout ---
+6 /tmp/wordlist.txt
+
+--- stderr ---
+

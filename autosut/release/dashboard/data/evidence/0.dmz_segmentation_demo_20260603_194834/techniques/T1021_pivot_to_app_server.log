@@ -1,0 +1,9 @@
+$ sshpass -p 'Zone-Demo-2026!' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser@nginx "sshpass -p 'Zone-Demo-2026!' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no labuser@app_server "hostname && id""
+exit_code: 0
+--- stdout ---
+app_server
+uid=0(root) gid=0(root) groups=0(root),0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+
+--- stderr ---
+Warning: Permanently added 'app_server' (ED25519) to the list of known hosts.
+

@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1190.marker && echo 'T1190 (Exploit Public-Facing Application) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1190.marker && cat /tmp/c0011_T1190.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:45:15Z
+T1190 (Exploit Public-Facing Application) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

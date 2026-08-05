@@ -1,0 +1,100 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "dustops",
+      "secret": "Dust2024!",
+      "location": null,
+      "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/dustops/intel/targets.txt",
+      "content_text": "Targets: target-financial-01, target-financial-02\n",
+      "content_b64": null,
+      "owner": "dustops",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/home/dustops/intel/financials.csv",
+      "content_text": "Q,Account,Amount\nQ1,A123,1000\n",
+      "content_b64": null,
+      "owner": "dustops",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv).",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/staged_payload.sh",
+      "content_text": "#!/bin/sh\necho payload_ran\n",
+      "content_b64": null,
+      "owner": "dustops",
+      "mode": "0644",
+      "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh).",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "SSH service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    },
+    {
+      "port": 3306,
+      "protocol": "tcp",
+      "service": "mysql",
+      "expose_to": "private_network",
+      "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "openssh",
+      "version": "default",
+      "recipe": "openssh_weak_password",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "ssh service with password authentication enabled.",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "apache_httpd",
+      "version": "default",
+      "recipe": "apache_default_site",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "HTTP web surface required by this lab profile.",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "mysql",
+      "version": "default",
+      "recipe": "mysql_default_instance",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+}

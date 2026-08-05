@@ -1,0 +1,243 @@
+{
+  "campaign_id": "0.outer_space",
+  "run_id": "0.outer_space_20260603_193538",
+  "timestamp": "2026-06-03T19:36:17.425336Z",
+  "attacker": {
+    "profile_id": "outer_space_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh+http client for browser discovery."
+  },
+  "sut": {
+    "sut_id": "outer_space_browser_discovery",
+    "base_image": "python:3.11-slim",
+    "services": [
+      "ssh",
+      "apache2"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "clouduser",
+          "secret": "cloudpass123",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (clouduser:cloudpass123).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/home/clouduser/.mozilla/firefox/profiles.ini",
+          "content_text": "[General]\nStartWithLastProfile=1\n[Profile0]\nName=default\n",
+          "content_b64": null,
+          "owner": "clouduser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.mozilla/firefox/profiles.ini).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/clouduser/.config/google-chrome/Default/Preferences",
+          "content_text": "{\"profile\":{\"name\":\"Default\"}}\n",
+          "content_b64": null,
+          "owner": "clouduser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.config/google-chrome/Default/Preferences).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/clouduser/staging/encoded_payload.b64",
+          "content_text": "TEFCX1BBWUxPQUQK\n",
+          "content_b64": null,
+          "owner": "clouduser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/staging/encoded_payload.b64).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "expose_to": "private_network",
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "name": "apache_httpd",
+          "version": "default",
+          "recipe": "apache_default_site",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.outer_space \u2014 browser discovery, tool staging, cloud infrastructure artefacts on Linux SUT."
+    },
+    "topology": null,
+    "notes": "0.outer_space \u2014 browser discovery, tool staging, cloud infrastructure artefacts on Linux SUT."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ],
+      "duration_sec": 0.031119999999646097,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": "356d1722-7784-40c4-822b-0cf864b0b36d",
+      "caldera_ability_name": "Manx"
+    },
+    {
+      "technique_id": "T1584.004",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1584.004_inspired.log"
+      ],
+      "duration_sec": 0.03060420800011343,
+      "notes": "Inspired emulation of Server: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1217",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1217_browser_discovery.log"
+      ],
+      "duration_sec": 0.07934291600031429,
+      "notes": "Adapted: a browser bookmark store is staged, then discovered on disk and read from the SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1071.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1071.001_inspired.log"
+      ],
+      "duration_sec": 0.03156624999974156,
+      "notes": "Inspired emulation of Web Protocols: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": "0ab383be-b819-41bf-91b9-1bd4404d83bf",
+      "caldera_ability_name": "Ragdoll"
+    },
+    {
+      "technique_id": "T1585.003",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1585.003_inspired.log"
+      ],
+      "duration_sec": 0.03535208399989642,
+      "notes": "Inspired emulation of Cloud Accounts: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1027.013",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1027.013_inspired.log"
+      ],
+      "duration_sec": 0.029305875000318338,
+      "notes": "Inspired emulation of Encrypted/Encoded File: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1587.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1587.001_inspired.log"
+      ],
+      "duration_sec": 0.028072916999917652,
+      "notes": "Inspired emulation of Malware: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.005",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.005_inspired.log"
+      ],
+      "duration_sec": 0.02848683299998811,
+      "notes": "Inspired emulation of Visual Basic: marker recorded so the campaign DAG can advance; no specific protocol or product invoked.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "/workspace/autosut/autosut/release/evidence/0.outer_space_20260603_193538/manifest.json",
+  "summary_path": "/workspace/autosut/autosut/release/evidence/0.outer_space_20260603_193538/summary.json"
+}

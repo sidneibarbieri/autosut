@@ -1,0 +1,111 @@
+{
+  "campaign_id": "0.cve_2021_41773",
+  "total_elements": 5,
+  "by_source": {
+    "corpus_supported": 0,
+    "external_reference": 2,
+    "analyst_authored": 3,
+    "autosut_concretized": 0,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 0.0,
+    "external_reference": 40.0,
+    "analyst_authored": 60.0,
+    "autosut_concretized": 0.0,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 2,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "external_reference": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "external_reference": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "attacker.platform.linux",
+      "value": "linux",
+      "source": "analyst_authored",
+      "host": "attacker",
+      "purpose": "materialised as autosut/dmz-host:s28"
+    },
+    {
+      "dimension": "platform",
+      "identifier": "target.platform.linux",
+      "value": "linux",
+      "source": "analyst_authored",
+      "host": "target",
+      "purpose": "materialised as httpd:2.4.49"
+    },
+    {
+      "dimension": "software",
+      "identifier": "target.software.apache_httpd@2.4.49",
+      "value": "apache_httpd@2.4.49",
+      "source": "external_reference",
+      "host": "target",
+      "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "target.exposure.80",
+      "value": "80/tcp http",
+      "source": "external_reference",
+      "host": "target",
+      "purpose": "Documented CVE-2021-41773 path-traversal exploit surface on the vulnerable httpd 2.4.49."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "target.artifact./usr/local/apache2/cgi-bin/decoy_44cb63.txt",
+      "value": "/usr/local/apache2/cgi-bin/decoy_44cb63.txt",
+      "source": "analyst_authored",
+      "host": "target",
+      "purpose": "Decoy CGI to confirm script alias mounted."
+    }
+  ]
+}

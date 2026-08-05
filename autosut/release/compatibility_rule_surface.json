@@ -1,0 +1,39 @@
+{
+  "generated_from": "measurement/sut/scripts/sut_measurement_pipeline.py",
+  "policy_labels": [
+    "CF",
+    "VMR",
+    "ID"
+  ],
+  "label_semantics": "heuristic routing-policy label; not an observed minimum-backend requirement or validated ground-truth class",
+  "fallback_semantics": "default policy assignment when no explicit rule fires",
+  "manual_validation_requirement": "do not report agreement or accuracy until the independent manual-label packet is adjudicated",
+  "id_platform_keywords": [
+    "Azure AD",
+    "Entra ID",
+    "Google Workspace",
+    "IaaS",
+    "Identity Provider",
+    "Office 365",
+    "SaaS",
+    "Windows Domain"
+  ],
+  "lateral_software_keywords": [
+    "active directory",
+    "domain",
+    "kerberos",
+    "ldap"
+  ],
+  "kernel_boot_regex": "boot|firmware|kernel|driver|rootkit|bios|uefi|mbr|vbr|bootkit",
+  "vmr_permissions": [
+    "Administrator",
+    "SYSTEM",
+    "root"
+  ],
+  "vmr_name_regex": "process\\s+inject|hook|dll\\s+side|hijack|token\\s+manipul|access\\s+token|credential\\s+dump|lsass|sam\\s+database|registry|service\\s+execut|scheduled\\s+task|windows\\s+management\\s+instrument|wmi|exploitation\\s+for\\s+privilege",
+  "container_compatible_platforms": [
+    "Containers",
+    "Linux"
+  ],
+  "default_fallback_class": "VMR"
+}

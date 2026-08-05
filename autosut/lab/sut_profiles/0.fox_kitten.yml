@@ -1,0 +1,138 @@
+# SUT Profile: 0.fox_kitten — Multi-Host Fox Kitten (G0117) Environment
+# Requirements: caldera, attacker, target (with vulnerable web app and SSH pivot)
+
+profile_id: "0.fox_kitten"
+campaign_id: "0.fox_kitten"
+description: "Multi-host SUT for Fox Kitten (G0117) adapted profile: vulnerable web app, weak credentials, SSH keys for lateral movement."
+requirements:
+  required_vms:
+    - "caldera"
+    - "attacker"
+    - "target"
+  vm_specs:
+    caldera:
+      box: "ubuntu/jammy64"
+      memory: 2048
+      cpus: 1
+    attacker:
+      box: "ubuntu/jammy64"
+      memory: 1024
+      cpus: 1
+    target:
+      box: "ubuntu/jammy64"
+      memory: 1024
+      cpus: 1
+  network:
+    private_network: "192.168.56.0/24"
+    public_network: false
+
+configuration:
+  - vm: "target"
+    users:
+      - username: "www-data"
+        password: "weakpass"
+        groups: ["www-data"]
+      - username: "admin"
+        password: "admin123"
+        groups: ["sudo"]
+    services:
+      - name: "apache2"
+        type: "web"
+        port: 80
+        vulnerable: true
+        config: |
+          # Enable mod_php and vulnerable config
+          echo "<?php if(isset(\$_GET['cmd'])) { system(\$_GET['cmd']); } ?>" > /var/www/html/shell.php
+          chown www-data:www-data /var/www/html/shell.php
+      - name: "ssh"
+        type: "ssh"
+        port: 22
+        config: |
+          # Allow password auth for lab
+          sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+          systemctl reload ssh
+    files:
+      - path: "/var/www/html/vuln.php"
+        content: |
+          <?php
+          // Simulated vulnerable PHP app (SQL-like injection)
+          if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            // Vulnerable: no sanitization
+            echo "Processing ID: " . $id;
+          }
+          ?>
+        owner: "www-data"
+        permissions: "0644"
+      - path: "/etc/passwd"
+        content: "root:x:0:0:root:/root:/bin/bash\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\nadmin:x:1001:1001:Admin User:/home/admin:/bin/bash"
+        owner: "root"
+        permissions: "0644"
+      - path: "/home/admin/.ssh/authorized_keys"
+        content: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7vbqNQ... attacker_key"
+        owner: "admin"
+        permissions: "0600"
+    networks:
+      - interface: "eth1"
+        ip: "192.168.56.10"
+        gateway: "192.168.56.1"
+
+  - vm: "attacker"
+    users:
+      - username: "attacker"
+        password: "attacker"
+        groups: ["sudo"]
+    services:
+      - name: "ssh"
+        type: "ssh"
+        port: 22
+        config: |
+          # Generate SSH key pair for lateral movement
+          ssh-keygen -t rsa -b 2048 -f /home/attacker/.ssh/id_rsa -N ""
+          chown attacker:attacker /home/attacker/.ssh/id_rsa*
+    files:
+      - path: "/home/attacker/.ssh/id_rsa.pub"
+        content: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7vbqNQ... attacker_key"
+        owner: "attacker"
+        permissions: "0644"
+    networks:
+      - interface: "eth1"
+        ip: "192.168.56.20"
+        gateway: "192.168.56.1"
+
+  - vm: "caldera"
+    users:
+      - username: "caldera"
+        password: "caldera"
+        groups: ["sudo"]
+    services:
+      - name: "caldera"
+        type: "c2"
+        port: 8888
+      - name: "proxy"
+        type: "proxy"
+        port: 3128
+        config: |
+          # Squid proxy for T1090 simulation
+          apt-get update && apt-get install -y squid
+          systemctl enable squid
+    networks:
+      - interface: "eth1"
+        ip: "192.168.56.1"
+        gateway: "192.168.56.1"
+
+fidelity_expectations:
+  T1190: "ADAPTED"
+  T1078.001: "ADAPTED"
+  T1059.001: "INSPIRED"
+  T1505: "INSPIRED"
+  T1087: "ADAPTED"
+  T1016: "ADAPTED"
+  T1046: "ADAPTED"
+  T1021.004: "ADAPTED"
+  T1071.001: "INSPIRED"
+  T1090: "INSPIRED"
+  T1083: "ADAPTED"
+  T1560.001: "ADAPTED"
+  T1041: "ADAPTED"
+  T1107: "ADAPTED"

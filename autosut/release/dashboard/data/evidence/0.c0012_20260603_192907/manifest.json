@@ -1,0 +1,116 @@
+{
+  "campaign_id": "0.c0012",
+  "run_id": "0.c0012_20260603_192907",
+  "timestamp": "2026-06-03T19:29:36.076836Z",
+  "attacker": {
+    "profile_id": "c0012_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh client for APT28-style recon."
+  },
+  "sut": {
+    "sut_id": "c0012_apt28_recon",
+    "base_image": "python:3.11-slim",
+    "services": [
+      "ssh"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "ubuntu",
+          "secret": "ubuntu",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.c0012 \u2014 APT28-style reconnaissance against minimal Linux SUT with weak ssh."
+    },
+    "topology": null,
+    "notes": "0.c0012 \u2014 APT28-style reconnaissance against minimal Linux SUT with weak ssh."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.004_shell.log"
+      ],
+      "duration_sec": 0.07572495800013712,
+      "notes": "Adapted: real shell + python interpreter execution.",
+      "caldera_ability_id": "b1d41972-3ad9-4aa1-8f7f-05f049a2980e",
+      "caldera_ability_name": "Start 54ndc47"
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1083_discovery.log"
+      ],
+      "duration_sec": 0.02832662499986327,
+      "notes": "Adapted: real filesystem enumeration via ls + find.",
+      "caldera_ability_id": "52177cc1-b9ab-4411-ac21-2eadc4b5d3b8",
+      "caldera_ability_name": "List Directory"
+    },
+    {
+      "technique_id": "T1016",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "atomic_red_team",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1016_network.log"
+      ],
+      "duration_sec": 0.0268396669998765,
+      "notes": "Adapted: real host/network configuration discovery in the bounded SUT.",
+      "caldera_ability_id": "e8017c46-acb8-400c-a4b5-b3362b5b5baa",
+      "caldera_ability_name": "Network Interface Configuration"
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "/workspace/autosut/autosut/release/evidence/0.c0012_20260603_192907/manifest.json",
+  "summary_path": "/workspace/autosut/autosut/release/evidence/0.c0012_20260603_192907/summary.json"
+}

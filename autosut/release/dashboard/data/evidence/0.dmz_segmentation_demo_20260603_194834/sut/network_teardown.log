@@ -1,0 +1,18 @@
+docker network rm autosut-internet_edge-8e9fdd  # zone=internet_edge
+exit_code: 0
+stdout: autosut-internet_edge-8e9fdd
+
+stderr: 
+---
+docker network rm autosut-dmz-56212a  # zone=dmz
+exit_code: 0
+stdout: autosut-dmz-56212a
+
+stderr: 
+---
+docker network rm autosut-enterprise-fc2a61  # zone=enterprise
+exit_code: 0
+stdout: autosut-enterprise-fc2a61
+
+stderr: 
+---

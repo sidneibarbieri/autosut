@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/ubuntu/shipping_notice.txt) && cat > /home/ubuntu/shipping_notice.txt <<'AUTOSUT_ART_EOF'
+Shipping notice — internal use only.
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/ubuntu/shipping_notice.txt && chown ubuntu:ubuntu /home/ubuntu/shipping_notice.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

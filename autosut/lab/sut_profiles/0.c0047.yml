@@ -1,0 +1,99 @@
+# SUT Profile: 0.mustang_panda — Single-Host Mustang Panda (G0129) Environment
+# Requirements: caldera, target (with email simulation and malware staging)
+
+profile_id: "0.c0047"
+campaign_id: "0.c0047"
+description: "RedDelta Modified PlugX Infection Chain Operations - Baseline Linux execution (G0129) RedDelta chain: simulated phishing, malware upload, persistence, discovery, exfil."
+requirements:
+  required_vms:
+    - "caldera"
+    - "target"
+  vm_specs:
+    caldera:
+      box: "ubuntu/jammy64"
+      memory: 2048
+      cpus: 1
+    target:
+      box: "ubuntu/jammy64"
+      memory: 1024
+      cpus: 1
+  network:
+    private_network: "192.168.57.0/24"
+    public_network: false
+
+configuration:
+  - vm: "target"
+    users:
+      - username: "user"
+        password: "password123"
+        groups: ["users"]
+      - username: "admin"
+        password: "admin"
+        groups: ["sudo"]
+    services:
+      - name: "apache2"
+        type: "web"
+        port: 80
+        config: |
+          # Serve simulated phishing page
+          echo "<html><body><a href='/download/malware.exe'>Click to download</a></body></html>" > /var/www/html/phish.html
+      - name: "ssh"
+        type: "ssh"
+        port: 22
+    files:
+      - path: "/var/www/html/download/malware.exe"
+        content: "#!/bin/bash\necho 'Simulated malware execution'\n# Placeholder for PlugX-like behavior"
+        owner: "www-data"
+        permissions: "0755"
+      - path: "/home/user/Downloads/malware.exe"
+        content: "#!/bin/bash\necho 'Simulated malware execution'\n# Placeholder for PlugX-like behavior"
+        owner: "user"
+        permissions: "0755"
+      - path: "/tmp/staged_malware.dll"
+        content: "#!/bin/bash\necho 'Simulated DLL persistence'\n# Placeholder for hijacked execution"
+        owner: "user"
+        permissions: "0755"
+      - path: "/etc/system_info.txt"
+        content: "Hostname: target\nOS: Ubuntu 22.04\nUser: user\nIP: 192.168.57.10"
+        owner: "root"
+        permissions: "0644"
+    networks:
+      - interface: "eth1"
+        ip: "192.168.57.10"
+        gateway: "192.168.57.1"
+
+  - vm: "caldera"
+    users:
+      - username: "caldera"
+        password: "caldera"
+        groups: ["sudo"]
+    services:
+      - name: "caldera"
+        type: "c2"
+        port: 8888
+      - name: "http"
+        type: "web"
+        port: 80
+        config: |
+          # Serve malware for T1608.001
+          mkdir -p /var/www/html/malware
+          echo "#!/bin/bash\necho 'Uploaded malware'" > /var/www/html/malware/plugx.bin
+          chmod +x /var/www/html/malware/plugx.bin
+    networks:
+      - interface: "eth1"
+        ip: "192.168.57.1"
+        gateway: "192.168.57.1"
+
+fidelity_expectations:
+  T1566.001: "ADAPTED"
+  T1204.001: "ADAPTED"
+  T1059.001: "INSPIRED"
+  T1071.001: "ADAPTED"
+  T1608.001: "ADAPTED"
+  T1574: "INSPIRED"
+  T1083: "ADAPTED"
+  T1560.001: "ADAPTED"
+  T1095: "ADAPTED"
+  T1082: "ADAPTED"
+  T1041: "ADAPTED"
+  T1107: "ADAPTED"

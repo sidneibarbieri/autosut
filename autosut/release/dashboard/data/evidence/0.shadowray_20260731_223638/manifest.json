@@ -1,0 +1,267 @@
+{
+  "campaign_id": "0.shadowray",
+  "run_id": "0.shadowray_20260731_223638",
+  "timestamp": "2026-07-31T22:40:03.468006Z",
+  "attacker": {
+    "profile_id": "python_rpc_attacker",
+    "capabilities": [
+      "rpc_rce",
+      "db_dump",
+      "pivot"
+    ],
+    "notes": "Python + requests to drive the Ray dashboard job submission endpoint, plus mysql client for follow-on data exfiltration."
+  },
+  "sut": {
+    "sut_id": "linux_python_compute_node",
+    "base_image": "python:3.11-slim",
+    "services": [
+      "python3",
+      "ray_2_6_3"
+    ],
+    "memory_mb": 4096,
+    "smp": 2,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "api_token",
+          "user": "ray",
+          "secret": "(no-auth)",
+          "location": null,
+          "purpose": "Ray dashboard ships without authentication on the unauthenticated job-submission endpoint exploited by CVE-2023-48022.",
+          "source": "corpus_supported"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/opt/sensitive/credentials.txt",
+          "content_text": "API_KEY=ya29.demo-credential\n",
+          "content_b64": null,
+          "owner": "root",
+          "mode": "0644",
+          "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE.",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/opt/sensitive/manifest.txt",
+          "content_text": "training_dataset_v3.parquet\n",
+          "content_b64": null,
+          "owner": "root",
+          "mode": "0644",
+          "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation.",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 8265,
+          "protocol": "tcp",
+          "service": "ray_dashboard_http",
+          "expose_to": "private_network",
+          "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint.",
+          "source": "corpus_supported"
+        }
+      ],
+      "applications": [],
+      "notes": "Ray 2.6.3 install is driven by the existing injector (ray_2_6_3 / ray_dashboard_surrogate). The composition here declares the *additional* SUT realism (decoy data + exposure) so the manifest carries the full picture even when the real-CVE install falls back to surrogate."
+    },
+    "topology": null,
+    "notes": "Ray cluster dashboard is the unauthenticated RCE surface exploited by CVE-2023-48022. Python slim base avoids the ARM64 apt/GPG issues seen on Ubuntu Jammy images. The vulnerable Ray version is installed by the CVE injector; the composer applies the surrounding realism layer."
+  },
+  "cves_injected": [
+    {
+      "cve_id": "CVE-2023-48022",
+      "fidelity": "adapted",
+      "realization": "real_cve",
+      "success": false,
+      "log_path": "sut/cve_injection_CVE-2023-48022.log",
+      "notes": "Ray 2.6.3 installed from PyPI with default dashboard enabled. The unauthenticated job-submission endpoint is the documented RCE surface for CVE-2023-48022. Success requires two sequential job submissions to reach SUCCEEDED."
+    },
+    {
+      "cve_id": "CVE-2023-48022",
+      "fidelity": "adapted",
+      "realization": "surrogate",
+      "success": true,
+      "log_path": "sut/cve_injection_CVE-2023-48022.log",
+      "notes": "Adapted/surrogate: Flask service mimicking the unauthenticated POST /api/jobs/ endpoint of the Ray dashboard. The technique executor walks the same exploit path against this surrogate. The CVE itself is not exploited; the technique semantics are."
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1588.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.002_toolkit.log"
+      ],
+      "duration_sec": 0.04130283300764859,
+      "notes": "Adapted: benign tooling was assembled in the isolated attacker environment.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1190",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1190_dashboard_probe.log",
+        "techniques/T1190_job_submit.log",
+        "techniques/T1190_verify_rce.log"
+      ],
+      "duration_sec": 0.24821925000287592,
+      "notes": "Unauthenticated Ray dashboard job submission executed a shell command on the target; marker file confirms remote execution.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.006",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.006_job_submit.log",
+        "techniques/T1059.006_verify.log"
+      ],
+      "duration_sec": 0.1734413340454921,
+      "notes": "Python execution was submitted through the compromised Ray API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1546.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1546.004_job_submit.log",
+        "techniques/T1546.004_verify.log"
+      ],
+      "duration_sec": 0.1769484169781208,
+      "notes": "Adapted: configuration changed only under a disposable SUT path and was exercised.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1068",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1068_job_submit.log",
+        "techniques/T1068_verify.log"
+      ],
+      "duration_sec": 0.17018583288881928,
+      "notes": "Inspired: privilege escalation is represented by a bounded control; no local exploit is executed.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1027.013",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1027.013_job_submit.log",
+        "techniques/T1027.013_verify.log"
+      ],
+      "duration_sec": 0.18228691699914634,
+      "notes": "Adapted: a benign payload was encoded inside the disposable SUT through the compromised API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1003.008",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1003.008_job_submit.log",
+        "techniques/T1003.008_verify.log"
+      ],
+      "duration_sec": 0.17455354193225503,
+      "notes": "Adapted: credential-file access was exercised only against disposable container files.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1016",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1016_job_submit.log",
+        "techniques/T1016_verify.log"
+      ],
+      "duration_sec": 0.17218095902353525,
+      "notes": "Adapted: network configuration was collected from the disposable SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_server.log",
+        "techniques/T1105_job_submit.log",
+        "techniques/T1105_verify.log"
+      ],
+      "duration_sec": 2.2890780409798026,
+      "notes": "Adapted: a benign payload crossed the private attacker-to-SUT channel through the compromised API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1496.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1496.001_job_submit.log",
+        "techniques/T1496.001_verify.log"
+      ],
+      "duration_sec": 0.18600362504366785,
+      "notes": "Adapted: compute use was bounded to two seconds inside the disposable SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

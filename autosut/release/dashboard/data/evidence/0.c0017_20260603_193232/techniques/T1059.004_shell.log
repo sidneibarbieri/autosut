@@ -1,0 +1,8 @@
+$ bash -c 'echo unix shell ran at $(date -u +%FT%TZ)' > /tmp/T1059.004_sh.log 2>&1 && python3 -c 'import platform; print(platform.platform())' >> /tmp/T1059.004_sh.log 2>&1 && cat /tmp/T1059.004_sh.log
+exit_code: 0
+--- stdout ---
+unix shell ran at 2026-06-03T19:32:42Z
+Linux-6.8.0-100-generic-aarch64-with-glibc2.41
+
+--- stderr ---
+

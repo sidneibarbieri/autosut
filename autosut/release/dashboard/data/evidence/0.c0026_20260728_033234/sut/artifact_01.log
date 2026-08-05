@@ -1,0 +1,10 @@
+$ mkdir -p $(dirname /home/ubuntu/staged_docs/report_2021.txt) && cat > /home/ubuntu/staged_docs/report_2021.txt <<'AUTOSUT_ART_EOF'
+Quarterly report — internal
+
+AUTOSUT_ART_EOF
+chmod 0644 /home/ubuntu/staged_docs/report_2021.txt && chown ubuntu:ubuntu /home/ubuntu/staged_docs/report_2021.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

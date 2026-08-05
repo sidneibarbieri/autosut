@@ -1,0 +1,1265 @@
+{
+  "type": "bundle",
+  "id": "bundle--e02b465c-7957-41cb-89cf-e12ed49d5b9c",
+  "objects": [
+    {
+      "modified": "2023-09-29T18:06:43.110Z",
+      "name": "C0026",
+      "description": "[C0026](https://attack.mitre.org/campaigns/C0026) was a campaign identified in September 2022 that included the selective distribution of [KOPILUWAK](https://attack.mitre.org/software/S1075) and [QUIETCANARY](https://attack.mitre.org/software/S1076) malware to previous [ANDROMEDA](https://attack.mitre.org/software/S1074) malware victims in Ukraine through re-registered [ANDROMEDA](https://attack.mitre.org/software/S1074) C2 domains. Several tools and tactics used during [C0026](https://attack.mitre.org/campaigns/C0026) were consistent with historic [Turla](https://attack.mitre.org/groups/G0010) operations.(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "aliases": [
+        "C0026"
+      ],
+      "first_seen": "2022-08-01T05:00:00.000Z",
+      "last_seen": "2022-09-01T04:00:00.000Z",
+      "x_mitre_first_seen_citation": "(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "x_mitre_last_seen_citation": "(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "x_mitre_deprecated": false,
+      "x_mitre_version": "1.0",
+      "x_mitre_contributors": [
+        "Yoshihiro Kori, NEC Corporation",
+        "Manikantan Srinivasan, NEC Corporation India",
+        "Pooja Natarajan, NEC Corporation India"
+      ],
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "created": "2023-05-15T19:17:48.880Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/campaigns/C0026",
+          "external_id": "C0026"
+        },
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--40f5caa0-4cb7-4117-89fc-d421bb493df3",
+      "created": "2020-09-30T17:09:31.878Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1583/001",
+          "external_id": "T1583.001"
+        },
+        {
+          "source_name": "URI Unique",
+          "description": "Australian Cyber Security Centre. National Security Agency. (2020, April 21). Detect and Prevent Web Shell Malware. Retrieved February 9, 2024.",
+          "url": "https://media.defense.gov/2020/Jun/09/2002313081/-1/-1/0/CSI-DETECT-AND-PREVENT-WEB-SHELL-MALWARE-20200422.PDF"
+        },
+        {
+          "source_name": "PaypalScam",
+          "description": "Bob Sullivan. (2000, July 24). PayPal alert! Beware the 'PaypaI' scam. Retrieved March 2, 2017.",
+          "url": "https://www.zdnet.com/article/paypal-alert-beware-the-paypai-scam-5000109103/"
+        },
+        {
+          "source_name": "CISA IDN ST05-016",
+          "description": "CISA. (2019, September 27). Security Tip (ST05-016): Understanding Internationalized Domain Names. Retrieved October 20, 2020.",
+          "url": "https://us-cert.cisa.gov/ncas/tips/ST05-016"
+        },
+        {
+          "source_name": "CISA MSS Sep 2020",
+          "description": "CISA. (2020, September 14). Alert (AA20-258A): Chinese Ministry of State Security-Affiliated Cyber Threat Actor Activity. Retrieved October 1, 2020.",
+          "url": "https://us-cert.cisa.gov/ncas/alerts/aa20-258a"
+        },
+        {
+          "source_name": "bypass_webproxy_filtering",
+          "description": "Fehrman, B. (2017, April 13). How to Bypass Web-Proxy Filtering. Retrieved September 20, 2019.",
+          "url": "https://www.blackhillsinfosec.com/bypass-web-proxy-filtering/"
+        },
+        {
+          "source_name": "FireEye APT28",
+          "description": "FireEye. (2015). APT28: A WINDOW INTO RUSSIA\u2019S CYBER ESPIONAGE OPERATIONS?. Retrieved August 19, 2015.",
+          "url": "https://web.archive.org/web/20151022204649/https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/rpt-apt28.pdf"
+        },
+        {
+          "source_name": "Invictus IR DangerDev 2024",
+          "description": "Invictus Incident Response. (2024, January 31). The curious case of DangerDev@protonmail.me. Retrieved March 19, 2024.",
+          "url": "https://www.invictus-ir.com/news/the-curious-case-of-dangerdev-protonmail-me"
+        },
+        {
+          "source_name": "Domain_Steal_CC",
+          "description": "Krebs, B. (2018, November 13). That Domain You Forgot to Renew? Yeah, it\u2019s Now Stealing Credit Cards. Retrieved September 20, 2019.",
+          "url": "https://krebsonsecurity.com/2018/11/that-domain-you-forgot-to-renew-yeah-its-now-stealing-credit-cards/"
+        },
+        {
+          "source_name": "tt_obliqueRAT",
+          "description": "Malhotra, A., McKay, K. et al. (2021, May 13). Transparent Tribe APT expands its Windows malware arsenal . Retrieved July 29, 2022.",
+          "url": "https://blog.talosintelligence.com/2021/05/transparent-tribe-infra-and-targeting.html"
+        },
+        {
+          "source_name": "tt_httrack_fake_domains",
+          "description": "Malhotra, A., Thattil, J. et al. (2022, March 29). Transparent Tribe campaign uses new bespoke malware to target Indian government officials . Retrieved September 6, 2022.",
+          "url": "https://blog.talosintelligence.com/2022/03/transparent-tribe-new-campaign.html"
+        },
+        {
+          "source_name": "Mandiant APT1",
+          "description": "Mandiant. (n.d.). APT1 Exposing One of China\u2019s Cyber Espionage Units. Retrieved July 18, 2016.",
+          "url": "https://www.fireeye.com/content/dam/fireeye-www/services/pdfs/mandiant-apt1-report.pdf"
+        },
+        {
+          "source_name": "Categorisation_not_boundary",
+          "description": "MDSec Research. (2017, July). Categorisation is not a Security Boundary. Retrieved September 20, 2019.",
+          "url": "https://www.mdsec.co.uk/2017/07/categorisation-is-not-a-security-boundary/"
+        },
+        {
+          "source_name": "URI",
+          "description": "Michael Cobb. (2007, October 11). Preparing for uniform resource identifier (URI) exploits. Retrieved February 9, 2024.",
+          "url": "https://www.techtarget.com/searchsecurity/tip/Preparing-for-uniform-resource-identifier-URI-exploits"
+        },
+        {
+          "source_name": "Redirectors_Domain_Fronting",
+          "description": "Mudge, R. (2017, February 6). High-reputation Redirectors and Domain Fronting. Retrieved July 11, 2022.",
+          "url": "https://www.cobaltstrike.com/blog/high-reputation-redirectors-and-domain-fronting/"
+        },
+        {
+          "source_name": "URI Use",
+          "description": "Nathan McFeters. Billy Kim Rios. Rob Carter.. (2008). URI Use and Abuse. Retrieved February 9, 2024.",
+          "url": "https://www.blackhat.com/presentations/bh-dc-08/McFeters-Rios-Carter/Presentation/bh-dc-08-mcfeters-rios-carter.pdf"
+        },
+        {
+          "source_name": "iOS URL Scheme",
+          "description": "Ostorlab. (n.d.). iOS URL Scheme Hijacking. Retrieved February 9, 2024.",
+          "url": "https://docs.ostorlab.co/kb/IPA_URL_SCHEME_HIJACKING/index.html"
+        },
+        {
+          "source_name": "lazgroup_idn_phishing",
+          "description": "RISKIQ. (2017, December 20). Mining Insights: Infrastructure Analysis of Lazarus Group Cyber Attacks on the Cryptocurrency Industry. Retrieved July 29, 2022.",
+          "url": "https://web.archive.org/web/20171223000420/https://www.riskiq.com/blog/labs/lazarus-group-cryptocurrency/"
+        },
+        {
+          "source_name": "httrack_unhcr",
+          "description": "RISKIQ. (2022, March 15). RiskIQ Threat Intelligence Roundup: Campaigns Targeting Ukraine and Global Malware Infrastructure. Retrieved July 29, 2022.",
+          "url": "https://web.archive.org/web/20220527112908/https://www.riskiq.com/blog/labs/ukraine-malware-infrastructure/"
+        },
+        {
+          "source_name": "ThreatConnect Infrastructure Dec 2020",
+          "description": "ThreatConnect. (2020, December 15). Infrastructure Research and Hunting: Boiling the Domain Ocean. Retrieved October 12, 2021.",
+          "url": "https://threatconnect.com/blog/infrastructure-research-hunting/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:48:42.246Z",
+      "name": "Domains",
+      "description": "Adversaries may acquire domains that can be used during targeting. Domain names are the human readable names used to represent one or more IP addresses. They can be purchased or, in some cases, acquired for free.\n\nAdversaries may use acquired domains for a variety of purposes, including for [Phishing](https://attack.mitre.org/techniques/T1566), [Drive-by Compromise](https://attack.mitre.org/techniques/T1189), and Command and Control.(Citation: CISA MSS Sep 2020) Adversaries may choose domains that are similar to legitimate domains, including through use of homoglyphs or use of a different top-level domain (TLD).(Citation: FireEye APT28)(Citation: PaypalScam) Typosquatting may be used to aid in delivery of payloads via [Drive-by Compromise](https://attack.mitre.org/techniques/T1189). Adversaries may also use internationalized domain names (IDNs) and different character sets (e.g. Cyrillic, Greek, etc.) to execute \"IDN homograph attacks,\" creating visually similar lookalike domains used to deliver malware to victim machines.(Citation: CISA IDN ST05-016)(Citation: tt_httrack_fake_domains)(Citation: tt_obliqueRAT)(Citation: httrack_unhcr)(Citation: lazgroup_idn_phishing)\n\nDifferent URIs/URLs may also be dynamically generated to uniquely serve malicious content to victims (including one-time, single use domain names).(Citation: iOS URL Scheme)(Citation: URI)(Citation: URI Use)(Citation: URI Unique)\n\nAdversaries may also acquire and repurpose expired domains, which may be potentially already allowlisted/trusted by defenders based on an existing reputation/history.(Citation: Categorisation_not_boundary)(Citation: Domain_Steal_CC)(Citation: Redirectors_Domain_Fronting)(Citation: bypass_webproxy_filtering)\n\nDomain registrars each maintain a publicly viewable database that displays contact information for every registered domain. Private WHOIS services display alternative information, such as their own company data, rather than the owner of the domain. Adversaries may use such private WHOIS services to obscure information about who owns a purchased domain. Adversaries may further interrupt efforts to track their infrastructure by using varied registration information and purchasing domains with different domain registrars.(Citation: Mandiant APT1)\n\nIn addition to legitimately purchasing a domain, an adversary may register a new domain in a compromised environment. For example, in AWS environments, adversaries may leverage the Route53 domain service to register a domain and create hosted zones pointing to resources of the threat actor\u2019s choosing.(Citation: Invictus IR DangerDev 2024)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "resource-development"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "Wes Hurd",
+        "Vinayak Wadhwa, Lucideus",
+        "Deloitte Threat Library Team",
+        "Oleg Kolesnikov, Securonix",
+        "Menachem Goldstein",
+        "Nikola Kovac"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "PRE"
+      ],
+      "x_mitre_version": "1.4"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--94dc4d8d-c6a9-4b0a-9562-07cdf0347805",
+      "created": "2023-05-15T20:10:17.502Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:32:54.452Z",
+      "description": "For [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors re-registered expired C2 domains previously used for [ANDROMEDA](https://attack.mitre.org/software/S1074) malware.(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "target_ref": "attack-pattern--40f5caa0-4cb7-4117-89fc-d421bb493df3",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 1,
+        "technique_id": "T1583.001",
+        "action_template_id": "record-controlled-domain",
+        "parameter_kinds": {
+          "actor": "actor_host",
+          "manifest": "infrastructure_artifact"
+        },
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "infrastructure.domain"
+        ],
+        "evidence_predicates": [
+          "manifest_hash_recorded",
+          "no_external_registration"
+        ],
+        "fidelity_ceiling": "inspired",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--94dc4d8d-c6a9-4b0a-9562-07cdf0347805"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "01942a2d5bf4e7178004038a85155143fe2d0d39b2e0560672fc240ea6598746"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1583.001",
+        "selected_platform": {
+          "status": "not_applicable",
+          "values": [],
+          "provenance": null
+        },
+        "backend_cue": {
+          "status": "not_applicable",
+          "values": [],
+          "provenance": null
+        },
+        "requirements": [],
+        "parameter_bindings": {
+          "actor": "actor.primary",
+          "manifest": "infrastructure.lab_manifest"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0026",
+            "C0026",
+            "0.c0026"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "ba04b0776d33a1c8f1c85bad9c9f2de925404e7c76535220d430b686fafb00d6"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--7bd9c723-2f78-4309-82c5-47cad406572b",
+      "created": "2020-03-10T17:28:11.747Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1568",
+          "external_id": "T1568"
+        },
+        {
+          "source_name": "Talos CCleanup 2017",
+          "description": "Brumaghin, E. et al. (2017, September 18). CCleanup: A Vast Number of Machines at Risk. Retrieved March 9, 2018.",
+          "url": "http://blog.talosintelligence.com/2017/09/avast-distributes-malware.html"
+        },
+        {
+          "source_name": "FireEye POSHSPY April 2017",
+          "description": "Dunwoody, M.. (2017, April 3). Dissecting One of APT29\u2019s Fileless WMI and PowerShell Backdoors (POSHSPY). Retrieved April 5, 2017.",
+          "url": "https://www.fireeye.com/blog/threat-research/2017/03/dissecting_one_ofap.html"
+        },
+        {
+          "source_name": "ESET Sednit 2017 Activity",
+          "description": "ESET. (2017, December 21). Sednit update: How Fancy Bear Spent the Year. Retrieved February 18, 2019.",
+          "url": "https://www.welivesecurity.com/2017/12/21/sednit-update-fancy-bear-spent-year/"
+        },
+        {
+          "source_name": "Data Driven Security DGA",
+          "description": "Jacobs, J. (2014, October 2). Building a DGA Classifier: Part 2, Feature Engineering. Retrieved February 18, 2019.",
+          "url": "https://datadrivensecurity.info/blog/posts/2014/Oct/dga-part2/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:00.128Z",
+      "name": "Dynamic Resolution",
+      "description": "Adversaries may dynamically establish connections to command and control infrastructure to evade common detections and remediations. This may be achieved by using malware that shares a common algorithm with the infrastructure the adversary uses to receive the malware's communications. These calculations can be used to dynamically adjust parameters such as the domain name, IP address, or port number the malware uses for command and control.\n\nAdversaries may use dynamic resolution for the purpose of [Fallback Channels](https://attack.mitre.org/techniques/T1008). When contact is lost with the primary command and control server malware may employ dynamic resolution as a means to reestablishing command and control.(Citation: Talos CCleanup 2017)(Citation: FireEye POSHSPY April 2017)(Citation: ESET Sednit 2017 Activity)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "command-and-control"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "Chris Roffe"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "ESXi"
+      ],
+      "x_mitre_version": "1.1"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--6d550704-4ccb-485b-8e79-519d13768afa",
+      "created": "2023-05-19T19:13:43.614Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:22:14.933Z",
+      "description": "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors re-registered a ClouDNS dynamic DNS subdomain which was previously used by [ANDROMEDA](https://attack.mitre.org/software/S1074).(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "target_ref": "attack-pattern--7bd9c723-2f78-4309-82c5-47cad406572b",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 2,
+        "technique_id": "T1568",
+        "action_template_id": "resolve-lab-domain",
+        "parameter_kinds": {
+          "domain": "infrastructure_artifact",
+          "target": "target_host"
+        },
+        "requires": [
+          "infrastructure.domain"
+        ],
+        "produces": [
+          "channel.resolved"
+        ],
+        "evidence_predicates": [
+          "resolver_query_logged",
+          "external_dns_absent"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--6d550704-4ccb-485b-8e79-519d13768afa"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "a6e5784b53fb539aa64b22f6809072123751cb6f60eaee724dfe1dae3d0505ac"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1568",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1568.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          },
+          {
+            "requirement_id": "T1568.service.1",
+            "kind": "service",
+            "acceptable_values": [
+              "private-lab-resolver"
+            ],
+            "source": "curated_rule"
+          }
+        ],
+        "parameter_bindings": {
+          "domain": "infrastructure.lab_manifest",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0026",
+            "C0026",
+            "0.c0026"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "74802db420ead323e2764f17c81fa7b506b63faa21c729fc5c225e21d47efa3d"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "created": "2017-05-31T21:31:16.408Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1105",
+          "external_id": "T1105"
+        },
+        {
+          "source_name": "T1105: Trellix_search-ms",
+          "description": " Mathanraj Thangaraju, Sijo Jacob. (2023, July 26). Beyond File Search: A Novel Method for Exploiting the \"search-ms\" URI Protocol Handler. Retrieved March 15, 2024.",
+          "url": "https://www.trellix.com/blogs/research/beyond-file-search-a-novel-method/"
+        },
+        {
+          "source_name": "Google Cloud Threat Intelligence COSCMICENERGY 2023",
+          "description": "COSMICENERGY: New OT Malware Possibly Related To Russian Emergency Response Exercises. (2023, May 25). Ken Proska, Daniel Kapellmann Zafra, Keith Lunden, Corey Hildebrandt, Rushikesh Nandedkar, Nathan Brubaker. Retrieved March 18, 2025.",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/cosmicenergy-ot-malware-russian-response/"
+        },
+        {
+          "source_name": "Dropbox Malware Sync",
+          "description": "David Talbot. (2013, August 21). Dropbox and Similar Services Can Sync Malware. Retrieved May 31, 2023.",
+          "url": "https://www.technologyreview.com/2013/08/21/83143/dropbox-and-similar-services-can-sync-malware/"
+        },
+        {
+          "source_name": "University of Birmingham C2",
+          "description": "Gardiner, J.,  Cova, M., Nagaraja, S. (2014, February). Command & Control Understanding, Denying and Detecting. Retrieved April 20, 2016.",
+          "url": "https://arxiv.org/ftp/arxiv/papers/1408/1408.1136.pdf"
+        },
+        {
+          "source_name": "t1105_lolbas",
+          "description": "LOLBAS. (n.d.). LOLBAS Mapped to T1105. Retrieved March 11, 2022.",
+          "url": "https://lolbas-project.github.io/#t1105"
+        },
+        {
+          "source_name": "PTSecurity Cobalt Dec 2016",
+          "description": "Positive Technologies. (2016, December 16). Cobalt Snatch. Retrieved October 9, 2018.",
+          "url": "https://www.ptsecurity.com/upload/corporate/ww-en/analytics/Cobalt-Snatch-eng.pdf"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:32.714Z",
+      "name": "Ingress Tool Transfer",
+      "description": "Adversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). \n\nOn Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)\n\nAdversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)\n\nFiles can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "command-and-control"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.3.0",
+      "x_mitre_contributors": [
+        "Alain Homewood",
+        "Jeremy Hedges",
+        "Joe Wise",
+        "John Page (aka hyp3rlinx), ApparitionSec",
+        "Mark Wee",
+        "Peter Oakes",
+        "Selena Larson, @selenalarson",
+        "Shailesh Tiwary (Indian Army)",
+        "The DFIR Report",
+        "Don Le, Stifel Financial"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "x_mitre_version": "2.6"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--a8fd0806-56eb-4438-bcce-18f7851a07c6",
+      "created": "2023-07-25T20:23:35.966Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:38:18.173Z",
+      "description": "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors downloaded malicious payloads onto select compromised hosts.(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "target_ref": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 3,
+        "technique_id": "T1105",
+        "action_template_id": "transfer-over-resolved-lab-channel",
+        "parameter_kinds": {
+          "channel": "channel",
+          "payload": "payload",
+          "target": "target_host"
+        },
+        "requires": [
+          "channel.resolved"
+        ],
+        "produces": [
+          "payload.target.staged"
+        ],
+        "evidence_predicates": [
+          "source_and_destination_hashes_match"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--a8fd0806-56eb-4438-bcce-18f7851a07c6"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "5a2bfcd21158cc790024fead25821d345bd3cfa4c621dd3ed8b26cc235823297"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1105",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1105.network.1",
+            "kind": "network",
+            "acceptable_values": [
+              "controlled-ingress-channel"
+            ],
+            "source": "curated_rule"
+          },
+          {
+            "requirement_id": "T1105.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Network Devices",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0026",
+            "C0026",
+            "0.c0026"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "21407fa3df17ae6c03ef06daa9d16bb614fd14d8dd3a938ce7ab3d033fcafa4f"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--3c4a2599-71ee-4405-ba1e-0e28414b4bc5",
+      "created": "2017-05-31T21:30:20.537Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1005",
+          "external_id": "T1005"
+        },
+        {
+          "source_name": "show_run_config_cmd_cisco",
+          "description": "Cisco. (2022, August 16). show running-config - Cisco IOS Configuration Fundamentals Command Reference . Retrieved July 13, 2022.",
+          "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/fundamentals/command/cf_command_ref/show_protocols_through_showmon.html#wp2760878733"
+        },
+        {
+          "source_name": "Mandiant APT41 Global Intrusion ",
+          "description": "Gyler, C.,Perez D.,Jones, S.,Miller, S.. (2021, February 25). This is Not a Test: APT41 Initiates Global Intrusion Campaign Using Multiple Exploits. Retrieved February 17, 2022.",
+          "url": "https://www.mandiant.com/resources/apt41-initiates-global-intrusion-campaign-using-multiple-exploits"
+        },
+        {
+          "source_name": "US-CERT-TA18-106A",
+          "description": "US-CERT. (2018, April 20). Alert (TA18-106A) Russian State-Sponsored Cyber Actors Targeting Network Infrastructure Devices. Retrieved October 19, 2020.",
+          "url": "https://www.us-cert.gov/ncas/alerts/TA18-106A"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:48:40.839Z",
+      "name": "Data from Local System",
+      "description": "Adversaries may search local system sources, such as file systems, configuration files, local databases, virtual machine files, or process memory, to find files of interest and sensitive data prior to Exfiltration.\n\nAdversaries may do this using a [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059), such as [cmd](https://attack.mitre.org/software/S0106) as well as a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008), which have functionality to interact with the file system to gather information.(Citation: show_run_config_cmd_cisco) Adversaries may also use [Automated Collection](https://attack.mitre.org/techniques/T1119) on the local system.\n",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "collection"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.3.0",
+      "x_mitre_contributors": [
+        "William Cain",
+        "Austin Clark, @c2defense",
+        "Liran Ravich, CardinalOps"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "x_mitre_version": "1.8"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--ff746d3d-2ebe-46e9-87f6-5ddd8abbfda3",
+      "created": "2023-05-22T19:24:06.304Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T23:00:40.669Z",
+      "description": "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors collected documents from compromised hosts.(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "target_ref": "attack-pattern--3c4a2599-71ee-4405-ba1e-0e28414b4bc5",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 4,
+        "technique_id": "T1005",
+        "action_template_id": "collect-declared-data-fixture",
+        "parameter_kinds": {
+          "data_source": "data_source",
+          "target": "target_host"
+        },
+        "requires": [
+          "payload.target.staged"
+        ],
+        "produces": [
+          "collection.local"
+        ],
+        "evidence_predicates": [
+          "fixture_hash_recorded",
+          "no_host_data_collected"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--ff746d3d-2ebe-46e9-87f6-5ddd8abbfda3"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "eca0c839d63c97d3b0df08b94bb6ac2082e4541ef90e2973e61bfbbbc7a7b1ed"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1005",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1005.data.1",
+            "kind": "data",
+            "acceptable_values": [
+              "declared-decoy-data"
+            ],
+            "source": "curated_rule"
+          },
+          {
+            "requirement_id": "T1005.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "Network Devices",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          }
+        ],
+        "parameter_bindings": {
+          "data_source": "data.synthetic_fixture",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0026",
+            "C0026",
+            "0.c0026"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "e04c4ee8ba2ac93bdda05a937b958108eb726dce00ab06e6c80370d5fbaa4a46"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--00f90846-cbd1-4fc5-9233-df5c2bf2a662",
+      "created": "2020-02-20T21:01:25.428Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1560/001",
+          "external_id": "T1560.001"
+        },
+        {
+          "source_name": "WinRAR Homepage",
+          "description": "A. Roshal. (2020). RARLAB. Retrieved February 20, 2020.",
+          "url": "https://www.rarlab.com/"
+        },
+        {
+          "source_name": "WinZip Homepage",
+          "description": "Corel Corporation. (2020). WinZip. Retrieved February 20, 2020.",
+          "url": "https://www.winzip.com/win/en/"
+        },
+        {
+          "source_name": "7zip Homepage",
+          "description": "I. Pavlov. (2019). 7-Zip. Retrieved February 20, 2020.",
+          "url": "https://www.7-zip.org/"
+        },
+        {
+          "source_name": "diantz.exe_lolbas",
+          "description": "Living Off The Land Binaries, Scripts and Libraries (LOLBAS). (n.d.). Diantz.exe. Retrieved October 25, 2021.",
+          "url": "https://lolbas-project.github.io/lolbas/Binaries/Diantz/"
+        },
+        {
+          "source_name": "Wikipedia File Header Signatures",
+          "description": "Wikipedia. (2016, March 31). List of file signatures. Retrieved April 22, 2016.",
+          "url": "https://en.wikipedia.org/wiki/List_of_file_signatures"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:48:19.477Z",
+      "name": "Archive via Utility",
+      "description": "Adversaries may use utilities to compress and/or encrypt collected data prior to exfiltration. Many utilities include functionalities to compress, encrypt, or otherwise package data into a format that is easier/more secure to transport.\n\nAdversaries may abuse various utilities to compress or encrypt data before exfiltration. Some third party utilities may be preinstalled, such as <code>tar</code> on Linux and macOS or <code>zip</code> on Windows systems. \n\nOn Windows, <code>diantz</code> or <code> makecab</code> may be used to package collected files into a cabinet (.cab) file. <code>diantz</code> may also be used to download and compress files from remote locations (i.e. [Remote Data Staging](https://attack.mitre.org/techniques/T1074/002)).(Citation: diantz.exe_lolbas) <code>xcopy</code> on Windows can copy files and directories with a variety of options. Additionally, adversaries may use [certutil](https://attack.mitre.org/software/S0160) to Base64 encode collected data before exfiltration. \n\nAdversaries may use also third party utilities, such as 7-Zip, WinRAR, and WinZip, to perform similar activities.(Citation: 7zip Homepage)(Citation: WinRAR Homepage)(Citation: WinZip Homepage)",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "collection"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_contributors": [
+        "Mayan Arora aka Mayan Mohan",
+        "Mark Wee"
+      ],
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": true,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "x_mitre_version": "1.3"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--929a1429-88a6-4ac8-b92e-39f242b1e0d6",
+      "created": "2023-05-19T19:56:49.041Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:32:17.034Z",
+      "description": "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors used WinRAR to collect documents on targeted systems. The threat actors appeared to only exfiltrate files created after January 1, 2021.(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "target_ref": "attack-pattern--00f90846-cbd1-4fc5-9233-df5c2bf2a662",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 5,
+        "technique_id": "T1560.001",
+        "action_template_id": "archive-declared-collection",
+        "parameter_kinds": {
+          "archive_tool": "archive_tool",
+          "target": "target_host"
+        },
+        "requires": [
+          "collection.local"
+        ],
+        "produces": [
+          "collection.archive"
+        ],
+        "evidence_predicates": [
+          "archive_hash_recorded",
+          "input_manifest_recorded"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--929a1429-88a6-4ac8-b92e-39f242b1e0d6"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "50eb689f2fd32d31b74a8d9de8baf453feafbf11a3a9eab44032c801beb3ff79"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1560.001",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1560.001.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS"
+            ],
+            "source": "stix_field"
+          },
+          {
+            "requirement_id": "T1560.001.utility.1",
+            "kind": "utility",
+            "acceptable_values": [
+              "local-archive-utility"
+            ],
+            "source": "curated_rule"
+          }
+        ],
+        "parameter_bindings": {
+          "archive_tool": "archive_tool.local",
+          "target": "target.primary"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0026",
+            "C0026",
+            "0.c0026"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "bfe649566f208c111e450936cbc8b18c394ee05c835dff96eb6e6d00ace32a58"
+      }
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--c3888c54-775d-4b2f-b759-75a2ececcbfd",
+      "created": "2017-05-31T21:30:34.523Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "url": "https://attack.mitre.org/techniques/T1030",
+          "external_id": "T1030"
+        },
+        {
+          "source_name": "University of Birmingham C2",
+          "description": "Gardiner, J.,  Cova, M., Nagaraja, S. (2014, February). Command & Control Understanding, Denying and Detecting. Retrieved April 20, 2016.",
+          "url": "https://arxiv.org/ftp/arxiv/papers/1408/1408.1136.pdf"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-10-24T17:49:20.770Z",
+      "name": "Data Transfer Size Limits",
+      "description": "An adversary may exfiltrate data in fixed size chunks instead of whole files or limit packet sizes below certain thresholds. This approach may be used to avoid triggering network data transfer threshold alerts.",
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "exfiltration"
+        }
+      ],
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_mitre_deprecated": false,
+      "x_mitre_detection": "",
+      "x_mitre_domains": [
+        "enterprise-attack"
+      ],
+      "x_mitre_is_subtechnique": false,
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "ESXi"
+      ],
+      "x_mitre_version": "1.1"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--42d043a1-0b6f-4acd-aea2-553579eb49c2",
+      "created": "2023-07-25T20:25:18.433Z",
+      "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "revoked": false,
+      "external_references": [
+        {
+          "source_name": "Mandiant Suspected Turla Campaign February 2023",
+          "description": "Hawley, S. et al. (2023, February 2). Turla: A Galaxy of Opportunity. Retrieved May 15, 2023.",
+          "url": "https://www.mandiant.com/resources/blog/turla-galaxy-opportunity"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+      ],
+      "modified": "2025-04-16T22:10:46.849Z",
+      "description": "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors split encrypted archives containing stolen files and information into 3MB parts prior to exfiltration.(Citation: Mandiant Suspected Turla Campaign February 2023)",
+      "relationship_type": "uses",
+      "source_ref": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+      "target_ref": "attack-pattern--c3888c54-775d-4b2f-b759-75a2ececcbfd",
+      "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+      "x_mitre_deprecated": false,
+      "x_mitre_attack_spec_version": "3.2.0",
+      "x_sticks_procedure": {
+        "schema_version": "1",
+        "sequence": 6,
+        "technique_id": "T1030",
+        "action_template_id": "split-declared-archive",
+        "parameter_kinds": {
+          "archive": "archive_artifact",
+          "chunk_policy": "chunk_policy"
+        },
+        "requires": [
+          "collection.archive"
+        ],
+        "produces": [
+          "exfiltration.chunked"
+        ],
+        "evidence_predicates": [
+          "chunk_manifest_recorded",
+          "no_external_transfer"
+        ],
+        "fidelity_ceiling": "adapted",
+        "proposal_source": "finite_domain_solver",
+        "provenance": {
+          "origin": "finite_domain_solver",
+          "source_ids": [
+            "relationship--42d043a1-0b6f-4acd-aea2-553579eb49c2"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "bounded proposal followed by deterministic verification"
+        },
+        "content_sha256": "6f2e780715d290467004d58e4ea0ae2a13c71c5685fd6405078271534f6f9966"
+      },
+      "x_autosut_environment": {
+        "schema_version": "1",
+        "technique_id": "T1030",
+        "selected_platform": {
+          "status": "resolved",
+          "values": [
+            "Linux"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "selected materializable platform from the constraint intersection"
+          }
+        },
+        "backend_cue": {
+          "status": "resolved",
+          "values": [
+            "docker"
+          ],
+          "provenance": {
+            "source_kind": "autosut_blueprint",
+            "source_ids": [
+              "C0026"
+            ],
+            "source_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+            "method": "backend selected by the frozen blueprint recipe"
+          }
+        },
+        "requirements": [
+          {
+            "requirement_id": "T1030.platform",
+            "kind": "platform",
+            "acceptable_values": [
+              "Linux",
+              "Windows",
+              "macOS",
+              "ESXi"
+            ],
+            "source": "stix_field"
+          },
+          {
+            "requirement_id": "T1030.storage.1",
+            "kind": "storage",
+            "acceptable_values": [
+              "bounded-local-chunk-store"
+            ],
+            "source": "curated_rule"
+          }
+        ],
+        "parameter_bindings": {
+          "archive": "archive.synthetic_collection",
+          "chunk_policy": "chunk_policy.bounded_local"
+        },
+        "software": [],
+        "unresolved_applicable_fields": [],
+        "provenance": {
+          "source_kind": "autosut_verified_contract",
+          "source_ids": [
+            "C0026",
+            "C0026",
+            "0.c0026"
+          ],
+          "source_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+          "method": "typed constraints, blueprint synthesis, and binding verification"
+        },
+        "content_sha256": "01133a27b998b16cafa5c866095cae0e9dcf105ecae635b9dc82f1441e45866a"
+      }
+    }
+  ],
+  "x_sticks_export": {
+    "schema_version": "1",
+    "campaign_id": "C0026",
+    "source_bundle_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+    "procedural_plan_sha256": "479dd62002be23fb5c950a6fa433b41d43be3c82a19c50aa4a493bead3521aeb",
+    "concretized_plan_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+    "planning_certificate_sha256": "195ff198f995239648ea0462a805e3b1082c9d5eadaf6db580d94967f027aef2"
+  },
+  "x_autosut_export": {
+    "schema_version": "1",
+    "campaign_id": "C0026",
+    "constraint_sha256": "095c034c1f00c9f4f5de6002539feb7c7ef05daa9e03c0c0332de43894fc636d",
+    "blueprint_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3",
+    "binding_catalog_sha256": "5f6db3b48ce81b3e6c3b03872cefe62690fec4180a34b8481cdcb634173c4a53",
+    "concretized_plan_sha256": "e02b465c7957f1cb19cfe12ed49d5b9c41252950bfb9b023380e154b390e79c0",
+    "cve_rules_sha256": "58a22118244dcac975f2311e62da09f6e400b450692fc4c554b59083b19fd6bf"
+  }
+}

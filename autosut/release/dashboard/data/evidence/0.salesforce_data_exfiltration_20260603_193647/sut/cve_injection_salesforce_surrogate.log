@@ -1,0 +1,7 @@
+$ nohup python3 /opt/sf_surrogate.py > /tmp/sf.log 2>&1 & sleep 5 && python3 -c "import urllib.request as u, urllib.error as e; import sys; status=None; h={'Authorization':'Bearer LAB-TOKEN'}; req=u.Request('http://127.0.0.1:8443/services/data/v59.0/query', headers=h); status=u.urlopen(req, timeout=5).status; sys.stdout.write(f'probe status={status}\\n')"
+exit_code: 0
+--- stdout ---
+probe status=200
+
+--- stderr ---
+

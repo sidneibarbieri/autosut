@@ -1,0 +1,5 @@
+# host bring-up: nginx (gateway)
+image: autosut/dmz-host:s28
+container: autosut-nginx-6e1a38
+network: autosut-internet_edge-8e9fdd
+container_id: e6e339559ed7055ca04f7b2b8713b1c4bb064460f5d6660ae3fe742b342178b6

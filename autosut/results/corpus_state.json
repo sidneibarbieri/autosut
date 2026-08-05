@@ -1,0 +1,335 @@
+{
+  "generated_at": "2026-06-01T13:11:20.082834",
+  "published_campaigns": 19,
+  "executable_campaigns_with_sut": 14,
+  "campaigns_with_strict_pair_validation": 12,
+  "campaigns_with_latest_evidence": 19,
+  "campaigns_with_zero_failed_in_latest_evidence": 19,
+  "mitre_metadata_clean_campaigns": 14,
+  "campaigns_without_host_leakage": 19,
+  "campaigns": [
+    {
+      "campaign_id": "0.apt41_dust",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.apt41_dust_20260531_222521",
+        "total_techniques": 23,
+        "successful": 23,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": false,
+      "pair_error": "Fidelity mismatch for T1490: campaign expects adapted, SUT expects inspired",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.apt41_dust_full_20260531_222825",
+        "total_techniques": 10,
+        "successful": 10,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0010",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0010_20260531_221717",
+        "total_techniques": 9,
+        "successful": 9,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0011",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0011_20260531_221853",
+        "total_techniques": 11,
+        "successful": 11,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0012",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0012_20260531_221945",
+        "total_techniques": 3,
+        "successful": 3,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0013",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": false,
+      "pair_error": "Fidelity mismatch for T1059.004: campaign expects inspired, SUT expects adapted; Fidelity mismatch for T1105: campaign expects inspired, SUT expects adapted",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0013_20260531_222033",
+        "total_techniques": 4,
+        "successful": 4,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0015",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0015_20260531_222249",
+        "total_techniques": 5,
+        "successful": 5,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0017",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0017_20260531_222344",
+        "total_techniques": 6,
+        "successful": 6,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.c0026",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.c0026_20260531_222435",
+        "total_techniques": 6,
+        "successful": 6,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.caldera_linux_demo",
+      "published": true,
+      "has_sut": false,
+      "pair_valid": false,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.caldera_linux_demo_20260531_223434",
+        "total_techniques": 6,
+        "successful": 6,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": false,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.costaricto",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.costaricto_20260531_222933",
+        "total_techniques": 10,
+        "successful": 10,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.cve_2021_41773",
+      "published": true,
+      "has_sut": false,
+      "pair_valid": false,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.cve_2021_41773_20260531_224711",
+        "total_techniques": 4,
+        "successful": 4,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": false,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.dmz_segmentation_demo",
+      "published": true,
+      "has_sut": false,
+      "pair_valid": false,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.dmz_segmentation_demo_20260531_224451",
+        "total_techniques": 4,
+        "successful": 4,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": false,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.fin6_emulation",
+      "published": true,
+      "has_sut": false,
+      "pair_valid": false,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.fin6_emulation_20260531_224005",
+        "total_techniques": 12,
+        "successful": 12,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": false,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.operation_midnighteclipse_20260531_223259",
+        "total_techniques": 17,
+        "successful": 17,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.outer_space",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.outer_space_20260531_223118",
+        "total_techniques": 8,
+        "successful": 8,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.pivot_demo",
+      "published": true,
+      "has_sut": false,
+      "pair_valid": false,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.pivot_demo_20260531_224545",
+        "total_techniques": 6,
+        "successful": 6,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": false,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.salesforce_data_exfiltration_20260531_223347",
+        "total_techniques": 18,
+        "successful": 18,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    },
+    {
+      "campaign_id": "0.shadowray",
+      "published": true,
+      "has_sut": true,
+      "pair_valid": true,
+      "pair_error": "",
+      "has_latest_evidence": true,
+      "latest_execution": {
+        "evidence_dir": "release/dashboard/data/evidence/0.shadowray_20260531_224745",
+        "total_techniques": 3,
+        "successful": 3,
+        "failed": 0,
+        "success_rate": 1.0
+      },
+      "mitre_metadata_clean": true,
+      "host_leakage_detected": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+$ mkdir -p /var/lab/T1027; printf 'AutoSUT bounded payload for T1027\n' > /var/lab/T1027/payload.txt; python3 - <<'PY' > /var/lab/T1027/payload.b64
+import base64, pathlib
+p = pathlib.Path('/var/lab/T1027/payload.txt')
+print(base64.b64encode(p.read_bytes()).decode())
+PY
+sha256sum /var/lab/T1027/payload.txt /var/lab/T1027/payload.b64
+exit_code: 0
+--- stdout ---
+863c8c7d1d409b80a120f98ccfea73ad39aef18832b3795448332242638182f1  /var/lab/T1027/payload.txt
+7c353d51733ed7940bd892b66ff897c2271d24a1f9f6924f58bbfb39d290d640  /var/lab/T1027/payload.b64
+
+--- stderr ---
+

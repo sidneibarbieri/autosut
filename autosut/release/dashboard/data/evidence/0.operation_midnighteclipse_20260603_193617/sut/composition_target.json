@@ -1,0 +1,35 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "eclipseops",
+      "secret": "Eclipse123!",
+      "location": null,
+      "purpose": "Operator account for the GlobalProtect surrogate (eclipseops:Eclipse123!).",
+      "source": "autosut_concretized"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/var/lib/eclipseops/network_inventory.txt",
+      "content_text": "vpn-gateway-01\nvpn-gateway-02\n",
+      "content_b64": null,
+      "owner": "root",
+      "mode": "0644",
+      "purpose": "Decoy network inventory the CVE-2024-3400 attacker would enumerate post-exploitation.",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "service": "globalprotect_https_surrogate",
+      "expose_to": "private_network",
+      "purpose": "Documented CVE-2024-3400 GlobalProtect HTTPS exploit surface (realised by the surrogate).",
+      "source": "corpus_supported"
+    }
+  ],
+  "applications": [],
+  "notes": "Realism for the GlobalProtect surrogate target."
+}

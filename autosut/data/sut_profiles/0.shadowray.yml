@@ -1,0 +1,43 @@
+campaign_id: "0.shadowray"
+description: "SUT for ShadowRay (C0045): Linux target with operator credentials; the Ray API boundary is conditioned immediately before T1190"
+
+requirements:
+  min_hosts: 1
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 3
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+    users:
+      - username: "rayuser"
+        password: "ray123"
+        sudo: false
+    deliberate_weaknesses:
+      - type: "weak_ssh_password"
+        description: "Weak credentials on the Ray operator account"
+
+fidelity_expectations:
+  T1190: "ADAPTED"
+  T1027.013: "ADAPTED"
+  T1003.008: "ADAPTED"
+  T1546.004: "ADAPTED"
+  T1588.002: "ADAPTED"
+  T1105: "ADAPTED"
+  T1059.006: "ADAPTED"
+  T1016: "ADAPTED"
+  T1068: "INSPIRED"
+  T1496.001: "ADAPTED"
+
+methodology_notes: |
+  ShadowRay (C0045) targets the Ray AI framework via CVE-2023-48022.
+  The base SUT keeps only the operator account and SSH boundary resident.
+  The unauthenticated Ray Jobs API is conditioned immediately before T1190
+  through a declared step-level overlay so the exposed service remains
+  explicit in evidence instead of being hidden inside the base image.
+  Privilege escalation remains INSPIRED because the exploit path itself is
+  not automated.

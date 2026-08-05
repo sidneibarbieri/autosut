@@ -1,0 +1,18 @@
+[
+  {
+    "campaign_id": "0.shadowray",
+    "source_kind": "stix_campaign",
+    "source_campaign_id": "C0045",
+    "run_id": "0.shadowray_20260728_004450",
+    "total_steps": 10,
+    "status_success": 10,
+    "evidence_backed_success": 10,
+    "adapted_success": 9,
+    "marker_only": 0,
+    "contract_declared": true,
+    "contract_valid": true,
+    "context_observations": 0,
+    "teardown_clean": true,
+    "evidence_path": "release/evidence/_reviewer_runs/0.shadowray_20260728_004450/manifest.json"
+  }
+]

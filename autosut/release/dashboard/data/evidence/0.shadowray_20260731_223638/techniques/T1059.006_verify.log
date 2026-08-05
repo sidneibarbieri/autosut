@@ -1,0 +1,7 @@
+$ test -s /tmp/T1059.006.out && cat /tmp/T1059.006.out
+exit_code: 0
+--- stdout ---
+2
+
+--- stderr ---
+

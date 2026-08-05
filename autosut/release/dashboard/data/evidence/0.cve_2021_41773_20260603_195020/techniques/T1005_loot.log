@@ -1,0 +1,8 @@
+$ mkdir -p /loot && cp /tmp/exploit_response.txt /loot/target_etc_passwd.txt && wc -l /loot/target_etc_passwd.txt && sha256sum /loot/target_etc_passwd.txt
+exit_code: 0
+--- stdout ---
+19 /loot/target_etc_passwd.txt
+5baf19ce6561538119dfe32d561d6ab8509703606f768fea72723a01ee4264b7  /loot/target_etc_passwd.txt
+
+--- stderr ---
+

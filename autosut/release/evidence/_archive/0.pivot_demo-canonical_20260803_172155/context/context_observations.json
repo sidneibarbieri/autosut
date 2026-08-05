@@ -1,0 +1,30 @@
+[
+  {
+    "activity_id": "wazuh_agent_heartbeat",
+    "source_host": "target1",
+    "destination_host": "target2",
+    "protocol": "tcp",
+    "port": 1514,
+    "purpose": "Declared security-telemetry heartbeat; it must not be counted as command-and-control or exfiltration.",
+    "status": "success",
+    "evidence_files": [
+      "context/wazuh_agent_heartbeat_listener.log",
+      "context/wazuh_agent_heartbeat_sender.log",
+      "context/wazuh_agent_heartbeat_verify.log"
+    ]
+  },
+  {
+    "activity_id": "software_update_check",
+    "source_host": "target1",
+    "destination_host": "target2",
+    "protocol": "tcp",
+    "port": 18081,
+    "purpose": "Declared maintenance traffic; it must remain distinguishable from the later lateral payload transfer.",
+    "status": "success",
+    "evidence_files": [
+      "context/software_update_check_listener.log",
+      "context/software_update_check_sender.log",
+      "context/software_update_check_verify.log"
+    ]
+  }
+]

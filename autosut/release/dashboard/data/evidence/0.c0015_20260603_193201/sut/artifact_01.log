@@ -1,0 +1,11 @@
+$ mkdir -p $(dirname /tmp/credentials.txt) && cat > /tmp/credentials.txt <<'AUTOSUT_ART_EOF'
+admin:admin
+root:toor
+
+AUTOSUT_ART_EOF
+chmod 0644 /tmp/credentials.txt && chown testuser:testuser /tmp/credentials.txt 2>/dev/null || true
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

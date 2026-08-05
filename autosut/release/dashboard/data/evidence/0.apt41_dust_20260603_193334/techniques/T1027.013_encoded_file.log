@@ -1,0 +1,9 @@
+$ f=/tmp/autosut_T1027_013; echo 'sensitive-lab-payload' | base64 > $f.b64; if openssl enc -aes-256-cbc -pbkdf2 -salt -in $f.b64 -out $f.enc -k labkey 2>/dev/null; then echo ENCODED_OK; fi; ls -l $f.enc; sha256sum $f.enc
+exit_code: 0
+--- stdout ---
+ENCODED_OK
+-rw-r--r-- 1 root root 64 Jun  3 19:34 /tmp/autosut_T1027_013.enc
+ac2ab90034988ebb5b1e800977312f9cf1d1af97df33ae8c80468e30e101a24a  /tmp/autosut_T1027_013.enc
+
+--- stderr ---
+

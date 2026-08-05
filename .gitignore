@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.vagrant/
+paper/build_artifacts/
+autosut/data/artifacts/
+autosut/release/evidence/_reviewer_runs/
+autosut/release/evidence/batch_*/
+autosut/release/experiments/**/*.evidence/
+autosut/results/evidence/
+autosut/results/PUBLIC_SURFACE_REPORT.md
+autosut/results/public_surface_report.json
+autosut/results/tables/all_tables_*.tex

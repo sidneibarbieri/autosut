@@ -1,0 +1,4 @@
+caldera_url=http://172.17.0.2:8888
+paw=autosut87ad993f
+registered=False
+agent=None

@@ -1,0 +1,118 @@
+{
+  "campaign_id": "0.caldera_linux_demo",
+  "total_elements": 7,
+  "by_source": {
+    "corpus_supported": 1,
+    "analyst_authored": 5,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 14.3,
+    "analyst_authored": 71.4,
+    "autosut_concretized": 14.3,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "analyst_authored": 1,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "analyst_authored": 3,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "corpus_supported",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    },
+    {
+      "dimension": "software",
+      "identifier": "software.openssh@default",
+      "value": "openssh@default",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "ssh service the lab weak credential reaches (password authentication enabled)."
+    },
+    {
+      "dimension": "credentials",
+      "identifier": "credential.vulnuser",
+      "value": "password:vulnuser",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair."
+    },
+    {
+      "dimension": "exposures",
+      "identifier": "exposure.22",
+      "value": "22/tcp ssh",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "SSH service the lab weak credential reaches (port 22)."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/vulnuser/documents/confidential.txt",
+      "value": "/home/vulnuser/documents/confidential.txt",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./home/vulnuser/documents/passwords.txt",
+      "value": "/home/vulnuser/documents/passwords.txt",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+    },
+    {
+      "dimension": "artifacts",
+      "identifier": "artifact./root/.ssh/known_hosts",
+      "value": "/root/.ssh/known_hosts",
+      "source": "analyst_authored",
+      "host": null,
+      "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+# SUT Profile: 0.apt41_dust_full (APT41 DUST Full Campaign)
+
+campaign_id: "0.apt41_dust_full"
+description: "Extended APT41 DUST chain with discovery, collection, exfiltration, and impact phases"
+
+requirements:
+  min_hosts: 3
+  required_vms: ["caldera", "attacker", "target-base"]
+  estimated_duration_minutes: 10
+
+sut_configuration:
+  target-base:
+    os: "ubuntu-2204"
+    role: "full_campaign_target"
+
+    services:
+      - name: "ssh"
+        version: "default"
+        config: "password_auth_enabled"
+
+    users:
+      - username: "testuser"
+        password: "password123"
+        sudo: false
+        home_files: true
+
+    files:
+      - path: "/home/testuser/documents/financial_report.xlsx"
+        content: "Simulated financial data for exfiltration"
+        owner: "testuser"
+        permissions: "644"
+      - path: "/home/testuser/.ssh/id_rsa"
+        content: "Simulated SSH private key"
+        owner: "testuser"
+        permissions: "600"
+
+    network:
+      ingress: [22]
+      egress: ["*"]
+
+    deliberate_weaknesses:
+      - type: "weak_credentials"
+        username: "testuser"
+        password: "password123"
+        description: "Weak SSH credentials for reproducible initial access"
+
+fidelity_expectations:
+  T1059.004: "adapted"
+  T1083: "adapted"
+  T1016: "adapted"
+  T1007: "adapted"
+  T1033: "adapted"
+  T1027: "adapted"
+  T1564.001: "adapted"
+  T1119: "adapted"
+  T1020: "adapted"
+  T1490: "inspired"
+
+methodology_notes: |
+  Ten-technique chain extending the base APT41 DUST profile with discovery,
+  obfuscation, collection, and impact phases. T1490 (Inhibit System Recovery)
+  is classified as inspired because destructive backup deletion is not safe
+  to execute verbatim on the lab substrate.
+
+execution_mode: "real_controlled"

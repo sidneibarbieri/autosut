@@ -1,0 +1,44 @@
+{
+  "credentials": [
+    {
+      "kind": "api_token",
+      "user": "ray",
+      "secret": "(no-auth)",
+      "location": null,
+      "purpose": "Ray dashboard ships without authentication on the unauthenticated job-submission endpoint exploited by CVE-2023-48022.",
+      "source": "corpus_supported"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/opt/sensitive/credentials.txt",
+      "content_text": "API_KEY=ya29.demo-credential\n",
+      "content_b64": null,
+      "owner": "root",
+      "mode": "0644",
+      "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE.",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/opt/sensitive/manifest.txt",
+      "content_text": "training_dataset_v3.parquet\n",
+      "content_b64": null,
+      "owner": "root",
+      "mode": "0644",
+      "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation.",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 8265,
+      "protocol": "tcp",
+      "service": "ray_dashboard_http",
+      "expose_to": "private_network",
+      "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint.",
+      "source": "corpus_supported"
+    }
+  ],
+  "applications": [],
+  "notes": "Ray 2.6.3 install is driven by the existing injector (ray_2_6_3 / ray_dashboard_surrogate). The composition here declares the *additional* SUT realism (decoy data + exposure) so the manifest carries the full picture even when the real-CVE install falls back to surrogate."
+}

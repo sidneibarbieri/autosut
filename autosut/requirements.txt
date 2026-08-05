@@ -1,0 +1,4 @@
+# Compatibility entry point. Reviewer and runtime dependencies are frozen in
+# requirements-reviewer.txt; optional contributor tooling is separate in
+# requirements-dev.txt.
+-r requirements-reviewer.txt

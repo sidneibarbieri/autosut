@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-03-13T21:51:37.574531",
+  "campaign": "0.solarwinds_compromise",
+  "operation_name": "exp_0.solarwinds_compromise_1773452977",
+  "execution": {
+    "state": "running",
+    "start_time": "2026-03-14 01:49:37",
+    "host_count": 3,
+    "hosts": [
+      {
+        "paw": "xrzked",
+        "links_count": 1,
+        "links": [
+          {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "technique_id": "T1070.003",
+            "status": 0,
+            "output": "False"
+          }
+        ]
+      },
+      {
+        "paw": "iiuahg",
+        "links_count": 1,
+        "links": [
+          {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "technique_id": "T1070.003",
+            "status": 0,
+            "output": "False"
+          }
+        ]
+      },
+      {
+        "paw": "wqilcm",
+        "links_count": 1,
+        "links": [
+          {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "technique_id": "T1070.003",
+            "status": 0,
+            "output": "False"
+          }
+        ]
+      }
+    ]
+  },
+  "agents": [
+    "xrzked",
+    "iiuahg",
+    "wqilcm"
+  ]
+}

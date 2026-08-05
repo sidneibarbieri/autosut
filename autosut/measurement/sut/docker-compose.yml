@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  # ─────────────────────────────────────────────────────────────
+  # SUT Measurement Pipeline
+  # Runs the full pipeline: parsing → metrics → figures → macros
+  # ─────────────────────────────────────────────────────────────
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./scripts/results:/pipeline/scripts/results
+      - ./scripts/data:/pipeline/scripts/data:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # ─────────────────────────────────────────────────────────────
+  # Figure Renderer: generates TikZ templates from pipeline data
+  # ─────────────────────────────────────────────────────────────
+  render-figures:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["python3", "scripts/render_figures.py"]
+    volumes:
+      - ./scripts/results:/pipeline/scripts/results:ro
+      - ../paper/figures:/pipeline/paper/figures
+    depends_on:
+      pipeline:
+        condition: service_completed_successfully
+
+  # ─────────────────────────────────────────────────────────────
+  # Release Check: validates pipeline + data + paper consistency
+  # ─────────────────────────────────────────────────────────────
+  release-check:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["bash", "/pipeline/measurement/sut/release_check.sh"]
+    volumes:
+      - .:/pipeline/measurement/sut
+      - ../paper:/pipeline/paper
+    working_dir: /pipeline/measurement/sut
+    depends_on:
+      render-figures:
+        condition: service_completed_successfully

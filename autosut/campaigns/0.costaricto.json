@@ -1,0 +1,125 @@
+{
+  "campaign_id": "0.costaricto",
+  "description": "CostaRicto Campaign - Network service discovery and multi-hop proxy operations",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 20
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": ["ssh", "nmap"]
+      }
+    },
+    {
+      "type": "privilege_escalation",
+      "target": "target",
+      "config": {
+        "method": "sudo_misconfiguration"
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1046",
+      "name": "Network Service Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "description": "Discover network services running on remote hosts using port scanning tools"
+    },
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "description": "Transfer tools or files into the target network for execution"
+    },
+    {
+      "technique_id": "T1090.003",
+      "name": "Multi-hop Proxy",
+      "tactic": "command-and-control",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Use multi-hop proxy chains to hide command and control traffic"
+    },
+    {
+      "technique_id": "T1053.005",
+      "name": "Scheduled Task",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Execute scheduled tasks for persistence and lateral movement"
+    },
+    {
+      "technique_id": "T1588.002",
+      "name": "Tool",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "real_controlled",
+      "description": "Acquire and use tools for network reconnaissance and exploitation"
+    },
+    {
+      "technique_id": "T1133",
+      "name": "External Remote Services",
+      "tactic": "initial-access",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Use external remote services for persistence and data exfiltration"
+    },
+    {
+      "technique_id": "T1583.001",
+      "name": "Domains",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Acquire domains for command and control infrastructure"
+    },
+    {
+      "technique_id": "T1587.001",
+      "name": "Malware",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Develop or acquire malware for targeted operations"
+    },
+    {
+      "technique_id": "T1005",
+      "name": "Data from Local System",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "description": "Collect data from local system sources for analysis"
+    },
+    {
+      "technique_id": "T1572",
+      "name": "Protocol Tunneling",
+      "tactic": "command-and-control",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "description": "Tunnel traffic through various protocols to evade detection"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+$ mkdir -p /tmp/.autosut_T1564; printf 'hidden artifact for T1564\n' > /tmp/.autosut_T1564/.beacon; ls -la /tmp/.autosut_T1564; sha256sum /tmp/.autosut_T1564/.beacon
+exit_code: 0
+--- stdout ---
+total 12
+drwxr-xr-x 2 root root 4096 Jun  3 19:32 .
+drwxrwxrwt 1 root root 4096 Jun  3 19:32 ..
+-rw-r--r-- 1 root root   26 Jun  3 19:32 .beacon
+5f14099a592a72025c74d865a08cc383812ef2006cd1f04da9afda7ec43dcc41  /tmp/.autosut_T1564/.beacon
+
+--- stderr ---
+

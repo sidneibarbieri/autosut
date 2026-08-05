@@ -1,0 +1,7 @@
+{
+  "credentials": [],
+  "artifacts": [],
+  "exposures": [],
+  "applications": [],
+  "notes": "Attacker host has no pre-staged credentials of its own; the campaign's recipes harvest target credentials by brute force."
+}

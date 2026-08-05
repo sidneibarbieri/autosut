@@ -1,0 +1,50 @@
+# Campaign Execution Summary
+
+## Executions Realized
+
+### 1. 0.solarwinds_compromise
+- **Date**: 2026-03-13
+- **Adversary**: Alice 2.0 (default)
+- **Hosts**: 3 (xrzked, iiuahg, wqilcm)
+- **Links per host**: 1
+- **Technique**: T1070.003
+- **Status**: 0 (success)
+
+### 2. 0.apt28_nearest_neighbor_campaign
+- **Date**: 2026-03-13
+- **Adversary**: Alice 2.0 (default)
+- **Hosts**: 3 (xrzked, iiuahg, wqilcm)
+- **Links per host**: 1
+- **Technique**: T1070.003
+- **Status**: 0 (success)
+
+## Issue Identified
+
+Both campaigns use the same adversary (Alice 2.0) which has only 1 ability. This explains why both executed the same technique (T1070.003).
+
+## Available Adversaries in Caldera
+
+```
+50855e29-3b4e-4562-aa55-b3d7f93c26b8: Alice 2.0 (default)
+01d77744-2515-401a-a497-d9f7241aac3c: Check
+5d3e170e-f1b8-49f9-9ee1-c51605552a08: Collection
+0f4c3c67-845e-49a0-927e-90ed33c044e0: Discovery
+d6ea4c1e-7959-4eb1-a292-b6fd2b06c73e: Enumerator
+de07f52d-9928-4071-9142-cb1d3bd851e8: Hunter
+0b73bf34-fc5b-48f7-9194-dce993b915b1: Nosy Neighbor
+e4324b88-8836-4803-b6b7-09b3c6cd4e94: Printer Queue
+dbd49a4a-ba2d-40d0-9348-2db24fc4b0b6: Service Creation Lateral Movement
+bcdbf6b9-14c5-495c-be84-37bce32c312b: Signed Binary Proxy Execution
+```
+
+## Files Generated
+
+- `results/0.solarwinds_compromise_results.json`
+- `results/0.apt28_nearest_neighbor_campaign_results.json`
+
+## Next Steps
+
+1. Use different adversaries for different campaigns
+2. Load campaign YAML to get correct adversary mapping
+3. Increase wait time for more links to execute
+4. Verify multi-stage execution

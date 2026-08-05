@@ -1,0 +1,5 @@
+docker stop autosut-att-fe69333f
+exit_code: 0
+stdout: autosut-att-fe69333f
+
+stderr: 

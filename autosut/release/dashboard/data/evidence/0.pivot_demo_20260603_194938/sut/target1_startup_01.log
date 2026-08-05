@@ -1,0 +1,6 @@
+$ adduser -D -s /bin/bash labuser
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

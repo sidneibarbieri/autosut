@@ -1,0 +1,36 @@
+{
+  "schema_version": "1",
+  "generated_at": "2026-07-28T00:44:42+00:00",
+  "campaign_id": "C0045",
+  "source_plan_sha256": "04b985497843a5ed4159992b131b120c2a03df8013e5fd813396862b1c1ce86d",
+  "allowed_domains": [
+    "attacker"
+  ],
+  "admitted_step_count": 1,
+  "attempted_step_count": 1,
+  "successful_with_evidence": 1,
+  "rows": [
+    {
+      "technique_id": "T1588.002",
+      "template_id": "stage-benign-toolkit",
+      "status": "success",
+      "execution_mode": "real_controlled",
+      "execution_fidelity": "adapted",
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "artifact_records": [
+        {
+          "path": "data/artifacts/recon_toolkit",
+          "present": true,
+          "kind": "directory",
+          "sha256": "ce7c6a46e1d7f169e57bdb23f6be3484a346783a11a53cfd221e4b01909829dc",
+          "cleaned": true
+        }
+      ]
+    }
+  ],
+  "admissible_for_current_gate": false,
+  "exclusion_reason": "Legacy local-host diagnostic without repository-bound input provenance, evidence-file hashes, or a clean-teardown record. Arms A and B are plan-synthesis arms in the current gate.",
+  "content_sha256": "09df18ebc8f8eadad8c2ba5d860e2c6c6166ba4146c0c3c7a1e2b14d7fbe374a"
+}

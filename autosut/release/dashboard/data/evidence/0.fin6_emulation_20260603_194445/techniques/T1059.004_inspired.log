@@ -1,0 +1,8 @@
+$ date -u +%FT%TZ > /tmp/c0011_T1059_004.marker && echo 'T1059.004 (Unix Shell) concept-only emulation on generic Linux primitive' >> /tmp/c0011_T1059_004.marker && cat /tmp/c0011_T1059_004.marker
+exit_code: 0
+--- stdout ---
+2026-06-03T19:45:16Z
+T1059.004 (Unix Shell) concept-only emulation on generic Linux primitive
+
+--- stderr ---
+

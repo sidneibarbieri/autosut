@@ -1,0 +1,15 @@
+$ u=/etc/systemd/system/autosut_T1543.service; mkdir -p /etc/systemd/system; printf '[Unit]\nDescription=autosut T1543\n[Service]\nType=oneshot\nExecStart=/bin/sh -c "echo T1543-ran >> /tmp/autosut_T1543.log"\n[Install]\nWantedBy=multi-user.target\n' > $u; cat $u; /bin/sh -c 'echo T1543-ran >> /tmp/autosut_T1543.log'; cat /tmp/autosut_T1543.log; sha256sum $u
+exit_code: 0
+--- stdout ---
+[Unit]
+Description=autosut T1543
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo T1543-ran >> /tmp/autosut_T1543.log"
+[Install]
+WantedBy=multi-user.target
+T1543-ran
+fdde8d8bbc1a423b47dd267a6af2f0af568e452f228fb892238eda34bf30d05f  /etc/systemd/system/autosut_T1543.service
+
+--- stderr ---
+

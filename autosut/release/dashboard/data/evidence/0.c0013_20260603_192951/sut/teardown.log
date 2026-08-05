@@ -1,0 +1,5 @@
+docker stop autosut-007b8ce141
+exit_code: 0
+stdout: autosut-007b8ce141
+
+stderr: 

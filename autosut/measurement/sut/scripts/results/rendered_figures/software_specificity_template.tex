@@ -1,0 +1,68 @@
+% Canonical paper template. Values are generated in results/values.tex.
+\providecolor{figureGrayFill}{HTML}{B7BDC5}
+\providecolor{figureGreen}{HTML}{228833}
+\providecolor{figureOrange}{HTML}{A64000}
+\providecolor{figureAxis}{HTML}{667085}
+\providecolor{figureGrid}{HTML}{D9DDE2}
+
+\begin{tikzpicture}[x=0.080cm,y=0.96cm,font=\sffamily\footnotesize]
+  \pgfmathsetmacro{\baselineNoVersion}{\softwarenoversionnocpepercentage}
+  \pgfmathsetmacro{\baselineMid}{\baselineNoVersion/2}
+  \pgfmathsetmacro{\enrichedNoVersion}{\softwareversionenrichednoversionpct}
+  \pgfmathsetmacro{\enrichedMid}{\enrichedNoVersion/2}
+  \pgfmathsetmacro{\enrichedStructuredEnd}{\enrichedNoVersion+\softwarewithversionsignalpercentage}
+  \pgfmathsetmacro{\enrichedSegmentMid}{(\enrichedStructuredEnd+100)/2}
+
+  % Keep the native width close to one column so the enclosing resize does not
+  % shrink labels below caption size.
+  \path[use as bounding box] (-1.0,-1.48) rectangle (108.0,4.35);
+
+  \draw[->] (0,0) -- (104.0,0);
+  \foreach \x in {0,20,40,60,80,100} {
+    \draw[figureGrid] (\x,0) -- (\x,3.30);
+    \node[below,text=figureAxis] at (\x,0) {\x};
+  }
+
+  \node[anchor=west,font=\sffamily\footnotesize\bfseries]
+    at (0,3.18) {Structured fields only};
+  \fill[figureGrayFill] (0,2.35) rectangle (\baselineNoVersion,2.93);
+  \fill[figureGreen] (\baselineNoVersion,2.35) rectangle (100,2.93);
+  \node at (\baselineMid,2.64) {\softwarenoversionnocpepercentage\%};
+  \node[anchor=west] at (100.7,2.64)
+    {\softwarewithversionsignalpercentage\% (\softwarewithversionsignalcount)};
+
+  \node[anchor=west,font=\sffamily\footnotesize\bfseries]
+    at (0,1.62) {After description mining};
+  \fill[figureGrayFill] (0,0.79) rectangle (\enrichedNoVersion,1.37);
+  \fill[figureGreen] (\enrichedNoVersion,0.79) rectangle (\enrichedStructuredEnd,1.37);
+  \fill[figureOrange] (\enrichedStructuredEnd,0.79) rectangle (100,1.37);
+  \node at (\enrichedMid,1.08) {\softwareversionenrichednoversionpct\%};
+  \node[anchor=west] at (100.7,1.08)
+    {\softwareversionenrichedtotalpct\% (\softwareversionenrichedtotal)};
+
+  \node[anchor=east,text=figureOrange,align=right]
+    at (97.0,1.82)
+    {+\softwareversionenrichmentgainpp\,pp\\
+     (+\softwareversionenrichmentgaincount{} objects)};
+  \draw[->,figureOrange,line width=0.85pt]
+    (97.5,1.69) -- (\enrichedSegmentMid,1.37);
+
+  \node[align=center] at (50.0,-0.72)
+    {Active Enterprise software objects ($N=\enterpriseactivesoftwarecount$)};
+  \node[text=figureAxis,align=center] at (50.0,-1.18)
+    {CPE identifiers: \softwarewithcpecount{} / \enterpriseactivesoftwarecount{}};
+
+  \node[
+    anchor=south west,
+    fill=white,
+    fill opacity=0.95,
+    text opacity=1,
+    inner sep=2.0pt
+  ] at (0.2,3.62) {
+    \begin{tabular}{@{}ccc@{}}
+      \textcolor{figureGrayFill}{\rule{0.95em}{0.72em}}\ No version &
+      \textcolor{figureGreen}{\rule{0.95em}{0.72em}}\ Structured version &
+      \textcolor{figureOrange}{\rule{0.95em}{0.72em}}\ Description-mined
+    \end{tabular}
+  };
+\end{tikzpicture}
