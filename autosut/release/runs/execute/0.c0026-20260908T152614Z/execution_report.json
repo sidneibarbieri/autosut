@@ -1,0 +1,114 @@
+{
+  "campaign_id": "0.c0026",
+  "host_id": "autosut-db2604fc78",
+  "runs": [
+    {
+      "technique_id": "T1583.001",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "echo 'ANDROMEDA malware C2 domain re-registered' > /home/ubuntu/andromeda_notes.txt",
+      "effect_marker": "ANDROMEDA_EXECUTED",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1568",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Dynamic Resolution executed' > /home/ubuntu/andromeda_notes.txt",
+      "effect_marker": "Dynamic Resolution executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1105",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Malicious payload downloaded' > /home/ubuntu/andromeda_notes.txt",
+      "effect_marker": "Malicious payload downloaded",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1005",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "cat /home/ubuntu/andromeda_notes.txt > /home/ubuntu/staged_docs/report_2021.txt && echo 'T1005 executed' >> /home/ubuntu/staged_docs/report_2021.txt",
+      "effect_marker": "T1005 executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1560.001",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "tar -cvf /home/ubuntu/andromeda_notes.tar /home/ubuntu/andromeda_notes.txt /home/ubuntu/staged_docs/report_2021.txt && echo 'T1560.001 executed' > /home/ubuntu/andromeda_notes.tar",
+      "effect_marker": "T1560.001 executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1030",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "split -b 3M /home/ubuntu/andromeda_notes.txt /home/ubuntu/andromeda_notes_part_",
+      "effect_marker": "DataTransferSplitExecuted",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    }
+  ]
+}

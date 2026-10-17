@@ -1,8 +1,8 @@
 metric,numerator,denominator,percentage,denominator_scope,interpretation
-explicit_rule_assignment_coverage,226,691,32.7,corpus-wide,techniques assigned by an explicit heuristic rule
-fallback_assignment_share,465,691,67.3,corpus-wide,techniques assigned only by the default routing policy
-final_policy_label_coverage,691,691,100.0,corpus-wide,techniques carrying a policy label after fallback
-explicit_non_cf_share,207,226,91.6,explicit-only,non-CF composition among explicit-rule assignments
-explicit_non_cf_corpus_share,207,691,30.0,corpus-wide,explicit non-CF labels as a share of all techniques
-final_non_cf_corpus_share,672,691,97.3,corpus-wide,non-CF policy labels after fallback
+explicit_rule_assignment_coverage,227,697,32.6,corpus-wide,techniques assigned by an explicit heuristic rule
+fallback_assignment_share,470,697,67.4,corpus-wide,techniques assigned only by the default routing policy
+final_policy_label_coverage,697,697,100.0,corpus-wide,techniques carrying a policy label after fallback
+explicit_non_cf_share,208,227,91.6,explicit-only,non-CF composition among explicit-rule assignments
+explicit_non_cf_corpus_share,208,697,29.8,corpus-wide,explicit non-CF labels as a share of all techniques
+final_non_cf_corpus_share,678,697,97.3,corpus-wide,non-CF policy labels after fallback
 manual_label_completion,0,36,0.0,manual-validation-sample,independently adjudicated policy-label rows; not accuracy

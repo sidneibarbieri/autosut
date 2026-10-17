@@ -44,23 +44,23 @@ def test_compatibility_denominators_are_not_mixed() -> None:
     module = _load_pipeline()
     _, _, _, result = _enterprise_compatibility(module)
 
-    assert result["total"] == 691
-    assert result["explicit_count"] == 226
-    assert result["fallback_count"] == 465
-    assert result["explicit_pct"] == 32.7
-    assert result["fallback_pct"] == 67.3
+    assert result["total"] == 697
+    assert result["explicit_count"] == 227
+    assert result["fallback_count"] == 470
+    assert result["explicit_pct"] == 32.6
+    assert result["fallback_pct"] == 67.4
 
-    # 91.6% is explicit-only: 207 / 226.  It is not a post-step coverage
+    # 91.6% is explicit-only: 208 / 227.  It is not a post-step coverage
     # percentage and therefore cannot be subtracted from 32.7%.
-    assert result["explicit_non_cf_count"] == 207
+    assert result["explicit_non_cf_count"] == 208
     assert result["explicit_non_cf_explicit_only_pct"] == 91.6
-    assert result["explicit_non_cf_corpus_pct"] == 30.0
+    assert result["explicit_non_cf_corpus_pct"] == 29.8
 
     # Final non-CF composition is corpus-wide and must be calculated directly
-    # from counts (672 / 691), not by summing rounded VMR and ID percentages.
-    assert result["final_non_cf_count"] == 672
+    # from counts (678 / 697), not by summing rounded VMR and ID percentages.
+    assert result["final_non_cf_count"] == 678
     assert result["final_non_cf_corpus_pct"] == 97.3
-    assert result["resolved_count"] == 691
+    assert result["resolved_count"] == 697
     assert result["resolved_pct"] == 100.0
 
 
@@ -103,10 +103,10 @@ def test_compatibility_sensitivity_uses_corpus_wide_non_cf_denominator() -> None
     )
     by_default = {row["default_class"]: row for row in rows}
 
-    assert by_default["CF"]["non_cf_corpus_pct"] == 30.0
+    assert by_default["CF"]["non_cf_corpus_pct"] == 29.8
     assert by_default["VMR"]["non_cf_corpus_pct"] == 97.3
     assert by_default["ID"]["non_cf_corpus_pct"] == 97.3
-    assert by_default["UNRESOLVED"]["non_cf_corpus_pct"] == 30.0
+    assert by_default["UNRESOLVED"]["non_cf_corpus_pct"] == 29.8
     assert {
         row["explicit_non_cf_explicit_only_pct"] for row in rows
     } == {91.6}
@@ -125,8 +125,8 @@ def test_denominator_audit_surface_names_scope_explicitly() -> None:
 
     explicit_non_cf = by_metric["explicit_non_cf_share"]
     assert (explicit_non_cf["numerator"], explicit_non_cf["denominator"]) == (
-        207,
-        226,
+        208,
+        227,
     )
     assert explicit_non_cf["denominator_scope"] == "explicit-only"
     assert explicit_non_cf["percentage"] == 91.6
@@ -135,7 +135,7 @@ def test_denominator_audit_surface_names_scope_explicitly() -> None:
         by_metric["final_policy_label_coverage"]["percentage"]
         - by_metric["explicit_rule_assignment_coverage"]["percentage"]
     )
-    assert assignment_gain == 67.3
+    assert assignment_gain == 67.4
 
     manual = by_metric["manual_label_completion"]
     assert (manual["numerator"], manual["denominator"]) == (0, 36)

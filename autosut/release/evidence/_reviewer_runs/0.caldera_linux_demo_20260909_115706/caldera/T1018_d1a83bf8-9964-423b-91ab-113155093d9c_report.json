@@ -1,0 +1,303 @@
+{
+  "name": "autosut-T1018-1788955244",
+  "host_group": [
+    {
+      "paw": "autosuta35beb95",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "autosuta35beb95",
+      "architecture": "amd64",
+      "platform": "linux",
+      "server": "http://172.17.0.3:8888",
+      "upstream_dest": "http://172.17.0.3:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 1595,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "09e96e45e866",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.17.0.4"
+      ],
+      "display_name": "09e96e45e866$root",
+      "created": "2026-09-09T12:00:42Z",
+      "last_seen": "2026-09-09T12:01:36Z",
+      "links": [
+        {
+          "id": "84e3cc5c-98aa-4b08-9f25-81922a570953",
+          "paw": "autosuta35beb95",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-09-09T12:00:42Z",
+          "pin": 0,
+          "pid": "1604",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "84e3cc5c-98aa-4b08-9f25-81922a570953",
+          "collect": "2026-09-09T12:00:42Z",
+          "finish": "2026-09-09T12:00:42Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "09e96e45e866",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-09-09T12:00:42Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    }
+  ],
+  "start": "2026-09-09T12:00:44Z",
+  "steps": {
+    "autosuta35beb95": {
+      "steps": [
+        {
+          "link_id": "4a4333a2-9e2f-4e0d-bd05-666fa11d159e",
+          "ability_id": "5f77ecf9-613f-4863-8d2f-ed6b447a4633",
+          "command": "cat ~/.ssh/known_hosts",
+          "plaintext_command": "cat ~/.ssh/known_hosts",
+          "delegated": "2026-09-09T12:00:44Z",
+          "run": "2026-09-09T12:01:36Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 1607,
+          "description": "View the known_hosts file",
+          "name": "Parse SSH known_hosts",
+          "attack": {
+            "tactic": "discovery",
+            "technique_name": "Remote System Discovery",
+            "technique_id": "T1018"
+          },
+          "output": {
+            "stdout": "10.0.0.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabKnownHostKey",
+            "stderr": "",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-09-09T12:01:36Z"
+        }
+      ]
+    }
+  },
+  "finish": null,
+  "planner": "atomic",
+  "adversary": {
+    "adversary_id": "d3a34fac-0477-43ed-a597-884b4403dae3",
+    "name": "autosut-T1018-720966",
+    "description": "AutoSUT one-off adversary for T1018",
+    "atomic_ordering": [
+      "5f77ecf9-613f-4863-8d2f-ed6b447a4633"
+    ],
+    "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "tags": [
+      "autosut"
+    ],
+    "has_repeatable_abilities": false,
+    "plugin": ""
+  },
+  "jitter": "0/0",
+  "objectives": {
+    "id": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "name": "default",
+    "description": "This is a default objective that runs forever.",
+    "goals": [
+      {
+        "target": "exhaustion",
+        "value": "complete",
+        "count": 1048576,
+        "operator": "==",
+        "achieved": false
+      }
+    ],
+    "percentage": 0.0
+  },
+  "facts": [
+    {
+      "unique": "file.sensitive.extensionwav",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "wav",
+      "created": "2026-09-09T11:57:00Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionyml",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "yml",
+      "created": "2026-09-09T11:57:00Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionpng",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "png",
+      "created": "2026-09-09T11:57:00Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "server.malicious.urlkeyloggedsite.com",
+      "trait": "server.malicious.url",
+      "name": "server.malicious.url",
+      "value": "keyloggedsite.com",
+      "created": "2026-09-09T11:57:00Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "host.ip.address10.0.0.5",
+      "trait": "host.ip.address",
+      "name": "host.ip.address",
+      "value": "10.0.0.5",
+      "created": "2026-09-09T12:01:36Z",
+      "score": 1,
+      "source": "d1a83bf8-9964-423b-91ab-113155093d9c",
+      "origin_type": "LEARNED",
+      "links": [
+        "4a4333a2-9e2f-4e0d-bd05-666fa11d159e"
+      ],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [
+        "autosuta35beb95"
+      ],
+      "technique_id": "T1018"
+    }
+  ],
+  "skipped_abilities": [
+    {
+      "autosuta35beb95": []
+    }
+  ]
+}

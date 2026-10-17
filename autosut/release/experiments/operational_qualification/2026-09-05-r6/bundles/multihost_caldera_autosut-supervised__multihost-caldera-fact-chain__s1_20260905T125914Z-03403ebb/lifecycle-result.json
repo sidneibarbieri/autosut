@@ -1,0 +1,85 @@
+{
+  "run_id": "multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb",
+  "label": "autosut-supervised__multihost-caldera-fact-chain__s1",
+  "stages": [
+    {
+      "name": "materialize_network",
+      "seconds": 0.023,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "materialize_caldera",
+      "seconds": 0.196,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_caldera_readiness",
+      "seconds": 12.134,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "materialize_hosts",
+      "seconds": 0.365,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "enroll_agents",
+      "seconds": 54.73,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "register_and_execute",
+      "seconds": 100.472,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_effect",
+      "seconds": 0.039,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_hosts",
+      "seconds": 0.184,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_caldera",
+      "seconds": 0.179,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_network",
+      "seconds": 0.084,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    }
+  ],
+  "total_seconds": 168.443,
+  "forward_completed": true,
+  "residual": {
+    "scope": "docker.autosut.multihost",
+    "residual_resources": []
+  },
+  "final_state": "clean",
+  "evidence_dir": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb",
+  "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf"
+}

@@ -1,0 +1,356 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0057",
+  "source_plan_sha256": "bab069f9dce34fac56b524222fc0691c2f5e4d6a8fa6f218ded8e4720a257d27",
+  "platform_resolution": {
+    "selected_platforms": [
+      "Linux",
+      "Windows",
+      "macOS"
+    ],
+    "materializable_platforms": [
+      "Linux"
+    ],
+    "unsupported_platforms": [
+      "Windows",
+      "macOS"
+    ],
+    "uncovered_technique_ids": [
+      "T1574.001",
+      "T1543.004",
+      "T1055.002",
+      "T1218.007",
+      "T1553.002"
+    ],
+    "complete": false
+  },
+  "requirements": [
+    {
+      "requirement_id": "T1078.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "IaaS",
+        "SaaS",
+        "ESXi",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1078"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1189.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Identity Provider"
+      ],
+      "technique_ids": [
+        "T1189"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1189.service.1",
+      "kind": "service",
+      "acceptable_values": [
+        "private-lab-http-target"
+      ],
+      "technique_ids": [
+        "T1189"
+      ],
+      "source": "curated_rule",
+      "rationale": "The controlled drive-by witness requires a reachable lab web target."
+    },
+    {
+      "requirement_id": "T1195.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1195.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1203.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1203"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1559.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1559"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1574.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1574.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1543.004.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1543.004"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1546.016.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1546.016"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1055.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1055"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1055.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1055.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1027.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1027"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1027.009.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1027.009"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1027.013.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1027.013"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1218.007.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1218.007"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1218.015.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1218.015"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1620.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1620"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1678.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1678"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1553.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1553.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1217.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1217"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1071.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1071.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1102.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1102.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1573.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1573.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "6a68b7a2d133277fa66ab7b5f706f75ba4d6038c089ff0665d3c3365948661bf"
+}

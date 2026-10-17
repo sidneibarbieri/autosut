@@ -1,0 +1,107 @@
+{
+  "schema_version": "autosut-corpus-resource-audit/v1",
+  "corpus_manifest_sha256": "1bbc069e163eb3d04743e4a544817ddf18d51ac0af605102cac8b2e859899439",
+  "campaigns": 55,
+  "blueprints_generated": 13,
+  "base_hosts_materialized": 2,
+  "resource_witnesses": 11,
+  "campaigns_executed_by_these_probes": 0,
+  "records": [
+    {
+      "campaign_id": "C0010",
+      "status": "resources_witnessed",
+      "resources": [
+        "controlled-ingress-channel",
+        "private-lab-http-target"
+      ]
+    },
+    {
+      "campaign_id": "C0011",
+      "status": "base_host_materialized",
+      "resources": []
+    },
+    {
+      "campaign_id": "C0026",
+      "status": "resources_witnessed",
+      "resources": [
+        "bounded-local-chunk-store",
+        "controlled-ingress-channel",
+        "declared-decoy-data",
+        "local-archive-utility",
+        "private-lab-resolver"
+      ]
+    },
+    {
+      "campaign_id": "C0035",
+      "status": "resources_witnessed",
+      "resources": [
+        "controlled-ingress-channel"
+      ]
+    },
+    {
+      "campaign_id": "C0039",
+      "status": "resources_witnessed",
+      "resources": [
+        "public-facing-application"
+      ]
+    },
+    {
+      "campaign_id": "C0042",
+      "status": "resources_witnessed",
+      "resources": [
+        "controlled-ingress-channel"
+      ]
+    },
+    {
+      "campaign_id": "C0045",
+      "status": "resources_witnessed",
+      "resources": [
+        "controlled-ingress-channel",
+        "public-facing-application"
+      ]
+    },
+    {
+      "campaign_id": "C0046",
+      "status": "resources_witnessed",
+      "resources": [
+        "public-facing-application"
+      ]
+    },
+    {
+      "campaign_id": "C0050",
+      "status": "base_host_materialized",
+      "resources": []
+    },
+    {
+      "campaign_id": "C0052",
+      "status": "resources_witnessed",
+      "resources": [
+        "public-facing-application"
+      ]
+    },
+    {
+      "campaign_id": "C0053",
+      "status": "resources_witnessed",
+      "resources": [
+        "public-facing-application"
+      ]
+    },
+    {
+      "campaign_id": "C0055",
+      "status": "resources_witnessed",
+      "resources": [
+        "controlled-ingress-channel",
+        "public-facing-application"
+      ]
+    },
+    {
+      "campaign_id": "C0062",
+      "status": "resources_witnessed",
+      "resources": [
+        "declared-decoy-data",
+        "public-facing-application"
+      ]
+    }
+  ],
+  "scope": "Host and synthetic resource witnesses; no campaign technique effect or Windows qualification."
+}

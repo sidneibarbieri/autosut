@@ -1,0 +1,51 @@
+{
+  "campaign_id": "C0026",
+  "model": "gpt-oss:20b",
+  "sample": 3,
+  "temperature": 0.7,
+  "platform": "Linux",
+  "services": [
+    {
+      "host_role": "public-service",
+      "product": "Apache httpd",
+      "version": "2.4.57",
+      "port": "80",
+      "exposure": "internet-facing"
+    },
+    {
+      "host_role": "internal-host",
+      "product": "Samba server",
+      "version": "4.16.0",
+      "port": "445",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "dns-resolver",
+      "product": "BIND9",
+      "version": "1.15.4",
+      "port": "53",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "domain-controller",
+      "product": "Samba AD",
+      "version": "4.15.0",
+      "port": "389",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "exfil-server",
+      "product": "vsftpd",
+      "version": "3.0.5",
+      "port": "21",
+      "exposure": "internet-facing"
+    },
+    {
+      "host_role": "utility-host",
+      "product": "tar",
+      "version": "1.34",
+      "port": "0",
+      "exposure": "internal-only"
+    }
+  ]
+}

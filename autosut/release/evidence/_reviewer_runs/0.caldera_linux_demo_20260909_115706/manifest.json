@@ -1,0 +1,201 @@
+{
+  "campaign_id": "0.caldera_linux_demo",
+  "run_id": "0.caldera_linux_demo_20260909_115706",
+  "timestamp": "2026-09-09T12:03:29.601359Z",
+  "attacker": {
+    "profile_id": "generic_kill_chain_attacker",
+    "capabilities": [
+      "cert_gen",
+      "web_rce"
+    ],
+    "notes": "OpenSSL for certificate generation; curl/python3 for staging."
+  },
+  "sut": {
+    "sut_id": "linux_generic_workstation",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh",
+      "openssl"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "vulnuser",
+          "secret": "vulnpass123",
+          "location": null,
+          "purpose": "T1078 lab pre-staged weak credentials; AutoSUT materializes the usable user/password pair.",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/home/vulnuser/documents/confidential.txt",
+          "content_text": "CONFIDENTIAL DATA - Company Secrets\nAPI Keys: LAB_DECOY_API_KEY\n",
+          "content_b64": null,
+          "owner": "vulnuser",
+          "mode": "0644",
+          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213.",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/vulnuser/documents/passwords.txt",
+          "content_text": "admin:admin123\ndbuser:dbpass456\n",
+          "content_b64": null,
+          "owner": "vulnuser",
+          "mode": "0600",
+          "purpose": "Decoy credentials store \u2014 collection target for T1552.001.",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/root/.ssh/known_hosts",
+          "content_text": "10.0.0.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabKnownHostKey\n",
+          "content_b64": null,
+          "owner": "root",
+          "mode": "0644",
+          "purpose": "Remote-system-discovery seed for Caldera T1018 (Parse SSH known_hosts). The file is an analyst-authored lab affordance, not corpus-supported CTI.",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service the lab weak credential reaches (port 22).",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service the lab weak credential reaches (password authentication enabled).",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "Applies each declared weak-credential and service element through the SUT composer and records per-element evidence."
+    },
+    "topology": null,
+    "notes": "c0011 \u2014 realistic Linux workstation with weak SSH, decoy sensitive files, and ssh service. Base is python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7 because the c0011 technique recipes assume openssl and python3."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1083_da88ca38-6c26-4a20-91ee-3b2a34ea7078_report.json",
+        "caldera/T1083_0a0b4334-0d0f-450b-8a67-b2c7e0628f89.log"
+      ],
+      "duration_sec": 76.1163848330034,
+      "notes": "Caldera operation da88ca38-6c26-4a20-91ee-3b2a34ea7078 link 0a0b4334-0d0f-450b-8a67-b2c7e0628f89 status=0 exit_code=0",
+      "caldera_ability_id": "52177cc1-b9ab-4411-ac21-2eadc4b5d3b8",
+      "caldera_ability_name": "List Directory"
+    },
+    {
+      "technique_id": "T1033",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1033_12dd02e0-e2ba-4ea7-890b-b5c915c0d3c8_report.json",
+        "caldera/T1033_2476c0f1-1a2c-4924-b791-9a0bdb4369da.log"
+      ],
+      "duration_sec": 35.27686933299992,
+      "notes": "Caldera operation 12dd02e0-e2ba-4ea7-890b-b5c915c0d3c8 link 2476c0f1-1a2c-4924-b791-9a0bdb4369da status=0 exit_code=0",
+      "caldera_ability_id": "bd527b63-9f9e-46e0-9816-b8434d2b8989",
+      "caldera_ability_name": "Current User"
+    },
+    {
+      "technique_id": "T1069.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1069.001_d0e8769f-f785-4873-a34c-95a73a07a17a_report.json",
+        "caldera/T1069.001_61f349f3-f3cc-494e-bfaf-f061f3f06629.log"
+      ],
+      "duration_sec": 50.512162875034846,
+      "notes": "Caldera operation d0e8769f-f785-4873-a34c-95a73a07a17a link 61f349f3-f3cc-494e-bfaf-f061f3f06629 status=0 exit_code=0",
+      "caldera_ability_id": "5c4dd985-89e3-4590-9b57-71fed66ff4e2",
+      "caldera_ability_name": "Permission Groups Discovery"
+    },
+    {
+      "technique_id": "T1018",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1018_d1a83bf8-9964-423b-91ab-113155093d9c_report.json",
+        "caldera/T1018_4a4333a2-9e2f-4e0d-bd05-666fa11d159e.log"
+      ],
+      "duration_sec": 56.64901654201094,
+      "notes": "Caldera operation d1a83bf8-9964-423b-91ab-113155093d9c link 4a4333a2-9e2f-4e0d-bd05-666fa11d159e status=0 exit_code=0",
+      "caldera_ability_id": "5f77ecf9-613f-4863-8d2f-ed6b447a4633",
+      "caldera_ability_name": "Parse SSH known_hosts"
+    },
+    {
+      "technique_id": "T1491",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1491_258c5949-fade-4de8-883c-c6e353338a5a_report.json",
+        "caldera/T1491_c9caff17-b65a-48f5-b04a-c1761b3a7560.log"
+      ],
+      "duration_sec": 56.67973658291157,
+      "notes": "Caldera operation 258c5949-fade-4de8-883c-c6e353338a5a link c9caff17-b65a-48f5-b04a-c1761b3a7560 status=0 exit_code=None",
+      "caldera_ability_id": "47d08617-5ce1-424a-8cc5-c9c978ce6bf9",
+      "caldera_ability_name": "Leave note"
+    },
+    {
+      "technique_id": "T1518",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1518_7b7ade75-06ad-4dcc-968a-fb785924974b_report.json",
+        "caldera/T1518_1fae89a7-d84a-4af1-9281-5f03fe4f5237.log"
+      ],
+      "duration_sec": 35.25331649999134,
+      "notes": "Caldera operation 7b7ade75-06ad-4dcc-968a-fb785924974b link 1fae89a7-d84a-4af1-9281-5f03fe4f5237 status=0 exit_code=0",
+      "caldera_ability_id": "b18e8767-b7ea-41a3-8e80-baf65a5ddef5",
+      "caldera_ability_name": "Check Python"
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

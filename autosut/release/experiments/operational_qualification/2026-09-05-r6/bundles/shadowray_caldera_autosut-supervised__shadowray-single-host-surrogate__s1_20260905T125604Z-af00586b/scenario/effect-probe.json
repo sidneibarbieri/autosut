@@ -1,0 +1,14 @@
+{
+  "subject_id": "run.effect_marker",
+  "argv": [
+    "docker",
+    "exec",
+    "autosut-1e422dee06",
+    "cat",
+    "/tmp/autosut_effect_b6b264ff250c28f0.txt"
+  ],
+  "returncode": 0,
+  "stdout": "autosut-0272e50a1b0e4964f5ec2767be740f09",
+  "stderr": "",
+  "expected_stdout": "autosut-0272e50a1b0e4964f5ec2767be740f09"
+}

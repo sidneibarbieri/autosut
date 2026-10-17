@@ -1,0 +1,30 @@
+{
+  "campaign_id": "C0026",
+  "model": "qwen2.5-coder:14b",
+  "sample": 2,
+  "temperature": 0.7,
+  "platform": "Linux",
+  "services": [
+    {
+      "host_role": "public-service",
+      "product": "Apache httpd",
+      "version": "2.4.41",
+      "port": "80",
+      "exposure": "internet-facing"
+    },
+    {
+      "host_role": "internal-host",
+      "product": "Samba",
+      "version": "4.12.3",
+      "port": "445",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "attacker",
+      "product": "Metasploit Framework",
+      "version": "6.1.0",
+      "port": "4444",
+      "exposure": "controlled-ingress-channel"
+    }
+  ]
+}

@@ -144,7 +144,14 @@ def resolve_sut_constraints(
 ) -> SUTConstraintSet:
     sut_steps = [step for step in plan.steps if step.execution_domain != "attacker"]
     platform_sets = [set(step.platforms) - {"PRE"} for step in sut_steps]
-    selected_platforms = _minimum_platform_cover(platform_sets)
+    available_sets = [platforms & materializable_platforms for platforms in platform_sets if platforms]
+    selected_platforms = _minimum_platform_cover(available_sets)
+    unsupported_sets = [
+        platforms for platforms in platform_sets
+        if platforms and not (platforms & materializable_platforms)
+    ]
+    unsupported_selection = _minimum_platform_cover(unsupported_sets)
+    selected_platforms.extend(unsupported_selection)
     supported_selected = [
         platform for platform in selected_platforms if platform in materializable_platforms
     ]

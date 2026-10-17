@@ -19,10 +19,14 @@ auditable in application, and reusable across campaigns.
 from __future__ import annotations
 
 import json
+import base64
+import re
+import shlex
 from dataclasses import dataclass
 from pathlib import Path
 
 from .environment_base import EnvironmentBackend
+from .composition_contract import composition_input_issues, valid_posix_user, valid_sut_path, valid_octal_mode
 from .models import (
     ApplicationStack,
     Credential,
@@ -46,21 +50,55 @@ class CompositionResult:
     evidence_files: list[str]
 
 
+_HOST_SLUG = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*\Z")
+
+
 _CREATE_USER_SCRIPT = """
-if id "{user}" >/dev/null 2>&1; then
+if id {user} >/dev/null 2>&1; then
   :
 elif command -v adduser >/dev/null 2>&1 && adduser --help 2>&1 | grep -q "BusyBox\\|Alpine"; then
-  adduser -D -s /bin/sh "{user}"
+  adduser -D -s /bin/sh {user}
 elif command -v useradd >/dev/null 2>&1; then
-  useradd -m -s /bin/bash "{user}"
+  useradd -m -s /bin/bash {user}
 elif command -v adduser >/dev/null 2>&1; then
-  adduser --disabled-password --gecos "" "{user}"
+  adduser --disabled-password --gecos "" {user}
 else
   echo "no usable user-create tool" 1>&2
   exit 1
 fi
-echo "{user}:{secret}" | chpasswd
+printf '%s:%s\n' {user} {secret} | chpasswd
 """
+
+
+def _run_sensitive_command(env: EnvironmentBackend, command: str,
+                           run_dir: Path, log_name: str) -> None:
+    """Record only the outcome; backend command logs contain input material."""
+    outcome = env.run_shell(command, log_name=None, timeout=30)
+    log_path = run_dir / log_name
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(f"exit_code: {outcome.exit_code}\n", encoding="utf-8")
+    if outcome.exit_code != 0:
+        raise RuntimeError(f"SUT composition failed; see {log_path}")
+
+
+def _require_user(user: str) -> str:
+    if not valid_posix_user(user):
+        raise ValueError(f"invalid POSIX account name: {user!r}")
+    return shlex.quote(user)
+
+
+def _require_path(path: str) -> str:
+    if not valid_sut_path(path):
+        raise ValueError(f"invalid absolute SUT path: {path!r}")
+    return shlex.quote(path)
+
+
+def _validate_composition(comp: SUTComposition, host_name: str) -> None:
+    if not _HOST_SLUG.fullmatch(host_name) or host_name in {".", ".."}:
+        raise ValueError(f"invalid SUT host name: {host_name!r}")
+    issues = composition_input_issues(comp)
+    if issues:
+        raise ValueError("; ".join(issues))
 
 
 def _apply_credential(env: EnvironmentBackend, cred: Credential,
@@ -72,19 +110,22 @@ def _apply_credential(env: EnvironmentBackend, cred: Credential,
     log_base = f"sut/credential_{idx:02d}"
     evidence: list[str] = []
     if cred.kind == "password":
-        env.run_shell(
-            _CREATE_USER_SCRIPT.format(user=cred.user, secret=cred.secret),
-            log_name=f"{log_base}_password.log", timeout=30,
+        _run_sensitive_command(
+            env, _CREATE_USER_SCRIPT.format(
+                user=_require_user(cred.user), secret=shlex.quote(cred.secret)),
+            run_dir, f"{log_base}_password.log",
         )
         evidence.append(f"{log_base}_password.log")
     elif cred.kind == "ssh_key":
-        location = cred.location or f"/home/{cred.user}/.ssh/authorized_keys"
-        r = env.run_shell(
-            f"mkdir -p $(dirname {location}) && "
-            f"printf '%s\\n' '{cred.secret}' >> {location} && "
-            f"chown -R {cred.user}:{cred.user} $(dirname {location}) 2>/dev/null || true && "
+        user = _require_user(cred.user)
+        location = _require_path(cred.location or f"/home/{cred.user}/.ssh/authorized_keys")
+        _run_sensitive_command(
+            env,
+            f"mkdir -p \"$(dirname {location})\" && "
+            f"printf '%s\\n' {shlex.quote(cred.secret)} >> {location} && "
+            f"chown -R {user}:{user} \"$(dirname {location})\" && "
             f"chmod 600 {location}",
-            log_name=f"{log_base}_ssh_key.log", timeout=15,
+            run_dir, f"{log_base}_ssh_key.log",
         )
         evidence.append(f"{log_base}_ssh_key.log")
     else:
@@ -106,24 +147,24 @@ def _apply_credential(env: EnvironmentBackend, cred: Credential,
 def _apply_artifact(env: EnvironmentBackend, art: StagedArtifact,
                     run_dir: Path, idx: int) -> list[str]:
     log_name = f"sut/artifact_{idx:02d}.log"
+    path = _require_path(art.path)
+    owner = _require_user(art.owner)
+    if not valid_octal_mode(art.mode):
+        raise ValueError(f"invalid artifact mode: {art.mode!r}")
     if art.content_text is not None:
-        # Write via heredoc so multi-line content survives shell quoting.
-        env.run_shell(
-            f"mkdir -p $(dirname {art.path}) && "
-            f"cat > {art.path} <<'AUTOSUT_ART_EOF'\n"
-            f"{art.content_text}\n"
-            f"AUTOSUT_ART_EOF\n"
-            f"chmod {art.mode} {art.path} && "
-            f"chown {art.owner}:{art.owner} {art.path} 2>/dev/null || true",
-            log_name=log_name, timeout=15,
-        )
+        encoded = base64.b64encode(art.content_text.encode("utf-8")).decode("ascii")
     elif art.content_b64 is not None:
-        env.run_shell(
-            f"mkdir -p $(dirname {art.path}) && "
-            f"printf '%s' '{art.content_b64}' | base64 -d > {art.path} && "
-            f"chmod {art.mode} {art.path}",
-            log_name=log_name, timeout=15,
-        )
+        encoded = art.content_b64
+    else:
+        raise ValueError(f"artifact {art.path!r} has no content")
+    _run_sensitive_command(
+        env,
+        f"mkdir -p \"$(dirname {path})\" && "
+        f"printf '%s' {shlex.quote(encoded)} | base64 -d > {path} && "
+        f"chmod {art.mode} {path} && "
+        f"chown {owner} {path}",
+        run_dir, log_name,
+    )
     return [log_name]
 
 
@@ -148,7 +189,7 @@ def _apply_application(env: EnvironmentBackend, stack: ApplicationStack,
                         run_dir: Path) -> tuple[bool, list[str]]:
     fn = RECIPES.get(stack.recipe)
     if fn is None:
-        # No installer registered — record the gap honestly.
+        # No installer registered - record the gap honestly.
         log_path = run_dir / "sut" / f"app_{stack.name}_no_recipe.log"
         log_path.parent.mkdir(parents=True, exist_ok=True)
         log_path.write_text(
@@ -172,6 +213,7 @@ def apply_composition(env: EnvironmentBackend, host_name: str,
     3. Applications (each recipe runs its own install + start).
     4. Exposures last (record the post-install network surface).
     """
+    _validate_composition(comp, host_name)
     all_evidence: list[str] = []
 
     for idx, art in enumerate(comp.artifacts):
@@ -196,9 +238,14 @@ def apply_composition(env: EnvironmentBackend, host_name: str,
     # Persist a per-host composition manifest so the reviewer can read the
     # *declared* shape next to what was actually applied.
     comp_dump_path = run_dir / "sut" / f"composition_{host_name}.json"
-    comp_dump_path.write_text(
-        json.dumps(comp.model_dump(), indent=2), encoding="utf-8",
-    )
+    comp_dump_path.parent.mkdir(parents=True, exist_ok=True)
+    public_composition = comp.model_dump()
+    for credential in public_composition["credentials"]:
+        credential.pop("secret", None)
+    for artifact in public_composition["artifacts"]:
+        artifact.pop("content_text", None)
+        artifact.pop("content_b64", None)
+    comp_dump_path.write_text(json.dumps(public_composition, indent=2), encoding="utf-8")
     all_evidence.append(str(comp_dump_path.relative_to(run_dir)))
 
     return CompositionResult(

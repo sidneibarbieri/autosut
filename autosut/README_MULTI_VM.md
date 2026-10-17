@@ -16,46 +16,26 @@ bash artifact/validate.sh
 
 ## Scope
 
-The repository currently contains two families of VM-oriented helpers:
-
-- `multi_vm_manager_2vm.py` for an attacker/target topology
-- `multi_vm_manager.py` for older exploratory orchestration work
-
-These tools are useful for lab inspection, provider experiments, and
-measurement. They should not be used as the sole basis for reproducibility
-claims unless they have been revalidated in the current checkout.
+The repository retains one direct diagnostic helper,
+`multi_vm_manager_2vm.py`, for an attacker/target topology. The provider-aware
+lab scripts and this helper are implementation material, not a released
+campaign-execution contract. Use the canonical review gate first, then inspect
+the capability ledger before interpreting any local backend result.
 
 ## Current Expectations
 
-- Linux x86_64 is better served by `libvirt` through the provider-aware lab
-  helpers.
-- macOS ARM64 uses `qemu` when the VM-backed path is needed.
-- Host-side Caldera or mock Caldera validation is optional and should be
-  reported separately from the canonical smoke path.
+- Linux `libvirt` and macOS ARM64 `qemu` are candidate implementations for
+  future qualification.
+- QEMU is currently `implemented` and requires boot qualification.
+- Native Windows is `development_in_progress`; its architecture-specific,
+  credential-free templates do not prove a guest run.
 
-## Common Commands
+## Review Boundary
 
-Check the 2-VM helper:
-
-```bash
-python3 multi_vm_manager_2vm.py status
-```
-
-Validate the VM-to-host callback path with the mock Caldera-compatible service:
-
-```bash
-python3 caldera_manager.py start-mock
-python3 multi_vm_manager_2vm.py up
-python3 multi_vm_manager_2vm.py status
-python3 multi_vm_manager_2vm.py down
-```
-
-Bring up the provider-aware optional lab for a campaign:
-
-```bash
-./scripts/up_lab.sh --campaign 0.c0011
-./scripts/destroy_lab.sh --campaign 0.c0011
-```
+No VM command in this document is a reviewer reproduction recipe. A future
+qualification must bind a campaign/SUT requirement, image hash, cold boot,
+declared evidence predicate, independent observation, and clean teardown. The
+ledger records the only valid promotion status.
 
 ## Integrity Notes
 

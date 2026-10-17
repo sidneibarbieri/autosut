@@ -1,72 +1,53 @@
+"""A Vagrant machine that never booted must not be reported as having run a command.
+
+Regression test: `vagrant ssh -c` can exit 0 for some multi-machine Vagrantfiles even when
+the named machine was never created, printing a state warning instead of executing the
+remote script. An executor trusting that exit code alone previously reported a fabricated
+success for T1190 against a target that was never reachable.
+"""
+
 from __future__ import annotations
 
-import os
 import subprocess
 import sys
 from pathlib import Path
-
+from unittest.mock import patch
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-SRC_ROOT = PROJECT_ROOT / "src"
-if str(SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(SRC_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from executors import lab_transport
-
-
-def test_detect_vagrant_provider_prefers_explicit_sticks_env(monkeypatch) -> None:
-    monkeypatch.setenv("STICKS_VAGRANT_PROVIDER", "qemu")
-    monkeypatch.delenv("VAGRANT_DEFAULT_PROVIDER", raising=False)
-
-    assert lab_transport.detect_vagrant_provider() == "qemu"
+from executors.lab_transport import (  # noqa: E402
+    VagrantInstanceUnavailableError,
+    run_command_in_vm,
+)
 
 
-def test_run_command_in_vm_sets_vagrant_default_provider(monkeypatch, tmp_path: Path) -> None:
-    vm_dir = tmp_path / "lab" / "vagrant" / "target-linux-1"
-    vm_dir.mkdir(parents=True)
-    monkeypatch.setattr(lab_transport, "LAB_VAGRANT_DIR", tmp_path / "lab" / "vagrant")
-
-    captured: dict[str, object] = {}
-
-    def fake_run(command, cwd=None, capture_output=None, text=None, timeout=None, env=None):
-        captured["command"] = command
-        captured["cwd"] = cwd
-        captured["env"] = env
-        return subprocess.CompletedProcess(command, 0, "ok", "")
-
-    monkeypatch.setattr(lab_transport.subprocess, "run", fake_run)
-    monkeypatch.setenv("STICKS_VAGRANT_PROVIDER", "qemu")
-
-    result = lab_transport.run_command_in_vm("target-linux-1", "echo ok")
-
-    assert result.returncode == 0
-    assert captured["command"] == ["vagrant", "ssh", "-c", "echo ok"]
-    assert captured["cwd"] == vm_dir
-    assert captured["env"]["VAGRANT_DEFAULT_PROVIDER"] == "qemu"
-
-
-def test_run_bash_on_target_vm_passes_provider_to_vagrant_transport(monkeypatch) -> None:
-    monkeypatch.setattr(lab_transport, "resolve_target_vm_name", lambda _: "target-linux-1")
-    captured: dict[str, object] = {}
-
-    def fake_run_command_in_vm(vm_name: str, remote_cmd: str, timeout: int, provider: str | None = None):
-        captured["vm_name"] = vm_name
-        captured["remote_cmd"] = remote_cmd
-        captured["timeout"] = timeout
-        captured["provider"] = provider
-        return subprocess.CompletedProcess(["vagrant"], 0, "ok", "")
-
-    monkeypatch.setattr(lab_transport, "run_command_in_vm", fake_run_command_in_vm)
-
-    result = lab_transport.run_bash_on_target_vm(
-        sut_profile_id="0.shadowray",
-        bash_script="echo hello",
-        timeout=12,
-        provider="qemu",
+def _completed_process(stdout: str, returncode: int = 0) -> subprocess.CompletedProcess:
+    return subprocess.CompletedProcess(
+        args=["vagrant", "ssh", "-c", "echo hi"], returncode=returncode, stdout=stdout, stderr=""
     )
 
+
+def test_a_zero_exit_with_the_not_created_marker_raises_instead_of_succeeding():
+    fake_result = _completed_process(
+        "==> target-linux-1: Instance is not created. Please run `vagrant up` first.",
+        returncode=0,
+    )
+    with patch("executors.lab_transport.Path.exists", return_value=True), patch(
+        "executors.lab_transport.subprocess.run", return_value=fake_result
+    ):
+        try:
+            run_command_in_vm("target-linux-1", "echo hi")
+        except VagrantInstanceUnavailableError:
+            return
+    raise AssertionError("a not-created machine must not be reported as having run the command")
+
+
+def test_a_genuine_successful_transcript_is_returned_normally():
+    fake_result = _completed_process("hello from the vm", returncode=0)
+    with patch("executors.lab_transport.Path.exists", return_value=True), patch(
+        "executors.lab_transport.subprocess.run", return_value=fake_result
+    ):
+        result = run_command_in_vm("target-linux-1", "echo hi")
     assert result.returncode == 0
-    assert captured["vm_name"] == "target-linux-1"
-    assert captured["timeout"] == 12
-    assert captured["provider"] == "qemu"
-    assert "bash -lc" in captured["remote_cmd"]
+    assert result.stdout == "hello from the vm"

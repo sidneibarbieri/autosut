@@ -1,0 +1,11 @@
+{
+  "consequence_observed": true,
+  "executed_step_delta": 9,
+  "experimental_unit": "C0045",
+  "guarded_executed_steps": 1,
+  "guarded_failure_technique_id": "T1190",
+  "guarded_repetitions_agree": true,
+  "guarded_stops_at_vulnerability_dependent_step": true,
+  "reachable_executed_steps": 10,
+  "reachable_repetitions_agree": true
+}

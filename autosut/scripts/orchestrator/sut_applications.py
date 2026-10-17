@@ -16,7 +16,7 @@ Design choices
 - Each recipe returns a small structured result (status + sha256 of any
   key binary) so the manifest can prove which build was installed.
 - Recipes deliberately avoid ``apt-get`` on Alpine and ``apk add`` on
-  Debian — the dispatching is per recipe, not global.
+  Debian - the dispatching is per recipe, not global.
 
 The centerpiece is **Apache 2.4.49 + CVE-2021-41773** because:
 
@@ -48,7 +48,7 @@ class RecipeResult:
 
 
 # ----------------------------------------------------------------------
-# Apache httpd 2.4.49 — CVE-2021-41773 (path traversal + RCE)
+# Apache httpd 2.4.49 - CVE-2021-41773 (path traversal + RCE)
 # ----------------------------------------------------------------------
 
 # Apache config that re-enables the vulnerable Alias + cgi-bin pattern the
@@ -93,7 +93,7 @@ DocumentRoot "/usr/local/apache2/htdocs"
 <Directory />
     AllowOverride none
     # NOTE: 'Require all denied' is the post-patch default. CVE-2021-41773
-    # affects the pre-patch 2.4.49 default — this lab config deliberately
+    # affects the pre-patch 2.4.49 default - this lab config deliberately
     # opens the path so the reviewer can exercise the exact disclosed
     # vulnerability.
     Require all granted
@@ -218,7 +218,7 @@ def install_openssh_weak_password(env: EnvironmentBackend,
 
 
 # Structural equivalent of the openssh recipe: a different SSH server
-# implementation (dropbear) satisfying the same abstract precondition — a
+# implementation (dropbear) satisfying the same abstract precondition - a
 # remote authenticated SSH service on :22. Used by the non-uniqueness witness
 # so the OpenSSH<->Dropbear material variation runs the same technique to
 # completion (declared == executed), answering the "decoy-only witness"
@@ -228,7 +228,7 @@ set -e
 if command -v apk >/dev/null 2>&1; then
   # dropbear is the SSH *server* (the substituted element). openssh-sftp-server
   # + the scp client binary are file-transfer helpers dropbear invokes for
-  # T1570 (Lateral Tool Transfer) — they do not change the fact that the
+  # T1570 (Lateral Tool Transfer) - they do not change the fact that the
   # listening sshd is dropbear, only that scp/sftp works against it.
   apk add --no-cache dropbear openssh-sftp-server openssh-client shadow
 elif command -v apt-get >/dev/null 2>&1; then
@@ -260,7 +260,7 @@ def install_dropbear_equivalent(env: EnvironmentBackend,
     credential is declared in :class:`Credential`; this recipe is the network
     surface (a real dropbear daemon, real host keys, real password auth), so a
     technique that SSH-authenticates runs identically against OpenSSH or
-    Dropbear — the corpus-supported precondition is preserved, only the free
+    Dropbear - the corpus-supported precondition is preserved, only the free
     implementation differs.
     """
     result = env.run_shell(
@@ -383,7 +383,7 @@ def install_nginx_equivalent(env: EnvironmentBackend, stack: ApplicationStack,
 
 
 # ----------------------------------------------------------------------
-# Minimal "vulnerable Flask app" — generic web exfil surface
+# Minimal "vulnerable Flask app" - generic web exfil surface
 # ----------------------------------------------------------------------
 
 _FLASK_DECOY_APP = """from flask import Flask, request
@@ -436,7 +436,7 @@ def install_flask_decoy_api(env: EnvironmentBackend, stack: ApplicationStack,
 
 
 # ----------------------------------------------------------------------
-# Apache 2.4 (Debian default) — generic web surface for frozen campaigns
+# Apache 2.4 (Debian default) - generic web surface for frozen campaigns
 # ----------------------------------------------------------------------
 
 _APACHE_DEFAULT_INSTALL = """

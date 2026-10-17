@@ -1,0 +1,93 @@
+{
+  "capability": "experiment.docker_isolated_caldera_integration",
+  "protocol": "Per run: materialize isolated Caldera; verify readiness; materialize SUT; enroll a real Sandcat; register ability, adversary, and operation; execute; confirm the effect with a probe independent of Caldera's reported status; destroy every run-owned resource; verify-clean. Reproducible requires 5 clean runs that each confirm the effect.",
+  "scope": {
+    "validated": [
+      "per-run isolated Caldera (own container and port, destroyed by the run)",
+      "real Sandcat enrollment against the isolated instance",
+      "real ability, adversary, and operation",
+      "effect confirmed by a probe independent of Caldera's reported status",
+      "verified teardown and temporal verify-clean"
+    ],
+    "excluded": [
+      "real-CVE service realization (the Ray service is the documented surrogate)",
+      "multi-host execution",
+      "the QEMU/Vagrant backend"
+    ]
+  },
+  "total_runs": 5,
+  "clean_runs": 5,
+  "effect_confirmed_runs": 5,
+  "realizations_observed": [
+    "surrogate"
+  ],
+  "set_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+  "current_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-6cf32752800b5f19",
+  "total_seconds_median": 204.347,
+  "total_seconds_min": 190.609,
+  "total_seconds_max": 221.598,
+  "runs": [
+    {
+      "label": "e1",
+      "run_id": "shadowray_caldera_e1_20260806T222912Z-a6380b39",
+      "final_state": "clean",
+      "total_seconds": 209.676,
+      "realization": "surrogate",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+      "bundle_manifest_sha256": "9eb6e5d0309cbf1946057bfa75f6670e952952fb7b1d1093a8869f9f7081f6e8"
+    },
+    {
+      "label": "e2",
+      "run_id": "shadowray_caldera_e2_20260806T223242Z-70973660",
+      "final_state": "clean",
+      "total_seconds": 192.637,
+      "realization": "surrogate",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+      "bundle_manifest_sha256": "30ce45564e0e5614cd9f2de8cbcf56a70ec63eb3729a16f666b4ae4056d90358"
+    },
+    {
+      "label": "e3",
+      "run_id": "shadowray_caldera_e3_20260806T223555Z-9830fd19",
+      "final_state": "clean",
+      "total_seconds": 190.609,
+      "realization": "surrogate",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+      "bundle_manifest_sha256": "dca93777604269712810f3629fdf4d8e36a31c53e80087287c11a4673d0c80db"
+    },
+    {
+      "label": "e4",
+      "run_id": "shadowray_caldera_e4_20260806T223906Z-c99a24c5",
+      "final_state": "clean",
+      "total_seconds": 221.598,
+      "realization": "surrogate",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+      "bundle_manifest_sha256": "1f6925b033789c2b8c3e939f28f9f40ba36a244d6c90cede2cdc59a43d75baa2"
+    },
+    {
+      "label": "e5",
+      "run_id": "shadowray_caldera_e5_20260806T224248Z-68c330af",
+      "final_state": "clean",
+      "total_seconds": 204.347,
+      "realization": "surrogate",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+      "bundle_manifest_sha256": "e66d1da0ba48f1423c1cb469138dbd35cd00f9a59348a19c0504d0ad7f307618"
+    }
+  ],
+  "result_level": "end_to_end_validated",
+  "note": "5/5 runs clean; 5 confirmed the effect. Realizations observed: ['surrogate']. Set revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489; current revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-6cf32752800b5f19. reproducible requires a full clean set produced on the current revision. The effect confirmed is the operation's marker-file write, verified independently; with a surrogate service this qualifies the integration and dispatch, not real-CVE exploitation."
+}

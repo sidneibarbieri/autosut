@@ -1,7 +1,7 @@
 """Structural regression tests for the environment-provenance report (S31).
 
 These run the report generator against the *real* catalog, so they guard the
-end-to-end contract — resolve -> summarize -> merge — without hard-coding
+end-to-end contract - resolve -> summarize -> merge - without hard-coding
 campaign counts that legitimately change as the corpus grows. They assert
 invariants (counts reconcile, the policy holds, every element is traceable)
 rather than specific numbers.
@@ -40,7 +40,7 @@ def test_counts_reconcile_with_total():
 def test_inferred_is_never_assigned():
     # The Hybrid policy drops `inferred`; it stays in the enum but no element
     # may carry it. If this ever fails, the dashboard/report must grow a 4th
-    # column — a deliberate decision, not an accident.
+    # column - a deliberate decision, not an accident.
     summaries, _ = gpr.collect_summaries()
     merged = provenance.merge_summaries(summaries)
     assert merged.by_source["inferred"] == 0

@@ -1,0 +1,15 @@
+# Dependencies for the Windows ARM64 backend qualification gates only.
+#
+# These gates (scripts/infra/windows_cyber_gate.py, windows_clone_identity_check.py,
+# windows_agent_enroll_probe.py) drive a QEMU Windows guest over WinRM/NTLM. The backend is
+# implementation_in_progress and is NOT part of the frozen reviewer set in
+# requirements-reviewer.txt, so its extra dependencies are recorded here to keep that cited
+# snapshot untouched. Install alongside the reviewer set into the qualification venv.
+#
+# Versions resolved 2026-08-27 in the author environment (Python 3.14, arm64 macOS).
+pywinrm==0.5.0
+requests_ntlm==1.3.0
+requests==2.34.2
+xmltodict==1.0.4
+cryptography==50.0.1
+pyspnego==0.12.2

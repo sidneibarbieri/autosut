@@ -24,9 +24,9 @@ from utils.infra_automation import (  # noqa: E402
     json_report,
     markdown_report,
 )
-
-sys.path.insert(0, str(PROJECT_ROOT))
-from scripts.generate_corpus_state import latest_summary  # noqa: E402
+from evaluation.canonical_operational_witness import (  # noqa: E402
+    assess_caldera_dispatch_witness,
+)
 
 
 RELEASE_JSON = PROJECT_ROOT / "release" / "infra_automation_coverage.json"
@@ -49,15 +49,24 @@ def _write_csv(path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
 
 
+def _bounded_dispatch_witness_campaign_ids() -> frozenset[str]:
+    assessment = assess_caldera_dispatch_witness(PROJECT_ROOT)
+    if assessment.status != "supported_bounded" or assessment.witness is None:
+        raise RuntimeError(
+            "canonical bounded dispatch witness is not supported: "
+            f"{assessment.failure_reason or assessment.status}"
+        )
+    return frozenset({assessment.witness.campaign_id})
+
+
 def main() -> int:
     campaign_ids = sorted(set(list_campaigns()) & set(list_sut_profiles()))
     summary = build_infra_automation_summary(
-        project_root=PROJECT_ROOT,
         campaign_ids=campaign_ids,
         load_campaign=load_campaign,
         load_sut_profile=load_sut_profile,
         validate_campaign_sut_pair=validate_campaign_sut_pair,
-        latest_summary=latest_summary,
+        bounded_dispatch_witness_campaign_ids=_bounded_dispatch_witness_campaign_ids(),
     )
 
     RELEASE_JSON.parent.mkdir(parents=True, exist_ok=True)

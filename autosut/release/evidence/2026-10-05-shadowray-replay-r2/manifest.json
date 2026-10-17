@@ -1,0 +1,215 @@
+{
+  "campaign_id": "0.shadowray",
+  "run_id": "2026-10-05-shadowray-replay-r2",
+  "timestamp": "2026-10-05T12:12:16.069715Z",
+  "attacker": {
+    "profile_id": "python_rpc_attacker",
+    "capabilities": [
+      "rpc_rce",
+      "db_dump",
+      "pivot"
+    ],
+    "notes": "Python + requests to drive the Ray dashboard job submission endpoint, plus mysql client for follow-on data exfiltration."
+  },
+  "sut": {
+    "sut_id": "C0045-sut",
+    "base_image": "python:3.10-slim@sha256:4c14394747f2ccaf405c18a5d636dbf0da674a1a92e73e274c0503a24b866679",
+    "platform_source": "autosut_concretized",
+    "services": [],
+    "memory_mb": 4096,
+    "smp": 2,
+    "backend": "docker",
+    "hosts": null,
+    "composition": null,
+    "topology": null,
+    "notes": null
+  },
+  "cves_injected": [
+    {
+      "cve_id": "CVE-2023-48022",
+      "fidelity": "adapted",
+      "realization": "real_cve",
+      "success": true,
+      "log_path": "sut/cve_injection_CVE-2023-48022_real.log",
+      "notes": "Ray 2.6.3 installed from PyPI with default dashboard enabled. The unauthenticated job-submission endpoint is the documented RCE surface for CVE-2023-48022. Success requires two sequential job submissions to reach SUCCEEDED."
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1588.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.002_toolkit.log"
+      ],
+      "duration_sec": 0.03252433300076518,
+      "notes": "Adapted: benign tooling was assembled in the isolated attacker environment.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1190",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1190_dashboard_probe.log",
+        "techniques/T1190_job_submit.log",
+        "techniques/T1190_verify_rce.log"
+      ],
+      "duration_sec": 1.1909439579976606,
+      "notes": "Unauthenticated Ray dashboard job submission executed a shell command on the target; marker file confirms remote execution.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.006",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.006_job_submit.log",
+        "techniques/T1059.006_verify.log"
+      ],
+      "duration_sec": 1.1386122500043712,
+      "notes": "Python execution was submitted through the compromised Ray API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1546.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1546.004_job_submit.log",
+        "techniques/T1546.004_verify.log"
+      ],
+      "duration_sec": 1.1390774999963469,
+      "notes": "Adapted: configuration changed only under a disposable SUT path and was exercised.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1068",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1068_job_submit.log",
+        "techniques/T1068_verify.log"
+      ],
+      "duration_sec": 1.1372620839974843,
+      "notes": "Inspired: privilege escalation is represented by a bounded control; no local exploit is executed.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1027.013",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1027.013_job_submit.log",
+        "techniques/T1027.013_verify.log"
+      ],
+      "duration_sec": 1.1585367919979035,
+      "notes": "Adapted: a benign payload was encoded inside the disposable SUT through the compromised API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1003.008",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1003.008_job_submit.log",
+        "techniques/T1003.008_verify.log"
+      ],
+      "duration_sec": 1.1329469999982393,
+      "notes": "Adapted: a predeclared synthetic credential fixture was read through the compromised API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1016",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1016_job_submit.log",
+        "techniques/T1016_verify.log"
+      ],
+      "duration_sec": 1.132162417001382,
+      "notes": "Adapted: network configuration was collected from the disposable SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_server.log",
+        "techniques/T1105_job_submit.log",
+        "techniques/T1105_verify.log",
+        "techniques/T1105_source_hash.log"
+      ],
+      "duration_sec": 3.2539286249957513,
+      "notes": "Adapted: a benign payload crossed the private attacker-to-SUT channel through the compromised API.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1496.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "real_cve",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1496.001_job_submit.log",
+        "techniques/T1496.001_verify.log"
+      ],
+      "duration_sec": 1.155587540997658,
+      "notes": "Adapted: a two-second timeout bounds compute use and independent checks validate CPU and elapsed time.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

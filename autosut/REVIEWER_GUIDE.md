@@ -2,6 +2,45 @@
 
 This guide keeps the validation path short and explicit.
 
+## Current Automation Boundary
+
+`scripts/prepare_campaign_pairs.py` is the joint STICKS--AutoSUT preparation entrypoint. It emits
+one immutable directory per prepared campaign and a matrix that distinguishes `prepared` from
+`blocked`. Every row starts with `execution_status=not_run`. The current command accounts for all
+55 frozen upstream procedural plans and the eight legacy campaign identifiers. It prepares three pairs
+(C0010, C0026, and C0045) and blocks the other 52 rows: 47 have no campaign specification,
+four lack a supported platform, and one lacks an execution contract. The eight-case record under
+`release/experiments/paired_preparation/2026-09-05-r4/` is an earlier, narrower snapshot.
+Neither matrix is execution evidence. To generate a current matrix from adjacent artifact checkouts,
+run the preparation command in `docs/joint_replay.md` and inspect its `matrix.json`.
+
+The earlier supervised operational collector qualifies two cells: a C0045 T1190
+surrogate slice and a synthetic multi-host Caldera fact-chain. It does not run the complete C0045
+sequence or either complete C0010/C0026 sequence. A successful cell requires a finished expected
+Caldera link, independent effect evidence, a sealed manifest, a natural supervisor completion, and
+an empty run namespace. The multi-host cell does not claim real lateral movement.
+
+The released same-revision records are
+`release/experiments/paired_preparation/2026-09-05-r4/matrix.json` and
+`release/experiments/operational_qualification/2026-09-05-r6/ledger.json`. Read the adjacent README
+files before interpreting either collection. The operational protocol has one seed and qualifies a
+bounded functional path; it does not estimate reliability or campaign-wide success.
+
+The `CALDERA-DISPATCH-01` ledger row is bound to the sealed `r6` collection rather than a legacy
+developer receipt. Its static audit verifies the collection manifest, protocol, ledger, qualified
+supervision receipt, operation record, independent probe, and clean teardown. The result remains a
+single-cell surrogate observation, not a live rerun or a campaign-wide execution claim.
+
+The prepared-pair replay is a separate, later experiment. The current release contains
+`release/prepared-pairs/` and same-revision receipts under
+`release/evidence/2026-10-01-joint-e2e-r6/`. C0010, C0026, and C0045 execute all steps in their
+declared controlled contracts with independent effect checks. C0045 provisions Ray 2.6.3 on a
+pinned Python 3.10 image and uses its actual unauthenticated Jobs API. The gateway certificate
+observes the Colima VM IPv4 INPUT boundary, and teardown must be clean. The five blocked legacy
+pairs and 42 partial SUT plans remain explicitly outside this execution claim. Run the commands in
+`docs/joint_replay.md` to reproduce the paired path. Its static audit command checks a saved replay
+without starting Docker; the live command reobserves effects.
+
 ## Main Results and Claim Boundary
 
 AutoSUT separates two forms of evidence that must not be conflated:
@@ -11,14 +50,15 @@ AutoSUT separates two forms of evidence that must not be conflated:
   analyses.
 - RQ4 is a bounded constructive result: three controlled witnesses admit more
   than one SUT realization while preserving the checked technique sequence and
-  oracle. It is an existence result, not a prevalence estimate.
-- The C0045-derived case is a single controlled surrogate experiment. It is not
-  a historical reconstruction of a Ray deployment.
+  independent check. It is an existence result, not a prevalence estimate.
+- The older Caldera C0045-derived cell is a controlled surrogate experiment. The
+  later paired replay uses real Ray, while remaining an adapted controlled
+  procedure rather than a historical reconstruction of a Ray deployment.
 
 The authoritative status, evidence paths, scope, and non-claims are generated
 in `release/CLAIM_EVIDENCE_TRACEABILITY.md` and
 `release/claim_evidence_traceability.json`. `bash run_review_check.sh` fails if
-one of the required RQ1--RQ4/C0045 gates is not supported.
+one of the required claim-evidence gates is not supported.
 
 The C0045 check can also be run directly:
 
@@ -50,24 +90,58 @@ arbitrary ATT&CK campaigns.
 | `run_review_check.sh` | Python 3.10+ | commodity laptop/desktop | fastest way to validate study-facing outputs |
 | `artifact/` smoke path | Python 3.10+, `venv`, `docker` | Docker-capable host | smallest live campaign/SUT execution trace |
 | `scripts/run_all_orchestrated_campaigns.py` | Python 3.10+, `docker` | Docker-capable host | full sequential replay of implemented campaign/SUT pairs |
-| `run_vm_backed_campaign.sh` | Python 3.10+, `vagrant`, `qemu` or `libvirt` | 8 CPU cores, 16 GB RAM, 25 GB free disk recommended | cold-start guest bootstrap can dominate runtime |
+| optional VM-backend materials | Python 3.10+, `vagrant`, `qemu` or `libvirt` | 8 CPU cores, 16 GB RAM, 25 GB free disk recommended | implementation/qualification material; not part of the released claim gate |
 
-For the heavy path, Linux x86_64 with `libvirt` is preferred when available.
-On macOS ARM64, the supported fallback is `qemu`.
-By default, the VM-backed wrapper restores tracked study-facing summaries after
-teardown and removes runtime-only lab byproducts. Use
-`--persist-derived-state` only when you explicitly want to keep regenerated
-summaries or local SUT reports in the checkout.
+The released claim gate does not require or qualify a QEMU, libvirt, or Windows
+guest. The provider-aware source remains available for inspection and future
+qualification; backend status is reported by the capability ledger rather than
+by a host-specific quick-start command.
 No path requires API keys or paid model access. On a cold Docker host, the
 smoke and full-replay paths download public container images and packages.
 
 ## Recommended Order
 
-1. Run the fast study-claim validation path (Section 1).
+1. Run the evaluator report path below, then the fast study-claim validation path (Section 1).
 2. Use the Findings → Evidence map (Section 2) to spot-check individual claims against the raw CSV outputs.
 3. On a Docker-capable host, run the smoke replay (Section 3) for the smallest live execution trace.
 4. If you want a full Docker-backed replay, run the orchestrated campaign suite (Section 5).
-5. If you want the realistic VM-backed substrate, run the canonical lab path (Section 6).
+5. Inspect the optional VM-backend materials only when evaluating implementation
+   scope; do not count an ad hoc host run as reproduction of a released claim.
+
+## 0. Evaluator Report
+
+The workflow below implements the two practical reviewer personas. It emits one
+schema-validated JSON report with commands, durations, blocked host backends,
+claim evidence anchors, and any failed contract. It does not turn a missing
+optional Docker or VM backend into a passing live replay.
+
+```bash
+bash scripts/run_reviewer_workflow.sh --mode kick-the-tires
+bash scripts/run_reviewer_workflow.sh --mode full-reproduction
+```
+
+The report is written to `results/reviewer_runtime/review-report.json` unless
+`--output` selects another path. `kick-the-tires` is read-only with respect to experiment
+execution. `full-reproduction` invokes the same `bash run_review_check.sh`
+claim gate documented below. The Docker and VM paths remain separate because
+their preflight requirements are real experimental conditions, not optional
+shell details.
+The wrapper creates or reuses the exact reviewer environment before executing
+the typed Python workflow.
+
+## 0.1 Lifecycle-interruption evidence
+
+The R4 interruption protocol is distinct from RQ4. RQ4 is the bounded
+constructive witness claim in the ledger; R4 asks whether a supervised lifecycle
+interruption leaves its declared run namespace clean. The R4 work is
+intentionally separate from the claim gate. Its current semantic-boundary
+template and non-promotion rule are in
+`release/experiments/R4_INTERRUPTION_MATRIX_PROTOCOL_V2.md`. It is currently
+`predeclared_nonexecuted`: a clean commit must be bound before any cell can be
+considered for qualification. The source workspace preserves v1 development
+observations, but the public package intentionally excludes them: they are
+historical observations, not released evidence and not a general reliability
+claim.
 
 ## 1. Fast Study-Claim Validation
 
@@ -97,8 +171,9 @@ file, and a step of `run_review_check.sh` that enforces it. Reviewers can
 spot-check any claim without parsing the manuscript separately.
 
 All evidence files referenced below are under
-`measurement/sut/scripts/results/audit/`. The generated macros are in
-`measurement/sut/scripts/results/todo_values_latex.tex`.
+`measurement/sut/scripts/results/audit/`. The generated macros are published
+at `release/study_values.tex` and regenerated from
+`measurement/sut/scripts/results/todo_values_latex.tex` by `run_review_check.sh`.
 
 | # | Finding (study claim) | Macro | Evidence file | Enforced by |
 |---|-----------------------|-------|---------------|-------------|
@@ -179,9 +254,6 @@ Expected outputs:
 
 - `release/evidence/<campaign>_<timestamp>/summary.json`
 - `release/evidence/<campaign>_<timestamp>/manifest.json`
-- `results/tables/corpus_table.tex`
-- `results/tables/fidelity_table.tex`
-- `results/tables/execution_table.tex`
 
 ## 4. Direct Commands
 
@@ -189,8 +261,11 @@ If you prefer not to use the wrappers:
 
 ```bash
 .venv/bin/python3 scripts/run_orchestrated_campaign.py 0.c0017
-.venv/bin/python3 scripts/generate_tables.py
+.venv/bin/python3 scripts/run_orchestrated_campaign.py 0.shadowray --fidelity surrogate
 ```
+
+Study-facing tables are generated by `bash run_review_check.sh`, not by a live
+reviewer replay.
 
 To list campaigns:
 
@@ -235,7 +310,7 @@ cat results/INFRA_AUTOMATION_COVERAGE.md
 This report shows, per published campaign/SUT pair, how many runtime VMs are
 declared, how many target hosts are configured, whether base weaknesses are
 applied automatically, whether step-conditioned overlays exist, and whether
-latest evidence is currently shipped.
+the pair is covered by the single bounded dispatch witness.
 
 ## 5. Full Orchestrated Campaign Replay
 
@@ -257,11 +332,11 @@ python3 scripts/run_all_orchestrated_campaigns.py --campaign 0.c0013
 Run all implemented campaigns:
 
 ```bash
-python3 scripts/run_all_orchestrated_campaigns.py
+python3 scripts/run_all_orchestrated_campaigns.py --isolate-campaigns --campaign-timeout-seconds 1200
 ```
 
-After an interrupted local batch, clean only stale AutoSUT campaign containers
-before replaying:
+The legacy cleanup option covers AutoSUT containers, networks, and volumes,
+while retaining the persistent development Caldera:
 
 ```bash
 python3 scripts/run_all_orchestrated_campaigns.py --clean-stale-autosut-containers --preflight-only
@@ -278,149 +353,51 @@ before producing misleading campaign-level failures. By default, known slow
 campaigns run last so the reviewer sees early progress from faster campaigns;
 use `--catalog-order` only when exact catalog order matters.
 
-## 6. VM-Backed Realism Path
+`PASS` is deliberately strict: every step must be evidence-backed, the
+run-level teardown check must pass, and the final AutoSUT namespace
+must be empty in isolated mode. This includes containers, networks, volumes,
+and the AutoSUT Caldera container. The `autosut-` prefix is reserved for this
+workspace and must not be shared with unrelated resources.
+Marker-only steps are reported separately and make a replay
+`PARTIAL`; a catalog `ability_id` alone is not evidence that Caldera dispatched
+the action.
 
-The repository also contains a provider-aware VM-backed path for realism
-checks. This path is not required for the smoke path, but it is the supported
-way to validate the QEMU/libvirt-backed substrate.
+The dashboard's `release/replay_evidence_audit.json` is a retrospective audit
+of recorded counts and file references. File presence does not establish
+technique fidelity or independent effects. This collection has no recorded
+implementation revision and cannot qualify the current code. Its source trace
+files remain local; the packaged audit contains observations and hashes only.
 
-Important:
+## 6. Optional VM Backend Materials
 
-- The smoke path does not depend on QEMU or Caldera being green.
-- The smoke path does not require a specific host platform or hypervisor.
-- The preferred VM-backed backend is `libvirt` on Linux and `qemu` on macOS ARM64.
-- A cold-start VM-backed run can take materially longer than the smoke path
-  because the guests may need first-boot package installation and service
-  provisioning before campaign execution starts.
-- VM-backed claims should be based on a fresh run of the canonical lab path in
-  the same checkout.
-- The VM-backed unit of validation is a single self-contained campaign/SUT pair.
-  Reviewers may run any one campaign, any subset, or the full set, and each
-  campaign should stand on its own without relying on prior campaign state.
+The package retains provider-aware VM source so that its implementation boundary
+is inspectable. It is not part of the canonical reviewer path, and an ad hoc
+host run cannot promote a released claim.
 
-### 5.1 Validated VM paths
+| Capability | Ledger status | Reviewer interpretation |
+| --- | --- | --- |
+| QEMU Linux ARM64 | `implemented`; requires boot qualification | The code and preflight exist, but no guest boot, execution, teardown, or independently reproducible evidence has qualified this backend. |
+| Native Windows x86_64 | `development_in_progress` | The two architecture-specific unattended templates and renderer are inspectable; no native Windows boot, procedure execution, or teardown has qualified. |
+| provider-aware Vagrant lab | retained implementation material | It may support a future, separately qualified backend experiment; it is not consumed by `run_review_check.sh`. |
 
-| Host | Provider | Entry | Status |
-|------|----------|-------|--------|
-| Linux x86_64 | libvirt | `./run_vm_backed_campaign.sh <campaign>` | Supported (Vagrantfile in `lab/vagrant/`) |
-| macOS Apple Silicon (M-series) | direct QEMU + Apple HVF | `python3 multi_vm_manager_2vm.py up` | Validated 2026-05-26 |
+For an exact status, read
+`release/experiments/capability_ledger/capabilities.json`,
+`docs/WINDOWS_PROVIDER_DEVELOPMENT.md`, and
+`docs/NATIVE_WINDOWS_CORPUS_ADJUDICATION.md`. The semantic Step-2 boundary is
+separate as well: `docs/SEMANTIC_ENRICHMENT_PROTOCOL.md` defines a typed,
+provenance-bound proposal protocol, but the release contains no completed
+provider experiment or qualified Step-2 claim.
 
-### 5.2 macOS Apple Silicon quick start (direct QEMU)
-
-The Vagrant path on macOS requires libvirt, which is not available natively. Use
-the direct-QEMU helper instead:
-
-```bash
-# One-time: download Ubuntu 22.04 ARM64 cloud image (~636 MB)
-mkdir -p lab/qemu/images
-curl -sSL https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-arm64.img \
-  -o lab/qemu/images/jammy-server-cloudimg-arm64.img
-
-# Bring up 2 VMs (attacker + target). Takes ~10s after image is cached.
-python3 multi_vm_manager_2vm.py up
-
-# SSH into either VM (password: ubuntu)
-sshpass -p ubuntu ssh -p 2224 ubuntu@127.0.0.1   # attacker
-sshpass -p ubuntu ssh -p 2223 ubuntu@127.0.0.1   # target
-
-# Teardown
-python3 multi_vm_manager_2vm.py down
-```
-
-Prerequisites (macOS): `brew install qemu xorriso sshpass`. Apple HVF is built
-into macOS — no extra install needed. The helper uses `qemu-system-aarch64 -cpu
-host -machine virt,accel=hvf`, which is the only combination that works on
-M-series hardware.
-
-Run the canonical VM-backed path:
-
-```bash
-bash run_vm_backed_campaign.sh 0.c0011
-```
-
-Keep the lab up for manual inspection:
-
-`python3 scripts/run_lab_campaign.py --campaign 0.c0011 --keep-lab`
-
-Use an explicit provider when needed:
-
-`python3 scripts/run_lab_campaign.py --campaign 0.c0011 --provider qemu`
-
-The orchestration does this in one path:
-
-- `scripts/up_lab.sh`
-- `apply_sut_profile.py`
-- `scripts/run_campaign.py`
-- `scripts/collect_evidence.sh`
-- `scripts/generate_corpus_state.py`
-- `scripts/destroy_lab.sh`
-
-Operationally, `up_lab.sh` resolves the VM topology from the campaign's SUT
-profile, starts the required provider-backed VMs, waits for core services, and
-then applies the declared SUT profile automatically. That SUT application step
-is where the lab receives campaign-specific weaknesses and prerequisites such as
-weak users/passwords, writable directories, SUID binaries, and deliberately
-vulnerable services like Apache. During execution, selected techniques may also
-apply declared step-conditioned SUT overlays, such as exposing the Ray API
-boundary immediately before `T1190` in `0.shadowray`. The follow-on execution
-path then runs the campaign, collects evidence, refreshes corpus-state reports,
-and tears the lab down unless `--keep-lab` is requested.
-
-Important interpretation note:
-
-- The repository derives a static SUT profile from a fixed corpus snapshot and
-  then executes a declared campaign/SUT pair.
-- Selected techniques may apply declared SUT overlays at runtime, but those
-  overlays are explicit campaign metadata, not online CTI inference.
-- The VM-backed path may bring up and health-check a Caldera node as part of
-  the lab, but campaign execution is still driven by the AutoSUT runner rather
-  than by the Caldera atomic planner.
-- It does not act as an online planner that invents final commands or chooses
-  vulnerabilities dynamically during execution.
-
-The recommended representative VM-backed paths are:
-
-- `bash run_vm_backed_campaign.sh 0.c0011` for the smallest end-to-end baseline;
-- `bash run_vm_backed_campaign.sh 0.shadowray` when you want the same flow plus
-  an explicit step-conditioned SUT overlay before `T1190`.
-
-Use the direct Python entry point only when you need an explicit provider
-override.
-
-To inspect current campaign-by-campaign status before choosing a run:
-
-```bash
-cat results/CORPUS_STATE.md
-cat results/CAMPAIGN_SUT_FIDELITY_MATRIX.md
-```
-
-For the most honest VM-backed read, prefer campaigns that are both:
-
-- marked `Pair Valid = yes` in `results/CAMPAIGN_SUT_FIDELITY_MATRIX.md`;
-- green in the latest evidence summary.
-
-Development-only acceleration exists, but it is not the reviewer default:
-
-```bash
-python3 scripts/run_all_lab_campaigns.py --campaign 0.c0011 --campaign 0.c0015 --provider qemu --reuse-lab
-```
-
-```bash
-python3 scripts/run_lab_campaign.py --campaign 0.c0015 --assume-lab-running
-```
-
-Use those only when you intentionally want to reuse a compatible running lab.
-Reviewer-facing claims remain grounded in cold-start execution per campaign.
-
-Exploratory helpers such as `multi_vm_manager_2vm.py` remain available for
-infrastructure debugging, but they are not the public-facing realism
-contract.
+The direct QEMU helper remains a source-level diagnostic for maintainers. It is
+not a reviewer quick start because a local image, service configuration, or boot
+attempt would be host-specific development state rather than released evidence.
 
 ## Current Expectations
 
 - The smoke path is intended to be lightweight and reproducible.
-- The published corpus is broader than strict pair validation, so use the
-  matrix rather than filename presence alone when choosing a realism run.
+- The available campaign definitions are broader than the strict pair-valid
+  subset, so use `results/CORPUS_STATE.md` rather than filename presence alone
+  when choosing a realism run.
 - Live runs regenerate run-generated evidence under `release/evidence/`.
 - The repository also regenerates `results/CVE_RESOLUTION_CANDIDATES.md` from
   measured ATT&CK outputs plus curated CVE rules so reviewers can inspect how
@@ -438,13 +415,12 @@ contract.
 - The public repository ships synthesized reports and source artifacts that can
   be regenerated from this checkout; heavyweight local runtime traces are not
   part of the reviewer contract.
-- A clean checkout may therefore expose representative VM-backed evidence for
-  only a subset of campaigns. The matrix and corpus-state reports make that
-  explicit instead of implying that every campaign already has a shipped cold-start trace.
-- On macOS ARM64 with `qemu`, the first cold-start can take materially longer
-  than subsequent runs because guest bootstrap, package installation, and
-  Caldera setup happen inside the VM. This is expected and should not be
-  confused with hidden manual setup.
+- The package contains no boot-qualified QEMU result. Its current ledger level
+  is `implemented`, with `requires_boot_qualification`; it is not a basis for a
+  released execution claim.
+- The Windows source is a development track. Its ARM64 and x86_64 templates are
+  credential-free inputs to a future qualification protocol, not evidence that
+  either guest booted or executed a procedure.
 
 ## Troubleshooting
 
@@ -454,12 +430,6 @@ If Python imports fail:
 export PYTHONPATH="$PWD/src:$PYTHONPATH"
 ```
 
-If you want to verify that the local Caldera-compatible endpoint is responding:
-
-```bash
-export CALDERA_API_KEY="${CALDERA_API_KEY:-<set-local-key>}"
-curl -s -H "KEY: ${CALDERA_API_KEY}" http://localhost:8888/api/v2/abilities | python3 -c "import json,sys; print(len(json.load(sys.stdin)))"
-```
-
-If the VM-backed path reports degraded state, use that output as an
-infrastructure signal rather than assuming a campaign runner bug.
+If an optional backend reports degraded state, record it as a host-specific
+qualification outcome. Do not reinterpret it as a failure of the released
+claim gate or as evidence for a broader execution claim.

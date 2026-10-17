@@ -1,0 +1,11 @@
+{
+  "scope": "docker.autosut",
+  "samples": [
+    {
+      "at_seconds": 0.0,
+      "resources": []
+    }
+  ],
+  "cleanup_latency_seconds": 0.0,
+  "verdict": "clean"
+}

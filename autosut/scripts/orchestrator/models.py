@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field
 
 
 class FidelityLevel(str, Enum):
-    """Technique execution fidelity — three-tier taxonomy.
+    """Technique execution fidelity - three-tier taxonomy.
 
     AutoSUT adopts the three-tier vocabulary used by the frozen STICKS
     artifact and the 5-question rubric in :mod:`fidelity_rubric` decides the
@@ -40,7 +40,7 @@ class FidelityLevel(str, Enum):
       attacker performed the conceptual action against a generic primitive.
 
     The frozen artifact ships this taxonomy but in practice scores **zero
-    faithful** across all 10 campaigns it ships rubric data for — its lab
+    faithful** across all 10 campaigns it ships rubric data for - its lab
     constraints force Q3 to False. AutoSUT keeps the tier in the vocabulary
     so the manifest can declare/report against the canonical taxonomy and
     so future executions that genuinely satisfy Q3 (e.g., a real CVE attack
@@ -58,7 +58,7 @@ class ExecutionMode(str, Enum):
     This dimension is independent of fidelity. The campaign JSONs use it as
     ``expected_mode`` for every technique:
 
-    - ``real_controlled``: a real execution was driven inside the lab — a
+    - ``real_controlled``: a real execution was driven inside the lab - a
       command actually ran, a file was actually written, a network call
       actually traversed the wire. Reviewer can inspect the side effects.
     - ``naive_simulated``: the technique was acknowledged but not
@@ -108,7 +108,7 @@ class ProvenanceSource(str, Enum):
     """How each SUT element was determined.
 
     Adopting the methodological recommendation that AutoSUT should make
-    visible — per element — *which part of the SUT came from the corpus
+    visible - per element - *which part of the SUT came from the corpus
     versus the analyst versus AutoSUT's own concretization*.
 
     - ``corpus_supported``: the value is anchored in CTI/ATT&CK/STIX
@@ -232,7 +232,7 @@ class Zone(BaseModel):
 
     Honest scope: AutoSUT declares and materializes zones as separate
     Docker bridge networks. We do NOT enforce L7 firewall policy between
-    zones — that would require iptables/eBPF policy injection per zone,
+    zones - that would require iptables/eBPF policy injection per zone,
     which is out of scope for the artefact. The realism we ship is
     **topology declaration parity with enterprise designs**, not
     enterprise firewall fidelity.
@@ -241,7 +241,7 @@ class Zone(BaseModel):
     name: str  # e.g. "internet_edge", "dmz", "enterprise"
     description: str = ""
     cidr: Optional[str] = None  # human-facing, e.g. "172.30.0.0/24"
-    # Topology is the dimension public CTI supports least — ATT&CK/STIX
+    # Topology is the dimension public CTI supports least - ATT&CK/STIX
     # campaigns rarely pin zone counts, segmentation, or trust boundaries. A
     # zone is therefore almost always an analyst lab choice; tagging it makes
     # that explicit rather than letting topology masquerade as corpus evidence.
@@ -271,11 +271,11 @@ class SUTHost(BaseModel):
 
     ``startup_commands`` are executed in order after the host boots and
     before techniques run. They are part of the campaign's auditable
-    pre-staging (Q3 of the fidelity rubric — lab preconditions are
+    pre-staging (Q3 of the fidelity rubric - lab preconditions are
     declared, not discovered).
 
     ``zones`` is the list of zone names this host attaches to. A
-    host listed in multiple zones is a *gateway* that bridges them — for
+    host listed in multiple zones is a *gateway* that bridges them - for
     example an nginx host in both ``dmz`` and ``enterprise`` zones acts
     as a dual-homed chokepoint. When empty (default), the host attaches
     only to the per-run private network.
@@ -304,7 +304,7 @@ class SUTProfile(BaseModel):
 
     Single-host campaigns declare ``base_image``/``memory_mb``/``smp``
     directly. Multi-host campaigns set ``hosts`` to a list of
-    :class:`SUTHost` entries — in that case the base fields are still set
+    :class:`SUTHost` entries - in that case the base fields are still set
     (for backwards-compat with the single-host orchestrator path) and the
     hosts list takes precedence.
     """
@@ -315,7 +315,7 @@ class SUTProfile(BaseModel):
     services: list[str] = Field(default_factory=list)
     memory_mb: int = 2048
     smp: int = 2
-    backend: Optional[str] = None  # "docker" | "qemu" | "tart" | None=>docker
+    backend: Optional[str] = None  # "docker" | "qemu" | "windows-qemu" | "tart" | None=>docker
     hosts: Optional[list[SUTHost]] = None
     composition: Optional[SUTComposition] = None  # single-host composition
     topology: Optional[Topology] = None  # multi-zone declaration
@@ -375,9 +375,8 @@ class TechniqueOutcome(BaseModel):
     evidence_files: list[str] = Field(default_factory=list)
     duration_sec: float = 0.0
     notes: Optional[str] = None
-    # When the technique was matched to a MITRE Caldera ability (Atomic Red
-    # Team plugin), the ability id/name is recorded so reviewers can audit
-    # which atomic was the source-of-truth for that technique's execution.
+    # A matching Caldera ability is catalog provenance. It is execution
+    # evidence only when executed_mode records a dispatched execution path.
     caldera_ability_id: Optional[str] = None
     caldera_ability_name: Optional[str] = None
 
@@ -439,6 +438,18 @@ class RunResult(BaseModel):
             for outcome in self.techniques
             if outcome.status == "success"
             and outcome.executed_mode == ExecutionMode.naive_simulated
+        )
+
+    @property
+    def caldera_driven_successful(self) -> int:
+        """Successful steps that Caldera actually dispatched."""
+
+        return sum(
+            1
+            for outcome in self.techniques
+            if outcome.status == "success"
+            and outcome.executed_mode == ExecutionMode.caldera_driven
+            and bool(outcome.evidence_files)
         )
 
     @property

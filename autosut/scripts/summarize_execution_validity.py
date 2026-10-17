@@ -32,6 +32,9 @@ def _latest_manifest(campaign_id: str) -> Path:
     evidence_root = PROJECT_ROOT / "release" / "evidence"
     candidates = list(evidence_root.glob(f"{campaign_id}_*/manifest.json"))
     candidates.extend(
+        (evidence_root / "qualified").glob(f"{campaign_id}_*/manifest.json")
+    )
+    candidates.extend(
         (evidence_root / "_reviewer_runs").glob(
             f"{campaign_id}_*/manifest.json"
         )

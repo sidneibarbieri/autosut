@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: autosut
+Version: 0.1.0
+Summary: AutoSUT: System Under Test measurement for ATT&CK-driven adversary emulation
+Author: AutoSUT contributors
+License: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Security
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic==2.13.4
+Requires-Dist: pyyaml==6.0.3
+Requires-Dist: click==8.5.0
+Provides-Extra: dev
+Requires-Dist: pytest==9.1.1; extra == "dev"
+Requires-Dist: pytest-cov==7.1.0; extra == "dev"
+Requires-Dist: black==26.5.1; extra == "dev"
+Requires-Dist: flake8==7.3.0; extra == "dev"
+Requires-Dist: mypy==2.3.1; extra == "dev"
+Dynamic: license-file
+
+# Documentation Index
+
+This directory contains supporting documentation for the AutoSUT artifact.
+
+## Start Here
+
+- `../README.md`: top-level repository overview
+- `../REVIEWER_GUIDE.md`: canonical validation workflow
+- `../REPRODUCIBILITY.md`: reproducibility scope and limits
+- `../ARCHITECTURE.md`: layered architecture summary
+- `../PUBLIC_REPOSITORY_SCOPE.md`: publication boundaries for GitHub and artifact distribution
+
+## Supporting Documents
+
+- `reviewer_quickstart.md`: shortest evaluator path and optional live replay
+- `reproducibility.md`: detailed notes aligned with the host-only claim gate
+  and optional Docker replay
+- `architecture.md`: expanded architecture discussion
+- `architecture/EXECUTION_MODEL.md`: released paths versus optional backend
+  implementation material
+- `SEMANTIC_ENRICHMENT_PROTOCOL.md`: Step-2 proposal and provenance boundary
+- `WINDOWS_PROVIDER_DEVELOPMENT.md`: native-Windows development and promotion
+  rule
+- `NATIVE_WINDOWS_CORPUS_ADJUDICATION.md`: human-adjudication protocol for
+  deciding whether native Windows is scientifically required
+
+## Notes
+
+- Reviewer-facing claims should be grounded in the top-level documents first:
+  `README.md`, `REVIEWER_GUIDE.md`, `REPRODUCIBILITY.md`, `ARCHITECTURE.md`,
+  and `PUBLIC_REPOSITORY_SCOPE.md`.
+- Historical operational notes, browser-triggered run services, and predecessor
+  documentation are intentionally excluded from the public package.

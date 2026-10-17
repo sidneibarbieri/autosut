@@ -1,0 +1,23 @@
+{
+  "campaign_id": "0.shadowray",
+  "source_campaign_id": "C0045",
+  "status": "prepared",
+  "reasons": [],
+  "source_steps": 10,
+  "planned_steps": 10,
+  "unresolved_technique_ids": [],
+  "contract_sha256": "9f1552e8fe0004063dc7e3a4e5f995f0fbc8ac128c22688ffa5e4fd12b0672ad",
+  "files": {
+    "action_templates.json": "c01294718f57c9f1f75edcfa673b5e92de4ef5bca9600e2a34eb3eec334ecdfd",
+    "binding-catalog.json": "985ce356c1b0a8a565a63e7f7456b51ef77f389cac84355ef0b70eb344c75a93",
+    "campaign-source.json": "4b8183057890e432d2941e6005a30970ab8039fe1cc9f81d02c32d70a9f3897e",
+    "campaign.json": "2996e94906c482bb7171a6247125e9c8ed7cb956b24a16230fcdd991006a8d5b",
+    "compiler-receipt.json": "30d70b304a06ffd1d7c4da4b6e22bedb31ddb8bc163f8234935f55cddf0b90ba",
+    "concretized-plan.json": "b545e1467ba9073064af628bfe5c537f976e8d00d635c482fad09dc114506d97",
+    "executable-contract.json": "52506e781f4fb753ea51541b1c72877620a4cdca5c65cee46f04b4a5111395ce",
+    "procedural-plan.json": "e7da23920e33180b804d790bf9613bb0e3df7ea8f98e6c3a1b0e0f4a54071c3f",
+    "sut-blueprint.json": "9c3de73ff7e43dd8a4071fba526622012281264e0ed32ebf662d110035ef71e2",
+    "sut-constraints.json": "641245c7601e97e61ab4f4e01f2add0cd1b6e8cfc4b1960891fbcc151869f51f"
+  },
+  "execution_status": "not_run"
+}

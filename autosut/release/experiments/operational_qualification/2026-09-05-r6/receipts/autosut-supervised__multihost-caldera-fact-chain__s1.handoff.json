@@ -1,0 +1,10 @@
+{
+  "schema_version": "autosut-supervision-handoff/v1",
+  "supervision_id": "88e33381221a4c5daab336985570c30b",
+  "experiment": "multihost",
+  "entrypoint": "run_caldera_experiment_multihost.py",
+  "run_id": "multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb",
+  "bundle_relative_path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb",
+  "binding_sha256": "8f367cb135658b336e9bf39b75de028edf3d7eab5ab36732af631cba9d3bcd7d",
+  "created_at": "2026-09-05T12:59:14.225650+00:00"
+}

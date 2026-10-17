@@ -2,10 +2,10 @@
 Formal domain model for AutoSUT.
 
 Four-layer architecture:
-  1. Campaign — defines what happens: techniques, order, dependencies, fidelity expectations.
-  2. SUTProfile — defines where it happens: hosts, services, credentials, weaknesses, topology.
-  3. Executor — defines how each technique is realized in a given substrate (separate module).
-  4. Evidence — defines what was observed: timestamps, artifacts, fidelity classification.
+  1. Campaign - defines what happens: techniques, order, dependencies, fidelity expectations.
+  2. SUTProfile - defines where it happens: hosts, services, credentials, weaknesses, topology.
+  3. Executor - defines how each technique is realized in a given substrate (separate module).
+  4. Evidence - defines what was observed: timestamps, artifacts, fidelity classification.
 
 These models are pure DTOs. No side effects, no I/O, no orchestration logic.
 """
@@ -58,7 +58,7 @@ class Privilege(str, Enum):
     SYSTEM = "system"
 
 
-# Layer 1 — Campaign
+# Layer 1 - Campaign
 
 
 class TechniqueStep(BaseModel):
@@ -128,7 +128,7 @@ class Campaign(BaseModel):
         return sorted(all_reqs)
 
 
-# Layer 2 — SUT Profile
+# Layer 2 - SUT Profile
 
 
 class SUTService(BaseModel):
@@ -260,7 +260,7 @@ class Capability(BaseModel):
     host: str = Field(default="", description="Host where the capability exists")
 
 
-# Layer 4 — Evidence
+# Layer 4 - Evidence
 
 
 class FidelityAssessment(BaseModel):
@@ -310,16 +310,11 @@ class TechniqueEvidence(BaseModel):
 
 
 class ArtifactMetadata(BaseModel):
-    """
-    ACM-aligned metadata for artifact evaluation.
+    """Metadata for independent artifact evaluation, along three axes:
 
-    Maps to ACM's artifact evaluation axes:
     - Reproducibility: can results be obtained independently?
     - Exercitability: can the artifact be run as documented?
-    - Consistency: do outputs match claims in the paper?
-
-    This is NOT ACM terminology used directly — it is our alignment layer
-    between the STICKS fidelity taxonomy and ACM evaluation criteria.
+    - Consistency: do outputs match the claims the artifact supports?
     """
 
     automation_level: str = Field(
@@ -328,7 +323,7 @@ class ArtifactMetadata(BaseModel):
     )
     reproducibility_notes: str = Field(
         default="",
-        description="What a reviewer needs to reproduce this execution",
+        description="What an evaluator needs to reproduce this execution",
     )
     known_limitations: List[str] = Field(
         default_factory=list,
@@ -336,7 +331,7 @@ class ArtifactMetadata(BaseModel):
     )
     platform_requirements: str = Field(
         default="",
-        description="Hardware/OS requirements for the reviewer",
+        description="Hardware/OS requirements for the evaluator",
     )
     estimated_duration_minutes: int = Field(
         default=0,

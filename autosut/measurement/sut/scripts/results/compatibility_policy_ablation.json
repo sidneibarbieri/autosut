@@ -1,0 +1,109 @@
+{
+  "bundle": "enterprise-attack.json",
+  "conclusions": [
+    {
+      "conclusion": "cf_minority",
+      "fails_under": [],
+      "holds_under": [
+        "strict",
+        "current",
+        "linux_admissible"
+      ],
+      "robust": true,
+      "statement": "Container-feasible techniques are a minority of the active population."
+    },
+    {
+      "conclusion": "explicit_evidence_minority",
+      "fails_under": [],
+      "holds_under": [
+        "strict"
+      ],
+      "robust": true,
+      "statement": "Without a default, most techniques carry no explicit routing evidence."
+    },
+    {
+      "conclusion": "id_policy_independent",
+      "fails_under": [],
+      "holds_under": [
+        "strict",
+        "current",
+        "linux_admissible",
+        "cf_floor"
+      ],
+      "robust": true,
+      "statement": "The ID share does not depend on the fallback or the CF rule."
+    }
+  ],
+  "distributions": [
+    {
+      "cf_count": 19,
+      "cf_pct": 2.7,
+      "explicit_count": 227,
+      "id_count": 147,
+      "policy": "strict",
+      "total": 697,
+      "unresolved_count": 470,
+      "unresolved_pct": 67.4,
+      "vmr_count": 61
+    },
+    {
+      "cf_count": 19,
+      "cf_pct": 2.7,
+      "explicit_count": 227,
+      "id_count": 147,
+      "policy": "current",
+      "total": 697,
+      "unresolved_count": 0,
+      "unresolved_pct": 0.0,
+      "vmr_count": 531
+    },
+    {
+      "cf_count": 251,
+      "cf_pct": 36.0,
+      "explicit_count": 459,
+      "id_count": 147,
+      "policy": "linux_admissible",
+      "total": 697,
+      "unresolved_count": 0,
+      "unresolved_pct": 0.0,
+      "vmr_count": 299
+    },
+    {
+      "cf_count": 489,
+      "cf_pct": 70.2,
+      "explicit_count": 227,
+      "id_count": 147,
+      "policy": "cf_floor",
+      "total": 697,
+      "unresolved_count": 0,
+      "unresolved_pct": 0.0,
+      "vmr_count": 61
+    }
+  ],
+  "policies": [
+    {
+      "container_rule": "subset",
+      "default_class": null,
+      "description": "Explicit rules only; techniques no rule matches stay unresolved.",
+      "name": "strict"
+    },
+    {
+      "container_rule": "subset",
+      "default_class": "VMR",
+      "description": "Published policy: explicit rules, then the conservative VMR default.",
+      "name": "current"
+    },
+    {
+      "container_rule": "intersects",
+      "default_class": "VMR",
+      "description": "Optimistic: a technique is CF when any platform tag is container-compatible, then the VMR default.",
+      "name": "linux_admissible"
+    },
+    {
+      "container_rule": "subset",
+      "default_class": "CF",
+      "description": "Bound: every technique no rule matches is CF.",
+      "name": "cf_floor"
+    }
+  ]
+}

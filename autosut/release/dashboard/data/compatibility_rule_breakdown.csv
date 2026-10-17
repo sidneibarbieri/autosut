@@ -1,7 +1,7 @@
 class,rule_id,rule_desc,count,pct_within_class,pct_all_techniques
 CF,R7_CF_CONTAINER_COMPATIBLE,platform labels match configured CF cue set,19,100.0,2.7
-VMR,R4_VMR_KERNEL_BOOT,kernel/boot/firmware text cue,34,6.5,4.9
+VMR,R4_VMR_KERNEL_BOOT,kernel/boot/firmware text cue,34,6.4,4.9
 VMR,R6_VMR_NAME_PATTERN,privileged or host-semantic name cue,27,5.1,3.9
-VMR,R8_DEFAULT_VMR,no explicit rule fired; apply default policy label,465,88.4,67.3
-ID,R1_ID_PLATFORM_KEYWORD,identity/domain/IaaS/SaaS platform cue,132,90.4,19.1
-ID,R3_ID_LATERAL_TACTIC,lateral-movement tactic policy cue,14,9.6,2.0
+VMR,R8_DEFAULT_VMR,no explicit rule fired; apply default policy label,470,88.5,67.4
+ID,R1_ID_PLATFORM_KEYWORD,identity/domain/IaaS/SaaS platform cue,133,90.5,19.1
+ID,R3_ID_LATERAL_TACTIC,lateral-movement tactic policy cue,14,9.5,2.0

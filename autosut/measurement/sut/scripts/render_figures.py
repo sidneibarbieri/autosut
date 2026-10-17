@@ -38,7 +38,7 @@ def render_coverage(d):
     _ = d["coverage_chart"]
     return r"""\definecolor{acmBlue}{HTML}{4477AA}
 \definecolor{acmTeal}{HTML}{228833}
-\definecolor{acmSand}{HTML}{D55E00}
+\definecolor{acmSand}{HTML}{A64000}
 \definecolor{acmGrid}{HTML}{D9DDE2}
 \begin{tikzpicture}[x=0.50cm,y=0.028cm,font=\sffamily\small]
   \path[use as bounding box] (-1.55,-33.0) rectangle (18.55,139.0);
@@ -531,7 +531,7 @@ TACTIC_SHORT = {
 
 
 def render_tactic_coverage_heatmap(d):
-    """Campaign × tactic heatmap — rows=campaigns, cols=14 tactics."""
+    """Campaign × tactic heatmap - rows=campaigns, cols=14 tactics."""
     data = d.get('campaign_tactic_coverage', {})
     campaigns = data.get('campaigns', [])
     tactic_order = data.get('tactic_order', [])
@@ -595,7 +595,7 @@ def render_tactic_coverage_heatmap(d):
 
 
 def render_ieir_breakdown(d):
-    """IEIR stacked bar — campaign-specific vs generic-only vs no signal."""
+    """IEIR stacked bar - campaign-specific vs generic-only vs no signal."""
     data = d.get('ieir_breakdown', {})
     total = data.get('total', 0)
     explicit = data.get('campaign_specific', data.get('explicit', 0))
@@ -672,7 +672,7 @@ def render_ieir_breakdown(d):
 
 
 def render_evidence_convergence(d):
-    """Evidence convergence bar chart — convergent vs divergent."""
+    """Evidence convergence bar chart - convergent vs divergent."""
     data = d.get('evidence_convergence', {})
     total = data.get('total', 0)
     convergent = data.get('convergent', 0)

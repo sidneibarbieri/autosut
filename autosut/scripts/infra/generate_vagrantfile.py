@@ -17,7 +17,7 @@ def main():
     vagrantfile = f"""# -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Auto-generated from infra/topology.yaml — DO NOT EDIT MANUALLY
+# Auto-generated from infra/topology.yaml - DO NOT EDIT MANUALLY
 
 Vagrant.configure("2") do |config|
 """

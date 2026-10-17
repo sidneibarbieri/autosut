@@ -1,0 +1,44 @@
+{
+  "campaign_id": "C0026",
+  "model": "gpt-oss:20b",
+  "sample": 2,
+  "temperature": 0.7,
+  "platform": "Linux",
+  "services": [
+    {
+      "host_role": "public-service",
+      "product": "Apache httpd",
+      "version": "2.4.54",
+      "port": "80",
+      "exposure": "internet-facing"
+    },
+    {
+      "host_role": "internal-host",
+      "product": "nginx",
+      "version": "1.25.3",
+      "port": "8080",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "internal-host",
+      "product": "MinIO",
+      "version": "2023.2.1",
+      "port": "9000",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "internal-host",
+      "product": "dnsmasq",
+      "version": "2.86",
+      "port": "53",
+      "exposure": "internal-only"
+    },
+    {
+      "host_role": "attacker",
+      "product": "Metasploit Framework",
+      "version": "6.4.1",
+      "port": "4444",
+      "exposure": "internal-only"
+    }
+  ]
+}

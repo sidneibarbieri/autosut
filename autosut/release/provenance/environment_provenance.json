@@ -86,7 +86,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "credentials",
@@ -102,7 +102,7 @@
         "value": "8265/tcp ray_dashboard_http",
         "source": "external_reference",
         "host": null,
-        "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint."
+        "purpose": "Documented CVE-2023-48022 exploit surface - the unauthenticated Ray dashboard job-submission endpoint."
       },
       {
         "dimension": "artifacts",
@@ -110,7 +110,7 @@
         "value": "/opt/sensitive/credentials.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE."
+        "purpose": "Decoy ML-pipeline credentials - T1005 collection target after the unauthenticated job-submission RCE."
       },
       {
         "dimension": "artifacts",
@@ -118,7 +118,7 @@
         "value": "/opt/sensitive/manifest.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation."
+        "purpose": "Decoy ML-pipeline artefact manifest - T1083 / T1005 target post-exploitation."
       },
       {
         "dimension": "vulnerability",
@@ -134,7 +134,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -198,7 +198,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -230,7 +230,7 @@
         "value": "/home/vulnuser/documents/confidential.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+        "purpose": "Decoy sensitive document - collection target for T1005 / T1213."
       },
       {
         "dimension": "artifacts",
@@ -238,7 +238,7 @@
         "value": "/home/vulnuser/documents/passwords.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+        "purpose": "Decoy credentials store - collection target for T1552.001."
       },
       {
         "dimension": "artifacts",
@@ -254,7 +254,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -286,7 +286,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -334,7 +334,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -382,7 +382,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -422,7 +422,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -470,7 +470,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -558,7 +558,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -606,7 +606,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -678,7 +678,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -750,7 +750,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "credentials",
@@ -790,7 +790,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "credentials",
@@ -806,7 +806,7 @@
         "value": "api_token:api_consumer",
         "source": "autosut_concretized",
         "host": null,
-        "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe."
+        "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query - matches the salesforce_api_surrogate injector recipe."
       },
       {
         "dimension": "exposures",
@@ -838,7 +838,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -870,7 +870,7 @@
         "value": "/home/vulnuser/documents/confidential.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+        "purpose": "Decoy sensitive document - collection target for T1005 / T1213."
       },
       {
         "dimension": "artifacts",
@@ -878,7 +878,7 @@
         "value": "/home/vulnuser/documents/passwords.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+        "purpose": "Decoy credentials store - collection target for T1552.001."
       },
       {
         "dimension": "artifacts",
@@ -894,7 +894,7 @@
         "value": "linux",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "materialised as python:3.11-slim"
+        "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
       },
       {
         "dimension": "software",
@@ -926,7 +926,7 @@
         "value": "/home/vulnuser/documents/confidential.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+        "purpose": "Decoy sensitive document - collection target for T1005 / T1213."
       },
       {
         "dimension": "artifacts",
@@ -934,7 +934,7 @@
         "value": "/home/vulnuser/documents/passwords.txt",
         "source": "analyst_authored",
         "host": null,
-        "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+        "purpose": "Decoy credentials store - collection target for T1552.001."
       },
       {
         "dimension": "artifacts",
@@ -1078,7 +1078,7 @@
         "value": "password:labuser",
         "source": "autosut_concretized",
         "host": "target1",
-        "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+        "purpose": "Lab pre-staged weak credential - the attacker discovers it via T1110.001 brute-force against the target's SSH service."
       },
       {
         "dimension": "exposures",
@@ -1110,7 +1110,7 @@
         "value": "password:labuser",
         "source": "autosut_concretized",
         "host": "target2",
-        "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+        "purpose": "Lab pre-staged weak credential - the attacker discovers it via T1110.001 brute-force against the target's SSH service."
       },
       {
         "dimension": "exposures",
@@ -1174,7 +1174,7 @@
         "value": "apache_httpd@2.4.49",
         "source": "external_reference",
         "host": "target",
-        "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
+        "purpose": "Vulnerable web server - pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
       },
       {
         "dimension": "exposures",
@@ -1270,7 +1270,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "credentials",
@@ -1286,7 +1286,7 @@
           "value": "8265/tcp ray_dashboard_http",
           "source": "external_reference",
           "host": null,
-          "purpose": "Documented CVE-2023-48022 exploit surface \u2014 the unauthenticated Ray dashboard job-submission endpoint."
+          "purpose": "Documented CVE-2023-48022 exploit surface - the unauthenticated Ray dashboard job-submission endpoint."
         },
         {
           "dimension": "artifacts",
@@ -1294,7 +1294,7 @@
           "value": "/opt/sensitive/credentials.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy ML-pipeline credentials \u2014 T1005 collection target after the unauthenticated job-submission RCE."
+          "purpose": "Decoy ML-pipeline credentials - T1005 collection target after the unauthenticated job-submission RCE."
         },
         {
           "dimension": "artifacts",
@@ -1302,7 +1302,7 @@
           "value": "/opt/sensitive/manifest.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy ML-pipeline artefact manifest \u2014 T1083 / T1005 target post-exploitation."
+          "purpose": "Decoy ML-pipeline artefact manifest - T1083 / T1005 target post-exploitation."
         },
         {
           "dimension": "vulnerability",
@@ -1389,7 +1389,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -1524,7 +1524,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -1556,7 +1556,7 @@
           "value": "/home/vulnuser/documents/confidential.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+          "purpose": "Decoy sensitive document - collection target for T1005 / T1213."
         },
         {
           "dimension": "artifacts",
@@ -1564,7 +1564,7 @@
           "value": "/home/vulnuser/documents/passwords.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+          "purpose": "Decoy credentials store - collection target for T1552.001."
         },
         {
           "dimension": "artifacts",
@@ -1651,7 +1651,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -1754,7 +1754,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -1873,7 +1873,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -1992,7 +1992,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -2103,7 +2103,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -2222,7 +2222,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -2381,7 +2381,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -2500,7 +2500,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -2643,7 +2643,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -2786,7 +2786,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "credentials",
@@ -2897,7 +2897,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "credentials",
@@ -2913,7 +2913,7 @@
           "value": "api_token:api_consumer",
           "source": "autosut_concretized",
           "host": null,
-          "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe."
+          "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query - matches the salesforce_api_surrogate injector recipe."
         },
         {
           "dimension": "exposures",
@@ -3016,7 +3016,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -3048,7 +3048,7 @@
           "value": "/home/vulnuser/documents/confidential.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+          "purpose": "Decoy sensitive document - collection target for T1005 / T1213."
         },
         {
           "dimension": "artifacts",
@@ -3056,7 +3056,7 @@
           "value": "/home/vulnuser/documents/passwords.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+          "purpose": "Decoy credentials store - collection target for T1552.001."
         },
         {
           "dimension": "artifacts",
@@ -3143,7 +3143,7 @@
           "value": "linux",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "materialised as python:3.11-slim"
+          "purpose": "materialised as python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
         },
         {
           "dimension": "software",
@@ -3175,7 +3175,7 @@
           "value": "/home/vulnuser/documents/confidential.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy sensitive document \u2014 collection target for T1005 / T1213."
+          "purpose": "Decoy sensitive document - collection target for T1005 / T1213."
         },
         {
           "dimension": "artifacts",
@@ -3183,7 +3183,7 @@
           "value": "/home/vulnuser/documents/passwords.txt",
           "source": "analyst_authored",
           "host": null,
-          "purpose": "Decoy credentials store \u2014 collection target for T1552.001."
+          "purpose": "Decoy credentials store - collection target for T1552.001."
         },
         {
           "dimension": "artifacts",
@@ -3469,7 +3469,7 @@
           "value": "password:labuser",
           "source": "autosut_concretized",
           "host": "target1",
-          "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+          "purpose": "Lab pre-staged weak credential - the attacker discovers it via T1110.001 brute-force against the target's SSH service."
         },
         {
           "dimension": "exposures",
@@ -3501,7 +3501,7 @@
           "value": "password:labuser",
           "source": "autosut_concretized",
           "host": "target2",
-          "purpose": "Lab pre-staged weak credential \u2014 the attacker discovers it via T1110.001 brute-force against the target's SSH service."
+          "purpose": "Lab pre-staged weak credential - the attacker discovers it via T1110.001 brute-force against the target's SSH service."
         },
         {
           "dimension": "exposures",
@@ -3707,7 +3707,7 @@
           "value": "apache_httpd@2.4.49",
           "source": "external_reference",
           "host": "target",
-          "purpose": "Vulnerable web server \u2014 pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
+          "purpose": "Vulnerable web server - pre-patch httpd 2.4.49 with the Alias+cgi-bin trigger the advisory documents."
         },
         {
           "dimension": "exposures",

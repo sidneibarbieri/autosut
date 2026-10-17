@@ -1,0 +1,44 @@
+{
+  "run_id": "multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0",
+  "created_at": "2026-09-05T13:02:27.389983+00:00",
+  "sealed_at": "2026-09-05T13:03:25.635838+00:00",
+  "file_count": 7,
+  "total_bytes": 19129,
+  "files": [
+    {
+      "path": "caldera/operation-report.json",
+      "sha256": "bf4c001245f8f2a4a66c6aa5cbd945df85b18d5f3d1a49157e2bcbfd5655e4e9",
+      "bytes": 12656
+    },
+    {
+      "path": "experiment.json",
+      "sha256": "1004ea1efbfc32a0144c24df32b9290009794493771c8a79d8e033ae298f11bd",
+      "bytes": 2489
+    },
+    {
+      "path": "lifecycle-result.json",
+      "sha256": "2993a1625afea98418841edfb0cb8a815c8053b4fb3fc8ef5faf8cdb99dece6b",
+      "bytes": 1987
+    },
+    {
+      "path": "scenario/effect-probe.json",
+      "sha256": "bba9311d2965ecea761378643feec64c957b3f927afbb1653678325ffecd81ec",
+      "bytes": 92
+    },
+    {
+      "path": "stage-timings.json",
+      "sha256": "20d90bba042c41e4582b171d0f37d14ea20f9b4791b711c7ed6274e97a8f0cbc",
+      "bytes": 1282
+    },
+    {
+      "path": "supervision-binding.json",
+      "sha256": "61acdef1535f8e812f1fe8affaaf14671e0e32ad680d063553f6c4bd4dda6b09",
+      "bytes": 447
+    },
+    {
+      "path": "verify-clean.json",
+      "sha256": "d5cab936410193c3b3627e63acac61ba29272c79667e0ec8d4bb74def56691ba",
+      "bytes": 176
+    }
+  ]
+}

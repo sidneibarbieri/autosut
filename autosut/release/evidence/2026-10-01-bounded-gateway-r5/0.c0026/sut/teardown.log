@@ -1,0 +1,7 @@
+docker stop autosut-5daa522043
+exit_code: 0
+stdout: autosut-5daa522043
+
+stderr: 
+verified_absent: true
+verification_error: (none)

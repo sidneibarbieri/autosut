@@ -1,0 +1,74 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0010",
+  "source_plan_sha256": "24c7d91dbe879dcc357957569bde0bfb677cbf163ed9b56bb04c925a5f28eaf4",
+  "platform_resolution": {
+    "selected_platforms": [
+      "Linux"
+    ],
+    "materializable_platforms": [
+      "Linux"
+    ],
+    "unsupported_platforms": [],
+    "uncovered_technique_ids": [],
+    "complete": true
+  },
+  "requirements": [
+    {
+      "requirement_id": "T1189.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Identity Provider"
+      ],
+      "technique_ids": [
+        "T1189"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1189.service.1",
+      "kind": "service",
+      "acceptable_values": [
+        "private-lab-http-target"
+      ],
+      "technique_ids": [
+        "T1189"
+      ],
+      "source": "curated_rule",
+      "rationale": "The controlled drive-by witness requires a reachable lab web target."
+    },
+    {
+      "requirement_id": "T1105.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1105"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1105.network.1",
+      "kind": "network",
+      "acceptable_values": [
+        "controlled-ingress-channel"
+      ],
+      "technique_ids": [
+        "T1105"
+      ],
+      "source": "curated_rule",
+      "rationale": "Ingress transfer requires a bounded source-to-target channel."
+    }
+  ],
+  "content_sha256": "983c7fd8fef4d0b0968d44c9933437d0cc9eecf6181ea34658ca8653e18b9f6b"
+}

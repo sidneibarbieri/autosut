@@ -1,0 +1,426 @@
+{
+  "name": "multihost-multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0",
+  "host_group": [
+    {
+      "paw": "hostabcf71129ed",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "red",
+      "architecture": "arm64",
+      "platform": "linux",
+      "server": "http://172.19.0.2:8888",
+      "upstream_dest": "http://172.19.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 31,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "22442c31c6a6",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.19.0.3"
+      ],
+      "display_name": "22442c31c6a6$root",
+      "created": "2026-09-05T13:03:17Z",
+      "last_seen": "2026-09-05T13:03:17Z",
+      "links": [
+        {
+          "id": "016c7506-5d23-4d6c-99d6-80b466572887",
+          "paw": "hostabcf71129ed",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-09-05T13:03:17Z",
+          "pin": 0,
+          "pid": "36",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "016c7506-5d23-4d6c-99d6-80b466572887",
+          "collect": "2026-09-05T13:03:17Z",
+          "finish": "2026-09-05T13:03:17Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "22442c31c6a6",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-09-05T13:03:17Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    },
+    {
+      "paw": "hostb11412974e2",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "red",
+      "architecture": "arm64",
+      "platform": "linux",
+      "server": "http://172.19.0.2:8888",
+      "upstream_dest": "http://172.19.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 25,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "eecfb60a0b06",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.19.0.4"
+      ],
+      "display_name": "eecfb60a0b06$root",
+      "created": "2026-09-05T13:03:20Z",
+      "last_seen": "2026-09-05T13:03:20Z",
+      "links": [
+        {
+          "id": "a547de74-a3e1-4368-9a26-0938ae55df14",
+          "paw": "hostb11412974e2",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-09-05T13:03:20Z",
+          "pin": 0,
+          "pid": "30",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "a547de74-a3e1-4368-9a26-0938ae55df14",
+          "collect": "2026-09-05T13:03:20Z",
+          "finish": "2026-09-05T13:03:20Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "eecfb60a0b06",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-09-05T13:03:20Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    }
+  ],
+  "start": "2026-09-05T13:03:22Z",
+  "steps": {
+    "hostabcf71129ed": {
+      "steps": []
+    },
+    "hostb11412974e2": {
+      "steps": []
+    }
+  },
+  "finish": "2026-09-05T13:03:22Z",
+  "planner": "atomic",
+  "adversary": {
+    "adversary_id": "751414ce-190f-428f-a935-0c322e03d3bb",
+    "name": "multihost-multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0",
+    "description": "AutoSUT-generated adversary",
+    "atomic_ordering": [
+      "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1"
+    ],
+    "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "tags": [
+      "autosut"
+    ],
+    "has_repeatable_abilities": false,
+    "plugin": ""
+  },
+  "jitter": "0/0",
+  "objectives": {
+    "id": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "name": "default",
+    "description": "This is a default objective that runs forever.",
+    "goals": [
+      {
+        "target": "exhaustion",
+        "value": "complete",
+        "count": 1048576,
+        "operator": "==",
+        "achieved": false
+      }
+    ],
+    "percentage": 0.0
+  },
+  "facts": [
+    {
+      "unique": "file.sensitive.extensionwav",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "wav",
+      "created": "2026-09-05T13:02:35Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionyml",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "yml",
+      "created": "2026-09-05T13:02:35Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionpng",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "png",
+      "created": "2026-09-05T13:02:35Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "server.malicious.urlkeyloggedsite.com",
+      "trait": "server.malicious.url",
+      "name": "server.malicious.url",
+      "value": "keyloggedsite.com",
+      "created": "2026-09-05T13:02:35Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    }
+  ],
+  "skipped_abilities": [
+    {
+      "hostabcf71129ed": [
+        {
+          "reason": "Fact dependency not fulfilled",
+          "reason_id": 3,
+          "ability_id": "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1",
+          "ability_name": "consume fact on host-B"
+        }
+      ]
+    },
+    {
+      "hostb11412974e2": [
+        {
+          "reason": "Fact dependency not fulfilled",
+          "reason_id": 3,
+          "ability_id": "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1",
+          "ability_name": "consume fact on host-B"
+        }
+      ]
+    }
+  ]
+}

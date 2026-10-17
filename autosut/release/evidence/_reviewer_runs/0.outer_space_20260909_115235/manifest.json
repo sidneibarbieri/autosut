@@ -1,0 +1,245 @@
+{
+  "campaign_id": "0.outer_space",
+  "run_id": "0.outer_space_20260909_115235",
+  "timestamp": "2026-09-09T11:54:42.236583Z",
+  "attacker": {
+    "profile_id": "outer_space_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh+http client for browser discovery."
+  },
+  "sut": {
+    "sut_id": "outer_space_browser_discovery",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh",
+      "apache2"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "clouduser",
+          "secret": "cloudpass123",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (clouduser:cloudpass123).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/home/clouduser/.mozilla/firefox/profiles.ini",
+          "content_text": "[General]\nStartWithLastProfile=1\n[Profile0]\nName=default\n",
+          "content_b64": null,
+          "owner": "clouduser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.mozilla/firefox/profiles.ini).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/clouduser/.config/google-chrome/Default/Preferences",
+          "content_text": "{\"profile\":{\"name\":\"Default\"}}\n",
+          "content_b64": null,
+          "owner": "clouduser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/.config/google-chrome/Default/Preferences).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/clouduser/staging/encoded_payload.b64",
+          "content_text": "TEFCX1BBWUxPQUQK\n",
+          "content_b64": null,
+          "owner": "clouduser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/clouduser/staging/encoded_payload.b64).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "expose_to": "private_network",
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "name": "apache_httpd",
+          "version": "default",
+          "recipe": "apache_default_site",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.outer_space \u2014 browser discovery, tool staging, cloud infrastructure artefacts on Linux SUT."
+    },
+    "topology": null,
+    "notes": "0.outer_space \u2014 browser discovery, tool staging, cloud infrastructure artefacts on Linux SUT."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ],
+      "duration_sec": 0.12558233295567334,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1584.004",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1584.004_inspired.log"
+      ],
+      "duration_sec": 0.10025429201778024,
+      "notes": "Inspired representation of Server: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1217",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1217_browser_discovery.log"
+      ],
+      "duration_sec": 0.4121897080913186,
+      "notes": "Adapted: a browser bookmark store is staged, then discovered on disk and read from the SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1071.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1071.001_inspired.log"
+      ],
+      "duration_sec": 0.09937900002114475,
+      "notes": "Inspired representation of Web Protocols: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1585.003",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1585.003_inspired.log"
+      ],
+      "duration_sec": 0.10210816690232605,
+      "notes": "Inspired representation of Cloud Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1027.013",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1027.013_inspired.log"
+      ],
+      "duration_sec": 0.1025582920992747,
+      "notes": "Inspired representation of Encrypted/Encoded File: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1587.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1587.001_inspired.log"
+      ],
+      "duration_sec": 0.09912629204336554,
+      "notes": "Inspired representation of Malware: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.005",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.005_inspired.log"
+      ],
+      "duration_sec": 0.1010302499635145,
+      "notes": "Inspired representation of Visual Basic: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

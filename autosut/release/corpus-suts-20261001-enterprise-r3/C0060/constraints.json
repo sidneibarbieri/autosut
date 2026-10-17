@@ -1,0 +1,309 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0060",
+  "source_plan_sha256": "f74e38ef40021e7e0abec5b063e29ca833a338b3878cad34547e0aed91bd8d2a",
+  "platform_resolution": {
+    "selected_platforms": [
+      "Linux",
+      "Windows"
+    ],
+    "materializable_platforms": [
+      "Linux"
+    ],
+    "unsupported_platforms": [
+      "Windows"
+    ],
+    "uncovered_technique_ids": [
+      "T1047",
+      "T1059.001",
+      "T1059.003",
+      "T1127.001",
+      "T1137.001",
+      "T1553.002",
+      "T1685.005"
+    ],
+    "complete": false
+  },
+  "requirements": [
+    {
+      "requirement_id": "T1566.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1566.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1566.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "SaaS",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1566.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1047.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1047"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1059.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1059.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1059.003.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1059.003"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1059.005.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1059.005"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1127.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1127.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1204.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1204.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1204.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1204.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1137.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1137.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1036.008.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1036.008"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1070.004.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1070.004"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1553.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1553.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1685.005.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Windows"
+      ],
+      "technique_ids": [
+        "T1685.005"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1016.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1016"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1082.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "IaaS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1082"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1083.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1083"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1217.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1217"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1219.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1219"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1219.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1219.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "06c8f5cfb6095fe1174ca6458c1017c2cd7dd4b18453c486d4d030429ba9fe56"
+}

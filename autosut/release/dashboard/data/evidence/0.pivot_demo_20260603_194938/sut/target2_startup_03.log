@@ -1,7 +1,0 @@
-$ ssh-keygen -A
-exit_code: 0
---- stdout ---
-ssh-keygen: generating new host keys: RSA ECDSA ED25519 
-
---- stderr ---
-

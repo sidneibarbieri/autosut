@@ -1,0 +1,7 @@
+docker stop autosut-60a609da19
+exit_code: 0
+stdout: autosut-60a609da19
+
+stderr: 
+verified_absent: true
+verification_error: (none)

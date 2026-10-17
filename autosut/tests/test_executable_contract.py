@@ -8,6 +8,7 @@ import pytest
 from src.planning.executable_contract import compile_executable_contract
 from src.planning.procedural_plan import (
     ProceduralPlanInput,
+    ProceduralPlanSourceInput,
     ProcedureStepInput,
 )
 
@@ -18,10 +19,26 @@ def _plan() -> ProceduralPlanInput:
         compiler_version="1",
         campaign_id="CTEST",
         campaign_name="test",
+        source=ProceduralPlanSourceInput(
+            bundle_sha256="source-bundle",
+            object_count=1,
+            campaign_stix_id="campaign--source",
+            campaign_external_id="CTEST",
+        ),
         ordering_policy="test",
         steps=[
-            ProcedureStepInput(technique_id="T1", name="one"),
-            ProcedureStepInput(technique_id="T2", name="two"),
+            ProcedureStepInput(
+                technique_id="T1",
+                technique_stix_id="attack-pattern--T1",
+                name="one",
+                relationship_ids=["relationship--T1"],
+            ),
+            ProcedureStepInput(
+                technique_id="T2",
+                technique_stix_id="attack-pattern--T2",
+                name="two",
+                relationship_ids=["relationship--T2"],
+            ),
         ],
         content_sha256="a" * 64,
     )

@@ -1,10 +1,10 @@
-"""Multi-host SUT orchestration — the ``HostFleet`` abstraction.
+"""Multi-host SUT orchestration - the ``HostFleet`` abstraction.
 
 A campaign that exercises lateral movement (T1021), lateral tool transfer
 (T1570), or protocol tunneling (T1572) needs more than one host. The
 ``HostFleet`` brings up one :class:`EnvironmentBackend` per declared host on
 a **private per-run network** so the hosts can reach each other but the
-public host can't (and vice versa) — every reviewer can confirm the
+public host can't (and vice versa) - every reviewer can confirm the
 isolation from the network listing alone.
 
 Design choices
@@ -17,7 +17,7 @@ Design choices
 2. **Backend reuse**: each host is one regular :class:`DockerEnvironment`
    attached to the per-run network. The fleet is just a dict of these
    plus a tiny network lifecycle. This keeps the per-host primitives
-   identical between single-host and multi-host runs — the executor sees
+   identical between single-host and multi-host runs - the executor sees
    the same ``run_shell`` regardless of fleet size.
 
 3. **Single-host campaigns unchanged**: campaigns that declare no ``hosts``
@@ -27,8 +27,8 @@ Design choices
 4. **QEMU multi-host**: deferred. The same abstraction works in principle
    (one VM per host, private network via vagrant-libvirt or QEMU bridges)
    but the bring-up cost compounds with VM count, so multi-host QEMU is a
-   follow-on sprint. Docker multi-host already covers the lateral-movement
-   research claims without sacrificing fidelity.
+   separately qualified backend. This Docker fleet does not substitute
+   containers for declared VM hosts.
 """
 
 from __future__ import annotations
@@ -38,6 +38,9 @@ import uuid
 from pathlib import Path
 from typing import Optional
 
+from infrastructure.fleet_capabilities import require_docker_fleet_backend
+
+from .docker_lifecycle import remove_network
 from .environment import DockerEnvironment
 from .environment_base import CommandResult, EnvironmentBackend
 from .models import SUTHost, SUTProfile
@@ -56,7 +59,7 @@ class HostFleet:
     - **Multi-zone**: when ``sut.topology`` declares zones, one Docker
       network is created per zone. Each host joins exactly the zones listed
       in :attr:`SUTHost.zones`. Hosts attached to multiple zones are
-      gateways (dual-homed), bridging those zones — exactly the shape the
+      gateways (dual-homed), bridging those zones - exactly the shape the
       the predecessor modelled with its dual-homed gateway.
 
     What this DOES claim: declarative topology parity with enterprise
@@ -78,6 +81,11 @@ class HostFleet:
         self.network_names = network_names
         self.run_dir = run_dir
         self.sut = sut
+        self._last_teardown_clean: bool | None = None
+
+    @property
+    def last_teardown_clean(self) -> bool | None:
+        return self._last_teardown_clean
 
     @property
     def network_name(self) -> Optional[str]:
@@ -102,6 +110,8 @@ class HostFleet:
                 "HostFleet.bring_up called for a single-host profile. "
                 "Use the orchestrator's single-host path instead."
             )
+
+        require_docker_fleet_backend(sut.backend)
 
         network_names = _plan_networks(sut)
         _create_networks(network_names, run_dir)
@@ -144,7 +154,7 @@ class HostFleet:
                         timeout=600,
                     )
                 # Apply declarative SUT composition (credentials, artifacts,
-                # applications, exposures) — this is the realism layer.
+                # applications, exposures) - this is the realism layer.
                 if host_spec.composition is not None:
                     from . import sut_composer
                     sut_composer.apply_composition(
@@ -161,10 +171,7 @@ class HostFleet:
             for env in hosts.values():
                 env.teardown()
             for net in network_names.values():
-                subprocess.run(
-                    ["docker", "network", "rm", net],
-                    capture_output=True, text=True, check=False,
-                )
+                remove_network(net)
             raise
 
         return cls(hosts, network_names, run_dir, sut)
@@ -197,7 +204,7 @@ class HostFleet:
 
         ``zone=None`` returns the IP on the first network the host joined
         (legacy callers and single-zone fleets). ``zone="dmz"`` returns the
-        IP on the dmz network — useful for multi-zone topologies where a
+        IP on the dmz network - useful for multi-zone topologies where a
         gateway host has different IPs in each zone.
         """
         env = self.hosts[host_name]
@@ -229,7 +236,7 @@ class HostFleet:
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
-        self.teardown()
+        self._last_teardown_clean = self.teardown()
 
     def teardown(self) -> bool:
         """Tear down every host, then remove the private network.
@@ -254,19 +261,16 @@ class HostFleet:
                 with error_log.open("a", encoding="utf-8") as fh:
                     fh.write(f"{host_name}: {type(exc).__name__}: {exc}\n")
         teardown_log = self.run_dir / "sut" / "network_teardown.log"
+        teardown_log.parent.mkdir(parents=True, exist_ok=True)
         teardown_log_lines: list[str] = []
         for zone_label, network in self.network_names.items():
-            proc = subprocess.run(
-                ["docker", "network", "rm", network],
-                capture_output=True, text=True, check=False, timeout=30,
-            )
+            receipt = remove_network(network)
             teardown_log_lines.append(
-                f"docker network rm {network}  # zone={zone_label}\n"
-                f"exit_code: {proc.returncode}\n"
-                f"stdout: {proc.stdout}\nstderr: {proc.stderr}\n"
+                f"zone: {zone_label}\n"
+                f"{receipt.as_log()}"
                 f"---\n"
             )
-            if proc.returncode != 0:
+            if not receipt.clean:
                 all_clean = False
         if teardown_log_lines:
             teardown_log.write_text("".join(teardown_log_lines), encoding="utf-8")
@@ -342,7 +346,7 @@ def _host_network_membership(host_spec: SUTHost, sut: SUTProfile,
             raise ValueError(
                 f"host {host_spec.name!r} has no zones declared in a "
                 "topology-aware profile. Add the host to one or more zones "
-                "in catalog.py — e.g. zones=[\"dmz\"]."
+                "in catalog.py - e.g. zones=[\"dmz\"]."
             )
         unknown = [z for z in host_spec.zones if z not in network_names]
         if unknown:
@@ -487,7 +491,7 @@ def _bring_up_docker_host(host_spec: SUTHost, network_name: str,
     )
 
     # The DockerEnvironment instance keeps the contract identical to the
-    # single-host case — the executor calls ``run_shell`` exactly the same
+    # single-host case - the executor calls ``run_shell`` exactly the same
     # way regardless of fleet membership.
     # We synthesise a SUTProfile shim for the env's introspection.
     inner_profile = SUTProfile(

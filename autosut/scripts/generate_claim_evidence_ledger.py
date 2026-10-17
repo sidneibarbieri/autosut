@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the canonical claim-to-evidence ledger for the public artifact.
 
-The measurement pipeline already emits a detailed RQ1--RQ3 map.  This script
-adds the system witnesses used for RQ4 and the bounded C0045 case study, while
+The measurement pipeline retains historical row identifiers. This script maps
+its claim groups and bounded witnesses to stable evidence dimensions, while
 making unsupported interpretations explicit.  It never upgrades a claim from
 the existence of a file alone: each system claim has a small, executable gate
 over the recorded evidence.
@@ -13,21 +13,23 @@ from __future__ import annotations
 import csv
 import json
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MEASUREMENT_MAP = (
-    PROJECT_ROOT
-    / "measurement"
-    / "sut"
-    / "scripts"
-    / "results"
-    / "claim_evidence_map.csv"
+    PROJECT_ROOT / "measurement" / "sut" / "scripts" / "results" / "claim_evidence_map.csv"
 )
 RELEASE_DIR = PROJECT_ROOT / "release"
+SRC_ROOT = PROJECT_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from evaluation.canonical_operational_witness import (  # noqa: E402
+    assess_caldera_dispatch_witness,
+)
 
 JSON_OUTPUTS = (
     RELEASE_DIR / "claim_evidence_traceability.json",
@@ -66,6 +68,7 @@ def _measurement_claim(
     *,
     claim_id: str,
     row_prefix: str,
+    evidence_dimension: str,
     claim: str,
     scope: str,
     caveat: str,
@@ -83,10 +86,7 @@ def _measurement_claim(
     normalized = []
     for path in evidence:
         if path.startswith("figures/"):
-            normalized.append(
-                "measurement/sut/scripts/results/rendered_figures/"
-                + Path(path).name
-            )
+            normalized.append("measurement/sut/scripts/results/rendered_figures/" + Path(path).name)
         elif path.startswith("results/"):
             normalized.append(f"measurement/sut/scripts/{path}")
         else:
@@ -94,7 +94,7 @@ def _measurement_claim(
     supported = bool(rows) and _all_paths_exist(normalized)
     return {
         "claim_id": claim_id,
-        "research_question": row_prefix.rstrip("-"),
+        "evidence_dimension": evidence_dimension,
         "claim": claim,
         "status": "supported" if supported else "blocked_missing_evidence",
         "scope": scope,
@@ -118,6 +118,44 @@ def _execution_record_is_complete(record: dict[str, Any]) -> bool:
         and bool(record.get("summary_sha256"))
         and bool(record.get("evidence_sha256"))
     )
+
+
+def _caldera_dispatch_claim() -> dict[str, Any]:
+    """Report only the static, public, hash-bound dispatch witness."""
+    assessment = assess_caldera_dispatch_witness(PROJECT_ROOT)
+    witness = assessment.witness
+    return {
+        "claim_id": "CALDERA-DISPATCH-01",
+        "evidence_dimension": "caldera_dispatch",
+        "claim": (
+            "One frozen, isolated witness records a Caldera-dispatched ability whose effect "
+            "was independently confirmed on an automatically materialized surrogate SUT."
+        ),
+        "status": assessment.status,
+        "scope": (
+            "One serial, one-seed C0045-derived T1190 surrogate cell in the released "
+            "operational collection, with a fresh control plane for the cell."
+        ),
+        "measured_value": (
+            {
+                "collection": witness.collection_relative_path,
+                "implementation_revision": witness.implementation_revision,
+                "campaign_id": witness.campaign_id,
+                "source_campaign_id": witness.source_campaign_id,
+                "operation_link_count": witness.operation_link_count,
+                "realization": witness.realization,
+            }
+            if witness is not None
+            else {"validation_failure": assessment.failure_reason}
+        ),
+        "evidence_artifacts": list(assessment.evidence_artifacts),
+        "reproduction_command": "bash run_review_check.sh",
+        "caveat": (
+            "The static audit verifies a sealed recorded observation, not a live rerun. It is "
+            "one ability on one surrogate host and does not establish complete C0045 execution, "
+            "campaign-wide reliability, historical equivalence, or a reduction in human effort."
+        ),
+    }
 
 
 def _rq4_claim() -> dict[str, Any]:
@@ -144,12 +182,11 @@ def _rq4_claim() -> dict[str, Any]:
             "free_count": campaign.get("free_count"),
         }
     supported = bool(witness_status) and all(
-        witness["executable"] and witness["records_complete"]
-        for witness in witness_status.values()
+        witness["executable"] and witness["records_complete"] for witness in witness_status.values()
     )
     return {
         "claim_id": "RQ4-CONSTRUCTIVE-01",
-        "research_question": "RQ4",
+        "evidence_dimension": "environment_non_identification",
         "claim": (
             "A declared campaign contract can admit more than one controlled SUT "
             "realization while preserving the checked technique sequence and oracle."
@@ -170,6 +207,97 @@ def _rq4_claim() -> dict[str, Any]:
     }
 
 
+def _sut_configuration_claim() -> dict[str, Any]:
+    """How much of a deployable configuration the measured constraints support."""
+    corpus = _load_json("release/experiments/sut_configuration/corpus.json", {})
+    if not corpus:
+        return {
+            "claim_id": "RQ2-CONFIGURATION-01",
+            "evidence_dimension": "sut_configuration",
+            "claim": "Measured constraints do not determine a deployable SUT configuration.",
+            "status": "blocked_missing_evidence",
+            "scope": "Requires release/experiments/sut_configuration/corpus.json.",
+            "measured_value": {},
+            "evidence_artifacts": ["release/experiments/sut_configuration/corpus.json"],
+            "reproduction_command": "python3 scripts/build_sut_configuration_evidence.py",
+            "caveat": "Evidence record absent; the claim carries no support.",
+        }
+    return {
+        "claim_id": "RQ2-CONFIGURATION-01",
+        "evidence_dimension": "sut_configuration",
+        "claim": (
+            "Baseline B0, platform-only input: when a proposer receives only the platform "
+            "constraints, it satisfies them yet supplies most of a deployable configuration "
+            "itself and selects products unrelated to the campaign."
+        ),
+        "status": "supported_baseline",
+        "scope": (
+            f"{corpus['proposals']} candidate configurations for {corpus['campaigns']} "
+            "campaigns from two local model families sampled three times each."
+        ),
+        "measured_value": {
+            "value_occurrences": corpus["total_value_occurrences"],
+            "cti_evidenced_rate": corpus["cti_evidenced_rate"],
+            "proposer_introduced_rate": corpus["proposer_introduced_rate"],
+            "satisfying_all_platform_requirements": corpus[
+                "proposals_satisfying_all_platform_requirements"
+            ],
+            "distinct_service_stacks_per_campaign": corpus["distinct_service_stacks_per_campaign"],
+        },
+        "evidence_artifacts": ["release/experiments/sut_configuration/corpus.json"],
+        "reproduction_command": "python3 scripts/build_sut_configuration_evidence.py",
+        "caveat": (
+            "This arm withholds evidence the artifact already resolves: for ShadowRay, "
+            "release/cve_resolution_candidates.json binds CVE-2023-48022 to the pip package "
+            "ray with explicit candidate versions. The result therefore measures what a "
+            "proposer does without consolidated evidence, and must not be read as a limit of "
+            "structured CTI. Provenance is assigned by comparison against the evaluated "
+            "fields; satisfaction is reported only for platform requirements."
+        ),
+    }
+
+
+def _nvd_enrichment_claim() -> dict[str, Any]:
+    """What joining NVD adds to the deployment dimensions structured CTI fixes."""
+    path = "measurement/sut/scripts/results/nvd_enrichment.json"
+    report = _load_json(path, {})
+    if not report:
+        return {
+            "claim_id": "RQ1-NVD-ENRICHMENT-01",
+            "evidence_dimension": "vulnerability_enrichment",
+            "claim": "Joining NVD narrows but does not identify a CVE's deployment.",
+            "status": "blocked_missing_evidence",
+            "scope": f"Requires {path}.",
+            "measured_value": {},
+            "evidence_artifacts": [path],
+            "reproduction_command": "python3 measurement/sut/scripts/nvd_enrichment.py",
+            "caveat": "Evidence record absent; the claim carries no support.",
+        }
+    counts = {row["dimension"]: row for row in report["dimensions"]}
+    return {
+        "claim_id": "RQ1-NVD-ENRICHMENT-01",
+        "evidence_dimension": "vulnerability_enrichment",
+        "claim": (
+            "Joining the pinned NVD record names the vulnerable product, version bounds, "
+            "exposure, and exploit privilege that structured CTI leaves open, but leaves no "
+            "CVE with a unique deployment and no topology or trust boundary."
+        ),
+        "status": "supported",
+        "scope": f"All {report['cves']} CVEs the measurement extracts from Enterprise CTI.",
+        "measured_value": {
+            dimension: {"structured_cti": row["structured_cti"], "cti_plus_nvd": row["cti_plus_nvd"]}
+            for dimension, row in counts.items()
+        } | {"unique_deployment_after_nvd": report["unique_deployment_after_nvd"]},
+        "evidence_artifacts": [path, "measurement/sut/scripts/data/nvd_snapshot_manifest.json"],
+        "reproduction_command": "python3 measurement/sut/scripts/nvd_enrichment.py",
+        "caveat": (
+            "NVD describes vulnerable configurations, not deployments, and its records change; "
+            "the snapshot is pinned with retrieval times. Topology is unresolved by schema in "
+            "both sources."
+        ),
+    }
+
+
 def _c0045_claim() -> dict[str, Any]:
     comparison = _load_json("release/experiments/arm_comparison/C0045.json", {})
     validity = _load_json("release/experiments/execution_validity.json", [])
@@ -178,8 +306,7 @@ def _c0045_claim() -> dict[str, Any]:
         (
             row
             for row in validity
-            if row.get("source_campaign_id") == "C0045"
-            and row.get("campaign_id") == "0.shadowray"
+            if row.get("source_campaign_id") == "C0045" and row.get("campaign_id") == "0.shadowray"
         ),
         {},
     )
@@ -198,40 +325,31 @@ def _c0045_claim() -> dict[str, Any]:
         and arm_c.get("executable_step_count") == 10
         and arm_c.get("execution_attempted") is True
         and arm_c.get("executed_with_evidence_count") == 10
-        and arm_c.get("execution_fidelity_distribution")
-        == {"adapted": 9, "inspired": 1}
+        and arm_c.get("execution_fidelity_distribution") == {"adapted": 9, "inspired": 1}
         and arm_c.get("realization_distribution") == {"surrogate": 10}
         and shadowray.get("status_success") == 10
         and shadowray.get("evidence_backed_success") == 10
         and shadowray.get("contract_valid") is True
         and shadowray.get("teardown_clean") is True
-        and comparison.get("execution_audit", {}).get(
-            "fidelity_overclaim_count"
-        ) == 0
+        and comparison.get("execution_audit", {}).get("fidelity_overclaim_count") == 0
     )
     measured_value = {
         "raw_stix_executable_steps": arm_a.get("executable_step_count"),
         "fixed_reference_sut_executable_steps": arm_b.get("executable_step_count"),
         "autosut_witness_executable_steps": arm_c.get("executable_step_count"),
-        "autosut_witness_evidence_backed_steps": arm_c.get(
-            "executed_with_evidence_count"
-        ),
+        "autosut_witness_evidence_backed_steps": arm_c.get("executed_with_evidence_count"),
         "plan_fidelity_ceiling_distribution": arm_c.get(
             "plan_fidelity_ceiling_distribution",
             arm_c.get("fidelity_ceiling_distribution"),
         ),
-        "execution_fidelity_distribution": arm_c.get(
-            "execution_fidelity_distribution"
-        ),
+        "execution_fidelity_distribution": arm_c.get("execution_fidelity_distribution"),
         "realization_distribution": arm_c.get("realization_distribution"),
         "assumption_count": arm_c.get("assumption_count"),
-        "semantic_plan_hash_repeated": comparison.get(
-            "semantically_identical_across_repetitions"
-        ),
+        "semantic_plan_hash_repeated": comparison.get("semantically_identical_across_repetitions"),
     }
     return {
         "claim_id": "C0045-CASE-01",
-        "research_question": "C0045 case study",
+        "evidence_dimension": "controlled_sut_contrast",
         "claim": (
             "For the bounded ten-step C0045-derived laboratory case, the fixed "
             "resolver produced 0/10 admitted steps from raw STIX, 1/10 on the "
@@ -291,6 +409,7 @@ def build_ledger() -> dict[str, Any]:
         _measurement_claim(
             claim_id="RQ1-MEASUREMENT",
             row_prefix="RQ1-",
+            evidence_dimension="cti_environment_evidence",
             claim=(
                 "The evaluated CTI snapshots provide broad platform labels but "
                 "substantially less software, version, and campaign-linked CVE detail."
@@ -301,6 +420,7 @@ def build_ledger() -> dict[str, Any]:
         _measurement_claim(
             claim_id="RQ2-OPERATIONALIZATION",
             row_prefix="RQ2-",
+            evidence_dimension="compatibility_policy",
             claim=(
                 "Bounded enrichment and the declared routing policy expose "
                 "operationalization headroom without turning fallback labels into ground truth."
@@ -311,6 +431,7 @@ def build_ledger() -> dict[str, Any]:
         _measurement_claim(
             claim_id="RQ3-SPECIFICITY",
             row_prefix="RQ3-",
+            evidence_dimension="profile_distinctiveness",
             claim=(
                 "Profile distinctiveness and its threshold sensitivity can be "
                 "recomputed under the declared similarity and null models."
@@ -318,14 +439,18 @@ def build_ledger() -> dict[str, Any]:
             scope="Campaign profiles derived from the pinned Enterprise snapshot.",
             caveat="Profile distinctiveness is not executable sufficiency or historical fidelity.",
         ),
+        _sut_configuration_claim(),
+        _nvd_enrichment_claim(),
+        _caldera_dispatch_claim(),
         _rq4_claim(),
         _c0045_claim(),
     ]
     return {
-        "schema_version": "2",
+        "schema_version": "3",
         "generated_at": _generated_at(),
         "status_vocabulary": {
             "supported": "all deterministic evidence files required by the claim are present",
+            "supported_baseline": "a declared baseline is reproducible within its stated scope",
             "supported_bounded": "the executable gate passes only for the stated witness scope",
             "blocked_missing_evidence": "a required deterministic output is absent",
             "blocked_execution_gate": "the required live-evidence gate does not pass",
@@ -375,7 +500,13 @@ def _markdown(ledger: dict[str, Any]) -> str:
             "```",
             "",
             "The machine-readable version is `release/claim_evidence_traceability.json`.",
-            "The detailed RQ1--RQ3 rows remain in",
+            "Claim identifiers and measurement-row prefixes are stable historical keys,",
+            "not manuscript question numbers. The `evidence_dimension` field groups",
+            "results by scientific subject independently of manuscript organization.",
+            "Engineering witnesses support only their stated scope; they do not",
+            "replace controlled consequence experiments.",
+            "",
+            "The detailed historical rows remain in",
             "`measurement/sut/scripts/results/claim_evidence_map.csv`.",
             "",
         ]
@@ -392,9 +523,7 @@ def main() -> int:
         path.write_text(json_text, encoding="utf-8")
     for path in MARKDOWN_OUTPUTS:
         path.write_text(markdown_text, encoding="utf-8")
-    statuses = ", ".join(
-        f"{claim['claim_id']}={claim['status']}" for claim in ledger["claims"]
-    )
+    statuses = ", ".join(f"{claim['claim_id']}={claim['status']}" for claim in ledger["claims"])
     print(f"[claim-ledger] {statuses}")
     return 0
 

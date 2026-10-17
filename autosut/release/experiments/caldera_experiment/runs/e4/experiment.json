@@ -1,0 +1,47 @@
+{
+  "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+  "caldera_container_ip": "172.17.0.4",
+  "caldera_ready_seconds": 15.1,
+  "realization": "surrogate",
+  "ray_ip": "172.17.0.5",
+  "confirmed_answering_service": "surrogate",
+  "environment_provenance": {
+    "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+    "protocol_version": "caldera-experiment/1",
+    "host_os": "Darwin 25.5.0",
+    "host_architecture": "arm64",
+    "python": "Python 3.14.6",
+    "docker_client": "29.6.2",
+    "docker_server": "29.2.1",
+    "images": {
+      "caldera": {
+        "declared_reference": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "image_id": "sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "architecture": "amd64",
+        "resolved_repo_digest": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7"
+      },
+      "sut_and_attacker": {
+        "declared_reference": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "image_id": "sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "architecture": "arm64",
+        "resolved_repo_digest": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
+      }
+    }
+  },
+  "attacker": "autosut-ea636af3-attacker",
+  "paw": "exp93ed36",
+  "sandcat_build_attempts": [
+    "attempt 1: no binary returned",
+    "attempt 2: built aarch64"
+  ],
+  "agent_paw": "exp93ed36",
+  "operation": {
+    "operation_id": "2efe9f45-b8a0-4fd8-a676-fe9c677fa842",
+    "operation_state": "finished",
+    "link_count": 1,
+    "link_status": [
+      0
+    ]
+  },
+  "independent_effect_confirmed": true
+}

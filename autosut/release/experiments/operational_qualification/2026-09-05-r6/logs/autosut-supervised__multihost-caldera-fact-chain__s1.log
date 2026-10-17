@@ -1,0 +1,21 @@
+$ ./.venv/bin/python ./scripts/run_supervised.py --experiment multihost --label autosut-supervised__multihost-caldera-fact-chain__s1 --deadline-seconds 1800 --supervision-receipt-file release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__multihost-caldera-fact-chain__s1.json --experiment-arg=--seed --experiment-arg=1 --experiment-arg=--evidence-root --experiment-arg=./release/experiments/operational_qualification/2026-09-05-r6/bundles
+
+--- stdout ---
+[multihost]   materialize_network: 0.023s ok
+[multihost]   materialize_caldera: 0.196s ok
+[multihost]   verify_caldera_readiness: 12.134s ok
+[multihost]   materialize_hosts: 0.365s ok
+[multihost]   enroll_agents: 54.73s ok
+[multihost]   register_and_execute: 100.472s ok
+[multihost]   verify_effect: 0.039s ok
+[multihost]   destroy_hosts: 0.184s ok
+[multihost]   destroy_caldera: 0.179s ok
+[multihost]   destroy_network: 0.084s ok
+[multihost] negative_control=False fact_propagated=True scenario_effect_confirmed=True
+[multihost] final state: clean; residual: none
+[multihost] sealed bundle: ./release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb (7 files)
+[supervised] completed_naturally=True exit_code=0 escalation=[]
+[supervised] terminated_clean=True residual=none
+[supervised] supervision receipt: release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__multihost-caldera-fact-chain__s1.json
+
+--- stderr ---

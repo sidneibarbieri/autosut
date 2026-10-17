@@ -21,29 +21,30 @@ artifact.
 
 ## Optional VM-Backed Path
 
-The VM-backed path exists for substrate realism, health checks, and expanded
-measurement runs. It includes:
+The VM backend material exists for substrate qualification and expanded
+measurement development. It includes:
 
 - Vagrant definitions in `lab/vagrant/`
 - provider-aware provisioning helpers in `scripts/up_lab.sh`
 - provider-aware validation in `lab/health_check.py`
-- optional host-side Caldera helpers in `caldera_manager.py`
+- a Caldera-compatible service provisioned by the selected lab topology when
+  the chosen campaign requires one
 
-This path should be treated as an additional experimental layer, not as the
-only way to understand the artifact.
+It is not a released experimental path. Source availability and host preflight
+do not qualify a guest boot, procedure execution, or teardown result.
 
 ## Platform Strategy
 
 The repository is designed around provider selection rather than provider
 monoculture.
 
-Recommended choices:
+Candidate implementations for future qualification:
 
 - Linux x86_64: prefer `libvirt`
 - macOS ARM64: prefer `qemu`
 - other providers: use only when they are explicitly supported by the local host
 
-Why this split exists:
+Why these alternatives are retained:
 
 - Linux with `libvirt` generally preserves private networking more faithfully.
 - macOS ARM64 lacks an equally mature, friction-free equivalent, so `qemu` is
@@ -58,9 +59,10 @@ The artifact separates control and execution concerns:
 - control plane: Python runner, campaign metadata, report generation
 - execution substrate: optional attacker/target VMs and their applied SUT state
 
-This distinction matters because the reviewer does not need the full execution
-substrate to validate the canonical smoke path, but the paper may still rely on
-the substrate for realism-oriented measurements.
+This distinction matters because the reviewer does not need a VM substrate to
+validate the canonical gate. The current ledger records QEMU Linux ARM64 as
+`implemented` with boot qualification required and native Windows as
+`development_in_progress`.
 
 ## Current Design Rule
 

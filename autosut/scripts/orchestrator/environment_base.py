@@ -5,11 +5,11 @@ rubric, Caldera dispatch) from **execution substrate** (container, VM,
 hypervisor). The orchestrator only requires the contract defined here, so
 the same campaign can be executed on:
 
-- :class:`DockerEnvironment` — canonical, portable, reviewer-friendly.
-- :class:`QEMUEnvironment` — extended realism, real kernel boundary, full
+- :class:`DockerEnvironment` - canonical, portable, reviewer-friendly.
+- :class:`QEMUEnvironment` - extended realism, real kernel boundary, full
   ARM64 Linux VM via Vagrant + QEMU (parity with the frozen
   ``sticks/Vagrantfile``).
-- :class:`TartEnvironment` *(optional, experimental)* — Apple Silicon
+- :class:`TartEnvironment` *(optional, experimental)* - Apple Silicon
   fast-path via Virtualization.framework. Never the canonical
   recommendation per artifact-evaluation guidance (avoid the
   "Apple-only artifact" critique).
@@ -41,6 +41,20 @@ class CommandResult:
         return self.exit_code == 0
 
 
+@dataclass
+class BackendReadiness:
+    """Whether a backend's host prerequisites are present, before any materialization.
+
+    A readiness check, not a boot proof: ``ready`` means materialization is worth attempting on
+    this host, never that a guest has been shown to run. Promotion past this is a qualification
+    run's job, not a check's.
+    """
+
+    backend_name: str
+    ready: bool
+    gaps: list[str]
+
+
 class EnvironmentBackend(ABC):
     """The contract an execution-substrate must satisfy.
 
@@ -50,9 +64,28 @@ class EnvironmentBackend(ABC):
     internals; it only uses these methods.
     """
 
-    # The reviewer-facing label for this substrate (e.g. "docker", "qemu",
-    # "tart"). Recorded in manifests for transparency.
+    # The reviewer-facing label for this substrate (e.g. "docker", "qemu").
+    # Recorded in manifests for transparency.
     backend_name: str = "abstract"
+
+    @property
+    def last_teardown_clean(self) -> bool | None:
+        """Return the most recent context-managed teardown verdict."""
+        return getattr(self, "_last_teardown_clean", None)
+
+    @classmethod
+    def check(cls) -> BackendReadiness:
+        """Report whether this backend's host prerequisites are present.
+
+        The default is honest about not knowing: a backend that does not implement its own check
+        is reported not-ready. Concrete backends override this with a real probe (GOAD's
+        per-provider ``check()`` pattern).
+        """
+        return BackendReadiness(
+            backend_name=cls.backend_name,
+            ready=False,
+            gaps=[f"{cls.backend_name}: check() not implemented"],
+        )
 
     @classmethod
     @abstractmethod
@@ -78,7 +111,7 @@ class EnvironmentBackend(ABC):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
-        self.teardown()
+        self._last_teardown_clean = self.teardown()
 
 
 def select_backend(sut: SUTProfile) -> type[EnvironmentBackend]:
@@ -86,9 +119,8 @@ def select_backend(sut: SUTProfile) -> type[EnvironmentBackend]:
 
     Default policy:
 
-    1. If the profile sets ``backend == "qemu"``, use the QEMU VM backend.
-    2. If the profile sets ``backend == "tart"``, use the experimental Tart
-       backend (Apple Silicon only).
+    1. If the profile sets ``backend == "qemu"``, use the Linux QEMU VM backend.
+    2. If the profile sets ``backend == "windows-qemu"``, use the Windows ARM64 QEMU backend.
     3. Otherwise, use the canonical Docker backend.
 
     The selection is intentionally explicit (declared by the SUT profile)
@@ -100,8 +132,13 @@ def select_backend(sut: SUTProfile) -> type[EnvironmentBackend]:
     if declared == "qemu":
         from .qemu_environment import QEMUEnvironment
         return QEMUEnvironment
-    if declared == "tart":
-        from .tart_environment import TartEnvironment  # noqa: F401
-        return TartEnvironment
+    if declared == "windows-qemu":
+        from .windows_qemu_environment import WindowsQemuEnvironment
+        return WindowsQemuEnvironment
+    if declared not in (None, "docker"):
+        raise ValueError(
+            f"unknown backend {declared!r}; this artifact implements "
+            "'docker', 'qemu', and 'windows-qemu'"
+        )
     from .environment import DockerEnvironment
     return DockerEnvironment

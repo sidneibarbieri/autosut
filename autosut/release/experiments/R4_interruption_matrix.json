@@ -1,0 +1,450 @@
+{
+  "accounting": {
+    "accounting_blockers": [],
+    "all_attempts_accounted": true,
+    "classification_counts": {
+      "historical_development": 7
+    },
+    "policy": "Every v2 attempt is retained. A retry or exclusion remains visible and prevents promotion under this protocol; v1 material is historical development evidence.",
+    "selected_v2_attempt_count": 0,
+    "total_raw_entries": 7
+  },
+  "attempts": [
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T155245Z_materialize_sut_sigterm_baseline1",
+      "cell_id": null,
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "sigterm",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "materialize_sut",
+      "outcome": null,
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T15:52:45.002256+00:00",
+      "target_condition": null,
+      "target_stage": null
+    },
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T155517Z_materialize_sut_sigterm_baseline2",
+      "cell_id": null,
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "sigterm",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "materialize_sut",
+      "outcome": "observed_clean",
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T15:55:17.094705+00:00",
+      "target_condition": null,
+      "target_stage": null
+    },
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T155802Z_materialize_sut_deadline_baseline1",
+      "cell_id": null,
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "deadline",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "materialize_sut",
+      "outcome": "observed_clean",
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T15:58:02.924330+00:00",
+      "target_condition": null,
+      "target_stage": null
+    },
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T161443Z_materialize_sut_sigint_baseline1",
+      "cell_id": null,
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "sigint",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "materialize_sut",
+      "outcome": "observed_clean",
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T16:14:43.758747+00:00",
+      "target_condition": null,
+      "target_stage": null
+    },
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T171908Z_verify_caldera_readiness_deadline_r4-04-a",
+      "cell_id": "R4-04",
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "deadline",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "verify_caldera_readiness",
+      "outcome": "observed_clean",
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T17:19:08.311865+00:00",
+      "target_condition": null,
+      "target_stage": null
+    },
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T171956Z_enroll_agent_sigterm_r4-05-a",
+      "cell_id": "R4-05",
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "sigterm",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "enroll_agent",
+      "outcome": "observed_clean",
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T17:19:56.168833+00:00",
+      "target_condition": null,
+      "target_stage": null
+    },
+    {
+      "accounting_disposition": "historical_development",
+      "attempt_disposition": "included",
+      "bundle": "release/evidence/raw/r4-interruption-matrix/20260809T172321Z_register_and_execute_deadline_r4-07-a",
+      "cell_id": "R4-07",
+      "child_manifest_valid": false,
+      "implementation_revision": null,
+      "injection": "deadline",
+      "manifest_valid": false,
+      "observed_condition": null,
+      "observed_stage": "register_and_execute",
+      "outcome": "observed_clean",
+      "promotion_eligible": false,
+      "protocol_version": 1,
+      "qualification_metadata_protocol": null,
+      "qualification_metadata_valid": false,
+      "reason_codes": [
+        "protocol_v1_historical_development"
+      ],
+      "receipt_status": null,
+      "stage_boundary_observed": false,
+      "started_at": "2026-08-09T17:23:21.474640+00:00",
+      "target_condition": null,
+      "target_stage": null
+    }
+  ],
+  "protocol": {
+    "cells": [
+      {
+        "condition": "sut_container_created",
+        "id": "R4V2-01",
+        "injection": "sigint",
+        "property": "Lifecycle signal recovery after a real SUT container exists.",
+        "stage": "materialize_sut"
+      },
+      {
+        "condition": "sut_container_created",
+        "id": "R4V2-02",
+        "injection": "deadline",
+        "property": "External process-group termination and verified namespace cleanup after partial SUT setup.",
+        "stage": "materialize_sut"
+      },
+      {
+        "condition": "readiness_probe_started",
+        "id": "R4V2-03",
+        "injection": "deadline",
+        "property": "Recovery while a real readiness probe is in flight against isolated infrastructure.",
+        "stage": "verify_caldera_readiness"
+      },
+      {
+        "condition": "enrollment_poll_active",
+        "id": "R4V2-04",
+        "injection": "sigterm",
+        "property": "Cleanup after Sandcat launch and an observed Caldera enrollment poll with no matching agent yet registered.",
+        "stage": "enroll_agent"
+      },
+      {
+        "condition": "operation_created",
+        "id": "R4V2-05",
+        "injection": "sigint",
+        "property": "Lifecycle signal recovery after Caldera returned a real operation identifier.",
+        "stage": "register_and_execute"
+      },
+      {
+        "condition": "operation_running",
+        "id": "R4V2-06",
+        "injection": "deadline",
+        "property": "External termination and cleanup while Caldera reports a real operation as running.",
+        "stage": "register_and_execute"
+      },
+      {
+        "condition": "effect_probe_started",
+        "id": "R4V2-07",
+        "injection": "sigterm",
+        "property": "Recovery while the independent effect probe has begun.",
+        "stage": "verify_effect"
+      },
+      {
+        "condition": "execution_evidence_ready",
+        "id": "R4V2-08",
+        "injection": "deadline",
+        "property": "External recovery after execution state exists and immediately before persistence.",
+        "stage": "persist_execution_evidence"
+      },
+      {
+        "condition": "attacker_teardown_started",
+        "id": "R4V2-09",
+        "injection": "sigterm",
+        "property": "Lifecycle signal recovery after the attacker resource is present and teardown has begun.",
+        "stage": "destroy_attacker"
+      },
+      {
+        "condition": "sut_teardown_started",
+        "id": "R4V2-10",
+        "injection": "deadline",
+        "property": "External recovery after the SUT resource is present and teardown has begun.",
+        "stage": "destroy_sut"
+      }
+    ],
+    "protocol_id": "R4-semantic-boundary-qualification-v2",
+    "protocol_sha256": "9a0181c5180eecafc23a69f6ae4f827901560c82c3efe3ee64469ddce4c070fb",
+    "schema_version": "r4-interruption-protocol/v2",
+    "status": "predeclared_before_execution"
+  },
+  "rows": [
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "sut_container_created",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-01",
+      "implementation_revisions": [],
+      "injection": "sigint",
+      "nonqualifying_attempt_count": 0,
+      "property": "Lifecycle signal recovery after a real SUT container exists.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "materialize_sut",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "sut_container_created",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-02",
+      "implementation_revisions": [],
+      "injection": "deadline",
+      "nonqualifying_attempt_count": 0,
+      "property": "External process-group termination and verified namespace cleanup after partial SUT setup.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "materialize_sut",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "readiness_probe_started",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-03",
+      "implementation_revisions": [],
+      "injection": "deadline",
+      "nonqualifying_attempt_count": 0,
+      "property": "Recovery while a real readiness probe is in flight against isolated infrastructure.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "verify_caldera_readiness",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "enrollment_poll_active",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-04",
+      "implementation_revisions": [],
+      "injection": "sigterm",
+      "nonqualifying_attempt_count": 0,
+      "property": "Cleanup after Sandcat launch and an observed Caldera enrollment poll with no matching agent yet registered.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "enroll_agent",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "operation_created",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-05",
+      "implementation_revisions": [],
+      "injection": "sigint",
+      "nonqualifying_attempt_count": 0,
+      "property": "Lifecycle signal recovery after Caldera returned a real operation identifier.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "register_and_execute",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "operation_running",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-06",
+      "implementation_revisions": [],
+      "injection": "deadline",
+      "nonqualifying_attempt_count": 0,
+      "property": "External termination and cleanup while Caldera reports a real operation as running.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "register_and_execute",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "effect_probe_started",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-07",
+      "implementation_revisions": [],
+      "injection": "sigterm",
+      "nonqualifying_attempt_count": 0,
+      "property": "Recovery while the independent effect probe has begun.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "verify_effect",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "execution_evidence_ready",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-08",
+      "implementation_revisions": [],
+      "injection": "deadline",
+      "nonqualifying_attempt_count": 0,
+      "property": "External recovery after execution state exists and immediately before persistence.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "persist_execution_evidence",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "attacker_teardown_started",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-09",
+      "implementation_revisions": [],
+      "injection": "sigterm",
+      "nonqualifying_attempt_count": 0,
+      "property": "Lifecycle signal recovery after the attacker resource is present and teardown has begun.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "destroy_attacker",
+      "status": "missing"
+    },
+    {
+      "attempt_count": 0,
+      "bundles": [],
+      "condition": "sut_teardown_started",
+      "excluded_attempt_count": 0,
+      "id": "R4V2-10",
+      "implementation_revisions": [],
+      "injection": "deadline",
+      "nonqualifying_attempt_count": 0,
+      "property": "External recovery after the SUT resource is present and teardown has begun.",
+      "qualifying_attempt_count": 0,
+      "reason_codes": [
+        "predeclared_cell_not_observed"
+      ],
+      "retry_attempt_count": 0,
+      "stage": "destroy_sut",
+      "status": "missing"
+    }
+  ],
+  "schema_version": "r4-interruption-matrix/v2"
+}

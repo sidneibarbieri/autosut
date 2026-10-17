@@ -1,0 +1,328 @@
+{
+  "campaign_id": "0.shadowray",
+  "source_campaign_id": "C0045",
+  "description": "C0045 - ShadowRay chain aligned with the legacy Docker corpus and adapted to a controlled Linux VM substrate",
+  "objective": "Reproduce the legacy ten-technique ShadowRay sequence with a Ray-like exposed service, controlled Python execution, credential access, persistence, ingress transfer, and bounded compute hijacking.",
+  "techniques_scope": "historical_reference_profile_not_execution_plan",
+  "execution_contract": {
+    "scope": "validated_controlled_slice",
+    "initial_facts": [
+      "sut.ready",
+      "actor.ready",
+      "sut.ray_dashboard.reachable",
+      "network:http_available",
+      "c2_channel"
+    ],
+    "techniques": [
+      {
+        "technique_id": "T1588.002",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "actor.toolkit.ready"
+        ]
+      },
+      {
+        "technique_id": "T1190",
+        "requires": [
+          "sut.ray_dashboard.reachable"
+        ],
+        "produces": [
+          "access.target.shell"
+        ]
+      },
+      {
+        "technique_id": "T1059.006",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "execution.target.python"
+        ]
+      },
+      {
+        "technique_id": "T1546.004",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "persistence.target.shell_config"
+        ]
+      },
+      {
+        "technique_id": "T1068",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "assessment.target.privilege_boundary"
+        ]
+      },
+      {
+        "technique_id": "T1027.013",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "artifact.target.encoded"
+        ]
+      },
+      {
+        "technique_id": "T1003.008",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "collection.target.credential_files"
+        ]
+      },
+      {
+        "technique_id": "T1016",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "discovery.target.network"
+        ]
+      },
+      {
+        "technique_id": "T1105",
+        "requires": [
+          "access.target.shell",
+          "actor.toolkit.ready"
+        ],
+        "produces": [
+          "transfer.target.payload"
+        ]
+      },
+      {
+        "technique_id": "T1496.001",
+        "requires": [
+          "access.target.shell"
+        ],
+        "produces": [
+          "impact.target.compute"
+        ]
+      }
+    ]
+  },
+  "sut": {
+    "required_vms": [
+      "caldera",
+      "attacker",
+      "target-base"
+    ],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 12
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target-base",
+      "config": {
+        "username": "rayuser",
+        "password": "ray123"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target-base",
+      "config": {
+        "services": [
+          "ray-dashboard",
+          "ssh"
+        ]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "tactic": "initial-access",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "network:http_available"
+      ],
+      "produces": [
+        "access:initial"
+      ],
+      "description": "During ShadowRay, threat actors exploited CVE-2023-48022 on exposed Ray services to gain remote execution and steal computing resources.",
+      "procedure_summary": "Issue a controlled HTTP probe against a Ray-like unauthenticated Jobs API endpoint exposed by the SUT.",
+      "sut_delta": {
+        "target_host": "target-base",
+        "services": [
+          {
+            "name": "ray-dashboard",
+            "config": "unauthenticated_api_enabled"
+          }
+        ],
+        "deliberate_weaknesses": [
+          {
+            "type": "exposed_ray_jobs_api",
+            "cve": "CVE-2023-48022",
+            "description": "Expose the unauthenticated Ray Jobs API boundary required for T1190."
+          }
+        ],
+        "notes": "Expose the Ray-like Jobs API immediately before T1190 so the public-facing boundary is explicit and auditable."
+      }
+    },
+    {
+      "technique_id": "T1027.013",
+      "name": "Encrypted/Encoded File",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "artifacts:obfuscated_file",
+        "artifacts:decoder"
+      ],
+      "description": "ShadowRay operators used encoded or encrypted files to hide payload content and evade straightforward inspection.",
+      "procedure_summary": "Encode a benign payload into an obfuscated file and emit a matching decoder artifact."
+    },
+    {
+      "technique_id": "T1003.008",
+      "name": "/etc/passwd and /etc/shadow",
+      "tactic": "credential-access",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "credentials:dumped",
+        "artifacts:credential_file"
+      ],
+      "description": "ShadowRay reporting highlights credential collection from compromised Linux infrastructure to support follow-on access.",
+      "procedure_summary": "Read benign Linux credential sources to capture the observable pattern of credential dumping without cracking secrets."
+    },
+    {
+      "technique_id": "T1546.004",
+      "name": "Unix Shell Configuration Modification",
+      "tactic": "privilege-escalation",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "artifacts:modified_config",
+        "persistence:shell_config"
+      ],
+      "description": "ShadowRay tradecraft included shell-based persistence and execution hooks after initial compromise.",
+      "procedure_summary": "Create a lab-scoped shell configuration artifact that represents persistence without modifying the real user profile."
+    },
+    {
+      "technique_id": "T1588.002",
+      "name": "Tool",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "artifacts:recon_toolkit",
+        "system:toolkit"
+      ],
+      "description": "ShadowRay operators obtained tooling such as XMRig and Interactsh to support post-compromise actions.",
+      "procedure_summary": "Assemble a benign reconnaissance toolkit artifact that stands in for attacker-obtained tooling."
+    },
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "network:http_available",
+        "access:initial"
+      ],
+      "produces": [
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "description": "ShadowRay operators transferred tooling onto compromised Ray hosts after establishing access.",
+      "procedure_summary": "Transfer a benign payload over HTTP within the lab substrate to preserve ingress-tool behavior."
+    },
+    {
+      "technique_id": "T1059.006",
+      "name": "Python",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "artifacts:python_script",
+        "system:recon_data"
+      ],
+      "description": "ShadowRay abuse centered on Python-native Ray workloads and Python execution within AI infrastructure.",
+      "procedure_summary": "Execute a benign Python reconnaissance script to preserve the Python-interpreter mechanism."
+    },
+    {
+      "technique_id": "T1016",
+      "name": "System Network Configuration Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "discovery:network_config"
+      ],
+      "description": "ShadowRay activity included host and network discovery to map the compromised environment.",
+      "procedure_summary": "Run native Linux network-discovery commands to capture interface, address, and routing state."
+    },
+    {
+      "technique_id": "T1068",
+      "name": "Exploitation for Privilege Escalation",
+      "tactic": "privilege-escalation",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "access:privileged",
+        "system:root_access"
+      ],
+      "description": "ShadowRay reporting describes privilege-escalation behavior after access to the exposed service boundary was established.",
+      "procedure_summary": "Represent the privilege-escalation stage through a bounded simulation without weaponizing a local exploit."
+    },
+    {
+      "technique_id": "T1496.001",
+      "name": "Compute Hijacking",
+      "tactic": "impact",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "access:initial"
+      ],
+      "produces": [
+        "artifacts:mining_log",
+        "system:cpu_usage"
+      ],
+      "description": "A defining ShadowRay outcome was hijacking compute resources on exposed Ray clusters for cryptocurrency mining.",
+      "procedure_summary": "Run a short bounded hash loop and emit mining-style telemetry to preserve compute-hijacking observables without real pool traffic."
+    }
+  ]
+}

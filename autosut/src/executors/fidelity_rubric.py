@@ -3,8 +3,8 @@
 Fidelity decision rubric for AutoSUT.
 
 Implements a 5-criterion rubric per technique to determine whether the
-execution fidelity is faithful, adapted, or inspired.  This is the
-artifact's own methodological taxonomy, not ACM terminology.
+execution fidelity is faithful, adapted, or inspired. This is the
+artifact's own methodological taxonomy.
 
 The rubric answers five questions per technique:
   Q1. Was the central mechanism preserved?
@@ -85,7 +85,7 @@ def compute_fidelity(answers: List[RubricAnswer]) -> str:
     - inspired: mechanism or substrate diverge from original technique
 
     A lab environment with pre-staged credentials, deliberate weaknesses, and
-    controlled topology means Q3 is "no" for most techniques — the preconditions
+    controlled topology means Q3 is "no" for most techniques - the preconditions
     were designed, not discovered. This is the lab-vs-wild distinction that
     separates adapted from faithful.
     """

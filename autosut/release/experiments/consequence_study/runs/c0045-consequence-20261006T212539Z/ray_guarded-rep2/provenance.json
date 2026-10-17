@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-07T00:28:58+00:00",
+  "git_commit": "10de44bf3f9738e2d76aa22589c3bafe71787222",
+  "implementation_revision": "10de44bf3f9738e2d76aa22589c3bafe71787222+tree-58194e1a52140fcc",
+  "configured_caldera_image": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+  "host_os": "Darwin arm64",
+  "caldera": {
+    "url": "http://localhost:8888",
+    "reachable": false,
+    "api_ok": false,
+    "server_version": null,
+    "agent_count": 0,
+    "ability_count": 0
+  }
+}

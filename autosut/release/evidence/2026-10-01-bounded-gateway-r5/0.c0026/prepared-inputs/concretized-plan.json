@@ -1,0 +1,852 @@
+{
+  "schema_version": "1",
+  "ordering_policy": "causal_topological_then_source_order",
+  "campaign_id": "C0026",
+  "source_plan_sha256": "32b6206f5273788e3383f82058bfa7ffaa5e34a6dd6459a79f082c160bbda8d8",
+  "binding_catalog_sha256": "09cf42cd8a9fe7a1523caf3c4c680b9d325f8291ccf57f4bea10bcef8092f4b9",
+  "action_catalog_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+  "steps": [
+    {
+      "sequence": 1,
+      "technique_id": "T1583.001",
+      "template_id": "record-controlled-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.domain"
+      ],
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "fidelity_ceiling": "inspired",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1568",
+      "template_id": "resolve-lab-domain",
+      "bindings": {
+        "domain": "infrastructure.lab_manifest",
+        "target": "target.primary"
+      },
+      "requires": [
+        "infrastructure.domain"
+      ],
+      "produces": [
+        "channel.resolved",
+        "c2_channel"
+      ],
+      "evidence_predicates": [
+        "resolver_query_logged",
+        "external_dns_absent"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1105",
+      "template_id": "transfer-over-resolved-lab-channel",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "requires": [
+        "channel.resolved",
+        "c2_channel",
+        "network:http_available"
+      ],
+      "produces": [
+        "payload.target.staged",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1005",
+      "template_id": "collect-declared-data-fixture",
+      "bindings": {
+        "data_source": "data.synthetic_fixture",
+        "target": "target.primary"
+      },
+      "requires": [
+        "payload.target.staged",
+        "code_execution"
+      ],
+      "produces": [
+        "collection.local",
+        "discovery:file_listing",
+        "collection:local_data"
+      ],
+      "evidence_predicates": [
+        "fixture_hash_recorded",
+        "no_host_data_collected"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1560.001",
+      "template_id": "archive-declared-collection",
+      "bindings": {
+        "archive_tool": "archive_tool.local",
+        "target": "target.primary"
+      },
+      "requires": [
+        "collection.local",
+        "discovery:file_listing",
+        "collection:local_data"
+      ],
+      "produces": [
+        "collection.archive"
+      ],
+      "evidence_predicates": [
+        "archive_hash_recorded",
+        "input_manifest_recorded"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1030",
+      "template_id": "split-declared-archive",
+      "bindings": {
+        "archive": "archive.synthetic_collection",
+        "chunk_policy": "chunk_policy.bounded_local"
+      },
+      "requires": [
+        "collection.archive"
+      ],
+      "produces": [
+        "exfiltration.chunked",
+        "exfiltration:chunked_transfer"
+      ],
+      "evidence_predicates": [
+        "chunk_manifest_recorded",
+        "no_external_transfer"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 2
+    }
+  ],
+  "unresolved_technique_ids": [],
+  "rejected_candidates": [
+    {
+      "proposal": {
+        "technique_id": "T1005",
+        "template_id": "collect-declared-data-fixture",
+        "bindings": {
+          "data_source": "data.synthetic_fixture",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: payload.target.staged"
+        }
+      ],
+      "assumption_count": 0
+    },
+    {
+      "proposal": {
+        "technique_id": "T1560.001",
+        "template_id": "archive-declared-collection",
+        "bindings": {
+          "archive_tool": "archive_tool.local",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: collection.local, collection:local_data, discovery:file_listing"
+        }
+      ],
+      "assumption_count": 0
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-benign-payload",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: access.target.shell, actor.toolkit.ready, c2_channel"
+        }
+      ],
+      "assumption_count": 1
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-over-resolved-lab-channel",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: c2_channel, channel.resolved"
+        }
+      ],
+      "assumption_count": 1
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-staged-benign-tool",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: access.target.browser_context, actor.tool.staged, c2_channel"
+        }
+      ],
+      "assumption_count": 1
+    },
+    {
+      "proposal": {
+        "technique_id": "T1005",
+        "template_id": "collect-declared-data-fixture",
+        "bindings": {
+          "data_source": "data.synthetic_fixture",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: payload.target.staged"
+        }
+      ],
+      "assumption_count": 0
+    },
+    {
+      "proposal": {
+        "technique_id": "T1560.001",
+        "template_id": "archive-declared-collection",
+        "bindings": {
+          "archive_tool": "archive_tool.local",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: collection.local, collection:local_data, discovery:file_listing"
+        }
+      ],
+      "assumption_count": 0
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-benign-payload",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: access.target.shell, actor.toolkit.ready"
+        }
+      ],
+      "assumption_count": 1
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-staged-benign-tool",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: access.target.browser_context, actor.tool.staged"
+        }
+      ],
+      "assumption_count": 1
+    }
+  ],
+  "retrieval_traces": [
+    {
+      "technique_id": "T1583.001",
+      "query_sha256": "18feaa2644fcbdea79700a36b689b0f4d7ce162b0e27f6c4d51e45b2caa4ef0c",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "record-controlled-domain",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1583.001"
+          ]
+        },
+        {
+          "template_id": "specify-benign-capability",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "malware."
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "for"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1005",
+      "query_sha256": "b8bbcfbe54bb46854835b8294b13bda336216f2fe0361957d5ca0640ed101ddd",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "data",
+            "t1005"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "local",
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "system",
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-bounded-compute-workload",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "local",
+            "system"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1560.001",
+      "query_sha256": "0f528aa68e20ee0c31317f4caa9b818ceeecd1a1062167785de1e3b15441d902",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "archive-declared-collection",
+          "score": 1104,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "archive",
+            "collection",
+            "t1560.001",
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collect",
+            "collection",
+            "only"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "files",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-local-archive",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "archive",
+            "collection",
+            "files"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "only",
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "query_sha256": "80c2a53db5e53fb5463563a7d05a4c62741251e24664df20a5f41836730ab658",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "the",
+            "tool",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1568",
+      "query_sha256": "92ea5c50b384c01696bfd45027131b0989e6caca8f55f97b02bd1f59535f10aa",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "t1568",
+            "the"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1030",
+      "query_sha256": "8c3d441a466b7fa7e6bcff4623dbc8168d61f8fe483f87d87da5d508fe0440c4",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "split-declared-archive",
+          "score": 1106,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "exfiltration",
+            "exfiltration.",
+            "into",
+            "split",
+            "t1030",
+            "the"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the",
+            "to"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the",
+            "to"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        }
+      ]
+    }
+  ],
+  "planning_certificate": {
+    "initial_facts": [
+      "actor.ready",
+      "code_execution",
+      "network:http_available",
+      "sut.ready"
+    ],
+    "goal_facts": [
+      "exfiltration.chunked"
+    ],
+    "transitions": [
+      {
+        "sequence": 1,
+        "technique_id": "T1583.001",
+        "state_before_sha256": "fd1a157cec286b8da65ecd8a280b70d9441bdf727edef53395d8cce6dd2b26d3",
+        "state_after_sha256": "5700b01b9f1504aa0e639d36d4ba3d44a8227bb32ea9015e5692b7c4ea999050",
+        "added_facts": [
+          "infrastructure.domain"
+        ]
+      },
+      {
+        "sequence": 2,
+        "technique_id": "T1568",
+        "state_before_sha256": "5700b01b9f1504aa0e639d36d4ba3d44a8227bb32ea9015e5692b7c4ea999050",
+        "state_after_sha256": "8e77531d1d4f034c3a8ccee1cee9ca23017dd5cd65fb2c6b4e55c98ec5f16533",
+        "added_facts": [
+          "c2_channel",
+          "channel.resolved"
+        ]
+      },
+      {
+        "sequence": 3,
+        "technique_id": "T1105",
+        "state_before_sha256": "8e77531d1d4f034c3a8ccee1cee9ca23017dd5cd65fb2c6b4e55c98ec5f16533",
+        "state_after_sha256": "0d9a1b387ace5202200e4a243bcab5a96f7b55fccf34dd4057ed063100164978",
+        "added_facts": [
+          "artifacts:downloaded_tool",
+          "artifacts:tool_script",
+          "payload.target.staged",
+          "payload:staged"
+        ]
+      },
+      {
+        "sequence": 4,
+        "technique_id": "T1005",
+        "state_before_sha256": "0d9a1b387ace5202200e4a243bcab5a96f7b55fccf34dd4057ed063100164978",
+        "state_after_sha256": "beb120b57dabb9d29d3331ef79adcc0f5e8ecd0122b1e3a80b1abe4825c006f7",
+        "added_facts": [
+          "collection.local",
+          "collection:local_data",
+          "discovery:file_listing"
+        ]
+      },
+      {
+        "sequence": 5,
+        "technique_id": "T1560.001",
+        "state_before_sha256": "beb120b57dabb9d29d3331ef79adcc0f5e8ecd0122b1e3a80b1abe4825c006f7",
+        "state_after_sha256": "73499e1ef802608115f975d6f3327108b484cfa89494b84911787a5742b816de",
+        "added_facts": [
+          "collection.archive"
+        ]
+      },
+      {
+        "sequence": 6,
+        "technique_id": "T1030",
+        "state_before_sha256": "73499e1ef802608115f975d6f3327108b484cfa89494b84911787a5742b816de",
+        "state_after_sha256": "7376e6d5b44b987dfc867a89a0b32d1f30b20f0edb28a8ff885c3a98f3f76d0b",
+        "added_facts": [
+          "exfiltration.chunked",
+          "exfiltration:chunked_transfer"
+        ]
+      }
+    ],
+    "causal_links": [
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 1
+      },
+      {
+        "fact_id": "infrastructure.domain",
+        "producer_sequence": 1,
+        "consumer_sequence": 2
+      },
+      {
+        "fact_id": "channel.resolved",
+        "producer_sequence": 2,
+        "consumer_sequence": 3
+      },
+      {
+        "fact_id": "c2_channel",
+        "producer_sequence": 2,
+        "consumer_sequence": 3
+      },
+      {
+        "fact_id": "network:http_available",
+        "producer_sequence": 0,
+        "consumer_sequence": 3
+      },
+      {
+        "fact_id": "payload.target.staged",
+        "producer_sequence": 3,
+        "consumer_sequence": 4
+      },
+      {
+        "fact_id": "code_execution",
+        "producer_sequence": 0,
+        "consumer_sequence": 4
+      },
+      {
+        "fact_id": "collection.local",
+        "producer_sequence": 4,
+        "consumer_sequence": 5
+      },
+      {
+        "fact_id": "discovery:file_listing",
+        "producer_sequence": 4,
+        "consumer_sequence": 5
+      },
+      {
+        "fact_id": "collection:local_data",
+        "producer_sequence": 4,
+        "consumer_sequence": 5
+      },
+      {
+        "fact_id": "collection.archive",
+        "producer_sequence": 5,
+        "consumer_sequence": 6
+      }
+    ],
+    "final_facts": [
+      "actor.ready",
+      "artifacts:downloaded_tool",
+      "artifacts:tool_script",
+      "c2_channel",
+      "channel.resolved",
+      "code_execution",
+      "collection.archive",
+      "collection.local",
+      "collection:local_data",
+      "discovery:file_listing",
+      "exfiltration.chunked",
+      "exfiltration:chunked_transfer",
+      "infrastructure.domain",
+      "network:http_available",
+      "payload.target.staged",
+      "payload:staged",
+      "sut.ready"
+    ],
+    "unresolved_goals": [],
+    "valid": true,
+    "content_sha256": "ae747a525ed2a58e23ce0bef9f781600c6770ed4d853155e5b6a3f46a7f3cf0c"
+  },
+  "llm_call_sha256": null,
+  "execution_semantic_sha256": "e2cd4f9e59835fda07e6d1453e06d3a3040f9d473d682cae1ac12b30fb038832",
+  "content_sha256": "d8f6693eb11539ab291e5cbc4664549f865ad520865ec8d69145216081088fdf"
+}

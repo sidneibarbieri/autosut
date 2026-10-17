@@ -234,7 +234,7 @@ class SubstituteEquivalentService:
 
 # Material substitution is tried first so a service element becomes a different
 # product rather than only a relabel; credential + artifact strategies cover the
-# remaining free dimensions. Exposures intentionally have no strategy — their
+# remaining free dimensions. Exposures intentionally have no strategy - their
 # free variation adds nothing the service substitution does not already show.
 _DEFAULT_STRATEGIES: list[PerturbationStrategy] = [
     SubstituteEquivalentService(),
@@ -248,7 +248,7 @@ class VariantGenerator:
 
     Strategy pattern: each free element is matched to the first strategy that
     applies; corpus elements match nothing and are unreachable. The fingerprint
-    re-check after perturbation is a verified backstop — if it ever fails, a
+    re-check after perturbation is a verified backstop - if it ever fails, a
     strategy reached the invariant, which is a bug we surface, never mask.
     """
 

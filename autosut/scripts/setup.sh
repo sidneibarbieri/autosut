@@ -43,13 +43,14 @@ install_python_deps() {
 
     if [[ -f "requirements-reviewer.txt" ]]; then
         pip3 install -q -r requirements-reviewer.txt 2>/dev/null || {
-            pip3 install -q -r requirements-reviewer.txt --break-system-packages 2>/dev/null || true
+            pip3 install -q -r requirements-reviewer.txt --break-system-packages
         }
+    else
+        log_error "Missing requirements-reviewer.txt"
+        return 1
     fi
 
-    python3 -c "import yaml" 2>/dev/null || {
-        pip3 install -q pyyaml 2>/dev/null || pip3 install -q pyyaml --break-system-packages 2>/dev/null || true
-    }
+    python3 -c "import click, pydantic, pytest, yaml"
 
     log_info "OK Python dependencies installed"
 }

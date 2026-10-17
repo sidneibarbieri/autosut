@@ -1,0 +1,22 @@
+# Windows 11 ARM64 guest on the local QEMU provider. The administrator password is supplied at
+# runtime through the environment so no credential is stored in the repository.
+Vagrant.configure("2") do |config|
+  config.vm.box = "autosut/windows11-arm64"
+  config.vm.communicator = "winrm"
+  config.winrm.username = "labadmin"
+  config.winrm.password = ENV.fetch("AUTOSUT_WIN_PASSWORD")
+  config.winrm.transport = :negotiate
+  config.vm.boot_timeout = 900
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.provider "qemu" do |qe|
+    qe.arch = "aarch64"
+    qe.machine = "virt-11.0,gic-version=3,accel=hvf"
+    qe.cpu = "host"
+    qe.smp = "4"
+    qe.memory = "6G"
+    qe.net_device = "virtio-net-pci"
+    qe.firmware = "/opt/homebrew/share/qemu/edk2-aarch64-code.fd"
+    qe.extra_qemu_args = %w(-device ramfb -device qemu-xhci,id=usb -device usb-kbd -device usb-tablet)
+  end
+end

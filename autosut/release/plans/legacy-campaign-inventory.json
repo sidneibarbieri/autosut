@@ -1,0 +1,14 @@
+{
+  "schema_version": "autosut-legacy-campaign-inventory/v1",
+  "mapping_policy": "exact MITRE campaign identity recorded by the source artifacts",
+  "campaigns": [
+    {"campaign_id": "0.apt41_dust", "source_campaign_id": "C0040"},
+    {"campaign_id": "0.c0010", "source_campaign_id": "C0010"},
+    {"campaign_id": "0.c0026", "source_campaign_id": "C0026"},
+    {"campaign_id": "0.costaricto", "source_campaign_id": "C0004"},
+    {"campaign_id": "0.operation_midnighteclipse", "source_campaign_id": "C0048"},
+    {"campaign_id": "0.outer_space", "source_campaign_id": "C0042"},
+    {"campaign_id": "0.salesforce_data_exfiltration", "source_campaign_id": "C0059"},
+    {"campaign_id": "0.shadowray", "source_campaign_id": "C0045"}
+  ]
+}

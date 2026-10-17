@@ -1,0 +1,25 @@
+{
+  "question": "Can a Linux ARM64 VM backend be qualified through the canonical lifecycle on this host, and by what path?",
+  "vagrant_box_finding": {
+    "observed": "No usable qemu-provider ARM64 Linux box is available on this host.",
+    "evidence": [
+      "perk/ubuntu-2204-arm64 is cached for the libvirt provider only; vagrant-libvirt does not run on macOS.",
+      "sticks-simple lists as (qemu, arm64) but `vagrant up --provider qemu` resolves it against the libvirt provider and fails to find/download it (Couldn't open file .../sticks-simple, EXIT=1). It is the frozen sticks artifact's box, whose VM path was previously found never to have worked end-to-end (missing runtime files + base image).",
+      "vagrant 2.4.9, vagrant-qemu 0.3.12, vagrant-libvirt 0.12.2 are installed; QEMUEnvironment.check() reports ready (vagrant + qemu-system-aarch64 + hvf present), but readiness is not a boot proof -- the box gap only surfaces at `vagrant up`."
+    ],
+    "conclusion": "The Vagrant-box path is not bootable here without acquiring or building a qemu-provider ARM64 Linux box. The QEMUEnvironment default box (perk/ubuntu-2204-arm64) is libvirt-only and would fail on macOS."
+  },
+  "qualified_path_decision": {
+    "path": "direct qemu-system-aarch64 + HVF + an official Ubuntu ARM64 cloud image, self-materialized (no Vagrant box)",
+    "why": "Self-materializing from a hash-pinned cloud image is more reproducible than depending on a third-party Vagrant box, and it matches the artifact's self-materialization requirement. It also reuses the qemu-system-aarch64 + HVF + edk2-aarch64 firmware path already shown to boot on this host.",
+    "hvf_feasibility": "Established: qemu-system-aarch64 offers hvf (and tcg); in the Windows backend investigation the aarch64 EDK2 firmware booted cleanly to the UEFI shell under HVF with no OS image (the Windows-specific hang was the Windows bootloader, not the firmware/accelerator). A Linux ARM64 cloud image carries a standard EFI/GRUB bootloader and is expected to boot under the same path.",
+    "materialization_plan": [
+      "download an official Ubuntu ARM64 cloud image (e.g. noble/jammy server cloud image), record size + SHA-256, cache under lab/qemu/images/ (gitignored)",
+      "per run: create a qcow2 overlay over the read-only base image; generate a cloud-init seed ISO (user, ssh key, packages) via cloud-localds or a NoCloud seed; boot via qemu-system-aarch64 -M virt -accel hvf -cpu host with edk2-aarch64 firmware, a per-run vars store, virtio-net user-mode with an SSH host-forward, and a per-run monitor socket",
+      "wait for SSH readiness on the forwarded port; provision; download+install a linux/arm64 Sandcat from the per-run isolated Caldera (ELF-verified) reaching Caldera over the user-mode network; run the operation; independent effect probe inside the VM; destroy the VM (kill qemu, remove overlay/seed/vars) and verify no residual qemu process/socket/disk",
+      "wrap as canonical LifecycleController stages with per-stage timeout, reusing RunContext + CalderaInstance + CalderaClient (no new manager); qualify with five clean runs + a failure-injection run on one frozen revision"
+    ],
+    "requires": "an image download (official Ubuntu ARM64 cloud image, a few hundred MB), authorized under the standing broad download permission for realism; provenance (size + SHA-256) recorded before use, image cached in the gitignored lab/qemu/images/, never committed."
+  },
+  "status": "path_decided_pending_image_download_and_vm_lifecycle_build"
+}

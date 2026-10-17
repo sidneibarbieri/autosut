@@ -65,6 +65,8 @@ autosut_resolve_python() {
       return 0
     fi
     echo "[python-env] enforcing pinned reviewer environment at $venv_dir" >&2
+    # Environments created by uv ship without pip.
+    "$venv_python" -m pip --version >/dev/null 2>&1 || "$venv_python" -m ensurepip --upgrade >&2
     PIP_DISABLE_PIP_VERSION_CHECK=1 "$venv_python" -m pip install --upgrade -r "$requirements_file" >&2
     autosut_python_has_reviewer_deps "$venv_python" || return 1
     autosut_python_matches_exact_requirements "$venv_python" "$requirements_file" || return 1

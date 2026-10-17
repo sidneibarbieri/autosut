@@ -23,20 +23,27 @@ from pathlib import Path
 
 from release_clock import release_datetime
 
-
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 AUDIT_DIR = PROJECT_ROOT / "measurement" / "sut" / "scripts" / "results" / "audit"
 RESULTS_DIR = PROJECT_ROOT / "measurement" / "sut" / "scripts" / "results"
-MACRO_TEX = RESULTS_DIR / "todo_values_latex.tex"
-EXPERIMENT_LOG = PROJECT_ROOT / "release" / "EXPERIMENT_LOG.jsonl"
+MACRO_TEX = PROJECT_ROOT / "release" / "study_values.tex"
 DASHBOARD_DIR = PROJECT_ROOT / "release" / "dashboard"
 DATA_DIR = DASHBOARD_DIR / "data"
 MACRO_PATTERN = re.compile(r"\\newcommand\{\\([A-Za-z][A-Za-z0-9]+)\}\{([^}]*)\}")
 TEXT_EVIDENCE_SUFFIXES = {".json", ".log", ".txt", ".md", ".csv", ".tsv", ".yml", ".yaml"}
-PRIMARY_REPLAY_REPORTS = (
-    "orchestrated_replay_full_19.tsv",
-)
-STYLE_VERSION = "20260602-realism-scrolltables"
+# Historical status-only logs remain in the source tree, outside the released claim surface.
+PRIMARY_REPLAY_REPORTS: tuple[str, ...] = ()
+REPLAY_AUDIT_FILE = "replay_evidence_audit.json"
+STYLE_VERSION = "20261009-theme-mobile"
+# Family mark shared with STICKS and SOCpilot; no font dependency.
+BRAND_MARK = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AutoSUT mark">
+  <rect width="64" height="64" rx="14" fill="#0b1b33"/>
+  <path d="M32 14 48 23v18L32 50 16 41V23z" fill="none" stroke="#c9760a" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M16 23l16 9 16-9M32 32v18" fill="none" stroke="#c9760a" stroke-width="5" stroke-linejoin="round"/>
+</svg>
+"""
+CLAIM_LEDGER_FILE = "claim_evidence_traceability.json"
+_STALE_DASHBOARD_FILES = ("canonical_runs.json", "campaign_scope_check.csv")
 
 
 # Reuse the provenance report's collectors and display labels (source order,
@@ -45,34 +52,10 @@ STYLE_VERSION = "20260602-realism-scrolltables"
 # computed live from the catalog (deterministic, no Docker), so the table the
 # reviewer sees always matches the current corpus.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import generate_provenance_report as gpr  # noqa: E402
-from orchestrator import provenance  # noqa: E402
-
-# Execution-realism tiers. A real execution means a command ran, a
-# Caldera operation fired, or an Atomic Red Team atomic invoked. naive_simulated
-# is a declared-coverage marker and is surfaced as a limitation, never as
-# execution evidence. This mirrors the real_modes set in fidelity_rubric.py.
-REAL_EXECUTION_MODES = {"real_controlled", "caldera_driven", "atomic_red_team"}
-SIMULATED_MODE = "naive_simulated"
-
-# The claim each mode licenses. This is the bridge from "what ran" to "what a
-# reviewer may conclude": the real tier supports a mechanism/procedure claim;
-# naive_simulated supports only a representation claim, never an execution one.
-EXECUTION_MODE_CLAIMS: tuple[tuple[str, str, str], ...] = (
-    ("real_controlled", "real",
-     "A bounded command, procedure, or vulnerability mechanism ran against "
-     "the live SUT and left a verifiable effect. CVE witnesses identify "
-     "when that effect is an actual exploit."),
-    ("caldera_driven", "real",
-     "The adversary procedure was dispatched by the MITRE Caldera C2 and the "
-     "operation fired against the SUT."),
-    ("atomic_red_team", "real",
-     "The technique ran as a mediated Atomic Red Team test."),
-    ("naive_simulated", "declared coverage",
-     "Behavioral representation only: the effect is asserted, not executed. "
-     "Never counted as execution evidence."),
-)
-
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+import generate_provenance_report as gpr
+from evaluation.replay_audit import ReplayAudit
+from orchestrator import provenance
 
 # --- Claim summaries: maps macro names to human prose ---
 
@@ -154,131 +137,266 @@ FINDINGS = (
 
 STYLE = """\
 :root {
-  --fg: #18202a;
-  --fg-dim: #516070;
-  --bg: #f7f6f2;
-  --bg-elev: #ffffff;
-  --border: #d8d2c6;
-  --accent: #24546f;
-  --accent-strong: #16394e;
-  --accent-soft: #e7f0f1;
-  --panel: #fbfbf8;
-  --ok: #2f6b45;
+  --ink: #1b2430;
+  --ink-soft: #5b6675;
+  --ink-faint: #8a94a0;
+  --paper: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f5f6f8;
+  --line: #dde2e8;
+  --line-strong: #c3cad3;
+  --accent: #0b1b33;
+  --accent-ink: #0b1b33;
+  --accent-wash: #eef1f6;
+  --brand: #c9760a;
+  --pass: #2f6b45;
   --warn: #8a5a00;
-  --bad: #8b2e22;
+  --fail: #9a3324;
+  --series-1: #2b4c6f;
+  --series-2: #b8863b;
+  --series-3: #6b7f8c;
+  --shadow-sm: 0 1px 2px rgba(24,36,54,0.06);
+  --shadow-md: 0 6px 22px rgba(24,36,54,0.08);
+  --radius: 12px;
+  --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --nav-h: 52px;
+}
+:root[data-theme="dark"] {
+  --ink: #e9e6dd;
+  --ink-soft: #a7afba;
+  --ink-faint: #6f7a86;
+  --paper: #13161b;
+  --surface: #1b1f26;
+  --surface-2: #20242c;
+  --line: #2c313b;
+  --line-strong: #3b414b;
+  --accent: #7fb8d1;
+  --accent-ink: #a9d4e6;
+  --accent-wash: #17303a;
+  --pass: #6cc08b;
+  --warn: #d3a856;
+  --fail: #dd8f83;
+  --series-1: #7fb8d1;
+  --series-2: #d3a856;
+  --series-3: #9aa6b2;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.35);
+  --shadow-md: 0 8px 26px rgba(0,0,0,0.45);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e9e6dd; --ink-soft: #a7afba; --ink-faint: #6f7a86;
+    --paper: #13161b; --surface: #1b1f26; --surface-2: #20242c;
+    --line: #2c313b; --line-strong: #3b414b;
+    --accent: #7fb8d1; --accent-ink: #a9d4e6; --accent-wash: #17303a;
+    --pass: #6cc08b; --warn: #d3a856; --fail: #dd8f83;
+    --series-1: #7fb8d1; --series-2: #d3a856; --series-3: #9aa6b2;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.35); --shadow-md: 0 8px 26px rgba(0,0,0,0.45);
+  }
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; font-family: "Avenir Next", Avenir,
-  "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--fg);
-  background:
-    radial-gradient(circle at 12% -10%, rgba(36,84,111,0.12), transparent 30%),
-    linear-gradient(180deg, #fbfaf6 0%, var(--bg) 220px);
-  font-size: 15px; line-height: 1.56; overflow-x: hidden; }
-header { background: rgba(255,255,255,0.86); border-bottom: 1px solid var(--border);
-  padding: 26px 40px 22px; }
-h1 { margin: 0; font-size: 25px; font-weight: 650; letter-spacing: -0.35px; }
-header p { margin: 5px 0 0; color: var(--fg-dim); font-size: 13px; }
-nav { background: rgba(231,240,241,0.92); border-bottom: 1px solid var(--border);
-  padding: 10px 40px; display: flex; flex-wrap: wrap; gap: 8px 22px; }
-nav a { color: var(--accent-strong); text-decoration: none; margin-right: 0;
-  font-size: 13px; font-weight: 600; }
-nav a:hover { text-decoration: underline; }
-main { max-width: 1180px; margin: 0 auto; padding: 28px 40px; }
-section { margin-bottom: 46px; }
-h2 { font-size: 19px; font-weight: 650; margin: 0 0 14px; padding-bottom: 6px;
-  border-bottom: 1px solid var(--border); }
-h3 { font-size: 14px; font-weight: 600; margin: 18px 0 6px; }
-table { width: 100%; border-collapse: collapse; background: var(--bg-elev);
-  border: 0; margin: 0; table-layout: auto; }
-th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border);
-  font-size: 13px; vertical-align: top; overflow-wrap: anywhere; }
-th { background: var(--accent-soft); font-weight: 600; color: var(--accent); }
-th { overflow-wrap: normal; word-break: normal; }
-tr:last-child td { border-bottom: none; }
-td.numeric { text-align: right; font-variant-numeric: tabular-nums; }
-td.mono, code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: 12px; overflow-wrap: anywhere; word-break: break-word; }
-.table-wrap td.mono { white-space: nowrap; overflow-wrap: normal; word-break: normal; }
-a { overflow-wrap: anywhere; }
-.table-wrap { width: 100%; max-width: 100%; overflow-x: auto; border: 1px solid var(--border);
-  border-radius: 8px; background: var(--bg-elev); margin: 10px 0;
-  box-shadow: 0 1px 2px rgba(20,40,70,0.05); -webkit-overflow-scrolling: touch; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.skip-link { position: absolute; top: 12px; left: 24px; z-index: 10;
+  padding: 12px 16px; background: var(--paper); color: var(--ink);
+  transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+body { margin: 0; padding: 0; font-family: var(--font-body); color: var(--ink);
+  background: var(--paper); font-size: 15.5px; line-height: 1.62;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility; }
+
+/* Masthead */
+header { background: var(--surface); border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-sm); }
+.masthead { max-width: 1140px; margin: 0 auto; padding: 34px 40px 26px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.masthead::before { content: ""; position: absolute; left: 0; right: 0; top: 0;
+  height: 3px; background: linear-gradient(90deg, var(--accent), transparent 70%); }
+header { position: relative; }
+.eyebrow { display: inline-block; font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); font-weight: 700;
+  margin-bottom: 8px; }
+h1 { margin: 0; font-family: var(--font-display); font-size: 34px; font-weight: 700;
+  letter-spacing: -0.5px; line-height: 1.05; color: var(--ink); }
+h1.wordmark { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-weight: 800;
+  letter-spacing: -1px; }
+h1.wordmark span { color: var(--brand); }
+.mast-sub { margin: 9px 0 0; color: var(--ink-soft); font-size: 13.5px;
+  max-width: 640px; }
+.theme-toggle { flex: none; border: 1px solid var(--line-strong);
+  background: var(--surface-2); color: var(--ink-soft); border-radius: 999px;
+  padding: 7px 14px; font: inherit; font-size: 12.5px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px; transition: all .15s ease; }
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Section-index navigation */
+nav { position: sticky; top: 0; z-index: 20; height: var(--nav-h);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 4px; padding: 0 40px; overflow-x: auto;
+  scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav a { color: var(--ink-soft); text-decoration: none; font-size: 12.5px;
+  font-weight: 600; white-space: nowrap; padding: 7px 11px; border-radius: 7px;
+  transition: color .12s ease, background .12s ease; }
+nav a:hover { color: var(--accent); background: var(--accent-wash); }
+nav a.active { color: var(--accent-ink); background: var(--accent-wash); }
+
+main { max-width: 1140px; margin: 0 auto; padding: 40px; }
+section { margin-bottom: 56px; scroll-margin-top: calc(var(--nav-h) + 16px); }
+h2 { font-family: var(--font-display); font-size: 24px; font-weight: 700;
+  letter-spacing: -0.3px; margin: 0 0 8px; padding-left: 14px; position: relative;
+  line-height: 1.2; }
+h2::before { content: ""; position: absolute; left: 0; top: 5px; bottom: 5px;
+  width: 4px; border-radius: 3px; background: var(--accent); }
+section > h2 + p, section > h2 + .muted { margin-top: 4px; }
+h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ink-soft); margin: 24px 0 8px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); overflow-wrap: anywhere; text-underline-offset: 2px; }
+
+/* Tables */
+.table-wrap { width: 100%; max-width: 100%; overflow-x: auto; border: 1px solid var(--line);
+  border-radius: var(--radius); background: var(--surface); margin: 12px 0;
+  box-shadow: var(--shadow-sm); -webkit-overflow-scrolling: touch; }
 .table-wrap table { min-width: 680px; }
 .table-wrap.compact table { min-width: 520px; }
 .table-wrap.wide table { min-width: 920px; }
-.finding { background: var(--bg-elev); border: 1px solid var(--border);
-  padding: 16px 18px; margin-bottom: 14px; }
+table { width: 100%; border-collapse: collapse; background: transparent; margin: 0; }
+th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--line);
+  font-size: 13px; vertical-align: top; overflow-wrap: anywhere; }
+thead th { position: sticky; top: 0; background: var(--surface-2); font-weight: 700;
+  color: var(--accent-ink); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; border-bottom: 1.5px solid var(--line-strong);
+  overflow-wrap: normal; word-break: normal; z-index: 1; }
+tbody tr { transition: background .1s ease; }
+tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 55%, transparent); }
+tbody tr:hover { background: var(--accent-wash); }
+tr:last-child td { border-bottom: none; }
+td.numeric { text-align: right; font-variant-numeric: tabular-nums; }
+td.mono, code { font-family: var(--font-mono); font-size: 12px;
+  overflow-wrap: anywhere; word-break: break-word; }
+code { background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 5px; padding: 0.5px 5px; font-size: 12px; color: var(--accent-ink); }
+.table-wrap td.mono { white-space: nowrap; overflow-wrap: normal; word-break: normal;
+  color: var(--ink-soft); }
+
+/* Cards */
+.finding, .run-card, .realism-summary, .overview-card, .recipe-card,
+details.evidence-group, #nonuniqueness { background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); }
+.finding { padding: 18px 20px; margin-bottom: 14px; box-shadow: var(--shadow-sm);
+  transition: box-shadow .15s ease, transform .15s ease; }
+.finding:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 .finding-head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 8px; }
-.finding-num { color: var(--accent); font-weight: 700; font-size: 12px; }
-.finding-title { font-weight: 600; }
-.finding-claim { color: var(--fg); margin: 6px 0 10px; }
-.finding-meta { font-size: 12px; color: var(--fg-dim); }
+.finding-num { color: var(--accent); font-weight: 800; font-size: 12px;
+  font-family: var(--font-mono); }
+.finding-title { font-weight: 700; font-size: 15px; }
+.finding-claim { color: var(--ink); margin: 6px 0 10px; }
+.finding-meta { font-size: 12px; color: var(--ink-soft); }
 .finding-meta a { color: var(--accent); }
-.muted { color: var(--fg-dim); font-size: 12px; }
-.kbd { padding: 1px 5px; border: 1px solid var(--border); border-radius: 3px;
-  font-family: ui-monospace, monospace; font-size: 11px; background: var(--bg); }
-footer { margin: 40px 0 0; padding: 20px 40px; border-top: 1px solid var(--border);
-  color: var(--fg-dim); font-size: 12px; }
-.run-card { background: var(--bg-elev); border: 1px solid var(--border);
-  border-left: 3px solid var(--accent); padding: 14px 18px; margin-bottom: 16px; }
-.run-card h3 { margin: 0 0 6px; font-size: 14px; }
+.measured-value { margin: 2px 0 4px; padding-left: 18px; }
+.measured-value .measured-value { margin: 0; }
+.value-key { display: inline-block; max-width: 100%;
+  font-family: var(--mono, ui-monospace, monospace); color: var(--ink);
+  white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+.muted { color: var(--ink-soft); font-size: 13.5px; }
+.kbd { display: inline-block; max-width: 100%; padding: 1.5px 6px;
+  border: 1px solid var(--line-strong); border-radius: 5px;
+  font-family: var(--font-mono); font-size: 11px; background: var(--surface-2);
+  white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+footer { margin: 56px 0 0; padding: 26px 40px; border-top: 1px solid var(--line);
+  color: var(--ink-soft); font-size: 12.5px; background: var(--surface); }
+footer code { }
+.run-card { border-left: 3px solid var(--accent); padding: 16px 20px;
+  margin-bottom: 16px; box-shadow: var(--shadow-sm); }
+.run-card h3 { margin: 0 0 8px; }
 .run-card p { margin: 6px 0; }
 .run-card table { margin: 8px 0; }
-.lead { font-size: 15px; margin: 0 0 16px; }
-.thesis { font-size: 17px; line-height: 1.45; margin: 0 0 16px;
-  max-width: 900px; }
-.sim { color: var(--warn); font-weight: 600; }
-.bad { color: var(--bad); font-weight: 600; }
-.realism-summary { background: var(--accent-soft); border: 1px solid var(--border);
-  padding: 10px 14px; margin: 0 0 16px; }
+.lead { font-size: 15.5px; margin: 0 0 16px; }
+.thesis { font-family: var(--font-display); font-size: 20px; line-height: 1.4;
+  margin: 0 0 18px; max-width: 860px; color: var(--ink); font-weight: 500; }
+.sim, .warn { color: var(--warn); font-weight: 700; }
+.bad { color: var(--fail); font-weight: 700; }
+.real { color: var(--pass); font-weight: 700; }
+.realism-summary { padding: 12px 16px; margin: 0 0 16px; border-left: 3px solid var(--accent); }
 .overview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px; margin: 18px 0 4px; }
-.overview-card { background: var(--bg-elev); border: 1px solid var(--border);
-  border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px;
-  box-shadow: 0 2px 12px rgba(20,40,70,0.06); min-width: 0; }
-.overview-card strong { display: block; margin-bottom: 5px; font-size: 13px; }
-.overview-card span { display: block; color: var(--fg-dim); font-size: 12px; }
+  gap: 14px; margin: 20px 0 6px; }
+.overview-card { border-top: 3px solid var(--accent); padding: 16px 18px;
+  box-shadow: var(--shadow-sm); min-width: 0; }
+.overview-card strong { display: block; margin-bottom: 6px; font-size: 13.5px;
+  font-weight: 700; }
+.overview-card span { display: block; color: var(--ink-soft); font-size: 12.5px; }
 .recipe-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px; margin: 18px 0 4px; }
-.recipe-card { background: var(--panel); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px 16px; min-width: 0; }
-.recipe-card strong { display: block; margin-bottom: 6px; }
-.recipe-card p { margin: 6px 0; color: var(--fg-dim); font-size: 12px; }
-.recipe-card code { display: inline-block; margin-top: 5px; white-space: normal;
+  gap: 14px; margin: 20px 0 6px; }
+.recipe-card { background: var(--surface-2); padding: 16px 18px; min-width: 0; }
+.recipe-card strong { display: block; margin-bottom: 8px; }
+.recipe-card p { margin: 6px 0; color: var(--ink-soft); font-size: 12.5px; }
+.recipe-card code { display: inline-block; margin-top: 6px; white-space: normal;
   overflow-wrap: anywhere; }
-.finding, .run-card, .realism-summary { border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(20,40,70,0.05); }
-details.evidence-group { background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: 8px; margin: 10px 0; padding: 11px 14px; }
-details.evidence-group summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+details.evidence-group { margin: 10px 0; padding: 13px 16px; }
+details.evidence-group summary { cursor: pointer; font-weight: 700; color: var(--accent); }
 details.evidence-group p { margin: 8px 0 6px; }
-details.evidence-group ul { margin: 8px 0 0; columns: 2; column-gap: 24px;
-  padding-left: 18px; }
+details.evidence-group ul { margin: 8px 0 0; columns: 2; column-gap: 24px; padding-left: 18px; }
 details.evidence-group li { break-inside: avoid; margin-bottom: 3px; }
 details.evidence-group a,
 details.evidence-group code { max-width: 100%; white-space: normal;
   overflow-wrap: anywhere; word-break: break-word; }
-.table-wrap table { border-radius: 8px; overflow: hidden; }
-.finding { transition: box-shadow .15s ease; }
-.finding:hover { box-shadow: 0 3px 10px rgba(20,40,70,0.09); }
-#nonuniqueness { background: var(--bg-elev); border: 1px solid var(--border);
-  border-top: 3px solid var(--accent); border-radius: 10px; padding: 22px 26px;
-  box-shadow: 0 2px 12px rgba(20,40,70,0.06); }
-#nonuniqueness h2 { border-bottom: none; }
-.real { color: var(--ok); font-weight: 600; }
-@media (max-width: 850px) {
-  header, nav { padding-left: 22px; padding-right: 22px; }
-  main { padding: 22px; max-width: 100%; overflow-x: hidden; }
-  .overview-grid { grid-template-columns: 1fr; }
-  .recipe-grid { grid-template-columns: 1fr; }
+#nonuniqueness { border-top: 3px solid var(--accent); padding: 26px 30px;
+  box-shadow: var(--shadow-md); }
+#nonuniqueness h2 { padding-left: 0; }
+#nonuniqueness h2::before { display: none; }
+
+/* Charts (inline SVG rendered by the generator) */
+figure.chart { margin: 16px 0; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px 20px 14px; box-shadow: var(--shadow-sm); }
+figure.chart figcaption { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft); font-weight: 700; margin-bottom: 12px; }
+figure.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart .axis { stroke: var(--line-strong); stroke-width: 1; }
+.chart .grid { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
+.chart .tick { fill: var(--ink-faint); font-size: 10.5px; font-family: var(--font-body); }
+.chart .lbl { fill: var(--ink-soft); font-size: 11.5px; font-family: var(--font-body); }
+.chart .val { fill: var(--ink); font-size: 11px; font-weight: 700;
+  font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.chart .s1 { fill: var(--series-1); } .chart .s2 { fill: var(--series-2); }
+.chart .s3 { fill: var(--series-3); } .chart .s4 { fill: var(--ink-faint); }
+.chart .line { fill: none; stroke: var(--series-1); stroke-width: 2.5;
+  stroke-linejoin: round; stroke-linecap: round; }
+.chart .dot { fill: var(--series-1); }
+figure.chart svg.stacked { height: 46px; border-radius: 7px; overflow: hidden; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px;
+  font-size: 12.5px; color: var(--ink-soft); }
+.chart-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.chart-legend strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+.chart-legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+.chart-legend i.s1 { background: var(--series-1); }
+.chart-legend i.s2 { background: var(--series-2); }
+.chart-legend i.s3 { background: var(--series-3); }
+.chart-legend i.s4 { background: var(--ink-faint); }
+
+@media (max-width: 900px) {
+  .masthead, nav, main, footer { padding-left: 22px; padding-right: 22px; }
+  .masthead { flex-direction: column; }
+  main { padding-top: 26px; padding-bottom: 26px; max-width: 100%; }
+  h1 { font-size: 28px; } h2 { font-size: 21px; }
+  .overview-grid, .recipe-grid { grid-template-columns: 1fr; }
   .recipe-card code { display: block; max-width: 100%; white-space: normal;
     word-break: break-word; overflow-wrap: anywhere; }
-  p, .overview-card span, .recipe-card p { overflow-wrap: anywhere; }
   details.evidence-group ul { columns: 1; padding-left: 16px; }
-  details.evidence-group li { max-width: 100%; }
-  .finding-meta .kbd { display: inline-block; max-width: 100%;
-    white-space: normal; word-break: break-word; }
   #nonuniqueness { padding: 18px; }
+}
+@media print {
+  nav, .theme-toggle { display: none; }
+  body { background: #fff; font-size: 11pt; }
+  .finding, .table-wrap, figure.chart, .overview-card { box-shadow: none; break-inside: avoid; }
 }
 """
 
@@ -302,10 +420,19 @@ def load_csv(path: Path, limit: int | None = None) -> tuple[list[str], list[list
     return header, data
 
 
-def load_jsonl(path: Path) -> list[dict]:
-    if not path.exists():
-        return []
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+class ClaimLedgerError(ValueError):
+    """A decoded document does not satisfy the claim-ledger contract."""
+
+
+def load_claim_ledger() -> dict:
+    """Load the current claim surface that bounds every dashboard statement."""
+
+    path = PROJECT_ROOT / "release" / CLAIM_LEDGER_FILE
+    document = json.loads(path.read_text(encoding="utf-8"))
+    claims = document.get("claims")
+    if not isinstance(claims, list):
+        raise ClaimLedgerError("claim ledger must contain a claims list")
+    return document
 
 
 def copy_data_files() -> None:
@@ -313,9 +440,11 @@ def copy_data_files() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     for src in AUDIT_DIR.glob("*.csv"):
         shutil.copy2(src, DATA_DIR / src.name)
-    canonical_src = PROJECT_ROOT / "release" / "golden_runs.json"
-    if canonical_src.exists():
-        shutil.copy2(canonical_src, DATA_DIR / "canonical_runs.json")
+    shutil.copy2(PROJECT_ROOT / "results" / "CORPUS_STATE.md", DATA_DIR / "CORPUS_STATE.md")
+    for filename in _STALE_DASHBOARD_FILES:
+        path = DATA_DIR / filename
+        if path.is_file():
+            path.unlink()
 
 
 def copy_replay_reports() -> None:
@@ -324,6 +453,9 @@ def copy_replay_reports() -> None:
     if replay_dest.exists():
         shutil.rmtree(replay_dest)
     replay_dest.mkdir(parents=True, exist_ok=True)
+    audit_source = PROJECT_ROOT / "release" / REPLAY_AUDIT_FILE
+    if audit_source.is_file():
+        shutil.copy2(audit_source, replay_dest / REPLAY_AUDIT_FILE)
     for name in PRIMARY_REPLAY_REPORTS:
         src = PROJECT_ROOT / "release" / name
         if not src.exists():
@@ -359,44 +491,12 @@ def normalize_replay_tsv(path: Path) -> None:
         writer.writerows(normalized)
 
 
-def copy_curated_evidence_files() -> None:
-    """Copy only canonical run evidence needed by dashboard links."""
-    golden_runs_file = PROJECT_ROOT / "release" / "golden_runs.json"
-    if not golden_runs_file.exists():
-        return
-    golden_data = json.loads(golden_runs_file.read_text(encoding="utf-8"))
-    source_pairs: list[tuple[Path, str]] = []
-    golden_run_names: set[str] = set()
-    for entry in golden_data.get("campaigns", []):
-        evidence_path = entry.get("evidence_path")
-        if not evidence_path:
-            continue
-        src = PROJECT_ROOT / evidence_path
-        run_name = str(entry.get("golden_run_id") or src.name)
-        golden_run_names.add(run_name)
-        source_pairs.append((src, run_name))
+def remove_legacy_dashboard_evidence() -> None:
+    """Drop copied legacy run records without deleting their source-history records."""
 
-    evidence_dest = DATA_DIR / "evidence"
-    evidence_dest.mkdir(parents=True, exist_ok=True)
-    for src, run_name in source_pairs:
-        dest = evidence_dest / run_name
-        if src.is_dir() and src.resolve() != dest.resolve():
-            if dest.exists():
-                shutil.rmtree(dest)
-            shutil.copytree(
-                src,
-                dest,
-                ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store"),
-            )
-        # A public package intentionally carries the compact dashboard copy for
-        # most goldens and only selected hash-bound runs under release/evidence.
-        # Preserve an existing dashboard run when the full source run is absent.
-        if dest.is_dir():
-            scrub_local_paths(dest)
-
-    for candidate in evidence_dest.iterdir():
-        if candidate.is_dir() and candidate.name not in golden_run_names:
-            shutil.rmtree(candidate)
+    evidence_dir = DATA_DIR / "evidence"
+    if evidence_dir.exists():
+        shutil.rmtree(evidence_dir)
 
 
 def scrub_local_paths(path: Path) -> None:
@@ -471,6 +571,15 @@ EVIDENCE_GROUPS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
 )
 
 
+def wrap_table_region(table: str, label: str, wide: bool = False) -> str:
+    """Make horizontal table scrolling explicitly keyboard-accessible."""
+    classes = "table-wrap wide" if wide else "table-wrap"
+    return (
+        f"<div class='{classes}' tabindex='0' role='region' "
+        f"aria-label='{escape(label, quote=True)}'>{table}</div>"
+    )
+
+
 def render_table(header: list[str],
                  rows: list[list[str]],
                  numeric_cols: set[int] | None = None,
@@ -491,9 +600,9 @@ def render_table(header: list[str],
             cls = " ".join(classes)
             cells.append(f"<td class='{cls}'>{escape(cell)}</td>")
         body_lines.append("<tr>" + "".join(cells) + "</tr>")
-    wrap_cls = "table-wrap wide" if wide else "table-wrap"
-    return (f"<div class='{wrap_cls}'><table><thead><tr>{head}</tr></thead>"
-            f"<tbody>{''.join(body_lines)}</tbody></table></div>")
+    table = (f"<table><thead><tr>{head}</tr></thead>"
+             f"<tbody>{''.join(body_lines)}</tbody></table>")
+    return wrap_table_region(table, "Data table: " + ", ".join(header), wide)
 
 
 def render_findings(macros: dict[str, str]) -> str:
@@ -527,8 +636,109 @@ def render_findings(macros: dict[str, str]) -> str:
     return "\n".join(blocks)
 
 
-def render_audit_overview(merged) -> str:
+def render_stacked_bar(segments: list[tuple[str, float, str]], caption: str) -> str:
+    """A single 100%-width horizontal bar of labeled segments, with a legend carrying the values.
+
+    ``segments`` is a list of (label, percent, css_class); percents are drawn to scale and shown
+    verbatim in the legend, so the figure never asserts a value the table does not.
+    """
+    width = 1000.0
+    total = sum(value for _, value, _ in segments) or 1.0
+    offset = 0.0
+    rects, legend = [], []
+    for label, value, css_class in segments:
+        segment_width = width * value / total
+        rects.append(
+            f"<rect class='{css_class}' x='{offset:.1f}' y='0' "
+            f"width='{max(segment_width, 0):.1f}' height='46'/>")
+        legend.append(
+            f"<span><i class='{css_class}'></i>{escape(label)} &middot; "
+            f"<strong>{value:.1f}%</strong></span>")
+        offset += segment_width
+    svg = (f"<svg class='stacked' viewBox='0 0 {width:.0f} 46' preserveAspectRatio='none' "
+           f"role='img' aria-label='{escape(caption)}'>{''.join(rects)}</svg>")
+    return (f"<figure class='chart'><figcaption>{escape(caption)}</figcaption>{svg}"
+            f"<div class='chart-legend'>{''.join(legend)}</div></figure>")
+
+
+def _dashboard_href(relative_path: str) -> str:
+    """Return a dashboard-relative link to a checked project artifact."""
+
+    path = Path(relative_path)
+    if not relative_path or path.is_absolute() or ".." in path.parts:
+        raise ValueError(f"unsafe claim-evidence path: {relative_path!r}")
+    if not (PROJECT_ROOT / path).is_file():
+        raise FileNotFoundError(f"claim evidence is missing: {relative_path}")
+    if path.parts and path.parts[0] == "release":
+        return (Path("..") / Path(*path.parts[1:])).as_posix()
+    return (Path("../..") / path).as_posix()
+
+
+def _format_scalar(value: object) -> str:
+    if isinstance(value, float):
+        return f"{value:.3g}"
+    return str(value).lower() if isinstance(value, bool) else str(value)
+
+
+def _ledger_value_html(value: object) -> str:
+    """Render a measured value as text, or as a nested key/value list for a mapping."""
+    if not isinstance(value, dict):
+        return f"<code>{escape(_format_scalar(value))}</code>"
+    items = "".join(
+        f"<li><span class='value-key'>{escape(str(key))}</span> {_ledger_value_html(value[key])}</li>"
+        for key in sorted(value)
+    )
+    return f"<ul class='measured-value'>{items}</ul>"
+
+
+def render_claim_ledger(ledger: dict) -> str:
+    """Render the generated claim ledger without promoting historical records."""
+
+    blocks = []
+    for claim in ledger["claims"]:
+        evidence_links = "".join(
+            f"<li><a href='{escape(_dashboard_href(path), quote=True)}'>"
+            f"<code>{escape(path)}</code></a></li>"
+            for path in claim["evidence_artifacts"]
+        )
+        blocks.append(f"""
+<div class='finding'>
+  <div class='finding-head'>
+    <span class='finding-num'>{escape(claim['claim_id'])}</span>
+    <span class='finding-title'><code>{escape(claim['status'])}</code></span>
+  </div>
+  <div class='finding-claim'>{escape(claim['claim'])}</div>
+  <div class='finding-meta'>
+    <strong>Scope:</strong> {escape(claim['scope'])}<br>
+    <strong>Measured value:</strong> {_ledger_value_html(claim['measured_value'])}<br>
+    <strong>Reproduction:</strong> <code>{escape(claim['reproduction_command'])}</code><br>
+    <strong>Caveat:</strong> {escape(claim['caveat'])}
+  </div>
+  <details class='evidence-group'>
+    <summary>Evidence artifacts ({len(claim['evidence_artifacts'])})</summary>
+    <ul>{evidence_links}</ul>
+  </details>
+</div>""")
+
+    blocked = "".join(
+        "<li><strong>Not claimed:</strong> {}. {}</li>".format(
+            escape(item["claim"]), escape(item["reason"])
+        )
+        for item in ledger["blocked_interpretations"]
+    )
+    blocks.append(f"""
+<details class='evidence-group'>
+  <summary>Interpretations explicitly outside the evidence</summary>
+  <ul>{blocked}</ul>
+</details>""")
+    return "\n".join(blocks)
+
+
+def render_audit_overview(merged, ledger: dict) -> str:
     pct = merged.percentages
+    bounded_claims = sum(
+        claim["status"] == "supported_bounded" for claim in ledger["claims"]
+    )
     return f"""
 <section id='overview'>
   <h2>Reviewer Path</h2>
@@ -546,15 +756,15 @@ def render_audit_overview(merged) -> str:
         {pct['analyst_authored']}% analyst-authored.</span>
     </div>
     <div class='overview-card'>
-      <strong>Non-uniqueness witness</strong>
-      <span>CVE-2021-41773 preserves the same corpus fingerprint while
-        executing compatible SUT variants under an external advisory
-        fingerprint.</span>
+      <strong>Distinct reference roles</strong>
+      <span>CVE-2021-41773 is a decoy-variation harness check, not a material
+        non-uniqueness witness. Internal SSH and HTTP examples vary service
+        implementations under declared invariants.</span>
     </div>
     <div class='overview-card'>
-      <strong>Execution evidence</strong>
-      <span>Canonical manifests distinguish real execution from declared
-        behavioral coverage; simulated steps are never counted as execution.</span>
+      <strong>Bounded operational witnesses</strong>
+      <span>{bounded_claims} ledger claims are supported only within their
+        stated witness scope; no card reports a campaign-wide execution rate.</span>
     </div>
     <div class='overview-card'>
       <strong>Boundary</strong>
@@ -562,6 +772,12 @@ def render_audit_overview(merged) -> str:
         provider.</span>
     </div>
   </div>
+  {render_stacked_bar([
+      ("CTI corpus (grounded)", pct['corpus_supported'], 's1'),
+      ("External advisory", pct['external_reference'], 's2'),
+      ("AutoSUT-concretized", pct['autosut_concretized'], 's3'),
+      ("Analyst-authored (free)", pct['analyst_authored'], 's4'),
+  ], f"Environment composition by provenance: {merged.total_elements} SUT elements")}
   <div class='recipe-grid'>
     <div class='recipe-card'>
       <strong>1. Fast deterministic audit</strong>
@@ -570,16 +786,17 @@ def render_audit_overview(merged) -> str:
       <code>bash run_review_check.sh</code>
     </div>
     <div class='recipe-card'>
-      <strong>2. Small execution trace</strong>
-      <p>Runs one repository-local campaign and validates the resulting JSON
-        evidence manifest.</p>
-      <code>cd autosut &amp;&amp; bash artifact/setup.sh &amp;&amp; bash artifact/run.sh &amp;&amp; bash artifact/validate.sh</code>
+      <strong>2. Inspect claim bounds</strong>
+      <p>Read each scope, caveat, and evidence path before interpreting a
+        result as operational or general.</p>
+      <code>less autosut/release/CLAIM_EVIDENCE_TRACEABILITY.md</code>
     </div>
     <div class='recipe-card'>
-      <strong>3. Executable non-uniqueness witness</strong>
-      <p>Runs the CVE-2021-41773 witness variants and checks that declared and
-        executed modes match.</p>
-      <code>cd autosut &amp;&amp; .venv/bin/python3 scripts/prove_subdetermination.py 0.cve_2021_41773 --variants 2 --execute</code>
+      <strong>3. Inspect campaign/SUT contracts</strong>
+      <p>See which released campaign definitions declare a SUT profile, pass
+        strict pair validation, or remain outside the audited contract set.</p>
+      <a href='data/CORPUS_STATE.md'>Open the contract-state report</a>
+      <code>less autosut/results/CORPUS_STATE.md</code>
     </div>
   </div>
 </section>"""
@@ -615,7 +832,7 @@ def render_provenance_summary(summaries: list, merged) -> str:
 
     overview = (
         f"Of the <strong>{merged.total_elements}</strong> concrete SUT elements "
-        f"materialised across <strong>{len(summaries)}</strong> campaign SUT profiles, "
+        f"materialized across <strong>{len(summaries)}</strong> campaign SUT profiles, "
         f"<strong>{pct['corpus_supported']}%</strong> is anchored in the evaluated CTI "
         f"corpus, <strong>{pct['external_reference']}%</strong> is anchored in "
         f"external advisories or package metadata, "
@@ -724,58 +941,15 @@ def render_campaign_cve_table() -> str:
 
     headers = ["Campaign", "CVEs", "Linked SW", "Platform signal", "Tier"]
     rows = []
-    for name in cves_by_name:
+    for name, cve_count in cves_by_name.items():
         rows.append([
             name,
-            cves_by_name[name],
+            cve_count,
             str(sw_by_name.get(name, 0)),
             "yes" if plat_by_name.get(name, False) else "no",
             tier_by_name.get(name, ""),
         ])
     return render_table(headers, rows, numeric_cols={2})
-
-
-def render_experiment_log() -> str:
-    """Filtered EXPERIMENT_LOG: only canonical runs appear here.
-
-    The historical EXPERIMENT_LOG.jsonl is the append-only ledger of every
-    run AutoSUT ever produced. For public review, we filter it down to the
-    canonical subset designated by the release manifest so the reviewer
-    never compares partials against canonical evidence side-by-side.
-    """
-    entries = load_jsonl(EXPERIMENT_LOG)
-    canonical_runs_file = PROJECT_ROOT / "release" / "golden_runs.json"
-    if not canonical_runs_file.exists():
-        return ("<p class='muted'>No canonical run manifest. "
-                "Run <code>python scripts/curate_evidence.py --apply</code> "
-                "to designate canonical evidence runs.</p>")
-    canonical_data = json.loads(canonical_runs_file.read_text(encoding="utf-8"))
-    canonical_run_ids = {entry["golden_run_id"]
-                         for entry in canonical_data.get("campaigns", [])}
-    if not entries:
-        return "<p class='muted'>No experiment log entries.</p>"
-    header = ["Run ID", "Campaign", "Timestamp", "Total", "Pass", "Fail", "Fidelity"]
-    rows = []
-    for entry in entries:
-        if entry.get("run_id") not in canonical_run_ids:
-            continue
-        fidelity = ", ".join(f"{k}={v}" for k, v
-                              in entry.get("fidelity_distribution", {}).items()) or "-"
-        rows.append([
-            entry.get("run_id", ""),
-            entry.get("campaign_id", ""),
-            entry.get("timestamp", ""),
-            str(entry.get("total_techniques", "")),
-            str(entry.get("successful", "")),
-            str(entry.get("failed", "")),
-            fidelity,
-        ])
-    if not rows:
-        return ("<p class='muted'>Per-run outcomes are listed in the "
-                "<a href='#execution'>Execution evidence</a> section above and "
-                "stored under <code>release/evidence/&lt;run-id&gt;/</code>; the "
-                "reproduction script regenerates the full ledger.</p>")
-    return render_table(header, rows, numeric_cols={3, 4, 5}, mono_cols={0})
 
 
 def render_rule_breakdown() -> str:
@@ -828,21 +1002,56 @@ def render_evidence_groups() -> str:
     return "".join(blocks)
 
 
-def render_execution_claim_table() -> str:
-    """Map each execution mode to the scientific claim a reviewer may draw."""
-    rows = [[mode, tier, claim] for mode, tier, claim in EXECUTION_MODE_CLAIMS]
-    return render_table(
-        ["Execution mode", "Tier", "Claim it licenses"],
-        rows,
-        mono_cols={0},
-        wide=True,
-    )
-
-
 def _load_replay_report(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle, delimiter="\t")
         return list(reader)
+
+
+def render_replay_audit() -> str:
+    """Show retrospective observations without upgrading them to qualification."""
+    audit_path = PROJECT_ROOT / "release" / REPLAY_AUDIT_FILE
+    if not audit_path.is_file():
+        return "<p class='muted'>No retrospective replay audit is available.</p>"
+    audit = ReplayAudit.model_validate_json(audit_path.read_text(encoding="utf-8"))
+    records = audit.records
+    counts = [record.manifest_counts for record in records if record.manifest_counts]
+    complete = len(counts) == len(records)
+    total = sum(record.reported_total for record in records)
+
+    def observed_count(field: str) -> str:
+        if not complete:
+            return "Unavailable: incomplete source manifests"
+        return str(sum(getattr(item, field) for item in counts))
+
+    clean = sum(record.reported_clean is True for record in records)
+    revision_count = sum(record.recorded_revision is not None for record in records)
+    rows = [
+        ["Planned steps", str(total), f"{len(records)} recorded campaign cases"],
+        ["Status-success steps", observed_count("successful"), "Recorded executor status"],
+        ["Execution-category steps", observed_count("evidence_backed_successful"),
+         "Successful non-simulated mode with declared file references"],
+        ["Referenced files present", observed_count("steps_with_all_references_present"),
+         "Steps whose declared files were all present during this offline audit"],
+        ["Marker-only steps", observed_count("marker_only_successful"),
+         "Conceptual coverage; no technique execution claim"],
+        ["Caldera-category steps", observed_count("caldera_driven_successful"),
+         "Recorded dispatch mode; included in execution-category steps"],
+        ["Inspired execution steps", observed_count("inspired_execution_steps"),
+         "Included above; does not establish the technique mechanism"],
+        ["Clean namespace recorded", f"{clean}/{len(records)}", "Reported post-run observation"],
+        ["Implementation revision recorded", f"{revision_count}/{len(records)}",
+         "Required for qualification of a specific implementation"],
+    ]
+    link = f"data/replay_reports/{REPLAY_AUDIT_FILE}"
+    return (
+        "<p><strong>Retrospective audit; no current-revision qualification.</strong></p>"
+        + render_table(["Observation", "Count", "Interpretation"], rows, wide=True)
+        + "<p class='muted'>File presence and hashes do not independently establish "
+        "technique fidelity or causal effects. The local trace collection is not bundled "
+        "with this audit summary. The observations predate subsequent source changes. "
+        f"<a href='{escape(link)}'>Audit records and source-file hashes</a>.</p>"
+    )
 
 
 def render_replay_reports() -> str:
@@ -853,25 +1062,17 @@ def render_replay_reports() -> str:
         if (PROJECT_ROOT / "release" / name).exists()
     ]
     if not reports:
-        return (
-            "<p class='muted'>No replay report found yet. Run "
-            "<code>.venv/bin/python3 scripts/run_all_orchestrated_campaigns.py "
-            "--output release/orchestrated_replay_full.tsv</code>.</p>"
-        )
+        return render_replay_audit()
 
     rows = []
     for report in reports:
-        try:
-            entries = _load_replay_report(report)
-        except (csv.Error, OSError):
-            continue
+        entries = _load_replay_report(report)
         if not entries:
             continue
-        success = sum(int(row.get("successful") or 0) for row in entries)
+        success = sum(int(row.get("status_successful", row.get("successful", "0"))) for row in entries)
         total = sum(int(row.get("total") or 0) for row in entries)
         elapsed = sum(float(row.get("elapsed_seconds") or 0) for row in entries)
-        status_values = [row.get("status") or "UNKNOWN" for row in entries]
-        status = "PASS" if status_values and all(v == "PASS" for v in status_values) else ",".join(sorted(set(status_values)))
+        status = "Unqualified status log"
         report_link = f"data/replay_reports/{report.name}"
         json_name = report.with_suffix(".json").name
         json_link = f"data/replay_reports/{json_name}"
@@ -899,7 +1100,7 @@ def render_replay_reports() -> str:
             (f"<a href='{escape(row[6])}' title='{escape(row[6])}'><code>JSON</code></a>"
              if row[6] else ""),
         ])
-    header = ["Report", "Status", "Campaigns", "Planned steps", "Elapsed", "TSV", "JSON"]
+    header = ["Report", "Status", "Campaigns", "Status-success / planned", "Elapsed", "TSV", "JSON"]
     head = "".join(f"<th>{escape(col)}</th>" for col in header)
     body = []
     for row in linked_rows:
@@ -914,371 +1115,49 @@ def render_replay_reports() -> str:
             f"<td>{row[6]}</td>"
             "</tr>"
         )
-    return (
-        "<div class='table-wrap wide'><table><thead><tr>"
-        f"{head}</tr></thead><tbody>{''.join(body)}</tbody></table></div>"
+    table = (
+        "<table><thead><tr>"
+        f"{head}</tr></thead><tbody>{''.join(body)}</tbody></table>"
     )
+    return wrap_table_region(table, "Historical replay audit", wide=True)
 
 
-def _campaign_external_id(campaign_id: str) -> str | None:
-    match = re.fullmatch(r"0\.(c\d{4})", campaign_id, flags=re.IGNORECASE)
-    return match.group(1).upper() if match else None
+REFERENCE_ROLES = {
+    "0.cve_2021_41773": "Harness sanity check (external CVE reference)",
+    "0.pivot_demo": "Internal service-substitution demonstration",
+    "0.web_demo": "Internal service-substitution demonstration",
+    "0.apt41_dust": "Structural compatibility illustration",
+}
 
 
-def _load_attack_campaign_techniques() -> dict[str, dict[str, object]]:
-    """Return ATT&CK campaign -> unique linked technique IDs from the frozen bundle."""
-    bundle = PROJECT_ROOT / "data" / "stix" / "enterprise-attack.json"
-    if not bundle.exists():
-        bundle = PROJECT_ROOT / "measurement" / "sut" / "scripts" / "data" / "enterprise-attack.json"
-    if not bundle.exists():
-        return {}
-    try:
-        objects = json.loads(bundle.read_text(encoding="utf-8")).get("objects", [])
-    except json.JSONDecodeError:
-        return {}
-
-    by_id = {obj.get("id"): obj for obj in objects}
-    campaign_meta: dict[str, dict[str, object]] = {}
-    for obj in objects:
-        if obj.get("type") != "campaign":
-            continue
-        if obj.get("revoked") or obj.get("x_mitre_deprecated"):
-            continue
-        external_id = None
-        for ref in obj.get("external_references", []):
-            if ref.get("source_name") == "mitre-attack" and ref.get("external_id"):
-                external_id = ref["external_id"].upper()
-                break
-        if external_id:
-            campaign_meta[external_id] = {"name": obj.get("name", external_id), "techniques": set()}
-
-    for obj in objects:
-        if obj.get("type") != "relationship" or obj.get("relationship_type") != "uses":
-            continue
-        if obj.get("revoked") or obj.get("x_mitre_deprecated"):
-            continue
-        source = by_id.get(obj.get("source_ref"))
-        target = by_id.get(obj.get("target_ref"))
-        if not source or not target:
-            continue
-        if source.get("type") != "campaign" or target.get("type") != "attack-pattern":
-            continue
-
-        campaign_id = None
-        technique_id = None
-        for ref in source.get("external_references", []):
-            if ref.get("source_name") == "mitre-attack" and ref.get("external_id"):
-                campaign_id = ref["external_id"].upper()
-                break
-        for ref in target.get("external_references", []):
-            if ref.get("source_name") == "mitre-attack" and ref.get("external_id"):
-                technique_id = ref["external_id"]
-                break
-        if campaign_id in campaign_meta and technique_id:
-            campaign_meta[campaign_id]["techniques"].add(technique_id)
-    return campaign_meta
+SERVICE_SUBSTITUTIONS = {
+    "0.pivot_demo": "OpenSSH and Dropbear",
+    "0.web_demo": "Apache and Nginx",
+}
 
 
-def _canonical_campaign_entries() -> list[dict]:
-    canonical_runs_file = PROJECT_ROOT / "release" / "golden_runs.json"
-    if not canonical_runs_file.exists():
-        return []
-    try:
-        data = json.loads(canonical_runs_file.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return []
-    return [entry for entry in data.get("campaigns", []) if entry.get("campaign_id")]
-
-
-def _canonical_manifest_techniques(entry: dict) -> list[str]:
-    evidence_path = entry.get("evidence_path", "")
-    candidates = []
-    if evidence_path:
-        candidates.append(DATA_DIR / "evidence" / Path(evidence_path).name / "manifest.json")
-        candidates.append(PROJECT_ROOT / evidence_path / "manifest.json")
-    for manifest_path in candidates:
-        if not manifest_path.exists():
-            continue
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            continue
-        techniques = manifest.get("techniques", [])
-        return [
-            item.get("technique_id")
-            for item in techniques
-            if item.get("technique_id")
-        ]
-
-    # Fallback only for incomplete local builds; packaged dashboards use the
-    # canonical manifest denominator above.
-    campaign_path = PROJECT_ROOT / "campaigns" / f"{entry.get('campaign_id')}.json"
-    if not campaign_path.exists():
-        return []
-    try:
-        campaign = json.loads(campaign_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return []
-    return [
-        item.get("technique_id")
-        for item in campaign.get("techniques", [])
-        if item.get("technique_id")
-    ]
-
-
-def _campaign_scope_rows() -> list[list[str]]:
-    attack_campaigns = _load_attack_campaign_techniques()
-    rows: list[list[str]] = []
-    for entry in _canonical_campaign_entries():
-        campaign_id = entry["campaign_id"]
-        planned = _canonical_manifest_techniques(entry)
-        planned_unique = set(planned)
-        external_id = _campaign_external_id(campaign_id)
-        if external_id and external_id in attack_campaigns:
-            attack_techniques = set(attack_campaigns[external_id]["techniques"])
-            overlap = planned_unique & attack_techniques
-            if len(planned_unique) == len(attack_techniques) and len(overlap) == len(attack_techniques):
-                interpretation = "ATT&CK campaign technique set covered in this planned replay."
-            elif len(overlap) == len(attack_techniques):
-                interpretation = "ATT&CK set plus local or subtechnique replay steps."
-            else:
-                interpretation = "Partial planned replay; not full ATT&CK campaign coverage."
-            campaign_name = attack_campaigns[external_id]["name"]
-            if campaign_name == external_id:
-                campaign_name = f"ATT&CK campaign object {external_id}"
-            attack_label = f"{external_id}: {campaign_name}"
-            attack_count = str(len(attack_techniques))
-            overlap_count = str(len(overlap))
-        elif external_id:
-            attack_label = external_id
-            attack_count = "0"
-            overlap_count = "0"
-            interpretation = "No ATT&CK uses-links found in the frozen bundle."
-        else:
-            attack_label = "not a Cxxxx ATT&CK campaign object"
-            attack_count = "n/a"
-            overlap_count = "n/a"
-            interpretation = "Curated witness, demo, or intrusion-set run; not a full MITRE campaign denominator."
-        rows.append([
-            campaign_id,
-            attack_label,
-            str(len(planned)),
-            attack_count,
-            overlap_count,
-            interpretation,
-        ])
-    return rows
-
-
-def write_campaign_scope_csv() -> None:
-    rows = _campaign_scope_rows()
-    if not rows:
-        return
-    with (DATA_DIR / "campaign_scope_check.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle, lineterminator="\n")
-        writer.writerow([
-            "campaign_id",
-            "attack_campaign",
-            "autosut_planned_steps",
-            "attack_linked_techniques",
-            "overlap_unique_techniques",
-            "scope_interpretation",
-        ])
-        writer.writerows(rows)
-
-
-def render_campaign_scope_check() -> str:
-    rows = _campaign_scope_rows()
-    if not rows:
-        return "<p class='muted'>No campaign-scope rows could be computed.</p>"
-    return render_table(
-        [
-            "Run",
-            "ATT&CK campaign denominator",
-            "AutoSUT planned steps",
-            "ATT&CK linked techniques",
-            "Match",
-            "Scope interpretation",
-        ],
-        rows,
-        numeric_cols={2, 3, 4},
-        mono_cols={0},
-        wide=True,
-    )
-
-
-def render_execution_tour() -> str:
-    """Render the live-evidence section using only canonical evidence runs.
-
-    By design, the dashboard surfaces exclusively the canonical evidence
-    runs designated by ``scripts/curate_evidence.py`` and persisted in the
-    release manifest. Partial, empty, broken, and superseded runs are not
-    eligible for display here; they live under ``release/evidence/_archive/``
-    but never represent the artifact.
-    """
-    canonical_runs_file = PROJECT_ROOT / "release" / "golden_runs.json"
-    dashboard_evidence_root = DATA_DIR / "evidence"
-    release_evidence_root = PROJECT_ROOT / "release" / "evidence"
-    evidence_root = (
-        dashboard_evidence_root
-        if dashboard_evidence_root.exists()
-        else release_evidence_root
-    )
-
-    if not canonical_runs_file.exists():
-        return ("<p class='muted'>No canonical runs yet. Run "
-                "<code>python scripts/curate_evidence.py --apply</code> "
-                "to designate canonical runs and curate the tree.</p>")
-
-    canonical_data = json.loads(canonical_runs_file.read_text(encoding="utf-8"))
-    canonical_entries = canonical_data.get("campaigns", [])
-    if not canonical_entries:
-        return ("<p class='muted'>No campaigns met the canonical-run criteria. "
-                "Re-run the canonical corpus, then re-curate.</p>")
-
-    candidates = [evidence_root / Path(entry["evidence_path"]).name
-                  for entry in canonical_entries]
-    if not candidates:
-        return "<p class='muted'>No canonical campaign evidence found.</p>"
-
-    cards = []
-    agg_real = agg_sim = agg_total = 0
-    for run_dir in candidates:
-        manifest_path = run_dir / "manifest.json"
-        if not manifest_path.exists():
-            continue
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            continue
-        techniques = manifest.get("techniques", [])
-        if not techniques:
-            continue
-
-        # Fidelity rubric section
-        rubric_path = run_dir / "fidelity_report.json"
-        rubric_summary = ""
-        if rubric_path.exists():
-            try:
-                rubric = json.loads(rubric_path.read_text(encoding="utf-8"))
-                dist = rubric["summary"]["fidelity_distribution"]
-                total = rubric["summary"]["total"]
-                consistent = rubric["summary"]["consistent"]
-                dist_str = ", ".join(f"{k}: {v}" for k, v in sorted(dist.items()))
-                rubric_summary = (
-                    f"<p><strong>Fidelity rubric</strong> (five-question, per technique): "
-                    f"{escape(dist_str)}; {consistent}/{total} consistent</p>"
-                )
-            except (json.JSONDecodeError, KeyError):
-                pass
-
-        # Caldera operations
-        caldera_dir = run_dir / "caldera"
-        caldera_block = ""
-        if caldera_dir.exists():
-            link_logs = sorted(caldera_dir.glob("*.log"))
-            if link_logs:
-                rows = []
-                for t in techniques:
-                    if t.get("caldera_ability_id"):
-                        rows.append([
-                            t["technique_id"],
-                            t.get("caldera_ability_name", "?")[:32],
-                            (t.get("caldera_ability_id") or "")[:8] + "…",
-                            t["executed_mode"],
-                            t["status"],
-                        ])
-                if rows:
-                    caldera_block = (
-                        "<p><strong>Caldera-driven evidence</strong>: every "
-                        "row is a real MITRE Caldera operation; copied stdout "
-                        "logs are under "
-                        f"<code>data/evidence/{escape(run_dir.name)}/caldera</code>:</p>"
-                        + render_table(
-                            ["Technique", "ART ability", "ID", "Executed mode", "Status"],
-                            rows,
-                        )
-                    )
-
-        # Topology hint: if the manifest has multiple host_setup logs
-        # under sut/ we mention the multi-host topology.
-        sut_dir = run_dir / "sut"
-        host_logs = list(sut_dir.glob("*_setup.log")) if sut_dir.exists() else []
-        topo_note = ""
-        if len(host_logs) > 1:
-            host_names = sorted({p.stem.replace("_setup", "") for p in host_logs})
-            topo_note = (
-                f"<p><strong>Multi-host topology</strong>: "
-                f"{escape(', '.join(host_names))} on a private Docker network</p>"
-            )
-
-        # Outcome distribution + execution-realism tiers (S31b). We split modes
-        # into the real tier (a command/operation actually ran) and the
-        # naive_simulated marker, which is declared coverage, not evidence.
-        n_succ = sum(1 for t in techniques if t.get("status") == "success")
-        n_total = len(techniques)
-        modes: dict[str, int] = {}
-        for t in techniques:
-            mode = t.get("executed_mode", "?")
-            modes[mode] = modes.get(mode, 0) + 1
-        real_modes = {m: c for m, c in modes.items() if m in REAL_EXECUTION_MODES}
-        n_real = sum(real_modes.values())
-        n_sim = modes.get(SIMULATED_MODE, 0)
-        agg_real += n_real
-        agg_sim += n_sim
-        agg_total += n_total
-
-        real_str = ", ".join(f"{m}: {c}" for m, c in sorted(real_modes.items())) or "none"
-        realism = (
-            f"<p><strong>Execution realism:</strong> "
-            f"<strong>{n_real}/{n_total}</strong> really executed "
-            f"<span class='muted'>({escape(real_str)})</span>"
-        )
-        if n_sim:
-            realism += (
-                f" &middot; <span class='sim'>{n_sim}/{n_total} simulated</span> "
-                "<span class='muted'>(declared coverage, not executed)</span>"
-            )
-        realism += "</p>"
-
-        rel_path = f"data/evidence/{run_dir.name}/manifest.json"
-        cards.append(
-            "<article class='run-card'>"
-            f"<h3>{escape(manifest.get('campaign_id', '?'))} "
-            f"<span class='muted'>· {escape(manifest.get('run_id', run_dir.name))}</span></h3>"
-            f"<p><strong>{n_succ}/{n_total}</strong> planned steps completed.</p>"
-            f"{realism}"
-            f"{topo_note}"
-            f"{rubric_summary}"
-            f"{caldera_block}"
-            f"<p class='muted'>Evidence manifest: "
-            f"<a href='{escape(rel_path)}'><code>{escape(rel_path)}</code></a></p>"
-            "</article>"
-        )
-
-    if not cards:
-        return "<p class='muted'>No parseable evidence found.</p>"
-
-    # Aggregate realism banner: leads the run cards so the reviewer reads the
-    # real-vs-simulated split before any per-campaign success count.
-    banner = (
-        "<p class='realism-summary'>Across these "
-        f"<strong>{len(cards)}</strong> audited run(s): "
-        f"<strong>{agg_real}/{agg_total}</strong> planned steps are real executions "
-        "(real_controlled / caldera_driven / atomic_red_team)"
-    )
-    if agg_sim:
-        banner += (
-            f", and <strong>{agg_sim}/{agg_total}</strong> are "
-            "<span class='sim'>simulated</span>: recorded as declared "
-            "coverage, not counted as execution evidence"
-        )
-    banner += ".</p>"
-    return banner + "\n".join(cards)
+def render_reference_details(case_id: str, executable: bool) -> str:
+    """Interpret a named case without upgrading its recorded execution status."""
+    if not executable:
+        return ""
+    if case_id == "0.cve_2021_41773":
+        return (
+            "<p><strong>Harness sanity check:</strong> the external "
+            "CVE-2021-41773 reference has recorded execution across decoy-only "
+            "variants. This checks the harness, but is not a material "
+            "service-substitution witness.</p>")
+    if case_id in SERVICE_SUBSTITUTIONS:
+        services = SERVICE_SUBSTITUTIONS[case_id]
+        return (
+            "<p><strong>Internal service-substitution demonstration:</strong> "
+            f"<code>{escape(case_id)}</code> has recorded execution across "
+            f"{escape(services)} under its declared invariant. These are "
+            "controlled internal examples, not historical campaign replays.</p>")
+    return ""
 
 
 def render_subdetermination_section() -> str:
-    """Render the environment-non-uniqueness proof from the curated artifact.
+    """Render recorded reference cases and their distinct evidence roles.
 
     Reads release/subdetermination_proof.json (written by
     build_subdetermination_artifact.py); never recomputes the proof.
@@ -1291,117 +1170,103 @@ def render_subdetermination_section() -> str:
                 "</p>")
     data = json.loads(artifact_file.read_text(encoding="utf-8"))
     rows = []
-    for campaign_id, proof in data.get("proofs", {}).items():
-        result = ("canonical and variants execute (real_controlled)"
-                  if proof["executable"]
-                  else "all variants remain compatible (structural)")
+    details = []
+    for case_id, proof in data.get("proofs", {}).items():
+        role = REFERENCE_ROLES.get(case_id, "Unclassified reference")
+        result = ("Execution recorded in preserved artifact"
+                  if proof["executable"] else "Execution not recorded")
+        if case_id not in REFERENCE_ROLES:
+            result += "; not a classified witness"
         fingerprint = f"{proof['invariant_fingerprint'][:16]}…"
         rows.append(
-            f"<tr><td><code>{escape(campaign_id)}</code></td>"
+            f"<tr><td><code>{escape(case_id)}</code><br>{escape(role)}</td>"
             f"<td><code>{escape(fingerprint)}</code></td>"
             f"<td>{len(proof['variants'])}</td>"
             f"<td>{escape(result)}</td>"
             f"<td>{proof['invariant_count']}</td>"
             f"<td>{proof['free_count']}</td></tr>")
-    # Fingerprint leads: the memorable claim is "same fingerprint, different
-    # SUTs, same outcome", not the free fraction (which is only a property of
-    # the partition, never the count of compatible models).
-    table = (
-        "<div class='table-wrap'><table><thead><tr><th>Campaign</th><th>Invariant fingerprint</th>"
-        "<th>Generated variants</th><th>Result</th><th>Corpus-fixed</th>"
+        details.append(render_reference_details(case_id, proof["executable"]))
+    table = wrap_table_region(
+        "<table><thead><tr><th>Reference case</th><th>Declared invariant fingerprint</th>"
+        "<th>Generated variants</th><th>Recorded status</th><th>Fixed elements</th>"
         "<th>Free</th></tr></thead>"
-        f"<tbody>{''.join(rows)}</tbody></table></div>")
-    conclusion = (
-        "<p><strong>Conclusion:</strong> structured CTI constrains the "
-        "environment but does not uniquely determine it. Every variant preserves "
-        "the same corpus fingerprint while varying only non-corpus elements.</p>")
-    cve = data.get("proofs", {}).get("0.cve_2021_41773")
-    witness = ""
-    if cve and cve.get("executable"):
-        realisations = len(cve["variants"]) + 1  # canonical + variants
-        witness = (
-            f"<p><strong>Executable witness:</strong> {realisations} compatible "
-            "SUT realisations for CVE-2021-41773 (the canonical SUT plus "
-            "generated variants) "
-            "preserve the same corpus fingerprint and successfully execute the "
-            "same real vulnerability: the path traversal leaking "
-            "<code>/etc/passwd</code>, each with "
-            "<code>declared_mode == executed_mode</code>.</p>")
-    pivot = data.get("proofs", {}).get("0.pivot_demo")
-    web = data.get("proofs", {}).get("0.web_demo")
-    coincident = ""
-    if (pivot and pivot.get("executable")) or (web and web.get("executable")):
-        coincident = (
-            "<p><strong>Coincident witnesses:</strong> two informative service "
-            "substitutions are themselves executed, across two service classes. "
-            "The SSH-pivot reference runs a canonical OpenSSH SUT and a generated "
-            "Dropbear variant through the same multi-stage pivot. The edge-HTTP "
-            "reference runs a canonical Apache SUT and a generated Nginx variant "
-            "through the same HTTP Basic Auth brute-force and exfiltration chain. "
-            "Each realisation preserves the same corpus fingerprint and runs with "
-            "<code>declared_mode == executed_mode</code>. The executed variation "
-            "is the service realisation itself, a structurally different "
-            "server.</p>")
+        f"<tbody>{''.join(rows)}</tbody></table>", "Environment non-uniqueness evidence")
     coverage_note = (
-        "<p class='muted'>Scope: the non-uniqueness result rests on the "
-        "executable CVE-2021-41773 and coincident service-substitution "
-        "witnesses above. "
-        "Campaigns carrying "
-        "<code>naive_simulated</code> techniques are included to study "
-        "environment reconstruction and compatibility; declared behavioral "
-        "coverage is never counted as procedural-execution evidence, so the "
-        "simulated-technique ratio does not bear on the non-uniqueness claim.</p>")
+        "<p class='muted'>Scope: the fingerprint describes the declared invariant "
+        "under source tags assigned to each reference case. It is not independent "
+        "validation of historical provenance. Structural compatibility is not "
+        "deployment evidence; generated variants and simulated behavior do not "
+        "establish observed effects. Recorded execution is preserved evidence, "
+        "not a new execution in this dashboard.</p>")
     interpretation = (
-        "<p class='muted'>Interpretation: ATT&amp;CK models adversary behaviour "
+        "<p class='muted'>Interpretation: ATT&amp;CK models adversary behavior "
         "and STIX models threat intelligence; neither is designed to specify a "
-        "complete executable environment. The result "
-        "shows where downstream emulation must reconstruct the environment "
-        "beyond the structured intelligence.</p>")
-    return table + conclusion + witness + coincident + coverage_note + interpretation
+        "complete executable environment. Non-identification under a defined "
+        "projection is a conditional argument; the selected reference cases "
+        "do not measure its prevalence across real campaigns.</p>")
+    return table + "".join(details) + coverage_note + interpretation
 
 
-def render_html(macros: dict[str, str], provenance_section: str, merged) -> str:
+def render_html(
+    macros: dict[str, str], provenance_section: str, merged, ledger: dict
+) -> str:
     return f"""<!doctype html>
 <html lang='en'>
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name='color-scheme' content='light dark'>
+  <link rel='icon' href='autosut-mark.svg' type='image/svg+xml'>
   <title>AutoSUT Evidence Dashboard</title>
   <link rel='stylesheet' href='style.css?v={STYLE_VERSION}'>
+  <script>
+    try {{ var stored = localStorage.getItem('autosut-theme');
+      if (stored === 'light' || stored === 'dark')
+        document.documentElement.setAttribute('data-theme', stored);
+    }} catch (err) {{ if (err.name !== 'SecurityError') throw err; }}
+  </script>
 </head>
 <body>
+<a class='skip-link' href='#main'>Skip to main content</a>
 <header>
-  <h1>AutoSUT Evidence Dashboard</h1>
-  <p>Evidence view for reproducing and auditing the study claims.
-     Generated {release_datetime().strftime('%B %d, %Y')}.</p>
+  <div class='masthead'>
+    <div class='mast-brand'>
+      <span class='eyebrow'>Evidence &amp; Reproduction</span>
+      <h1 class='wordmark'>Auto<span>SUT</span></h1>
+      <p class='mast-sub'>Evidence dashboard for reproducing and auditing the study
+        claims. Release snapshot: {release_datetime().strftime('%B %d, %Y')}.</p>
+    </div>
+    <button class='theme-toggle' type='button' onclick='toggleTheme()'
+      aria-label='Toggle color theme' aria-pressed='false'>&#9681;&nbsp;Theme</button>
+  </div>
 </header>
 <nav>
   <a href='#overview'>Reviewer path</a>
+  <a href='#claims'>Claim ledger</a>
   <a href='#nonuniqueness'>Non-uniqueness proof</a>
   <a href='#provenance'>Reconstruction boundary</a>
   <a href='#findings'>Claim map</a>
-  <a href='#replay'>Replay reports</a>
-  <a href='#scope'>Campaign scope</a>
-  <a href='#execution'>Execution evidence</a>
+  <a href='#replay'>Historical audit</a>
   <a href='#worked'>Worked examples</a>
   <a href='#rules'>Compatibility rules</a>
   <a href='#raw'>Raw evidence</a>
 </nav>
-<main>
-{render_audit_overview(merged)}
+<main id='main' tabindex='-1'>
+{render_audit_overview(merged, ledger)}
+<section id='claims'>
+  <h2>Canonical Claim Ledger</h2>
+  <p class='muted'>Every current claim is shown with its status, scope, measured
+    value, evidence artifacts, and caveat. A bounded status never licenses a
+    campaign-wide, historical, or human-effort conclusion.</p>
+{render_claim_ledger(ledger).strip()}
+</section>
 <section id='nonuniqueness'>
-  <h2>Environment Non-Uniqueness Proof</h2>
-  <p class='muted'>The core result: the same CTI admits multiple distinct,
-    compatible SUTs, including an executable witness. Each variant preserves
-    every <code>corpus_supported</code>
-    element (identical invariant fingerprint) and varies only the free region.
-    <code>0.cve_2021_41773</code> is the executable witness, each variant
-    running the real CVE with <code>declared_mode == executed_mode</code>.
-    <code>0.pivot_demo</code> and <code>0.web_demo</code> are coincident
-    witnesses, running the same attack across structurally different SSH servers
-    (OpenSSH and Dropbear) and edge HTTP servers (Apache and Nginx).
-    <code>0.apt41_dust</code> is the structural witness: a large free region
-    with materially distinct services. Source:
+  <h2>Environment Non-Uniqueness: Reference Cases</h2>
+  <p class='muted'>These records separate an externally anchored CVE harness
+    check, internal service-substitution demonstrations, and a structural
+    compatibility illustration. Preserving a declared invariant is distinct
+    from deployment, observed effects, and historical fidelity. Execution
+    status below comes from the preserved artifact, not a live run. Source:
     <code>release/subdetermination_proof.json</code>.</p>
   {render_subdetermination_section()}
 </section>
@@ -1423,39 +1288,11 @@ def render_html(macros: dict[str, str], provenance_section: str, merged) -> str:
 {render_findings(macros)}
 </section>
 <section id='replay'>
-  <h2>End-to-End Replay Reports</h2>
-  <p class='muted'>Replay reports summarize completed campaign reruns. They are
-    separate from the audited runs below: reruns show what a reviewer executed
-    locally, while audited runs are the stable evidence shipped for claim
-    inspection. New reruns emit TSV and JSON reports for inspection.</p>
+  <h2>Historical Record Audit</h2>
+  <p class='muted'>This retrospective audit checks existing records and their file
+    references. It does not rerun campaigns, certify the current implementation,
+    or contribute an operational claim to the canonical ledger.</p>
   {render_replay_reports()}
-</section>
-<section id='scope'>
-  <h2>Campaign Scope Sanity Check</h2>
-  <p class='muted'>This table prevents a common denominator error. AutoSUT
-    replay counts are planned campaign/SUT steps from released manifests;
-    they are not automatically the full set of ATT&amp;CK techniques linked to
-    a MITRE campaign object. For Cxxxx runs, the table compares the planned
-    replay against the frozen Enterprise ATT&amp;CK bundle. Source:
-    <code>data/campaign_scope_check.csv</code>.</p>
-  {render_campaign_scope_check()}
-</section>
-<section id='execution'>
-  <h2>Audited Complete Runs</h2>
-  <p class='muted'>
-    Only audited complete runs are shown here: every planned step completed
-    and the manifest, summary, and fidelity rubric are all present. Selection
-    criteria are recorded in <code>data/canonical_runs.json</code>. Partial,
-    empty, or superseded runs are excluded and are not used for claims.
-    Execution is split into realism tiers:
-    <code>real_controlled</code>, <code>caldera_driven</code>, and
-    <code>atomic_red_team</code> are real executions (a command ran, an
-    operation fired); <strong>simulated</strong> is declared behavioral
-    coverage, reported as a limitation and never counted as execution evidence.
-  </p>
-  <p class='muted'>What each mode lets a reviewer conclude:</p>
-  {render_execution_claim_table()}
-  {render_execution_tour()}
 </section>
 <section id='worked'>
   <h2>Worked example: CVE-positive campaigns</h2>
@@ -1467,8 +1304,9 @@ def render_html(macros: dict[str, str], provenance_section: str, merged) -> str:
   <h2>Compatibility routing-policy surface</h2>
   <p class='muted'>One row per CF/VMR/ID routing rule with technique count and
     share. Labels are heuristic policy outputs, not measured minimum-backend
-    requirements. The manual-validation packet has no completed labels, so no
-    accuracy estimate is reported. Sources:
+    requirements. Two LLM judges from different model families label a stratified
+    sample blind to these labels; their consensus is a reference, not ground
+    truth, and disagreements are reported as boundary cases. Sources:
     <code>data/compatibility_rule_breakdown.csv</code> and
     <code>data/compatibility_denominator_summary.csv</code>.</p>
   {render_rule_breakdown()}
@@ -1486,6 +1324,53 @@ def render_html(macros: dict[str, str], provenance_section: str, merged) -> str:
   <code>python3 scripts/build_reviewer_dashboard.py</code>.
   Validate every macro: <code>bash run_review_check.sh</code>.
 </footer>
+<script>
+function effectiveTheme() {{
+  var explicit = document.documentElement.getAttribute('data-theme');
+  return explicit || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+}}
+function syncThemeToggle() {{
+  document.querySelector('.theme-toggle').setAttribute('aria-pressed', String(effectiveTheme() === 'dark'));
+}}
+function toggleTheme() {{
+  var current = effectiveTheme();
+  var next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  syncThemeToggle();
+  try {{ localStorage.setItem('autosut-theme', next); }} catch (err) {{
+    if (err.name !== 'SecurityError' && err.name !== 'QuotaExceededError') throw err;
+  }}
+}}
+syncThemeToggle();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncThemeToggle);
+(function () {{
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var sections = {{}};
+  links.forEach(function (link) {{
+    link.addEventListener('focus', function () {{
+      var navigation = link.closest('nav');
+      var navigationBox = navigation.getBoundingClientRect();
+      var linkBox = link.getBoundingClientRect();
+      var focusClearance = 8;
+      if (linkBox.left < navigationBox.left + focusClearance) {{
+        navigation.scrollLeft -= navigationBox.left + focusClearance - linkBox.left;
+      }} else if (linkBox.right > navigationBox.right - focusClearance) {{
+        navigation.scrollLeft += linkBox.right - navigationBox.right + focusClearance;
+      }}
+    }});
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if (target) sections[target.id] = link;
+  }});
+  var observer = new IntersectionObserver(function (entries) {{
+    entries.forEach(function (entry) {{
+      if (!entry.isIntersecting) return;
+      links.forEach(function (link) {{ link.classList.remove('active'); }});
+      if (sections[entry.target.id]) sections[entry.target.id].classList.add('active');
+    }});
+  }}, {{ rootMargin: '-45% 0px -50% 0px', threshold: 0 }});
+  Object.keys(sections).forEach(function (id) {{ observer.observe(document.getElementById(id)); }});
+}})();
+</script>
 </body>
 </html>"""
 
@@ -1494,8 +1379,7 @@ def main() -> int:
     DASHBOARD_DIR.mkdir(parents=True, exist_ok=True)
     copy_data_files()
     copy_replay_reports()
-    copy_curated_evidence_files()
-    write_campaign_scope_csv()
+    remove_legacy_dashboard_evidence()
     # Provenance is computed once from the catalog and fed to both the download
     # artifacts and the rendered summary, so the page and the files agree.
     summaries, skipped = gpr.collect_summaries()
@@ -1503,14 +1387,15 @@ def main() -> int:
     copy_provenance_files(summaries, merged, skipped)
     provenance_section = render_provenance_summary(summaries, merged)
     macros = load_macros()
+    ledger = load_claim_ledger()
     (DASHBOARD_DIR / "style.css").write_text(STYLE, encoding="utf-8")
+    (DASHBOARD_DIR / "autosut-mark.svg").write_text(BRAND_MARK, encoding="utf-8")
     (DASHBOARD_DIR / "index.html").write_text(
-        render_html(macros, provenance_section, merged), encoding="utf-8")
+        render_html(macros, provenance_section, merged, ledger), encoding="utf-8")
     csv_count = len(list(DATA_DIR.glob("*.csv")))
-    evidence_count = len(list((DATA_DIR / "evidence").glob("*"))) if (DATA_DIR / "evidence").exists() else 0
     print(f"[dashboard] wrote {DASHBOARD_DIR / 'index.html'}")
     print(f"[dashboard] copied {csv_count} CSV evidence files into {DATA_DIR}")
-    print(f"[dashboard] copied {evidence_count} canonical evidence run(s)")
+    print(f"[dashboard] rendered {len(ledger['claims'])} canonical claim entries")
     print(f"[dashboard] provenance: {merged.total_elements} elements across "
           f"{len(summaries)} campaigns "
           f"(corpus {merged.percentages['corpus_supported']}%, "

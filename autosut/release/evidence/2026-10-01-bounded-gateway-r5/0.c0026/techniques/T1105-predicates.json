@@ -1,0 +1,23 @@
+{
+  "template_id": "transfer-over-resolved-lab-channel",
+  "bindings": {
+    "channel": "channel.private_http",
+    "payload": "payload.benign",
+    "target": "target.primary"
+  },
+  "declared_predicates": [
+    "source_and_destination_hashes_match"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/transfer",
+      "expected_sha256": "10c082764262c81d5a97818813a3a9ddb8465368136171d0db0fd1807a7e1474",
+      "observed_sha256": "10c082764262c81d5a97818813a3a9ddb8465368136171d0db0fd1807a7e1474"
+    },
+    {
+      "server_request_observed": true,
+      "no_exploit_delivered": true
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

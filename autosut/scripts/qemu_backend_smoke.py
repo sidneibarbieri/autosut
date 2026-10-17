@@ -40,7 +40,7 @@ def run() -> int:
         memory_mb=2048,
         smp=2,
         backend="qemu",
-        notes="QEMU smoke — one-shot vagrant-qemu boot under a temp project.",
+        notes="QEMU smoke - one-shot vagrant-qemu boot under a temp project.",
     )
 
     print(f"[qemu-smoke] run_id={run_id}")

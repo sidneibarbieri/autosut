@@ -1,0 +1,180 @@
+{
+  "campaign_id": "0.salesforce_data_exfiltration",
+  "source_campaign_id": "C0059",
+  "description": "Salesforce Data Exfiltration Campaign - Cloud-based attack with social engineering and CRM data theft",
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 25
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": ["ssh", "apache2", "mysql"]
+      }
+    },
+    {
+      "type": "open_ports",
+      "target": "target",
+      "config": {
+        "ports": [22, 80, 443, 3306]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1598.004",
+      "name": "Spearphishing Voice",
+      "tactic": "reconnaissance",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors initiated voice calls to socially engineer victims into authorizing malicious apps"
+    },
+    {
+      "technique_id": "T1585",
+      "name": "Establish Accounts",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors created Salesforce trial accounts to register malicious applications"
+    },
+    {
+      "technique_id": "T1585.002",
+      "name": "Establish Accounts: Email Accounts",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors registered shinycorp@tuta.com and shinygroup@tuta.com for extortion demands"
+    },
+    {
+      "technique_id": "T1586.002",
+      "name": "Compromise Accounts: Email Accounts",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors used compromised emails to create Salesforce trial accounts"
+    },
+    {
+      "technique_id": "T1587.001",
+      "name": "Malware",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors created malicious apps within Salesforce trial accounts similar to Data Loader"
+    },
+    {
+      "technique_id": "T1588.002",
+      "name": "Tool",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors initially relied on the legitimate Salesforce Data Loader for exfiltration"
+    },
+    {
+      "technique_id": "T1608.005",
+      "name": "Link Target",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors established an Okta phishing panel for credential harvesting"
+    },
+    {
+      "technique_id": "T1671",
+      "name": "Cloud Application Integration",
+      "tactic": "persistence",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors deceived victims into authorizing malicious connected apps to Salesforce"
+    },
+    {
+      "technique_id": "T1059.006",
+      "name": "Python",
+      "tactic": "execution",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors used custom Python applications for data exfiltration"
+    },
+    {
+      "technique_id": "T1036",
+      "name": "Masquerading",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors used voice calls to trick victims into authorizing a modified Salesforce Data Loader"
+    },
+    {
+      "technique_id": "T1078.002",
+      "name": "Valid Accounts: Domain Accounts",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors used compromised credentials for lateral movement"
+    },
+    {
+      "technique_id": "T1656",
+      "name": "Impersonation",
+      "tactic": "defense-evasion",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors impersonated IT support claiming enterprise-wide connectivity issues"
+    },
+    {
+      "technique_id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "discovery",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors queried Salesforce environments to identify sensitive information"
+    },
+    {
+      "technique_id": "T1213.004",
+      "name": "Customer Relationship Management Software",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors accessed and exfiltrated sensitive information from Salesforce instances"
+    },
+    {
+      "technique_id": "T1090",
+      "name": "Proxy",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors used Mullvad VPN IPs to proxy voice phishing calls"
+    },
+    {
+      "technique_id": "T1090.003",
+      "name": "Multi-hop Proxy",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "inspired",
+      "description": "Threat actors used Tor IPs for voice calls and stolen data collection"
+    },
+    {
+      "technique_id": "T1020",
+      "name": "Automated Exfiltration",
+      "tactic": "exfiltration",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors used API queries to automatically exfiltrate large volumes of data"
+    },
+    {
+      "technique_id": "T1567",
+      "name": "Exfiltration Over Web Service",
+      "tactic": "exfiltration",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "description": "Threat actors exfiltrated data via Salesforce API and Data Loader channels"
+    }
+  ]
+}

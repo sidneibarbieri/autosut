@@ -1,0 +1,20 @@
+--- /tmp/sandcat.log ---
+Starting sandcat in verbose mode.
+[*] No tunnel protocol specified. Skipping tunnel setup.
+[*] Attempting to set channel HTTP
+Beacon API=/beacon
+[*] Set communication channel to HTTP
+initial delay=0
+server=http://172.17.0.2:8888
+upstream dest addr=http://172.17.0.2:8888
+group=red
+privilege=Elevated
+allow local p2p receivers=false
+beacon channel=HTTP
+available data encoders=base64, plain-text
+[+] Beacon (HTTP): ALIVE
+[*] Running instruction 532b9af4-0958-4b30-8306-1f1df2da871b
+[*] Submitting results for link 532b9af4-0958-4b30-8306-1f1df2da871b via C2 channel HTTP
+
+--- process table ---
+

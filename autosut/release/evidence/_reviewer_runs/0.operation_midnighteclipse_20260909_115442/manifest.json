@@ -1,0 +1,352 @@
+{
+  "campaign_id": "0.operation_midnighteclipse",
+  "run_id": "0.operation_midnighteclipse_20260909_115442",
+  "timestamp": "2026-09-09T11:55:47.213163Z",
+  "attacker": {
+    "profile_id": "globalprotect_attacker",
+    "capabilities": [
+      "http_client",
+      "session_cookie_injection"
+    ],
+    "notes": "curl + python3 to inject the SESSID command-injection payload the CVE-2024-3400 advisory describes."
+  },
+  "sut": {
+    "sut_id": "globalprotect_target",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "python3",
+      "openssl"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "eclipseops",
+          "secret": "Eclipse123!",
+          "location": null,
+          "purpose": "Operator account for the GlobalProtect surrogate (eclipseops:Eclipse123!).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/var/lib/eclipseops/network_inventory.txt",
+          "content_text": "vpn-gateway-01\nvpn-gateway-02\n",
+          "content_b64": null,
+          "owner": "root",
+          "mode": "0644",
+          "purpose": "Decoy network inventory the CVE-2024-3400 attacker would enumerate post-exploitation.",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 443,
+          "protocol": "tcp",
+          "service": "globalprotect_https_surrogate",
+          "expose_to": "private_network",
+          "purpose": "Documented CVE-2024-3400 GlobalProtect HTTPS exploit surface (realised by the surrogate).",
+          "source": "corpus_supported"
+        }
+      ],
+      "applications": [],
+      "notes": "Realism for the GlobalProtect surrogate target."
+    },
+    "topology": null,
+    "notes": "Surrogate of the Palo Alto GlobalProtect appliance \u2014 CVE-2024-3400 SESSID command-injection semantics are preserved by the injector recipe."
+  },
+  "cves_injected": [
+    {
+      "cve_id": "CVE-2024-3400",
+      "fidelity": "adapted",
+      "realization": "surrogate",
+      "success": true,
+      "log_path": "sut/cve_injection_CVE-2024-3400.log",
+      "notes": "Surrogate of GlobalProtect SSL VPN login.esp endpoint. The SESSID cookie command-injection semantics are preserved; the actual Palo Alto product is paywalled."
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1584.003",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1584.003_inspired.log"
+      ],
+      "duration_sec": 0.10653045889921486,
+      "notes": "Inspired representation of Virtual Private Server: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1584.006",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1584.006_inspired.log"
+      ],
+      "duration_sec": 0.1044860000256449,
+      "notes": "Inspired representation of Web Services: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1588.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.002_artifact.log"
+      ],
+      "duration_sec": 0.12405837490223348,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1190",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1190_inspired.log"
+      ],
+      "duration_sec": 0.10362079192418605,
+      "notes": "Inspired representation of Exploit Public-Facing Application: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1078",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1078_inspired.log"
+      ],
+      "duration_sec": 0.10097845795098692,
+      "notes": "Inspired representation of Valid Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1078.002",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1078.002_inspired.log"
+      ],
+      "duration_sec": 0.10063245799392462,
+      "notes": "Inspired representation of Domain Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.004_shell.log"
+      ],
+      "duration_sec": 0.40508841699920595,
+      "notes": "Adapted: real shell + python interpreter execution.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1053.003",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1053.003_inspired.log"
+      ],
+      "duration_sec": 0.10117683291900903,
+      "notes": "Inspired representation of Cron: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1559",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1559_inspired.log"
+      ],
+      "duration_sec": 0.10047970805317163,
+      "notes": "Inspired representation of Inter-Process Communication: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1003.003",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1003.003_inspired.log"
+      ],
+      "duration_sec": 0.1016951670171693,
+      "notes": "Inspired representation of NTDS: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1021.002",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1021.002_inspired.log"
+      ],
+      "duration_sec": 0.1003885839600116,
+      "notes": "Inspired representation of SMB/Windows Admin Shares: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1021.006",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1021.006_inspired.log"
+      ],
+      "duration_sec": 0.10282499995082617,
+      "notes": "Inspired representation of Windows Remote Management: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1005",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1005_seed.log",
+        "techniques/T1005_exfil.log"
+      ],
+      "duration_sec": 2.2132100419839844,
+      "notes": "Adapted: real HTTP exfil of staged file from target to attacker.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1074.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1074.001_archive.log"
+      ],
+      "duration_sec": 0.17042920808307827,
+      "notes": "Adapted: real tar+gzip archive of lab data.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1090",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1090_inspired.log"
+      ],
+      "duration_sec": 0.10038679209537804,
+      "notes": "Inspired representation of Proxy: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1071.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1071.001_inspired.log"
+      ],
+      "duration_sec": 0.10540295799728483,
+      "notes": "Inspired representation of Web Protocols: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ],
+      "duration_sec": 0.12564787501469254,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

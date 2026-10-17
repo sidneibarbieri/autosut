@@ -1,0 +1,55 @@
+{
+  "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+  "synthetic_credential": "s3cr3t-964e6be2",
+  "negative_control": true,
+  "network": "autosut-84165141-net",
+  "caldera_net_ip": "172.19.0.2",
+  "caldera_ready_seconds": 12.1,
+  "host_a": "autosut-84165141-host-a",
+  "host_b": "autosut-84165141-host-b",
+  "environment_provenance": {
+    "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+    "protocol_version": "caldera-experiment/1",
+    "host_os": "Darwin 25.5.0",
+    "host_architecture": "arm64",
+    "python": "Python 3.14.6",
+    "docker_client": "29.6.2",
+    "docker_server": "29.2.1",
+    "images": {
+      "caldera": {
+        "declared_reference": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "image_id": "sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "architecture": "amd64",
+        "resolved_repo_digest": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7"
+      },
+      "sut_and_attacker": {
+        "declared_reference": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "image_id": "sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "architecture": "arm64",
+        "resolved_repo_digest": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
+      }
+    }
+  },
+  "build_attempts": {
+    "a": [
+      "attempt 1: no binary returned",
+      "attempt 2: wrong architecture (not aarch64)",
+      "attempt 3: built aarch64"
+    ],
+    "b": [
+      "attempt 1: built aarch64"
+    ]
+  },
+  "paw_a": "hosta228f6e",
+  "paw_b": "hostb5d04a4",
+  "operation": {
+    "operation_id": "9f6d638f-df7d-4ec9-aa57-602078485bc1",
+    "operation_state": "finished",
+    "link_count": 0
+  },
+  "host_b_marker": "",
+  "fact_propagated": false,
+  "scenario_effect_confirmed": true,
+  "realization": "multi_host_infrastructure_scenario",
+  "independent_effect_confirmed": true
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "autosut-historical-evidence-status/v1",
+  "classification": "historical_non_qualifying",
+  "claim_eligible": false,
+  "applies_to_current_revision": false,
+  "records": [
+    "C0010.admitted-execution.json",
+    "C0026.admitted-execution.json"
+  ],
+  "reasons": [
+    "The records predate revision-bound qualification and independent supervision.",
+    "Some successful executor outcomes reference artifacts recorded as absent after execution.",
+    "The records are retained for historical audit and must not be promoted into a current capability or paper claim."
+  ]
+}

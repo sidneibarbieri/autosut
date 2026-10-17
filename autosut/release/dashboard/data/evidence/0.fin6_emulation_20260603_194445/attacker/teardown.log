@@ -1,5 +1,0 @@
-docker stop autosut-att-5ff04efb
-exit_code: 0
-stdout: autosut-att-5ff04efb
-
-stderr: 

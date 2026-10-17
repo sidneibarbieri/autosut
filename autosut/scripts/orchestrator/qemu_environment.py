@@ -3,7 +3,7 @@
 The QEMU backend is the **extended-realism** tier in AutoSUT's substrate
 hierarchy (canonical Docker -> extended QEMU -> experimental Tart). It
 provisions a real virtual machine (real kernel boundary, real virtual NIC,
-real filesystem layout) via Vagrant with the QEMU provider — the same path
+real filesystem layout) via Vagrant with the QEMU provider - the same path
 the frozen ``sticks/Vagrantfile`` adopts for Apple Silicon hosts and the
 libvirt path uses on Linux hosts.
 
@@ -29,7 +29,7 @@ Reproducibility contract
   equivalent path; the orchestrator works the same way once provider is
   installed.
 - Guest image: public, signed Ubuntu cloud image referenced by box name in
-  the per-run Vagrantfile. No custom-built boxes (deliberate — keeps the
+  the per-run Vagrantfile. No custom-built boxes (deliberate - keeps the
   artifact reproducible from a clean clone).
 - One Vagrant project per campaign run, under
   ``release/evidence/<run>/qemu/vagrant_project/``. The orchestrator
@@ -55,7 +55,7 @@ import subprocess
 import uuid
 from pathlib import Path
 
-from .environment_base import CommandResult, EnvironmentBackend
+from .environment_base import BackendReadiness, CommandResult, EnvironmentBackend
 from .models import SUTProfile
 
 
@@ -113,14 +113,46 @@ def _vagrant_available() -> bool:
     return shutil.which("vagrant") is not None
 
 
+def _aarch64_accelerators() -> list[str]:
+    """Accelerators the aarch64 QEMU binary offers on this host."""
+    binary = shutil.which("qemu-system-aarch64")
+    if binary is None:
+        return []
+    completed = subprocess.run(
+        [binary, "-accel", "help"], capture_output=True, text=True, check=False, timeout=15
+    )
+    return [
+        line.strip()
+        for line in completed.stdout.splitlines()
+        if line.strip() and not line.startswith("Accelerators")
+    ]
+
+
 class QEMUEnvironment(EnvironmentBackend):
     """One Vagrant+QEMU VM provisioned for a single campaign run.
 
-    Contract identical to :class:`DockerEnvironment` — bring up, run shell,
-    teardown — so the orchestrator and executor are substrate-agnostic.
+    Contract identical to :class:`DockerEnvironment` - bring up, run shell,
+    teardown - so the orchestrator and executor are substrate-agnostic.
     """
 
     backend_name = "qemu"
+
+    @classmethod
+    def check(cls) -> BackendReadiness:
+        """Ready when vagrant, the aarch64 QEMU binary, and HVF acceleration are present.
+
+        Readiness only: a passing check means materialization is worth attempting, not that a
+        guest boots. On this artifact's primary host a Windows guest passed every equivalent
+        check and still failed to boot, so promotion past ready is a boot qualification's job.
+        """
+        gaps: list[str] = []
+        if not _vagrant_available():
+            gaps.append("vagrant not on PATH")
+        if shutil.which("qemu-system-aarch64") is None:
+            gaps.append("qemu-system-aarch64 not on PATH")
+        elif _is_apple_silicon() and "hvf" not in _aarch64_accelerators():
+            gaps.append("qemu-system-aarch64 does not offer the hvf accelerator")
+        return BackendReadiness(cls.backend_name, ready=not gaps, gaps=gaps)
 
     def __init__(self, project_dir: Path, sut: SUTProfile, run_dir: Path):
         self.project_dir = project_dir

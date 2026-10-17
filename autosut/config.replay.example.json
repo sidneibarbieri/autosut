@@ -1,0 +1,6 @@
+{
+  "llm": {
+    "provider": "replay",
+    "transcript_path": "path/to/a/planning-transcript.json"
+  }
+}

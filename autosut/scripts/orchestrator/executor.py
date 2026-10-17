@@ -50,7 +50,7 @@ def _command_succeeded(result: object) -> bool:
 def _shadowray_t1190(target: DockerEnvironment, attacker: AttackerEnv,
                      target_ip: str, run_dir: Path,
                      realization: Realization) -> TechniqueOutcome:
-    """T1190 — Exploit Public-Facing Application against Ray dashboard."""
+    """T1190 - Exploit Public-Facing Application against Ray dashboard."""
     start = _now()
 
     # Step 1: from attacker, confirm dashboard is reachable. Use python's
@@ -68,6 +68,8 @@ def _shadowray_t1190(target: DockerEnvironment, attacker: AttackerEnv,
             technique_id="T1190",
             declared_fidelity=FidelityLevel.adapted,
             executed_fidelity=FidelityLevel.adapted,
+            declared_mode=ExecutionMode.real_controlled,
+            executed_mode=ExecutionMode.real_controlled,
             realization=realization,
             status="failure",
             evidence_files=["techniques/T1190_dashboard_probe.log"],
@@ -158,19 +160,29 @@ def _ray_submission_command(target_ip: str, command: str) -> str:
     return "python3 -c " + shlex.quote(script)
 
 
+_SHADOWRAY_EFFECT_CHECKS = {
+    'T1059.006': 'test "$(cat /tmp/T1059.006.out)" = 2 && sha256sum /tmp/T1059.006.out',
+    'T1546.004': 'grep -qx \'export AUTOSUT_LAB_HOOK=1\' /tmp/autosut_home/.bashrc && test "$(cat /tmp/T1546.004.out)" = 1 && sha256sum /tmp/autosut_home/.bashrc',
+    'T1068': 'test "$(head -n 1 /tmp/T1068.out)" = "$(id)" && grep -qx NO_LOCAL_EXPLOIT_EXECUTED /tmp/T1068.out',
+    'T1027.013': 'python3 -c \'import base64,hashlib; source=open("/tmp/encoded_source","rb").read(); encoded=open("/tmp/T1027.013.out","rb").read(); assert base64.b64decode(encoded)==source; print(hashlib.sha256(source).hexdigest()); print(hashlib.sha256(encoded).hexdigest())\' ',
+    'T1003.008': 'test -s /tmp/T1003.008.out && cmp /tmp/autosut_credential_fixture /tmp/T1003.008.out && sha256sum /tmp/autosut_credential_fixture /tmp/T1003.008.out',
+    'T1016': 'grep -F -x "$(hostname)" /tmp/T1016.out && grep -F \'Destination\' /tmp/T1016.out',
+    'T1496.001': 'python3 -c \'import json; data=json.load(open("/tmp/T1496.001.out")); assert data["operations"]==10000; assert 0 <= data["elapsed_seconds"] <= 2; assert 0 <= data["cpu_seconds"] <= 2; print(data)\' ',
+}
+
+
 def _shadowray_post_access_action(
     target: DockerEnvironment,
     attacker: AttackerEnv,
     target_ip: str,
     technique_id: str,
     command: str,
-    marker: str,
     notes: str,
     *,
     realization: Realization,
     fidelity: FidelityLevel = FidelityLevel.adapted,
 ) -> TechniqueOutcome:
-    """Execute an action through the compromised API and verify its marker.
+    """Execute through the compromised API and check the registered effect.
 
     Realization reflects the channel actually materialised: real_cve when the action
     is delivered through the real vulnerable Ray endpoint, surrogate when it is the
@@ -184,7 +196,7 @@ def _shadowray_post_access_action(
         timeout=60,
     )
     verification = target.run_shell(
-        f"test -s {shlex.quote(marker)} && cat {shlex.quote(marker)}",
+        _SHADOWRAY_EFFECT_CHECKS[technique_id],
         log_name=f"techniques/{technique_id}_verify.log",
         timeout=40,
     )
@@ -235,7 +247,6 @@ def _shadowray_t1059_python(target, attacker, target_ip, run_dir, realization):
         target, attacker, target_ip, "T1059.006",
         "printf 'print(1+1)\\n' > /tmp/python_action.py && "
         "python3 /tmp/python_action.py > /tmp/T1059.006.out",
-        "/tmp/T1059.006.out",
         "Python execution was submitted through the compromised Ray API.",
         realization=realization,
     )
@@ -246,8 +257,7 @@ def _shadowray_t1546_shell_config(target, attacker, target_ip, run_dir, realizat
         target, attacker, target_ip, "T1546.004",
         "mkdir -p /tmp/autosut_home && "
         "printf 'export AUTOSUT_LAB_HOOK=1\\n' > /tmp/autosut_home/.bashrc && "
-        "HOME=/tmp/autosut_home bash -lc 'export AUTOSUT_LAB_HOOK=1; printf %s $AUTOSUT_LAB_HOOK' > /tmp/T1546.004.out",
-        "/tmp/T1546.004.out",
+        "HOME=/tmp/autosut_home bash --noprofile --rcfile /tmp/autosut_home/.bashrc -ic 'printf %s $AUTOSUT_LAB_HOOK' > /tmp/T1546.004.out",
         "Adapted: configuration changed only under a disposable SUT path and was exercised.",
         realization=realization,
     )
@@ -257,7 +267,6 @@ def _shadowray_t1068_bounded(target, attacker, target_ip, run_dir, realization):
     return _shadowray_post_access_action(
         target, attacker, target_ip, "T1068",
         "id > /tmp/T1068.out && echo NO_LOCAL_EXPLOIT_EXECUTED >> /tmp/T1068.out",
-        "/tmp/T1068.out",
         "Inspired: privilege escalation is represented by a bounded control; no local exploit is executed.",
         realization=realization,
         fidelity=FidelityLevel.inspired,
@@ -269,7 +278,6 @@ def _shadowray_t1027_encoded(target, attacker, target_ip, run_dir, realization):
         target, attacker, target_ip, "T1027.013",
         "printf 'bounded-payload' > /tmp/encoded_source && "
         "python3 -c 'import base64; print(base64.b64encode(open(\"/tmp/encoded_source\",\"rb\").read()).decode())' > /tmp/T1027.013.out",
-        "/tmp/T1027.013.out",
         "Adapted: a benign payload was encoded inside the disposable SUT through the compromised API.",
         realization=realization,
     )
@@ -278,10 +286,8 @@ def _shadowray_t1027_encoded(target, attacker, target_ip, run_dir, realization):
 def _shadowray_t1003_credentials(target, attacker, target_ip, run_dir, realization):
     return _shadowray_post_access_action(
         target, attacker, target_ip, "T1003.008",
-        "head -n 5 /etc/passwd > /tmp/T1003.008.out && "
-        "if test -r /etc/shadow; then head -n 3 /etc/shadow >> /tmp/T1003.008.out; fi",
-        "/tmp/T1003.008.out",
-        "Adapted: credential-file access was exercised only against disposable container files.",
+        "cat /tmp/autosut_credential_fixture > /tmp/T1003.008.out",
+        "Adapted: a predeclared synthetic credential fixture was read through the compromised API.",
         realization=realization,
     )
 
@@ -290,7 +296,6 @@ def _shadowray_t1016_network(target, attacker, target_ip, run_dir, realization):
     return _shadowray_post_access_action(
         target, attacker, target_ip, "T1016",
         "(hostname || true) > /tmp/T1016.out; cat /proc/net/route >> /tmp/T1016.out",
-        "/tmp/T1016.out",
         "Adapted: network configuration was collected from the disposable SUT.",
         realization=realization,
     )
@@ -321,10 +326,19 @@ def _shadowray_t1105_transfer(target, attacker, target_ip, run_dir, realization)
         log_name="techniques/T1105_verify.log",
         timeout=40,
     )
+    source_hash = attacker.run_shell(
+        "sha256sum /tmp/autosut_transfer/payload.txt",
+        log_name="techniques/T1105_source_hash.log", timeout=30,
+    )
+    source_digest = source_hash.stdout.split()[0] if source_hash.stdout.split() else ""
+    destination_digest = verification.stdout.split()[0] if verification.stdout.split() else ""
     success = (
         _command_succeeded(server)
         and _command_succeeded(submission)
         and _command_succeeded(verification)
+        and _command_succeeded(source_hash)
+        and len(source_digest) == 64
+        and source_digest == destination_digest
     )
     return TechniqueOutcome(
         technique_id="T1105",
@@ -338,6 +352,7 @@ def _shadowray_t1105_transfer(target, attacker, target_ip, run_dir, realization)
             "techniques/T1105_server.log",
             "techniques/T1105_job_submit.log",
             "techniques/T1105_verify.log",
+            "techniques/T1105_source_hash.log",
         ],
         duration_sec=_now() - start,
         notes="Adapted: a benign payload crossed the private attacker-to-SUT channel through the compromised API.",
@@ -347,9 +362,8 @@ def _shadowray_t1105_transfer(target, attacker, target_ip, run_dir, realization)
 def _shadowray_t1496_compute(target, attacker, target_ip, run_dir, realization):
     return _shadowray_post_access_action(
         target, attacker, target_ip, "T1496.001",
-        "python3 -c 'import hashlib; print(sum(hashlib.sha256(str(i).encode()).digest() is not None for i in range(10000)))' > /tmp/T1496.001.out",
-        "/tmp/T1496.001.out",
-        "Adapted: compute use was bounded to two seconds inside the disposable SUT.",
+        'timeout 2s python3 -c \'import hashlib,json,time; started=time.monotonic(); cpu=time.process_time(); operations=sum(hashlib.sha256(str(value).encode()).digest() is not None for value in range(10000)); print(json.dumps({"operations":operations,"elapsed_seconds":time.monotonic()-started,"cpu_seconds":time.process_time()-cpu}))\' > /tmp/T1496.001.out',
+        "Adapted: a two-second timeout bounds compute use and independent checks validate CPU and elapsed time.",
         realization=realization,
     )
 
@@ -357,7 +371,7 @@ def _shadowray_t1496_compute(target, attacker, target_ip, run_dir, realization):
 def _shadowray_t1082(target: DockerEnvironment, attacker: AttackerEnv,
                      target_ip: str, run_dir: Path,
                      realization: Realization) -> TechniqueOutcome:
-    """T1082 — System Information Discovery post-exploitation."""
+    """T1082 - System Information Discovery post-exploitation."""
     start = _now()
     verify = target.run_shell(
         "for i in $(seq 1 30); do "
@@ -388,7 +402,7 @@ def _shadowray_t1082(target: DockerEnvironment, attacker: AttackerEnv,
 def _shadowray_t1005(target: DockerEnvironment, attacker: AttackerEnv,
                      target_ip: str, run_dir: Path,
                      realization: Realization) -> TechniqueOutcome:
-    """T1005 — Data from Local System."""
+    """T1005 - Data from Local System."""
     start = _now()
     # The SUT composition already plants these decoy ML artifacts before the
     # exploit; this step records the source material for the technique-level
@@ -430,21 +444,71 @@ CampaignWalker = Callable[
 ]
 
 
+def _missing_causal_requirements(contract, outcomes, technique_id: str) -> list[str]:
+    """Only observed non-marker effects satisfy later execution requirements."""
+    if contract is None:
+        return []
+    transitions = {step.technique_id: step for step in contract.techniques}
+    if technique_id not in transitions:
+        raise ValueError(f"technique absent from execution contract: {technique_id}")
+    known = set(contract.initial_facts)
+    for outcome in outcomes:
+        transition = transitions[outcome.technique_id]
+        if (outcome.status == "success"
+                and outcome.executed_mode != ExecutionMode.naive_simulated
+                and outcome.evidence_files
+                and set(transition.requires).issubset(known)):
+            known.update(fact.fact_id for fact in transition.produces)
+    return sorted(set(transitions[technique_id].requires) - known)
+
+
+def _causal_abstention(technique_id, missing, run_dir, realization) -> TechniqueOutcome:
+    relative = f"admission/{technique_id}.json"
+    path = run_dir / relative
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"technique_id": technique_id, "missing_requirements": missing,
+                                "decision": "abstained_before_dispatch"}, indent=2) + "\n")
+    return TechniqueOutcome(
+        technique_id=technique_id, declared_fidelity=FidelityLevel.adapted,
+        executed_fidelity=FidelityLevel.inspired,
+        declared_mode=ExecutionMode.real_controlled, executed_mode=ExecutionMode.naive_simulated,
+        realization=realization, status="skipped", evidence_files=[relative],
+        notes="Causal admission refused: " + ", ".join(missing),
+    )
+
+
 def _shadowray_walker(target: DockerEnvironment, attacker: AttackerEnv,
                       target_ip: str, run_dir: Path,
                       realization: Realization) -> list[TechniqueOutcome]:
-    return [
-        _shadowray_t1588_tool(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1190(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1059_python(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1546_shell_config(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1068_bounded(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1027_encoded(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1003_credentials(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1016_network(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1105_transfer(target, attacker, target_ip, run_dir, realization),
-        _shadowray_t1496_compute(target, attacker, target_ip, run_dir, realization),
+    from .campaign_state import execution_contract_for_campaign
+
+    fixture = target.run_shell(
+        "printf 'lab-user:synthetic-password-hash\n' > /tmp/autosut_credential_fixture && sha256sum /tmp/autosut_credential_fixture",
+        log_name="sut/declared_credential_fixture.log", timeout=30,
+    )
+    if not _command_succeeded(fixture):
+        raise RuntimeError("could not seed the declared synthetic credential fixture")
+    contract = execution_contract_for_campaign("0.shadowray")
+    actions = [
+        ("T1588.002", _shadowray_t1588_tool),
+        ("T1190", _shadowray_t1190),
+        ("T1059.006", _shadowray_t1059_python),
+        ("T1546.004", _shadowray_t1546_shell_config),
+        ("T1068", _shadowray_t1068_bounded),
+        ("T1027.013", _shadowray_t1027_encoded),
+        ("T1003.008", _shadowray_t1003_credentials),
+        ("T1016", _shadowray_t1016_network),
+        ("T1105", _shadowray_t1105_transfer),
+        ("T1496.001", _shadowray_t1496_compute),
     ]
+    outcomes: list[TechniqueOutcome] = []
+    for technique_id, action in actions:
+        missing = _missing_causal_requirements(contract, outcomes, technique_id)
+        if missing:
+            outcomes.append(_causal_abstention(technique_id, missing, run_dir, realization))
+        else:
+            outcomes.append(action(target, attacker, target_ip, run_dir, realization))
+    return outcomes
 
 
 # ---------------------------------------------------------------------------
@@ -453,7 +517,7 @@ def _shadowray_walker(target: DockerEnvironment, attacker: AttackerEnv,
 
 def _c0011_t1587_003_cert(target: DockerEnvironment, run_dir: Path,
                            realization: Realization) -> TechniqueOutcome:
-    """T1587.003 Digital Certificates — adapted: real openssl cert generated."""
+    """T1587.003 Digital Certificates - adapted: real openssl cert generated."""
     start = _now()
     # python:3.11-slim has openssl in the base image.
     result = target.run_shell(
@@ -480,9 +544,7 @@ def _c0011_t1587_003_cert(target: DockerEnvironment, run_dir: Path,
 
 def _c0011_inspired(technique_id: str, name: str,
                      target: DockerEnvironment, run_dir: Path) -> TechniqueOutcome:
-    """Generic inspired walker — writes a marker that the conceptual action
-    was performed and the next-stage prerequisite (`produces`) is satisfied
-    for the campaign DAG to advance."""
+    """Record an unsupported conceptual step without claiming execution."""
     start = _now()
     marker = f"/tmp/c0011_{technique_id.replace('.', '_')}.marker"
     safe_name = name.replace("'", "")
@@ -503,13 +565,14 @@ def _c0011_inspired(technique_id: str, name: str,
         status="success",
         evidence_files=[f"techniques/{technique_id}_inspired.log"],
         duration_sec=_now() - start,
-        notes=f"Inspired emulation of {name}: marker recorded so the campaign "
-              "DAG can advance; no specific protocol or product invoked.",
+        notes=f"Inspired representation of {name}: a marker was recorded, but "
+              "no specific protocol or product was invoked and no campaign "
+              "state is produced.",
     )
 
 
 def _c0011_t1608_001_stage(target: DockerEnvironment, run_dir: Path) -> TechniqueOutcome:
-    """T1608.001 Stage Capabilities: Upload Malware — adapted: real payload staged."""
+    """T1608.001 Stage Capabilities: Upload Malware - adapted: real payload staged."""
     start = _now()
     target.run_shell(
         "mkdir -p /var/www/staged && "
@@ -608,7 +671,7 @@ def _adapted_archive_collect(target: DockerEnvironment, tid: str, run_dir: Path)
 
 def _adapted_port_scan(target: DockerEnvironment, tid: str, run_dir: Path) -> TechniqueOutcome:
     start = _now()
-    # T1046 — Network Service Scanning. python:3.11-slim ships python's socket lib.
+    # T1046 - Network Service Scanning. python:3.11-slim ships python's socket lib.
     r = target.run_shell(
         f"python3 -c \"import socket; "
         "results = [];\n"
@@ -633,7 +696,7 @@ def _adapted_port_scan(target: DockerEnvironment, tid: str, run_dir: Path) -> Te
 
 
 def _adapted_file_discovery(target: DockerEnvironment, tid: str, run_dir: Path) -> TechniqueOutcome:
-    """T1083 — File and Directory Discovery."""
+    """T1083 - File and Directory Discovery."""
     start = _now()
     r = target.run_shell(
         f"ls -la /etc /var /tmp > /tmp/{tid}_discovery.txt 2>&1 && "
@@ -730,7 +793,7 @@ def _adapted_user_discovery(target: DockerEnvironment, tid: str, run_dir: Path) 
 
 
 def _adapted_unix_shell(target: DockerEnvironment, tid: str, run_dir: Path) -> TechniqueOutcome:
-    """T1059.004 / .006 — Command and Scripting Interpreter: Unix Shell / Python."""
+    """T1059.004 / .006 - Command and Scripting Interpreter: Unix Shell / Python."""
     start = _now()
     r = target.run_shell(
         f"bash -c 'echo unix shell ran at $(date -u +%FT%TZ)' > /tmp/{tid}_sh.log 2>&1 && "
@@ -835,7 +898,7 @@ def _adapted_scheduled_job(target: DockerEnvironment, tid: str, run_dir: Path) -
 
 
 def _adapted_masquerading(target: DockerEnvironment, tid: str, run_dir: Path) -> TechniqueOutcome:
-    """T1036 — Masquerading: rename payload to a legitimate-looking name."""
+    """T1036 - Masquerading: rename payload to a legitimate-looking name."""
     start = _now()
     r = target.run_shell(
         f"mkdir -p /usr/local/bin/lab && "
@@ -860,7 +923,7 @@ def _adapted_masquerading(target: DockerEnvironment, tid: str, run_dir: Path) ->
 
 def _adapted_crm_query(target: DockerEnvironment, attacker: AttackerEnv,
                         target_ip: str, tid: str, run_dir: Path) -> TechniqueOutcome:
-    """T1213.004 — Customer Relationship Management Software (Salesforce surrogate query)."""
+    """T1213.004 - Customer Relationship Management Software (Salesforce surrogate query)."""
     start = _now()
     r = attacker.run_shell(
         "python3 -c \"import urllib.request as u, json; "
@@ -1130,13 +1193,13 @@ def _caldera_driven(target: DockerEnvironment, tid: str,
 
     Dispatches the technique's matching ART ability through Caldera against a
     sandcat agent deployed inside the SUT container. The ``executed_mode``
-    stays ``caldera_driven`` whenever Caldera was actually contacted — even
+    stays ``caldera_driven`` whenever Caldera was actually contacted - even
     if the specific ability rejected (no Linux executor, missing fact, etc.) —
     because the campaign's intent was honestly carried out via Caldera; only
     the ``status`` flips to ``failure`` to record the ability outcome.
 
     The only case where we degrade ``executed_mode`` to ``naive_simulated`` is
-    when Caldera ships **no** Linux ability for this technique at all — there
+    when Caldera ships **no** Linux ability for this technique at all - there
     was nothing for Caldera to dispatch, so claiming a Caldera-driven run
     would be misleading.
     """
@@ -1202,6 +1265,19 @@ def _caldera_driven(target: DockerEnvironment, tid: str,
     )
 
 
+def _annotate_catalog_reference(
+    outcome: TechniqueOutcome,
+    ability: dict[str, object] | None,
+) -> None:
+    """Attach catalog provenance without changing observed execution."""
+    if ability is None:
+        return
+    ability_id = ability.get("ability_id")
+    ability_name = ability.get("name")
+    outcome.caldera_ability_id = str(ability_id) if ability_id else None
+    outcome.caldera_ability_name = str(ability_name) if ability_name else None
+
+
 def _campaign_aware_walker(campaign_id: str):
     """Returns a CampaignWalker that reads campaigns/<id>.json and executes
     each technique with the registered adapted recipe (when expected_fidelity
@@ -1215,9 +1291,20 @@ def _campaign_aware_walker(campaign_id: str):
                target_ip: str, run_dir: Path,
                realization: Realization) -> list[TechniqueOutcome]:
         spec = _json.loads(campaign_path.read_text(encoding="utf-8"))
+        from .campaign_state import execution_contract_for_campaign
+
+        contract = execution_contract_for_campaign(campaign_id)
+        contract_ids = list(contract.technique_ids()) if contract is not None else None
+        technique_specs = _order_techniques_for_contract(
+            spec.get("techniques", []), contract_ids, campaign_id
+        )
         outcomes: list[TechniqueOutcome] = []
-        for tech in spec.get("techniques", []):
+        for tech in technique_specs:
             tid = tech["technique_id"]
+            missing = _missing_causal_requirements(contract, outcomes, tid)
+            if missing:
+                outcomes.append(_causal_abstention(tid, missing, run_dir, realization))
+                continue
             name = tech.get("name", "")
             expected_fidelity = tech.get("expected_fidelity")
             if expected_fidelity == "adapted":
@@ -1293,25 +1380,32 @@ def _campaign_aware_walker(campaign_id: str):
                 inspired.declared_fidelity = declared
                 outcomes.append(inspired)
 
-            # Annotate every outcome with a Caldera ability id if MITRE
-            # Caldera (with the atomic plugin) ships an ability for this
-            # technique. This makes our manifest auditable against the
-            # canonical ART corpus even when we executed the technique with
-            # our own recipe.
-            last = outcomes[-1]
-            ability = caldera_client.best_ability_for(tid)
-            if ability:
-                last.caldera_ability_id = ability.get("ability_id")
-                last.caldera_ability_name = ability.get("name")
-                # When the technique was declared real_controlled AND
-                # Caldera carries an atomic for it, we record the executed
-                # mode as `atomic_red_team`. The recipe still produced the
-                # local evidence; the canonical ART id is now in the manifest.
-                if last.declared_mode == ExecutionMode.real_controlled:
-                    last.executed_mode = ExecutionMode.atomic_red_team
+            # A catalog match is provenance, not execution evidence.
+            _annotate_catalog_reference(
+                outcomes[-1], caldera_client.best_ability_for(tid)
+            )
         return outcomes
 
     return walker
+
+
+def _order_techniques_for_contract(
+    techniques: list[dict],
+    contract_ids: list[str] | None,
+    campaign_id: str,
+) -> list[dict]:
+    """Return the declared contract order and reject ambiguous source lists."""
+    if contract_ids is None:
+        return list(techniques)
+    by_id = {str(step.get("technique_id")): step for step in techniques}
+    source_ids = [str(step.get("technique_id")) for step in techniques]
+    if len(by_id) != len(source_ids):
+        raise ValueError(f"duplicate technique id in campaign source for {campaign_id}")
+    if set(source_ids) != set(contract_ids):
+        raise ValueError(
+            f"campaign source and execution contract differ for {campaign_id}"
+        )
+    return [by_id[technique_id] for technique_id in contract_ids]
 
 
 _ALL_CAMPAIGN_IDS = (

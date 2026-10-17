@@ -190,7 +190,7 @@ def generate_sut_for_campaign(camp_name, camp_id, technique_objs,
             'confidence': 'explicit' if os_families[os_fam] >= 3 else 'inferred',
         }
 
-        # Services — derived from tactics
+        # Services - derived from tactics
         services = {}
         for tech in technique_objs:
             tactics = get_technique_tactics(tech)
@@ -199,7 +199,7 @@ def generate_sut_for_campaign(camp_name, camp_id, technique_objs,
                     if svc not in services:
                         services[svc] = 'enabled'
 
-        # Installed software — from linked software objects
+        # Installed software - from linked software objects
         installed_sw = []
         for sw in software_objs:
             sw_platforms = [normalize_os_family(p) for p in sw.get('x_mitre_platforms', [])]
@@ -208,7 +208,7 @@ def generate_sut_for_campaign(camp_name, camp_id, technique_objs,
                 sw_name = sw.get('name', 'unknown')
                 installed_sw.append(sw_name)
 
-        # Privilege — from privilege escalation techniques
+        # Privilege - from privilege escalation techniques
         privilege = []
         for tech in technique_objs:
             ext_id = get_attack_external_id(tech)
@@ -228,7 +228,7 @@ def generate_sut_for_campaign(camp_name, camp_id, technique_objs,
             if ext_id in PERSISTENCE_TECHNIQUES:
                 persistence.extend(PERSISTENCE_TECHNIQUES[ext_id])
 
-        # Security controls — from defense-evasion
+        # Security controls - from defense-evasion
         security_controls = {}
         for tech in technique_objs:
             ext_id = get_attack_external_id(tech)

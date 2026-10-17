@@ -33,6 +33,17 @@ The verified AutoSUT plan records six explicit assumptions across five steps.
 They are counted in the report rather than hidden or interpreted as analyst
 time.
 
+## Subsequent paired replay
+
+The later `release/evidence/2026-10-01-joint-e2e-r6/0.shadowray/` experiment
+uses the current prepared-pair workflow. It provisions Ray 2.6.3 on the
+digest-pinned Python 3.10 target, restarts the service after network
+isolation, and checks the Jobs API again before executing the ten-step
+contract. This is a separate experiment from the surrogate Arm-C result above.
+Its receipt reports ten effect-backed steps, `real_cve` realization, observed
+gateway blocking, and clean teardown. The adapted and inspired technique
+labels still apply. Arms A and B remain unexecuted.
+
 ## Self-contained inputs
 
 All STICKS-derived planning inputs and resolver outputs used by this

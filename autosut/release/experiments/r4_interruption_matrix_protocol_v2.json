@@ -1,0 +1,103 @@
+{
+  "schema_version": "r4-interruption-protocol/v2",
+  "protocol_id": "R4-semantic-boundary-qualification-v2",
+  "status": "predeclared_before_execution",
+  "execution_requirements": {
+    "execution_mode": "supervised",
+    "evidence_role": "qualification",
+    "implementation_revision": "immutable_clean_commit",
+    "topology": "isolated_caldera_docker",
+    "qualification_metadata_protocol_version": "autosut-qualification/v1",
+    "manifest_validation": "required"
+  },
+  "scope": "Failure recovery of the isolated-Caldera Docker lifecycle. This protocol does not establish CTI fidelity, historical adversary equivalence, QEMU behavior, Windows behavior, or multi-host behavior.",
+  "cells": [
+    {
+      "id": "R4V2-01",
+      "stage": "materialize_sut",
+      "condition": "sut_container_created",
+      "injection": "sigint",
+      "property": "Lifecycle signal recovery after a real SUT container exists."
+    },
+    {
+      "id": "R4V2-02",
+      "stage": "materialize_sut",
+      "condition": "sut_container_created",
+      "injection": "deadline",
+      "property": "External process-group termination and verified namespace cleanup after partial SUT setup."
+    },
+    {
+      "id": "R4V2-03",
+      "stage": "verify_caldera_readiness",
+      "condition": "readiness_probe_started",
+      "injection": "deadline",
+      "property": "Recovery while a real readiness probe is in flight against isolated infrastructure."
+    },
+    {
+      "id": "R4V2-04",
+      "stage": "enroll_agent",
+      "condition": "enrollment_poll_active",
+      "injection": "sigterm",
+      "property": "Cleanup after Sandcat launch and an observed Caldera enrollment poll with no matching agent yet registered."
+    },
+    {
+      "id": "R4V2-05",
+      "stage": "register_and_execute",
+      "condition": "operation_created",
+      "injection": "sigint",
+      "property": "Lifecycle signal recovery after Caldera returned a real operation identifier."
+    },
+    {
+      "id": "R4V2-06",
+      "stage": "register_and_execute",
+      "condition": "operation_running",
+      "injection": "deadline",
+      "property": "External termination and cleanup while Caldera reports a real operation as running."
+    },
+    {
+      "id": "R4V2-07",
+      "stage": "verify_effect",
+      "condition": "effect_probe_started",
+      "injection": "sigterm",
+      "property": "Recovery while the independent effect probe has begun."
+    },
+    {
+      "id": "R4V2-08",
+      "stage": "persist_execution_evidence",
+      "condition": "execution_evidence_ready",
+      "injection": "deadline",
+      "property": "External recovery after execution state exists and immediately before persistence."
+    },
+    {
+      "id": "R4V2-09",
+      "stage": "destroy_attacker",
+      "condition": "attacker_teardown_started",
+      "injection": "sigterm",
+      "property": "Lifecycle signal recovery after the attacker resource is present and teardown has begun."
+    },
+    {
+      "id": "R4V2-10",
+      "stage": "destroy_sut",
+      "condition": "sut_teardown_started",
+      "injection": "deadline",
+      "property": "External recovery after the SUT resource is present and teardown has begun."
+    }
+  ],
+  "required_bundle_fields": [
+    "protocol_id",
+    "protocol_sha256",
+    "cell_id",
+    "implementation_revision",
+    "target_stage",
+    "target_condition",
+    "observed_stage",
+    "stage_boundary_observed",
+    "boundary_observed_at",
+    "injection_at",
+    "child",
+    "supervision_result",
+    "resources_after_wrapper",
+    "outcome"
+  ],
+  "qualification_rule": "Every predeclared cell must be recorded after the protocol is frozen, on one immutable clean implementation revision. Each bundle must contain an observed target condition, a sealed child manifest, a matching independent supervisor receipt, the expected injection evidence, a completed cleanup inventory, and no run-owned residual resources. A boundary_not_observed, incomplete, dirty, incompatible, or excluded attempt remains accounted for and prevents qualification."
+}

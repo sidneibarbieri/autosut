@@ -1,0 +1,72 @@
+[
+  {
+    "name": "materialize_network",
+    "seconds": 0.04,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "materialize_caldera",
+    "seconds": 0.202,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "verify_caldera_readiness",
+    "seconds": 15.133,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "materialize_hosts",
+    "seconds": 0.396,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "enroll_agents",
+    "seconds": 46.052,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "register_and_execute",
+    "seconds": 97.523,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "verify_effect",
+    "seconds": 0.042,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "destroy_hosts",
+    "seconds": 0.197,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "destroy_caldera",
+    "seconds": 0.197,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "destroy_network",
+    "seconds": 0.084,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  }
+]

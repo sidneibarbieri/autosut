@@ -5,16 +5,16 @@ SUT Measurement Pipeline:
 
 Generates all TODO placeholder values for the Analysis section.
 Reads STIX 2.x bundles (JSON) and MITRE FiGHT's native normalized YAML
-snapshot directly — no external STIX libraries needed.
+snapshot directly - no external STIX libraries needed.
 
 Usage:
     python3 sut_measurement_pipeline.py
 
 Output:
-    - results/todo_values.json          — all 28+ TODO values
-    - results/todo_values_latex.tex     — LaTeX \newcommand definitions
-    - results/figures_data.json         — data for TikZ figures
-    - results/audit/                    — per-technique, per-campaign CSVs for audit
+    - results/todo_values.json          - all 28+ TODO values
+    - results/todo_values_latex.tex     - LaTeX \newcommand definitions
+    - results/figures_data.json         - data for TikZ figures
+    - results/audit/                    - per-technique, per-campaign CSVs for audit
 
 Maintainer note: anonymized for blind artifact release.
 Date: 2026-03-05
@@ -51,6 +51,35 @@ except ImportError:
 # Configuration
 # ─────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
+ARTIFACT_ROOT = SCRIPT_DIR.parents[2]
+SUT_CONFIGURATION_CORPUS = (
+    ARTIFACT_ROOT / "release" / "experiments" / "sut_configuration" / "corpus.json"
+)
+
+
+def _sut_configuration_values() -> dict:
+    """Manuscript values for the SUT-configuration provenance experiment.
+
+    The experiment is frozen separately because collecting proposals needs local models.
+    Its absence is not an error here: the measurement pipeline predates it and must still
+    run without it, so the macros are simply not emitted.
+    """
+    if not SUT_CONFIGURATION_CORPUS.is_file():
+        return {}
+    corpus = json.loads(SUT_CONFIGURATION_CORPUS.read_text(encoding="utf-8"))
+    stacks = set(corpus["distinct_service_stacks_per_campaign"].values())
+    if len(stacks) != 1:
+        raise ValueError(
+            "distinct service stacks differ across campaigns; report them per campaign "
+            f"instead of as one value: {corpus['distinct_service_stacks_per_campaign']}"
+        )
+    return {
+        "sut_config_proposals": corpus["proposals"],
+        "sut_config_values": corpus["total_value_occurrences"],
+        "sut_config_cti_pct": f"{corpus['cti_evidenced_rate'] * 100:.1f}",
+        "sut_config_proposer_pct": f"{corpus['proposer_introduced_rate'] * 100:.1f}",
+        "sut_config_stacks": stacks.pop(),
+    }
 DATA_DIR = SCRIPT_DIR / "data"
 RESULTS_DIR = SCRIPT_DIR / "results"
 AUDIT_DIR = RESULTS_DIR / "audit"
@@ -61,10 +90,6 @@ ICS_FILE = DATA_DIR / "ics-attack.json"
 CAPEC_FILE = DATA_DIR / "stix-capec.json"
 FIGHT_FILE = DATA_DIR / "fight-3.1.0.normalized.json"
 
-# Fixed denominators (from paper methodology)
-ENTERPRISE_TECHNIQUES = 835
-USABLE_CAMPAIGNS = 52          # ATT&CK v18.1 active campaigns with current filters
-INTRUSION_SETS = 187
 EXCLUDED_CAMPAIGN_ID = None    # Will be identified dynamically
 
 # Jaccard threshold for SUT profile confusion
@@ -140,12 +165,23 @@ TECHNIQUE_SPECIFIC_PROVIDES = {
 }
 
 # All 14 ATT&CK Enterprise tactics in kill-chain order.
-TACTIC_ORDER = [
-    "reconnaissance", "resource-development", "initial-access", "execution",
-    "persistence", "privilege-escalation", "defense-evasion", "credential-access",
-    "discovery", "lateral-movement", "collection", "command-and-control",
-    "exfiltration", "impact",
-]
+def enterprise_tactic_order(all_objects):
+    """Return tactic shortnames in the order of the pinned Enterprise matrix.
+
+    Reading the order from the bundle keeps it correct across ATT&CK
+    versions; v19 split defense-evasion into stealth and defense-impairment.
+    """
+    tactic_names = {
+        obj['id']: obj['x_mitre_shortname']
+        for obj in all_objects if obj.get('type') == 'x-mitre-tactic'
+    }
+    matrices = [
+        obj for obj in all_objects
+        if obj.get('type') == 'x-mitre-matrix' and not obj.get('revoked')
+    ]
+    if len(matrices) != 1:
+        raise ValueError(f"expected one Enterprise matrix, found {len(matrices)}")
+    return [tactic_names[ref] for ref in matrices[0]['tactic_refs']]
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -698,7 +734,7 @@ def analyze_software_version_enrichment(software_objects):
     Scan software description fields for version mentions absent from
     structured fields (name, aliases, external_references).
 
-    This measures the 'enrichment headroom' — how many software objects
+    This measures the 'enrichment headroom' - how many software objects
     that currently lack version signal could gain it from free-text
     description mining.
     """
@@ -810,7 +846,7 @@ def validate_cve_ids(cve_set):
     - Sequence number must have at least 4 digits
 
     Returns a dict with validation results and a list of flagged CVEs
-    (not rejected — some edge cases like CVE-2024-3400 are valid per spec).
+    (not rejected - some edge cases like CVE-2024-3400 are valid per spec).
     """
     STRICT_CVE_RE = re.compile(r'^CVE-(\d{4})-(\d{4,})$', re.IGNORECASE)
     current_year = datetime.now().year
@@ -975,7 +1011,7 @@ def analyze_vulnerability_references(campaigns, intrusion_sets, software_objects
         is_cves_structured.update(s)
         is_cves.update(s | f)
 
-        # CVEs from linked software (not techniques — see campaign note above)
+        # CVEs from linked software (not techniques - see campaign note above)
         for rtype, tgt, _ in rel_fwd.get(iset['id'], []):
             if rtype == 'uses' and tgt in by_id:
                 target_obj = by_id[tgt]
@@ -1158,6 +1194,26 @@ def analyze_initial_access(campaigns, techniques, rel_fwd, cve_results, excluded
     }
 
 
+def validate_campaign_profile_population(
+    campaigns: list[dict], excluded_campaign_ids: set[str], report: dict,
+) -> int:
+    """Require profile rows to match the current eligible campaign inventory."""
+    campaign_ids = {campaign['id'] for campaign in campaigns}
+    if len(campaign_ids) != len(campaigns):
+        raise ValueError("Campaign inventory contains duplicate IDs.")
+    if not excluded_campaign_ids.issubset(campaign_ids):
+        raise ValueError("Excluded campaign IDs are absent from the inventory.")
+    expected_ids = campaign_ids - excluded_campaign_ids
+    row_ids = [row['campaign_id'] for row in report['rows']]
+    if len(set(row_ids)) != len(row_ids):
+        raise ValueError("Campaign profile report contains duplicate IDs.")
+    if set(row_ids) != expected_ids:
+        raise ValueError("Campaign profile IDs differ from the eligible inventory.")
+    if report['total_campaigns'] != len(expected_ids):
+        raise ValueError("Campaign profile denominator differs from its inventory.")
+    return len(expected_ids)
+
+
 def analyze_campaign_profile_completeness(software_results, cve_results):
     """
     Operational SUT profile completeness at campaign level.
@@ -1226,7 +1282,8 @@ def analyze_campaign_profile_completeness(software_results, cve_results):
 # ─────────────────────────────────────────────────────────────────
 
 def analyze_campaign_factual_structure(campaigns, techniques, rel_fwd, rel_rev,
-                                       by_id, tactic_objects, excluded_campaign_ids):
+                                       by_id, tactic_objects, excluded_campaign_ids,
+                                       tactic_order):
     """
     Extract per-campaign structured facts from STIX data.
 
@@ -1332,11 +1389,8 @@ def analyze_campaign_factual_structure(campaigns, techniques, rel_fwd, rel_rev,
         if n_tactics >= 5:
             campaigns_complete_killchain += 1
 
-        # Compute tactic ordering (sort by TACTIC_ORDER position)
-        tactic_sequence = sorted(
-            tactic_set,
-            key=lambda t: TACTIC_ORDER.index(t) if t in TACTIC_ORDER else 99
-        )
+        # Unknown tactics would make the order depend on set iteration.
+        tactic_sequence = sorted(tactic_set, key=tactic_order.index)
 
         rows.append({
             'campaign_name': camp_name,
@@ -1404,16 +1458,16 @@ def infer_campaign_environment(campaign_fact_rows, software_objects, by_id,
     Multi-signal environment inference for each campaign.
 
     Signal tiers (from least to most campaign-specific):
-      Tier 1 (generic):    technique_platforms — x-mitre-platforms on linked
+      Tier 1 (generic):    technique_platforms - x-mitre-platforms on linked
                            techniques. Lists which OS a technique CAN run on,
                            NOT which OS the campaign actually targeted. Nearly
                            universal and therefore low-discriminative.
-      Tier 2 (specific):   software_platforms — platforms on campaign-linked
+      Tier 2 (specific):   software_platforms - platforms on campaign-linked
                            software. Reflects actual tools used -> campaign-
                            specific targeting evidence.
-      Tier 3 (targeted):   description_mined — regex extraction from campaign
+      Tier 3 (targeted):   description_mined - regex extraction from campaign
                            descriptions. Explicit targeting statements.
-      Heuristic:           tactic_implied — tactic -> environment heuristic
+      Heuristic:           tactic_implied - tactic -> environment heuristic
                            (e.g. credential-access -> Windows domain).
 
     Metrics:
@@ -1498,7 +1552,7 @@ def infer_campaign_environment(campaign_fact_rows, software_objects, by_id,
             all_os.update(s)
 
         # Tiered classification:
-        # Tier 1 (generic):  technique_platforms — capability-level, not campaign-specific
+        # Tier 1 (generic):  technique_platforms - capability-level, not campaign-specific
         # Tier 2+ (specific): software_platforms, description_mined, tactic_implied
         has_generic = bool(signals.get('technique_platforms'))
         has_campaign_specific = bool(
@@ -1780,6 +1834,7 @@ def classify_technique_compatibility_trace(
     rel_fwd,
     by_id,
     default_class=DEFAULT_COMPATIBILITY_ROUTING_LABEL,
+    container_rule='subset',
 ):
     """
     Assign a heuristic CF/VMR/ID routing-policy label (or UNRESOLVED).
@@ -1787,7 +1842,9 @@ def classify_technique_compatibility_trace(
     The returned label is a deterministic policy output, not an empirically
     established backend requirement or a validated ground-truth class.  The
     rule trace makes both explicit-rule and default-fallback assignments
-    auditable.
+    auditable.  ``container_rule='subset'`` is the published CF rule (every
+    platform tag is container-compatible); ``'intersects'`` is the optimistic
+    ablation (at least one tag is).
     """
     platforms = set(technique.get('x_mitre_platforms', []))
     permissions = set(technique.get('x_mitre_permissions_required', []) or [])
@@ -1863,7 +1920,13 @@ def classify_technique_compatibility_trace(
         }
 
     # Rule 7: CF from container-compatible platforms.
-    if platforms and platforms.issubset(CONTAINER_COMPATIBLE_PLATFORMS):
+    if container_rule == 'subset':
+        container_compatible = platforms.issubset(CONTAINER_COMPATIBLE_PLATFORMS)
+    elif container_rule == 'intersects':
+        container_compatible = bool(platforms & CONTAINER_COMPATIBLE_PLATFORMS)
+    else:
+        raise ValueError(f'unknown container rule: {container_rule}')
+    if platforms and container_compatible:
         if 'privilege-escalation' in tactics or 'defense-evasion' in tactics:
             if permissions & VMR_PERMISSIONS:
                 return {
@@ -1916,6 +1979,7 @@ def analyze_compatibility(
     rel_fwd,
     by_id,
     default_class=DEFAULT_COMPATIBILITY_ROUTING_LABEL,
+    container_rule='subset',
 ):
     """
     RQ2: Apply the CF/VMR/ID routing policy to all techniques.
@@ -1931,7 +1995,8 @@ def analyze_compatibility(
 
     for tech in techniques:
         trace = classify_technique_compatibility_trace(
-            tech, rel_fwd, by_id, default_class=default_class
+            tech, rel_fwd, by_id, default_class=default_class,
+            container_rule=container_rule,
         )
         cls = trace['class']
         rule_counter[trace['rule_id']] += 1
@@ -3502,7 +3567,7 @@ def main():
                 break
         if not has_uses:
             excluded_campaign_ids.add(camp['id'])
-            print(f"  [EXCLUDED] Campaign '{camp.get('name', '')}' ({camp['id']}) — no 'uses' relationships")
+            print(f"  [EXCLUDED] Campaign '{camp.get('name', '')}' ({camp['id']}) - no 'uses' relationships")
 
     # ── Platform Coverage ──
     print("\n[2/7] Analyzing platform coverage (RQ1)...")
@@ -3596,7 +3661,7 @@ def main():
     if cve_validation['flagged']:
         print(f"  Flagged: {cve_validation['flagged_count']}")
         for f_cve in cve_validation['flagged']:
-            print(f"    {f_cve['cve_id']}: {f_cve['reason']} — {f_cve['detail']}")
+            print(f"    {f_cve['cve_id']}: {f_cve['reason']} - {f_cve['detail']}")
     else:
         print("  All CVE IDs pass NVD format validation.")
     # Export validation audit CSV
@@ -3619,6 +3684,9 @@ def main():
     profile_completeness = analyze_campaign_profile_completeness(
         software_results, cve_results
     )
+    profile_population_count = validate_campaign_profile_population(
+        campaigns, excluded_campaign_ids, profile_completeness
+    )
     print("  Campaign SUT profile completeness tiers:")
     print(f"    T1 (coarse: software+platform): {profile_completeness['tier_t1_count']}/{profile_completeness['total_campaigns']} "
           f"({profile_completeness['tier_t1_pct']}%)")
@@ -3633,7 +3701,7 @@ def main():
     tactic_objects = [o for o in all_objects if o.get('type') == 'x-mitre-tactic']
     campaign_factual = analyze_campaign_factual_structure(
         campaigns, techniques, rel_fwd, rel_rev, by_id, tactic_objects,
-        excluded_campaign_ids
+        excluded_campaign_ids, enterprise_tactic_order(all_objects)
     )
     print(f"  Mean techniques/campaign: {campaign_factual['campaign_mean_technique_count']}")
     print(f"  Mean tactic coverage/campaign: {campaign_factual['campaign_mean_tactic_coverage']}")
@@ -4465,6 +4533,12 @@ def main():
     with open(RESULTS_DIR / 'macro_coverage.json', 'w', encoding='utf-8') as f:
         json.dump(macro_coverage, f, indent=2)
 
+    # ── Merge SUT-configuration provenance, measured by a separate frozen experiment ──
+    for key, value in _sut_configuration_values().items():
+        todo_values[key] = value
+        if key not in write_keys:
+            write_keys.append(key)
+
     # ── Save TODO values as JSON ──
     with open(RESULTS_DIR / 'todo_values.json', 'w') as f:
         json.dump(todo_values, f, indent=2)
@@ -4473,7 +4547,7 @@ def main():
     # ── Save as LaTeX newcommands ──
     with open(RESULTS_DIR / 'todo_values_latex.tex', 'w') as f:
         f.write("% Auto-generated extracted values\n")
-        f.write("% Bundle: ATT&CK Enterprise v18.1\n\n")
+        f.write("% Bundle: ATT&CK Enterprise v19.2\n\n")
         for key in write_keys:
             val = todo_values[key]
             latex_key = key.replace('_', '')
@@ -4711,13 +4785,16 @@ def main():
     # Tactic coverage heatmap data
     figure_data['campaign_tactic_coverage'] = {
         'campaigns': [],
-        'tactic_order': TACTIC_ORDER,
+        'tactic_order': enterprise_tactic_order(all_objects),
     }
     for row in campaign_factual['rows']:
         tactics_present = set(row.get('tactic_sequence', '').split(';'))
         figure_data['campaign_tactic_coverage']['campaigns'].append({
             'name': row['campaign_name'],
-            'tactics': {t: (1 if t in tactics_present else 0) for t in TACTIC_ORDER},
+            'tactics': {
+                tactic: int(tactic in tactics_present)
+                for tactic in figure_data['campaign_tactic_coverage']['tactic_order']
+            },
             'technique_count': row['technique_count'],
             'tactic_count': row['tactic_count'],
         })
@@ -5306,7 +5383,7 @@ def main():
     print(f"  CF + VMR + ID = {cf_vmr_id_sum} (should be {len(techniques)})")
     pct_sum = compat_results['cf_pct'] + compat_results['vmr_pct'] + compat_results['id_pct']
     print(f"  CF% + VMR% + ID% = {pct_sum}% (should be ~100%)")
-    print(f"  Usable campaigns: {len(campaigns) - len(excluded_campaign_ids)} (should be {USABLE_CAMPAIGNS})")
+    print(f"  Usable campaigns: {profile_population_count} (exact profile inventory verified)")
     print(f"  Excluded campaigns: {excluded_campaign_ids}")
 
     return todo_values

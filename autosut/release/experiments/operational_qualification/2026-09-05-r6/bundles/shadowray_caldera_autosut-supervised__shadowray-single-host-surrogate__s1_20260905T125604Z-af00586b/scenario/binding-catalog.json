@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "sut_id": "0.shadowray",
+  "source_sha256": "deae916c053ee8dac2af75ecfcff412f66e1d6c74a91d829118db6427f30eafe",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "sut.ray_dashboard.reachable",
+    "network:http_available",
+    "c2_channel"
+  ],
+  "goal_facts": [
+    "access.target.shell",
+    "access:initial"
+  ],
+  "bindings": [
+    {
+      "binding_id": "actor.primary",
+      "kind": "actor_host",
+      "value": "lab://actor-1",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "target.primary",
+      "kind": "target_host",
+      "value": "lab://target-1",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    },
+    {
+      "binding_id": "endpoint.public_service",
+      "kind": "endpoint",
+      "value": "lab://target-1/service/public-facing-application",
+      "source": "sut",
+      "scope": "lab",
+      "secret_reference": false
+    }
+  ],
+  "content_sha256": "6d4ff607fc3a98cc7b3be9034dc1f67d0280b7d0071e48e0d9208531525fb575"
+}

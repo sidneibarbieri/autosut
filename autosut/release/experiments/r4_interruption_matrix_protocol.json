@@ -1,0 +1,81 @@
+{
+  "schema_version": "r4-interruption-protocol/v1",
+  "protocol_id": "R4-canonical-failure-classes-v1",
+  "status": "predeclared_before_remaining_cells",
+  "scope": "Canonical isolated-Caldera Docker lifecycle only. QEMU and multi-host require separate protocol instances and backend-specific inventories.",
+  "cells": [
+    {
+      "id": "R4-01",
+      "stage": "materialize_sut",
+      "injection": "sigint",
+      "property": "Controlled user interruption after real SUT materialization begins."
+    },
+    {
+      "id": "R4-02",
+      "stage": "materialize_sut",
+      "injection": "sigterm",
+      "property": "Controlled service-termination interruption after real SUT materialization begins."
+    },
+    {
+      "id": "R4-03",
+      "stage": "materialize_sut",
+      "injection": "deadline",
+      "property": "External process-group termination and Docker namespace sweep during partial resource creation."
+    },
+    {
+      "id": "R4-04",
+      "stage": "verify_caldera_readiness",
+      "injection": "deadline",
+      "property": "Deadline while isolated infrastructure exists but dependency readiness is pending."
+    },
+    {
+      "id": "R4-05",
+      "stage": "enroll_agent",
+      "injection": "sigterm",
+      "property": "Cleanup while Caldera, SUT, attacker, and agent-enrollment state coexist."
+    },
+    {
+      "id": "R4-06",
+      "stage": "register_and_execute",
+      "injection": "sigint",
+      "property": "Controlled interruption while adversary-operation state is actively being registered or executed."
+    },
+    {
+      "id": "R4-07",
+      "stage": "register_and_execute",
+      "injection": "deadline",
+      "property": "External termination and sweep while adversary-operation state is active."
+    },
+    {
+      "id": "R4-08",
+      "stage": "persist_execution_evidence",
+      "injection": "sigterm",
+      "property": "Preservation and cleanup when execution completed but evidence persistence is in progress."
+    },
+    {
+      "id": "R4-09",
+      "stage": "destroy_sut",
+      "injection": "sigterm",
+      "property": "Recovery when the cleanup path itself is interrupted."
+    },
+    {
+      "id": "R4-10",
+      "stage": "destroy_sut",
+      "injection": "deadline",
+      "property": "External recovery when the cleanup path itself fails to finish."
+    }
+  ],
+  "required_bundle_fields": [
+    "protocol_id",
+    "protocol_sha256",
+    "cell_id",
+    "implementation_revision",
+    "observed_stage",
+    "child",
+    "injection",
+    "supervision",
+    "resources_after_wrapper",
+    "outcome"
+  ],
+  "qualification_rule": "All cells must be executed after an implementation freeze, bind to one implementation revision, have valid sealed manifests, record the expected injection after the declared stage boundary, and leave no declared run-owned resources. Any incomplete, dirty, or unexplained cell keeps the protocol non-qualified."
+}

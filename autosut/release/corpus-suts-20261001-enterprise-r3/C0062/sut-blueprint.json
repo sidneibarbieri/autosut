@@ -1,0 +1,343 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0062",
+  "source_constraint_sha256": "8c82c519d137a964b77a192a34ca1b499617d59f74d63a5089499ad53f2f9b13",
+  "synthesis_policy": "one_minimal_host_per_selected_platform",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1005.data.1",
+        "T1005.platform",
+        "T1016.platform",
+        "T1046.platform",
+        "T1049.platform",
+        "T1074.001.platform",
+        "T1078.003.platform",
+        "T1078.platform",
+        "T1082.platform",
+        "T1083.platform",
+        "T1087.platform",
+        "T1119.platform",
+        "T1136.001.platform",
+        "T1190.platform",
+        "T1190.service.1",
+        "T1213.006.platform",
+        "T1552.001.platform",
+        "T1567.platform"
+      ]
+    }
+  ],
+  "network_policy": {
+    "host_network_access": false,
+    "internet_egress": false,
+    "lab_private_network": true
+  },
+  "concretized_requirements": [
+    {
+      "requirement_id": "T1078.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "IaaS",
+        "SaaS",
+        "ESXi",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1078"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1078.003.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1078.003"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1190.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "IaaS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1190"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1190.service.1",
+      "kind": "service",
+      "acceptable_values": [
+        "public-facing-application"
+      ],
+      "technique_ids": [
+        "T1190"
+      ],
+      "source": "curated_rule",
+      "rationale": "The exploit target requires a reachable application boundary."
+    },
+    {
+      "requirement_id": "T1136.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1136.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1552.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Containers",
+        "IaaS"
+      ],
+      "technique_ids": [
+        "T1552.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1016.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1016"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1046.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "IaaS"
+      ],
+      "technique_ids": [
+        "T1046"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1049.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "IaaS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1049"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1082.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "IaaS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1082"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1083.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1083"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1087.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "IaaS",
+        "SaaS",
+        "ESXi",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1087"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1005.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1005"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1005.data.1",
+      "kind": "data",
+      "acceptable_values": [
+        "declared-decoy-data"
+      ],
+      "technique_ids": [
+        "T1005"
+      ],
+      "source": "curated_rule",
+      "rationale": "Local collection requires a predeclared non-sensitive data target."
+    },
+    {
+      "requirement_id": "T1074.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1074.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1119.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "IaaS",
+        "SaaS",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1119"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1213.006.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "IaaS",
+        "SaaS"
+      ],
+      "technique_ids": [
+        "T1213.006"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1567.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "SaaS",
+        "ESXi",
+        "Office Suite"
+      ],
+      "technique_ids": [
+        "T1567"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "200e5aac93a48a80a1faf6cf865d7263b8fda7ef167200e27ed1301295951439"
+}

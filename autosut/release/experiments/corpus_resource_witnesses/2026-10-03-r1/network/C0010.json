@@ -1,0 +1,51 @@
+{
+  "schema_version": "autosut-network-resource-probe/v1",
+  "campaign_id": "C0010",
+  "blueprint_file_sha256": "ad7709ca3ca0b5b8941ce9fda45da31cadd61cde24e2121716be88146d77a48d",
+  "blueprint_content_sha256": "3f4dc92293ad150959997cbe248a995fb9b851459895b8b5609292b4b9c633b1",
+  "image_id": "sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b",
+  "implementation_sha256": {
+    "probe": "27c69f87033dfc47f7eaf3d371bd3ce3c282b6bb889cd8687f0529e374190328",
+    "admission": "3d5e60515c157169b61662acfec2266fe09c6e9e6a1c3652f53553179a1a96fa",
+    "runtime": "25913e18c86d7953dff14dfe5c4996058a04f5647c4dc61bb4f3184efe73b9ff",
+    "gateway_guard": "cd01cbc93015fc6541e8e8e2ae3042cf0db6a3632ab65c89750cb8ebdfa4d65d"
+  },
+  "required_resources": [
+    "controlled-ingress-channel",
+    "private-lab-http-target"
+  ],
+  "observations": {
+    "controlled-ingress-channel": {
+      "source_sha256": "59f0c15bab1e537949d628cb4d6d7bb5b5781badcef7513d4cfd81bc1ff47049",
+      "destination_sha256": "59f0c15bab1e537949d628cb4d6d7bb5b5781badcef7513d4cfd81bc1ff47049",
+      "server_log": "Serving HTTP on 0.0.0.0 port 8769 (http://0.0.0.0:8769/) ...\n172.19.0.3 - - [03/Oct/2026 07:23:13] \"GET /fixture HTTP/1.1\" 200 -",
+      "request_observed": true
+    },
+    "private-lab-http-target": {
+      "target_sha256": "0fa1db22ba398af1107030e482f03cb77f1e7c9fdcd36b3e8d80653e0fddc674",
+      "actor_sha256": "0fa1db22ba398af1107030e482f03cb77f1e7c9fdcd36b3e8d80653e0fddc674",
+      "server_log": "Serving HTTP on 0.0.0.0 port 8770 (http://0.0.0.0:8770/) ...\n172.19.0.2 - - [03/Oct/2026 07:23:13] \"GET /index.html HTTP/1.1\" 200 -",
+      "request_observed": true,
+      "scope": "Actor-reachable synthetic HTTP service inside the isolated lab."
+    }
+  },
+  "gateway": {
+    "host_gateway_access": "blocked_observed",
+    "gateway": "172.19.0.1",
+    "subnet": "172.19.0.0/16",
+    "blocked_containers": [
+      "autosut-actor-1d3b199a73bb",
+      "autosut-target-1d3b199a73bb"
+    ],
+    "positive_before_rule": true,
+    "listener_live_after_rule": true,
+    "dropped_packets": 4,
+    "rule_counters": "Chain AS_1d3b199a73bb (1 references)\n    pkts      bytes target     prot opt in     out     source               destination         \n       4      240 DROP       0    --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+    "scope": "IPv4 INPUT to Docker Colima VM from this replay subnet; all protocols and ports"
+  },
+  "network_internal": true,
+  "teardown_clean": true,
+  "resource_witnessed": true,
+  "campaign_executed": false,
+  "scope": "Synthetic private-lab resource witnesses only; no campaign technique effect or product fidelity certified."
+}

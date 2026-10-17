@@ -1,0 +1,156 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0026",
+  "campaign_name": "C0026",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--c89fa3ff-4773-4daf-8aec-d8f43f10116e",
+    "campaign_external_id": "C0026"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1583.001",
+      "technique_stix_id": "attack-pattern--40f5caa0-4cb7-4117-89fc-d421bb493df3",
+      "name": "Domains",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--94dc4d8d-c6a9-4b0a-9562-07cdf0347805"
+      ],
+      "procedure_descriptions": [
+        "For [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors re-registered expired C2 domains previously used for [ANDROMEDA](https://attack.mitre.org/software/S1074) malware.(Citation: Mandiant Suspected Turla Campaign February 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1005",
+      "technique_stix_id": "attack-pattern--3c4a2599-71ee-4405-ba1e-0e28414b4bc5",
+      "name": "Data from Local System",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--ff746d3d-2ebe-46e9-87f6-5ddd8abbfda3"
+      ],
+      "procedure_descriptions": [
+        "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors collected documents from compromised hosts.(Citation: Mandiant Suspected Turla Campaign February 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1560.001",
+      "technique_stix_id": "attack-pattern--00f90846-cbd1-4fc5-9233-df5c2bf2a662",
+      "name": "Archive via Utility",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--929a1429-88a6-4ac8-b92e-39f242b1e0d6"
+      ],
+      "procedure_descriptions": [
+        "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors used WinRAR to collect documents on targeted systems. The threat actors appeared to only exfiltrate files created after January 1, 2021.(Citation: Mandiant Suspected Turla Campaign February 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--a8fd0806-56eb-4438-bcce-18f7851a07c6"
+      ],
+      "procedure_descriptions": [
+        "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors downloaded malicious payloads onto select compromised hosts.(Citation: Mandiant Suspected Turla Campaign February 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1568",
+      "technique_stix_id": "attack-pattern--7bd9c723-2f78-4309-82c5-47cad406572b",
+      "name": "Dynamic Resolution",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--6d550704-4ccb-485b-8e79-519d13768afa"
+      ],
+      "procedure_descriptions": [
+        "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors re-registered a ClouDNS dynamic DNS subdomain which was previously used by [ANDROMEDA](https://attack.mitre.org/software/S1074).(Citation: Mandiant Suspected Turla Campaign February 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1030",
+      "technique_stix_id": "attack-pattern--c3888c54-775d-4b2f-b759-75a2ececcbfd",
+      "name": "Data Transfer Size Limits",
+      "execution_domain": "boundary",
+      "tactics": [
+        "exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--42d043a1-0b6f-4acd-aea2-553579eb49c2"
+      ],
+      "procedure_descriptions": [
+        "During [C0026](https://attack.mitre.org/campaigns/C0026), the threat actors split encrypted archives containing stolen files and information into 3MB parts prior to exfiltration.(Citation: Mandiant Suspected Turla Campaign February 2023)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "32b6206f5273788e3383f82058bfa7ffaa5e34a6dd6459a79f082c160bbda8d8"
+}

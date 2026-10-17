@@ -6,7 +6,7 @@ Caldera server runs on the Mac host (not in a VM).
 VMs reach the host via QEMU user-mode NAT gateway at 10.0.2.2.
 
 Architecture:
-    Mac host -> caldera_mock.py -> localhost:8888
+    Mac host -> Caldera-compatible service -> localhost:8888
     attacker VM (port 2224) -> sandcat agent -> http://10.0.2.2:8888
     target   VM (port 2223) -> sandcat agent -> http://10.0.2.2:8888
 """
@@ -34,7 +34,7 @@ SSH_TIMEOUT = 120
 SSH_POLL_INTERVAL = 5
 VM_STARTUP_STAGGER = 3
 
-# 2-VM configuration — Caldera server is on the Mac host
+# 2-VM configuration - Caldera server is on the Mac host
 VM_CONFIG: Dict[str, Dict] = {
     "attacker": {
         "name": "attacker",
@@ -107,7 +107,7 @@ runcmd:
       -group {agent_group} \\
       > /tmp/sandcat.log 2>&1 &
   - echo "{vm_name} initialized at $(date)" > /var/tmp/{vm_name}-ready.txt
-final_message: "Cloud-init complete for {vm_name} — agent group: {agent_group}"
+final_message: "Cloud-init complete for {vm_name} - agent group: {agent_group}"
 """
     meta_data = f"instance-id: {vm_name}\nlocal-hostname: {vm_name}\n"
     return user_data, meta_data

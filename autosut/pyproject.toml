@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools==84.0.0", "wheel==0.48.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -27,18 +27,18 @@ classifiers = [
 ]
 
 dependencies = [
-    "pydantic>=2.0.0",
-    "pyyaml>=6.0",
-    "click>=8.0.0",
+    "pydantic==2.13.4",
+    "pyyaml==6.0.3",
+    "click==8.5.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "black>=22.0.0",
-    "flake8>=5.0.0",
-    "mypy>=1.0.0",
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "black==26.5.1",
+    "flake8==7.3.0",
+    "mypy==2.3.1",
 ]
 
 [project.scripts]
@@ -52,6 +52,8 @@ include = [
     "loaders*",
     "models*",
     "calibration*",
+    "cti*",
+    "infrastructure*",
     "utils*",
     "planning*",
     "evaluation*",
@@ -71,6 +73,7 @@ warn_unused_configs = true
 disallow_untyped_defs = true
 
 [tool.pytest.ini_options]
+markers = ["windows_media: real FAT/ISO validation requiring native media tools, not VM execution"]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]

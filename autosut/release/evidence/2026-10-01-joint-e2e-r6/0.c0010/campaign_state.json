@@ -1,0 +1,377 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.c0010",
+  "run_id": "0.c0010",
+  "initial_facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "network:http_available",
+      "subject": "network:http_available",
+      "predicate": "network:http_available",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "c2_channel",
+      "subject": "c2_channel",
+      "predicate": "c2_channel",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    }
+  ],
+  "transitions": [
+    {
+      "sequence": 1,
+      "technique_id": "T1583.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "infrastructure.domain"
+      ],
+      "evidence_files": [
+        "techniques/T1583.001-predicates.json"
+      ]
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1584.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "infrastructure.compromised_domain"
+      ],
+      "evidence_files": [
+        "techniques/T1584.001-predicates.json"
+      ]
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1587.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "actor.capability.specified"
+      ],
+      "evidence_files": [
+        "techniques/T1587.001-predicates.json"
+      ]
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1588.002",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "actor.toolkit.ready",
+        "artifacts:recon_toolkit",
+        "system:toolkit"
+      ],
+      "evidence_files": [
+        "techniques/T1588.002-predicates.json"
+      ]
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1608.001",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "actor.payload.ready"
+      ],
+      "evidence_files": [
+        "techniques/T1608.001-predicates.json"
+      ]
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1608.002",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "actor.tool.staged"
+      ],
+      "evidence_files": [
+        "techniques/T1608.002-predicates.json"
+      ]
+    },
+    {
+      "sequence": 7,
+      "technique_id": "T1608.004",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "web.target.ready"
+      ],
+      "evidence_files": [
+        "techniques/T1608.004-predicates.json"
+      ]
+    },
+    {
+      "sequence": 8,
+      "technique_id": "T1189",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "access.target.browser_context",
+        "access:initial",
+        "watering_hole:visited"
+      ],
+      "evidence_files": [
+        "techniques/T1189-predicates.json"
+      ]
+    },
+    {
+      "sequence": 9,
+      "technique_id": "T1105",
+      "status": "success",
+      "missing_requirements": [],
+      "produced_fact_ids": [
+        "transfer.target.payload",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_files": [
+        "techniques/T1105-predicates.json"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "sut.ready",
+      "subject": "sut",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "actor.ready",
+      "subject": "actor",
+      "predicate": "ready",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "network:http_available",
+      "subject": "network:http_available",
+      "predicate": "network:http_available",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "c2_channel",
+      "subject": "c2_channel",
+      "predicate": "c2_channel",
+      "value": "ready",
+      "source": "catalog",
+      "evidence_files": []
+    },
+    {
+      "fact_id": "infrastructure.domain",
+      "subject": "infrastructure",
+      "predicate": "domain",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1583.001-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "infrastructure.compromised_domain",
+      "subject": "infrastructure",
+      "predicate": "compromised_domain",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1584.001-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "actor.capability.specified",
+      "subject": "actor",
+      "predicate": "capability.specified",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1587.001-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "actor.toolkit.ready",
+      "subject": "actor",
+      "predicate": "toolkit.ready",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1588.002-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "artifacts:recon_toolkit",
+      "subject": "artifacts:recon_toolkit",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1588.002-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "system:toolkit",
+      "subject": "system:toolkit",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1588.002-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "actor.payload.ready",
+      "subject": "actor",
+      "predicate": "payload.ready",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1608.001-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "actor.tool.staged",
+      "subject": "actor",
+      "predicate": "tool.staged",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1608.002-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "web.target.ready",
+      "subject": "web",
+      "predicate": "target.ready",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1608.004-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "access.target.browser_context",
+      "subject": "access",
+      "predicate": "target.browser_context",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1189-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "access:initial",
+      "subject": "access:initial",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1189-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "watering_hole:visited",
+      "subject": "watering_hole:visited",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1189-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "transfer.target.payload",
+      "subject": "transfer",
+      "predicate": "target.payload",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1105-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "artifacts:downloaded_tool",
+      "subject": "artifacts:downloaded_tool",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1105-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "artifacts:tool_script",
+      "subject": "artifacts:tool_script",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1105-predicates.json"
+      ]
+    },
+    {
+      "fact_id": "payload:staged",
+      "subject": "payload:staged",
+      "predicate": "state",
+      "value": "observed",
+      "source": "execution",
+      "evidence_files": [
+        "techniques/T1105-predicates.json"
+      ]
+    }
+  ],
+  "context_observations": [],
+  "contract_coverage": "declared",
+  "declared_technique_ids": [
+    "T1583.001",
+    "T1584.001",
+    "T1587.001",
+    "T1588.002",
+    "T1608.001",
+    "T1608.002",
+    "T1608.004",
+    "T1189",
+    "T1105"
+  ],
+  "executed_technique_ids": [
+    "T1583.001",
+    "T1584.001",
+    "T1587.001",
+    "T1588.002",
+    "T1608.001",
+    "T1608.002",
+    "T1608.004",
+    "T1189",
+    "T1105"
+  ],
+  "source_plan_sha256": "24c7d91dbe879dcc357957569bde0bfb677cbf163ed9b56bb04c925a5f28eaf4",
+  "executable_contract_sha256": "135050b9105c480dee69f10e819f9c603015fcc70bbed83f88ae794ffbbf5218",
+  "content_sha256": "7e7eb91e272c923bfd3c0e24deee0c71ba62efeffc4ce18aad137b8073650a6a"
+}

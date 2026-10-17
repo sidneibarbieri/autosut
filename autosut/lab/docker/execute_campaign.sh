@@ -38,11 +38,11 @@ docker-compose ps
 
 # Test connectivity
 echo "Testing connectivity..."
-docker-compose exec attacker ping -c 1 target || echo "⚠️  Network connectivity test failed"
+docker-compose exec attacker ping -c 1 target || echo "[warn]  Network connectivity test failed"
 
 # Test target services
 echo "Testing target services..."
-curl -s http://localhost:8080/vulnerable.php?cmd=whoami || echo "⚠️  Target web service test failed"
+curl -s http://localhost:8080/vulnerable.php?cmd=whoami || echo "[warn]  Target web service test failed"
 
 # Execute campaign
 echo "Executing campaign $CAMPAIGN_ID..."

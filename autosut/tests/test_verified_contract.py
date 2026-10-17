@@ -16,6 +16,7 @@ def test_verified_contract_preserves_bindings_and_causal_state(
 ) -> None:
     plan = ConcretizedPlanInput(
         schema_version="1",
+        ordering_policy="causal_topological_then_source_order",
         campaign_id="C9999",
         source_plan_sha256="source-plan",
         binding_catalog_sha256="bindings",

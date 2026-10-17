@@ -1,0 +1,26 @@
+{
+  "campaign_id": "0.costaricto",
+  "source_campaign_id": "C0004",
+  "status": "blocked",
+  "reasons": [
+    "unsupported_platform_requirements"
+  ],
+  "source_steps": 10,
+  "planned_steps": 0,
+  "unresolved_technique_ids": [
+    "T1053.005"
+  ],
+  "contract_sha256": null,
+  "realization_space_sha256": null,
+  "joint_certificate_sha256": null,
+  "compatible_realization_count": 0,
+  "selected_realization_sha256": null,
+  "enumeration_status": null,
+  "files": {
+    "campaign-source.json": "056371bd8ae0fb775cd5e7cac7e71fc59e8f10307f2607357b1a2d1b76b5428b",
+    "campaign.json": "66b8389caa643fcd09377cbfcaffd6c63b58fea0a99d353eaeae8ad1a467883c",
+    "procedural-plan.json": "a3b94ec03ad19c61cbaa55bafa159549a8b71a67e63bd318065ff7b79d9babab",
+    "sut-constraints.json": "c49f7c1a37c9f89dcb3f3e44c0d93d3ce1c5c11a7ebbd4e254b63b9720e83b85"
+  },
+  "execution_status": "not_run"
+}

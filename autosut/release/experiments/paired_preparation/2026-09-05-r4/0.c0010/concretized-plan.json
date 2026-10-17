@@ -1,0 +1,943 @@
+{
+  "schema_version": "1",
+  "ordering_policy": "causal_topological_then_source_order",
+  "campaign_id": "C0010",
+  "source_plan_sha256": "0078e77de3eb4560ebe0ad7bebdbe896e4d648be1dc0a0ce7321c96aeb05b581",
+  "binding_catalog_sha256": "8196c3ac919f49e39cdb7f907940631c20f6709e1601d30b21436a7e1dd242df",
+  "action_catalog_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+  "steps": [
+    {
+      "sequence": 1,
+      "technique_id": "T1583.001",
+      "template_id": "record-controlled-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.domain"
+      ],
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "fidelity_ceiling": "inspired",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 2,
+      "technique_id": "T1584.001",
+      "template_id": "record-controlled-compromised-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.compromised_domain"
+      ],
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_compromise"
+      ],
+      "fidelity_ceiling": "inspired",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 3,
+      "technique_id": "T1587.001",
+      "template_id": "specify-benign-capability",
+      "bindings": {
+        "actor": "actor.primary",
+        "specification": "capability.benign_specification"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.capability.specified"
+      ],
+      "evidence_predicates": [
+        "specification_hash_recorded",
+        "no_harmful_payload_present"
+      ],
+      "fidelity_ceiling": "inspired",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 4,
+      "technique_id": "T1588.002",
+      "template_id": "stage-benign-toolkit",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.toolkit.ready",
+        "artifacts:recon_toolkit",
+        "system:toolkit"
+      ],
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 5,
+      "technique_id": "T1608.001",
+      "template_id": "stage-benign-payload",
+      "bindings": {
+        "actor": "actor.primary",
+        "payload": "payload.benign"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.payload.ready"
+      ],
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "payload_policy_verified"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 6,
+      "technique_id": "T1608.002",
+      "template_id": "stage-benign-tool",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.tool.staged"
+      ],
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "tool_policy_verified"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    },
+    {
+      "sequence": 7,
+      "technique_id": "T1608.004",
+      "template_id": "stage-lab-web-target",
+      "bindings": {
+        "actor": "actor.primary",
+        "web_asset": "web_asset.benign_landing"
+      },
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "web.target.ready"
+      ],
+      "evidence_predicates": [
+        "web_asset_hash_recorded",
+        "lab_scope_verified"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 8,
+      "technique_id": "T1189",
+      "template_id": "visit-declared-web-target",
+      "bindings": {
+        "endpoint": "endpoint.public_service",
+        "target": "target.primary"
+      },
+      "requires": [
+        "web.target.ready",
+        "network:http_available"
+      ],
+      "produces": [
+        "access.target.browser_context",
+        "access:initial",
+        "watering_hole:visited"
+      ],
+      "evidence_predicates": [
+        "http_request_logged",
+        "no_exploit_delivered"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 0
+    },
+    {
+      "sequence": 9,
+      "technique_id": "T1105",
+      "template_id": "transfer-staged-benign-tool",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "requires": [
+        "access.target.browser_context",
+        "actor.tool.staged",
+        "c2_channel",
+        "network:http_available"
+      ],
+      "produces": [
+        "transfer.target.payload",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted",
+      "proposal_source": "finite_domain_solver",
+      "assumption_count": 1
+    }
+  ],
+  "unresolved_technique_ids": [],
+  "rejected_candidates": [
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-benign-payload",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: access.target.shell"
+        }
+      ],
+      "assumption_count": 1
+    },
+    {
+      "proposal": {
+        "technique_id": "T1105",
+        "template_id": "transfer-over-resolved-lab-channel",
+        "bindings": {
+          "channel": "channel.private_http",
+          "payload": "payload.benign",
+          "target": "target.primary"
+        },
+        "rationale": "",
+        "source": "finite_domain_solver"
+      },
+      "accepted": false,
+      "issues": [
+        {
+          "code": "UNSATISFIED_PRECONDITIONS",
+          "message": "missing facts: channel.resolved"
+        }
+      ],
+      "assumption_count": 1
+    }
+  ],
+  "retrieval_traces": [
+    {
+      "technique_id": "T1583.001",
+      "query_sha256": "f407159e6ac46be26200aa945feb2e55a262a96ca4ebddaa59bbe5113aa470bf",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "record-controlled-domain",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1583.001"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "for"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "specify-benign-capability",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1584.001",
+      "query_sha256": "263b59e9903c1dfeb6315446144e6b1f34eea783c126f4f0bbb5c2b286162e66",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "t1584.001"
+          ]
+        },
+        {
+          "template_id": "record-controlled-domain",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "domain"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1587.001",
+      "query_sha256": "7acea2fc8f7502d7aa1684606bc94d8ee6599805438554f1244438b9f7151bcf",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "specify-benign-capability",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1587.001"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "for"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "record-controlled-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1588.002",
+      "query_sha256": "4f4d04687884352e8c00433954078c9b859f276554845af856708b76031b79c7",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1588.002"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "for",
+            "tool"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "record-controlled-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "specify-benign-capability",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        }
+      ]
+    },
+    {
+      "technique_id": "T1608.001",
+      "query_sha256": "151b09bed44298300622f0b800447eeb23f4a714be1e2828df3597915fb3830a",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "stage-benign-payload",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "t1608.001"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "for"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "on"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "record-controlled-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1608.002",
+      "query_sha256": "a52522f8b78dfa9478f908c2fa7473d6262132ff8c08d5a303a0c298c145a35c",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "stage-benign-tool",
+          "score": 1104,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "for",
+            "t1608.002",
+            "tool"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "on"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "record-controlled-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "specify-benign-capability",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1608.004",
+      "query_sha256": "254cc43e1e84b1fed01e04b437a572ae13adcb58e49b13402cc39ca9ac11209b",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 1104,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "t1608.004",
+            "target",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "for"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1189",
+      "query_sha256": "6ad65df2a5b9f0637cf29aad87061e07f1dd8ad8dd6f6c8ea711d15e83430f79",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 1102,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "page",
+            "t1189"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "query_sha256": "c0caa6700a2eecb4638cd5e98fb679962ee516675a32fef6a6a30fa8f41e4c1c",
+      "index_sha256": "3624cf7ac33205c9825be64f1a269590d1fe6bf4516dd051cda02a6c41525cb6",
+      "candidates": [
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "network",
+            "t1105",
+            "tool",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 1104,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1104,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "network"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "network"
+          ]
+        }
+      ]
+    }
+  ],
+  "planning_certificate": {
+    "initial_facts": [
+      "actor.ready",
+      "c2_channel",
+      "network:http_available",
+      "sut.ready"
+    ],
+    "goal_facts": [
+      "transfer.target.payload"
+    ],
+    "transitions": [
+      {
+        "sequence": 1,
+        "technique_id": "T1583.001",
+        "state_before_sha256": "48176d79448b266a2c9dc7d89a98eec0e4fdbf7ef6225e483b5c579a964c43b7",
+        "state_after_sha256": "86ad9957edf44151bb32f56c0be96583251f10a8b685a35504c0675b711486e3",
+        "added_facts": [
+          "infrastructure.domain"
+        ]
+      },
+      {
+        "sequence": 2,
+        "technique_id": "T1584.001",
+        "state_before_sha256": "86ad9957edf44151bb32f56c0be96583251f10a8b685a35504c0675b711486e3",
+        "state_after_sha256": "c1ba5ee7478ed2c66c6eda5ef7eefb0502d6d5b16dd73f2ed5f04a20f7d8612f",
+        "added_facts": [
+          "infrastructure.compromised_domain"
+        ]
+      },
+      {
+        "sequence": 3,
+        "technique_id": "T1587.001",
+        "state_before_sha256": "c1ba5ee7478ed2c66c6eda5ef7eefb0502d6d5b16dd73f2ed5f04a20f7d8612f",
+        "state_after_sha256": "8588d3ee00afa5cf36729fdb0648035202cfef1493898f94ac808994f835b30d",
+        "added_facts": [
+          "actor.capability.specified"
+        ]
+      },
+      {
+        "sequence": 4,
+        "technique_id": "T1588.002",
+        "state_before_sha256": "8588d3ee00afa5cf36729fdb0648035202cfef1493898f94ac808994f835b30d",
+        "state_after_sha256": "bb956216911828735657adff6fa5cdbf862a6c2121bca22733c0a82b2d518dd6",
+        "added_facts": [
+          "actor.toolkit.ready",
+          "artifacts:recon_toolkit",
+          "system:toolkit"
+        ]
+      },
+      {
+        "sequence": 5,
+        "technique_id": "T1608.001",
+        "state_before_sha256": "bb956216911828735657adff6fa5cdbf862a6c2121bca22733c0a82b2d518dd6",
+        "state_after_sha256": "9d5a7bc147db567584c9f2cb6225aed3c5f383999e5fde8d028c5c36d46648fe",
+        "added_facts": [
+          "actor.payload.ready"
+        ]
+      },
+      {
+        "sequence": 6,
+        "technique_id": "T1608.002",
+        "state_before_sha256": "9d5a7bc147db567584c9f2cb6225aed3c5f383999e5fde8d028c5c36d46648fe",
+        "state_after_sha256": "ffcde8305439bdec6b05f773a7dca4ed9faa8864e298233255a871e48225f9fc",
+        "added_facts": [
+          "actor.tool.staged"
+        ]
+      },
+      {
+        "sequence": 7,
+        "technique_id": "T1608.004",
+        "state_before_sha256": "ffcde8305439bdec6b05f773a7dca4ed9faa8864e298233255a871e48225f9fc",
+        "state_after_sha256": "d015a60ffcb4498f7f88eaf14c963483417c713aa3c986f0d0c6388dc2e499df",
+        "added_facts": [
+          "web.target.ready"
+        ]
+      },
+      {
+        "sequence": 8,
+        "technique_id": "T1189",
+        "state_before_sha256": "d015a60ffcb4498f7f88eaf14c963483417c713aa3c986f0d0c6388dc2e499df",
+        "state_after_sha256": "2d281a52b34967e57259742f2434f24b18151394fcc371dbcee47b6d159132cc",
+        "added_facts": [
+          "access.target.browser_context",
+          "access:initial",
+          "watering_hole:visited"
+        ]
+      },
+      {
+        "sequence": 9,
+        "technique_id": "T1105",
+        "state_before_sha256": "2d281a52b34967e57259742f2434f24b18151394fcc371dbcee47b6d159132cc",
+        "state_after_sha256": "3855f0bfe97c9151b488a6c0523a68417a03e49d29a3d41084b9928943c71db0",
+        "added_facts": [
+          "artifacts:downloaded_tool",
+          "artifacts:tool_script",
+          "payload:staged",
+          "transfer.target.payload"
+        ]
+      }
+    ],
+    "causal_links": [
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 1
+      },
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 2
+      },
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 3
+      },
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 4
+      },
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 5
+      },
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 6
+      },
+      {
+        "fact_id": "actor.ready",
+        "producer_sequence": 0,
+        "consumer_sequence": 7
+      },
+      {
+        "fact_id": "web.target.ready",
+        "producer_sequence": 7,
+        "consumer_sequence": 8
+      },
+      {
+        "fact_id": "network:http_available",
+        "producer_sequence": 0,
+        "consumer_sequence": 8
+      },
+      {
+        "fact_id": "access.target.browser_context",
+        "producer_sequence": 8,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "actor.tool.staged",
+        "producer_sequence": 6,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "c2_channel",
+        "producer_sequence": 0,
+        "consumer_sequence": 9
+      },
+      {
+        "fact_id": "network:http_available",
+        "producer_sequence": 0,
+        "consumer_sequence": 9
+      }
+    ],
+    "final_facts": [
+      "access.target.browser_context",
+      "access:initial",
+      "actor.capability.specified",
+      "actor.payload.ready",
+      "actor.ready",
+      "actor.tool.staged",
+      "actor.toolkit.ready",
+      "artifacts:downloaded_tool",
+      "artifacts:recon_toolkit",
+      "artifacts:tool_script",
+      "c2_channel",
+      "infrastructure.compromised_domain",
+      "infrastructure.domain",
+      "network:http_available",
+      "payload:staged",
+      "sut.ready",
+      "system:toolkit",
+      "transfer.target.payload",
+      "watering_hole:visited",
+      "web.target.ready"
+    ],
+    "unresolved_goals": [],
+    "valid": true,
+    "content_sha256": "1a1859809647f351f52e27e600c7b801742d353ba1739769e7f5313f4e81f925"
+  },
+  "llm_call_sha256": null,
+  "execution_semantic_sha256": "b7053775c305a8b89fc32a81748c85d82d766891357e13ecae4d43ee0b05e1d8",
+  "content_sha256": "7248db31f3ae127e7bfa474f478b041f07d93a8a06fdf24491988c9b8b0ef813"
+}

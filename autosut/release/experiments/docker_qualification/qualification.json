@@ -1,0 +1,71 @@
+{
+  "backend": "docker",
+  "campaign": "0.c0010",
+  "total_runs": 6,
+  "clean_runs": 5,
+  "failure_injection_runs": 1,
+  "failure_recovery_reached_clean": true,
+  "set_revision": null,
+  "current_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-8786e121a9d68dbc",
+  "total_seconds_median": 37.2,
+  "total_seconds_min": 35.197,
+  "total_seconds_max": 44.038,
+  "runs": [
+    {
+      "label": "failure_injection",
+      "run_id": "0.c0010_failure_injection_20260806T124748Z-3df48b74",
+      "final_state": "failed_clean",
+      "total_seconds": 0.23,
+      "implementation_revision": null,
+      "bundle_manifest_sha256": "9baaffdd4c19943102aabec04e05d98eb033bcbeba67a4f6ef249364611f27d7",
+      "evidence_dir": "release/evidence/0.c0010_failure_injection_20260806T124748Z-3df48b74"
+    },
+    {
+      "label": "run1",
+      "run_id": "0.c0010_run1_20260806T124421Z-d08059ef",
+      "final_state": "clean",
+      "total_seconds": 36.964,
+      "implementation_revision": null,
+      "bundle_manifest_sha256": "7f32c936fd710bb3d212a413aedd39ba7ea3bde70155417fc9b7208f981bcf55",
+      "evidence_dir": "release/evidence/0.c0010_run1_20260806T124421Z-d08059ef"
+    },
+    {
+      "label": "run2",
+      "run_id": "0.c0010_run2_20260806T124506Z-f59e92d4",
+      "final_state": "clean",
+      "total_seconds": 37.328,
+      "implementation_revision": null,
+      "bundle_manifest_sha256": "5faaaeef64d7d49d235c0367768355af8541cbef131450cde8dd120229db7964",
+      "evidence_dir": "release/evidence/0.c0010_run2_20260806T124506Z-f59e92d4"
+    },
+    {
+      "label": "run3",
+      "run_id": "0.c0010_run3_20260806T124543Z-267852b8",
+      "final_state": "clean",
+      "total_seconds": 37.2,
+      "implementation_revision": null,
+      "bundle_manifest_sha256": "baed495b8f3efd70ce8efb9f53b46f58ae90f078900207bc06880abcd4aa282f",
+      "evidence_dir": "release/evidence/0.c0010_run3_20260806T124543Z-267852b8"
+    },
+    {
+      "label": "run4",
+      "run_id": "0.c0010_run4_20260806T124629Z-88725b0a",
+      "final_state": "clean",
+      "total_seconds": 44.038,
+      "implementation_revision": null,
+      "bundle_manifest_sha256": "52923c901f73fd73dbf6c59f4e03943b37d8faf4ebca2093702bf7b7cf029d4f",
+      "evidence_dir": "release/evidence/0.c0010_run4_20260806T124629Z-88725b0a"
+    },
+    {
+      "label": "run5",
+      "run_id": "0.c0010_run5_20260806T124713Z-fcc63f15",
+      "final_state": "clean",
+      "total_seconds": 35.197,
+      "implementation_revision": null,
+      "bundle_manifest_sha256": "f8876fe911a846a5738ba5b2982cf05aca6e42cb21b8db12172368db79aae836",
+      "evidence_dir": "release/evidence/0.c0010_run5_20260806T124713Z-fcc63f15"
+    }
+  ],
+  "capability_level": "end_to_end_validated",
+  "note": "Scope: the SUT lifecycle (materialize, execute, verified teardown, verify-clean) for campaign 0.c0010; it does NOT include a Caldera instance created and destroyed inside the run, nor per-stage timing, so it does not qualify the full experiment and does not on its own back the central contribution (the full CTI-to-isolated-Caldera-to-verified-effect experiment). Level derived from 5 clean run bundle(s) and 1 failure-injection run(s); reproducible requires at least 5 clean runs and a failure run that still reached clean. Each run's manifest hash is recorded so the summary is verifiable against the sealed bundles."
+}

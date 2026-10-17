@@ -1,0 +1,87 @@
+{
+  "campaign_id": "0.shadowray",
+  "total_elements": 2,
+  "by_source": {
+    "corpus_supported": 0,
+    "external_reference": 1,
+    "analyst_authored": 0,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 0.0,
+    "external_reference": 50.0,
+    "analyst_authored": 0.0,
+    "autosut_concretized": 50.0,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "external_reference": 1,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "materialised as python:3.10-slim@sha256:4c14394747f2ccaf405c18a5d636dbf0da674a1a92e73e274c0503a24b866679"
+    },
+    {
+      "dimension": "vulnerability",
+      "identifier": "vulnerability.CVE-2023-48022",
+      "value": "CVE-2023-48022",
+      "source": "external_reference",
+      "host": null,
+      "purpose": "surrogate / ray (surrogate)"
+    }
+  ]
+}

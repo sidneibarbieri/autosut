@@ -1,0 +1,7 @@
+$ python3 -c 'import tarfile,hashlib,pathlib; archive=tarfile.open('"'"'/tmp/autosut-bound/collection.tar'"'"'); assert archive.getnames()==["collection"]; assert archive.extractfile("collection").read()==b'"'"'SYNTHETIC LAB RECORD\nNo operational data.\n'"'"'; print(hashlib.sha256(pathlib.Path('"'"'/tmp/autosut-bound/collection.tar'"'"').read_bytes()).hexdigest())'
+exit_code: 0
+--- stdout ---
+62c23501c97c4a9f0f9fb6a49bb89be6af7829b9da04445ebc57a7f1bc2c9f21
+
+--- stderr ---
+

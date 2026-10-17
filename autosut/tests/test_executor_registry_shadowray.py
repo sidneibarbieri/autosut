@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -36,7 +37,7 @@ for technique_id in ("T1016", "T1190", "T1068"):
 print(json.dumps(snapshot))
 """
     completed = subprocess.run(
-        ["python3", "-c", script],
+        [sys.executable, "-c", script],
         cwd=ARTIFACT_ROOT,
         capture_output=True,
         text=True,

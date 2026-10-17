@@ -1,0 +1,229 @@
+{
+  "run_id": "operational-qualification-2026-09-05-r6",
+  "created_at": "2026-09-05T13:04:41.244678+00:00",
+  "sealed_at": "2026-09-05T13:04:41.248860+00:00",
+  "file_count": 44,
+  "total_bytes": 104941,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "3715281e5860751cb662d80976282f39ef287c317f91a01eb5314dd656c26bad",
+      "bytes": 1211
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/caldera/operation-report.json",
+      "sha256": "d625e887e0c4bcab787edfbea6586ab5cd0e6055b37cc051a53d271c058ec571",
+      "bytes": 16870
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/experiment.json",
+      "sha256": "2a9f71cb5ac4e017c514f314e5cda60dd5f882d011bb4e13b1f7a822275d30ee",
+      "bytes": 2916
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/lifecycle-result.json",
+      "sha256": "912acac4fa8c8baadfe084e144d81ee13d8af74fbf0ccde4970c44a3c37b33fb",
+      "bytes": 2075
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/manifest.json",
+      "sha256": "5924dc5acbe72e06216142ca80f48bc851b36c8c13a9e0ae8fab6cb835b1288d",
+      "bytes": 1371
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/scenario/effect-probe.json",
+      "sha256": "ec932b6c504acd6d1beea57763b17794ad179646a1e593099cbcacc7745cbeee",
+      "bytes": 118
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/stage-timings.json",
+      "sha256": "f3402711e8f12ec32dfe26d8e6f2d0359fadc4df32c47e818413c495cc88a59e",
+      "bytes": 1283
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/supervision-binding.json",
+      "sha256": "8f367cb135658b336e9bf39b75de028edf3d7eab5ab36732af631cba9d3bcd7d",
+      "bytes": 518
+    },
+    {
+      "path": "bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/verify-clean.json",
+      "sha256": "d5cab936410193c3b3627e63acac61ba29272c79667e0ec8d4bb74def56691ba",
+      "bytes": 176
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/caldera/operation-report.json",
+      "sha256": "4faf3d0488ad5970e76e27651b72cfac796cec869c994f9c316e685f28080bd2",
+      "bytes": 13222
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/execution-state-before-teardown.json",
+      "sha256": "11395db52becadb67a237c41f319feab8621931a3ee8233b3658fc2f0b6c99dc",
+      "bytes": 2394
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/experiment.json",
+      "sha256": "9341299e718a22312ba0620108a7e49222998335a2ef94f46ac7727f964bd71f",
+      "bytes": 2431
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/lifecycle-result.json",
+      "sha256": "52f1ab206d584c0fcf353e3c9b7d4501c6944bc376cd8a5d78e5777b6b4fd760",
+      "bytes": 2221
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/manifest.json",
+      "sha256": "cde1c2a6ac0fe847ca8323427c3934c39dadc30a43a5f4ef8cd7af361ac47a6a",
+      "bytes": 2813
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/scenario/binding-catalog.json",
+      "sha256": "2337833043bd9ef0e98436a3aad9c9e5f62da0257f36579b4547e96c8cdf9cad",
+      "bytes": 1072
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/scenario/contract.json",
+      "sha256": "25e72895714141257afc82a8d34667153939d81d8848167c14af4a7dc60ad0cd",
+      "bytes": 1440
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/scenario/effect-probe.json",
+      "sha256": "e165ecb1a07bc24dbb1e1acea4a13a866feb04bd95b12bbebcdac32124fdf7c5",
+      "bytes": 323
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/scenario/observation.json",
+      "sha256": "3204a36b86fcc5b3c9526df6238153fc17cabbb59a589d9228066640d47f8148",
+      "bytes": 1096
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/scenario/probes.json",
+      "sha256": "76cf465964b90a28a3f9c6f01f297074882cdf984b9847ba9514f9c1116b88b2",
+      "bytes": 4033
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/stage-timings.json",
+      "sha256": "9e46f41259099bf1e75c7952b80c772a15f7eb3895414083f0ff78cc84921072",
+      "bytes": 1416
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/supervision-binding.json",
+      "sha256": "aa29d0eb2e99a726d64ffaa643519de6c0b052fb686bdbeacb79aae1e10662ca",
+      "bytes": 512
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/sut/cve_injection_CVE-2023-48022.log",
+      "sha256": "d84e590f47c453f05a15fca6ef319b5cef407f37bdee667c61f255a47bfdde89",
+      "bytes": 777
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/sut/ray_stop_after_failure.log",
+      "sha256": "cee527c7cfdcf63bd9070b9fd4ff6e1f6f98f51b280272815e304d180b871606",
+      "bytes": 3631
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/sut/sandcat.log",
+      "sha256": "f954ff44be034a8b372c22a2c1079ad463d6303442552a1cf09dacb1afc7f651",
+      "bytes": 619
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/sut/setup.log",
+      "sha256": "299b4286ff3583e188dc90ab4271a96c81c17c52d74f265f7038b0fdc2d7eea3",
+      "bytes": 229
+    },
+    {
+      "path": "bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/verify-clean.json",
+      "sha256": "16003e507201d4cfd8c3dd35b38d5202efe382c401690467f29282ce50f27157",
+      "bytes": 166
+    },
+    {
+      "path": "ledger.json",
+      "sha256": "ccd6c2da2a197e5dcf67586a1497a930a0dc58ed30de804badbd285d4a745f21",
+      "bytes": 7345
+    },
+    {
+      "path": "logs/autosut-supervised__multihost-caldera-fact-chain__s1.log",
+      "sha256": "525fc348340643784a7134ca52a7ef085cbb30d98477e4d683d3994c1ea82f37",
+      "bytes": 1549
+    },
+    {
+      "path": "logs/autosut-supervised__shadowray-single-host-surrogate__s1.log",
+      "sha256": "a72cab3ff45a069363448306a5062ae73f531c200b57749a456be5c4db774014",
+      "bytes": 1852
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/caldera/operation-report.json",
+      "sha256": "bf4c001245f8f2a4a66c6aa5cbd945df85b18d5f3d1a49157e2bcbfd5655e4e9",
+      "bytes": 12656
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/experiment.json",
+      "sha256": "1004ea1efbfc32a0144c24df32b9290009794493771c8a79d8e033ae298f11bd",
+      "bytes": 2489
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/lifecycle-result.json",
+      "sha256": "2993a1625afea98418841edfb0cb8a815c8053b4fb3fc8ef5faf8cdb99dece6b",
+      "bytes": 1987
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/manifest.json",
+      "sha256": "4c9eef85c7604994f611e96f4ece988155a7537ca709bee17bcb5789e5ef2296",
+      "bytes": 1336
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/scenario/effect-probe.json",
+      "sha256": "bba9311d2965ecea761378643feec64c957b3f927afbb1653678325ffecd81ec",
+      "bytes": 92
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/stage-timings.json",
+      "sha256": "20d90bba042c41e4582b171d0f37d14ea20f9b4791b711c7ed6274e97a8f0cbc",
+      "bytes": 1282
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/supervision-binding.json",
+      "sha256": "61acdef1535f8e812f1fe8affaaf14671e0e32ad680d063553f6c4bd4dda6b09",
+      "bytes": 447
+    },
+    {
+      "path": "negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0/verify-clean.json",
+      "sha256": "d5cab936410193c3b3627e63acac61ba29272c79667e0ec8d4bb74def56691ba",
+      "bytes": 176
+    },
+    {
+      "path": "negative-control/receipt.handoff.json",
+      "sha256": "fbe4e2df0e7a46640d7672476c56a50104c6526298dfc5ddc55678383663ddbb",
+      "bytes": 592
+    },
+    {
+      "path": "negative-control/receipt.json",
+      "sha256": "590e2aa573530b668de587aca3ec8dffa11659377a8695acb8068a6cdb60db3a",
+      "bytes": 1503
+    },
+    {
+      "path": "protocol.json",
+      "sha256": "79b55738755bb6c83a0743d84f079101ce5fa73767d0713f1f7622f65799187f",
+      "bytes": 2261
+    },
+    {
+      "path": "receipts/autosut-supervised__multihost-caldera-fact-chain__s1.handoff.json",
+      "sha256": "3bc2ddbfb3ea4fbcd3f4caacfd020e43079a9a1654cef003e941f5401ac89479",
+      "bytes": 643
+    },
+    {
+      "path": "receipts/autosut-supervised__multihost-caldera-fact-chain__s1.json",
+      "sha256": "db449a3549f1c92b1a0be5f44b20d5f21bb7b3d3f46cdf6241819558bff73211",
+      "bytes": 1588
+    },
+    {
+      "path": "receipts/autosut-supervised__shadowray-single-host-surrogate__s1.handoff.json",
+      "sha256": "630999a60727056239b3a83b76224455d645993ef4d0761fc1500d67f2cf13df",
+      "bytes": 637
+    },
+    {
+      "path": "receipts/autosut-supervised__shadowray-single-host-surrogate__s1.json",
+      "sha256": "86954860579efda93e6efa55a13a4116abfd5544e024a356b46225f85a3e4c66",
+      "bytes": 1573
+    }
+  ]
+}

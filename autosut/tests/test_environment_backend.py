@@ -52,11 +52,11 @@ def test_qemu_backend_selected_when_declared():
     assert select_backend(_profile("qemu")) is QEMUEnvironment
 
 
-def test_unknown_backend_falls_back_to_docker():
-    # Defensive: an unrecognised string should not crash the orchestrator.
-    # Today it falls through to Docker; if we change that policy in the
-    # future this test should be updated.
-    assert select_backend(_profile("nonsense")) is DockerEnvironment
+def test_unknown_backend_fails_closed_rather_than_substituting_docker():
+    # Fail-closed: an unrecognised backend must raise, never silently become Docker.
+    # A silent substitution is exactly the kind of undeclared stand-in the substrate forbids.
+    with pytest.raises(ValueError):
+        select_backend(_profile("nonsense"))
 
 
 def test_command_result_ok_property():

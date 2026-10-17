@@ -2,9 +2,9 @@
 """
 Three-level health check for STICKS lab infrastructure.
 
-Level 1 — VM Ready:       SSH is reachable on each host.
-Level 2 — Service Ready:  Critical services (Caldera API, Apache, SSH) respond.
-Level 3 — Campaign Ready: Inter-host connectivity validated for the campaign topology.
+Level 1 - VM Ready:       SSH is reachable on each host.
+Level 2 - Service Ready:  Critical services (Caldera API, Apache, SSH) respond.
+Level 3 - Campaign Ready: Inter-host connectivity validated for the campaign topology.
 
 Each level depends on the previous one passing.
 Exit codes: 0 = all passed, 1 = failures detected.
@@ -168,7 +168,7 @@ def _resolve_topology_from_sut(campaign_id: str) -> List[str]:
 
 
 # ---------------------------------------------------------------------------
-# Level 1 — VM Ready (SSH reachable)
+# Level 1 - VM Ready (SSH reachable)
 # ---------------------------------------------------------------------------
 
 
@@ -286,7 +286,7 @@ def level1_vm_ready(vms: List[str], provider: str) -> List[CheckResult]:
 
 
 # ---------------------------------------------------------------------------
-# Level 2 — Service Ready
+# Level 2 - Service Ready
 # ---------------------------------------------------------------------------
 
 
@@ -453,7 +453,7 @@ def level2_service_ready(
 
 
 # ---------------------------------------------------------------------------
-# Level 3 — Campaign Ready (inter-host connectivity)
+# Level 3 - Campaign Ready (inter-host connectivity)
 # ---------------------------------------------------------------------------
 
 
@@ -556,11 +556,11 @@ def print_report(report: HealthReport):
             if not c.passed and c.details:
                 print(f"           {c.details[:100]}")
 
-    _print_level("Level 1 — VM Ready", report.level1_vm_ready)
+    _print_level("Level 1 - VM Ready", report.level1_vm_ready)
     print()
-    _print_level("Level 2 — Service Ready", report.level2_service_ready)
+    _print_level("Level 2 - Service Ready", report.level2_service_ready)
     print()
-    _print_level("Level 3 — Campaign Ready", report.level3_campaign_ready)
+    _print_level("Level 3 - Campaign Ready", report.level3_campaign_ready)
 
     print(f"\n{'=' * 70}")
     overall = "PASS" if report.overall_passed else "FAIL"

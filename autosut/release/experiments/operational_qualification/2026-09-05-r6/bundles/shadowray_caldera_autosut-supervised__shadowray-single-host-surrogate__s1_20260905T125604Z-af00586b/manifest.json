@@ -1,0 +1,89 @@
+{
+  "run_id": "shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "created_at": "2026-09-05T12:56:04.337212+00:00",
+  "sealed_at": "2026-09-05T12:59:13.825762+00:00",
+  "file_count": 16,
+  "total_bytes": 35582,
+  "files": [
+    {
+      "path": "caldera/operation-report.json",
+      "sha256": "4faf3d0488ad5970e76e27651b72cfac796cec869c994f9c316e685f28080bd2",
+      "bytes": 13222
+    },
+    {
+      "path": "execution-state-before-teardown.json",
+      "sha256": "11395db52becadb67a237c41f319feab8621931a3ee8233b3658fc2f0b6c99dc",
+      "bytes": 2394
+    },
+    {
+      "path": "experiment.json",
+      "sha256": "9341299e718a22312ba0620108a7e49222998335a2ef94f46ac7727f964bd71f",
+      "bytes": 2431
+    },
+    {
+      "path": "lifecycle-result.json",
+      "sha256": "52f1ab206d584c0fcf353e3c9b7d4501c6944bc376cd8a5d78e5777b6b4fd760",
+      "bytes": 2221
+    },
+    {
+      "path": "scenario/binding-catalog.json",
+      "sha256": "2337833043bd9ef0e98436a3aad9c9e5f62da0257f36579b4547e96c8cdf9cad",
+      "bytes": 1072
+    },
+    {
+      "path": "scenario/contract.json",
+      "sha256": "25e72895714141257afc82a8d34667153939d81d8848167c14af4a7dc60ad0cd",
+      "bytes": 1440
+    },
+    {
+      "path": "scenario/effect-probe.json",
+      "sha256": "e165ecb1a07bc24dbb1e1acea4a13a866feb04bd95b12bbebcdac32124fdf7c5",
+      "bytes": 323
+    },
+    {
+      "path": "scenario/observation.json",
+      "sha256": "3204a36b86fcc5b3c9526df6238153fc17cabbb59a589d9228066640d47f8148",
+      "bytes": 1096
+    },
+    {
+      "path": "scenario/probes.json",
+      "sha256": "76cf465964b90a28a3f9c6f01f297074882cdf984b9847ba9514f9c1116b88b2",
+      "bytes": 4033
+    },
+    {
+      "path": "stage-timings.json",
+      "sha256": "9e46f41259099bf1e75c7952b80c772a15f7eb3895414083f0ff78cc84921072",
+      "bytes": 1416
+    },
+    {
+      "path": "supervision-binding.json",
+      "sha256": "aa29d0eb2e99a726d64ffaa643519de6c0b052fb686bdbeacb79aae1e10662ca",
+      "bytes": 512
+    },
+    {
+      "path": "sut/cve_injection_CVE-2023-48022.log",
+      "sha256": "d84e590f47c453f05a15fca6ef319b5cef407f37bdee667c61f255a47bfdde89",
+      "bytes": 777
+    },
+    {
+      "path": "sut/ray_stop_after_failure.log",
+      "sha256": "cee527c7cfdcf63bd9070b9fd4ff6e1f6f98f51b280272815e304d180b871606",
+      "bytes": 3631
+    },
+    {
+      "path": "sut/sandcat.log",
+      "sha256": "f954ff44be034a8b372c22a2c1079ad463d6303442552a1cf09dacb1afc7f651",
+      "bytes": 619
+    },
+    {
+      "path": "sut/setup.log",
+      "sha256": "299b4286ff3583e188dc90ab4271a96c81c17c52d74f265f7038b0fdc2d7eea3",
+      "bytes": 229
+    },
+    {
+      "path": "verify-clean.json",
+      "sha256": "16003e507201d4cfd8c3dd35b38d5202efe382c401690467f29282ce50f27157",
+      "bytes": 166
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "run_id": "multihost_caldera_f2_20260806T230804Z-1ee582a4",
+  "label": "f2",
+  "stages": [
+    {
+      "name": "materialize_network",
+      "seconds": 0.034,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "materialize_caldera",
+      "seconds": 0.174,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_caldera_readiness",
+      "seconds": 12.085,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "materialize_hosts",
+      "seconds": 0.385,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "enroll_agents",
+      "seconds": 64.984,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "register_and_execute",
+      "seconds": 100.617,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_effect",
+      "seconds": 0.036,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_hosts",
+      "seconds": 0.182,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_caldera",
+      "seconds": 0.203,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_network",
+      "seconds": 0.096,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    }
+  ],
+  "total_seconds": 178.825,
+  "forward_completed": true,
+  "residual": {
+    "scope": "docker.autosut.multihost",
+    "residual_resources": []
+  },
+  "final_state": "clean",
+  "evidence_dir": "release/evidence/multihost_caldera_f2_20260806T230804Z-1ee582a4",
+  "implementation_revision": null
+}

@@ -1,0 +1,15 @@
+{
+  "question": "Can a Caldera server be materialized, made ready, keyed, and destroyed per run, in isolation from any persistent instance?",
+  "image": "ghcr.io/mitre/caldera:latest",
+  "run": {
+    "container_name": "autosut-7bd20ae7-caldera",
+    "host_port": 59404,
+    "readiness_seconds": 12.1,
+    "api_key_read": true,
+    "destroyed_and_absent": true,
+    "started_at": "2026-08-06T16:54:10.473340+00:00"
+  },
+  "capability": "caldera.isolated_instance_per_run",
+  "level": "integration_tested",
+  "note": "Isolation primitive only: a fresh Caldera was created on its own port, answered its API, yielded its red key, and was removed with confirmed absence. It does not yet enroll a Sandcat or run an operation, so it does not qualify the full experiment."
+}

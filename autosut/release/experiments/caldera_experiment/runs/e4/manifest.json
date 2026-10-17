@@ -1,0 +1,49 @@
+{
+  "run_id": "shadowray_caldera_e4_20260806T223906Z-c99a24c5",
+  "created_at": "2026-08-06T22:39:06.472245+00:00",
+  "sealed_at": "2026-08-06T22:42:48.242892+00:00",
+  "file_count": 8,
+  "total_bytes": 10073,
+  "files": [
+    {
+      "path": "experiment.json",
+      "sha256": "88064eb8ac6e4497fe4622fa12921d6a990747d0c3149695099bd7e2b3789f56",
+      "bytes": 1842
+    },
+    {
+      "path": "lifecycle-result.json",
+      "sha256": "7133d7d9795412e2c3b6c6bf6e91e077b5fec1e578d6269b2c0455a1b15c8d25",
+      "bytes": 1658
+    },
+    {
+      "path": "stage-timings.json",
+      "sha256": "067dadf752a991d38aa197d0ada6d9b1dde03a07bbccbb68e9fa1d4d383e5a9e",
+      "bytes": 1151
+    },
+    {
+      "path": "sut/cve_injection_CVE-2023-48022.log",
+      "sha256": "e43bdafcdaf5e0d2036e02da7e32c7e147654c7e97e4ba9e333eed3899fe82eb",
+      "bytes": 777
+    },
+    {
+      "path": "sut/ray_stop_after_failure.log",
+      "sha256": "e12fd46cc8277e0f855fc57b5ad9569414392208dcf4b72b322cc6ec08006efa",
+      "bytes": 3631
+    },
+    {
+      "path": "sut/sandcat.log",
+      "sha256": "d79dfaae695bf02ddc8d0b468c6eca389dfda65b588cbde6eebd0926e7baf964",
+      "bytes": 619
+    },
+    {
+      "path": "sut/setup.log",
+      "sha256": "f3df9c32b9c6190fe37e417a4ac29697811317ada4de28dd644e0b8dd26a8a88",
+      "bytes": 229
+    },
+    {
+      "path": "verify-clean.json",
+      "sha256": "16003e507201d4cfd8c3dd35b38d5202efe382c401690467f29282ce50f27157",
+      "bytes": 166
+    }
+  ]
+}

@@ -3,10 +3,10 @@
 ## Scope
 
 This repository supports controlled campaign execution and evidence collection.
-The current reproducibility target has three layers: a fast study-claim
-validation path, a repository-local minimal working example, and a supported
-provider-aware VM-backed path for campaign/SUT pairs that need concrete lab
-infrastructure.
+The current reproducibility target has two released layers: a fast study-claim
+validation path and a repository-local minimal working example. It also retains
+provider-aware VM backend material for future qualification, separate from the
+released claim gate.
 
 ## Fast Study-Claim Validation
 
@@ -16,8 +16,19 @@ bash run_review_check.sh
 
 This path reruns the measurement pipeline, regenerates study-facing outputs,
 and checks that the released values remain consistent from the same checkout.
-It also rebuilds the canonical RQ1--RQ4/C0045 claim ledger and rejects required
-claims whose declared evidence gate does not pass.
+It also rebuilds the canonical RQ1--RQ4/C0045 and bounded dispatch claim ledger,
+then rejects required claims whose declared evidence gate does not pass. The
+dispatch row audits sealed public evidence; it does not launch a live backend.
+
+Measurement diagnostics are retained under
+`results/reviewer_runtime/measurement-<run-token>/`. Each invocation creates its
+own directory and prints its location. Success and failure keep their logs for
+inspection; no fixed shared `/tmp` log names are used. The manifest permits only
+declared diagnostic filenames under this layout when `--allow-runtime-state` is
+enabled. Logs are excluded from newly built release packages, while unknown
+diagnostic content blocks packaging rather than being deleted. Diagnostic
+isolation does not permit simultaneous result regeneration in the same checkout;
+use separate extracted packages for concurrent full reproductions.
 
 The C0045 gate is self-contained and can be isolated with:
 
@@ -49,20 +60,18 @@ artifact-only and are never copied by this gate.
 | --- | --- | --- | --- |
 | Fast study-claim validation | Python 3.10+, `venv` | commodity laptop/desktop | canonical validation of released values |
 | Docker smoke replay | Python 3.10+, `venv`, `docker` | Docker-capable host | smallest live campaign/SUT execution example |
-| VM-backed path | Python 3.10+, `venv`, `vagrant`, `qemu` or `libvirt` | 8 CPU cores, 16 GB RAM, 25 GB free disk recommended | heavier cold-start realism path for one campaign/SUT pair |
+| Orchestrated Docker replay | Python 3.10+, `venv`, `docker` | Docker-capable host | sequential replay of the implemented campaign/SUT subset; reviewer-generated records are not promoted to claims |
+| VM backend materials | Python 3.10+, `venv`, `vagrant`, `qemu` or `libvirt` | 8 CPU cores, 16 GB RAM, 25 GB free disk recommended | implementation and future qualification material, not a released claim path |
 
 The canonical wrappers enforce the exact versions in
 `requirements-reviewer.txt` inside a repo-local `.venv`. Optional development
 and documentation tools are pinned separately in `requirements-dev.txt` so the
 reviewer bootstrap does not install unrelated tooling.
 
-The heavy path is allowed to be slow. First-boot package installation,
-guest bootstrap, and Caldera-related service provisioning can dominate the run
-time on a clean checkout, especially on macOS ARM64 with `qemu`.
-By default, the VM-backed wrapper restores tracked study-facing summaries after
-teardown and removes runtime-only lab byproducts. Use
-`--persist-derived-state` only when you explicitly want to keep regenerated
-summaries or local SUT reports in the checkout.
+The VM material is intentionally not a reviewer recipe. The current capability
+ledger records QEMU Linux ARM64 as `implemented` with boot qualification still
+required, and native Windows as `development_in_progress`. A local guest boot
+or provider preflight does not alter the released ledger or establish a claim.
 
 ## Docker Smoke Replay
 
@@ -72,11 +81,15 @@ bash artifact/run.sh
 bash artifact/validate.sh
 ```
 
-The smoke path currently executes one representative campaign:
+The smoke path executes two compact, complementary campaign/SUT slices:
 
-- `0.c0017`
+- `0.c0017`, an infrastructure smoke replay;
+- `0.shadowray`, a C0045-derived state-contract surrogate.
 
-and then regenerates the LaTeX tables used by the study-facing workflow.
+The wrappers bind validation to the evidence created by that invocation and
+archive the records under `release/evidence/_reviewer_runs/`. These local
+records do not modify the released claim ledger or manifest-listed study
+outputs. Study-facing tables are regenerated only by `bash run_review_check.sh`.
 It requires a reachable Docker daemon and may download/build public images and
 packages on first use. The run wrapper performs an explicit Docker preflight.
 
@@ -87,13 +100,12 @@ The smoke path writes:
 - `release/evidence/<campaign>_<timestamp>/summary.json`
 - `release/evidence/<campaign>_<timestamp>/manifest.json`
 - `release/evidence/<campaign>_<timestamp>/fidelity_report.json`
-- `results/tables/corpus_table.tex`
-- `results/tables/fidelity_table.tex`
-- `results/tables/execution_table.tex`
 
 After validation, the checked smoke run is moved to
 `release/evidence/_reviewer_runs/` so reviewer-generated runs remain available
-without changing the curated golden evidence used by the dashboard.
+without changing the released claim ledger or its ledger-linked evidence.
+When executed from an extracted public package, `artifact/validate.sh` also
+checks that the immutable package manifest still matches.
 
 Supporting state reports can be regenerated with:
 
@@ -123,26 +135,24 @@ percentage numerators, denominators, and scopes are recorded in
 The infrastructure automation coverage report, `results/INFRA_AUTOMATION_COVERAGE.md`,
 documents the current IaC and SUT automation boundary across the published
 campaign/SUT pairs: runtime VM topology, target-host count, automatically
-applied base weaknesses, step-conditioned overlays, and latest evidence
-availability.
+applied base weaknesses, step-conditioned overlays, and the exact pair covered
+by the bounded dispatch witness.
+
+`results/CORPUS_STATE.md` is a deterministic contract-state report. It
+distinguishes available campaign definitions, declared SUT profiles, strict
+campaign/SUT validation, MITRE-audit coverage, and the bounded dispatch witness.
+It does not summarize historical executor status or use a successful executor
+status as proof that a current implementation is qualified.
 
 In the current published subset, those declared campaign/SUT pairs still use
 single target-host examples. The underlying IaC path is able to lift broader
 multi-host layouts when a future SUT profile declares them, but that should be
 read as current capability rather than as shipped corpus coverage.
 
-For a concrete VM-backed run that provisions the declared SUT automatically:
-
-```bash
-bash run_vm_backed_campaign.sh 0.c0011
-bash run_vm_backed_campaign.sh 0.shadowray
-```
-
-That wrapper delegates to `scripts/run_lab_campaign.py`, which lifts the VM
-substrate declared by the campaign's SUT profile, applies the declared base SUT
-profile, applies step-conditioned SUT overlays for selected techniques,
-executes the campaign, refreshes evidence/state reports, and tears the lab down
-unless `--keep-lab` is requested.
+The retained VM wrapper is intended to lift a declared topology, apply the
+base SUT profile and step-conditioned overlays, execute a campaign, collect
+evidence, and tear down. Those source-level steps are not proof that a backend
+has completed boot, execution, independent observation, and clean teardown.
 
 The interpretation is intentionally conservative: the repository derives a
 static lower-bound SUT profile from one corpus snapshot and then runs a
@@ -159,17 +169,18 @@ realism checks:
 - `scripts/destroy_lab.sh`
 - `multi_vm_manager_2vm.py`
 
-These helpers are supported, but they are intentionally heavier than the smoke
-path and should be interpreted campaign by campaign rather than as a promise of
-historical replay fidelity.
+These are source-level implementation helpers, intentionally outside the
+released reviewer contract. They should not be represented as a qualified
+campaign replay or a promise of historical replay fidelity.
 
-Backend preference for the optional VM-backed path is currently:
+Candidate provider implementations for a later qualification are:
 
 - `libvirt` on Linux
 - `qemu` on macOS ARM64
 
 This is an implementation detail of the optional VM infrastructure layer; the
-canonical smoke path instead requires Docker.
+canonical reviewer path instead requires neither a VM backend nor a Windows
+image.
 
 ## Known Limits
 
@@ -192,4 +203,5 @@ canonical smoke path instead requires Docker.
 The repository should not claim universal success where the current execution
 path still reports real failures. Reviewer-facing instructions should therefore
 start from `run_review_check.sh`, then widen to the repository-local example,
-and only then to the VM-backed path when explicit substrate evidence matters.
+and only then inspect VM source and the capability ledger when implementation
+scope matters.

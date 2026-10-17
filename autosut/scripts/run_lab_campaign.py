@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Canonical VM-backed campaign orchestration for STICKS.
+Canonical VM-backed campaign orchestration for AutoSUT.
 
 This script turns the existing lab helpers into one explicit realism path:
 
@@ -126,7 +126,7 @@ class _DerivedStateSnapshot:
 
     @classmethod
     def capture(cls) -> "_DerivedStateSnapshot":
-        temp_dir = tempfile.TemporaryDirectory(prefix="sticks_derived_state_")
+        temp_dir = tempfile.TemporaryDirectory(prefix="autosut_derived_state_")
         snapshot_root = Path(temp_dir.name)
         files: dict[Path, Path] = {}
 
@@ -171,7 +171,7 @@ def _cleanup_runtime_outputs() -> None:
 
 def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Canonical VM-backed campaign execution for STICKS."
+        description="Canonical VM-backed campaign execution for AutoSUT."
     )
     parser.add_argument("--campaign", required=True, help="Campaign ID to execute.")
     parser.add_argument(

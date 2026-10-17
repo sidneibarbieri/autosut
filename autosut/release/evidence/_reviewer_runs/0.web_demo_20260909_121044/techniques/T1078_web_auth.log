@@ -1,0 +1,7 @@
+$ curl -s -o /dev/null -w '%{http_code}' -m 5 -u webadmin:Lab-Web-2026! http://webtarget/secret/flag.txt; echo
+exit_code: 0
+--- stdout ---
+200
+
+--- stderr ---
+

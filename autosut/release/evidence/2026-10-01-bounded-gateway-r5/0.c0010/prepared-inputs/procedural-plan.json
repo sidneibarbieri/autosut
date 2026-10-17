@@ -1,0 +1,207 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0010",
+  "campaign_name": "C0010",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--ab747e62-1bcb-479f-a26b-1cd39d413d81",
+    "campaign_external_id": "C0010"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1583.001",
+      "technique_stix_id": "attack-pattern--40f5caa0-4cb7-4117-89fc-d421bb493df3",
+      "name": "Domains",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--b0ad4286-8434-400c-9eff-1b0ca2b7a094"
+      ],
+      "procedure_descriptions": [
+        "For [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors established domains that appeared to be legitimate services and entities, such as LinkedIn, Facebook, Office 365, and Pfizer.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1584.001",
+      "technique_stix_id": "attack-pattern--f9cc4d06-775f-4ee1-b401-4e2cc0da30ba",
+      "name": "Domains",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--57e9b366-fac5-4320-bb76-da81953de2dc"
+      ],
+      "procedure_descriptions": [
+        "During [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors likely compromised the domain of a legitimate Israeli shipping company.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1587.001",
+      "technique_stix_id": "attack-pattern--212306d8-efa4-44c9-8c2d-ed3d2e224aa0",
+      "name": "Malware",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--a36264d2-5bb2-4268-8ce1-3de9fbdf2862"
+      ],
+      "procedure_descriptions": [
+        "For [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors used unique malware, including [SUGARUSH](https://attack.mitre.org/software/S1049) and [SUGARDUMP](https://attack.mitre.org/software/S1042).(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1588.002",
+      "technique_stix_id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "name": "Tool",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--df940d86-6586-429f-ae57-fe99da9e8edb"
+      ],
+      "procedure_descriptions": [
+        "For [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors obtained multiple publicly-available tools, including METASPLOIT, UNICORN, and NorthStar C2.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1608.001",
+      "technique_stix_id": "attack-pattern--3ee16395-03f0-4690-a32e-69ce9ada0f9e",
+      "name": "Upload Malware",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--634a14f9-e252-4f5e-851a-de8187de074e"
+      ],
+      "procedure_descriptions": [
+        "For [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors staged malware on their infrastructure for direct download onto a compromised system.(Citation: Mandiant UNC3890 Aug 2022) "
+      ]
+    },
+    {
+      "technique_id": "T1608.002",
+      "technique_stix_id": "attack-pattern--506f6f49-7045-4156-9007-7474cb44ad6d",
+      "name": "Upload Tool",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--ba2dfbfe-4979-448b-8f87-bdc44a867bbf"
+      ],
+      "procedure_descriptions": [
+        "For [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors staged tools on their infrastructure to download directly onto a compromised system.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1608.004",
+      "technique_stix_id": "attack-pattern--31fe0ba2-62fd-4fd9-9293-4043d84f7fe9",
+      "name": "Drive-by Target",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--8d172b4c-7732-4315-852a-958a1cd08025"
+      ],
+      "procedure_descriptions": [
+        "For [C0010](https://attack.mitre.org/campaigns/C0010), the threat actors compromised the login page of a legitimate Israeli shipping company and likely established a watering hole that collected visitor information.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1189",
+      "technique_stix_id": "attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6",
+      "name": "Drive-by Compromise",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--855c5caf-8553-45d0-a08b-842a9358d138"
+      ],
+      "procedure_descriptions": [
+        "During [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors likely established a watering hole that was hosted on a login page of a legitimate Israeli shipping company that was active until at least November 2021.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--b8545621-f2c5-4834-a19d-fa1e0eccd33b"
+      ],
+      "procedure_descriptions": [
+        "During [C0010](https://attack.mitre.org/campaigns/C0010), UNC3890 actors downloaded tools and malware onto a compromised host.(Citation: Mandiant UNC3890 Aug 2022)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "24c7d91dbe879dcc357957569bde0bfb677cbf163ed9b56bb04c925a5f28eaf4"
+}

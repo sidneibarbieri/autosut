@@ -1,0 +1,48 @@
+{
+  "purpose": "Classify every pytest skip so no skip hides a claim-required capability or a defect. Required before freeze; the deselected count in a -k run is not a skip and is irrelevant here.",
+  "date_observed": "2026-08-12",
+  "revision_state": "unfrozen (author environment)",
+  "default_suite": {"passed": 406, "skipped": 4, "failed": 0},
+  "note_on_deselected": "A directed run such as `pytest -k backend` reported '40 passed, 1 skipped, 368 deselected'. The 368 deselected are tests the -k filter did not select; they are neither failures nor skips. The suite-wide numbers are the ones that matter.",
+  "skips": [
+    {
+      "test": "tests/test_lifecycle_signal_integration.py::(SIGTERM mid-run)",
+      "reason": "opt-in Docker integration test; set AUTOSUT_DOCKER_INTEGRATION=1 to run",
+      "classification": "expensive_integration",
+      "qualification_blocking_for_docker": true,
+      "run_with_gate_enabled": "PASS (after a fix; see below)"
+    },
+    {
+      "test": "tests/test_subdetermination.py:243",
+      "reason": "set AUTOSUT_RUN_DOCKER_TESTS=1 with Docker running",
+      "classification": "expensive_integration",
+      "qualification_blocking_for_docker": true,
+      "run_with_gate_enabled": "PASS"
+    },
+    {
+      "test": "tests/test_supervised_docker_sweep.py:46",
+      "reason": "set AUTOSUT_DOCKER_INTEGRATION=1 with a reachable docker daemon to run",
+      "classification": "expensive_integration",
+      "qualification_blocking_for_docker": true,
+      "run_with_gate_enabled": "PASS"
+    },
+    {
+      "test": "tests/test_supervised_docker_sweep.py:63",
+      "reason": "set AUTOSUT_DOCKER_INTEGRATION=1 with a reachable docker daemon to run",
+      "classification": "expensive_integration",
+      "qualification_blocking_for_docker": true,
+      "run_with_gate_enabled": "PASS"
+    }
+  ],
+  "verified_by_running": {
+    "command": "AUTOSUT_DOCKER_INTEGRATION=1 AUTOSUT_RUN_DOCKER_TESTS=1 pytest <the 4 tests>",
+    "result": "21 tests ran; 21 pass after the fix below",
+    "defect_surfaced_by_the_audit": "Running the previously-skipped SIGTERM integration test revealed a latent, pre-existing bug in scripts/run_lifecycle.py: `run_context.run_dir.relative_to(PROJECT_ROOT)` raised ValueError when the evidence root is outside the project (a pytest tmp dir). Fixed by falling back to the absolute path in that case. This is exactly why a skip must never be assumed benign."
+  },
+  "policy": {
+    "development": "these 4 opt-in Docker integration skips are acceptable; they gate expensive real-Docker runs behind env vars",
+    "qualification": "the Docker qualification run MUST enable the gates and execute all four; a 'skipped because Docker unavailable' in a Docker-qualifying environment is a blocker, not an acceptable skip",
+    "unexpected_skips": 0,
+    "unresolved_failures": 0
+  }
+}

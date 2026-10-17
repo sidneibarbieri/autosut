@@ -13,6 +13,7 @@ exercised in the container, not on the host.
 from __future__ import annotations
 
 import os
+import shutil
 import subprocess
 import uuid
 from pathlib import Path
@@ -20,7 +21,8 @@ from pathlib import Path
 # Backwards-compat: CommandResult was originally defined here; keep the
 # import so external callers continue to work, but the canonical home is
 # now ``environment_base``.
-from .environment_base import CommandResult, EnvironmentBackend  # noqa: F401
+from .environment_base import BackendReadiness, CommandResult, EnvironmentBackend  # noqa: F401
+from .docker_lifecycle import stop_container
 from .models import SUTProfile
 
 
@@ -32,6 +34,20 @@ class DockerEnvironment(EnvironmentBackend):
     """
 
     backend_name = "docker"
+
+    @classmethod
+    def check(cls) -> BackendReadiness:
+        """Docker is ready when the client is on PATH and its daemon answers."""
+        gaps: list[str] = []
+        if shutil.which("docker") is None:
+            gaps.append("docker client not on PATH")
+            return BackendReadiness(cls.backend_name, ready=False, gaps=gaps)
+        daemon = subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False, timeout=30
+        )
+        if daemon.returncode != 0:
+            gaps.append("docker daemon not responding to `docker info`")
+        return BackendReadiness(cls.backend_name, ready=not gaps, gaps=gaps)
 
     def __init__(self, container_name: str, sut: SUTProfile, run_dir: Path):
         self.container_name = container_name
@@ -81,7 +97,7 @@ class DockerEnvironment(EnvironmentBackend):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
-        self.teardown()
+        self._last_teardown_clean = self.teardown()
 
     def run_shell(self, command: str, log_name: str | None = None,
                   timeout: int = 600) -> CommandResult:
@@ -117,18 +133,11 @@ class DockerEnvironment(EnvironmentBackend):
         return result
 
     def teardown(self) -> bool:
-        proc = subprocess.run(
-            ["docker", "stop", self.container_name],
-            capture_output=True, text=True, check=False, timeout=60,
-        )
+        receipt = stop_container(self.container_name)
         log_path = self.run_dir / "sut" / "teardown.log"
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        log_path.write_text(
-            f"docker stop {self.container_name}\nexit_code: {proc.returncode}\n"
-            f"stdout: {proc.stdout}\nstderr: {proc.stderr}\n",
-            encoding="utf-8",
-        )
-        return proc.returncode == 0
+        log_path.write_text(receipt.as_log(), encoding="utf-8")
+        return receipt.clean
 
 
 def select_backend() -> type[DockerEnvironment]:

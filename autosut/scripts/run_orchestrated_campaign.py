@@ -93,11 +93,16 @@ def main() -> int:
         "[orchestrator] marker-only: "
         f"{result.marker_only_successful}/{result.total_techniques}"
     )
+    print(
+        "[orchestrator] Caldera-dispatched: "
+        f"{result.caldera_driven_successful}/{result.total_techniques}"
+    )
     print(f"[orchestrator] fidelity distribution: {result.fidelity_distribution}")
     print(f"[orchestrator] manifest: {result.manifest_path}")
     return (
         0
         if result.evidence_backed_successful == result.total_techniques
+        and result.teardown_clean
         else 2
     )
 

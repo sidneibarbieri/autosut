@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
-
 from pydantic import BaseModel, Field
 
 
@@ -39,7 +36,7 @@ class InfraAutomationRow(BaseModel):
     overlay_service_count: int
     overlay_file_count: int
     overlay_weakness_count: int
-    has_latest_evidence: bool
+    has_bounded_dispatch_witness: bool
 
 
 class InfraAutomationTotals(BaseModel):
@@ -48,7 +45,7 @@ class InfraAutomationTotals(BaseModel):
     campaigns_with_strict_pair_validation: int
     campaigns_with_base_weaknesses: int
     campaigns_with_step_overlays: int
-    campaigns_with_latest_evidence: int
+    campaigns_with_bounded_dispatch_witness: int
     campaigns_with_single_target_host: int
     campaigns_with_multi_target_host: int
     campaigns_with_multi_vm_runtime: int
@@ -79,13 +76,19 @@ def _topology_kind(target_host_count: int) -> str:
 
 def build_infra_automation_summary(
     *,
-    project_root: Path,
     campaign_ids: list[str],
     load_campaign,
     load_sut_profile,
     validate_campaign_sut_pair,
-    latest_summary,
+    bounded_dispatch_witness_campaign_ids: frozenset[str] = frozenset(),
 ) -> InfraAutomationSummary:
+    unknown_witness_campaigns = (
+        bounded_dispatch_witness_campaign_ids - frozenset(campaign_ids)
+    )
+    if unknown_witness_campaigns:
+        unknown = ", ".join(sorted(unknown_witness_campaigns))
+        raise ValueError(f"bounded dispatch witness is not in the published subset: {unknown}")
+
     rows: list[InfraAutomationRow] = []
 
     for campaign_id in campaign_ids:
@@ -127,7 +130,9 @@ def build_infra_automation_summary(
                     for step in campaign.steps
                     if step.sut_delta
                 ),
-                has_latest_evidence=latest_summary(campaign_id) is not None,
+                has_bounded_dispatch_witness=(
+                    campaign_id in bounded_dispatch_witness_campaign_ids
+                ),
             )
         )
 
@@ -137,7 +142,9 @@ def build_infra_automation_summary(
         campaigns_with_strict_pair_validation=sum(1 for row in rows if row.pair_valid),
         campaigns_with_base_weaknesses=sum(1 for row in rows if row.base_weakness_count > 0),
         campaigns_with_step_overlays=sum(1 for row in rows if row.step_overlay_count > 0),
-        campaigns_with_latest_evidence=sum(1 for row in rows if row.has_latest_evidence),
+        campaigns_with_bounded_dispatch_witness=sum(
+            1 for row in rows if row.has_bounded_dispatch_witness
+        ),
         campaigns_with_single_target_host=sum(
             1 for row in rows if row.target_host_count == 1
         ),
@@ -151,7 +158,7 @@ def build_infra_automation_summary(
         generated_from={
             "campaign_dir": "campaigns/",
             "sut_profile_dir": "data/sut_profiles/",
-            "evidence_dir": "release/evidence/",
+            "bounded_dispatch_witness": "release/experiments/operational_qualification/",
         },
         totals=totals,
         rows=rows,
@@ -173,7 +180,10 @@ def markdown_report(summary: InfraAutomationSummary) -> str:
         f"- Pairs passing strict validation: `{totals.campaigns_with_strict_pair_validation}`",
         f"- Campaigns with base weaknesses configured automatically: `{totals.campaigns_with_base_weaknesses}`",
         f"- Campaigns with step-conditioned overlays: `{totals.campaigns_with_step_overlays}`",
-        f"- Campaigns with latest shipped evidence: `{totals.campaigns_with_latest_evidence}`",
+        (
+            "- Campaigns linked to the bounded dispatch witness: "
+            f"`{totals.campaigns_with_bounded_dispatch_witness}`"
+        ),
         f"- Campaigns with single target host: `{totals.campaigns_with_single_target_host}`",
         f"- Campaigns with multi-target host topology: `{totals.campaigns_with_multi_target_host}`",
         f"- Campaigns with multi-VM runtime substrate: `{totals.campaigns_with_multi_vm_runtime}`",
@@ -190,10 +200,15 @@ def markdown_report(summary: InfraAutomationSummary) -> str:
             "all currently shipped campaign/SUT pairs use one target host even though the "
             "IaC path can resolve multiple declared runtime VMs."
         ),
+        (
+            "The bounded-dispatch count links a declared pair to the sealed witness in the "
+            "claim ledger. It is not a campaign execution rate, a current-revision result, "
+            "or evidence for the remaining published pairs."
+        ),
         "",
         "## Campaign Matrix",
         "",
-        "| Campaign | Pair Valid | Runtime VMs | Target Hosts | Topology | Base Weaknesses | Step Overlays | Latest Evidence |",
+        "| Campaign | Pair Valid | Runtime VMs | Target Hosts | Topology | Base Weaknesses | Step Overlays | Bounded Dispatch Witness |",
         "|---|---|---:|---:|---|---:|---:|---|",
     ]
 
@@ -203,7 +218,7 @@ def markdown_report(summary: InfraAutomationSummary) -> str:
             f"{'yes' if row.pair_valid else 'no'} | "
             f"{row.runtime_vm_count} | {row.target_host_count} | {row.topology_kind} | "
             f"{row.base_weakness_count} | {row.step_overlay_count} | "
-            f"{'yes' if row.has_latest_evidence else 'no'} |"
+            f"{'yes' if row.has_bounded_dispatch_witness else 'no'} |"
         )
 
     invalid_rows = [row for row in summary.rows if not row.pair_valid]
@@ -243,7 +258,7 @@ def csv_rows(summary: InfraAutomationSummary) -> list[dict[str, str]]:
                 "overlay_service_count": str(row.overlay_service_count),
                 "overlay_file_count": str(row.overlay_file_count),
                 "overlay_weakness_count": str(row.overlay_weakness_count),
-                "has_latest_evidence": str(row.has_latest_evidence),
+                "has_bounded_dispatch_witness": str(row.has_bounded_dispatch_witness),
             }
         )
     return rows

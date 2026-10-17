@@ -2,7 +2,7 @@
   "generated_from": {
     "campaign_dir": "campaigns/",
     "sut_profile_dir": "data/sut_profiles/",
-    "evidence_dir": "release/evidence/"
+    "bounded_dispatch_witness": "release/experiments/operational_qualification/"
   },
   "totals": {
     "published_campaigns": 14,
@@ -10,7 +10,7 @@
     "campaigns_with_strict_pair_validation": 12,
     "campaigns_with_base_weaknesses": 14,
     "campaigns_with_step_overlays": 1,
-    "campaigns_with_latest_evidence": 14,
+    "campaigns_with_bounded_dispatch_witness": 1,
     "campaigns_with_single_target_host": 14,
     "campaigns_with_multi_target_host": 0,
     "campaigns_with_multi_vm_runtime": 14
@@ -41,7 +41,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.apt41_dust_full",
@@ -68,7 +68,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0010",
@@ -95,7 +95,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0011",
@@ -122,7 +122,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0012",
@@ -149,7 +149,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0013",
@@ -176,7 +176,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0015",
@@ -203,7 +203,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0017",
@@ -230,7 +230,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.c0026",
@@ -257,7 +257,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.costaricto",
@@ -284,7 +284,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.operation_midnighteclipse",
@@ -311,7 +311,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.outer_space",
@@ -338,7 +338,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.salesforce_data_exfiltration",
@@ -365,7 +365,7 @@
       "overlay_service_count": 0,
       "overlay_file_count": 0,
       "overlay_weakness_count": 0,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": false
     },
     {
       "campaign_id": "0.shadowray",
@@ -392,7 +392,7 @@
       "overlay_service_count": 1,
       "overlay_file_count": 0,
       "overlay_weakness_count": 1,
-      "has_latest_evidence": true
+      "has_bounded_dispatch_witness": true
     }
   ]
 }

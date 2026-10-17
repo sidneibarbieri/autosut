@@ -53,6 +53,10 @@ export SYNC_MANUSCRIPT_VALUES
 log() { printf '[release-check] %s\n' "$*"; }
 fail() { printf '[release-check][FAIL] %s\n' "$*" >&2; exit 1; }
 
+source "$AUTOSUT_ROOT/scripts/measurement_log_directory.sh"
+MEASUREMENT_LOG_DIR="$(create_measurement_log_directory "$AUTOSUT_ROOT")"
+log "Measurement diagnostics: $MEASUREMENT_LOG_DIR"
+
 PYTHON_BIN="$(autosut_resolve_python "$AUTOSUT_ROOT" "$AUTOSUT_ROOT/requirements-reviewer.txt")"
 
 paper_source_fingerprint() {
@@ -111,58 +115,64 @@ done
 
 log "1) Running measurement pipeline"
 cd "$MEAS_SCRIPTS"
-"$PYTHON_BIN" sut_measurement_pipeline.py >/tmp/measurement_pipeline_release.log 2>&1 || {
-  tail -n 120 /tmp/measurement_pipeline_release.log >&2
+"$PYTHON_BIN" sut_measurement_pipeline.py >"$MEASUREMENT_LOG_DIR/measurement_pipeline_release.log" 2>&1 || {
+  tail -n 120 "$MEASUREMENT_LOG_DIR/measurement_pipeline_release.log" >&2
   fail "pipeline execution failed"
 }
 
 log "1b) Rendering TikZ figures from measured outputs"
-"$PYTHON_BIN" render_figures.py >/tmp/measurement_render_release.log 2>&1 || {
-  tail -n 120 /tmp/measurement_render_release.log >&2
+"$PYTHON_BIN" render_figures.py >"$MEASUREMENT_LOG_DIR/measurement_render_release.log" 2>&1 || {
+  tail -n 120 "$MEASUREMENT_LOG_DIR/measurement_render_release.log" >&2
   fail "figure rendering failed"
 }
 
 log "1c) Generating traceability appendix"
-"$PYTHON_BIN" generate_traceability.py >/tmp/measurement_traceability_release.log 2>&1 || {
-  tail -n 120 /tmp/measurement_traceability_release.log >&2
+"$PYTHON_BIN" generate_traceability.py >"$MEASUREMENT_LOG_DIR/measurement_traceability_release.log" 2>&1 || {
+  tail -n 120 "$MEASUREMENT_LOG_DIR/measurement_traceability_release.log" >&2
   fail "traceability generation failed"
 }
 
 log "1d) Evaluating compatibility manual-validation packet"
-"$PYTHON_BIN" evaluate_compatibility_validation.py >/tmp/measurement_validation_release.log 2>&1 || {
-  tail -n 120 /tmp/measurement_validation_release.log >&2
+"$PYTHON_BIN" evaluate_compatibility_validation.py >"$MEASUREMENT_LOG_DIR/measurement_validation_release.log" 2>&1 || {
+  tail -n 120 "$MEASUREMENT_LOG_DIR/measurement_validation_release.log" >&2
   fail "compatibility validation summary generation failed"
 }
 
 log "1e) Generating deterministic CVE resolution report"
-"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_cve_resolution_report.py" >/tmp/measurement_cve_resolution_release.log 2>&1 || {
-  cat /tmp/measurement_cve_resolution_release.log >&2
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_cve_resolution_report.py" >"$MEASUREMENT_LOG_DIR/measurement_cve_resolution_release.log" 2>&1 || {
+  cat "$MEASUREMENT_LOG_DIR/measurement_cve_resolution_release.log" >&2
   fail "CVE resolution report generation failed"
 }
 
 log "1ea) Generating infrastructure and SUT automation coverage report"
-"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_infra_automation_report.py" >/tmp/measurement_infra_automation_release.log 2>&1 || {
-  cat /tmp/measurement_infra_automation_release.log >&2
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_infra_automation_report.py" >"$MEASUREMENT_LOG_DIR/measurement_infra_automation_release.log" 2>&1 || {
+  cat "$MEASUREMENT_LOG_DIR/measurement_infra_automation_release.log" >&2
   fail "infrastructure automation report generation failed"
 }
 
+log "1eab) Generating deterministic campaign/SUT contract-state report"
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_corpus_state.py" >"$MEASUREMENT_LOG_DIR/measurement_corpus_state_release.log" 2>&1 || {
+  cat "$MEASUREMENT_LOG_DIR/measurement_corpus_state_release.log" >&2
+  fail "campaign/SUT contract-state report generation failed"
+}
+
 log "1eaa) Generating environment provenance report"
-"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_provenance_report.py" >/tmp/measurement_provenance_release.log 2>&1 || {
-  cat /tmp/measurement_provenance_release.log >&2
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_provenance_report.py" >"$MEASUREMENT_LOG_DIR/measurement_provenance_release.log" 2>&1 || {
+  cat "$MEASUREMENT_LOG_DIR/measurement_provenance_release.log" >&2
   fail "environment provenance report generation failed"
 }
 
 log "1eb) Generating compatibility rule surface report"
-"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_compatibility_rule_surface.py" >/tmp/measurement_rule_surface_release.log 2>&1 || {
-  cat /tmp/measurement_rule_surface_release.log >&2
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/generate_compatibility_rule_surface.py" >"$MEASUREMENT_LOG_DIR/measurement_rule_surface_release.log" 2>&1 || {
+  cat "$MEASUREMENT_LOG_DIR/measurement_rule_surface_release.log" >&2
   fail "compatibility rule surface generation failed"
 }
 
 if [[ "$HAS_MANUSCRIPT_DIR" == "1" ]]; then
   if [[ "$SYNC_MANUSCRIPT_VALUES" == "1" ]]; then
     log "1f) Opt-in enabled: synchronizing manuscript values and generated figure templates"
-    "$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/sync_manuscript_values.py" >/tmp/measurement_sync_release.log 2>&1 || {
-      cat /tmp/measurement_sync_release.log >&2
+    "$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/sync_manuscript_values.py" >"$MEASUREMENT_LOG_DIR/measurement_sync_release.log" 2>&1 || {
+      cat "$MEASUREMENT_LOG_DIR/measurement_sync_release.log" >&2
       fail "manuscript value synchronization failed"
     }
 
@@ -179,8 +189,8 @@ if [[ "$HAS_MANUSCRIPT_DIR" == "1" ]]; then
     log "Copied $generated_figure_count generated figure template(s) into the manuscript (explicit opt-in)"
   else
     log "1f) Validating manuscript values against measured outputs (read-only)"
-    "$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/sync_manuscript_values.py" --check >/tmp/measurement_sync_release.log 2>&1 || {
-      cat /tmp/measurement_sync_release.log >&2
+    "$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/sync_manuscript_values.py" --check >"$MEASUREMENT_LOG_DIR/measurement_sync_release.log" 2>&1 || {
+      cat "$MEASUREMENT_LOG_DIR/measurement_sync_release.log" >&2
       fail "manuscript values differ from measured outputs"
     }
   fi
@@ -232,6 +242,8 @@ done
 [[ -f "$AUTOSUT_ROOT/results/infra_automation_coverage.csv" ]] || fail "missing artifact: $AUTOSUT_ROOT/results/infra_automation_coverage.csv"
 [[ -f "$AUTOSUT_ROOT/release/infra_automation_coverage.json" ]] || fail "missing artifact: $AUTOSUT_ROOT/release/infra_automation_coverage.json"
 [[ -f "$AUTOSUT_ROOT/release/INFRA_AUTOMATION_COVERAGE.md" ]] || fail "missing artifact: $AUTOSUT_ROOT/release/INFRA_AUTOMATION_COVERAGE.md"
+[[ -f "$AUTOSUT_ROOT/results/corpus_state.json" ]] || fail "missing artifact: $AUTOSUT_ROOT/results/corpus_state.json"
+[[ -f "$AUTOSUT_ROOT/results/CORPUS_STATE.md" ]] || fail "missing artifact: $AUTOSUT_ROOT/results/CORPUS_STATE.md"
 [[ -f "$AUTOSUT_ROOT/release/provenance/environment_provenance.json" ]] || fail "missing artifact: $AUTOSUT_ROOT/release/provenance/environment_provenance.json"
 [[ -f "$AUTOSUT_ROOT/release/provenance/support_matrix.csv" ]] || fail "missing artifact: $AUTOSUT_ROOT/release/provenance/support_matrix.csv"
 [[ -f "$AUTOSUT_ROOT/release/provenance/ENVIRONMENT_PROVENANCE.md" ]] || fail "missing artifact: $AUTOSUT_ROOT/release/provenance/ENVIRONMENT_PROVENANCE.md"
@@ -250,20 +262,20 @@ with open(base/'todo_values.json') as f:
     d = json.load(f)
 
 checks = []
-checks.append((d['enterprise_platform_count'] == 691, 'enterprise_platform_count must be 691'))
-checks.append((d['enterprise_campaigns_with_software_count'] == 47, 'campaigns_with_software_count must be 47'))
-checks.append((d['enterprise_campaigns_with_platform_signal_count'] == 47, 'campaigns_with_platform_signal_count must be 47'))
-checks.append((d['enterprise_campaigns_platform_unknown_count'] == 5, 'campaigns_platform_unknown_count must be 5'))
+checks.append((d['enterprise_platform_count'] == 697, 'enterprise_platform_count must be 697'))
+checks.append((d['enterprise_campaigns_with_software_count'] == 50, 'campaigns_with_software_count must be 50'))
+checks.append((d['enterprise_campaigns_with_platform_signal_count'] == 50, 'campaigns_with_platform_signal_count must be 50'))
+checks.append((d['enterprise_campaigns_platform_unknown_count'] == 6, 'campaigns_platform_unknown_count must be 6'))
 checks.append((d['ent_campaigns_with_cve_count'] == 5, 'campaigns_with_cve_count must be 5'))
 checks.append((d['compatibility_container_feasible_count'] + d['compatibility_vm_required_count'] + d['compatibility_infrastructure_dependent_count'] == d['enterprise_platform_count'], 'CF+VMR+ID must equal enterprise_platform_count'))
 checks.append((d['compatibility_explicit_assignment_count'] + d['compatibility_fallback_assignment_count'] == d['enterprise_platform_count'], 'explicit + fallback assignments must equal enterprise_platform_count'))
 checks.append((d['compatibility_assignment_coverage_before_fallback_percentage'] == d['compatibility_explicit_assignment_percentage'], 'pre-fallback assignment coverage denominator mismatch'))
 checks.append((d['compatibility_assignment_coverage_after_fallback_percentage'] == 100.0, 'post-fallback assignment coverage must be 100%'))
 checks.append((d['compatibility_assignment_coverage_gain_pp'] == d['compatibility_fallback_assignment_percentage'], 'assignment coverage gain must equal corpus-wide fallback share'))
-checks.append((d['compatibility_resolution_gain_pp'] == 67.3, 'legacy resolution-gain macro must no longer emit invalid 58.9 pp'))
-checks.append((d['compatibility_explicit_non_cf_count'] == 207, 'explicit non-CF numerator must be 207'))
-checks.append((d['compatibility_explicit_non_cf_percentage'] == 91.6, 'explicit-only non-CF composition must be 207/226 = 91.6%'))
-checks.append((d['compatibility_final_non_cf_corpus_percentage'] == 97.3, 'final corpus-wide non-CF share must be 672/691 = 97.3%'))
+checks.append((d['compatibility_resolution_gain_pp'] == 67.4, 'legacy resolution-gain macro must no longer emit invalid 58.9 pp'))
+checks.append((d['compatibility_explicit_non_cf_count'] == 208, 'explicit non-CF numerator must be 208'))
+checks.append((d['compatibility_explicit_non_cf_percentage'] == 91.6, 'explicit-only non-CF composition must be 208/227 = 91.6%'))
+checks.append((d['compatibility_final_non_cf_corpus_percentage'] == 97.3, 'final corpus-wide non-CF share must be 678/697 = 97.3%'))
 checks.append((d['threshold_k_one_confusion_pct'] >= d['threshold_k_three_confusion_pct'], 'confusion should not increase from k>=1 to k>=3'))
 checks.append((d['threshold_k_one_confusion_pct'] >= d['threshold_k_two_confusion_pct'], 'confusion should not increase from k>=1 to k>=2'))
 checks.append((d['threshold_k_two_confusion_pct'] >= d['threshold_k_three_confusion_pct'], 'confusion should not increase from k>=2 to k>=3'))
@@ -304,6 +316,7 @@ with open(base/'audit'/'campaign_platform_unknown.csv', newline='', encoding='ut
     r = csv.DictReader(f)
     unknown_names = sorted(row['campaign_name'] for row in r if row.get('campaign_name'))
 expected_unknown = sorted([
+    'Anthropic AI-orchestrated Campaign',
     'FrostyGoop Incident',
     'KV Botnet Activity',
     'Leviathan Australian Intrusions',
@@ -366,35 +379,65 @@ checks.append(('lsass' in rule_surface['vmr_name_regex'], 'compatibility rule su
 with open(Path(os.environ['AUTOSUT_ROOT'])/'results'/'infra_automation_coverage.json', encoding='utf-8') as f:
     infra = json.load(f)
 infra_totals = infra['totals']
-evidence_root = Path(os.environ['AUTOSUT_ROOT']) / 'release' / 'evidence'
-dashboard_evidence_root = Path(os.environ['AUTOSUT_ROOT']) / 'release' / 'dashboard' / 'data' / 'evidence'
-expected_evidence_campaigns = 0
-for campaign_id in {row['campaign_id'] for row in infra['rows']}:
-    has_evidence = any(
-        evidence_dir.exists()
-        and any(
-            candidate.is_dir()
-            and candidate.name.startswith(f"{campaign_id}_")
-            for candidate in evidence_dir.iterdir()
-        )
-        for evidence_dir in (dashboard_evidence_root, evidence_root)
-    )
-    expected_evidence_campaigns += int(has_evidence)
+sys.path.insert(0, str(Path(os.environ['AUTOSUT_ROOT']) / 'src'))
+from evaluation.canonical_operational_witness import assess_caldera_dispatch_witness
+
+witness_assessment = assess_caldera_dispatch_witness(Path(os.environ['AUTOSUT_ROOT']))
+checks.append((
+    witness_assessment.status == 'supported_bounded' and witness_assessment.witness is not None,
+    'canonical bounded dispatch witness is not supported',
+))
+expected_dispatch_witness_campaigns = (
+    {witness_assessment.witness.campaign_id}
+    if witness_assessment.witness is not None
+    else set()
+)
+reported_dispatch_witness_campaigns = {
+    row['campaign_id']
+    for row in infra['rows']
+    if row['has_bounded_dispatch_witness']
+}
 checks.append((infra_totals['published_campaigns'] == 14, 'infra coverage published campaign count mismatch'))
 checks.append((infra_totals['campaigns_with_strict_pair_validation'] == 12, 'infra coverage pair-valid count mismatch'))
 checks.append((infra_totals['campaigns_with_base_weaknesses'] == 14, 'infra coverage base-weakness count mismatch'))
 checks.append((infra_totals['campaigns_with_step_overlays'] == 1, 'infra coverage overlay count mismatch'))
-checks.append((infra_totals['campaigns_with_latest_evidence'] == expected_evidence_campaigns, 'infra coverage evidence count mismatch'))
+checks.append((
+    infra_totals['campaigns_with_bounded_dispatch_witness'] == len(expected_dispatch_witness_campaigns),
+    'infra coverage bounded dispatch witness count mismatch',
+))
+checks.append((
+    reported_dispatch_witness_campaigns == expected_dispatch_witness_campaigns,
+    'infra coverage bounded dispatch witness pair mismatch',
+))
 checks.append((infra_totals['campaigns_with_single_target_host'] == 14, 'infra coverage single-target count mismatch'))
 checks.append((infra_totals['campaigns_with_multi_target_host'] == 0, 'infra coverage multi-target count mismatch'))
 checks.append((infra_totals['campaigns_with_multi_vm_runtime'] == 14, 'infra coverage multi-VM count mismatch'))
 
+with open(Path(os.environ['AUTOSUT_ROOT'])/'results'/'corpus_state.json', encoding='utf-8') as f:
+    corpus_state = json.load(f)
+corpus_totals = corpus_state['totals']
+corpus_rows = corpus_state['campaigns']
+checks.append((corpus_state['schema_version'] == 'autosut-corpus-contract-state/v2', 'unexpected corpus-state schema version'))
+checks.append((corpus_totals['available_campaign_definitions'] == 25, 'corpus-state definition count mismatch'))
+checks.append((corpus_totals['campaigns_with_declared_sut_profile'] == 14, 'corpus-state SUT-profile count mismatch'))
+checks.append((corpus_totals['campaigns_with_strict_pair_validation'] == 12, 'corpus-state pair-valid count mismatch'))
+checks.append((corpus_totals['campaigns_with_pair_validation_findings'] == 2, 'corpus-state pair-findings count mismatch'))
+checks.append((corpus_totals['campaigns_with_bounded_dispatch_witness'] == 1, 'corpus-state bounded-witness count mismatch'))
+checks.append((
+    {row['campaign_id'] for row in corpus_rows if row['has_bounded_dispatch_witness']} == expected_dispatch_witness_campaigns,
+    'corpus-state bounded dispatch witness pair mismatch',
+))
+checks.append((
+    not any('latest' in key.lower() or 'success_rate' in key.lower() for key in corpus_state),
+    'corpus-state must not expose legacy execution-summary fields',
+))
+
 # Dataset table totals in main.tex are currently static and must stay aligned
 # with local bundles used by the pipeline.
 expected_bundle_totals = {
-    'enterprise-attack.json': {'attack-pattern': 835, 'campaign': 52, 'intrusion-set': 187, 'malware': 696, 'tool': 91},
-    'mobile-attack.json': {'attack-pattern': 190, 'campaign': 3, 'intrusion-set': 17, 'malware': 121, 'tool': 2},
-    'ics-attack.json': {'attack-pattern': 95, 'campaign': 8, 'intrusion-set': 16, 'malware': 30, 'tool': 0},
+    'enterprise-attack.json': {'attack-pattern': 858, 'campaign': 56, 'intrusion-set': 191, 'malware': 733, 'tool': 95},
+    'mobile-attack.json': {'attack-pattern': 190, 'campaign': 3, 'intrusion-set': 22, 'malware': 125, 'tool': 2},
+    'ics-attack.json': {'attack-pattern': 118, 'campaign': 9, 'intrusion-set': 16, 'malware': 30, 'tool': 0},
     'stix-capec.json': {'attack-pattern': 615, 'campaign': 0, 'intrusion-set': 0, 'malware': 0, 'tool': 0},
 }
 for fname, exp in expected_bundle_totals.items():
@@ -584,8 +627,8 @@ for bibliography_file in "$PAPER_DIR"/*.bib; do
 done
 (( ${#bib_policy_args[@]} > 0 )) || fail "no BibTeX files found in $PAPER_DIR"
 "$PYTHON_BIN" "$MEAS_SCRIPTS/sanitize_bibliography_policy.py" \
-  "${bib_policy_args[@]}" --check >/tmp/measurement_bib_policy_check.log 2>&1 || {
-    cat /tmp/measurement_bib_policy_check.log >&2
+  "${bib_policy_args[@]}" --check >"$MEASUREMENT_LOG_DIR/measurement_bib_policy_check.log" 2>&1 || {
+    cat "$MEASUREMENT_LOG_DIR/measurement_bib_policy_check.log" >&2
     fail "bibliography policy check failed"
   }
 
@@ -628,16 +671,16 @@ cleanup_manuscript_check() {
   fi
 }
 trap cleanup_manuscript_check EXIT
-"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/build_manuscript.py" --paper-dir "$manuscript_check_dir" >/tmp/measurement_paper_release.log 2>&1 || {
-  tail -n 120 /tmp/measurement_paper_release.log >&2
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/build_manuscript.py" --paper-dir "$manuscript_check_dir" >"$MEASUREMENT_LOG_DIR/measurement_paper_release.log" 2>&1 || {
+  tail -n 120 "$MEASUREMENT_LOG_DIR/measurement_paper_release.log" >&2
   fail "latex build failed"
 }
 manuscript_build_log="$manuscript_check_dir/build_artifacts/main.log"
 [[ -f "$manuscript_build_log" ]] || fail "LaTeX build log is missing from validation copy"
 if rg -n \
   'LaTeX Warning: (Reference|Citation).*undefined|Package .* Warning: Citation.*undefined|There were undefined references|Label .* multiply defined|There were multiply-defined labels' \
-  "$manuscript_build_log" >/tmp/measurement_latex_reference_warnings.log; then
-  cat /tmp/measurement_latex_reference_warnings.log >&2
+  "$manuscript_build_log" >"$MEASUREMENT_LOG_DIR/measurement_latex_reference_warnings.log"; then
+  cat "$MEASUREMENT_LOG_DIR/measurement_latex_reference_warnings.log" >&2
   fail "manuscript build contains unresolved citations/references or duplicate labels"
 fi
 cleanup_manuscript_check
@@ -647,14 +690,14 @@ cd "$PAPER_DIR"
 
 log "5) Ensuring no active TODO placeholders in manuscript body"
 # Ignore macro definition line; fail if TODO/TBD markers appear elsewhere.
-if rg -n 'TODO\{|\[TBD\]' main.tex | rg -v '^87:' >/tmp/measurement_todo_hits.log; then
-  cat /tmp/measurement_todo_hits.log >&2
+if rg -n 'TODO\{|\[TBD\]' main.tex | rg -v '^87:' >"$MEASUREMENT_LOG_DIR/measurement_todo_hits.log"; then
+  cat "$MEASUREMENT_LOG_DIR/measurement_todo_hits.log" >&2
   fail "found unresolved TODO/TBD markers"
 fi
 
 log "5b) Enforcing paper-directory hygiene"
-"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/check_paper_hygiene.py" >/tmp/measurement_paper_hygiene.log 2>&1 || {
-  cat /tmp/measurement_paper_hygiene.log >&2
+"$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/check_paper_hygiene.py" >"$MEASUREMENT_LOG_DIR/measurement_paper_hygiene.log" 2>&1 || {
+  cat "$MEASUREMENT_LOG_DIR/measurement_paper_hygiene.log" >&2
   fail "paper directory hygiene check failed"
 }
 
@@ -700,12 +743,19 @@ import re, sys
 from pathlib import Path
 
 paper_dir = Path(os.environ["PAPER_DIR"])
-latex_files = [
-    paper_dir / 'results' / 'values.tex',
-]
 main_file  = paper_dir / 'main.tex'
+# Every generated macro file the manuscript imports is a definition source, so adding a new
+# results/*.tex does not silently break this check.
+latex_files = []
+if main_file.exists():
+    for rel in re.findall(r'\\input\{(results/[^}]+)\}', main_file.read_text(encoding='utf-8')):
+        candidate = paper_dir / rel
+        if not candidate.suffix:
+            candidate = candidate.with_suffix('.tex')
+        if candidate.exists():
+            latex_files.append(candidate)
 
-if any(not path.exists() for path in latex_files) or not main_file.exists():
+if not latex_files or not main_file.exists():
     print('[release-check][WARN] cannot run macro consistency check (files missing)')
     sys.exit(0)
 

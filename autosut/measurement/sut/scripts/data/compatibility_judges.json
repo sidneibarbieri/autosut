@@ -1,0 +1,21 @@
+{
+  "judges": [
+    {
+      "name": "gpt-5.4",
+      "model": "gpt-5.4",
+      "base_url_env": "AZURE_OPENAI_ENDPOINT",
+      "base_url_suffix": "/openai/v1",
+      "api_key_env": "AZURE_OPENAI_API_KEY",
+      "token_parameter": "max_completion_tokens",
+      "max_output_tokens": 2000
+    },
+    {
+      "name": "qwen3.6",
+      "model": "qwen3.6:latest",
+      "base_url": "http://localhost:11434/v1",
+      "api_key_env": "OLLAMA_API_KEY",
+      "max_output_tokens": 4000,
+      "extra_parameters": {"reasoning_effort": "none"}
+    }
+  ]
+}

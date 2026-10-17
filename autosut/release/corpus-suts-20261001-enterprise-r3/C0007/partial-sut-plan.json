@@ -1,0 +1,39 @@
+{
+  "schema_version": "autosut-partial-sut/v1",
+  "campaign_id": "C0007",
+  "source_constraint_sha256": "ea6f7d656c497d28dad18071d8aa2ce0b273411236126ea59a902165904f7fb8",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1016.platform",
+        "T1018.platform",
+        "T1049.platform",
+        "T1057.platform",
+        "T1059.005.platform",
+        "T1082.platform",
+        "T1105.network.1",
+        "T1105.platform",
+        "T1560.001.platform",
+        "T1560.001.utility.1"
+      ]
+    }
+  ],
+  "uncovered_technique_ids": [
+    "T1047",
+    "T1059.003"
+  ],
+  "unsupported_platforms": [
+    "Windows"
+  ],
+  "executable": false,
+  "content_sha256": "d4271f17a75c316e15b4642f591b7af3f7cd53fc420e6616ffe6e8ab33db110e"
+}

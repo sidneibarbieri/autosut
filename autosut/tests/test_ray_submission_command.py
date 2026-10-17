@@ -21,7 +21,7 @@ def _run_generated_submission(tmp_path: Path, fake_requests_source: str) -> subp
     compile(script, "<ray-submit>", "exec")
     env = {**os.environ, "PYTHONPATH": str(tmp_path)}
     return subprocess.run(
-        ["python3", "-c", script],
+        [sys.executable, "-c", script],
         cwd=tmp_path,
         env=env,
         capture_output=True,

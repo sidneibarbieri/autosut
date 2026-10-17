@@ -1,0 +1,46 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0050",
+  "source_constraint_sha256": "1f09028c4cd2dc58b3c61e05c2eec81e27876ac7c9a8492e7f92a8163835e643",
+  "synthesis_policy": "one_minimal_host_per_selected_platform",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1036.005.platform"
+      ]
+    }
+  ],
+  "network_policy": {
+    "host_network_access": false,
+    "internet_egress": false,
+    "lab_private_network": true
+  },
+  "concretized_requirements": [
+    {
+      "requirement_id": "T1036.005.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Containers",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1036.005"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "60102bc11b197ab11ec879d2f54be7214848d6323ab2ef4e9d6ac79beda0f238"
+}

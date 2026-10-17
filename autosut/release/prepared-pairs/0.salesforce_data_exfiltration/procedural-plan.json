@@ -1,0 +1,418 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0059",
+  "campaign_name": "Salesforce Data Exfiltration",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--9cea8bec-07c5-422b-84b8-99d3128ce570",
+    "campaign_external_id": "C0059"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1598.004",
+      "technique_stix_id": "attack-pattern--6a5d222a-a7e0-4656-b110-782c33098289",
+      "name": "Spearphishing Voice",
+      "execution_domain": "attacker",
+      "tactics": [
+        "reconnaissance"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--db256e63-e369-4fc4-985a-ce830f4292b9"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors initiated voice calls with victims to socially engineer them into authorizing malicious applications or divulging sensitive credentials.(Citation: FBI Salesforce Data Theft SEP 2025)(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1585",
+      "technique_stix_id": "attack-pattern--cdfc5f0a-9bb9-4352-b896-553cfa2d8fd8",
+      "name": "Establish Accounts",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--75925ae3-c470-4a6b-aac5-839b470c8436"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors created Salesforce trial accounts to register their malicious applications.(Citation: Google Salesforce JUN 2025)\n"
+      ]
+    },
+    {
+      "technique_id": "T1585.002",
+      "technique_stix_id": "attack-pattern--65013dd2-bc61-43e3-afb5-a14c4fa7437a",
+      "name": "Email Accounts",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--5f7853bd-a4d6-418f-8d23-d24fc32dffa0"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors registered emails shinycorp@tuta[.]com and shinygroup@tuta[.]com to send victims extortion demands.(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1586.002",
+      "technique_stix_id": "attack-pattern--3dc8c101-d4db-4f4d-8150-1b5a76ca5f1b",
+      "name": "Email Accounts",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--bd3b70d0-9cd4-48e1-afd3-3457d7b5f8df"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used compromised emails to create Salesforce trial accounts.(Citation: Google Salesforce JUN 2025)\n"
+      ]
+    },
+    {
+      "technique_id": "T1587.001",
+      "technique_stix_id": "attack-pattern--212306d8-efa4-44c9-8c2d-ed3d2e224aa0",
+      "name": "Malware",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--89009e94-5631-46f4-9760-460712d89491"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors created malicious applications within Salesforce trial accounts, typically Python scripts with similar function to the Salesforce Data Loader.(Citation: FBI Salesforce Data Theft SEP 2025)(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1588.002",
+      "technique_stix_id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "name": "Tool",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--93cd8b4b-1d7a-4eeb-8ade-b5b9aaf936ec"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors initially relied on the legitimate Salesforce Data Loader app for data exfiltration.(Citation: Google Salesforce JUN 2025)(Citation: FBI Salesforce Data Theft SEP 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1608.005",
+      "technique_stix_id": "attack-pattern--84ae8255-b4f4-4237-b5c5-e717405a9701",
+      "name": "Link Target",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--110fd4fd-3b1c-47d4-9e23-fb6b5346fc5e"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors established an Okta phishing panel which victims were tricked into accessing from mobile phones or work computers during social engineering calls.(Citation: FBI Salesforce Data Theft SEP 2025)(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1078.002",
+      "technique_stix_id": "attack-pattern--c3d4bdd9-2cfe-4a80-9d0c-07a29ecdce8f",
+      "name": "Domain Accounts",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access",
+        "persistence",
+        "privilege-escalation",
+        "stealth"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--1e3b8b61-70f2-4824-9b9c-cc532aa17c7e"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used compromised credentials for lateral movement.(Citation: FBI Salesforce Data Theft SEP 2025)(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1059.006",
+      "technique_stix_id": "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+      "name": "Python",
+      "execution_domain": "target",
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--11be19d8-c5f8-4f11-a26a-9e60e5d4b763"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used custom applications developed in python.(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1671",
+      "technique_stix_id": "attack-pattern--c31aebd6-c9b5-420f-ba2a-5853bbf897fa",
+      "name": "Cloud Application Integration",
+      "execution_domain": "target",
+      "tactics": [
+        "persistence"
+      ],
+      "platforms": [
+        "Office Suite",
+        "SaaS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--1bebb783-8a63-4fab-ae3e-707a352e687d"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors deceived victims into authorizing malicious connected apps to their organization's Salesforce portal.(Citation: FBI Salesforce Data Theft SEP 2025)(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1036",
+      "technique_stix_id": "attack-pattern--42e8de7b-37b2-4258-905a-6897815e58e0",
+      "name": "Masquerading",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--4d7fd920-ea04-483b-98bf-dbf7bfac67f4"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used voice calls to socially engineer victims into authorizing a modified version of the Salesforce Data Loader app.(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1684.001",
+      "technique_stix_id": "attack-pattern--cd92d2b8-ce43-4666-9472-f1b4b9f4f8be",
+      "name": "Impersonation",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--020466ec-f701-4d9b-9fb7-4bcbc849069b"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors impersonated IT support personnel in voice calls with victims at times claiming to be addressing enterprise-wide connectivity issues.(Citation: Google Salesforce JUN 2025)(Citation: FBI Salesforce Data Theft SEP 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1083",
+      "technique_stix_id": "attack-pattern--7bc57495-ea59-4380-be31-a64af124ef18",
+      "name": "File and Directory Discovery",
+      "execution_domain": "target",
+      "tactics": [
+        "discovery"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--70b014d2-627e-41cc-98ae-794032eb5117"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors queried customers' Salesforce environments to identify sensitive information for exfiltration.(Citation: FBI Salesforce Data Theft SEP 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1213.004",
+      "technique_stix_id": "attack-pattern--bbfbb096-6561-4d7d-aa2c-a5ee8e44c696",
+      "name": "Customer Relationship Management Software",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--1aa76367-d460-459d-90f7-a1b3a0677792"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors accessed and exfiltrated sensitive information from compromised Salesforce instances.(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1090",
+      "technique_stix_id": "attack-pattern--731f4f55-b6d0-41d1-a7a9-072a66389aea",
+      "name": "Proxy",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--5d4cf656-ce12-4a52-93ad-0a0545c8a144"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used Mullvad VPN IPs to proxy voice phishing calls.(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1090.003",
+      "technique_stix_id": "attack-pattern--a782ebe2-daba-42c7-bc82-e8e9d923162d",
+      "name": "Multi-hop Proxy",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--74ca2dd6-3194-42f3-bee6-6a9a59b082ab"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used [Tor](https://attack.mitre.org/software/S0183) IPs for voice calls and for the collection of stolen data.(Citation: Google Salesforce JUN 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1020",
+      "technique_stix_id": "attack-pattern--774a3188-6ba9-4dc4-879d-d54ee48a5ce9",
+      "name": "Automated Exfiltration",
+      "execution_domain": "boundary",
+      "tactics": [
+        "exfiltration"
+      ],
+      "platforms": [
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--ad3b3ea9-04f8-42f7-b88a-0d33fdb3854e"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors used API queries to automatically exfiltrate large volumes of data.(Citation: FBI Salesforce Data Theft SEP 2025)"
+      ]
+    },
+    {
+      "technique_id": "T1567",
+      "technique_stix_id": "attack-pattern--40597f16-0963-4249-bf4c-ac93b7fb9807",
+      "name": "Exfiltration Over Web Service",
+      "execution_domain": "boundary",
+      "tactics": [
+        "exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--3ab1151f-ff1b-4d3a-89c8-db6ba77ba823"
+      ],
+      "procedure_descriptions": [
+        "During [Salesforce Data Exfiltration](https://attack.mitre.org/campaigns/C0059), threat actors exfiltrated data via legitimate Salesforce API communication channels including the Salesforce Data Loader application.(Citation: Google Salesforce JUN 2025)(Citation: FBI Salesforce Data Theft SEP 2025)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "ea436a20f01854f8bba30a770c139057f3e4bc173147382741a184fa5c688c66"
+}

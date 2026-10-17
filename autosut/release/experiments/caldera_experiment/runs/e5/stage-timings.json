@@ -1,0 +1,65 @@
+[
+  {
+    "name": "materialize_caldera",
+    "seconds": 0.114,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "verify_caldera_readiness",
+    "seconds": 12.121,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "materialize_sut",
+    "seconds": 107.661,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "enroll_agent",
+    "seconds": 47.323,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "register_and_execute",
+    "seconds": 36.527,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "verify_effect",
+    "seconds": 0.055,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "destroy_attacker",
+    "seconds": 0.135,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "destroy_sut",
+    "seconds": 0.198,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  },
+  {
+    "name": "destroy_caldera",
+    "seconds": 0.169,
+    "succeeded": true,
+    "error": null,
+    "traceback": null
+  }
+]

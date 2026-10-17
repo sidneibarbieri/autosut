@@ -1,0 +1,525 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0040",
+  "campaign_name": "APT41 DUST",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--add4d9de-1256-4166-83b8-57087288dced",
+    "campaign_external_id": "C0040"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1593.002",
+      "technique_stix_id": "attack-pattern--6e561441-8431-4773-a9b8-ccf28ef6a968",
+      "name": "Search Engines",
+      "execution_domain": "attacker",
+      "tactics": [
+        "reconnaissance"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--6b8397d1-7b3a-4b37-8758-578822a30eca"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) involved use of search engines to research victim servers.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1594",
+      "technique_stix_id": "attack-pattern--16cdd21f-da65-4e4f-bc04-dd7d198c7b26",
+      "name": "Search Victim-Owned Websites",
+      "execution_domain": "attacker",
+      "tactics": [
+        "reconnaissance"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--d0b65904-8378-43f4-93da-f70a7eefe0e3"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) involved access of external victim websites for target development.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1596.005",
+      "technique_stix_id": "attack-pattern--ec4be82f-940c-4dcb-87fe-2bbdd17c692f",
+      "name": "Scan Databases",
+      "execution_domain": "attacker",
+      "tactics": [
+        "reconnaissance"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--ba40c7b2-7f63-4976-9145-3b7f57f9c4cc"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used internet scan data for target development.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1583.007",
+      "technique_stix_id": "attack-pattern--04a5a8ab-3bc8-4c83-95c9-55274a89786d",
+      "name": "Serverless",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--d8f8b444-25e9-41e2-9216-f6debe873908"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used infrastructure hosted behind Cloudflare or utilized Cloudflare Workers for command and control.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1586.003",
+      "technique_stix_id": "attack-pattern--3d52e51e-f6db-4719-813c-48002a99f43a",
+      "name": "Cloud Accounts",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--82e01bda-8bfb-4a64-a74a-67dea3dcb4f2"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used compromised Google Workspace accounts for command and control.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1588.003",
+      "technique_stix_id": "attack-pattern--e7cbc1de-1f79-48ee-abfd-da1241c65a15",
+      "name": "Code Signing Certificates",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--7a3a5c4a-ced7-4697-aca1-de90d3b9440f"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used stolen code signing certificates to sign [DUSTTRAP](https://attack.mitre.org/software/S1159) malware and components.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1569.002",
+      "technique_stix_id": "attack-pattern--f1951e8a-500e-4a26-8803-76d95c4554b4",
+      "name": "Service Execution",
+      "execution_domain": "target",
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--c2d27932-5a39-46ed-ab21-c1b2f02dee15"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used Windows services to execute [DUSTPAN](https://attack.mitre.org/software/S1158).(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1574.001",
+      "technique_stix_id": "attack-pattern--2fee9321-3e71-4cf4-af24-d4d40d355b34",
+      "name": "DLL",
+      "execution_domain": "target",
+      "tactics": [
+        "execution",
+        "stealth"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--bd60f2fb-ed88-424b-a394-6a23e1d8d8a9"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) involved the use of DLL search order hijacking to execute [DUSTTRAP](https://attack.mitre.org/software/S1159).(Citation: Google Cloud APT41 2024) [APT41 DUST](https://attack.mitre.org/campaigns/C0040) used also DLL side-loading to execute [DUSTTRAP](https://attack.mitre.org/software/S1159) via an AhnLab uninstaller.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1505.003",
+      "technique_stix_id": "attack-pattern--5d0d3609-d06d-49e1-b9c9-b544e0c618cb",
+      "name": "Web Shell",
+      "execution_domain": "target",
+      "tactics": [
+        "persistence"
+      ],
+      "platforms": [
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--65570dc3-08cb-48b7-b99d-9c49ab293928"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) involved use of web shells such as ANTSWORD and BLUEBEAM for persistence.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1543.003",
+      "technique_stix_id": "attack-pattern--2959d63f-73fd-46a1-abd2-109d7dcede32",
+      "name": "Windows Service",
+      "execution_domain": "target",
+      "tactics": [
+        "persistence",
+        "privilege-escalation"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--4220bcf3-e225-474c-b2df-1dfa9e370a74"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used Windows Services with names such as `Windows Defend` for persistence of [DUSTPAN](https://attack.mitre.org/software/S1158).(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1027.013",
+      "technique_stix_id": "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+      "name": "Encrypted/Encoded File",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--953f1fa1-82c5-4137-b9f1-257c33c1f803"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used encrypted payloads decrypted and executed in memory.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1036.004",
+      "technique_stix_id": "attack-pattern--7bdca9d5-d500-4d7d-8c52-5fd47baf4c0c",
+      "name": "Masquerade Task or Service",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--b3bee3aa-2dd0-4268-8cfd-671ba779be1f"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) disguised [DUSTPAN](https://attack.mitre.org/software/S1158) as a legitimate Windows binary such as `w3wp.exe` or `conn.exe`.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1070.004",
+      "technique_stix_id": "attack-pattern--d63a3fb8-9452-4e9d-a60a-54be68d5998c",
+      "name": "File Deletion",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--474cec2a-ff0f-40af-ac55-053a0ccebc67"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) deleted various artifacts from victim systems following use.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1553.002",
+      "technique_stix_id": "attack-pattern--32901740-b42c-4fdd-bc02-345b5dc57082",
+      "name": "Code Signing",
+      "execution_domain": "target",
+      "tactics": [
+        "defense-impairment"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--fe81397b-d380-476d-8d56-bae1275d0242"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used stolen code signing certificates for [DUSTTRAP](https://attack.mitre.org/software/S1159) malware and subsequent payloads.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1074.001",
+      "technique_stix_id": "attack-pattern--1c34f7aa-9341-4a48-bfab-af22e51aca6c",
+      "name": "Local Data Staging",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--996ad086-aad7-40f2-b711-559ea97295c9"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) involved exporting data from Oracle databases to local CSV files prior to exfiltration.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1119",
+      "technique_stix_id": "attack-pattern--30208d3e-0d6b-43c8-883e-44462a514619",
+      "name": "Automated Collection",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--90b8dc08-3d90-4430-be9f-ba4f1e9c0976"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used tools such as SQLULDR2 and PINEGROVE to gather local system and database information.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1213.006",
+      "technique_stix_id": "attack-pattern--248d3fe1-7fe1-4d71-91c7-8bb7ef35cad3",
+      "name": "Databases",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Linux",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--1e7796f2-6b52-4bf1-9a5c-b6e19d50791c"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) collected data from victim Oracle databases using SQLULDR2.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1560.001",
+      "technique_stix_id": "attack-pattern--00f90846-cbd1-4fc5-9233-df5c2bf2a662",
+      "name": "Archive via Utility",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--cb4fc7aa-3ee0-4259-a2c7-58cd6ceb4053"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used `rar` to compress data downloaded from internal Oracle databases prior to exfiltration.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_stix_id": "attack-pattern--df8b2a25-8bdf-4856-953c-a04372b1c161",
+      "name": "Web Protocols",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--d09c5595-27c1-4ada-9502-1012710b35a2"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used HTTPS for command and control.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1102",
+      "technique_stix_id": "attack-pattern--830c9528-df21-472c-8c14-a036bf17d665",
+      "name": "Web Service",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--0068ce6b-d7da-4e08-acd6-5fabebc2bf88"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used compromised Google Workspace accounts for command and control.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--48148fb9-6a21-4c66-83e3-c3f6ef72d392"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) involved execution of `certutil.exe` via web shell to download the [DUSTPAN](https://attack.mitre.org/software/S1158) dropper.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1573.002",
+      "technique_stix_id": "attack-pattern--bf176076-b789-408e-8cba-7275e81c0ada",
+      "name": "Asymmetric Cryptography",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--df129c4a-eb83-45be-9f38-a12de69ccedd"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) used HTTPS for command and control.(Citation: Google Cloud APT41 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1567.002",
+      "technique_stix_id": "attack-pattern--bf1b6176-597c-4600-bfcd-ac989670f96b",
+      "name": "Exfiltration to Cloud Storage",
+      "execution_domain": "boundary",
+      "tactics": [
+        "exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--ab826077-72af-4bcf-b72a-398093671b26"
+      ],
+      "procedure_descriptions": [
+        "[APT41 DUST](https://attack.mitre.org/campaigns/C0040) exfiltrated collected information to OneDrive.(Citation: Google Cloud APT41 2024)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "7e4f4722eda7173db51da82093f3c89be1d103375d5b89d8d4cd15256de1d762"
+}

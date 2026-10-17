@@ -1,0 +1,412 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0048",
+  "campaign_name": "Operation MidnightEclipse",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--455b011a-2510-49ab-a96f-2f84d6a80189",
+    "campaign_external_id": "C0048"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1584.003",
+      "technique_stix_id": "attack-pattern--39cc9f64-cf74-4a48-a4d8-fe98c54a02e0",
+      "name": "Virtual Private Server",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--6ef43c3b-3d62-4b08-893d-5d2828474c9d"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors abused Virtual Private Servers to store malicious files.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1584.006",
+      "technique_stix_id": "attack-pattern--ae797531-3219-49a4-bccf-324ad7a4c7b2",
+      "name": "Web Services",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--da8eaa82-b6e4-42e9-a53b-925b52a22afb"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors abused compromised AWS buckets to store files.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1588.002",
+      "technique_stix_id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "name": "Tool",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--887df999-b039-4056-b0cc-d89cb09deeb5"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors used the GO Simple Tunnel (GOST) reverse proxy tool.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1078",
+      "technique_stix_id": "attack-pattern--b17a1a56-e99c-403c-8948-561df0cffe81",
+      "name": "Valid Accounts",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access",
+        "persistence",
+        "privilege-escalation",
+        "stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--555e2c46-add2-43fb-bc12-71a0f76f6471"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors extracted sensitive credentials while moving laterally through compromised networks.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1078.002",
+      "technique_stix_id": "attack-pattern--c3d4bdd9-2cfe-4a80-9d0c-07a29ecdce8f",
+      "name": "Domain Accounts",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access",
+        "persistence",
+        "privilege-escalation",
+        "stealth"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--0d507109-632e-49e3-92ed-f9186a4ebf27"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors used a compromised domain admin account to move laterally.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1190",
+      "technique_stix_id": "attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c",
+      "name": "Exploit Public-Facing Application",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--5debdfdd-fe10-4872-a8a2-63309c28d309"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors exploited CVE-2024-3400 in Palo Alto Networks GlobalProtect.(Citation: Volexity UPSTYLE 2024)(Citation: Palo Alto MidnightEclipse APR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1053.003",
+      "technique_stix_id": "attack-pattern--2acf44aa-542f-4366-b4eb-55ef5747759c",
+      "name": "Cron",
+      "execution_domain": "target",
+      "tactics": [
+        "execution",
+        "persistence",
+        "privilege-escalation"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--8fe80bc3-e9a8-404f-b5bc-6abeae05b5e1"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors configured cron jobs to retrieve payloads from actor-controlled infrastructure.(Citation: Volexity UPSTYLE 2024)(Citation: Palo Alto MidnightEclipse APR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1059.004",
+      "technique_stix_id": "attack-pattern--a9d4b653-6915-42af-98b2-5758c4ceee56",
+      "name": "Unix Shell",
+      "execution_domain": "target",
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--172d44b8-d287-49f3-b5cd-bf95285f3ef2"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors piped output from stdout to bash for execution.(Citation: Volexity UPSTYLE 2024)(Citation: Palo Alto MidnightEclipse APR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1559",
+      "technique_stix_id": "attack-pattern--acd0ba37-7ba9-4cc5-ac61-796586cd856d",
+      "name": "Inter-Process Communication",
+      "execution_domain": "target",
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--33fd0362-64e8-4d21-b279-1ac4c8143f31"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors wrote output to stdout then piped it to bash for execution.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1003.003",
+      "technique_stix_id": "attack-pattern--edf91964-b26e-4b4a-9600-ccacd7d7df24",
+      "name": "NTDS",
+      "execution_domain": "target",
+      "tactics": [
+        "credential-access"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--0f5dd1a0-fde3-4194-8cd4-03c2e77479f5"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors obtained active directory credentials via the NTDS.DIT file.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1021.002",
+      "technique_stix_id": "attack-pattern--4f9ca633-15c5-463c-9724-bdcd54fde541",
+      "name": "SMB/Windows Admin Shares",
+      "execution_domain": "target",
+      "tactics": [
+        "lateral-movement"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--975335fe-ac44-4763-a151-373b043313ad"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors used SMB to pivot internally in victim networks.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1021.006",
+      "technique_stix_id": "attack-pattern--60d0c01d-e2bf-49dd-a453-f8a9c9fa6f65",
+      "name": "Windows Remote Management",
+      "execution_domain": "target",
+      "tactics": [
+        "lateral-movement"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--cade04ba-4229-4655-9fe9-9e2d9b44536c"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors used WinRM to move laterally in targeted networks.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1005",
+      "technique_stix_id": "attack-pattern--3c4a2599-71ee-4405-ba1e-0e28414b4bc5",
+      "name": "Data from Local System",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--0d2542de-be40-4c65-9fe8-04652388b080"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors stole saved cookies and login data from targeted systems.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1074.001",
+      "technique_stix_id": "attack-pattern--1c34f7aa-9341-4a48-bfab-af22e51aca6c",
+      "name": "Local Data Staging",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--bcba387c-fa32-4a32-8703-5aef8f77ca18"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors copied files to the web application folder on compromised devices for exfiltration.(Citation: Palo Alto MidnightEclipse APR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_stix_id": "attack-pattern--df8b2a25-8bdf-4856-953c-a04372b1c161",
+      "name": "Web Protocols",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--429d98b1-7d03-4a37-ba95-b7f75bf5f2ab"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors used `wget` via HTTP to retrieve payloads.(Citation: Volexity UPSTYLE 2024)(Citation: Palo Alto MidnightEclipse APR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1090",
+      "technique_stix_id": "attack-pattern--731f4f55-b6d0-41d1-a7a9-072a66389aea",
+      "name": "Proxy",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--30bff73c-7c73-4d18-84ab-bf5033f63d34"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors used the GO Simple Tunnel reverse proxy tool.(Citation: Volexity UPSTYLE 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--787aa0b0-9e6c-4e15-bec4-ec5ed446929b"
+      ],
+      "procedure_descriptions": [
+        "During [Operation MidnightEclipse](https://attack.mitre.org/campaigns/C0048), threat actors downloaded additional payloads on compromised devices.(Citation: Volexity UPSTYLE 2024)(Citation: Palo Alto MidnightEclipse APR 2024)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "08689d9458b5dd9c64527d83e557d1404d04631dbe9f341f7384b7a092abed04"
+}

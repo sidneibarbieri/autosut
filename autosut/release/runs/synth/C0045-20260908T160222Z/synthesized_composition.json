@@ -1,0 +1,210 @@
+{
+  "credentials": [
+    {
+      "kind": "password",
+      "user": "admin",
+      "secret": "admin_password",
+      "location": null,
+      "purpose": "Authentication for exploiting public-facing application",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "user",
+      "secret": "user_password",
+      "location": null,
+      "purpose": "Authentication for Python reverse shell",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "shell_user",
+      "secret": "shell_password",
+      "location": null,
+      "purpose": "Authentication for Unix shell configuration modification",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "privilege_user",
+      "secret": "privilege_password",
+      "location": null,
+      "purpose": "Authentication for privilege escalation",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "encoded_user",
+      "secret": "encoded_password",
+      "location": null,
+      "purpose": "Authentication for encrypted/encoded file technique",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "shadow_user",
+      "secret": "shadow_password",
+      "location": null,
+      "purpose": "Authentication for accessing /etc/passwd and /etc/shadow",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "network_user",
+      "secret": "network_password",
+      "location": null,
+      "purpose": "Authentication for network configuration discovery",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "transfer_user",
+      "secret": "transfer_password",
+      "location": null,
+      "purpose": "Authentication for ingress tool transfer",
+      "source": "analyst_authored"
+    },
+    {
+      "kind": "password",
+      "user": "compute_user",
+      "secret": "compute_password",
+      "location": null,
+      "purpose": "Authentication for compute hijacking",
+      "source": "analyst_authored"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/tmp/exploit_public_facing_app.txt",
+      "content_text": "Decoy file for exploiting public-facing application.",
+      "content_b64": null,
+      "owner": "admin",
+      "mode": "0644",
+      "purpose": "Decoy for Exploit Public-Facing Application technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/python_reverse_shell.txt",
+      "content_text": "Decoy file for Python reverse shell.",
+      "content_b64": null,
+      "owner": "user",
+      "mode": "0644",
+      "purpose": "Decoy for Python technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/unix_shell_config.txt",
+      "content_text": "Decoy file for Unix shell configuration modification.",
+      "content_b64": null,
+      "owner": "shell_user",
+      "mode": "0644",
+      "purpose": "Decoy for Unix Shell Configuration Modification technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/privilege_escalation_payload.txt",
+      "content_text": "Decoy file for privilege escalation.",
+      "content_b64": null,
+      "owner": "privilege_user",
+      "mode": "0644",
+      "purpose": "Decoy for Exploitation for Privilege Escalation technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/encrypted_encoded_file.txt",
+      "content_text": "Decoy file for encrypted/encoded file.",
+      "content_b64": null,
+      "owner": "encoded_user",
+      "mode": "0644",
+      "purpose": "Decoy for Encrypted/Encoded File technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/etc_passwd_shadow.txt",
+      "content_text": "Decoy file for /etc/passwd and /etc/shadow.",
+      "content_b64": null,
+      "owner": "shadow_user",
+      "mode": "0644",
+      "purpose": "Decoy for /etc/passwd and /etc/shadow technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/network_configuration_discovery.txt",
+      "content_text": "Decoy file for network configuration discovery.",
+      "content_b64": null,
+      "owner": "network_user",
+      "mode": "0644",
+      "purpose": "Decoy for System Network Configuration Discovery technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/ingress_tool_transfer.txt",
+      "content_text": "Decoy file for ingress tool transfer.",
+      "content_b64": null,
+      "owner": "transfer_user",
+      "mode": "0644",
+      "purpose": "Decoy for Ingress Tool Transfer technique",
+      "source": "analyst_authored"
+    },
+    {
+      "path": "/tmp/compute_hijacking.txt",
+      "content_text": "Decoy file for compute hijacking.",
+      "content_b64": null,
+      "owner": "compute_user",
+      "mode": "0644",
+      "purpose": "Decoy for Compute Hijacking technique",
+      "source": "analyst_authored"
+    }
+  ],
+  "exposures": [
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "expose_to": "private_network",
+      "purpose": "Exposed for public-facing application exploitation",
+      "source": "analyst_authored"
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "expose_to": "private_network",
+      "purpose": "Exposed for reverse shell access",
+      "source": "analyst_authored"
+    }
+  ],
+  "applications": [
+    {
+      "name": "apache_httpd_2.4.49_cve_2021_41773",
+      "version": "2.4.49",
+      "recipe": "apache_httpd_2.4.49_cve_2021_41773",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "Web server for exploiting public-facing application",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "flask_decoy_api",
+      "version": "1.0",
+      "recipe": "flask_decoy_api",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "API for Python reverse shell technique",
+      "source": "analyst_authored"
+    },
+    {
+      "name": "nginx_equivalent",
+      "version": "1.18",
+      "recipe": "nginx_equivalent",
+      "cve_pins": [],
+      "config": {},
+      "image_override": null,
+      "purpose": "Web server for ingress tool transfer",
+      "source": "analyst_authored"
+    }
+  ],
+  "notes": null
+}

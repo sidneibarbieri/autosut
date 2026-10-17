@@ -1,7 +1,7 @@
 #!/bin/bash
 # base.sh - Base configuration for all VMs
 #
-# FAIL-FAST: Package installation is critical — abort on failure.
+# FAIL-FAST: Package installation is critical - abort on failure.
 
 set -euo pipefail
 
@@ -14,7 +14,7 @@ disable_periodic_apt_jobs
 
 log_info "Updating system..."
 apt_update_quiet || {
-    log_error "apt-get update failed — aborting"
+    log_error "apt-get update failed - aborting"
     exit 1
 }
 
@@ -27,17 +27,17 @@ apt_install_minimal \
     openssh-server \
     sudo \
     || {
-        log_error "Failed to install base packages — aborting"
+        log_error "Failed to install base packages - aborting"
         exit 1
     }
 
 log_info "Configuring SSH..."
 systemctl enable ssh || {
-    log_error "Failed to enable SSH — aborting"
+    log_error "Failed to enable SSH - aborting"
     exit 1
 }
 systemctl start ssh || systemctl restart ssh || {
-    log_error "Failed to start SSH — aborting"
+    log_error "Failed to start SSH - aborting"
     exit 1
 }
 

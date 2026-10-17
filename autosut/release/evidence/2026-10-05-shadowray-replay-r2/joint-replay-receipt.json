@@ -1,0 +1,23 @@
+{
+  "schema_version": "autosut-joint-replay/v1",
+  "campaign_id": "0.shadowray",
+  "source_campaign_id": "C0045",
+  "contract_sha256": "96c3d98ff473f51de220957639d2512bfaa4e49d379c1ae3051827ef4db8dc5a",
+  "blueprint_sha256": "dd6e3a492c51852beaa7cdd23c5664dc1548481566d8d345433a29d993591739",
+  "pair_manifest_sha256": "c80ad2eb5da34480e71197f5d80996ede0a5630dc0ebddf35c8998231e7f4c77",
+  "implementation_revision": "c7b41ca0e23ca7304ee38ba43eb07ddf5a7a5199+tree-5804877f5de5c09f",
+  "revision_stable": true,
+  "evidence_backed_steps": 10,
+  "total_steps": 10,
+  "marker_only_steps": 0,
+  "adapted_steps": 9,
+  "inspired_steps": 1,
+  "causal_violations": [],
+  "teardown_clean": true,
+  "execution_complete": true,
+  "initial_fact_basis": "declared_preconditions",
+  "service_recipe_basis": "curated_campaign_injection",
+  "network_policy_enforcement": "internal_network_and_host_input_firewall",
+  "host_gateway_access": "blocked_observed",
+  "claim_scope": "Controlled adapted and inspired procedures on a synthesized host; historical APT fidelity is not certified."
+}

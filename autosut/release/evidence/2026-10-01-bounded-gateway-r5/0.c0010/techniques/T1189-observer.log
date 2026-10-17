@@ -1,0 +1,7 @@
+$ python3 -c 'import pathlib,hashlib; print(hashlib.sha256(pathlib.Path('"'"'/tmp/autosut-bound/visit'"'"').read_bytes()).hexdigest())'
+exit_code: 0
+--- stdout ---
+75c8fb07ca8e7058c68c62391f383ab530b5a1cd739731bf0580eacc6c630e9a
+
+--- stderr ---
+

@@ -1,0 +1,44 @@
+{
+  "request": {
+    "system": "# Compatibility annotation codebook (version 2)\n\nThis codebook defines how to label each technique's minimum execution substrate,\nindependently of AutoSUT. Independent LLM judges from different model families\napply it to the blind sheet (`compatibility_annotation_sheet_A.csv`), which never\nshows AutoSUT's label or the rule that fired. Their consensus is the reference\nlabel; items where they disagree are reported as boundary cases. A person labels\na random subset (`compatibility_human_audit_sheet.csv`) with the same codebook to\nestimate the judges' own error.\n\n## The question\n\nFor the technique as described, what is the least isolated substrate on which\nits core mechanism can be executed with fidelity in a laboratory?\n\nDecide from the technique's own semantics (name, tactics, platforms,\npermissions, description), not from how AutoSUT routed it.\n\n## Labels\n\nWrite one of `CF`, `VMR`, `ID` in `annotator_class`.\n\n- **CF (container-feasible).** The mechanism runs inside an ordinary\n  unprivileged **Linux** container: userspace processes, files, network clients,\n  application-level actions. No kernel module, no boot or firmware state, no\n  host-level privileged object. A technique that exists only on Windows or macOS\n  cannot be CF, because a Linux container cannot run it.\n- **VMR (VM-required).** The mechanism needs a full kernel or host it can treat\n  as its own: loading a kernel module, touching boot or firmware, manipulating\n  host-level privileged objects (the registry, LSASS, a privileged service),\n  stepping outside a container's isolation, or running on Windows or macOS,\n  which needs a virtual machine of that operating system.\n- **ID (infrastructure-dependent).** The mechanism needs an external service,\n  identity plane, or managed platform that is not a property of a single host:\n  a domain controller, an IaaS or SaaS control plane, a cloud identity service,\n  or lateral movement that depends on such infrastructure.\n\n## Operational cues\n\n- A technique that only reads or writes files, spawns userspace processes, or\n  speaks an application protocol is **CF** when its Linux form exists. If it\n  exists only on Windows or macOS, it is **VMR**.\n- A technique whose core step is loading a driver, altering the boot chain, or\n  reading or writing a host-privileged store is **VMR**.\n- A technique that only makes sense against a directory, cloud, or SaaS control\n  plane, or that moves laterally through one, is **ID**.\n- Judge the **core mechanism**, not an optional variant. If a technique is\n  usually userspace but has a rare kernel variant, label the core mechanism.\n- Platform tags describe where behavior is *compatible*. Use them to decide\n  whether a Linux form exists; a technique listed for Linux and Windows can be\n  CF through its Linux form.\n\n## Notes field\n\nWhen a technique sits on a boundary, write one sentence in `annotator_notes`\nnaming the deciding factor. This feeds adjudication and is not scored.\n\n## After annotation\n\n`judge_compatibility_labels.py` records every request and raw reply.\n`score_compatibility_judgments.py` reports inter-judge agreement and Cohen's kappa,\nand scores AutoSUT against the consensus with a confusion matrix, per-class\nprecision and recall, and macro-F1, overall and separately for the explicit-rule\nand fallback strata.\n\n\nReply with one JSON object and nothing else: {\"label\": \"CF\" | \"VMR\" | \"ID\", \"reason\": \"<one sentence naming the deciding factor>\"}.",
+    "user": "technique_external_id: T1580\ntechnique_name: Cloud Infrastructure Discovery\ntactics: discovery\nplatforms: IaaS\npermissions: \ndescription_excerpt: An adversary may attempt to discover infrastructure and resources that are available within an infrastructure-as-a-service (IaaS) environment. This includes compute service resources such as instances, virtual machines, and snapshots as well as resources of other services including the storage and d",
+    "model": "qwen3.6:latest",
+    "temperature": 0,
+    "extra_parameters": {
+      "reasoning_effort": "none"
+    }
+  },
+  "response": {
+    "id": "chatcmpl-278",
+    "object": "chat.completion",
+    "created": 1791344467,
+    "model": "qwen3.6:latest",
+    "system_fingerprint": "fp_ollama",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n\"label\": \"ID\",\n\"reason\": \"The technique explicitly targets IaaS control planes to discover cloud resources, requiring interaction with external infrastructure management APIs rather than local host mechanisms.\"\n}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 884,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 42,
+      "total_tokens": 926
+    }
+  },
+  "judgment": {
+    "item_id": "CMP-126",
+    "judge": "qwen3.6",
+    "model": "qwen3.6:latest",
+    "label": "ID",
+    "reason": "The technique explicitly targets IaaS control planes to discover cloud resources, requiring interaction with external infrastructure management APIs rather than local host mechanisms.",
+    "raw_content": "{\n\"label\": \"ID\",\n\"reason\": \"The technique explicitly targets IaaS control planes to discover cloud resources, requiring interaction with external infrastructure management APIs rather than local host mechanisms.\"\n}"
+  }
+}

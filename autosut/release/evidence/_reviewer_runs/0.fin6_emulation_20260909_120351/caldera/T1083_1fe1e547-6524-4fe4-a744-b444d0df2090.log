@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: a909b14c-da8c-4234-87b6-3bb9880cb548
+link_id: 1fe1e547-6524-4fe4-a744-b444d0df2090
+ability_id: 52177cc1-b9ab-4411-ac21-2eadc4b5d3b8
+ability_name: List Directory
+command: ls
+status: 0
+exit_code: 0
+--- stdout ---
+binbootdevetchomeliblib64mediamntoptprocrootrunsbinsrvsystmpusrvar
+--- stderr ---
+

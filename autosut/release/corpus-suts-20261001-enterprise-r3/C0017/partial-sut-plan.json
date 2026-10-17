@@ -1,0 +1,58 @@
+{
+  "schema_version": "autosut-partial-sut/v1",
+  "campaign_id": "C0017",
+  "source_constraint_sha256": "b432c8b0ad02df17c9ce1310e490e136db8b4b1224a69d4d04e69e10feb37538",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1001.003.platform",
+        "T1005.data.1",
+        "T1005.platform",
+        "T1016.platform",
+        "T1027.002.platform",
+        "T1027.platform",
+        "T1033.platform",
+        "T1036.004.platform",
+        "T1036.005.platform",
+        "T1041.platform",
+        "T1048.003.platform",
+        "T1059.007.platform",
+        "T1071.001.platform",
+        "T1074.001.platform",
+        "T1090.platform",
+        "T1102.001.platform",
+        "T1102.platform",
+        "T1105.network.1",
+        "T1105.platform",
+        "T1140.platform",
+        "T1190.platform",
+        "T1190.service.1",
+        "T1505.003.platform",
+        "T1560.003.platform",
+        "T1567.platform",
+        "T1574.platform",
+        "T1680.platform"
+      ]
+    }
+  ],
+  "uncovered_technique_ids": [
+    "T1053.005",
+    "T1059.003",
+    "T1134",
+    "T1003.002"
+  ],
+  "unsupported_platforms": [
+    "Windows"
+  ],
+  "executable": false,
+  "content_sha256": "c3b87cbb9f85d4658051b12605897f76f7ce67e556f1e8001fb71ba73b4036bf"
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "autosut-network-resource-probe/v1",
+  "campaign_id": "C0035",
+  "blueprint_file_sha256": "5af56f2837d3a7279043eaa441687564194232ffd82747e8a5b9cfcd8c623e2f",
+  "blueprint_content_sha256": "e9adfcbef95001ac1c35ea0a28be62d32819503854d9652859efd584066e345c",
+  "image_id": "sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b",
+  "implementation_sha256": {
+    "probe": "27c69f87033dfc47f7eaf3d371bd3ce3c282b6bb889cd8687f0529e374190328",
+    "admission": "3d5e60515c157169b61662acfec2266fe09c6e9e6a1c3652f53553179a1a96fa",
+    "runtime": "25913e18c86d7953dff14dfe5c4996058a04f5647c4dc61bb4f3184efe73b9ff",
+    "gateway_guard": "9a259ab72ab3e9ef4a07c77b79257f3d9e5df3ae6137682c144087fba59706b0"
+  },
+  "required_resources": [
+    "controlled-ingress-channel"
+  ],
+  "observations": {
+    "controlled-ingress-channel": {
+      "source_sha256": "59f0c15bab1e537949d628cb4d6d7bb5b5781badcef7513d4cfd81bc1ff47049",
+      "destination_sha256": "59f0c15bab1e537949d628cb4d6d7bb5b5781badcef7513d4cfd81bc1ff47049",
+      "server_log": "Serving HTTP on 0.0.0.0 port 8769 (http://0.0.0.0:8769/) ...\n172.19.0.3 - - [04/Oct/2026 22:30:46] \"GET /fixture HTTP/1.1\" 200 -",
+      "request_observed": true
+    }
+  },
+  "gateway": {
+    "host_gateway_access": "blocked_observed",
+    "gateway": "172.19.0.1",
+    "subnet": "172.19.0.0/16",
+    "blocked_containers": [
+      "autosut-actor-748f8b67394b",
+      "autosut-target-748f8b67394b"
+    ],
+    "positive_before_rule": true,
+    "listener_live_after_rule": true,
+    "dropped_packets": 4,
+    "rule_counters": "Chain AS_748f8b67394b (1 references)\n    pkts      bytes target     prot opt in     out     source               destination         \n       4      240 DROP       0    --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+    "scope": "IPv4 INPUT to Docker host from this replay subnet; all protocols and ports",
+    "provider": "colima"
+  },
+  "network_internal": true,
+  "teardown_clean": true,
+  "resource_witnessed": true,
+  "campaign_executed": false,
+  "scope": "Synthetic private-lab resource witnesses only; no campaign technique effect or product fidelity certified."
+}

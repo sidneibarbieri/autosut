@@ -1,0 +1,24 @@
+$ ./.venv/bin/python ./scripts/run_supervised.py --experiment caldera --label autosut-supervised__shadowray-single-host-surrogate__s1 --deadline-seconds 1800 --supervision-receipt-file release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__shadowray-single-host-surrogate__s1.json --experiment-arg=--seed --experiment-arg=1 --experiment-arg=--evidence-root --experiment-arg=./release/experiments/operational_qualification/2026-09-05-r6/bundles
+
+--- stdout ---
+[experiment]   materialize_caldera: 0.147s ok
+[experiment]   verify_caldera_readiness: 12.139s ok
+[experiment]   materialize_sut: 71.462s ok
+[experiment]   enroll_agent: 47.058s ok
+[experiment]   admit_execution_slice: 0.378s ok
+[experiment]   register_and_execute: 57.756s ok
+[experiment]   verify_effect: 0.038s ok
+[experiment]   persist_execution_evidence: 0.0s ok
+[experiment]   destroy_attacker: 0.09s ok
+[experiment]   destroy_sut: 0.177s ok
+[experiment]   destroy_caldera: 0.179s ok
+[experiment] operation: {'operation_id': 'd75c1b78-7cf2-48e4-9e3f-3750e43ba169', 'operation_state': 'finished', 'links': [{'paw': 'exp3eb767e1c6', 'ability_id': '493caf4d-019c-585b-a604-a7b740be18c2', 'status': 0, 'exit_code': '0'}]}
+[experiment] independent effect confirmed: True
+[experiment] realization: surrogate
+[experiment] final state: clean; residual: none
+[experiment] sealed bundle: ./release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b (16 files)
+[supervised] completed_naturally=True exit_code=0 escalation=[]
+[supervised] terminated_clean=True residual=none
+[supervised] supervision receipt: release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__shadowray-single-host-surrogate__s1.json
+
+--- stderr ---

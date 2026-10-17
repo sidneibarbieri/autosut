@@ -18,12 +18,32 @@ import subprocess
 import time
 import urllib.error
 import urllib.request
+from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, Callable, Optional
 
 
 CALDERA_URL = "http://localhost:8888"
 CALDERA_CONTAINER = "autosut-caldera"
+
+
+@contextmanager
+def endpoint(base_url: str, container_name: str):
+    """Point the client at a specific Caldera instance for the duration of the block.
+
+    Every client function reads the module-level target URL and container by name, so rebinding
+    them here retargets all of them at once -- used to drive a per-run isolated Caldera instead of
+    the persistent development one. The previous target and the cached key are restored on exit.
+    """
+    global CALDERA_URL, CALDERA_CONTAINER
+    previous_url, previous_container = CALDERA_URL, CALDERA_CONTAINER
+    CALDERA_URL, CALDERA_CONTAINER = base_url, container_name
+    reset_cache()
+    try:
+        yield
+    finally:
+        CALDERA_URL, CALDERA_CONTAINER = previous_url, previous_container
+        reset_cache()
 
 
 def _read_red_api_key_from_container() -> Optional[str]:
@@ -103,7 +123,7 @@ def probe(api_key: Optional[str] = None) -> CalderaInfo:
     if api_ok and api_body.strip().startswith("{"):
         # Parse only when the body looks like a JSON object so we never
         # need a defensive try/except: a non-JSON 200 from /health would
-        # be a Caldera bug worth surfacing — but probe() is the health
+        # be a Caldera bug worth surfacing - but probe() is the health
         # check itself, so we record the absence rather than raise.
         payload = json.loads(api_body)
         if isinstance(payload, dict):
@@ -139,7 +159,7 @@ def _get_json_list(path: str, api_key: Optional[str] = None,
     Returns ``[]`` only when Caldera is unreachable (network-level failure;
     status==0). Any HTTP error from a reachable Caldera raises so the bug
     surfaces immediately rather than masquerading as "no data". JSON decode
-    errors also propagate — a 200 response that isn't valid JSON is a real
+    errors also propagate - a 200 response that isn't valid JSON is a real
     bug, never silently swallowed.
     """
     status, body = _http("GET", path, api_key=api_key, timeout=timeout)
@@ -159,6 +179,43 @@ def list_agents(api_key: Optional[str] = None) -> list[dict]:
 
 def list_abilities(api_key: Optional[str] = None) -> list[dict]:
     return _get_json_list("/api/v2/abilities", api_key=api_key, timeout=30)
+
+
+def create_ability(ability_id: str, name: str, technique_id: str,
+                   technique_name: str, tactic: str, command: str,
+                   platform: str = "linux", executor_name: str = "sh",
+                   description: str = "", cleanup: str = "",
+                   api_key: Optional[str] = None) -> Optional[str]:
+    """Register a custom ability Caldera's stockpile does not ship.
+
+    Stockpile abilities cover generic ATT&CK techniques; a campaign-specific
+    exploit (a named service's job-submission endpoint, a particular CVE
+    boundary) has no stock equivalent and must be authored. Returns the
+    ability_id, or None when Caldera is unreachable.
+    """
+    body = {
+        "ability_id": ability_id,
+        "name": name,
+        "description": description or name,
+        "tactic": tactic,
+        "technique_id": technique_id,
+        "technique_name": technique_name,
+        "executors": [
+            {
+                "platform": platform,
+                "name": executor_name,
+                "command": command,
+                "cleanup": [cleanup] if cleanup else [],
+                "timeout": 120,
+            }
+        ],
+    }
+    response = _post_json("/api/v2/abilities", body, api_key=api_key)
+    if response is None:
+        return None
+    global _ABILITIES_CACHE
+    _ABILITIES_CACHE = []  # the technique index must re-list to see the new ability
+    return response.get("ability_id") or ability_id
 
 
 def find_ability_by_technique(technique_id: str,
@@ -209,7 +266,7 @@ def best_ability_for(technique_id: str,
 
     When multiple abilities have a matching executor, abilities whose first
     Linux executor has no ``parsers`` and no ``payloads`` field (i.e. simple
-    self-contained commands) are preferred — they are far more likely to
+    self-contained commands) are preferred - they are far more likely to
     succeed without a configured fact source.
     """
     index = all_abilities_indexed_by_technique(api_key)
@@ -418,7 +475,7 @@ def get_operation(operation_id: str,
 
 def get_operation_report(operation_id: str,
                          api_key: Optional[str] = None) -> Optional[dict]:
-    """Return the operation report — includes per-step (link) outcomes with
+    """Return the operation report - includes per-step (link) outcomes with
     stdout/stderr and statuses, which is the audit trail we want in the
     AutoSUT manifest. None when Caldera is unreachable; HTTP and JSON errors
     propagate.
@@ -466,3 +523,184 @@ def wait_agent_registered(paw_substring: Optional[str] = None,
             return agent
         time.sleep(poll_seconds)
     return None
+
+
+class CalderaClient:
+    """A Caldera REST client bound to one instance's URL, key, and container.
+
+    All request state lives on the instance, so correctness does not depend on the module-level
+    target or on the execution lock: two clients for two isolated Caldera instances can be used
+    independently. This is the canonical client for the lifecycle; the module-level functions above
+    remain only for the legacy dispatch path pending consolidation.
+    """
+
+    def __init__(self, base_url: str, api_key: str, container_name: str):
+        self.base_url = base_url
+        self.api_key = api_key
+        self.container_name = container_name
+
+    def _http(self, method: str, path: str, body: Any = None,
+              timeout: float = 10.0) -> tuple[int, str]:
+        data = json.dumps(body).encode("utf-8") if body is not None else None
+        headers = {"Content-Type": "application/json", "KEY": self.api_key}
+        req = urllib.request.Request(
+            f"{self.base_url}{path}", data=data, method=method, headers=headers
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.status, resp.read().decode("utf-8")
+        except urllib.error.HTTPError as exc:
+            return exc.code, exc.read().decode("utf-8")
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            return 0, str(exc)
+
+    def _post_json(self, path: str, body: dict, timeout: float = 15.0) -> Optional[dict]:
+        status, response_body = self._http("POST", path, body=body, timeout=timeout)
+        if status == 0:
+            return None
+        if status not in (200, 201):
+            raise RuntimeError(f"Caldera POST {path} returned HTTP {status}: {response_body[:200]}")
+        return json.loads(response_body)
+
+    def _get_json_list(self, path: str, timeout: float = 10.0) -> list[dict]:
+        status, body = self._http("GET", path, timeout=timeout)
+        if status == 0:
+            return []
+        if status != 200:
+            raise RuntimeError(f"Caldera GET {path} returned HTTP {status}: {body[:200]}")
+        data = json.loads(body)
+        return data if isinstance(data, list) else []
+
+    def probe(self) -> CalderaInfo:
+        landing_status, _ = self._http("GET", "/", timeout=5)
+        api_status, _ = self._http("GET", "/api/v2/health", timeout=5)
+        return CalderaInfo(
+            url=self.base_url, reachable=landing_status == 200,
+            api_ok=api_status == 200, api_key_in_use=self.api_key,
+        )
+
+    def download_sandcat(self, platform: str = "linux", architecture: str = "amd64",
+                         timeout: float = 30.0) -> Optional[bytes]:
+        headers = {"KEY": self.api_key, "platform": platform,
+                   "file": "sandcat.go", "architecture": architecture}
+        req = urllib.request.Request(
+            f"{self.base_url}/file/download", headers=headers, method="GET"
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read() if resp.status == 200 else None
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError):
+            return None
+
+    def list_agents(self) -> list[dict]:
+        return self._get_json_list("/api/v2/agents", timeout=10)
+
+    def wait_agent_registered(
+        self,
+        paw_substring: Optional[str] = None,
+        group: str = "red",
+        max_seconds: int = 90,
+        poll_seconds: float = 2.0,
+        on_pending_poll: Callable[[], None] | None = None,
+    ) -> Optional[dict]:
+        """Wait for an agent and optionally expose the first observed pending enrollment.
+
+        The callback runs only after a real agents API response contains no matching agent.  That
+        is a semantic boundary for interruption experiments: Sandcat has already been launched
+        and Caldera has been queried, yet enrollment has not completed.
+        """
+        deadline = time.monotonic() + max_seconds
+        pending_notified = False
+        while time.monotonic() < deadline:
+            for agent in self.list_agents():
+                if agent.get("group") != group:
+                    continue
+                if paw_substring and paw_substring not in (agent.get("paw") or ""):
+                    continue
+                return agent
+            if not pending_notified and on_pending_poll is not None:
+                on_pending_poll()
+                pending_notified = True
+            time.sleep(poll_seconds)
+        return None
+
+    def create_ability(self, ability_id: str, name: str, technique_id: str, technique_name: str,
+                       tactic: str, command: str, platform: str = "linux",
+                       executor_name: str = "sh", description: str = "",
+                       cleanup: str = "", fact_source: str | None = None) -> Optional[str]:
+        """Register an ability. When fact_source is set, the executor parses its stdout into that
+        fact, so a later ability on another host can consume it with #{fact_source}."""
+        executor = {"platform": platform, "name": executor_name, "command": command,
+                    "cleanup": [cleanup] if cleanup else [], "timeout": 120}
+        if fact_source:
+            executor["parsers"] = [{
+                "module": "plugins.stockpile.app.parsers.basic",
+                "parserconfigs": [{"source": fact_source, "edge": None, "target": None}],
+            }]
+        body = {
+            "ability_id": ability_id, "name": name, "description": description or name,
+            "tactic": tactic, "technique_id": technique_id, "technique_name": technique_name,
+            "executors": [executor],
+        }
+        response = self._post_json("/api/v2/abilities", body)
+        return None if response is None else (response.get("ability_id") or ability_id)
+
+    def create_adversary(self, name: str, ability_ids: list[str],
+                         description: str = "AutoSUT-generated adversary") -> Optional[str]:
+        import uuid
+        adversary_id = str(uuid.uuid4())
+        body = {
+            "adversary_id": adversary_id, "name": name, "description": description,
+            "atomic_ordering": ability_ids,
+            "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc", "tags": ["autosut"],
+        }
+        response = self._post_json("/api/v2/adversaries", body)
+        return None if response is None else (response.get("adversary_id") or adversary_id)
+
+    def start_operation(self, name: str, adversary_id: str,
+                        planner_id: str = ATOMIC_PLANNER_ID, group: str = "red") -> Optional[str]:
+        import uuid
+        operation_id = str(uuid.uuid4())
+        body = {
+            "id": operation_id, "name": name,
+            "adversary": {"adversary_id": adversary_id}, "planner": {"id": planner_id},
+            "source": {"id": "ed32b9c3-9593-4c33-b0db-e2007315096b"}, "group": group,
+            "state": "running", "autonomous": 1, "obfuscator": "plain-text",
+            "auto_close": True, "jitter": "0/0", "visibility": 50,
+        }
+        response = self._post_json("/api/v2/operations", body)
+        return None if response is None else (response.get("id") or operation_id)
+
+    def get_operation(self, operation_id: str) -> Optional[dict]:
+        status, body = self._http("GET", f"/api/v2/operations/{operation_id}", timeout=10)
+        if status == 0:
+            return None
+        if status != 200:
+            raise RuntimeError(f"Caldera GET operation/{operation_id} returned HTTP {status}")
+        return json.loads(body)
+
+    def wait_operation_done(self, operation_id: str, max_seconds: int = 120,
+                            poll_seconds: float = 3.0) -> Optional[dict]:
+        deadline = time.monotonic() + max_seconds
+        while time.monotonic() < deadline:
+            operation = self.get_operation(operation_id)
+            if operation is None:
+                return None
+            if operation.get("state") == "finished":
+                return operation
+            time.sleep(poll_seconds)
+        return self.get_operation(operation_id)
+
+    def get_operation_report(self, operation_id: str) -> Optional[dict]:
+        return self._post_json(
+            f"/api/v2/operations/{operation_id}/report",
+            {"enable_agent_output": True}, timeout=30,
+        )
+
+    def container_ip(self) -> Optional[str]:
+        proc = subprocess.run(
+            ["docker", "inspect", "-f",
+             "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}", self.container_name],
+            capture_output=True, text=True, check=False, timeout=5,
+        )
+        return proc.stdout.strip() or None

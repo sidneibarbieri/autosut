@@ -1,0 +1,151 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.c0026",
+  "source_campaign_id": "C0026",
+  "source_plan_sha256": "479dd62002be23fb5c950a6fa433b41d43be3c82a19c50aa4a493bead3521aeb",
+  "concretized_plan_sha256": "2d919e6f86ce13859123da4b403c41d11bbdc999af4fc0f5ca8eba50cd123373",
+  "binding_catalog_sha256": "7676e6e6730f1c8bd9fa9c35c08b9c066d081f70b9b05746c91fd200b1f21073",
+  "planning_certificate_sha256": "ae747a525ed2a58e23ce0bef9f781600c6770ed4d853155e5b6a3f46a7f3cf0c",
+  "scope": "validated_controlled_slice",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "network:http_available",
+    "code_execution"
+  ],
+  "transitions": [
+    {
+      "technique_id": "T1583.001",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.domain"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "record-controlled-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1568",
+      "requires": [
+        "infrastructure.domain"
+      ],
+      "produces": [
+        "channel.resolved",
+        "c2_channel"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "resolve-lab-domain",
+      "bindings": {
+        "domain": "infrastructure.lab_manifest",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "resolver_query_logged",
+        "external_dns_absent"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1105",
+      "requires": [
+        "channel.resolved",
+        "c2_channel",
+        "network:http_available"
+      ],
+      "produces": [
+        "payload.target.staged",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "transfer-over-resolved-lab-channel",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1005",
+      "requires": [
+        "payload.target.staged",
+        "code_execution"
+      ],
+      "produces": [
+        "collection.local",
+        "discovery:file_listing",
+        "collection:local_data"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "collect-declared-data-fixture",
+      "bindings": {
+        "data_source": "data.synthetic_fixture",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "fixture_hash_recorded",
+        "no_host_data_collected"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1560.001",
+      "requires": [
+        "collection.local",
+        "discovery:file_listing",
+        "collection:local_data"
+      ],
+      "produces": [
+        "collection.archive"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "archive-declared-collection",
+      "bindings": {
+        "archive_tool": "archive_tool.local",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "archive_hash_recorded",
+        "input_manifest_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1030",
+      "requires": [
+        "collection.archive"
+      ],
+      "produces": [
+        "exfiltration.chunked",
+        "exfiltration:chunked_transfer"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "split-declared-archive",
+      "bindings": {
+        "archive": "archive.synthetic_collection",
+        "chunk_policy": "chunk_policy.bounded_local"
+      },
+      "evidence_predicates": [
+        "chunk_manifest_recorded",
+        "no_external_transfer"
+      ],
+      "fidelity_ceiling": "adapted"
+    }
+  ],
+  "content_sha256": "f2e6e37d8a22278929bd941b836bc8343c420ea2227fb9f950ef30a732308b91"
+}

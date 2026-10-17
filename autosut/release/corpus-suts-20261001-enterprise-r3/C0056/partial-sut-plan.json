@@ -1,0 +1,53 @@
+{
+  "schema_version": "autosut-partial-sut/v1",
+  "campaign_id": "C0056",
+  "source_constraint_sha256": "f33e782cf898481af5ad35f70ff3728f21106d21034ef240d5df165dc2a9aa32",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1014.platform",
+        "T1016.platform",
+        "T1027.013.platform",
+        "T1036.005.platform",
+        "T1040.platform",
+        "T1041.platform",
+        "T1055.platform",
+        "T1057.platform",
+        "T1059.004.platform",
+        "T1070.004.platform",
+        "T1070.007.platform",
+        "T1078.platform",
+        "T1090.003.platform",
+        "T1090.platform",
+        "T1095.platform",
+        "T1104.platform",
+        "T1105.network.1",
+        "T1105.platform",
+        "T1140.platform",
+        "T1203.platform",
+        "T1205.platform",
+        "T1554.platform",
+        "T1571.platform",
+        "T1573.001.platform",
+        "T1690.platform"
+      ]
+    }
+  ],
+  "uncovered_technique_ids": [
+    "T1059.008"
+  ],
+  "unsupported_platforms": [
+    "Network Devices"
+  ],
+  "executable": false,
+  "content_sha256": "3ee50759b4b8c137194644428ad13a4f570fdeaafff5c9e443ba6bb2e0a0f263"
+}

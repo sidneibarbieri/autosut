@@ -17,7 +17,7 @@ from executors.executor_registry import (
     execute_t1190_real,
     register_executor,
 )
-from executors.lab_transport import run_bash_on_target_vm
+from executors.lab_transport import VagrantInstanceUnavailableError, run_bash_on_target_vm
 from executors.models import (
     ExecutionFidelity,
     ExecutionMode,
@@ -47,7 +47,7 @@ if curl -fsS --max-time 2 http://127.0.0.1:8265/api/version >/tmp/ray_version.js
     printf '%s\n' '=== GET /api/version ===' && cat /tmp/ray_version.json
     printf '\n%s\n' '=== GET /api/jobs/ ===' && curl -fsS http://127.0.0.1:8265/api/jobs/
 else
-    echo "[T1190] Ray API not live — provisioning mock server (CVE-2023-48022 simulation)"
+    echo "[T1190] Ray API not live - provisioning mock server (CVE-2023-48022 simulation)"
     # Write a minimal mock Ray API server
     cat > /tmp/mock_ray_api.py << 'PYEOF'
 import http.server, json, threading, time
@@ -93,7 +93,12 @@ fi
             bash_script=bash_script,
             timeout=60,
         )
-    except (FileNotFoundError, ValueError, subprocess.TimeoutExpired) as exc:
+    except (
+        FileNotFoundError,
+        ValueError,
+        subprocess.TimeoutExpired,
+        VagrantInstanceUnavailableError,
+    ) as exc:
         return False, "", str(exc), []
 
     artifacts_dir = Path("data/artifacts")
@@ -131,7 +136,12 @@ def _run_shadowray_vm_script(
             bash_script=bash_script,
             timeout=timeout,
         )
-    except (FileNotFoundError, ValueError, subprocess.TimeoutExpired) as exc:
+    except (
+        FileNotFoundError,
+        ValueError,
+        subprocess.TimeoutExpired,
+        VagrantInstanceUnavailableError,
+    ) as exc:
         return False, "", str(exc), []
 
     artifacts_dir = Path("data/artifacts")

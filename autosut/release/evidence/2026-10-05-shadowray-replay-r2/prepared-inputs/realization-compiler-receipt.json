@@ -1,0 +1,11 @@
+{
+  "entrypoint": "scripts/enumerate_realization_space.py",
+  "entrypoint_sha256": "7971c235fd3ac7bc17f6f8e4cb75c4f5cae88886daaca9cff5d43bf9ba49b834",
+  "returncode": 0,
+  "llm_calls": 0,
+  "maximum_realizations": 64,
+  "maximum_search_states": 10000,
+  "realization_space_sha256": "d8c01b0a86983aed68b8c587a33ed4126c5633ebe8973b1909c468be703bd23f",
+  "joint_certificate_sha256": "c240778013ece989b49f9a9ed26238548d57176e0b540f36c4bf96df8cbb87f3",
+  "operational_status": "not_run"
+}

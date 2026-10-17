@@ -1,0 +1,177 @@
+{
+  "campaign_id": "0.c0010",
+  "run_id": "0.c0010",
+  "timestamp": "2026-10-01T21:00:46.793974Z",
+  "attacker": {
+    "profile_id": "c0010_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh+http client for watering-hole flow."
+  },
+  "sut": {
+    "sut_id": "C0010-sut",
+    "base_image": "python:3.11-slim",
+    "platform_source": "autosut_concretized",
+    "services": [],
+    "memory_mb": 4096,
+    "smp": 2,
+    "backend": "docker",
+    "hosts": null,
+    "composition": null,
+    "topology": null,
+    "notes": null
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1583.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1583.001-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1584.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1584.001-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1587.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1587.001-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1588.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.002-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.001-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.002-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.004-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1189",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1189-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105-predicates.json"
+      ],
+      "duration_sec": 0.0,
+      "notes": "Observed bounded contract operation; historical APT fidelity is not certified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

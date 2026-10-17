@@ -1,0 +1,56 @@
+{
+  "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+  "synthetic_credential": "s3cr3t-3de22850",
+  "negative_control": false,
+  "network": "autosut-1ee582a4-net",
+  "caldera_net_ip": "172.19.0.2",
+  "caldera_ready_seconds": 12.0,
+  "host_a": "autosut-1ee582a4-host-a",
+  "host_b": "autosut-1ee582a4-host-b",
+  "environment_provenance": {
+    "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+    "protocol_version": "caldera-experiment/1",
+    "host_os": "Darwin 25.5.0",
+    "host_architecture": "arm64",
+    "python": "Python 3.14.6",
+    "docker_client": "29.6.2",
+    "docker_server": "29.2.1",
+    "images": {
+      "caldera": {
+        "declared_reference": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "image_id": "sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "architecture": "amd64",
+        "resolved_repo_digest": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7"
+      },
+      "sut_and_attacker": {
+        "declared_reference": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "image_id": "sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "architecture": "arm64",
+        "resolved_repo_digest": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
+      }
+    }
+  },
+  "build_attempts": {
+    "a": [
+      "attempt 1: wrong architecture (not aarch64)",
+      "attempt 2: wrong architecture (not aarch64)",
+      "attempt 3: wrong architecture (not aarch64)",
+      "attempt 4: built aarch64"
+    ],
+    "b": [
+      "attempt 1: built aarch64"
+    ]
+  },
+  "paw_a": "hosta424889",
+  "paw_b": "hostba37a27",
+  "operation": {
+    "operation_id": "c02239be-ada4-4d3b-8388-5414b8745af2",
+    "operation_state": "finished",
+    "link_count": 4
+  },
+  "host_b_marker": "s3cr3t-3de22850",
+  "fact_propagated": true,
+  "scenario_effect_confirmed": true,
+  "realization": "multi_host_infrastructure_scenario",
+  "independent_effect_confirmed": true
+}

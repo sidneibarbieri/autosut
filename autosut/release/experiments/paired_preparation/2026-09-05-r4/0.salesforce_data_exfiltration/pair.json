@@ -1,0 +1,22 @@
+{
+  "campaign_id": "0.salesforce_data_exfiltration",
+  "source_campaign_id": "C0059",
+  "status": "blocked",
+  "reasons": [
+    "unsupported_platform_requirements"
+  ],
+  "source_steps": 18,
+  "planned_steps": 0,
+  "unresolved_technique_ids": [
+    "T1671",
+    "T1213.004"
+  ],
+  "contract_sha256": null,
+  "files": {
+    "campaign-source.json": "c5ffee97939c7c64390094703e7e31730b4e5b81b258c860239ef69b991e0a4b",
+    "campaign.json": "9f219f1530bd90cef1f5fb1de1f17d1ea279452bc0a119ba571dfcdaa2baebe3",
+    "procedural-plan.json": "a4c74c5893b8330b3ef3c2aa4f585c74a49197d0f746eb0c81d36a0322c2d411",
+    "sut-constraints.json": "00cf2c723ba63addfd8c89c66ef2937dc6f62100291e61958ef017a05796e04d"
+  },
+  "execution_status": "not_run"
+}

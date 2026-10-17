@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: d0e8769f-f785-4873-a34c-95a73a07a17a
+link_id: 61f349f3-f3cc-494e-bfaf-f061f3f06629
+ability_id: 5c4dd985-89e3-4590-9b57-71fed66ff4e2
+ability_name: Permission Groups Discovery
+command: groups
+status: 0
+exit_code: 0
+--- stdout ---
+root
+--- stderr ---
+

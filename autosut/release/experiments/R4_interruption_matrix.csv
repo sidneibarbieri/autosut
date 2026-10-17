@@ -1,0 +1,11 @@
+id,stage,condition,injection,property,status,attempt_count,qualifying_attempt_count,nonqualifying_attempt_count,retry_attempt_count,excluded_attempt_count,bundles,implementation_revisions,reason_codes
+R4V2-01,materialize_sut,sut_container_created,sigint,Lifecycle signal recovery after a real SUT container exists.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-02,materialize_sut,sut_container_created,deadline,External process-group termination and verified namespace cleanup after partial SUT setup.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-03,verify_caldera_readiness,readiness_probe_started,deadline,Recovery while a real readiness probe is in flight against isolated infrastructure.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-04,enroll_agent,enrollment_poll_active,sigterm,Cleanup after Sandcat launch and an observed Caldera enrollment poll with no matching agent yet registered.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-05,register_and_execute,operation_created,sigint,Lifecycle signal recovery after Caldera returned a real operation identifier.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-06,register_and_execute,operation_running,deadline,External termination and cleanup while Caldera reports a real operation as running.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-07,verify_effect,effect_probe_started,sigterm,Recovery while the independent effect probe has begun.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-08,persist_execution_evidence,execution_evidence_ready,deadline,External recovery after execution state exists and immediately before persistence.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-09,destroy_attacker,attacker_teardown_started,sigterm,Lifecycle signal recovery after the attacker resource is present and teardown has begun.,missing,0,0,0,0,0,,,predeclared_cell_not_observed
+R4V2-10,destroy_sut,sut_teardown_started,deadline,External recovery after the SUT resource is present and teardown has begun.,missing,0,0,0,0,0,,,predeclared_cell_not_observed

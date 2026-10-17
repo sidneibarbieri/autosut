@@ -1,0 +1,19 @@
+{
+  "llm": {
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "base_url": "https://api.openai.com/v1",
+    "api_key_env": "OPENAI_API_KEY",
+    "temperature": 0.0,
+    "max_output_tokens": 3000,
+    "timeout_seconds": 60,
+    "budget": {
+      "max_requests": 60,
+      "max_prompt_tokens": 100000,
+      "max_completion_tokens": 24000,
+      "max_estimated_usd": 5.0,
+      "input_usd_per_million_tokens": 0.15,
+      "output_usd_per_million_tokens": 0.6
+    }
+  }
+}

@@ -1,0 +1,7 @@
+docker stop autosut-28edbd63de
+exit_code: 0
+stdout: autosut-28edbd63de
+
+stderr: 
+verified_absent: true
+verification_error: (none)

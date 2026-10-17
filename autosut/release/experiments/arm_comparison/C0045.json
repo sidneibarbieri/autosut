@@ -37,14 +37,14 @@
     "run_id": "0.shadowray_20260731_223638",
     "execution_timestamp": "2026-07-31T22:40:03.468006Z",
     "execution_validity_path": "release/experiments/execution_validity.json",
-    "execution_validity_sha256": "286f6fbabfa3ee75e92ec0006a213564fb9c293ab7dcd785c35d29beaa9c595d",
-    "manifest_path": "release/evidence/0.shadowray_20260731_223638/manifest.json",
+    "execution_validity_sha256": "f63a0dbdaa7e6c957f3c68285256103daa914e463c9c992841a9032ccfae2cd4",
+    "manifest_path": "release/evidence/qualified/0.shadowray_20260731_223638/manifest.json",
     "manifest_sha256": "a7f51dfbd1ac50d4c01339bc79eff6b70b11d1a5bd90b20df12102d4b03db331",
-    "summary_path": "release/evidence/0.shadowray_20260731_223638/summary.json",
+    "summary_path": "release/evidence/qualified/0.shadowray_20260731_223638/summary.json",
     "summary_sha256": "6854bd62953b6ded6e82c7091efe19481044a769532a03187ef3af3838306863",
-    "campaign_state_path": "release/evidence/0.shadowray_20260731_223638/campaign_state.json",
+    "campaign_state_path": "release/evidence/qualified/0.shadowray_20260731_223638/campaign_state.json",
     "campaign_state_sha256": "9f2e22c881a7f7bf655ec5444becf80f45bc29ba042af0dabe54e97e8514918b",
-    "fidelity_report_path": "release/evidence/0.shadowray_20260731_223638/fidelity_report.json",
+    "fidelity_report_path": "release/evidence/qualified/0.shadowray_20260731_223638/fidelity_report.json",
     "fidelity_report_sha256": "4722fedf441ca95a60037411e7a2e5dd74f8721a76f2fd766be7cba033b6b191",
     "evidence_file_sha256": {
       "techniques/T1003.008_job_submit.log": "29accddab647fad1f23b9df06caa6fb3e40723b86b4dd6b7a3253b3d1646334a",
@@ -183,7 +183,7 @@
         "surrogate": 10
       },
       "execution_semantic_sha256": "bd1c1e91353ecf9f764215a16d526a798a95f38e3e311d5e30ff6a25b53df551",
-      "evidence_manifest_path": "release/evidence/0.shadowray_20260731_223638/manifest.json",
+      "evidence_manifest_path": "release/evidence/qualified/0.shadowray_20260731_223638/manifest.json",
       "evidence_manifest_sha256": "a7f51dfbd1ac50d4c01339bc79eff6b70b11d1a5bd90b20df12102d4b03db331",
       "interpretation": "Verified deterministic plan plus a separate surrogate-backed execution record. It is not evidence of real-Ray exploitation or historical replay."
     }
@@ -211,5 +211,5 @@
   "execution_evidence_gate_passed": true,
   "three_arm_execution_comparison_supported": false,
   "primary_gate_passed": true,
-  "content_sha256": "e6f3328d4e1bffc10ca1e9f5cd6119a864360d6f64c2f9ea03321e93cbb29614"
+  "content_sha256": "e15f6e1786fdefa5efd869f2326804f9de3eb70cb7d65d700449c4734d0f3799"
 }

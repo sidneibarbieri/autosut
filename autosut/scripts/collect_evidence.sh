@@ -1,23 +1,18 @@
 #!/bin/bash
-# collect_evidence.sh - Summarize canonical evidence directory
+# collect_evidence.sh - Summarize locally generated execution records
 # Usage: ./collect_evidence.sh
 #
-# NOTE:
-#   Canonical evidence is produced directly in:
-#     release/evidence/<campaign_timestamp>/
-#   by scripts/run_campaign.py.
-#   This script does not copy from legacy paths.
+# Records produced by scripts/run_campaign.py are stored under
+# release/evidence/<campaign_timestamp>/. They are useful for local diagnosis,
+# but do not alter the sealed canonical claim ledger.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 EVIDENCE_DIR="$ROOT_DIR/release/evidence"
-MATRIX_SCRIPT="$ROOT_DIR/scripts/generate_campaign_matrix.py"
-PAPER_READY_SCRIPT="$ROOT_DIR/scripts/generate_paper_ready_artifacts.py"
-
 echo "======================================================================"
-echo "STICKS Evidence Summary"
+echo "AutoSUT Local Execution Record Summary"
 echo "======================================================================"
 
 if [[ -d "$EVIDENCE_DIR" ]]; then
@@ -28,7 +23,7 @@ if [[ -d "$EVIDENCE_DIR" ]]; then
         exit 1
     fi
 
-    echo "Latest evidence runs:"
+    echo "Most recent local execution records (not canonical claim evidence):"
     while read -r summary; do
         [[ -n "$summary" ]] || continue
         run_dir="$(dirname "$summary")"
@@ -42,21 +37,10 @@ print(f"      campaign={data.get('campaign_id','?')} success={data.get('successf
 PYEOF
     done <<< "$LATEST_SUMMARIES"
 
-    if [[ -f "$MATRIX_SCRIPT" ]]; then
-        echo ""
-        echo "Refreshing consolidated campaign-SUT-fidelity matrix..."
-        python3 "$MATRIX_SCRIPT"
-    fi
-
-    if [[ -f "$PAPER_READY_SCRIPT" ]]; then
-        echo ""
-        echo "Generating paper-ready traceability and macros..."
-        python3 "$PAPER_READY_SCRIPT"
-    fi
-
     echo ""
     echo "======================================================================"
-    echo "Evidence directory: $EVIDENCE_DIR"
+    echo "Local execution record directory: $EVIDENCE_DIR"
+    echo "Canonical claim authority: release/CLAIM_EVIDENCE_TRACEABILITY.md"
     echo "======================================================================"
 else
     echo "No canonical evidence directory found. Run a campaign first:"

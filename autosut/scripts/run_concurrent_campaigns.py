@@ -53,7 +53,7 @@ class BatchRow:
 def _run_one_campaign(campaign_id: str) -> BatchRow:
     """Execute a single campaign and return a BatchRow.
 
-    Errors propagate as exceptions — the parent will record them in the
+    Errors propagate as exceptions - the parent will record them in the
     BatchRow with status="error" instead of masking them.
     """
     orchestrator = build_default()
@@ -73,7 +73,7 @@ def _run_one_campaign(campaign_id: str) -> BatchRow:
 def _run_one_campaign_safe(campaign_id: str) -> BatchRow:
     """Wrapper that converts unexpected exceptions into a BatchRow with
     status='error'. We log the exception type + message so a reviewer can
-    see exactly what failed — we never silently swallow."""
+    see exactly what failed - we never silently swallow."""
     try:
         return _run_one_campaign(campaign_id)
     except (RuntimeError, ValueError, OSError) as exc:

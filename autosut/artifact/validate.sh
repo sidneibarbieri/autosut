@@ -9,16 +9,22 @@ PYTHON_BIN="$(autosut_resolve_python "$ROOT_DIR" "$ROOT_DIR/requirements-reviewe
 export PYTHONPATH="$ROOT_DIR/src${PYTHONPATH:+:$PYTHONPATH}"
 
 SMOKE_CAMPAIGN="0.c0017"
+CONTRACT_CAMPAIGN="0.shadowray"
+SESSION_FILE="release/evidence/_reviewer_runs/latest-smoke-session.json"
 
-latest_run_dir="$("$PYTHON_BIN" - <<'PY'
+if [[ ! -f "$SESSION_FILE" ]]; then
+  echo "[artifact/validate] missing reviewer session: $SESSION_FILE" >&2
+  echo "[artifact/validate] run artifact/run.sh immediately before validation" >&2
+  exit 1
+fi
+
+latest_run_dir="$("$PYTHON_BIN" - "$SESSION_FILE" "$SMOKE_CAMPAIGN" <<'PY'
+import json
+import sys
 from pathlib import Path
 
-candidates = list(Path("release/evidence").glob("0.c0017_*"))
-if not candidates:
-    print("")
-else:
-    latest = max(candidates, key=lambda path: path.name)
-    print(latest)
+session = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+print(session.get("campaign_runs", {}).get(sys.argv[2], ""))
 PY
 )"
 
@@ -52,26 +58,12 @@ if [[ ! -f "$latest_state" ]]; then
   exit 1
 fi
 
-for table_path in \
-  results/tables/corpus_table.tex \
-  results/tables/fidelity_table.tex \
-  results/tables/execution_table.tex
-do
-  if [[ ! -f "$table_path" ]]; then
-    echo "[artifact/validate] missing table: $table_path" >&2
-    exit 1
-  fi
-done
-
-"$PYTHON_BIN" - <<'PY'
+"$PYTHON_BIN" - "$latest_run_dir" <<'PY'
 import json
+import sys
 from pathlib import Path
 
-candidates = list(Path("release/evidence").glob("0.c0017_*"))
-if not candidates:
-    raise SystemExit("missing evidence directory for 0.c0017")
-
-latest_dir = max(candidates, key=lambda path: path.name)
+latest_dir = Path(sys.argv[1])
 summary_path = latest_dir / "summary.json"
 manifest_path = latest_dir / "manifest.json"
 rubric_path = latest_dir / "fidelity_report.json"
@@ -132,15 +124,48 @@ PY
 
 archive_root="release/evidence/_reviewer_runs"
 mkdir -p "$archive_root"
-archive_dest="$archive_root/$(basename "$latest_run_dir")"
-if [[ -e "$archive_dest" ]]; then
-  suffix=1
-  while [[ -e "${archive_dest}_${suffix}" ]]; do
-    suffix=$((suffix + 1))
-  done
-  archive_dest="${archive_dest}_${suffix}"
+
+# ``artifact/run.sh`` deliberately executes both the smallest campaign replay
+# and the state-contract replay. They are reviewer-generated runtime state,
+# not released golden evidence. Move only the paths bound into this session;
+# never infer a target from a timestamp or directory glob.
+for campaign in "$SMOKE_CAMPAIGN" "$CONTRACT_CAMPAIGN"; do
+  while IFS= read -r run_dir; do
+    [[ -n "$run_dir" ]] || continue
+    archive_dest="$archive_root/$(basename "$run_dir")"
+    if [[ -e "$archive_dest" ]]; then
+      suffix=1
+      while [[ -e "${archive_dest}_${suffix}" ]]; do
+        suffix=$((suffix + 1))
+      done
+      archive_dest="${archive_dest}_${suffix}"
+    fi
+    mv "$run_dir" "$archive_dest"
+    echo "[artifact/validate] archived reviewer evidence: $archive_dest"
+  done < <("$PYTHON_BIN" - "$SESSION_FILE" "$campaign" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+session = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+run = Path(session.get("campaign_runs", {}).get(sys.argv[2], ""))
+if not run:
+    raise SystemExit(f"session has no run for {sys.argv[2]}")
+if run.parent != Path("release/evidence"):
+    raise SystemExit(f"session path escapes evidence root: {run}")
+print(run.as_posix())
+PY
+)
+done
+
+rm -f "$SESSION_FILE"
+
+package_root="$(dirname "$ROOT_DIR")"
+package_manifest="$package_root/ARTIFACT_MANIFEST.md"
+if [[ -f "$package_manifest" ]]; then
+  "$PYTHON_BIN" scripts/verify_artifact_manifest.py \
+    --root "$package_root" \
+    --allow-runtime-state
 fi
-cp -R "$latest_run_dir" "$archive_dest"
-echo "[artifact/validate] copied reviewer smoke evidence: $archive_dest"
 
 echo "[artifact/validate] done"

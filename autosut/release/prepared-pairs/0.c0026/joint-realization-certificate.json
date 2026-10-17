@@ -1,0 +1,24 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0026",
+  "sut_id": "0.c0026",
+  "realization_space_sha256": "5f0b7d8bcb5fbfba0e2085da32998b9d4b860a60b776da83110dce6563cee1c2",
+  "sut_blueprint_sha256": "39436107cf0fb84a9a6c805d77a81c3fe771edcbb5905241a3c1657ae7cc8d63",
+  "binding_catalog_sha256": "09cf42cd8a9fe7a1523caf3c4c680b9d325f8291ccf57f4bea10bcef8092f4b9",
+  "enumeration_status": "exhaustive",
+  "compatibility_scope": "declared_sut_contract_only",
+  "operational_status": "not_run",
+  "compatible_realization_count": 1,
+  "selected_realization_sha256": "ea875c104da400b4b36e885b32910cfadc3707ef68464162c4b3b357a1a03320",
+  "assessments": [
+    {
+      "rank": 1,
+      "realization_sha256": "ea875c104da400b4b36e885b32910cfadc3707ef68464162c4b3b357a1a03320",
+      "execution_semantic_sha256": "c1547a99f2615ee2eb9d86d902c7586147fa55c7d5c7b1a186096b50ea9b5f1d",
+      "compatible": true,
+      "used_binding_count": 9,
+      "issues": []
+    }
+  ],
+  "content_sha256": "0ae9a7c8b22e3140bda4c6c1bddc9c5a738a9154a70684cd729b9aeb3738a1c2"
+}

@@ -67,7 +67,7 @@ def build_artifact(execute: bool) -> dict:
 def main() -> int:
     execute = docker_available()
     if not execute:
-        print("[subdet] docker unavailable — executable + coincident witnesses "
+        print("[subdet] docker unavailable - executable + coincident witnesses "
               "will be structural only", file=sys.stderr)
     artifact = build_artifact(execute=execute)
     OUTPUT.write_text(json.dumps(artifact, indent=2), encoding="utf-8")

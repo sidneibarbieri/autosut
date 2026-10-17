@@ -1,0 +1,63 @@
+{
+  "schema_version": "autosut-operational-collection/v1",
+  "plan": {
+    "schema_version": "autosut-operational-plan/v1",
+    "experiment_id": "autosut-current-operational-v1",
+    "arms": [
+      "autosut-supervised"
+    ],
+    "environments": [
+      {
+        "environment_id": "shadowray-single-host-surrogate",
+        "critical_assets": [
+          {
+            "asset_id": "ray-command-effect",
+            "description": "independently observed command effect in the isolated SUT"
+          }
+        ],
+        "topology_sha256": "1846ef6d8f2e9655832d4b4385ea9579f369afb5de4ec256700ada3c28ee76c4"
+      },
+      {
+        "environment_id": "multihost-caldera-fact-chain",
+        "critical_assets": [
+          {
+            "asset_id": "host-b-propagated-fact",
+            "description": "independently observed fact propagation from host A to host B"
+          }
+        ],
+        "topology_sha256": "d251173f47012fbd147725c66bd26a5e9db3749a5fa07d8a7d71b7e7319dd2bc"
+      }
+    ],
+    "seeds": [
+      1
+    ],
+    "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf",
+    "protocol_sha256": "306cf1f5dbd0ff83731195d571f1d86e22c57bf2a2e2dc6091d0ff7a51cab61d",
+    "content_sha256": "e5bef165728b3b6cd6a2798c3d1949c57ee4cc3279903aa9b0e12393f5850d8a"
+  },
+  "bindings": [
+    {
+      "arm": "autosut-supervised",
+      "environment_id": "shadowray-single-host-surrogate",
+      "experiment": "caldera",
+      "critical_asset_id": "ray-command-effect",
+      "effect_field": "independent_effect_confirmed",
+      "driver_sha256": "abff3919f011ab255ac23eff60cc512092fe9dca263137c162fb02cff26127e3",
+      "deadline_seconds": 1800,
+      "experiment_args": []
+    },
+    {
+      "arm": "autosut-supervised",
+      "environment_id": "multihost-caldera-fact-chain",
+      "experiment": "multihost",
+      "critical_asset_id": "host-b-propagated-fact",
+      "effect_field": "fact_propagated",
+      "driver_sha256": "13e23191289deeb96f821300825e75d315c87a26f70913cae66618e4c3d7ea47",
+      "deadline_seconds": 1800,
+      "experiment_args": []
+    }
+  ],
+  "serial_execution": true,
+  "fresh_control_plane_per_cell": true,
+  "content_sha256": "a232ca30cb167333bde8886fc2f05da2cf865de8020408c607eae9cf0cf1f284"
+}

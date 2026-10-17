@@ -1,0 +1,23 @@
+{
+  "campaign_id": "C0026",
+  "model": "qwen2.5-coder:14b",
+  "sample": 1,
+  "temperature": 0.7,
+  "platform": "Linux",
+  "services": [
+    {
+      "host_role": "public-service",
+      "product": "Apache httpd",
+      "version": "2.4.41",
+      "port": "80",
+      "exposure": "internet-facing"
+    },
+    {
+      "host_role": "internal-host",
+      "product": "MySQL Server",
+      "version": "5.7.31",
+      "port": "3306",
+      "exposure": "internal-only"
+    }
+  ]
+}

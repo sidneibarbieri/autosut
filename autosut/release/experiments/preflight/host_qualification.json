@@ -1,0 +1,80 @@
+{
+  "captured_at": "2026-08-06T11:58:42.726837+00:00",
+  "host": {
+    "operating_system": "Darwin 25.5.0",
+    "architecture": "arm64",
+    "cpu_count": 16,
+    "memory_gib": 64.0,
+    "free_disk_gib": 234.6
+  },
+  "tools": [
+    {
+      "name": "docker",
+      "present": true,
+      "version": "Docker version 29.6.2, build dfc4efb1e2",
+      "detail": "/opt/homebrew/bin/docker"
+    },
+    {
+      "name": "vagrant",
+      "present": true,
+      "version": "Vagrant 2.4.9",
+      "detail": "/usr/local/bin/vagrant"
+    },
+    {
+      "name": "qemu-system-aarch64",
+      "present": true,
+      "version": "QEMU emulator version 11.0.2",
+      "detail": "/opt/homebrew/bin/qemu-system-aarch64"
+    },
+    {
+      "name": "qemu-system-x86_64",
+      "present": true,
+      "version": "QEMU emulator version 11.0.2",
+      "detail": "/opt/homebrew/bin/qemu-system-x86_64"
+    },
+    {
+      "name": "vde_switch",
+      "present": true,
+      "version": "VDE 2.3.3",
+      "detail": "/opt/homebrew/bin/vde_switch"
+    },
+    {
+      "name": "python3",
+      "present": true,
+      "version": "Python 3.14.6",
+      "detail": "/opt/homebrew/bin/python3"
+    }
+  ],
+  "qemu_accelerators": {
+    "qemu-system-aarch64": [
+      "hvf",
+      "tcg"
+    ],
+    "qemu-system-x86_64": [
+      "tcg"
+    ]
+  },
+  "backends": [
+    {
+      "backend": "docker",
+      "status": "qualified",
+      "requirement_gaps": [],
+      "note": "Client present and daemon reachable; the canonical portable substrate."
+    },
+    {
+      "backend": "qemu_linux_arm64",
+      "status": "requires_boot_qualification",
+      "requirement_gaps": [],
+      "note": "Toolchain, HVF, and disk are present, but a working toolchain is not evidence a guest boots. A boot/ssh/teardown qualification must pass before this is qualified."
+    },
+    {
+      "backend": "windows_x86_64",
+      "status": "blocked",
+      "requirement_gaps": [
+        "no hardware acceleration for x86_64 guests on this arm64 host (qemu-system-x86_64 offers only tcg)"
+      ],
+      "note": "Requires an x86_64 host with hardware virtualization; tracked in release/experiments/windows_backend_qualification/."
+    }
+  ],
+  "note": "A live host snapshot taken before materialization, not a frozen-input artifact. requires_boot_qualification means the toolchain is present but a guest boot has not yet been proven on this host; only a passing boot qualification promotes a backend to qualified."
+}

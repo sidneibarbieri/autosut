@@ -1,0 +1,249 @@
+{
+  "judges": [
+    "gpt-5.4",
+    "qwen3.6"
+  ],
+  "sample_size": 152,
+  "abstentions": {
+    "gpt-5.4": 0,
+    "qwen3.6": 0
+  },
+  "judge_distribution": {
+    "gpt-5.4": {
+      "VMR": 68,
+      "ID": 34,
+      "CF": 50
+    },
+    "qwen3.6": {
+      "VMR": 52,
+      "CF": 71,
+      "ID": 29
+    }
+  },
+  "inter_judge": {
+    "items_labeled_by_both": 152,
+    "agreement": 0.783,
+    "cohen_kappa": 0.666
+  },
+  "boundary_items": 33,
+  "population_estimate_pct": {
+    "CF": 33.0,
+    "VMR": 28.8,
+    "ID": 18.8,
+    "boundary": 19.4
+  },
+  "autosut_vs_consensus": {
+    "all": {
+      "items": 119,
+      "accuracy": 0.563,
+      "macro_f1": 0.53,
+      "per_class": {
+        "CF": {
+          "support": 46,
+          "precision": 0.786,
+          "recall": 0.239,
+          "f1": 0.367
+        },
+        "VMR": {
+          "support": 49,
+          "precision": 0.539,
+          "recall": 0.837,
+          "f1": 0.656
+        },
+        "ID": {
+          "support": 24,
+          "precision": 0.517,
+          "recall": 0.625,
+          "f1": 0.566
+        }
+      },
+      "confusion_reference_by_predicted": {
+        "CF": {
+          "CF": 11,
+          "VMR": 28,
+          "ID": 7
+        },
+        "VMR": {
+          "CF": 1,
+          "VMR": 41,
+          "ID": 7
+        },
+        "ID": {
+          "CF": 2,
+          "VMR": 7,
+          "ID": 15
+        }
+      }
+    },
+    "explicit_rule_strata": {
+      "items": 70,
+      "accuracy": 0.686,
+      "macro_f1": 0.674,
+      "per_class": {
+        "CF": {
+          "support": 22,
+          "precision": 0.786,
+          "recall": 0.5,
+          "f1": 0.611
+        },
+        "VMR": {
+          "support": 30,
+          "precision": 0.815,
+          "recall": 0.733,
+          "f1": 0.772
+        },
+        "ID": {
+          "support": 18,
+          "precision": 0.517,
+          "recall": 0.833,
+          "f1": 0.638
+        }
+      },
+      "confusion_reference_by_predicted": {
+        "CF": {
+          "CF": 11,
+          "VMR": 4,
+          "ID": 7
+        },
+        "VMR": {
+          "CF": 1,
+          "VMR": 22,
+          "ID": 7
+        },
+        "ID": {
+          "CF": 2,
+          "VMR": 1,
+          "ID": 15
+        }
+      }
+    },
+    "fallback_stratum": {
+      "items": 49,
+      "accuracy": 0.388,
+      "macro_f1": 0.186,
+      "per_class": {
+        "CF": {
+          "support": 24,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "VMR": {
+          "support": 19,
+          "precision": 0.388,
+          "recall": 1.0,
+          "f1": 0.559
+        },
+        "ID": {
+          "support": 6,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_reference_by_predicted": {
+        "CF": {
+          "CF": 0,
+          "VMR": 24,
+          "ID": 0
+        },
+        "VMR": {
+          "CF": 0,
+          "VMR": 19,
+          "ID": 0
+        },
+        "ID": {
+          "CF": 0,
+          "VMR": 6,
+          "ID": 0
+        }
+      }
+    }
+  },
+  "autosut_vs_each_judge": {
+    "gpt-5.4": {
+      "items": 152,
+      "accuracy": 0.566,
+      "macro_f1": 0.52,
+      "per_class": {
+        "CF": {
+          "support": 50,
+          "precision": 0.579,
+          "recall": 0.22,
+          "f1": 0.319
+        },
+        "VMR": {
+          "support": 68,
+          "precision": 0.574,
+          "recall": 0.794,
+          "f1": 0.667
+        },
+        "ID": {
+          "support": 34,
+          "precision": 0.538,
+          "recall": 0.618,
+          "f1": 0.575
+        }
+      },
+      "confusion_reference_by_predicted": {
+        "CF": {
+          "CF": 11,
+          "VMR": 31,
+          "ID": 8
+        },
+        "VMR": {
+          "CF": 4,
+          "VMR": 54,
+          "ID": 10
+        },
+        "ID": {
+          "CF": 4,
+          "VMR": 9,
+          "ID": 21
+        }
+      }
+    },
+    "qwen3.6": {
+      "items": 152,
+      "accuracy": 0.493,
+      "macro_f1": 0.477,
+      "per_class": {
+        "CF": {
+          "support": 71,
+          "precision": 0.842,
+          "recall": 0.225,
+          "f1": 0.356
+        },
+        "VMR": {
+          "support": 52,
+          "precision": 0.447,
+          "recall": 0.808,
+          "f1": 0.575
+        },
+        "ID": {
+          "support": 29,
+          "precision": 0.436,
+          "recall": 0.586,
+          "f1": 0.5
+        }
+      },
+      "confusion_reference_by_predicted": {
+        "CF": {
+          "CF": 16,
+          "VMR": 42,
+          "ID": 13
+        },
+        "VMR": {
+          "CF": 1,
+          "VMR": 42,
+          "ID": 9
+        },
+        "ID": {
+          "CF": 2,
+          "VMR": 10,
+          "ID": 17
+        }
+      }
+    }
+  }
+}

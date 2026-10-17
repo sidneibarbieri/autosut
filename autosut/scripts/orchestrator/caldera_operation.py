@@ -273,6 +273,23 @@ def ensure_agent(container: str, run_dir: Path,
 def dispatch_via_caldera(container: str, technique_id: str,
                          run_dir: Path,
                          preferred_platform: str = "linux",
+                         operation_timeout_s: int = 180) -> CalderaLinkResult:
+    """Persist the granted execution scope even when dispatch fails."""
+    from .execution_scope import AgentExecutionScope
+
+    scope = AgentExecutionScope(execution_host=container, technique_id=technique_id)
+    scope_path = run_dir / "caldera" / f"{technique_id}_{uuid.uuid4().hex}_execution_scope.json"
+    scope_path.parent.mkdir(parents=True, exist_ok=True)
+    scope_path.write_text(scope.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    result = _dispatch_via_caldera(container, technique_id, run_dir,
+                                   preferred_platform, operation_timeout_s)
+    result.evidence_files.insert(0, str(scope_path.relative_to(run_dir)))
+    return result
+
+
+def _dispatch_via_caldera(container: str, technique_id: str,
+                         run_dir: Path,
+                         preferred_platform: str = "linux",
                          operation_timeout_s: int = 180
                          ) -> CalderaLinkResult:
     """Run a single ART ability for ``technique_id`` against the agent in
@@ -334,7 +351,7 @@ def dispatch_via_caldera(container: str, technique_id: str,
     evidence.append(str(report_path.relative_to(run_dir)))
 
     if link is None:
-        # Operation finished but no link for our ability — usually means the
+        # Operation finished but no link for our ability - usually means the
         # planner skipped it (platform mismatch, unsatisfied facts, etc.).
         skipped = report.get("skipped_abilities", [])
         return CalderaLinkResult(

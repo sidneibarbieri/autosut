@@ -29,7 +29,7 @@ def inject_ray_2_6_3(env: DockerEnvironment) -> CVEFidelity:
     submission endpoint that is the CVE-2023-48022 surface. After install we
     launch ray head in a way that exposes the dashboard.
     """
-    log_path = "sut/cve_injection_CVE-2023-48022.log"
+    log_path = "sut/cve_injection_CVE-2023-48022_real.log"
 
     steps = [
         ("install curl for later probes (python:3.11-slim has no curl)",
@@ -41,9 +41,7 @@ def inject_ray_2_6_3(env: DockerEnvironment) -> CVEFidelity:
          "'ray[default]==2.6.3' 'click<8.2' 'protobuf<5' 'pydantic<2' "
          "'async_timeout' 'opencensus' 'aiorwlock' 'pyOpenSSL'"),
         ("start ray head with dashboard exposed (head also acts as worker)",
-         "ray start --head --dashboard-host=0.0.0.0 --dashboard-port=8265 "
-         "--port=6379 --include-dashboard=true --num-cpus=2 --num-gpus=0 "
-         "&& sleep 20 && ray status 2>&1 | head -15"),
+         _ray_start_command() + " && sleep 20 && ray status 2>&1 | head -15"),
         ("preflight two sequential Ray jobs",
          _ray_jobs_preflight_command()),
     ]
@@ -104,6 +102,26 @@ def _ray_jobs_preflight_command() -> str:
         "print('ray_job_preflight=ok')",
     ])
     return "python3 -c " + shlex.quote(script)
+
+
+def _ray_start_command() -> str:
+    return (
+        "ray start --head --dashboard-host=0.0.0.0 --dashboard-port=8265 "
+        "--port=6379 --include-dashboard=true --num-cpus=2 --num-gpus=0"
+    )
+
+
+def rebind_ray_after_isolation(env: DockerEnvironment) -> None:
+    """Restart Ray after its container IP changes and verify the Jobs API."""
+    command = (
+        "ray stop --force >/tmp/ray-stop-after-isolation.log 2>&1 || true; "
+        + _ray_start_command()
+        + " && sleep 20 && "
+        + _ray_jobs_preflight_command()
+    )
+    result = env.run_shell(command, log_name="sut/ray_rebind_after_isolation.log", timeout=900)
+    if not result.ok:
+        raise RuntimeError("Ray Jobs API failed after replay network isolation")
 
 
 # ---------------------------------------------------------------------------
@@ -227,11 +245,11 @@ def inject_ray_dashboard_surrogate(env: DockerEnvironment) -> CVEFidelity:
 
     Runs a Flask service whose POST /api/jobs/ endpoint executes the JSON
     payload's `entrypoint` field exactly the way the Ray dashboard does
-    pre-patch — unauthenticated, no validation. The technique sequence
+    pre-patch - unauthenticated, no validation. The technique sequence
     against this surrogate is byte-for-byte identical to the one against
     the real dashboard, so the executor walks the same code path.
     """
-    log_path = "sut/cve_injection_CVE-2023-48022.log"
+    log_path = "sut/cve_injection_CVE-2023-48022_surrogate.log"
     surrogate_py = (
         "from flask import Flask, request, jsonify\\n"
         "import os\\n"
@@ -284,9 +302,79 @@ def inject_ray_dashboard_surrogate(env: DockerEnvironment) -> CVEFidelity:
     )
 
 
+def inject_ray_dashboard_guarded(env: DockerEnvironment) -> CVEFidelity:
+    """Guarded counterpart to the Ray dashboard surrogate for the consequence study.
+
+    This is byte-for-byte the surrogate above, with one change: POST /api/jobs/
+    requires an Authorization: Bearer token and returns 401 without it. Structured
+    CTI for ShadowRay links no software and says nothing about authentication, so
+    an authenticated Jobs API is as CTI-consistent as an unauthenticated one. This
+    arm isolates that single free dimension: an unauthenticated job submission,
+    the path the technique chain walks, is refused here.
+    """
+    log_path = "sut/cve_injection_CVE-2023-48022_guarded.log"
+    surrogate_py = (
+        "from flask import Flask, request, jsonify\\n"
+        "import os\\n"
+        "TOKEN = 'lab-operator-token'\\n"
+        "app = Flask(__name__)\\n"
+        "@app.route('/api/jobs/', methods=['POST'])\\n"
+        "def submit():\\n"
+        "    header = request.headers.get('Authorization', '')\\n"
+        "    if header != 'Bearer ' + TOKEN:\\n"
+        "        return jsonify(error='unauthorized'), 401\\n"
+        "    payload = request.get_json(force=True) or {}\\n"
+        "    cmd = payload.get('entrypoint', '')\\n"
+        "    returncode = os.system(cmd) >> 8\\n"
+        "    return jsonify(submission_id='sid_guarded_0001', stdout='', returncode=returncode), 200\\n"
+        "@app.route('/')\\n"
+        "def root():\\n"
+        "    return 'Ray Dashboard (guarded surrogate)'\\n"
+        "if __name__ == '__main__':\\n"
+        "    app.run(host='0.0.0.0', port=8265)\\n"
+    )
+    steps = [
+        ("install python flask + requests",
+         "python3 -m pip install --no-cache-dir --root-user-action=ignore flask requests"),
+        ("write guarded dashboard service",
+         f'printf "{surrogate_py}" > /opt/guarded.py && head -3 /opt/guarded.py'),
+        ("start guarded dashboard in background on port 8265 and probe root",
+         "nohup python3 /opt/guarded.py > /tmp/guarded.log 2>&1 & "
+         "sleep 5 && "
+         'python3 -c "import urllib.request, sys; '
+         "r = urllib.request.urlopen('http://127.0.0.1:8265/'); "
+         "sys.stdout.write(f'probe OK: {r.status} body={r.read().decode()[:60]!r}\\n')\""),
+        ("prove the job endpoint rejects a tokenless submission and accepts a tokened one",
+         "python3 -c \""
+         "import requests; "
+         "u=requests.post('http://127.0.0.1:8265/api/jobs/', json={'entrypoint':'echo probe'}); "
+         "a=requests.post('http://127.0.0.1:8265/api/jobs/', json={'entrypoint':'echo probe'}, "
+         "headers={'Authorization':'Bearer lab-operator-token'}); "
+         "print('tokenless', u.status_code, 'tokened', a.status_code); "
+         "assert u.status_code==401 and a.status_code==200\"; "
+         "cat /tmp/guarded.log"),
+    ]
+    overall_ok = True
+    for _, cmd in steps:
+        if not env.run_shell(cmd, log_name=log_path, timeout=300).ok:
+            overall_ok = False
+            break
+    return CVEFidelity(
+        cve_id="CVE-2023-48022",
+        fidelity=FidelityLevel.adapted,
+        realization=Realization.surrogate,
+        success=overall_ok,
+        log_path=log_path,
+        notes="Guarded counterpart of the Ray dashboard surrogate: POST /api/jobs/ "
+              "requires a Bearer token. A tokenless submission, the path the chain "
+              "walks, is refused with 401. Used only by the consequence study.",
+    )
+
+
 RECIPES: dict[str, Callable[[DockerEnvironment], CVEFidelity]] = {
     "ray_2_6_3": inject_ray_2_6_3,
     "ray_dashboard_surrogate": inject_ray_dashboard_surrogate,
+    "ray_dashboard_guarded": inject_ray_dashboard_guarded,
     "globalprotect_surrogate": inject_globalprotect_surrogate,
     "salesforce_api_surrogate": inject_salesforce_api_surrogate,
 }

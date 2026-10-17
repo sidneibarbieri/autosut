@@ -1,0 +1,30 @@
+{
+  "template_id": "split-declared-archive",
+  "bindings": {
+    "archive": "archive.synthetic_collection",
+    "chunk_policy": "chunk_policy.bounded_local"
+  },
+  "declared_predicates": [
+    "chunk_manifest_recorded",
+    "no_external_transfer"
+  ],
+  "observations": [
+    {
+      "sha256": "48faccd7dd9e9a6287cc501f0d5939188fdd2a91c83c42b628324261b077acd3",
+      "chunks": [
+        "chunk-0000",
+        "chunk-1024",
+        "chunk-2048",
+        "chunk-3072",
+        "chunk-4096",
+        "chunk-5120",
+        "chunk-6144",
+        "chunk-7168",
+        "chunk-8192",
+        "chunk-9216"
+      ],
+      "external_transfer": false
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

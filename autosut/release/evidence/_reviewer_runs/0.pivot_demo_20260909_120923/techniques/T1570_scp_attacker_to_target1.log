@@ -1,0 +1,7 @@
+$ sshpass -p 'Lab-Demo-2026!' scp -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o PreferredAuthentications=password -o PubkeyAuthentication=no /tmp/payload.sh labuser@target1:/tmp/payload.sh && echo FIRST_HOP_OK
+exit_code: 0
+--- stdout ---
+FIRST_HOP_OK
+
+--- stderr ---
+

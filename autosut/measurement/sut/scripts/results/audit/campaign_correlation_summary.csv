@@ -1,15 +1,15 @@
 metric,value,note
-campaign_count,52,Usable Enterprise campaigns after exclusions.
+campaign_count,56,Usable Enterprise campaigns after exclusions.
 campaigns_with_cve_count,5,Campaigns with at least one actionable CVE.
-pearson_sw_count_vs_cve_count,-0.0338,Linear association between linked software count and campaign CVE count.
-spearman_sw_count_vs_cve_count,-0.1379,Rank association between linked software count and campaign CVE count.
-pearson_initial_access_count_vs_cve_count,-0.0431,Linear association between IA-technique count and campaign CVE count.
-spearman_initial_access_count_vs_cve_count,0.0413,Rank association between IA-technique count and campaign CVE count.
-point_biserial_has_initial_access_vs_has_cve,0.198,Binary association proxy: has-initial-access vs has-CVE.
+pearson_sw_count_vs_cve_count,-0.0472,Linear association between linked software count and campaign CVE count.
+spearman_sw_count_vs_cve_count,-0.1424,Rank association between linked software count and campaign CVE count.
+pearson_initial_access_count_vs_cve_count,-0.0505,Linear association between IA-technique count and campaign CVE count.
+spearman_initial_access_count_vs_cve_count,0.0165,Rank association between IA-technique count and campaign CVE count.
+point_biserial_has_initial_access_vs_has_cve,0.1808,Binary association proxy: has-initial-access vs has-CVE.
 mean_software_count_cve_positive_campaigns,1.6,Average linked software count among CVE-positive campaigns.
-mean_software_count_cve_negative_campaigns,3.0,Average linked software count among CVE-negative campaigns.
+mean_software_count_cve_negative_campaigns,3.216,Average linked software count among CVE-negative campaigns.
 median_software_count_cve_positive_campaigns,1.0,Median linked software count among CVE-positive campaigns.
 median_software_count_cve_negative_campaigns,2.0,Median linked software count among CVE-negative campaigns.
 tier_t2_and_cve_count,4,Campaigns that are T2 anchored and also have campaign CVE evidence.
-tier_t2_without_cve_count,4,T2 campaigns anchored only by software precision (version/CPE) without campaign CVE.
+tier_t2_without_cve_count,5,T2 campaigns anchored only by software precision (version/CPE) without campaign CVE.
 cve_without_tier_t2_count,1,Campaigns with CVE evidence that still fail T2 anchor criteria.

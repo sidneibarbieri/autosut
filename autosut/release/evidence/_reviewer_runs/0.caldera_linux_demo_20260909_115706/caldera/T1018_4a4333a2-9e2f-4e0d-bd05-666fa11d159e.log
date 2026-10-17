@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: d1a83bf8-9964-423b-91ab-113155093d9c
+link_id: 4a4333a2-9e2f-4e0d-bd05-666fa11d159e
+ability_id: 5f77ecf9-613f-4863-8d2f-ed6b447a4633
+ability_name: Parse SSH known_hosts
+command: cat ~/.ssh/known_hosts
+status: 0
+exit_code: 0
+--- stdout ---
+10.0.0.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabKnownHostKey
+--- stderr ---
+

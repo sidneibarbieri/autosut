@@ -1,0 +1,20 @@
+{
+  "schema_version": "autosut-base-host-probe/v1",
+  "campaign_id": "C0050",
+  "blueprint_file_sha256": "07b4fac2e9f43f1a7c8b1bf7577e8b0e372ef3145d4a73f9af50018ab93b08d5",
+  "blueprint_content_sha256": "60102bc11b197ab11ec879d2f54be7214848d6323ab2ef4e9d6ac79beda0f238",
+  "image_id": "sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b",
+  "network_mode": "none",
+  "read_only": true,
+  "capabilities_dropped": "ALL",
+  "probe_exit_code": 0,
+  "observed": {
+    "platform": "Linux",
+    "python": "3.11.17",
+    "default_route": false
+  },
+  "teardown_clean": true,
+  "base_host_materialized": true,
+  "campaign_executed": false,
+  "scope": "Base Linux host boot and teardown only; no resources or campaign effects verified."
+}

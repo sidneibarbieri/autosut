@@ -1,0 +1,267 @@
+{
+  "campaign_id": "0.dmz_segmentation_demo",
+  "run_id": "0.dmz_segmentation_demo_20260909_120825",
+  "timestamp": "2026-09-09T12:09:22.887723Z",
+  "attacker": {
+    "profile_id": "dmz_segmentation_attacker",
+    "capabilities": [
+      "http_client",
+      "ssh_client",
+      "netcat"
+    ],
+    "notes": "alpine + curl + netcat-openbsd to probe each zone boundary."
+  },
+  "sut": {
+    "sut_id": "dmz_segmentation_three_zone",
+    "base_image": "alpine:3.19",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh"
+    ],
+    "memory_mb": 256,
+    "smp": 1,
+    "backend": null,
+    "hosts": [
+      {
+        "name": "attacker",
+        "base_image": "autosut/dmz-host:s28",
+        "platform_source": "analyst_authored",
+        "role": "attacker",
+        "services": [],
+        "memory_mb": 256,
+        "smp": 1,
+        "startup_commands": [
+          "echo dmz_tools_baked_in_image"
+        ],
+        "composition": {
+          "credentials": [],
+          "artifacts": [],
+          "exposures": [],
+          "applications": [],
+          "notes": "Attacker has no pre-staged credentials of its own."
+        },
+        "zones": [
+          "internet_edge"
+        ]
+      },
+      {
+        "name": "nginx",
+        "base_image": "autosut/dmz-host:s28",
+        "platform_source": "analyst_authored",
+        "role": "gateway",
+        "services": [],
+        "memory_mb": 256,
+        "smp": 1,
+        "startup_commands": [
+          "adduser -D -s /bin/sh labuser && echo 'labuser:Zone-Demo-2026!' | chpasswd && sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config && /usr/sbin/sshd"
+        ],
+        "composition": {
+          "credentials": [
+            {
+              "kind": "password",
+              "user": "labuser",
+              "secret": "Zone-Demo-2026!",
+              "location": null,
+              "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries.",
+              "source": "autosut_concretized"
+            }
+          ],
+          "artifacts": [],
+          "exposures": [
+            {
+              "port": 22,
+              "protocol": "tcp",
+              "service": "ssh",
+              "expose_to": "private_network",
+              "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries.",
+              "source": "analyst_authored"
+            }
+          ],
+          "applications": [],
+          "notes": "Pivot target \u2014 accepts lab SSH credential."
+        },
+        "zones": [
+          "internet_edge",
+          "dmz"
+        ]
+      },
+      {
+        "name": "app_server",
+        "base_image": "autosut/dmz-host:s28",
+        "platform_source": "analyst_authored",
+        "role": "gateway",
+        "services": [],
+        "memory_mb": 256,
+        "smp": 1,
+        "startup_commands": [
+          "adduser -D -s /bin/sh labuser && echo 'labuser:Zone-Demo-2026!' | chpasswd && sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config && /usr/sbin/sshd"
+        ],
+        "composition": {
+          "credentials": [
+            {
+              "kind": "password",
+              "user": "labuser",
+              "secret": "Zone-Demo-2026!",
+              "location": null,
+              "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries.",
+              "source": "autosut_concretized"
+            }
+          ],
+          "artifacts": [],
+          "exposures": [
+            {
+              "port": 22,
+              "protocol": "tcp",
+              "service": "ssh",
+              "expose_to": "private_network",
+              "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries.",
+              "source": "analyst_authored"
+            }
+          ],
+          "applications": [],
+          "notes": "Pivot target \u2014 accepts lab SSH credential."
+        },
+        "zones": [
+          "dmz",
+          "enterprise"
+        ]
+      },
+      {
+        "name": "db",
+        "base_image": "autosut/dmz-host:s28",
+        "platform_source": "analyst_authored",
+        "role": "target",
+        "services": [],
+        "memory_mb": 256,
+        "smp": 1,
+        "startup_commands": [
+          "adduser -D -s /bin/sh labuser && echo 'labuser:Zone-Demo-2026!' | chpasswd && sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config && /usr/sbin/sshd"
+        ],
+        "composition": {
+          "credentials": [
+            {
+              "kind": "password",
+              "user": "labuser",
+              "secret": "Zone-Demo-2026!",
+              "location": null,
+              "purpose": "Lab-pre-staged SSH credential, identical on every server host so the pivot chain can reuse it as it crosses zone boundaries.",
+              "source": "autosut_concretized"
+            }
+          ],
+          "artifacts": [],
+          "exposures": [
+            {
+              "port": 22,
+              "protocol": "tcp",
+              "service": "ssh",
+              "expose_to": "private_network",
+              "purpose": "SSH boundary each zone host exposes so the pivot chain can cross zone boundaries.",
+              "source": "analyst_authored"
+            }
+          ],
+          "applications": [],
+          "notes": "Pivot target \u2014 accepts lab SSH credential."
+        },
+        "zones": [
+          "enterprise"
+        ]
+      }
+    ],
+    "composition": null,
+    "topology": {
+      "zones": [
+        {
+          "name": "internet_edge",
+          "description": "Where the attacker originates. Has no enterprise access.",
+          "cidr": null,
+          "source": "analyst_authored"
+        },
+        {
+          "name": "dmz",
+          "description": "Bridges internet_edge and enterprise. Hosts edge-facing services.",
+          "cidr": null,
+          "source": "analyst_authored"
+        },
+        {
+          "name": "enterprise",
+          "description": "Backend zone. No direct path from internet_edge.",
+          "cidr": null,
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "Three-zone segmentation declared at the SUT level."
+    },
+    "notes": "Three-zone topology with two dual-homed gateways (nginx, app_server). Attacker has L2 reachability to nginx only; db has L2 reachability from app_server only. The dual-homed gateway shape is declared explicitly via SUTProfile.topology and SUTHost.zones."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1018",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1018_attacker_to_nginx.log"
+      ],
+      "duration_sec": 0.0425429999595508,
+      "notes": "Attacker (internet_edge zone) reached nginx:22 \u2014 both hosts share the internet_edge Docker network",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1135",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1135_attacker_to_db_blocked.log"
+      ],
+      "duration_sec": 5.01995916699525,
+      "notes": "Attacker (internet_edge) was blocked from db (enterprise) at L2 \u2014 Docker zone segmentation held. Output preserved for audit.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1021.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1021_pivot_to_app_server.log"
+      ],
+      "duration_sec": 0.5486407079733908,
+      "notes": "Pivoted attacker -> nginx -> app_server via SSH ProxyJump. Remote uname reports app_server hostname.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1210",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1210_pivot_to_db.log"
+      ],
+      "duration_sec": 0.715188542031683,
+      "notes": "Pivoted attacker -> nginx -> app_server -> db via SSH ProxyJump chain. Final hostname confirms db reached.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

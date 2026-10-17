@@ -1,0 +1,95 @@
+{
+  "capability": "experiment.docker_multihost_fact_chain_infrastructure",
+  "protocol": "Per run: materialize isolated Caldera; verify readiness; materialize SUT; enroll a real Sandcat; register ability, adversary, and operation; execute; confirm the effect with a probe independent of Caldera's reported status; destroy every run-owned resource; verify-clean. Reproducible requires 5 clean runs that each confirm the effect.",
+  "scope": {
+    "validated": [
+      "per-run private docker network",
+      "two distinct host identities, each running its own real Sandcat",
+      "per-run isolated Caldera (destroyed by the run)",
+      "a fact produced by host A's agent and consumed by host B's agent",
+      "effect confirmed on host B by a probe independent of Caldera's status",
+      "a negative control: without the producing ability the fact does not propagate",
+      "verified teardown and temporal verify-clean over containers and networks"
+    ],
+    "excluded": [
+      "a CTI-grounded credential-to-lateral-movement chain (grounding is Windows-only, C0029); this fact chain is synthetic (infrastructure_qualification_scenario)",
+      "real-CVE realization",
+      "the QEMU/Vagrant backend"
+    ]
+  },
+  "total_runs": 5,
+  "clean_runs": 5,
+  "effect_confirmed_runs": 5,
+  "realizations_observed": [
+    "multi_host_infrastructure_scenario"
+  ],
+  "set_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+  "current_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+  "total_seconds_median": 159.901,
+  "total_seconds_min": 154.426,
+  "total_seconds_max": 178.825,
+  "runs": [
+    {
+      "label": "f1",
+      "run_id": "multihost_caldera_f1_20260806T230524Z-2f98c28a",
+      "final_state": "clean",
+      "total_seconds": 159.901,
+      "realization": "multi_host_infrastructure_scenario",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+      "bundle_manifest_sha256": "212fa187764f845ee57b8f4317469debbf8c4bbc5db4a9914d388ddf3041c195"
+    },
+    {
+      "label": "f2",
+      "run_id": "multihost_caldera_f2_20260806T230804Z-1ee582a4",
+      "final_state": "clean",
+      "total_seconds": 178.825,
+      "realization": "multi_host_infrastructure_scenario",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+      "bundle_manifest_sha256": "134e92347e17654f4fc45255471bc291883fff9e6828a84904cc3e026687ebc6"
+    },
+    {
+      "label": "f3",
+      "run_id": "multihost_caldera_f3_20260806T231103Z-20e276c7",
+      "final_state": "clean",
+      "total_seconds": 154.426,
+      "realization": "multi_host_infrastructure_scenario",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+      "bundle_manifest_sha256": "9f56f925f02440952ab04e718b051107304afafe596973491a845287984906d7"
+    },
+    {
+      "label": "f4",
+      "run_id": "multihost_caldera_f4_20260806T231338Z-36232903",
+      "final_state": "clean",
+      "total_seconds": 156.568,
+      "realization": "multi_host_infrastructure_scenario",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+      "bundle_manifest_sha256": "1f15224920c68160d10aeb5b56a23010c15cae7f50b40b564d4d39dd59a1bb8a"
+    },
+    {
+      "label": "f5",
+      "run_id": "multihost_caldera_f5_20260806T231615Z-2d79d280",
+      "final_state": "clean",
+      "total_seconds": 169.5,
+      "realization": "multi_host_infrastructure_scenario",
+      "operation_state": "finished",
+      "effect_confirmed": true,
+      "stages_all_passed": true,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+      "bundle_manifest_sha256": "90083d769800ffbef65d486ec40f02a4dbb992731ab6a8ac09dd9312474eed8e"
+    }
+  ],
+  "result_level": "reproducible",
+  "note": "5/5 runs clean; 5 confirmed the effect. Realizations observed: ['multi_host_infrastructure_scenario']. Set revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba; current revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba. reproducible requires a full clean set produced on the current revision. The effect confirmed is the operation's marker-file write, verified independently; with a surrogate service this qualifies the integration and dispatch, not real-CVE exploitation."
+}

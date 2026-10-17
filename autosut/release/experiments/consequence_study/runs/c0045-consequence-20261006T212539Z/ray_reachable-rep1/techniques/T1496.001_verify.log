@@ -1,0 +1,7 @@
+$ python3 -c 'import json; data=json.load(open("/tmp/T1496.001.out")); assert data["operations"]==10000; assert 0 <= data["elapsed_seconds"] <= 2; assert 0 <= data["cpu_seconds"] <= 2; print(data)' 
+exit_code: 0
+--- stdout ---
+{'operations': 10000, 'elapsed_seconds': 0.00661133999528829, 'cpu_seconds': 0.006599000000000001}
+
+--- stderr ---
+

@@ -3,13 +3,15 @@
   "campaign_id": "0.c0010",
   "source_campaign_id": "C0010",
   "source_plan_sha256": "0078e77de3eb4560ebe0ad7bebdbe896e4d648be1dc0a0ce7321c96aeb05b581",
-  "concretized_plan_sha256": "bfde93bc91469db6cc2600706935596f4a9178ad4c2d307360c1d115e4ae1175",
-  "binding_catalog_sha256": "32b2f9360afa248623e542717da1616bc0e82775a394120946092cc57d5611fb",
-  "planning_certificate_sha256": "264ba5e620e272d7de96d9db30e27aa0af1279c4fb438432d097e1c915bd2731",
+  "concretized_plan_sha256": "d75897cd245231b69d2706d2abc4668281de276311e138a44d8a99e906507d03",
+  "binding_catalog_sha256": "f91aec5a875259e1e634d84663284b81c385912747034826faf094e368093a9a",
+  "planning_certificate_sha256": "1a1859809647f351f52e27e600c7b801742d353ba1739769e7f5313f4e81f925",
   "scope": "validated_controlled_slice",
   "initial_facts": [
     "sut.ready",
-    "actor.ready"
+    "actor.ready",
+    "network:http_available",
+    "c2_channel"
   ],
   "transitions": [
     {
@@ -78,7 +80,9 @@
         "actor.ready"
       ],
       "produces": [
-        "actor.toolkit.ready"
+        "actor.toolkit.ready",
+        "artifacts:recon_toolkit",
+        "system:toolkit"
       ],
       "evidence_policy": "successful_outcome_with_declared_evidence_files",
       "template_id": "stage-benign-toolkit",
@@ -154,10 +158,13 @@
     {
       "technique_id": "T1189",
       "requires": [
-        "web.target.ready"
+        "web.target.ready",
+        "network:http_available"
       ],
       "produces": [
-        "access.target.browser_context"
+        "access.target.browser_context",
+        "access:initial",
+        "watering_hole:visited"
       ],
       "evidence_policy": "successful_outcome_with_declared_evidence_files",
       "template_id": "visit-declared-web-target",
@@ -175,10 +182,15 @@
       "technique_id": "T1105",
       "requires": [
         "access.target.browser_context",
-        "actor.tool.staged"
+        "actor.tool.staged",
+        "c2_channel",
+        "network:http_available"
       ],
       "produces": [
-        "transfer.target.payload"
+        "transfer.target.payload",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
       ],
       "evidence_policy": "successful_outcome_with_declared_evidence_files",
       "template_id": "transfer-staged-benign-tool",
@@ -193,5 +205,5 @@
       "fidelity_ceiling": "adapted"
     }
   ],
-  "content_sha256": "7ebe679388c8d522fac76a35ea9e9ef2db941b23003fab9f978f20fed0d1699d"
+  "content_sha256": "02bb269485442c42d9eb27f32b66f8a05e22351a6cfaf8a4075c4c993840bbcb"
 }

@@ -2,7 +2,7 @@
 Campaign and SUT profile loader.
 
 Loads canonical YAML definitions and JSON compatibility definitions.
-No orchestration logic — just parsing and validation.
+No orchestration logic - just parsing and validation.
 """
 
 import json

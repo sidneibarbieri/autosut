@@ -1,5 +1,0 @@
-docker stop autosut-db-3cd59a
-exit_code: 0
-stdout: autosut-db-3cd59a
-
-stderr: 

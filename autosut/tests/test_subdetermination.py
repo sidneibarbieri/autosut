@@ -1,4 +1,4 @@
-"""S32 subdetermination — unit, property, determinism, and guarded integration."""
+"""S32 subdetermination - unit, property, determinism, and guarded integration."""
 
 from __future__ import annotations
 
@@ -128,7 +128,7 @@ def test_substitute_service_is_material_and_preserves_invariant():
 
 
 def test_substitute_service_skips_corpus_software():
-    # Apache in cve_2021_41773 is externally anchored — never substitutable.
+    # Apache in cve_2021_41773 is externally anchored - never substitutable.
     _, sut, cves = catalog.resolve("0.cve_2021_41773")
     summary = provenance.summarize_profile(sut, "0.cve_2021_41773", cves)
     apache = next(e for e in summary.elements
@@ -138,7 +138,7 @@ def test_substitute_service_skips_corpus_software():
 
 class _CorpusBreaker:
     """Test double: applies to the free decoy but corrupts the corpus apache
-    version — must trip the generator's fingerprint guard."""
+    version - must trip the generator's fingerprint guard."""
 
     def applies_to(self, element):
         return element.dimension == "artifacts"

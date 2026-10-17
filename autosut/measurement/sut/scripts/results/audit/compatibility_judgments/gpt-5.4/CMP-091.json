@@ -1,0 +1,119 @@
+{
+  "request": {
+    "system": "# Compatibility annotation codebook (version 2)\n\nThis codebook defines how to label each technique's minimum execution substrate,\nindependently of AutoSUT. Independent LLM judges from different model families\napply it to the blind sheet (`compatibility_annotation_sheet_A.csv`), which never\nshows AutoSUT's label or the rule that fired. Their consensus is the reference\nlabel; items where they disagree are reported as boundary cases. A person labels\na random subset (`compatibility_human_audit_sheet.csv`) with the same codebook to\nestimate the judges' own error.\n\n## The question\n\nFor the technique as described, what is the least isolated substrate on which\nits core mechanism can be executed with fidelity in a laboratory?\n\nDecide from the technique's own semantics (name, tactics, platforms,\npermissions, description), not from how AutoSUT routed it.\n\n## Labels\n\nWrite one of `CF`, `VMR`, `ID` in `annotator_class`.\n\n- **CF (container-feasible).** The mechanism runs inside an ordinary\n  unprivileged **Linux** container: userspace processes, files, network clients,\n  application-level actions. No kernel module, no boot or firmware state, no\n  host-level privileged object. A technique that exists only on Windows or macOS\n  cannot be CF, because a Linux container cannot run it.\n- **VMR (VM-required).** The mechanism needs a full kernel or host it can treat\n  as its own: loading a kernel module, touching boot or firmware, manipulating\n  host-level privileged objects (the registry, LSASS, a privileged service),\n  stepping outside a container's isolation, or running on Windows or macOS,\n  which needs a virtual machine of that operating system.\n- **ID (infrastructure-dependent).** The mechanism needs an external service,\n  identity plane, or managed platform that is not a property of a single host:\n  a domain controller, an IaaS or SaaS control plane, a cloud identity service,\n  or lateral movement that depends on such infrastructure.\n\n## Operational cues\n\n- A technique that only reads or writes files, spawns userspace processes, or\n  speaks an application protocol is **CF** when its Linux form exists. If it\n  exists only on Windows or macOS, it is **VMR**.\n- A technique whose core step is loading a driver, altering the boot chain, or\n  reading or writing a host-privileged store is **VMR**.\n- A technique that only makes sense against a directory, cloud, or SaaS control\n  plane, or that moves laterally through one, is **ID**.\n- Judge the **core mechanism**, not an optional variant. If a technique is\n  usually userspace but has a rare kernel variant, label the core mechanism.\n- Platform tags describe where behavior is *compatible*. Use them to decide\n  whether a Linux form exists; a technique listed for Linux and Windows can be\n  CF through its Linux form.\n\n## Notes field\n\nWhen a technique sits on a boundary, write one sentence in `annotator_notes`\nnaming the deciding factor. This feeds adjudication and is not scored.\n\n## After annotation\n\n`judge_compatibility_labels.py` records every request and raw reply.\n`score_compatibility_judgments.py` reports inter-judge agreement and Cohen's kappa,\nand scores AutoSUT against the consensus with a confusion matrix, per-class\nprecision and recall, and macro-F1, overall and separately for the explicit-rule\nand fallback strata.\n\n\nReply with one JSON object and nothing else: {\"label\": \"CF\" | \"VMR\" | \"ID\", \"reason\": \"<one sentence naming the deciding factor>\"}.",
+    "user": "technique_external_id: T1547.010\ntechnique_name: Port Monitors\ntactics: persistence;privilege-escalation\nplatforms: Windows\npermissions: \ndescription_excerpt: Adversaries may use port monitors to run an adversary supplied DLL during system boot for persistence or privilege escalation. A port monitor can be set through the <code>AddMonitor</code> API call to set a DLL to be loaded at startup.(Citation: AddMonitor) This DLL can be located in <code>C:\\Window",
+    "model": "gpt-5.4",
+    "temperature": 0,
+    "extra_parameters": {}
+  },
+  "response": {
+    "choices": [
+      {
+        "content_filter_results": {
+          "hate": {
+            "filtered": false,
+            "severity": "safe"
+          },
+          "protected_material_code": {
+            "detected": false,
+            "filtered": false
+          },
+          "protected_material_text": {
+            "detected": false,
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false,
+            "severity": "safe"
+          },
+          "sexual": {
+            "filtered": false,
+            "severity": "safe"
+          },
+          "violence": {
+            "filtered": false,
+            "severity": "safe"
+          }
+        },
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "annotations": [],
+          "content": "{\"label\":\"VMR\",\"reason\":\"It is Windows-only and its core mechanism installs a DLL-loaded-at-startup port monitor via a host-privileged print subsystem, which requires a Windows host/VM rather than a Linux container.\"}",
+          "refusal": null,
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1791344528,
+    "id": "chatcmpl-EWCpcxEmUgBi8YvwcAuYIEnNLpFwD",
+    "model": "gpt-5.4-2026-03-05",
+    "object": "chat.completion",
+    "prompt_filter_results": [
+      {
+        "prompt_index": 0,
+        "content_filter_results": {
+          "hate": {
+            "filtered": false,
+            "severity": "safe"
+          },
+          "jailbreak": {
+            "detected": false,
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false,
+            "severity": "safe"
+          },
+          "sexual": {
+            "filtered": false,
+            "severity": "safe"
+          },
+          "violence": {
+            "filtered": false,
+            "severity": "safe"
+          }
+        }
+      }
+    ],
+    "routing": {
+      "serving_pipereplica": "d20261002060236-2a101f41-default-r2-dp0-default"
+    },
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 51,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "latency_checkpoint": {
+        "engine_tbt_ms": 9,
+        "engine_ttft_ms": 106,
+        "engine_ttlt_ms": 592,
+        "pre_inference_ms": 94,
+        "service_tbt_ms": 9,
+        "service_ttft_ms": 701,
+        "service_ttlt_ms": 1181,
+        "user_visible_ttft_ms": 607
+      },
+      "prompt_tokens": 888,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 939
+    }
+  },
+  "judgment": {
+    "item_id": "CMP-091",
+    "judge": "gpt-5.4",
+    "model": "gpt-5.4",
+    "label": "VMR",
+    "reason": "It is Windows-only and its core mechanism installs a DLL-loaded-at-startup port monitor via a host-privileged print subsystem, which requires a Windows host/VM rather than a Linux container.",
+    "raw_content": "{\"label\":\"VMR\",\"reason\":\"It is Windows-only and its core mechanism installs a DLL-loaded-at-startup port monitor via a host-privileged print subsystem, which requires a Windows host/VM rather than a Linux container.\"}"
+  }
+}

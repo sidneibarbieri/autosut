@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib,urllib.request; pathlib.Path('"'"'/tmp/autosut-bound/visit'"'"').write_bytes(urllib.request.urlopen("http://172.19.0.3:8769/index.html",timeout=10).read())'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

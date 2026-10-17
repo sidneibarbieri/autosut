@@ -1,0 +1,246 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0004",
+  "campaign_name": "CostaRicto",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--f9cc545e-b0ef-4b92-8884-a3a4427609f6",
+    "campaign_external_id": "C0004"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1583.001",
+      "technique_stix_id": "attack-pattern--40f5caa0-4cb7-4117-89fc-d421bb493df3",
+      "name": "Domains",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--9de77d26-6424-4ee8-bd7d-1ae705020c55"
+      ],
+      "procedure_descriptions": [
+        "For [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors established domains, some of which appeared to spoof legitimate domains.(Citation: BlackBerry CostaRicto November 2020)"
+      ]
+    },
+    {
+      "technique_id": "T1587.001",
+      "technique_stix_id": "attack-pattern--212306d8-efa4-44c9-8c2d-ed3d2e224aa0",
+      "name": "Malware",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--b865d0be-c46c-4677-b66e-fe19e1fa9f31"
+      ],
+      "procedure_descriptions": [
+        "For [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors used custom malware, including [PS1](https://attack.mitre.org/software/S0613), [CostaBricks](https://attack.mitre.org/software/S0614), and [SombRAT](https://attack.mitre.org/software/S0615).(Citation: BlackBerry CostaRicto November 2020)"
+      ]
+    },
+    {
+      "technique_id": "T1588.002",
+      "technique_stix_id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "name": "Tool",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--83b4190b-31aa-4f90-a397-624b89fb2f6f"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors obtained open source tools to use in their operations.(Citation: BlackBerry CostaRicto November 2020) "
+      ]
+    },
+    {
+      "technique_id": "T1133",
+      "technique_stix_id": "attack-pattern--10d51417-ee35-4589-b1ff-b6df1c334e8d",
+      "name": "External Remote Services",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access",
+        "persistence"
+      ],
+      "platforms": [
+        "Containers",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--8f354951-cd88-4193-b3d5-b95038938c7f"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors set up remote tunneling using an SSH tool to maintain access to a compromised environment.(Citation: BlackBerry CostaRicto November 2020)"
+      ]
+    },
+    {
+      "technique_id": "T1053.005",
+      "technique_stix_id": "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9",
+      "name": "Scheduled Task",
+      "execution_domain": "target",
+      "tactics": [
+        "execution",
+        "persistence",
+        "privilege-escalation"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--7d18e839-3e68-4168-8245-4278c6f0dc01"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors used scheduled tasks to download backdoor tools.(Citation: BlackBerry CostaRicto November 2020) "
+      ]
+    },
+    {
+      "technique_id": "T1046",
+      "technique_stix_id": "attack-pattern--e3a12395-188d-4051-9a16-ea8e14d07b88",
+      "name": "Network Service Discovery",
+      "execution_domain": "target",
+      "tactics": [
+        "discovery"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--069bd80b-9f39-46c6-a9dc-b61e42a2f91e"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors employed nmap and pscan to scan target environments.(Citation: BlackBerry CostaRicto November 2020) "
+      ]
+    },
+    {
+      "technique_id": "T1005",
+      "technique_stix_id": "attack-pattern--3c4a2599-71ee-4405-ba1e-0e28414b4bc5",
+      "name": "Data from Local System",
+      "execution_domain": "target",
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--c3c9a7e7-4dbb-487e-b546-7bec3f929b3b"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors collected data and files from compromised networks.(Citation: BlackBerry CostaRicto November 2020)"
+      ]
+    },
+    {
+      "technique_id": "T1090.003",
+      "technique_stix_id": "attack-pattern--a782ebe2-daba-42c7-bc82-e8e9d923162d",
+      "name": "Multi-hop Proxy",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--2b6b93eb-6664-4a70-82a9-e56a416b9e61"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors used a layer of proxies to manage C2 communications.(Citation: BlackBerry CostaRicto November 2020) "
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--16cdc452-d4dc-43f7-be53-dc6b62135d20"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors downloaded malware and tools onto a compromised host.(Citation: BlackBerry CostaRicto November 2020)"
+      ]
+    },
+    {
+      "technique_id": "T1572",
+      "technique_stix_id": "attack-pattern--4fe28b27-b13c-453e-a386-c2ef362a573b",
+      "name": "Protocol Tunneling",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--dfd947d6-60c1-4cb1-90ff-0111ccaddd1a"
+      ],
+      "procedure_descriptions": [
+        "During [CostaRicto](https://attack.mitre.org/campaigns/C0004), the threat actors set up remote SSH tunneling into the victim's environment from a malicious domain.(Citation: BlackBerry CostaRicto November 2020) "
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "31ae158809a986dcfa7fceff45a7ac033d53d0fbeac92ea2c7fb2c57141a8dfa"
+}

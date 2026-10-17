@@ -1,9 +1,9 @@
 """Provenance aggregation over a SUTProfile.
 
 The orchestrator tags every concrete SUT element with a
-:class:`~.models.ProvenanceSource` — ``corpus_supported``,
+:class:`~.models.ProvenanceSource` - ``corpus_supported``,
 ``external_reference``, ``analyst_authored``, ``autosut_concretized`` or
-``inferred`` — at authoring
+``inferred`` - at authoring
 time in :mod:`catalog`. This module rolls those per-element tags up into a
 campaign-level (and corpus-level) summary so the paper can report, auditable
 down to the individual element:
@@ -15,7 +15,7 @@ down to the individual element:
 This is the load-bearing measurement for the environment-gap argument: it
 quantifies *how much of an executable environment public cyber knowledge
 supports* versus *how much must be concretised outside the corpus*. We never
-**compute** a tag here — that would fabricate the very evidence the paper
+**compute** a tag here - that would fabricate the very evidence the paper
 reports. We only count tags an analyst deliberately set in the catalog.
 """
 
@@ -39,7 +39,7 @@ DIMENSIONS = (
 )
 
 # All four sources always appear in a summary (even at count 0) so the table
-# shape is stable across campaigns — reviewers compare columns directly.
+# shape is stable across campaigns - reviewers compare columns directly.
 _SOURCES = tuple(s.value for s in ProvenanceSource)
 
 
@@ -164,8 +164,8 @@ def collect_elements(
 
     Per host: platform, then the declarative composition (software,
     credentials, exposures, artifacts). Then SUT-level vulnerabilities (the
-    injected CVE set) and topology zones. Order is stable — hosts in
-    declaration order — so two runs of the same campaign emit byte-identical
+    injected CVE set) and topology zones. Order is stable - hosts in
+    declaration order - so two runs of the same campaign emit byte-identical
     element lists (the determinism the paper claims for concretization).
     """
     elements: list[ProvenanceElement] = []

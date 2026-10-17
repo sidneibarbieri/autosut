@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib,urllib.request; pathlib.Path('"'"'/tmp/autosut-bound/transfer'"'"').write_bytes(urllib.request.urlopen("http://autosut-channel.test:8769/payload",timeout=10).read())'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

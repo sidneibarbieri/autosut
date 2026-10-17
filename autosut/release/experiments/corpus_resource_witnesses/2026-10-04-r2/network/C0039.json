@@ -1,0 +1,45 @@
+{
+  "schema_version": "autosut-network-resource-probe/v1",
+  "campaign_id": "C0039",
+  "blueprint_file_sha256": "431c51b75a241aac5ab147414544e2bdaec78e853c661406b89214750f728535",
+  "blueprint_content_sha256": "e31e0e57c47a39f9c5c3ee6c0dff1b1240cde58e166316ae4d97704f1d8700ab",
+  "image_id": "sha256:bab1b7ef4b450c81002278d035eff85ebe394ae94df904f7a3ba14f7e16e487b",
+  "implementation_sha256": {
+    "probe": "27c69f87033dfc47f7eaf3d371bd3ce3c282b6bb889cd8687f0529e374190328",
+    "admission": "3d5e60515c157169b61662acfec2266fe09c6e9e6a1c3652f53553179a1a96fa",
+    "runtime": "25913e18c86d7953dff14dfe5c4996058a04f5647c4dc61bb4f3184efe73b9ff",
+    "gateway_guard": "9a259ab72ab3e9ef4a07c77b79257f3d9e5df3ae6137682c144087fba59706b0"
+  },
+  "required_resources": [
+    "public-facing-application"
+  ],
+  "observations": {
+    "public-facing-application": {
+      "target_sha256": "0fa1db22ba398af1107030e482f03cb77f1e7c9fdcd36b3e8d80653e0fddc674",
+      "actor_sha256": "0fa1db22ba398af1107030e482f03cb77f1e7c9fdcd36b3e8d80653e0fddc674",
+      "server_log": "Serving HTTP on 0.0.0.0 port 8770 (http://0.0.0.0:8770/) ...\n172.19.0.2 - - [04/Oct/2026 22:30:53] \"GET /index.html HTTP/1.1\" 200 -",
+      "request_observed": true,
+      "scope": "Actor-reachable synthetic HTTP service inside the isolated lab."
+    }
+  },
+  "gateway": {
+    "host_gateway_access": "blocked_observed",
+    "gateway": "172.19.0.1",
+    "subnet": "172.19.0.0/16",
+    "blocked_containers": [
+      "autosut-actor-650d8509d386",
+      "autosut-target-650d8509d386"
+    ],
+    "positive_before_rule": true,
+    "listener_live_after_rule": true,
+    "dropped_packets": 4,
+    "rule_counters": "Chain AS_650d8509d386 (1 references)\n    pkts      bytes target     prot opt in     out     source               destination         \n       4      240 DROP       0    --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+    "scope": "IPv4 INPUT to Docker host from this replay subnet; all protocols and ports",
+    "provider": "colima"
+  },
+  "network_internal": true,
+  "teardown_clean": true,
+  "resource_witnessed": true,
+  "campaign_executed": false,
+  "scope": "Synthetic private-lab resource witnesses only; no campaign technique effect or product fidelity certified."
+}

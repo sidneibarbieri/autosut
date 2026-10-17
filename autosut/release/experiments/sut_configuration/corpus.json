@@ -1,0 +1,244 @@
+{
+  "question": "How much of a deployable SUT configuration do the measured CTI constraints support, and how much must a proposer introduce?",
+  "method": "Each campaign's measured environment constraints are given to two local model families, sampled three times each, which return a concrete configuration. Every value is then classified by comparing it against those constraints and a versioned deployment catalog. Provenance is assigned by this check, not declared by the proposer.",
+  "campaigns": 3,
+  "proposals": 18,
+  "total_value_occurrences": 202,
+  "provenance_occurrence_counts": {
+    "cti_evidenced": 18,
+    "catalog_supplied": 4,
+    "proposer_introduced": 180
+  },
+  "proposer_introduced_rate": 0.8910891089108911,
+  "cti_evidenced_rate": 0.0891089108910891,
+  "proposals_satisfying_all_platform_requirements": 18,
+  "role_level_requirements_per_campaign": {
+    "C0010": 2,
+    "C0026": 5,
+    "C0045": 2
+  },
+  "distinct_service_stacks_per_campaign": {
+    "C0010": 5,
+    "C0026": 5,
+    "C0045": 5
+  },
+  "note": "Satisfaction is reported only for platform requirements, whose values a configuration states in the same vocabulary. The remaining measured requirements name the role a component plays in the declared laboratory rather than a deployable product, so the step from role to product is exactly what a proposer must supply and what the intelligence does not decide. A satisfied configuration is consistent with the measured constraints of the campaign. It is not the environment the campaign historically ran against. Values classified as proposer-introduced are deployment choices without support in the evaluated fields; they are not necessarily wrong, but nothing in the intelligence determines them.",
+  "per_proposal": [
+    {
+      "campaign_id": "C0010",
+      "role_level_requirements": 2,
+      "proposer": "gpt-oss:20b.1",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0010",
+      "role_level_requirements": 2,
+      "proposer": "gpt-oss:20b.2",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0010",
+      "role_level_requirements": 2,
+      "proposer": "gpt-oss:20b.3",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0010",
+      "role_level_requirements": 2,
+      "proposer": "qwen2.5-coder:14b.1",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0010",
+      "role_level_requirements": 2,
+      "proposer": "qwen2.5-coder:14b.2",
+      "services": 1,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 4
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0010",
+      "role_level_requirements": 2,
+      "proposer": "qwen2.5-coder:14b.3",
+      "services": 1,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 4
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0026",
+      "role_level_requirements": 5,
+      "proposer": "gpt-oss:20b.1",
+      "services": 3,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 12
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0026",
+      "role_level_requirements": 5,
+      "proposer": "gpt-oss:20b.2",
+      "services": 5,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 20
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0026",
+      "role_level_requirements": 5,
+      "proposer": "gpt-oss:20b.3",
+      "services": 6,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 24
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0026",
+      "role_level_requirements": 5,
+      "proposer": "qwen2.5-coder:14b.1",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0026",
+      "role_level_requirements": 5,
+      "proposer": "qwen2.5-coder:14b.2",
+      "services": 3,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 1,
+        "proposer_introduced": 11
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0026",
+      "role_level_requirements": 5,
+      "proposer": "qwen2.5-coder:14b.3",
+      "services": 3,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 1,
+        "proposer_introduced": 11
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0045",
+      "role_level_requirements": 2,
+      "proposer": "gpt-oss:20b.1",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0045",
+      "role_level_requirements": 2,
+      "proposer": "gpt-oss:20b.2",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0045",
+      "role_level_requirements": 2,
+      "proposer": "gpt-oss:20b.3",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0045",
+      "role_level_requirements": 2,
+      "proposer": "qwen2.5-coder:14b.1",
+      "services": 3,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 1,
+        "proposer_introduced": 11
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0045",
+      "role_level_requirements": 2,
+      "proposer": "qwen2.5-coder:14b.2",
+      "services": 2,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 0,
+        "proposer_introduced": 8
+      },
+      "satisfies_all_requirements": true
+    },
+    {
+      "campaign_id": "C0045",
+      "role_level_requirements": 2,
+      "proposer": "qwen2.5-coder:14b.3",
+      "services": 3,
+      "provenance_counts": {
+        "cti_evidenced": 1,
+        "catalog_supplied": 1,
+        "proposer_introduced": 11
+      },
+      "satisfies_all_requirements": true
+    }
+  ]
+}

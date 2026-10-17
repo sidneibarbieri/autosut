@@ -13,6 +13,7 @@ import uuid
 from dataclasses import dataclass
 from pathlib import Path
 
+from .docker_lifecycle import stop_container
 from .models import AttackerProfile
 
 
@@ -117,14 +118,7 @@ def bring_up_attacker(profile: AttackerProfile, run_dir: Path,
 
 
 def teardown_attacker(env: AttackerEnv) -> bool:
-    proc = subprocess.run(
-        ["docker", "stop", env.container_name],
-        capture_output=True, text=True, check=False, timeout=60,
-    )
+    receipt = stop_container(env.container_name)
     log = env.run_dir / "attacker" / "teardown.log"
-    log.write_text(
-        f"docker stop {env.container_name}\nexit_code: {proc.returncode}\n"
-        f"stdout: {proc.stdout}\nstderr: {proc.stderr}\n",
-        encoding="utf-8",
-    )
-    return proc.returncode == 0
+    log.write_text(receipt.as_log(), encoding="utf-8")
+    return receipt.clean

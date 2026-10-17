@@ -1,0 +1,23 @@
+{
+  "all_attempts_accounted": true,
+  "all_cells_on_requested_frozen_revision": false,
+  "all_predeclared_cells_qualification_eligible": false,
+  "generated_at": "2026-08-09T18:45:48.999736+00:00",
+  "historical_development_attempt_count": 7,
+  "matrix_status": "predeclared_nonexecuted",
+  "non_promotion_reason_codes": [
+    "not_every_predeclared_cell_is_qualification_eligible",
+    "protocol_not_frozen_for_execution",
+    "requested_frozen_revision_not_supplied"
+  ],
+  "observed_revisions": [],
+  "protocol_execution_state": "predeclared_nonexecuted",
+  "protocol_id": "R4-semantic-boundary-qualification-v2",
+  "protocol_schema_version": "r4-interruption-protocol/v2",
+  "protocol_sha256": "9a0181c5180eecafc23a69f6ae4f827901560c82c3efe3ee64469ddce4c070fb",
+  "qualification_result": "not_qualified",
+  "qualified": false,
+  "requested_revision": null,
+  "requested_revision_state": "not_supplied",
+  "schema_version": "r4-qualification/v2"
+}

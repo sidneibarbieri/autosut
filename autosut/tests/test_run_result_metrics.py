@@ -34,7 +34,7 @@ def test_success_metrics_do_not_count_markers_as_execution() -> None:
         sut=SUTProfile(sut_id="test", base_image="alpine:3.19"),
         techniques=[
             _outcome("T1", FidelityLevel.adapted, ExecutionMode.real_controlled),
-            _outcome("T2", FidelityLevel.inspired, ExecutionMode.real_controlled),
+            _outcome("T2", FidelityLevel.inspired, ExecutionMode.caldera_driven),
             _outcome("T3", FidelityLevel.inspired, ExecutionMode.naive_simulated),
         ],
     )
@@ -43,3 +43,4 @@ def test_success_metrics_do_not_count_markers_as_execution() -> None:
     assert result.evidence_backed_successful == 2
     assert result.adapted_successful == 1
     assert result.marker_only_successful == 1
+    assert result.caldera_driven_successful == 1

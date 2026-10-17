@@ -1,0 +1,78 @@
+{
+  "run_id": "shadowray_caldera_e2_20260806T223242Z-70973660",
+  "label": "e2",
+  "stages": [
+    {
+      "name": "materialize_caldera",
+      "seconds": 0.129,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_caldera_readiness",
+      "seconds": 12.134,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "materialize_sut",
+      "seconds": 89.131,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "enroll_agent",
+      "seconds": 48.08,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "register_and_execute",
+      "seconds": 42.568,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_effect",
+      "seconds": 0.068,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_attacker",
+      "seconds": 0.13,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_sut",
+      "seconds": 0.19,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_caldera",
+      "seconds": 0.16,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    }
+  ],
+  "total_seconds": 192.637,
+  "forward_completed": true,
+  "residual": {
+    "scope": "docker.autosut",
+    "residual_resources": []
+  },
+  "final_state": "clean",
+  "evidence_dir": "release/evidence/shadowray_caldera_e2_20260806T223242Z-70973660",
+  "implementation_revision": null
+}

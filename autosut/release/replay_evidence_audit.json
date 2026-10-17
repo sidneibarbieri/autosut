@@ -1,0 +1,1521 @@
+{
+  "schema_version": "autosut-replay-audit/v1",
+  "source_report_name": "autosut-full20-strict-r1.json",
+  "source_report_sha256": "4bb8a7658cbb36e27c0aefa3290bf759aef0a6240287fbdc3fc9c5352c304c78",
+  "records": [
+    {
+      "campaign_id": "0.c0010",
+      "reported_status": "PARTIAL",
+      "reported_total": 9,
+      "reported_successful": 9,
+      "reported_evidence_backed": 3,
+      "reported_markers": 6,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 33.346259041980375,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 9,
+        "successful": 9,
+        "evidence_backed_successful": 3,
+        "marker_only_successful": 6,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 3
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/manifest.json",
+          "sha256": "8c02c96d5b5c72d5d97dea46489573275d7fa3d647ce5ca8f37961993ec8655d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1105_artifact.log",
+          "sha256": "748c2cbfced7519aac2b8853a578d0c422e1f504dd443fddce255ebcd6d84c16"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1189_inspired.log",
+          "sha256": "b23db542eddabb79541390b7a20005ba0aa3768ca3ad8664f00ca2b1cfd82c58"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1583.001_inspired.log",
+          "sha256": "9f094e0397e7be1b16a66a852eb4b84053a1c4337bce32464127a56e5f6e0d0e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1584.001_inspired.log",
+          "sha256": "d45322aa29bd082208b49b35cab03c95883eb2109e6bd63ce81f1d8856bf3d59"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1587.001_inspired.log",
+          "sha256": "99f47db4af030ab8086ed03070c45091461234eec1779038d782dcb665eb599f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1588.002_artifact.log",
+          "sha256": "e0b3264fdf0311edfe05885bef910c2c65a4ad4ab7460b4181190e2d5f7eba92"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1608.001_artifact.log",
+          "sha256": "d7e6f22d5be9b8c9684c99534f0ba37fca7a44b73c3bb04bfa54d9023715e074"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1608.002_inspired.log",
+          "sha256": "ffa208ffab7de3641a4687390129afa9af4b5833581c216b4d04a43fa4b23f87"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/techniques/T1608.004_inspired.log",
+          "sha256": "c44a0d63a3f075fa577f3c81ac2e6201c113ccad37748bf4e7524c701b1e05bf"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0010_20260905_145613/provenance.json",
+          "sha256": "c915ba1b3e367824b233a30b4b730cd880c2b73553ce3b7da0d92f98b675f3e2"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.c0011",
+      "reported_status": "PARTIAL",
+      "reported_total": 11,
+      "reported_successful": 11,
+      "reported_evidence_backed": 2,
+      "reported_markers": 9,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 27.35069420799846,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 11,
+        "successful": 11,
+        "evidence_backed_successful": 2,
+        "marker_only_successful": 9,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 2
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/manifest.json",
+          "sha256": "c05c2f4e53e8ac768612775aa0fea04e64358a37bead813a7310eb8b4b803eb4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1059.001_inspired.log",
+          "sha256": "0e641184cfb36973059cd2e277ce9c40a9b902efdc30f9e965c50c5533d31a49"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1059.005_inspired.log",
+          "sha256": "3360a26256100fd5f88c1146020059e083391b8620b0249068b38b844aea1303"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1059.007_inspired.log",
+          "sha256": "a0575349dec784ef0f90839c4b3cd3edb3d608e6ae104070c44d032c32ace3de"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1204.001_inspired.log",
+          "sha256": "4d395c388f462b6057d479fc3c4727a44982fc52903de12dd5e400f328b39f53"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1204.002_inspired.log",
+          "sha256": "a7e9cff9806d3ef4479ba86996bfb0757b47448c6ef9703c8e4f96119eb39f5e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1566.001_inspired.log",
+          "sha256": "50ee1fb447eb08ab1577dcca417ec488339305087bdf00f85283f0bd987f8eae"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1566.002_inspired.log",
+          "sha256": "707e3a5329ebb466e19dd1b92ccac8b5509757b64903dc53dac2fb22389a032e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1574_inspired.log",
+          "sha256": "73af5c7c28eeab9fe07b236a708d31ff82bac6910dcc57c6422d336bf57ef9bc"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1583.001_inspired.log",
+          "sha256": "121a3250892ba4a3c32d42904f1c1e2cb4f82f032187cf04beb6b592f95e0092"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1587.003_cert.log",
+          "sha256": "171d35ac116621c475930533408f6fd2b3316ee94e4677aa383b8381ead81500"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/techniques/T1608.001_artifact.log",
+          "sha256": "d7e6f22d5be9b8c9684c99534f0ba37fca7a44b73c3bb04bfa54d9023715e074"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0011_20260905_145646/provenance.json",
+          "sha256": "c3e77848deda4870654c90c766303b943915b53667137b38b402c35eac3e790f"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.c0012",
+      "reported_status": "PASS",
+      "reported_total": 3,
+      "reported_successful": 3,
+      "reported_evidence_backed": 3,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 26.971368333994178,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 3,
+        "successful": 3,
+        "evidence_backed_successful": 3,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 3
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0012_20260905_145714/manifest.json",
+          "sha256": "8a5213d67f0ea5ef4780b8737856996be5ac17e70abd141df5d76214061efd35"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0012_20260905_145714/techniques/T1016_network.log",
+          "sha256": "489c30c76c1cedf93b9ecfa8c68526470bac577f88f6a8ce3873fad3e5c45814"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0012_20260905_145714/techniques/T1059.004_shell.log",
+          "sha256": "8fdbf3b526f1c52a57b7c4c02eea824ef14e1e39e563293104f9a349e61601f1"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0012_20260905_145714/techniques/T1083_discovery.log",
+          "sha256": "8b8444828fbc88b2fd635350dd0ec343ac1d22dbbf1a80fef99bae32e73fa613"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0012_20260905_145714/provenance.json",
+          "sha256": "bea76f071b2d619aa536f01cabc8e3be28d398ce1c470947de3f9534fc9bdcfe"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.c0013",
+      "reported_status": "PARTIAL",
+      "reported_total": 4,
+      "reported_successful": 4,
+      "reported_evidence_backed": 1,
+      "reported_markers": 3,
+      "reported_caldera": 1,
+      "reported_clean": true,
+      "elapsed_seconds": 139.4216953330033,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 4,
+        "successful": 4,
+        "evidence_backed_successful": 1,
+        "marker_only_successful": 3,
+        "caldera_driven_successful": 1,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 1
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/manifest.json",
+          "sha256": "c04f1cce8b3cf9c6f4aae739b84ba86327daf20014a6941c742136882277f9df"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/caldera/T1083_18ebbf89-6f81-4630-81ea-e01006cfd99f.log",
+          "sha256": "9a0ead413603cb9c9038077ef46fbf357f198a67fe75d31b7c78747931dff7db"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/caldera/T1083_e86b52ef-1e2c-4b56-b123-caa42fbd86f3_report.json",
+          "sha256": "0f3a64145547d3cbf8528f7c8780bd16972f27a2439e3d7076712f47559e880f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/techniques/T1055_inspired.log",
+          "sha256": "4464f4f0588a3270444cbd6d91005b530bdfd761bc89fb64a6c6d55e801c3571"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/techniques/T1059.004_inspired.log",
+          "sha256": "5e610382168366526aff76e68c2dc38d8f3078b48e178f3a50e0efca4fca720f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/techniques/T1105_inspired.log",
+          "sha256": "26cd325782c48682852dd8815033662b5a437116a89040b93714f83fe3bf76bd"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0013_20260905_145756/provenance.json",
+          "sha256": "7ac304c2c06560fa8fd287dd0c6acf20d9b3b80fb547644c981095b9b62e8037"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.c0015",
+      "reported_status": "PARTIAL",
+      "reported_total": 5,
+      "reported_successful": 5,
+      "reported_evidence_backed": 3,
+      "reported_markers": 2,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 26.98339962499449,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 5,
+        "successful": 5,
+        "evidence_backed_successful": 3,
+        "marker_only_successful": 2,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 3
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/manifest.json",
+          "sha256": "041bb3a65282fb5b05d1569afe250cecf7aeee90125060b2165251b8c547240f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/techniques/T1059.004_shell.log",
+          "sha256": "6e2f32eaef70142656105c446a8a6494b722dbd7d25fd7db65516b0e2ab9e01d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/techniques/T1068_inspired.log",
+          "sha256": "8d34b3dd967f2d5a6f1cbf8c463bd4b23930140ea41a6f41591daae238f366b3"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/techniques/T1083_discovery.log",
+          "sha256": "f52bedee9b0ee8915fe2866bec7be05646f016ea704a52fad900511c7415551d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/techniques/T1113_inspired.log",
+          "sha256": "958acd41a4f8e508ee0a70c4120c81aee8d0553cecc3573669aa63e41660a46e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/techniques/T1548_elevation.log",
+          "sha256": "62e5c8ab5e8688871686d06af0e402b57eb0e09419ae2a09b0944cb28d9d7377"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0015_20260905_150016/provenance.json",
+          "sha256": "b19681a1be342971c192f9c825aac0b57f34938810ae70dcc4c4659db3039611"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.c0017",
+      "reported_status": "PASS",
+      "reported_total": 6,
+      "reported_successful": 6,
+      "reported_evidence_backed": 6,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 28.057266499992693,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 6,
+        "successful": 6,
+        "evidence_backed_successful": 6,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 6
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/manifest.json",
+          "sha256": "83bc1c34afdb658fbfdbf02e7ad020e1667d246b9c9720d494da815bb2bccfdb"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/techniques/T1027_obfuscation.log",
+          "sha256": "00e2e0bd4544e0e4013734a83413c480b435db39376b26a90288b55aafbd1159"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/techniques/T1053_scheduled_job.log",
+          "sha256": "fee8425e905a1f55eb747926ce94def406fa6006f90ddc7118beb5197e9186f9"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/techniques/T1059.004_shell.log",
+          "sha256": "747689b3bedb7aa136821942659a07f39d10f19d6b4631d49c170c53c4fca628"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/techniques/T1083_discovery.log",
+          "sha256": "f52bedee9b0ee8915fe2866bec7be05646f016ea704a52fad900511c7415551d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/techniques/T1543_system_process.log",
+          "sha256": "960cd201b710bbcd9ba8a6a6a97815f5fb5df7027f9875c67d8b2874aaed2ef3"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/techniques/T1564_hidden_artifact.log",
+          "sha256": "2520a6f75cb49e071b2829f1144feed186f217e7f6f16ed94904b7fa8a9d7900"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0017_20260905_150043/provenance.json",
+          "sha256": "817d0c20a144084b45f046385adcffabd3c49ac5607c55ca56b34c195a8d37dd"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.c0026",
+      "reported_status": "PARTIAL",
+      "reported_total": 6,
+      "reported_successful": 6,
+      "reported_evidence_backed": 4,
+      "reported_markers": 2,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 29.249205250001978,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 6,
+        "successful": 6,
+        "evidence_backed_successful": 4,
+        "marker_only_successful": 2,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 4
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/manifest.json",
+          "sha256": "9ed14f11c56881195b5e63dfa62ffa625e6ce9e87adf47bf8f50ad947faf054b"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1005_exfil.log",
+          "sha256": "034dd6b4ba6969e0717f704d68476760c7a616b7614f31ba10c9458dbce723a5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1005_seed.log",
+          "sha256": "04b2315f1a31c49615a292e1420b8fa0f38713be625bf3315babeb71b1193abf"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1030_chunked_transfer.log",
+          "sha256": "ea29b84c5ec28a1450f55cb9139b379ec9529097e3ea61153755d4e0c58e63ad"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1105_artifact.log",
+          "sha256": "748c2cbfced7519aac2b8853a578d0c422e1f504dd443fddce255ebcd6d84c16"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1560.001_archive.log",
+          "sha256": "20e23f818edded9ed8ac690b624c640f04581a16bd941d817b58a66112ff9730"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1568_inspired.log",
+          "sha256": "353fc92ab234e4b2ad6985865ea3200e42638dab69cf3518f2978e36bc757b20"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/techniques/T1583.001_inspired.log",
+          "sha256": "9db64610db783dea4d124fde206ca3a2ed4600b9c297473154502ccbeeffe88b"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.c0026_20260905_150111/provenance.json",
+          "sha256": "cf47aa09c867ca06cb9134122bd01a3387df899f43caa3f72fbee54f0226361d"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.apt41_dust",
+      "reported_status": "PARTIAL",
+      "reported_total": 23,
+      "reported_successful": 23,
+      "reported_evidence_backed": 14,
+      "reported_markers": 9,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 45.1849889169971,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 23,
+        "successful": 23,
+        "evidence_backed_successful": 14,
+        "marker_only_successful": 9,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 14
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/manifest.json",
+          "sha256": "2f3913d66ed29485670c0f86a61c29031aed95f3b78e8f2fcae3e5019d494e3a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1027.013_encoded_file.log",
+          "sha256": "c55b8e0d8545873496456ad7c2c198176f7e4ead5809cb1445304fa6d9442c46"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1036.004_masquerade.log",
+          "sha256": "7ed0e015f3307efc2d55a83290ae0ba7d1e4488452a10e9d62c77c49bb05ed47"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1070.004_file_deletion.log",
+          "sha256": "bc9604f8daf893bfd28d632e4b46f7d685667a0bd8d4be46080171853b1a8c62"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1071.001_inspired.log",
+          "sha256": "414310e31554c775471b2f7417c6f88d3b6e8a74817edcd320e6d65eb393520c"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1074.001_archive.log",
+          "sha256": "3cd654250840fb7e498f9d5ef387a4cfe305c9da0869a4c6d3b0f5b5c400bc6a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1102_inspired.log",
+          "sha256": "9dc452fb8c1f3349595d7c16bddc22f506e93807dcb3361a97f135de6ba8776a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1105_artifact.log",
+          "sha256": "748c2cbfced7519aac2b8853a578d0c422e1f504dd443fddce255ebcd6d84c16"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1119_archive.log",
+          "sha256": "33e048b5d8cd6f13c1f342ebdeb052ff50aba123035c198d7aad8f26671c4db1"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1213.006_archive.log",
+          "sha256": "bf88cb6e673ba4a49298054fd3a4654448d2f4a5651d08bb3482cfc01a99ab00"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1505.003_inspired.log",
+          "sha256": "fca812a502d3d03f025b4317146416d114a3d265f555f937e70dd7c305fbaaf9"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1543.003_masquerade.log",
+          "sha256": "7ed0e015f3307efc2d55a83290ae0ba7d1e4488452a10e9d62c77c49bb05ed47"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1553.002_cert.log",
+          "sha256": "ed78e2c802fc92d8a5d2a9c3a27ddbe88587721df9bcbcbe0e143a08b0061039"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1560.001_archive.log",
+          "sha256": "382d361cede900e180f4d60329a3c7df0c273c954789c8aade6683087c4c58b6"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1567.002_exfil.log",
+          "sha256": "fd6522582310aba83256f0c6de06ac069b94ba7b53278fc86d661ec22281c6dd"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1567.002_seed.log",
+          "sha256": "4e22e11de83edcdbe36af072bb0103f9cef40494fda71cd4bc27aed90cd3057a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1569.002_system_process.log",
+          "sha256": "fa65ed688c61d46d9bcc4edcf2d2bfb01ba17393141666fd879a955f24d603e6"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1573.002_inspired.log",
+          "sha256": "96ffa96ac42bacdba2ac1a9753ac5dd4617f3dab6e1c2383186930fa2d569dc6"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1574.001_masquerade.log",
+          "sha256": "7ed0e015f3307efc2d55a83290ae0ba7d1e4488452a10e9d62c77c49bb05ed47"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1583.007_inspired.log",
+          "sha256": "1dd155ee3047bea2c8ef18bf856aad835caab80be489dddcec4436fc33cfc9dc"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1586.003_inspired.log",
+          "sha256": "e1e2b46de2b707fb4aef4c0e801ee251f1036f4a51a056eb50ea35906e6c38e5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1588.003_cert.log",
+          "sha256": "4121fb7d2eefd14c207e0972f54237dadadd251f799be29e1eefd644f3537ff4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1593.002_inspired.log",
+          "sha256": "7666b329ec9d67c0024bf60f46b1f033bcb0cd74c5e42657bcaa603642b80f97"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1594_inspired.log",
+          "sha256": "03bbf3e9fb3f182e7f7e89b524df49a8a1df8e2f6f649c50e79afc5d60f1fd1a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/techniques/T1596.005_inspired.log",
+          "sha256": "d8e812e910e8ae28b2a5603a034a45133d21e3620863fd0375ede94e8e0c3609"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_20260905_150141/provenance.json",
+          "sha256": "de321a3e8b41fd3c36cee283ea720e1e86b0aa7e4e5b593390bdec747d1166c2"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.apt41_dust_full",
+      "reported_status": "PARTIAL",
+      "reported_total": 10,
+      "reported_successful": 10,
+      "reported_evidence_backed": 9,
+      "reported_markers": 1,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 29.034777834021952,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 10,
+        "successful": 10,
+        "evidence_backed_successful": 9,
+        "marker_only_successful": 1,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 9
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/manifest.json",
+          "sha256": "e96cbcd69ca8d7c09055adab5c6831ccf111feb4993e323ce6b76878537c675c"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1007_services.log",
+          "sha256": "422a71ba60f014486fd9d47dc2500868ee35fd7c04251e63cdcf521186bcb4c7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1016_network.log",
+          "sha256": "00c3e4389d613cd83b16608e1c1bf53c5733657a53faf1814a4495fa657478cd"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1020_exfil.log",
+          "sha256": "18a26a40f3b0dcc70d4bf0d6c0832f53d284b492d80090e5e1e328d2dd8fb997"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1020_seed.log",
+          "sha256": "4a22f518756d3f02c232ad57da6e15eed8dfa31fc42838be5684015a4335c4d5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1027_obfuscation.log",
+          "sha256": "00e2e0bd4544e0e4013734a83413c480b435db39376b26a90288b55aafbd1159"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1033_users.log",
+          "sha256": "6a085711b90adf7b3e8f63d3ffa27168b946b8941f8250b6389d1363cc468edb"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1059.004_shell.log",
+          "sha256": "ce57db87e25a389f72f9846b105b72d8bf74f7a529328b038d985c65ff55b45a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1083_discovery.log",
+          "sha256": "277b11662babaaa15564d02d52b6c9c0c5236d971bc9774377832553234851cf"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1119_archive.log",
+          "sha256": "f8c86803292501859e3f0874324ccfc48939ae43f8247cbc80462a62fdaaa412"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1490_inspired.log",
+          "sha256": "547d4f7bd44789919e675e5db530c76109a5a61d4057c17520ac003b7114ce62"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/techniques/T1564.001_hidden_artifact.log",
+          "sha256": "6d2b11910fbaf3f57a690dd81d182cab9d9adf67c1d71215159c7822891be65a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.apt41_dust_full_20260905_150226/provenance.json",
+          "sha256": "3cb76144bab9ee091ecd999d83104f0c068e58917a3348d0141ae0bcd52e0509"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.costaricto",
+      "reported_status": "PARTIAL",
+      "reported_total": 10,
+      "reported_successful": 10,
+      "reported_evidence_backed": 3,
+      "reported_markers": 7,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 35.24081187500269,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 10,
+        "successful": 10,
+        "evidence_backed_successful": 3,
+        "marker_only_successful": 7,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 3
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/manifest.json",
+          "sha256": "9fc09b43e1a3e054eaddc01273cdab495be4fa575b8511da388a26f7aa116090"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1005_exfil.log",
+          "sha256": "034dd6b4ba6969e0717f704d68476760c7a616b7614f31ba10c9458dbce723a5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1005_seed.log",
+          "sha256": "04b2315f1a31c49615a292e1420b8fa0f38713be625bf3315babeb71b1193abf"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1046_scan.log",
+          "sha256": "425191994123cf748429f43e1d5b38aaa8430eeb65c8c002d854132a305b4d94"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1053.005_inspired.log",
+          "sha256": "c8bb26d68b930dc54389bf9cb4bb9b80d0eba64c31527cbcd984ebd6eab445e5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1090.003_inspired.log",
+          "sha256": "9cc9d95104ea5d0eab84138ce944fa75c06f0464a90c5f26ada905fe488afbf3"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1105_artifact.log",
+          "sha256": "748c2cbfced7519aac2b8853a578d0c422e1f504dd443fddce255ebcd6d84c16"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1133_inspired.log",
+          "sha256": "feeb753b8e5b834be009b70c27c7e4e9f93acd2e9c21d82ee35335e4be9a0180"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1572_inspired.log",
+          "sha256": "a6b51cb01134c66350ace1a22b984fca83a1595689a8cb9dde54cd75e897fb50"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1583.001_inspired.log",
+          "sha256": "04d27d5da95e6d229201f514b2feebd08070e5a790759caca0ff21f91bf8cf83"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1587.001_inspired.log",
+          "sha256": "8bee1b38510f4507e6c093b17e29e8d1207e540aaa713adeb9b4b75296058e94"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/techniques/T1588.002_inspired.log",
+          "sha256": "60cab6689a420cc5b260edeffc9d5731002338d9a629ff74b623c687ad774e95"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.costaricto_20260905_150255/provenance.json",
+          "sha256": "eb37a162798e513b9960770b29aeb97d7ff16f92cb1dea198e3272f8227c2aa4"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.outer_space",
+      "reported_status": "PARTIAL",
+      "reported_total": 8,
+      "reported_successful": 8,
+      "reported_evidence_backed": 2,
+      "reported_markers": 6,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 33.4964645,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 8,
+        "successful": 8,
+        "evidence_backed_successful": 2,
+        "marker_only_successful": 6,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 2
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/manifest.json",
+          "sha256": "ad8114f654c3b9742228897be76f21160cefc7ad8784e33db335da8e06880f8a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1027.013_inspired.log",
+          "sha256": "7aeaf75d5df3570b41f7087c6323baae5923b0d7b342b412a5a90072a6cb5c51"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1059.005_inspired.log",
+          "sha256": "3b069fe2c0f16ea7b7ae85b1b182d008b3c7f16141303cf33ff31076478a1da1"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1071.001_inspired.log",
+          "sha256": "8c02b188b6b89969ba323ec79b34bf131439185155aaba35e70eae46dd24689a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1105_artifact.log",
+          "sha256": "748c2cbfced7519aac2b8853a578d0c422e1f504dd443fddce255ebcd6d84c16"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1217_browser_discovery.log",
+          "sha256": "d72fafe5593c9f2c038c5bbbf3ee148ab6196be6a5fed1cf39e2de37e34c3f20"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1584.004_inspired.log",
+          "sha256": "274aade4616772111a05c7238bb6160b5ebe026fc4f771fab73b923b1d3a7f10"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1585.003_inspired.log",
+          "sha256": "c701beecdc7063865fece6ef9476128050a649066406b1340a397cef88bace24"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/techniques/T1587.001_inspired.log",
+          "sha256": "c358b785fce35143a2b9d2de937a4b746bb8b4967cc3100ef9c2a63892d98973"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.outer_space_20260905_150331/provenance.json",
+          "sha256": "8faf92fcf2608f4e1b1372b4f9d093fc6fd847a1d764c4b54650238e4c2d71b8"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.operation_midnighteclipse",
+      "reported_status": "PARTIAL",
+      "reported_total": 17,
+      "reported_successful": 17,
+      "reported_evidence_backed": 5,
+      "reported_markers": 12,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 30.15047166700242,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 17,
+        "successful": 17,
+        "evidence_backed_successful": 5,
+        "marker_only_successful": 12,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 5
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/manifest.json",
+          "sha256": "f2a558bdb74a2c4b0c2a2a245a5ad2b614dd3dc8ed085ed12002ca57e91fa19c"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1003.003_inspired.log",
+          "sha256": "9a6610caa3f03e17b34a0e5064ab439c28681f4643b960f81225be967a0a2da7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1005_exfil.log",
+          "sha256": "034dd6b4ba6969e0717f704d68476760c7a616b7614f31ba10c9458dbce723a5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1005_seed.log",
+          "sha256": "9d7f708857ff9013a454a0c95bb39cdb2258ef4049b0d4d271bc5e7dbb47874d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1021.002_inspired.log",
+          "sha256": "d3c0ab2a081ee4ccc887a86203999ab871bcb287a89a597d9db1c8d8fb93f1fb"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1021.006_inspired.log",
+          "sha256": "dd74336b4d1505ec7b960bcafb522e2b3788f4a90e23e9839862bf2281ab0531"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1053.003_inspired.log",
+          "sha256": "4a8fbddfe22576c83c977e38f6dccb4f370fa58ea0acf8bb26a7c4899560764a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1059.004_shell.log",
+          "sha256": "88c3c25805622a5d5990f1d6722119647fd08b265c924dba621952134bb3cef7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1071.001_inspired.log",
+          "sha256": "85461ac965357f019fc6d61edf4ad182d2f47ebf377a0b65041fdf8832936794"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1074.001_archive.log",
+          "sha256": "f1ccfd126a2cf72a19d5b2a4ee7201a6e819c1d05c1ed645ac3967757005adb5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1078.002_inspired.log",
+          "sha256": "a928623f9421d5e3a2cd0c219fba337d26989e53766c26c45dcec8d066e68e4b"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1078_inspired.log",
+          "sha256": "14b1c84bf5fb0abe27a0a13eec51f146daadcd90c97d6270ab3b4cfbcc8e5448"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1090_inspired.log",
+          "sha256": "32aa2881f8274222ef0fc95d0dbefb664ba7b9539198946a9553263b10ed55a9"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1105_artifact.log",
+          "sha256": "748c2cbfced7519aac2b8853a578d0c422e1f504dd443fddce255ebcd6d84c16"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1190_inspired.log",
+          "sha256": "6778b31d5bf7da10551e58ae69cb5a4432baccc92e30a6c577441c4707064dd5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1559_inspired.log",
+          "sha256": "ebc1aaee52157c1a7b20396438db251a7b71c3b55417ca82810f31ab6645d2e1"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1584.003_inspired.log",
+          "sha256": "2821ce477cd5a6e65421f4b93932cc8f163de57946739613392b7b9c0269106a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1584.006_inspired.log",
+          "sha256": "58496cb2fd06f44b7a88aaded02041e65718d2600dbe0b899edf70bbd3401ac7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/techniques/T1588.002_artifact.log",
+          "sha256": "e0b3264fdf0311edfe05885bef910c2c65a4ad4ab7460b4181190e2d5f7eba92"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.operation_midnighteclipse_20260905_150404/provenance.json",
+          "sha256": "75b5aae3001efad965c9f45c6a78402e5545b475611fbae070f4bfb190ea1cd4"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.salesforce_data_exfiltration",
+      "reported_status": "PARTIAL",
+      "reported_total": 18,
+      "reported_successful": 18,
+      "reported_evidence_backed": 8,
+      "reported_markers": 10,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 33.883272833016235,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 18,
+        "successful": 18,
+        "evidence_backed_successful": 8,
+        "marker_only_successful": 10,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 8
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/manifest.json",
+          "sha256": "b5fa1b4c9ea7e2ed6af05a79efdf40a379e1e06e5936f214c61fc453fc84dc60"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1020_exfil.log",
+          "sha256": "18a26a40f3b0dcc70d4bf0d6c0832f53d284b492d80090e5e1e328d2dd8fb997"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1020_seed.log",
+          "sha256": "2e7f1cb52d9171e3401f9f28d54a34fa270d6657969ec9b9b786a5dc4a49bfd4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1036_masquerade.log",
+          "sha256": "7ed0e015f3307efc2d55a83290ae0ba7d1e4488452a10e9d62c77c49bb05ed47"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1059.006_shell.log",
+          "sha256": "a8f21989db3747ee44e06e695d2c5a542edd8974727858a6ce17c5587f5cdee5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1078.002_inspired.log",
+          "sha256": "5580bb0960b9b930dae905d36f423af57ac7efc8b222d62a1a6051c4b2cac2c0"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1083_discovery.log",
+          "sha256": "9795b6958caf1025d6e9bf5f1503a3856871e375f8c5bb3485f2e21c78a23728"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1090.003_inspired.log",
+          "sha256": "ed3c6dca54cc95ca2976f44d16f6d5df34031a266c6e85fa17d7117f5dfa8050"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1090_inspired.log",
+          "sha256": "4ae8ebe24979386d0a44e9048492c21b1e4bd4d59bbb18545cb964e6cfb1ca2e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1213.004_crm_query.log",
+          "sha256": "b679a34a7e39952b674b3ee4c5440d59761ca7ddc496ce06bbbaaa14a2a0b513"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1567_exfil.log",
+          "sha256": "c360643b92827553f1ceedd9aef14f6a5d2f13e332ea4e6ef152a321b13b9afd"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1567_seed.log",
+          "sha256": "6298aa4c565ead95881fd3bb4063d7776f183f0edc2f2815b280979b01466c38"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1585.002_inspired.log",
+          "sha256": "a96c51827361773e603dd0984bf408f3e70c956081cde7c112df8b9f2646f7c8"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1585_inspired.log",
+          "sha256": "f22517cb12c402252255e73c9497aed9852bee26bb38a8ce43f04f795a161ec2"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1586.002_inspired.log",
+          "sha256": "e9bbb46da91d60ff3f10c6ae1d0f04a8839358bfe325be9baeb2ac7a577cf400"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1587.001_inspired.log",
+          "sha256": "254ad68fab0f1aba6a80a15fe9f122d40e39e35b0bcbd9220270ca7396698e7c"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1588.002_artifact.log",
+          "sha256": "e0b3264fdf0311edfe05885bef910c2c65a4ad4ab7460b4181190e2d5f7eba92"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1598.004_inspired.log",
+          "sha256": "623a24445373ed8ecfe477432f6380ee85c6e9921e74cca5d37deb298b0ca49b"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1608.005_artifact.log",
+          "sha256": "5c1366e33dbd3ff4f87b43006728fc029a44e04e6015d065a41d0f5f11cdb60f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1656_inspired.log",
+          "sha256": "a12a78b41093264cd1a295a0a13a28024166a17ca808125d5712fe6515fb4ea3"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/techniques/T1671_inspired.log",
+          "sha256": "e9b1381c4f024072b2f3f5a560f7e91fe05ffe6122253e870622c7674b0eb7aa"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.salesforce_data_exfiltration_20260905_150434/provenance.json",
+          "sha256": "638d7854f90b9aea0b61793da85f4d3c75e6fca51e12b41bf89f2220c7c8490f"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.caldera_linux_demo",
+      "reported_status": "PASS",
+      "reported_total": 6,
+      "reported_successful": 6,
+      "reported_evidence_backed": 6,
+      "reported_markers": 0,
+      "reported_caldera": 6,
+      "reported_clean": true,
+      "elapsed_seconds": 383.8807908749732,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 6,
+        "successful": 6,
+        "evidence_backed_successful": 6,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 6,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 6
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/manifest.json",
+          "sha256": "20428bdfec9fc7f98ac48654086679b9b0f03b1a3d08853e34b401841d33c369"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1018_95435e39-f28f-40e3-a819-85b956320eb7.log",
+          "sha256": "f83938395bce26e4bdf5e2ee8ec1c0c8b5cff462dbcdc6ffed4b950eec05608e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1018_d3bfa643-76c3-40dd-9430-221c1ebc5604_report.json",
+          "sha256": "3018653dc1fe5b6f1314beefbaf0a59cb1600c12148715ae00fd472885d51c51"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1033_113307f8-d113-43f2-81c8-b988b93670cc.log",
+          "sha256": "347e2fd1f55d5aa1fd726284ac10077fd2e0724d856349b195a6dc88be8cb27c"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1033_e80df569-66c8-4902-aaac-b9b40e115ee6_report.json",
+          "sha256": "9f8fa56339d1fd606ed0637d606ca5ac5f769b71d29403064331b34ccd7c8c0d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1069.001_1a6b3c74-fbc1-4a8e-992c-296f0827ff93.log",
+          "sha256": "71c9c3b519e3cad528e7464b16e4030deb12836a74283611a4ceee722509cde0"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1069.001_b29996ab-1c87-4820-9c69-4f0f2a86fc82_report.json",
+          "sha256": "aa9f1bd4e2e7e8acca92bd4b06c6f2c18da42cee7ae2a2c0594de7a71d47d130"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1083_4b473530-794a-4500-acc5-4519de488a00_report.json",
+          "sha256": "bc2a971fa33f5b5727074820222f781cfef0d90840b8d5903b92946ebdb8c68a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1083_e149b2e1-6259-4127-913d-bbdba12a3dd2.log",
+          "sha256": "1f7cb46b7cdb5b4f9312b5159f2f8f9418f6be473400201e5ec0b9930d27c4e4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1491_3498137d-8b3d-4a16-9819-ada25c30a3b0_report.json",
+          "sha256": "2a5b698bf00b967ef03add1579771730ffeea7480e00ac4343c8cd31faf40cf8"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1491_41f96af0-d415-4006-ad6f-c4fbea6af5b9.log",
+          "sha256": "a3f4123a51768ace0d7af0b4a2613251f5239e7c8a4bb3ae51e0828c8dee5033"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1518_5bfee107-264f-483d-90d3-326df61ddcae.log",
+          "sha256": "abf79d1048ed760467b502e86a06e9d77600391bca9c9b0c3ed2d50f0d2bdf43"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/caldera/T1518_ea0484d3-a3b2-4250-bc7d-0dec75b149d6_report.json",
+          "sha256": "bd140e7f636e7d8ae25246ec84bae425aea7ec855f69a069d5bcd8379ed58245"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.caldera_linux_demo_20260905_150524/provenance.json",
+          "sha256": "a2b1650e9c9c63289669adb6dcf8b1407a5466f437afe58fd984bcf251457e63"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.fin6_emulation",
+      "reported_status": "PARTIAL",
+      "reported_total": 12,
+      "reported_successful": 12,
+      "reported_evidence_backed": 3,
+      "reported_markers": 9,
+      "reported_caldera": 3,
+      "reported_clean": true,
+      "elapsed_seconds": 214.8138891249837,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 12,
+        "successful": 12,
+        "evidence_backed_successful": 3,
+        "marker_only_successful": 9,
+        "caldera_driven_successful": 3,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 3
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/manifest.json",
+          "sha256": "2c6b709963ec736a241fd9eace68354bba4cdf969b36e6e027d958659ca5cf20"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/caldera/T1071.001_136c37b9-a713-4f21-a1f8-87bbf862a645.log",
+          "sha256": "6e2b2e5d628250725dc7e0cc61bea9c0f821167d7b32271b708542aa5c4b10a1"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/caldera/T1071.001_ef4fc65c-79d9-430b-b69c-36070681ac58_report.json",
+          "sha256": "9934bcd22b912db716ed61a4b27ec47673273e86307b7cafb904447106048f82"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/caldera/T1083_139c23b9-9f98-405f-835b-35079acfa302.log",
+          "sha256": "5395ce8ef66b0dd7d5d7531a63892729e53f12bdfc28decf7f7e8b0020274c71"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/caldera/T1083_a11c6df8-8f8f-44b8-bee6-7aefa6705f70_report.json",
+          "sha256": "820cfd61f51248db703f42a7d18ea66c0b6d62d3172a2fc72c95f0bd965900f9"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/caldera/T1087.001_26ae6278-c5ee-4d56-a3d6-fb2f7c591137_report.json",
+          "sha256": "8bf907ab3b87024ca985070ec8fa98ca64867bdede998754e1cb56845cce6693"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/caldera/T1087.001_fc8350ab-93b5-462b-8ff6-54c6f985955b.log",
+          "sha256": "23ff3e227a154349cda59761004debadf3df1d0143d93c4f174fe7b023759b39"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1003.001_inspired.log",
+          "sha256": "fd22436c6fa8a3efbabe8d673f2ca48bc848db4f7e1204bd4016d67a8e433b66"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1059.004_inspired.log",
+          "sha256": "dc2cb016c5b5a9f600fc04669854950a153f45ed9f1fa5d38d5237565967f2f0"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1078_inspired.log",
+          "sha256": "b462dd6f1c780967e78e13e211b6a61d759cb57eee879677c6da13da463094f2"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1110.001_inspired.log",
+          "sha256": "18bcbc180b648198ab3e7449b2cc90c49354731c8b4fe39fa0a238342e27fe2d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1133_inspired.log",
+          "sha256": "7ea461163f5f1c79d9096869c0229e8bd2bc9fc5bbe5569b4a256ce091efd7cb"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1190_inspired.log",
+          "sha256": "7a9186107a6674acc3ab4bc7461b5dfa1467228cf0ddd78fd9f5a6c3b571e9d6"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1486_inspired.log",
+          "sha256": "b341a4bbd8f6ba28fcf1b70cc65949700ff6bffb22cf56b21ee96499e9ff34b2"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1490_inspired.log",
+          "sha256": "2306b7d17fe620568fd315a97598f126bec7e50cde2128070ae483cbfde289a4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/techniques/T1573_inspired.log",
+          "sha256": "9dabd55f0e30acffd58dffd6f844fa42b1ef3c625e0a06d19f6b666b992a4ef2"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.fin6_emulation_20260905_151204/provenance.json",
+          "sha256": "6e01b512439b80915a111917b929ece94db5f837001056e76daf49b1209f4abc"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.dmz_segmentation_demo",
+      "reported_status": "PASS",
+      "reported_total": 4,
+      "reported_successful": 4,
+      "reported_evidence_backed": 4,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 51.23817608400714,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 4,
+        "successful": 4,
+        "evidence_backed_successful": 4,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 4
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.dmz_segmentation_demo_20260905_151539/manifest.json",
+          "sha256": "4f2501aa5583590df6bf754f2e432191742fef69d9d0c558599519b510771fb8"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.dmz_segmentation_demo_20260905_151539/techniques/T1018_attacker_to_nginx.log",
+          "sha256": "a7847059f8fd68cb2c63a651fbea8444566612eb63062e8ef7ca413198ec389f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.dmz_segmentation_demo_20260905_151539/techniques/T1021_pivot_to_app_server.log",
+          "sha256": "1605350ec3f3a41fa3c80bb28914620173e29626b3386905806ec00fbb01cf61"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.dmz_segmentation_demo_20260905_151539/techniques/T1135_attacker_to_db_blocked.log",
+          "sha256": "6a7c466ae1ab6047d2946517e476af8e9f466a0d225ed064f02af166812fb372"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.dmz_segmentation_demo_20260905_151539/techniques/T1210_pivot_to_db.log",
+          "sha256": "e56256f19da4c61560ec20eaf564ed5f94d93a3e2448577ff783062574ed7809"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.dmz_segmentation_demo_20260905_151539/provenance.json",
+          "sha256": "54e9c623e9be31becbab8658afd7157764bdee73bba00e21704eacbf8d98829a"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.pivot_demo",
+      "reported_status": "PASS",
+      "reported_total": 6,
+      "reported_successful": 6,
+      "reported_evidence_backed": 6,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 44.35296129100607,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 6,
+        "successful": 6,
+        "evidence_backed_successful": 6,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 6
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/manifest.json",
+          "sha256": "e6ce5ef43242bb3d9fc33e3c3aa751a96b011a65c0b8fe2d7a6c44b3f0e8476d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1021.004_ssh.log",
+          "sha256": "ae488a1052e61dade35a5dfd04b0a08b0959790eea4b40d83b27d2bdc40f3987"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1046_scan.log",
+          "sha256": "dbf34b9a1c97873afc989eebffe51cec084015ad092a2fff1c9d9e77f810f21a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1059.004_remote_exec.log",
+          "sha256": "69d62e81ffad20d5319832f8aef99d7c63b2ba6629deb952409c7771824e227b"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1083_target1_discovery.log",
+          "sha256": "727ab8f0adcb9042222696f4aa538094266b49dfa8afc5e17cec43ad1c17b8b4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1110.001_bruteforce.log",
+          "sha256": "7a5eb42dc8e8c36a094efef55a27af13c447ec7e2f3d1cedd1cc8ea28c2db930"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1110.001_wordlist.log",
+          "sha256": "1042f0aae5fd956bb36e6a0172988e9288a19cf52839e3d85e608861325d7ace"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1570_scp_attacker_to_target1.log",
+          "sha256": "1e9c70353788b479c19cd9706adc37d160b3fef1b977ecfa3f2720de437a751a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1570_scp_target1_to_target2.log",
+          "sha256": "c761ccba37516b968c37a39ccfb85c320d22c92da218dec855a9392359e0e10f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/techniques/T1570_stage_payload.log",
+          "sha256": "5184a185924f52ff2045089ba7087b8007bc4bec3a554f0f5f577324bf53569d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.pivot_demo_20260905_151631/provenance.json",
+          "sha256": "bef99a1ebbc1d03ea381b0567690390dbb25ae4e0a22738fb316e9b60f1c2f27"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.web_demo",
+      "reported_status": "PASS",
+      "reported_total": 4,
+      "reported_successful": 4,
+      "reported_evidence_backed": 4,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 27.413842792011565,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 4,
+        "successful": 4,
+        "evidence_backed_successful": 4,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 4
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/manifest.json",
+          "sha256": "2d3f2e3ac3cc50b4260fc38d01fd339315d47928b5edd478603a84c78369be61"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/techniques/T1005_web_exfil.log",
+          "sha256": "9b519851dea0c6940be69415116b67b2fa8a8cd5995537e5c4b97c08ead5463d"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/techniques/T1046_web_scan.log",
+          "sha256": "50046ac693efdbfca759c5bb444d029f0c6866df47df4c44b929ae25466e2d14"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/techniques/T1078_web_auth.log",
+          "sha256": "45b1929a98bf6b87253b24d6bb268e25bba7c308872aff34c75bfc81ec82b4f7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/techniques/T1110.001_web_bruteforce.log",
+          "sha256": "3b64b8d0fd9ff9b87cee9b32af4d3afe1221f0bbbe4e7d6f63222d9e628fd42f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/techniques/T1110.001_web_wordlist.log",
+          "sha256": "e093acfd8a58221e0d87fbc2076dc5828eae3823882a3363a0ffeede85de4590"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.web_demo_20260905_151715/provenance.json",
+          "sha256": "e537c1c530ac4673d9645645b805e2cfc0d6375eca5c0e364f77aeadd4753535"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.cve_2021_41773",
+      "reported_status": "PASS",
+      "reported_total": 4,
+      "reported_successful": 4,
+      "reported_evidence_backed": 4,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 24.905679916992085,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 4,
+        "successful": 4,
+        "evidence_backed_successful": 4,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 0,
+        "steps_with_all_references_present": 4
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.cve_2021_41773_20260905_151742/manifest.json",
+          "sha256": "dd34e07068068c726141092ff84436e535efd8e5d59bbf8c223b5d8df576442a"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.cve_2021_41773_20260905_151742/techniques/T1005_loot.log",
+          "sha256": "a9d8270e1b70e21177e53e36e35cc34506435d4bf1e9c0813544f9b847d66ce3"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.cve_2021_41773_20260905_151742/techniques/T1083_enumerate.log",
+          "sha256": "0879cb506f28bfae71ed131caf0624a917f8bb6ab677b5e313fa44e1a0316b97"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.cve_2021_41773_20260905_151742/techniques/T1190_path_traversal.log",
+          "sha256": "bf7528b3b8fd09c285a82b71e158234999f584ec15ce32979ec95a3ae73a2092"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.cve_2021_41773_20260905_151742/techniques/T1595.002_version_probe.log",
+          "sha256": "57bbebb5623542abe027cea2b14230ea7de9d3e200f8bbd47e1c5cddb3228070"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.cve_2021_41773_20260905_151742/provenance.json",
+          "sha256": "125f412818136c0d7c18fe5459ee03106a3244da06e5ed9ad014af1bd1f777b1"
+        }
+      ],
+      "issues": [
+        "implementation_revision_not_recorded"
+      ]
+    },
+    {
+      "campaign_id": "0.shadowray",
+      "reported_status": "PASS",
+      "reported_total": 10,
+      "reported_successful": 10,
+      "reported_evidence_backed": 10,
+      "reported_markers": 0,
+      "reported_caldera": 0,
+      "reported_clean": true,
+      "elapsed_seconds": 94.57535741699394,
+      "recorded_revision": null,
+      "manifest_counts": {
+        "total": 10,
+        "successful": 10,
+        "evidence_backed_successful": 10,
+        "marker_only_successful": 0,
+        "caldera_driven_successful": 0,
+        "inspired_execution_steps": 1,
+        "steps_with_all_references_present": 10
+      },
+      "files": [
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/manifest.json",
+          "sha256": "461b833145b82d26a8a80677353b686ee12b5b342b6a7ce04090062a8da7c244"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1003.008_job_submit.log",
+          "sha256": "aa7ea55b99f510dd0f8e63890a98b442f89867c4ea50d5078f926cff950856bd"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1003.008_verify.log",
+          "sha256": "3cf16e36a778042e9857ebba2126ae48aed87efde7d3e3ccdd1da936dfaca16f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1016_job_submit.log",
+          "sha256": "1abfa49aad77add9a227a378ea96d816a12602c2d75193ae9e3e550ba629c348"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1016_verify.log",
+          "sha256": "03aaf67bd32aee1a0e5de3878157c308c5503b59d5ac6856987458dc2a681072"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1027.013_job_submit.log",
+          "sha256": "e7c91e5fc44b0473852a15f29e70f562099da4a574ac215cb349140dd5a2000c"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1027.013_verify.log",
+          "sha256": "3d9a992d1d1efcdf4a13b54c6df236c89613da8fe0716e4058f2e6a299380cc6"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1059.006_job_submit.log",
+          "sha256": "a6fb83e3a2fd36d8555412b1e661a9690f4c7bc396bb148ae0636d1104ce8f7f"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1059.006_verify.log",
+          "sha256": "bc2d46748c67d32c60bfaab4613a46734ff375228af8da69a994e551c16ed7e9"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1068_job_submit.log",
+          "sha256": "0ec569e5103c600fd6b27135bf83c769737a492fa5292dc85dd3cf94793c0ca4"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1068_verify.log",
+          "sha256": "7f42267a093f7753acadc568a751f3cee2fbbfe145a56953d939d8421de72bcb"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1105_job_submit.log",
+          "sha256": "0abea0728218aa9d101ea9411dfa65bd0a13b5aac1230d0b8c81c608e3b6ff36"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1105_server.log",
+          "sha256": "62d22ffc65887cf4cf13119cb0bc578c211d3ecf023288d67ca2fb9d53db17e5"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1105_verify.log",
+          "sha256": "46134f2725f2ecacc598acba2658165f475de4e0ed32ed0d051d6727d1471991"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1190_dashboard_probe.log",
+          "sha256": "fe08bf77cf4c9284e459c34e7e5acada21abf55cadf23cdeeeb4ffd62a0f72d7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1190_job_submit.log",
+          "sha256": "911b76a8163e62d65d398b084294ab5442b1abadc4c45e8c6be0a1e4846cfae9"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1190_verify_rce.log",
+          "sha256": "1a7d832fee8932810ef1f85d0d5a43ddab4b052968e61c3c3f3ba348f38009ad"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1496.001_job_submit.log",
+          "sha256": "d7ed096e21f1b2ad216d03f507b234c3eb006c8c13313d5fca216415635cef0e"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1496.001_verify.log",
+          "sha256": "2df1a75086df1c2d38accacf315e06d9b8fafe745efddb9fc0b0e06a982ec980"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1546.004_job_submit.log",
+          "sha256": "c9f45bdd068b57be8eba5836c5747d128ffb2e57a1ef690c90ba3e723b927065"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1546.004_verify.log",
+          "sha256": "c9bd078a397ec14658246e80453caa047256e6b4e0993121603beaf5a0c2e3e7"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/techniques/T1588.002_toolkit.log",
+          "sha256": "4401ef4f62107cbf5d768c0ba64537bbbad494ed5fa6d0a2d28c4bd9ffc32aab"
+        },
+        {
+          "path": "release/evidence/_reviewer_runs/0.shadowray_20260905_151807/provenance.json",
+          "sha256": "3da147bc3607a6859851b21ce212f858b870869f3a3d65cecf919a64a195bc01"
+        }
+      ],
+      "issues": [
+        "inspired_steps_counted_as_execution",
+        "implementation_revision_not_recorded"
+      ]
+    }
+  ],
+  "scope": "Retrospective count and file-reference audit. File presence and hashes do not validate technique semantics, independent effects, current-revision qualification, or cross-host reproducibility. Source trace files remain in the local collection."
+}

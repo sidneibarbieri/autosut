@@ -1,0 +1,80 @@
+{
+  "schema_version": "autosut.r4-development-status/v1",
+  "record_role": "historical_development_status",
+  "status": "historical_observations_preserved; v2_qualification_predeclared_nonexecuted",
+  "superseded_for_qualification_by": {
+    "protocol": "release/experiments/r4_interruption_matrix_protocol_v2.json",
+    "guide": "release/experiments/R4_INTERRUPTION_MATRIX_PROTOCOL_V2.md",
+    "qualification_result": "not_qualified",
+    "reason": "The v1 observations recorded interruption after stage entry. They do not establish the observed semantic conditions required by the v2 protocol."
+  },
+  "non_claim": "This historical development record preserves observed behavior of its named revisions. It is not a release-qualifying R4 result, does not establish general reliability, and must not be combined with v2 qualification evidence.",
+  "defect": "A stalled lifecycle stage runs its action on a worker thread. The in-process controller can detect the stall (join timeout) and record it, but it cannot terminate the worker: a Python thread has no forced termination. A worker that keeps running after the timeout can still materialize a resource and race the teardown, leaking it. Observed once: a SIGTERM integration run left a residual container (autosut-att-81cc8939).",
+  "in_process_watchdog": {
+    "what_it_does": "On interruption the signalled main thread joins the worker for a bounded grace (_INTERRUPT_GRACE_SECONDS = 180) so the worker can finish and self-teardown before the lifecycle teardown proceeds; a worker still alive after the grace is reported, and its resources are targeted by the teardown stages and verify-clean.",
+    "honest_classification": "race-mitigation, NOT termination",
+    "why_not_termination": "join() waits; it does not stop a thread that refuses to finish. If the worker is genuinely wedged, the grace expires and the thread is still alive. This is explicitly NOT labelled 'R4 FIXED'.",
+    "observed": "3/3 clean SIGTERM runs after adding the grace join, but 3 clean observations do not prove termination of a wedged worker."
+  },
+  "real_fix": {
+    "component": "src/infrastructure/process_supervisor.py",
+    "mechanism": "Run the experiment as a child in its own process group (start_new_session=True) under a wall-clock deadline. On breach: SIGTERM the group -> wait a bounded grace, judging liveness from the direct child (process.poll) -> SIGKILL the group -> sweep the run namespace and report residuals. Records command, pid, pgid, escalation ([], [SIGTERM], or [SIGTERM, SIGKILL]), exit_code, grace_deadline_exceeded, duration, residual_after_termination.",
+    "why_this_is_termination": "The OS kills a process group. SIGKILL cannot be trapped, so a child that ignores SIGTERM is still terminated within the grace window; because the child is a group leader, the kill reaches every descendant it spawned (container clients, ssh, qemu).",
+    "tests": {
+      "file": "tests/test_process_supervisor.py",
+      "count": 8,
+      "docker_required": false,
+      "decisive": [
+        "test_child_that_traps_sigterm_is_still_killed: a child that installs SIG_IGN on SIGTERM is terminated by SIGKILL; escalation == [SIGTERM, SIGKILL], grace_deadline_exceeded == true, pid gone.",
+        "test_kill_reaches_a_grandchild_in_the_group: a grandchild the child spawned is also gone after the group kill."
+      ],
+      "result": "8/8 passed, including a stage-boundary deadline arming test and a missing-boundary fail-safe test"
+    }
+  },
+  "docker_integration_proof": {
+    "supervised_entrypoint": "scripts/run_supervised.py wraps a canonical experiment entrypoint in the supervisor with a real Docker namespace sweep (src/infrastructure/docker_namespace.py, baseline-diff over autosut-* resources, safe under the single-experiment execution lock).",
+    "tests": {
+      "file": "tests/test_supervised_docker_sweep.py",
+      "docker_required": true,
+      "opt_in_env": "AUTOSUT_DOCKER_INTEGRATION=1",
+      "result": "2/2 passed against real containers",
+      "cases": [
+        "test_sweep_removes_a_real_autosut_container: the sweep force-removes a real autosut container and reports empty residual.",
+        "test_supervisor_terminates_and_sweeps_a_hung_run_that_created_a_container: a child that creates an autosut container then hangs is terminated by its process group (SIGTERM or SIGTERM+SIGKILL) and its container is swept; residual empty; no probe residue left behind."
+      ]
+    },
+    "promotion": "infrastructure.process_supervision_termination advanced component_tested -> integration_tested (proven against a real Docker dependency)."
+  },
+  "canonical_path_happy_run": {
+    "what": "One real full caldera experiment executed THROUGH scripts/run_supervised.py and completed cleanly, proving the supervised wrapper runs the real canonical experiment (not only kills synthetic children).",
+    "observed": "9/9 stages ok (materialize_caldera, verify_caldera_readiness, materialize_sut 91s, enroll_agent 39s, register_and_execute 45s, verify_effect, destroy_attacker, destroy_sut, destroy_caldera); operation finished; independent_effect_confirmed=true; realization=surrogate (honest); final_state=clean; residual=none.",
+    "supervisor_record": "release/evidence/raw/supervision/caldera_supervised1_*.json -- pid=pgid=98462 (child is a process-group leader), completed_naturally=true, exit_code=0, escalation=[] (no signal fired), duration 189.3s, residual_after_termination=[].",
+    "sealed_bundle": "release/evidence/shadowray_caldera_supervised1_20260807T112555Z-64615916 (8 files, sealed manifest).",
+    "post_run_state": "0 autosut containers, 0 networks, 0 volumes.",
+    "honest_bound": "This validates the WRAPPER on the canonical path for the NON-termination (happy) case. It does NOT validate termination end-to-end: escalation=[] means no signal/deadline breach occurred, so breach->terminate->sweep on REAL experiment stages is still exercised only by the synthetic Docker interruption test, not on a real stage. The capability level therefore stays integration_tested.",
+    "revision_caveat": "This bundle was produced on the current UNFROZEN working-tree revision (canonical src/ still untracked), so it is development evidence, not release-qualifying. It does not count toward a 5-clean-on-frozen-revision set."
+  },
+  "structured_matrix_prototype": {
+    "entrypoint": "scripts/run_interruption_matrix.py",
+    "protocol": "release/experiments/R4_INTERRUPTION_MATRIX_PROTOCOL.md",
+    "protocol_role": "historical_v1_development_protocol",
+    "successor_protocol": "release/experiments/R4_INTERRUPTION_MATRIX_PROTOCOL_V2.md",
+    "mechanism": "The driver observes an atomic marker emitted by the canonical Caldera lifecycle, then either sends SIGINT/SIGTERM to the child process group or arms the out-of-process deadline. It seals a raw bundle containing the command, marker, PID/PGID, wrapper logs, supervisor result, residual inventory, and SHA-256 manifest.",
+    "current_observations": [
+      "materialize_sut x SIGINT: the lifecycle recorded interrupted_clean with zero residual Docker resources. The child handled the external signal and exited non-zero, as expected for an interrupted run; the supervisor sweep reported empty residuals.",
+      "materialize_sut x SIGTERM: the lifecycle recorded interrupted_clean with zero residual Docker resources. The child handled the external signal and exited non-zero, as expected for an interrupted run; the supervisor sweep reported empty residuals.",
+      "materialize_sut x deadline: the deadline was armed only after the observed stage marker. The external supervisor escalated SIGTERM then SIGKILL over the child process group and its Docker namespace sweep reported zero residual resources."
+    ],
+    "classification": "raw_integration_evidence only; neither observation is claim-ready or sufficient to resolve R4",
+    "evidence_root": "release/evidence/raw/r4-interruption-matrix"
+  },
+  "remaining_work_before_R4_may_be_called_resolved": [
+    "Route the qualifying batches EXCLUSIVELY through run_supervised.py; calling an experiment script directly must not be a qualifying path.",
+    "Record a happy-path supervised full experiment run (normal completion under the supervisor, sweep empty, exit code passed through).",
+    "Implement the QEMU sweep (processes, sockets, PID files, overlays, cloud-init seeds, vars stores) with the same NamespaceSweep contract, before QEMU qualification.",
+    "Complete and freeze the current stage vocabulary, then run a predeclared structured interruption matrix across every exposed stage x {SIGINT, SIGTERM, deadline}; preserve every result, including timeouts and failures. Split combined stages only before the matrix if the scientific question requires that finer granularity.",
+    "Extend residual inventories beyond Docker before transferring any conclusion to QEMU or multi-host backends (processes, sockets, PID files, overlays, cloud-init seeds, variables stores, locks, and temporary directories).",
+    "Only then may R4 be called resolved."
+  ],
+  "legacy_status_at_capture": "termination_primitive_unit_proven AND supervised_sweep_integration_proven_on_docker AND three_real_stage_raw_observations_sealed; complete_predeclared_matrix_and_non_docker_sweeps_pending; R4_not_resolved"
+}

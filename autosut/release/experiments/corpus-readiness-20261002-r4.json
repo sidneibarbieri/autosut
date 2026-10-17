@@ -1,0 +1,947 @@
+{
+  "schema_version": "autosut-readiness-audit/v1",
+  "source_manifest_sha256": "1bbc069e163eb3d04743e4a544817ddf18d51ac0af605102cac8b2e859899439",
+  "scope": "Windows is a counterfactual platform availability scenario. Platform reach does not establish resource provisioning, procedure admission, execution, or effect.",
+  "summary": {
+    "current_docker_covered_campaigns": 13,
+    "current_docker_uncovered_requirements": 226,
+    "current_docker_without_nonplatform_requirements": 2,
+    "docker_plus_windows_covered_campaigns": 47,
+    "docker_plus_windows_uncovered_requirements": 25,
+    "docker_plus_windows_without_nonplatform_requirements": 11,
+    "campaigns": 55,
+    "blueprints_generated": 13,
+    "materialized_in_corpus_batch": 0,
+    "executed_in_corpus_batch": 0,
+    "campaigns_with_unverified_nonplatform_requirements": 43,
+    "campaigns_with_declared_execution_contracts": 3
+  },
+  "records": [
+    {
+      "campaign_id": "C0001",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1127.001.platform",
+        "T1221.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1005.data.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0002",
+      "current_docker_uncovered": [
+        "T1059.003.platform",
+        "T1112.platform",
+        "T1003.002.platform",
+        "T1550.002.platform",
+        "T1114.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1105.network.1",
+        "T1568.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0004",
+      "current_docker_uncovered": [
+        "T1053.005.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1005.data.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0005",
+      "current_docker_uncovered": [
+        "T1218.011.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1568.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0006",
+      "current_docker_uncovered": [
+        "T1059.003.platform",
+        "T1569.002.platform",
+        "T1574.011.platform",
+        "T1112.platform",
+        "T1543.003.platform",
+        "T1548.002.platform",
+        "T1553.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1005.data.1",
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0007",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1059.003.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0010",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1189.service.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": true,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0011",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0012",
+      "current_docker_uncovered": [
+        "T1053.005.platform",
+        "T1059.003.platform",
+        "T1574.001.platform",
+        "T1543.003.platform",
+        "T1003.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1560.001.utility.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0013",
+      "current_docker_uncovered": [
+        "T1559.002.platform",
+        "T1547.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0014",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1569.002.platform",
+        "T1112.platform",
+        "T1685.005.platform",
+        "T1686.003.platform",
+        "T1003.001.platform",
+        "T1003.006.platform",
+        "T1558.003.platform",
+        "T1012.platform",
+        "T1021.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0015",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1059.003.platform",
+        "T1055.001.platform",
+        "T1218.005.platform",
+        "T1218.010.platform",
+        "T1218.011.platform",
+        "T1553.002.platform",
+        "T1482.platform",
+        "T1021.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1005.data.1",
+        "T1105.network.1",
+        "T1030.storage.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0016",
+      "current_docker_uncovered": [
+        "T1218.005.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1189.service.1",
+        "T1568.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0017",
+      "current_docker_uncovered": [
+        "T1053.005.platform",
+        "T1059.003.platform",
+        "T1134.platform",
+        "T1003.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0018",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1059.001.platform",
+        "T1218.011.platform",
+        "T1021.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0021",
+      "current_docker_uncovered": [
+        "T1059.001.platform",
+        "T1218.011.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0022",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1505.004.platform",
+        "T1547.001.platform",
+        "T1218.010.platform",
+        "T1218.011.platform",
+        "T1220.platform",
+        "T1221.platform",
+        "T1553.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1005.data.1",
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0023",
+      "current_docker_uncovered": [
+        "T1546.003.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0024",
+      "current_docker_uncovered": [
+        "T1078.004.platform",
+        "T1047.platform",
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1098.001.platform",
+        "T1098.002.platform",
+        "T1098.003.platform",
+        "T1098.005.platform",
+        "T1546.003.platform",
+        "T1484.002.platform",
+        "T1218.011.platform",
+        "T1553.002.platform",
+        "T1685.001.platform",
+        "T1003.006.platform",
+        "T1558.003.platform",
+        "T1606.002.platform",
+        "T1482.platform",
+        "T1021.001.platform",
+        "T1021.002.platform",
+        "T1021.006.platform",
+        "T1550.001.platform",
+        "T1550.004.platform",
+        "T1114.002.platform",
+        "T1213.003.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1078.004.platform",
+        "T1098.001.platform",
+        "T1098.003.platform",
+        "T1550.001.platform",
+        "T1550.004.platform",
+        "T1213.003.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1560.001.utility.1",
+        "T1105.network.1",
+        "T1568.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0025",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1543.003.platform",
+        "T1685.001.platform",
+        "T1003.001.platform",
+        "T1021.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0026",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1005.data.1",
+        "T1560.001.utility.1",
+        "T1105.network.1",
+        "T1568.service.1",
+        "T1030.storage.1"
+      ],
+      "declared_execution_contract": true,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0027",
+      "current_docker_uncovered": [
+        "T1078.004.platform",
+        "T1047.platform",
+        "T1098.001.platform",
+        "T1098.003.platform",
+        "T1098.005.platform",
+        "T1578.002.platform",
+        "T1003.006.platform",
+        "T1069.003.platform",
+        "T1087.003.platform",
+        "T1087.004.platform",
+        "T1021.007.platform",
+        "T1213.002.platform",
+        "T1530.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1078.004.platform",
+        "T1098.001.platform",
+        "T1098.003.platform",
+        "T1578.002.platform",
+        "T1069.003.platform",
+        "T1087.004.platform",
+        "T1021.007.platform",
+        "T1530.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0028",
+      "current_docker_uncovered": [
+        "T1112.platform",
+        "T1218.011.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0029",
+      "current_docker_uncovered": [
+        "T1003.001.platform",
+        "T1003.003.platform",
+        "T1021.001.platform",
+        "T1021.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0030",
+      "current_docker_uncovered": [
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1003.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0032",
+      "current_docker_uncovered": [
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1546.012.platform",
+        "T1003.001.platform",
+        "T1021.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0034",
+      "current_docker_uncovered": [
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1484.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0035",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0036",
+      "current_docker_uncovered": [
+        "T1059.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0037",
+      "current_docker_uncovered": [
+        "T1059.003.platform",
+        "T1218.011.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0038",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1098.002.platform",
+        "T1134.001.platform",
+        "T1685.001.platform",
+        "T1003.001.platform",
+        "T1087.003.platform",
+        "T1021.001.platform",
+        "T1021.002.platform",
+        "T1114.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0039",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0040",
+      "current_docker_uncovered": [
+        "T1569.002.platform",
+        "T1574.001.platform",
+        "T1543.003.platform",
+        "T1553.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0041",
+      "current_docker_uncovered": [
+        "T1003.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0042",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0043",
+      "current_docker_uncovered": [
+        "T1599.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1599.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1568.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0044",
+      "current_docker_uncovered": [
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1555.004.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0045",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": true,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0046",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0047",
+      "current_docker_uncovered": [
+        "T1059.001.platform",
+        "T1574.001.platform",
+        "T1547.001.platform",
+        "T1218.007.platform",
+        "T1218.014.platform",
+        "T1553.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0048",
+      "current_docker_uncovered": [
+        "T1003.003.platform",
+        "T1021.002.platform",
+        "T1021.006.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0049",
+      "current_docker_uncovered": [
+        "T1528.platform",
+        "T1558.003.platform",
+        "T1482.platform",
+        "T1615.platform",
+        "T1021.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1528.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0050",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0051",
+      "current_docker_uncovered": [
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1006.platform",
+        "T1686.003.platform",
+        "T1003.002.platform",
+        "T1003.003.platform",
+        "T1021.001.platform",
+        "T1021.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1560.001.utility.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0052",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0053",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0055",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0056",
+      "current_docker_uncovered": [
+        "T1059.008.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1059.008.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0057",
+      "current_docker_uncovered": [
+        "T1574.001.platform",
+        "T1543.004.platform",
+        "T1055.002.platform",
+        "T1218.007.platform",
+        "T1553.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1543.004.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1189.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0058",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1053.005.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1569.002.platform",
+        "T1112.platform",
+        "T1505.004.platform",
+        "T1484.001.platform",
+        "T1003.001.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0059",
+      "current_docker_uncovered": [
+        "T1671.platform",
+        "T1213.004.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1671.platform",
+        "T1213.004.platform"
+      ],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0060",
+      "current_docker_uncovered": [
+        "T1047.platform",
+        "T1059.001.platform",
+        "T1059.003.platform",
+        "T1127.001.platform",
+        "T1137.001.platform",
+        "T1553.002.platform",
+        "T1685.005.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0061",
+      "current_docker_uncovered": [
+        "T1059.003.platform",
+        "T1569.002.platform",
+        "T1543.003.platform",
+        "T1003.001.platform",
+        "T1003.002.platform",
+        "T1021.001.platform",
+        "T1550.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0062",
+      "current_docker_uncovered": [],
+      "docker_plus_windows_uncovered": [],
+      "nonplatform_requirement_ids": [
+        "T1190.service.1",
+        "T1005.data.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    },
+    {
+      "campaign_id": "C0063",
+      "current_docker_uncovered": [
+        "T1078.004.platform",
+        "T1059.003.platform",
+        "T1059.008.platform",
+        "T1484.001.platform",
+        "T1006.platform",
+        "T1686.002.platform",
+        "T1003.001.platform",
+        "T1003.002.platform",
+        "T1003.003.platform",
+        "T1021.001.platform",
+        "T1550.002.platform",
+        "T1114.002.platform",
+        "T1530.platform",
+        "T1602.002.platform"
+      ],
+      "docker_plus_windows_uncovered": [
+        "T1078.004.platform",
+        "T1059.008.platform",
+        "T1686.002.platform",
+        "T1530.platform",
+        "T1602.002.platform"
+      ],
+      "nonplatform_requirement_ids": [
+        "T1560.001.utility.1",
+        "T1105.network.1"
+      ],
+      "declared_execution_contract": false,
+      "materialized_in_corpus_batch": false,
+      "executed_in_corpus_batch": false
+    }
+  ]
+}

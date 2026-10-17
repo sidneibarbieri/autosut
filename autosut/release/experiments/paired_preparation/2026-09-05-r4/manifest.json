@@ -1,0 +1,309 @@
+{
+  "run_id": "paired-preparation-2026-09-05-r4",
+  "created_at": "2026-09-05T13:04:41.244678+00:00",
+  "sealed_at": "2026-09-05T13:04:41.246702+00:00",
+  "file_count": 60,
+  "total_bytes": 413491,
+  "files": [
+    {
+      "path": "0.apt41_dust/campaign-source.json",
+      "sha256": "e5ed49bd434619ff09bcae09431442a90e87852447968c57e25471c1db918e13",
+      "bytes": 7089
+    },
+    {
+      "path": "0.apt41_dust/campaign.json",
+      "sha256": "e5bd5cc2dd46063db44a5c491bd4b6b9512a53359ee7b23505923c992579feff",
+      "bytes": 7186
+    },
+    {
+      "path": "0.apt41_dust/pair.json",
+      "sha256": "187349c296a81ffbef199ffcafbc93e8a6bec2b13ad4f8783f9917398c9cf0aa",
+      "bytes": 963
+    },
+    {
+      "path": "0.apt41_dust/procedural-plan.json",
+      "sha256": "0ff1c8a5dc160d105ca38c5fcb7dc8e734d4f3f9f4763b44bb7c94c6e73375d2",
+      "bytes": 17736
+    },
+    {
+      "path": "0.apt41_dust/sut-constraints.json",
+      "sha256": "a22acd24a5aff62eededa29b28822d13e278fe03a9b31d6cf2ca7a47683018f9",
+      "bytes": 7079
+    },
+    {
+      "path": "0.c0010/action_templates.json",
+      "sha256": "c01294718f57c9f1f75edcfa673b5e92de4ef5bca9600e2a34eb3eec334ecdfd",
+      "bytes": 18711
+    },
+    {
+      "path": "0.c0010/binding-catalog.json",
+      "sha256": "523a00170353ca7c1926bf9d7c4f912642111e44388e050dc0b79df262b65d16",
+      "bytes": 4940
+    },
+    {
+      "path": "0.c0010/campaign-source.json",
+      "sha256": "2f4d01cbbfca2a7f361092f6b7a1e529b458c6a892eee750b217c0c0ddd54a0a",
+      "bytes": 7371
+    },
+    {
+      "path": "0.c0010/campaign.json",
+      "sha256": "dea5fe0fbbf2da633e768e4e73ba4e0671cb96e51b0909ed8e05f7c798a4f58b",
+      "bytes": 8409
+    },
+    {
+      "path": "0.c0010/compiler-receipt.json",
+      "sha256": "30d70b304a06ffd1d7c4da4b6e22bedb31ddb8bc163f8234935f55cddf0b90ba",
+      "bytes": 188
+    },
+    {
+      "path": "0.c0010/concretized-plan.json",
+      "sha256": "3097c4a36bf1d3d26fd639ac0118a5b6d119e75c3403c7d238243a170e068e79",
+      "bytes": 26156
+    },
+    {
+      "path": "0.c0010/executable-contract.json",
+      "sha256": "cd2732366f251836cd95a4195ad5cccc0736dafbe3a223dac2fc9aef777806ef",
+      "bytes": 5911
+    },
+    {
+      "path": "0.c0010/pair.json",
+      "sha256": "6f8df80f47d14e220bc8088a360d53fe64cca9b5dcde2632c6867a7dda58aedb",
+      "bytes": 1279
+    },
+    {
+      "path": "0.c0010/procedural-plan.json",
+      "sha256": "5e5f89df1cbb0514fadd13751ce2fca178ff8280f3443713a330e54b41fc3bf9",
+      "bytes": 7497
+    },
+    {
+      "path": "0.c0010/sut-blueprint.json",
+      "sha256": "8af689f8df0f6962cee15d6f04612a4e2585c3d003c4816e5784ee471f32c6a6",
+      "bytes": 2205
+    },
+    {
+      "path": "0.c0010/sut-constraints.json",
+      "sha256": "a43e70152cbdeb4b94162b71d8e1d3864acae3be40862e946113fe7bd0a1bf3d",
+      "bytes": 1827
+    },
+    {
+      "path": "0.c0026/action_templates.json",
+      "sha256": "c01294718f57c9f1f75edcfa673b5e92de4ef5bca9600e2a34eb3eec334ecdfd",
+      "bytes": 18711
+    },
+    {
+      "path": "0.c0026/binding-catalog.json",
+      "sha256": "4986062f2a7725a209660bb068a70cc139d451c4659d3e9ef567c08bdeda2652",
+      "bytes": 4941
+    },
+    {
+      "path": "0.c0026/campaign-source.json",
+      "sha256": "a2bd156de68f2e4df8b7bf4934dfa0da183242ef5d76ebcc635d4c8080bbb3cd",
+      "bytes": 5159
+    },
+    {
+      "path": "0.c0026/campaign.json",
+      "sha256": "9e67c1e50a3455f9faf8355a918df20f6021b62380ce0deb8c04764033ad2285",
+      "bytes": 5857
+    },
+    {
+      "path": "0.c0026/compiler-receipt.json",
+      "sha256": "30d70b304a06ffd1d7c4da4b6e22bedb31ddb8bc163f8234935f55cddf0b90ba",
+      "bytes": 188
+    },
+    {
+      "path": "0.c0026/concretized-plan.json",
+      "sha256": "136c37154f17094511ddd665486b93e824005b9594d7849660581b3086530f31",
+      "bytes": 23484
+    },
+    {
+      "path": "0.c0026/executable-contract.json",
+      "sha256": "c6414ccbb28287e8ec330ff95e35b0f130b0ae24b70347b4a25f3cc0336c497f",
+      "bytes": 4402
+    },
+    {
+      "path": "0.c0026/pair.json",
+      "sha256": "57b88f8f80c3b4a05b7c2757ab8cec4359144da78c8f04a7b1f69c01be24a381",
+      "bytes": 1279
+    },
+    {
+      "path": "0.c0026/procedural-plan.json",
+      "sha256": "266fc0110885a21c836647d2b86354421007c5f808db4e00b93673948b954634",
+      "bytes": 5574
+    },
+    {
+      "path": "0.c0026/sut-blueprint.json",
+      "sha256": "f2eb78fab040794c4b294e736fb8b2592aea88b0177c31373e6c11563cc411aa",
+      "bytes": 4323
+    },
+    {
+      "path": "0.c0026/sut-constraints.json",
+      "sha256": "e201e4901828e69c03d60b7c36f4b8d29f52162906948e1109441250fa6c806c",
+      "bytes": 3781
+    },
+    {
+      "path": "0.costaricto/campaign-source.json",
+      "sha256": "056371bd8ae0fb775cd5e7cac7e71fc59e8f10307f2607357b1a2d1b76b5428b",
+      "bytes": 3820
+    },
+    {
+      "path": "0.costaricto/campaign.json",
+      "sha256": "66b8389caa643fcd09377cbfcaffd6c63b58fea0a99d353eaeae8ad1a467883c",
+      "bytes": 3907
+    },
+    {
+      "path": "0.costaricto/pair.json",
+      "sha256": "99fdeccec0d5754e14aeab089e0d5c1a17747b0ab6ba7e19fb40653ec1967bf9",
+      "bytes": 785
+    },
+    {
+      "path": "0.costaricto/procedural-plan.json",
+      "sha256": "7e55adc432d317d0008777a8f68cb63a909a49aa779481ef141683f2c8507eb6",
+      "bytes": 8507
+    },
+    {
+      "path": "0.costaricto/sut-constraints.json",
+      "sha256": "103e2b23d11c54d920e2397826e1adb189616d37e7a9042180080227d23c6dca",
+      "bytes": 3663
+    },
+    {
+      "path": "0.operation_midnighteclipse/campaign-source.json",
+      "sha256": "dbd35fcf1d1dd3251e27e33f20098465183ed1de3d901ab346c4b760651a9a50",
+      "bytes": 5655
+    },
+    {
+      "path": "0.operation_midnighteclipse/campaign.json",
+      "sha256": "7b31936f1c74ab1224cf215b1b5003b80dea235c495974a3ecb8aae461eca179",
+      "bytes": 5842
+    },
+    {
+      "path": "0.operation_midnighteclipse/pair.json",
+      "sha256": "9f97a0f74cc08d8cde0db69517deaac21e5cd9961dc571295987831decf658f0",
+      "bytes": 752
+    },
+    {
+      "path": "0.operation_midnighteclipse/procedural-plan.json",
+      "sha256": "0f161420bb124e96dad3358b09795ab21a7b18a62cc28c8e35b54513b98d331e",
+      "bytes": 14024
+    },
+    {
+      "path": "0.operation_midnighteclipse/sut-constraints.json",
+      "sha256": "569fdb4c2ba2ee935e4cbb0500510daf9ff4e33e0a76ce7c681e95f811fcf959",
+      "bytes": 6337
+    },
+    {
+      "path": "0.outer_space/campaign-source.json",
+      "sha256": "bdb5c4c78bf00e838f7d8fc6d02ae04880dc58dd8a1ebcb90b438413f4abbc45",
+      "bytes": 3174
+    },
+    {
+      "path": "0.outer_space/campaign.json",
+      "sha256": "9a11d495a3e4d25100ff0628459f3df465c996cd3f9a99a8df0c955df11e0136",
+      "bytes": 3261
+    },
+    {
+      "path": "0.outer_space/pair.json",
+      "sha256": "1212b9c006bfa033c23698cf87c4e6fd750bd4e9cc228053440ad5fade827e89",
+      "bytes": 677
+    },
+    {
+      "path": "0.outer_space/procedural-plan.json",
+      "sha256": "5f8c777852bc6b266d31297c50266e6a4463ade7313f827bc8d868eb57fc2026",
+      "bytes": 6942
+    },
+    {
+      "path": "0.outer_space/sut-constraints.json",
+      "sha256": "2b9825de58f6ef97cc8b3d6961f68e76fc91260ac01b0144229377e18eab58fc",
+      "bytes": 2479
+    },
+    {
+      "path": "0.salesforce_data_exfiltration/campaign-source.json",
+      "sha256": "c5ffee97939c7c64390094703e7e31730b4e5b81b258c860239ef69b991e0a4b",
+      "bytes": 6036
+    },
+    {
+      "path": "0.salesforce_data_exfiltration/campaign.json",
+      "sha256": "9f219f1530bd90cef1f5fb1de1f17d1ea279452bc0a119ba571dfcdaa2baebe3",
+      "bytes": 6150
+    },
+    {
+      "path": "0.salesforce_data_exfiltration/pair.json",
+      "sha256": "8a99ff4c5f60bc75b0f82e69ea718e540d460e98814ceeebb230d802c31fe065",
+      "bytes": 734
+    },
+    {
+      "path": "0.salesforce_data_exfiltration/procedural-plan.json",
+      "sha256": "a4c74c5893b8330b3ef3c2aa4f585c74a49197d0f746eb0c81d36a0322c2d411",
+      "bytes": 15378
+    },
+    {
+      "path": "0.salesforce_data_exfiltration/sut-constraints.json",
+      "sha256": "00cf2c723ba63addfd8c89c66ef2937dc6f62100291e61958ef017a05796e04d",
+      "bytes": 4301
+    },
+    {
+      "path": "0.shadowray/action_templates.json",
+      "sha256": "c01294718f57c9f1f75edcfa673b5e92de4ef5bca9600e2a34eb3eec334ecdfd",
+      "bytes": 18711
+    },
+    {
+      "path": "0.shadowray/binding-catalog.json",
+      "sha256": "985ce356c1b0a8a565a63e7f7456b51ef77f389cac84355ef0b70eb344c75a93",
+      "bytes": 4981
+    },
+    {
+      "path": "0.shadowray/campaign-source.json",
+      "sha256": "4b8183057890e432d2941e6005a30970ab8039fe1cc9f81d02c32d70a9f3897e",
+      "bytes": 9356
+    },
+    {
+      "path": "0.shadowray/campaign.json",
+      "sha256": "2996e94906c482bb7171a6247125e9c8ed7cb956b24a16230fcdd991006a8d5b",
+      "bytes": 10256
+    },
+    {
+      "path": "0.shadowray/compiler-receipt.json",
+      "sha256": "30d70b304a06ffd1d7c4da4b6e22bedb31ddb8bc163f8234935f55cddf0b90ba",
+      "bytes": 188
+    },
+    {
+      "path": "0.shadowray/concretized-plan.json",
+      "sha256": "b545e1467ba9073064af628bfe5c537f976e8d00d635c482fad09dc114506d97",
+      "bytes": 29950
+    },
+    {
+      "path": "0.shadowray/executable-contract.json",
+      "sha256": "52506e781f4fb753ea51541b1c72877620a4cdca5c65cee46f04b4a5111395ce",
+      "bytes": 6880
+    },
+    {
+      "path": "0.shadowray/pair.json",
+      "sha256": "c89d6d076666bc71f48855274e94a6ae2f9d35f5883cae2d3a913d71b6b906ef",
+      "bytes": 1285
+    },
+    {
+      "path": "0.shadowray/procedural-plan.json",
+      "sha256": "e7da23920e33180b804d790bf9613bb0e3df7ea8f98e6c3a1b0e0f4a54071c3f",
+      "bytes": 8425
+    },
+    {
+      "path": "0.shadowray/sut-blueprint.json",
+      "sha256": "9c3de73ff7e43dd8a4071fba526622012281264e0ed32ebf662d110035ef71e2",
+      "bytes": 4749
+    },
+    {
+      "path": "0.shadowray/sut-constraints.json",
+      "sha256": "641245c7601e97e61ab4f4e01f2add0cd1b6e8cfc4b1960891fbcc151869f51f",
+      "bytes": 4169
+    },
+    {
+      "path": "README.md",
+      "sha256": "c51144bab07f4bac2fd36c5f5bf468287c1694894b8303ecdb1bdeac1f260866",
+      "bytes": 701
+    },
+    {
+      "path": "matrix.json",
+      "sha256": "6c7f6a29f11f8c13039062433da607499b2e8797195e36c605cea01642570188",
+      "bytes": 9170
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "campaign_id": "C0045",
+  "model": "gpt-oss:20b",
+  "sample": 3,
+  "temperature": 0.7,
+  "platform": "Linux",
+  "services": [
+    {
+      "host_role": "public-service",
+      "product": "Apache httpd",
+      "version": "2.4.59",
+      "port": "80",
+      "exposure": "internet-facing"
+    },
+    {
+      "host_role": "attacker",
+      "product": "OpenSSH Server",
+      "version": "8.9p1",
+      "port": "22",
+      "exposure": "internal-only"
+    }
+  ]
+}

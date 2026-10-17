@@ -1,0 +1,44 @@
+{
+  "observed": "2026-08-12",
+  "command": "python -m pytest tests/ -q -rs",
+  "suite_total": 417,
+  "passed": 413,
+  "skipped": 4,
+  "unexpected_skips": 0,
+  "qualification_critical_skips": 0,
+  "skips": [
+    {
+      "test": "tests/test_lifecycle_signal_integration.py:35",
+      "reason": "opt-in Docker integration test; set AUTOSUT_DOCKER_INTEGRATION=1 to run",
+      "classification": "opt_in_integration",
+      "qualification_blocking": false
+    },
+    {
+      "test": "tests/test_subdetermination.py:243",
+      "reason": "set AUTOSUT_RUN_DOCKER_TESTS=1 with Docker running",
+      "classification": "opt_in_integration",
+      "qualification_blocking": false
+    },
+    {
+      "test": "tests/test_supervised_docker_sweep.py:46",
+      "reason": "set AUTOSUT_DOCKER_INTEGRATION=1 with a reachable docker daemon to run",
+      "classification": "opt_in_integration",
+      "qualification_blocking": false
+    },
+    {
+      "test": "tests/test_supervised_docker_sweep.py:63",
+      "reason": "set AUTOSUT_DOCKER_INTEGRATION=1 with a reachable docker daemon to run",
+      "classification": "opt_in_integration",
+      "qualification_blocking": false
+    }
+  ],
+  "verification": {
+    "opt_in_enabled_command": "AUTOSUT_DOCKER_INTEGRATION=1 AUTOSUT_RUN_DOCKER_TESTS=1 python -m pytest tests/test_lifecycle_signal_integration.py tests/test_subdetermination.py tests/test_supervised_docker_sweep.py -q",
+    "result": "21 passed in 129.41s",
+    "meaning": "The four default-skipped tests are opt-in Docker integration tests, not hidden failures: they pass when Docker is available and the opt-in flag is set. They are gated so the default suite needs no Docker daemon."
+  },
+  "policy": {
+    "development": "The four opt-in integration skips are acceptable when Docker is unavailable.",
+    "qualification": "A qualification run must enable the opt-in flags so every integration gate executes; a skip caused by an unavailable in-scope backend is then a blocker, not an acceptable skip."
+  }
+}

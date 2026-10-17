@@ -1,5 +1,0 @@
-docker stop autosut-743e25fa7d
-exit_code: 0
-stdout: autosut-743e25fa7d
-
-stderr: 

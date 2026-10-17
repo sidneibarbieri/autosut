@@ -25,6 +25,16 @@ HOSTNAME_VM_ALIAS = {
 
 CONTROL_PLANE_VMS = {"attacker", "caldera"}
 
+# `vagrant ssh -c` exits 0 for some multi-machine Vagrantfiles even when the named
+# machine was never booted; it prints this state warning instead of running the
+# command. Trusting the exit code alone would report the remote script as having
+# succeeded when it never ran.
+VAGRANT_INSTANCE_UNAVAILABLE_MARKERS = ("Instance is not created", "is not running")
+
+
+class VagrantInstanceUnavailableError(RuntimeError):
+    """The target Vagrant machine did not run the requested command."""
+
 
 def detect_vagrant_provider() -> str:
     """Resolve the active Vagrant provider for the current host or orchestration env."""
@@ -94,7 +104,7 @@ def run_command_in_vm(
     if not vm_dir.exists():
         raise FileNotFoundError(f"Vagrant directory not found for VM: {vm_dir}")
 
-    return subprocess.run(
+    result = subprocess.run(
         ["vagrant", "ssh", "-c", remote_cmd],
         cwd=vm_dir,
         capture_output=True,
@@ -102,6 +112,14 @@ def run_command_in_vm(
         timeout=timeout,
         env=build_vagrant_env(provider),
     )
+    transcript = result.stdout + result.stderr
+    if any(marker in transcript for marker in VAGRANT_INSTANCE_UNAVAILABLE_MARKERS):
+        raise VagrantInstanceUnavailableError(
+            f"vagrant ssh reported '{vm_name}' as unavailable instead of running the "
+            f"command; exit code {result.returncode} is not evidence of execution: "
+            f"{transcript.strip()[:300]}"
+        )
+    return result
 
 
 def detect_lab_infrastructure(sut_profile_id: str) -> str:

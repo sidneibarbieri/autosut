@@ -1,0 +1,6 @@
+$ test "$(head -n 1 /tmp/T1068.out)" = "$(id)" && grep -qx NO_LOCAL_EXPLOIT_EXECUTED /tmp/T1068.out
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

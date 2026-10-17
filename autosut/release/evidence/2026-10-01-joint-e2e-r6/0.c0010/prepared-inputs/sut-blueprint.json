@@ -1,0 +1,88 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0010",
+  "source_constraint_sha256": "983c7fd8fef4d0b0968d44c9933437d0cc9eecf6181ea34658ca8653e18b9f6b",
+  "synthesis_policy": "one_minimal_host_per_selected_platform",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1105.network.1",
+        "T1105.platform",
+        "T1189.platform",
+        "T1189.service.1"
+      ]
+    }
+  ],
+  "network_policy": {
+    "host_network_access": false,
+    "internet_egress": false,
+    "lab_private_network": true
+  },
+  "concretized_requirements": [
+    {
+      "requirement_id": "T1189.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Identity Provider"
+      ],
+      "technique_ids": [
+        "T1189"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1189.service.1",
+      "kind": "service",
+      "acceptable_values": [
+        "private-lab-http-target"
+      ],
+      "technique_ids": [
+        "T1189"
+      ],
+      "source": "curated_rule",
+      "rationale": "The controlled drive-by witness requires a reachable lab web target."
+    },
+    {
+      "requirement_id": "T1105.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1105"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1105.network.1",
+      "kind": "network",
+      "acceptable_values": [
+        "controlled-ingress-channel"
+      ],
+      "technique_ids": [
+        "T1105"
+      ],
+      "source": "curated_rule",
+      "rationale": "Ingress transfer requires a bounded source-to-target channel."
+    }
+  ],
+  "content_sha256": "3f4dc92293ad150959997cbe248a995fb9b851459895b8b5609292b4b9c633b1"
+}

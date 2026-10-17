@@ -1,0 +1,175 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0026",
+  "source_constraint_sha256": "095c034c1f00c9f4f5de6002539feb7c7ef05daa9e03c0c0332de43894fc636d",
+  "synthesis_policy": "one_minimal_host_per_selected_platform",
+  "hosts": [
+    {
+      "host_id": "target-1",
+      "role": "target",
+      "platform": "Linux",
+      "recipe": {
+        "backend": "docker",
+        "base_image": "python:3.11-slim",
+        "memory_mb": 4096,
+        "cpu_count": 2
+      },
+      "requirement_ids": [
+        "T1005.data.1",
+        "T1005.platform",
+        "T1030.platform",
+        "T1030.storage.1",
+        "T1105.network.1",
+        "T1105.platform",
+        "T1560.001.platform",
+        "T1560.001.utility.1",
+        "T1568.platform",
+        "T1568.service.1"
+      ]
+    }
+  ],
+  "network_policy": {
+    "host_network_access": false,
+    "internet_egress": false,
+    "lab_private_network": true
+  },
+  "concretized_requirements": [
+    {
+      "requirement_id": "T1005.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1005"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1005.data.1",
+      "kind": "data",
+      "acceptable_values": [
+        "declared-decoy-data"
+      ],
+      "technique_ids": [
+        "T1005"
+      ],
+      "source": "curated_rule",
+      "rationale": "Local collection requires a predeclared non-sensitive data target."
+    },
+    {
+      "requirement_id": "T1560.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "technique_ids": [
+        "T1560.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1560.001.utility.1",
+      "kind": "utility",
+      "acceptable_values": [
+        "local-archive-utility"
+      ],
+      "technique_ids": [
+        "T1560.001"
+      ],
+      "source": "curated_rule",
+      "rationale": "Archive creation requires a declared local utility."
+    },
+    {
+      "requirement_id": "T1105.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1105"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1105.network.1",
+      "kind": "network",
+      "acceptable_values": [
+        "controlled-ingress-channel"
+      ],
+      "technique_ids": [
+        "T1105"
+      ],
+      "source": "curated_rule",
+      "rationale": "Ingress transfer requires a bounded source-to-target channel."
+    },
+    {
+      "requirement_id": "T1568.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1568"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1568.service.1",
+      "kind": "service",
+      "acceptable_values": [
+        "private-lab-resolver"
+      ],
+      "technique_ids": [
+        "T1568"
+      ],
+      "source": "curated_rule",
+      "rationale": "Dynamic resolution requires a declared resolver with no external DNS dependency."
+    },
+    {
+      "requirement_id": "T1030.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1030"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1030.storage.1",
+      "kind": "storage",
+      "acceptable_values": [
+        "bounded-local-chunk-store"
+      ],
+      "technique_ids": [
+        "T1030"
+      ],
+      "source": "curated_rule",
+      "rationale": "Chunking requires a local destination that cannot exfiltrate data."
+    }
+  ],
+  "content_sha256": "7c3c31f1016ab8bd32256b217cb18d7e70a7b0f30ba5ab1f8919de9c9b4b00d3"
+}

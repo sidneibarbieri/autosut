@@ -21,6 +21,49 @@ def _load_module():
     return module
 
 
+def test_declared_weakness_does_not_grant_actor_access(monkeypatch, tmp_path):
+    module = _load_module()
+    monkeypatch.setattr(module, "bootstrap_campaign_executors", lambda campaign_id: None)
+    profile = SimpleNamespace(hosts={"target": SimpleNamespace(
+        deliberate_weaknesses=[SimpleNamespace(weakness_type="weak_credentials")],
+        services=[SimpleNamespace(name="ssh")],
+    )})
+    monkeypatch.setattr(module, "load_sut_profile", lambda profile_id: profile)
+    runner = module.UnifiedCampaignRunner("0.shadowray", tmp_path)
+    assert "access:initial" not in runner.accumulated_capabilities
+    assert "code_execution" not in runner.accumulated_capabilities
+
+
+def test_invalid_pair_stops_before_infrastructure_probe(monkeypatch, tmp_path):
+    module = _load_module()
+    monkeypatch.setattr(module, "bootstrap_campaign_executors", lambda campaign_id: None)
+    runner = module.UnifiedCampaignRunner("0.shadowray", tmp_path)
+    monkeypatch.setattr(module, "validate_campaign_sut_pair", lambda campaign_id: "mismatch")
+
+    def unexpected_probe(*args):
+        pytest.fail("invalid pair must not reach infrastructure")
+
+    monkeypatch.setattr(module, "detect_lab_infrastructure", unexpected_probe)
+    with pytest.raises(ValueError, match="Campaign/SUT validation failed: mismatch"):
+        runner.run()
+
+
+def test_required_delta_without_infrastructure_blocks_execution(monkeypatch, tmp_path):
+    module = _load_module()
+    monkeypatch.setattr(module, "bootstrap_campaign_executors", lambda campaign_id: None)
+    runner = module.UnifiedCampaignRunner("0.shadowray", tmp_path)
+    runner._infrastructure_provider = ""
+
+    def unexpected_execution(**kwargs):
+        pytest.fail("unapplied environment requirements must block execution")
+
+    monkeypatch.setattr(module, "execute_technique", unexpected_execution)
+    result = runner._execute_step(runner.campaign.steps[0])
+    assert result.status == "failed"
+    assert result.capabilities_produced == []
+    assert result.sut_adjustment_errors == ["No lab infrastructure detected"]
+
+
 def test_execute_step_records_step_conditioned_sut_delta(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:

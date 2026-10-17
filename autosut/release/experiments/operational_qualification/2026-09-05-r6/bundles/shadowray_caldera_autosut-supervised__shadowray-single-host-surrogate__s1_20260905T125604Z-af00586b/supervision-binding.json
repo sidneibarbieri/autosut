@@ -1,0 +1,9 @@
+{
+  "schema_version": "autosut-supervision-binding/v1",
+  "supervision_id": "3c4ecd50c6e943ac94c46f87635470d3",
+  "experiment": "caldera",
+  "entrypoint": "run_caldera_experiment.py",
+  "run_id": "shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "receipt_relative_path": "release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__shadowray-single-host-surrogate__s1.json",
+  "created_at": "2026-09-05T12:56:04.337278+00:00"
+}

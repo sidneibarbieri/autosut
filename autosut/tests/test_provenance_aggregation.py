@@ -4,7 +4,7 @@ These verify the pure tally contract of ``orchestrator.provenance``: given a
 SUTProfile whose elements carry deliberate ProvenanceSource tags, the summary
 counts them by source and by dimension, computes percentages, flattens them
 into a stable per-element audit list, merges across campaigns, and exports a
-dimension x source support matrix. No live run, no Docker — pure data.
+dimension x source support matrix. No live run, no Docker - pure data.
 """
 
 from __future__ import annotations
@@ -99,7 +99,7 @@ def test_by_dimension_breakdown():
 
     assert set(summary.by_dimension) == set(DIMENSIONS)
     # Both hosts' base images map to the linux OS family (ATT&CK platform),
-    # which is definitional corpus evidence — derived, not analyst-tagged.
+    # which is definitional corpus evidence - derived, not analyst-tagged.
     assert summary.by_dimension["platform"]["corpus_supported"] == 2
     assert summary.by_dimension["software"]["corpus_supported"] == 1
     assert summary.by_dimension["credentials"]["analyst_authored"] == 1

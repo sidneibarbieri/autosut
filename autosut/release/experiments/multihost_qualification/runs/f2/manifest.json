@@ -1,0 +1,29 @@
+{
+  "run_id": "multihost_caldera_f2_20260806T230804Z-1ee582a4",
+  "created_at": "2026-08-06T23:08:04.634756+00:00",
+  "sealed_at": "2026-08-06T23:11:03.575570+00:00",
+  "file_count": 4,
+  "total_bytes": 5462,
+  "files": [
+    {
+      "path": "experiment.json",
+      "sha256": "3da46a84ad3bcafa6d29c417145a72d8312c65838d138a0200c4157dc3eb727c",
+      "bytes": 2187
+    },
+    {
+      "path": "lifecycle-result.json",
+      "sha256": "1a84627e6fb0b5e956229c43d79f625dc7eea3274ba1aa0dcaee6a5e58f9f793",
+      "bytes": 1815
+    },
+    {
+      "path": "stage-timings.json",
+      "sha256": "2a37c033f0d6047e535817ec89ef00e5cde60f66cc7a8c20de2a13972d16c1c7",
+      "bytes": 1284
+    },
+    {
+      "path": "verify-clean.json",
+      "sha256": "d5cab936410193c3b3627e63acac61ba29272c79667e0ec8d4bb74def56691ba",
+      "bytes": 176
+    }
+  ]
+}

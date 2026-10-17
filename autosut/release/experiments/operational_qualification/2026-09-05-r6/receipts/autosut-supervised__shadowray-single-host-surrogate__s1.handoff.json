@@ -1,0 +1,10 @@
+{
+  "schema_version": "autosut-supervision-handoff/v1",
+  "supervision_id": "3c4ecd50c6e943ac94c46f87635470d3",
+  "experiment": "caldera",
+  "entrypoint": "run_caldera_experiment.py",
+  "run_id": "shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "bundle_relative_path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "binding_sha256": "aa29d0eb2e99a726d64ffaa643519de6c0b052fb686bdbeacb79aae1e10662ca",
+  "created_at": "2026-09-05T12:56:04.337622+00:00"
+}

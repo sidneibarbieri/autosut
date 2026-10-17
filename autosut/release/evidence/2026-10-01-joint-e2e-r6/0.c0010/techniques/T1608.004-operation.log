@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib; pathlib.Path('"'"'/tmp/autosut-bound/index.html'"'"').write_bytes(b'"'"'<html><body>Controlled benign lab target</body></html>\n'"'"')'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

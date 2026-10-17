@@ -13,7 +13,7 @@
     "contract_valid": true,
     "context_observations": 0,
     "teardown_clean": true,
-    "evidence_path": "release/evidence/0.shadowray_20260731_223638/manifest.json"
+    "evidence_path": "release/evidence/qualified/0.shadowray_20260731_223638/manifest.json"
   },
   {
     "campaign_id": "0.pivot_demo",

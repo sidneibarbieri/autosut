@@ -1,0 +1,15 @@
+{
+  "host_gateway_access": "blocked_observed",
+  "gateway": "172.19.0.1",
+  "subnet": "172.19.0.0/16",
+  "blocked_containers": [
+    "autosut-d25e5289b3",
+    "autosut-att-3135caa6"
+  ],
+  "positive_before_rule": true,
+  "listener_live_after_rule": true,
+  "dropped_packets": 4,
+  "rule_counters": "Chain AS_f73533f2af47 (1 references)\n    pkts      bytes target     prot opt in     out     source               destination         \n       4      240 DROP       0    --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+  "scope": "IPv4 INPUT to Docker host from this replay subnet; all protocols and ports",
+  "provider": "colima"
+}

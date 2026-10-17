@@ -1,5 +1,0 @@
-docker stop autosut-45551511f4
-exit_code: 0
-stdout: autosut-45551511f4
-
-stderr: 

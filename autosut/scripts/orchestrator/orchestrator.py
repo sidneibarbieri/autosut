@@ -4,21 +4,36 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Callable
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def portable_evidence_directory(run_dir: Path) -> str:
+    """Describe evidence without embedding a developer-host path in the summary."""
+    resolved = run_dir.resolve()
+    return str(resolved.relative_to(PROJECT_ROOT)) if resolved.is_relative_to(PROJECT_ROOT) else "."
+SOURCE_ROOT = PROJECT_ROOT / "src"
+if str(SOURCE_ROOT) not in sys.path:
+    sys.path.insert(0, str(SOURCE_ROOT))
+
+from infrastructure.caldera_instance import CALDERA_IMAGE  # noqa: E402
+from infrastructure.revision import current_revision  # noqa: E402
 
 from . import attacker as attacker_mod
 from . import catalog
 from . import executor as executor_mod
 from . import injector as injector_mod
 from . import multi_host_executor as multi_host_mod
-from .environment import DockerEnvironment  # noqa: F401 — legacy alias
+from .environment import DockerEnvironment  # noqa: F401 - legacy alias
 from .environment_base import select_backend
 from .host_fleet import HostFleet
 from .models import RunResult, SUTProfile
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE_ROOT = PROJECT_ROOT / "release" / "evidence"
 
 
@@ -38,10 +53,12 @@ def _provenance() -> dict:
     base = {
         "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_commit": proc.stdout.strip() if proc.returncode == 0 else "(no git)",
+        "implementation_revision": current_revision(PROJECT_ROOT),
+        "configured_caldera_image": CALDERA_IMAGE,
         "host_os": subprocess.run(["uname", "-sm"], capture_output=True, text=True).stdout.strip(),
     }
     # Snapshot live Caldera state into provenance. caldera_summary() returns
-    # a dict with reachable=False if the C2 is down — we never swallow real
+    # a dict with reachable=False if the C2 is down - we never swallow real
     # errors here; only network unreachability is encoded in the snapshot.
     from . import caldera_client
     base["caldera"] = caldera_client.caldera_summary()
@@ -52,14 +69,28 @@ class CampaignOrchestrator:
     def run_campaign(self, campaign_id: str,
                      fidelity_preference: str = "real_then_surrogate",
                      sut_override: SUTProfile | None = None,
-                     run_label: str = "") -> RunResult:
+                     run_label: str = "",
+                     run_dir: Path | None = None,
+                     before_execution: Callable | None = None,
+                     execution_override: Callable | None = None,
+                     reviewed_recipe_id: str | None = None,
+                     cve_override: list | None = None) -> RunResult:
         attacker_profile, resolved_sut, cve_set = catalog.resolve(
-            campaign_id, fidelity_preference=fidelity_preference,
+            reviewed_recipe_id or campaign_id, fidelity_preference=fidelity_preference,
         )
+        # The consequence study replaces the resolved injection with one arm's
+        # service so both arms run the same chain against the same SUT.
+        if cve_override is not None:
+            cve_set = cve_override
         sut_profile = sut_override if sut_override is not None else resolved_sut
-        run_id = (f"{campaign_id}{run_label}"
-                  f"_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}")
-        run_dir = EVIDENCE_ROOT / run_id
+        # The lifecycle controller may own the bundle directory and pass it in; otherwise this
+        # entrypoint allocates its own, preserving the standalone behaviour.
+        if run_dir is None:
+            run_id = (f"{campaign_id}{run_label}"
+                      f"_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}")
+            run_dir = EVIDENCE_ROOT / run_id
+        else:
+            run_id = run_dir.name
         run_dir.mkdir(parents=True, exist_ok=True)
         (run_dir / "provenance.json").write_text(
             json.dumps(_provenance(), indent=2), encoding="utf-8",
@@ -76,11 +107,12 @@ class CampaignOrchestrator:
         # below is preserved unchanged for backwards compatibility.
         if sut_profile.is_multi_host:
             outcomes: list = []
-            with HostFleet.bring_up(sut_profile, run_dir) as fleet:
+            fleet = HostFleet.bring_up(sut_profile, run_dir)
+            with fleet:
                 outcomes = multi_host_mod.execute_multi_host(
                     campaign_id, fleet, run_dir,
                 )
-                teardown_clean = True  # fleet.__exit__ handles teardown
+            teardown_clean = fleet.last_teardown_clean is True
             result = RunResult(
                 campaign_id=campaign_id,
                 run_id=run_id,
@@ -97,7 +129,9 @@ class CampaignOrchestrator:
             return result
 
         backend = select_backend(sut_profile)
-        with backend.bring_up(sut_profile, run_dir) as target_env:
+        target_env = backend.bring_up(sut_profile, run_dir)
+        attacker_teardown_clean = False
+        with target_env:
             # Apply declarative SUT composition for single-host campaigns
             # before any techniques run. Multi-host campaigns apply
             # composition inside HostFleet.bring_up; single-host now has
@@ -124,7 +158,7 @@ class CampaignOrchestrator:
                             log_name="sut/ray_stop_after_failure.log",
                         )
                         _, _, cve_set_surrogate = catalog.resolve(
-                            campaign_id, fidelity_preference="surrogate",
+                            reviewed_recipe_id or campaign_id, fidelity_preference="surrogate",
                         )
                         provenance_cve_set = cve_set_surrogate
                         cve_fidelity = (cve_fidelity_first_attempt
@@ -140,14 +174,18 @@ class CampaignOrchestrator:
                     realization = _R.generic_primitive
 
                 if proceed and realization is not None:
-                    outcomes = executor_mod.execute(
-                        campaign_id, target_env, attacker_env, target_ip, run_dir,
-                        realization,
-                    )
+                    if before_execution is not None:
+                        target_ip = before_execution(target_env, attacker_env, run_dir, realization)
+                    outcomes = (execution_override(target_env, attacker_env, target_ip, run_dir, realization)
+                                if execution_override is not None else executor_mod.execute(
+                                    campaign_id, target_env, attacker_env, target_ip, run_dir, realization))
             finally:
-                teardown_clean = attacker_mod.teardown_attacker(attacker_env)
+                attacker_teardown_clean = attacker_mod.teardown_attacker(attacker_env)
 
-        # target_env teardown happens via __exit__ above.
+        teardown_clean = (
+            attacker_teardown_clean
+            and target_env.last_teardown_clean is True
+        )
         result = RunResult(
             campaign_id=campaign_id,
             run_id=run_id,
@@ -187,7 +225,7 @@ class CampaignOrchestrator:
         # declared CVE-injection set is threaded in so the vulnerability
         # dimension is populated. Named environment_provenance.json to avoid
         # colliding with the run-reproducibility provenance.json above (git +
-        # Caldera state). Counted, never computed — see provenance.py.
+        # Caldera state). Counted, never computed - see provenance.py.
         from . import provenance
         env_prov = provenance.summarize_profile(
             result.sut, campaign_id=result.campaign_id, cves=cve_set,
@@ -203,14 +241,15 @@ class CampaignOrchestrator:
             "evidence_backed_successful": result.evidence_backed_successful,
             "adapted_successful": result.adapted_successful,
             "marker_only_successful": result.marker_only_successful,
+            "caldera_driven_successful": result.caldera_driven_successful,
             "fidelity_distribution": result.fidelity_distribution,
-            "evidence_directory": str(run_dir.relative_to(PROJECT_ROOT)),
+            "evidence_directory": portable_evidence_directory(run_dir),
         }
         (run_dir / "summary.json").write_text(
             json.dumps(summary, indent=2), encoding="utf-8",
         )
 
-        # Fidelity rubric — adopted from the frozen STICKS methodology so each
+        # Fidelity rubric - adopted from the frozen STICKS methodology so each
         # AutoSUT run carries the same 5-question audit surface. Errors here
         # are real bugs (model drift, missing fields) and must surface.
         from . import fidelity_rubric

@@ -1,29 +1,24 @@
 {
-  "integration": {
-    "sticks_input_manifest": "release/inputs/sticks/c0045-v1/manifest.json"
-  },
-  "experiment": {
-    "repetitions": 3,
-    "allow_online_llm": false,
-    "reference_sut_profile": "0.shadowray"
-  },
-  "llm": {
-    "provider": "azure_openai",
-    "model": "gpt-4.1-mini",
-    "deployment": "chat",
-    "base_url": "https://YOUR-RESOURCE.openai.azure.com",
-    "api_version": "2024-02-15-preview",
-    "api_key_env": "AZURE_OPENAI_API_KEY",
-    "temperature": 0.0,
-    "max_output_tokens": 1200,
-    "timeout_seconds": 60,
-    "budget": {
-      "max_requests": 20,
-      "max_prompt_tokens": 100000,
-      "max_completion_tokens": 24000,
-      "max_estimated_usd": 5.0,
-      "input_usd_per_million_tokens": 0.0,
-      "output_usd_per_million_tokens": 0.0
+  "semantic_enrichment": {
+    "schema_version": "autosut.step2.semantic-enrichment/v1",
+    "protocol_id": "autosut-step2-semantic-enrichment-v1",
+    "lifecycle": "draft",
+    "provider": {
+      "kind": "local_openai_compatible",
+      "base_url": "http://127.0.0.1:1234/v1",
+      "model_id": "replace-with-local-model-id",
+      "request_timeout_seconds": 60,
+      "generation": {
+        "temperature": 0.0,
+        "seed": 0,
+        "max_output_tokens": 512
+      },
+      "model_attestation": {
+        "status": "unverified"
+      }
+    },
+    "provenance": {
+      "root": "results/evidence/semantic_enrichment/runs"
     }
   }
 }

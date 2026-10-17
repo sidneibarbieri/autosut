@@ -100,7 +100,7 @@ def score(outcome: TechniqueOutcome,
     The function reads the outcome's recorded execution mode, realization,
     and status to derive each Q1..Q5 answer. ``realization_was_pre_staged``
     lets a caller assert (for a rare campaign) that the precondition was
-    *not* pre-staged — that lets Q3 become True and a faithful tier become
+    *not* pre-staged - that lets Q3 become True and a faithful tier become
     reachable.
     """
     real_modes = {ExecutionMode.real_controlled,
@@ -128,7 +128,7 @@ def score(outcome: TechniqueOutcome,
     elif outcome.realization == Realization.surrogate:
         q2_just = "Surrogate service preserves the wire-level protocol semantics"
     else:
-        q2_just = ("Generic primitive substrate — not the specific product the "
+        q2_just = ("Generic primitive substrate - not the specific product the "
                    "technique originally targets")
 
     # Q3: Preconditions operational? In lab context, almost always False.
@@ -144,7 +144,7 @@ def score(outcome: TechniqueOutcome,
     q4_just = (
         "Effect observable on target (file written, link executed, exit_code=0)"
         if q4_yes else
-        "Marker-only or failure — no operational effect observed")
+        "Marker-only or failure - no operational effect observed")
 
     # Q5: Evidence auditable?
     has_logs = bool(outcome.evidence_files)

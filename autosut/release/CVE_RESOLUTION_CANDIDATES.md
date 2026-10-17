@@ -51,14 +51,14 @@ guessing a vulnerable target product online.
 
 | Campaign | CVE | Kind | Auto | Ecosystem | Package | ATT&CK Binding | Linked ATT&CK Software | Overlay | Source Basis |
 |---|---|---|---|---|---|---|---|---|---|
-| Versa Director Zero Day Exploitation | CVE-2024-39717 | appliance | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
-| APT28 Nearest Neighbor Campaign | CVE-2022-38028 | windows_component | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
-| ShadowRay | CVE-2023-48022 | open_package | yes | pip | ray | cve_only_curated_binding | -- | ray_jobs_api_exposure | NVD CVE record plus PyPI package metadata and release tags |
-| Operation MidnightEclipse | CVE-2024-3400 | appliance | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
 | SharePoint ToolShell Exploitation | CVE-2025-49704 | enterprise_server | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
 | SharePoint ToolShell Exploitation | CVE-2025-49706 | enterprise_server | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
 | SharePoint ToolShell Exploitation | CVE-2025-53770 | enterprise_server | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
 | SharePoint ToolShell Exploitation | CVE-2025-53771 | enterprise_server | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
+| Operation MidnightEclipse | CVE-2024-3400 | appliance | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
+| ShadowRay | CVE-2023-48022 | open_package | yes | pip | ray | cve_only_curated_binding | -- | ray_jobs_api_exposure | NVD CVE record plus PyPI package metadata and release tags |
+| APT28 Nearest Neighbor Campaign | CVE-2022-38028 | windows_component | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
+| Versa Director Zero Day Exploitation | CVE-2024-39717 | appliance | no | -- | -- | no_attck_software_link | -- | -- | NVD CVE record |
 
 ## Automatic-Path Source URLs
 

@@ -1,0 +1,239 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.shadowray",
+  "source_campaign_id": "C0045",
+  "source_plan_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+  "concretized_plan_sha256": "47ea81eef43f13a087a100bc61db40d188514c5b48e64fab82f33e0c508e85ea",
+  "binding_catalog_sha256": "aebac9fbbffacecda2d77c9f42001601d4b9af7a76bebf780f0534cad2df9e1b",
+  "planning_certificate_sha256": "f247c8cee82793cd50000d04018cd85455017d3a28e21aaf06a610240a3e8805",
+  "scope": "validated_controlled_slice",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "sut.ray_dashboard.reachable",
+    "network:http_available",
+    "c2_channel"
+  ],
+  "transitions": [
+    {
+      "technique_id": "T1588.002",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.toolkit.ready",
+        "artifacts:recon_toolkit",
+        "system:toolkit"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "stage-benign-toolkit",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1190",
+      "requires": [
+        "sut.ray_dashboard.reachable",
+        "network:http_available"
+      ],
+      "produces": [
+        "access.target.shell",
+        "access:initial"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "probe-declared-public-service",
+      "bindings": {
+        "actor": "actor.primary",
+        "endpoint": "endpoint.public_service",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "service_request_logged",
+        "bounded_effect_observed"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1059.006",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "execution.target.python",
+        "artifacts:python_script",
+        "system:recon_data"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "run-benign-python",
+      "bindings": {
+        "runtime": "runtime.python3",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "process_exit_recorded",
+        "stdout_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1546.004",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "persistence.target.shell_config",
+        "artifacts:modified_config",
+        "persistence:shell_config"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "write-lab-shell-config",
+      "bindings": {
+        "artifact": "artifact.shell_config",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "cleanup_verified"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1068",
+      "requires": [
+        "access.target.shell",
+        "access:initial"
+      ],
+      "produces": [
+        "assessment.target.privilege_boundary"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "assess-privilege-boundary",
+      "bindings": {
+        "boundary": "boundary.no_live_exploit",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "boundary_check_recorded"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1027.013",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "artifact.target.encoded",
+        "artifacts:obfuscated_file",
+        "artifacts:decoder"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "encode-benign-artifact",
+      "bindings": {
+        "artifact": "artifact.encoded",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_encoded_hashes_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1003.008",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "collection.target.credential_files",
+        "credentials:dumped",
+        "artifacts:credential_file"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "read-declared-credential-fixture",
+      "bindings": {
+        "credential_source": "credential.synthetic_fixture",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "fixture_access_logged",
+        "no_host_credentials_read"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1016",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "discovery.target.network",
+        "discovery:network_config"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "inspect-declared-network",
+      "bindings": {
+        "interface": "network.private_interface",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "interface_snapshot_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1105",
+      "requires": [
+        "access.target.shell",
+        "actor.toolkit.ready",
+        "c2_channel",
+        "network:http_available"
+      ],
+      "produces": [
+        "transfer.target.payload",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "transfer-benign-payload",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1496.001",
+      "requires": [
+        "access.target.shell"
+      ],
+      "produces": [
+        "impact.target.compute",
+        "artifacts:mining_log",
+        "system:cpu_usage"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "run-bounded-compute-workload",
+      "bindings": {
+        "target": "target.primary",
+        "workload": "workload.bounded_hash"
+      },
+      "evidence_predicates": [
+        "duration_and_cpu_bound_recorded",
+        "no_pool_traffic"
+      ],
+      "fidelity_ceiling": "adapted"
+    }
+  ],
+  "content_sha256": "9f1552e8fe0004063dc7e3a4e5f995f0fbc8ac128c22688ffa5e4fd12b0672ad"
+}

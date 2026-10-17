@@ -1,0 +1,154 @@
+{
+  "campaign_id": "0.c0013",
+  "run_id": "0.c0013_20260909_113839",
+  "timestamp": "2026-09-09T11:41:55.506666Z",
+  "attacker": {
+    "profile_id": "c0013_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh+http client for Lazarus tool transfer."
+  },
+  "sut": {
+    "sut_id": "c0013_lazarus_tool_transfer",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh",
+      "apache2"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "ubuntu",
+          "secret": "ubuntu",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "expose_to": "private_network",
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "name": "apache_httpd",
+          "version": "default",
+          "recipe": "apache_default_site",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.c0013 \u2014 Lazarus-style intrusion with shell access and tool transfer over a Linux web surface."
+    },
+    "topology": null,
+    "notes": "0.c0013 \u2014 Lazarus-style intrusion with shell access and tool transfer over a Linux web surface."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.004_inspired.log"
+      ],
+      "duration_sec": 0.10022741591092199,
+      "notes": "Inspired representation of Unix Shell: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": "b1d41972-3ad9-4aa1-8f7f-05f049a2980e",
+      "caldera_ability_name": "Start 54ndc47"
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "caldera_driven",
+      "executed_mode": "caldera_driven",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "caldera/T1083_30de8778-7333-434c-9e2a-1d80b63dfb4d_report.json",
+        "caldera/T1083_1314429d-519f-49b9-9c99-18994125bda8.log"
+      ],
+      "duration_sec": 70.78289683395997,
+      "notes": "Caldera operation 30de8778-7333-434c-9e2a-1d80b63dfb4d link 1314429d-519f-49b9-9c99-18994125bda8 status=0 exit_code=0",
+      "caldera_ability_id": "52177cc1-b9ab-4411-ac21-2eadc4b5d3b8",
+      "caldera_ability_name": "List Directory"
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_inspired.log"
+      ],
+      "duration_sec": 0.11573008308187127,
+      "notes": "Inspired representation of Ingress Tool Transfer: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": "356d1722-7784-40c4-822b-0cf864b0b36d",
+      "caldera_ability_name": "Manx"
+    },
+    {
+      "technique_id": "T1055",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1055_inspired.log"
+      ],
+      "duration_sec": 0.09876425005495548,
+      "notes": "Inspired representation of Process Injection: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

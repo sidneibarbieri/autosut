@@ -1,0 +1,7 @@
+$ python3 -c 'import pathlib,hashlib; print(hashlib.sha256(pathlib.Path('"'"'/tmp/autosut-bound/compromised-domain'"'"').read_bytes()).hexdigest())'
+exit_code: 0
+--- stdout ---
+2c3e5da8fd05472103b4a3f603140ab7bb4f6d4d9eaee24ca5e95a140acdfe2c
+
+--- stderr ---
+

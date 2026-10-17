@@ -1,4 +1,4 @@
-# SUT Profile: 0.mustang_panda — Single-Host Mustang Panda (G0129) Environment
+# SUT Profile: 0.mustang_panda - Single-Host Mustang Panda (G0129) Environment
 # Requirements: caldera, target (with email simulation and malware staging)
 
 profile_id: "0.mustang_panda"

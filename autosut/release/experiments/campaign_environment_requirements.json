@@ -1,0 +1,633 @@
+{
+  "schema_version": "campaign-environment-audit/v2",
+  "stix_path": "data/stix/enterprise-attack.json",
+  "stix_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+  "registry_path": "src/executors/campaign_registry.yml",
+  "registry_sha256": "49ad0c3a9e814e3d478899d5b52ffcb2dd34078b8efc89845effc33e7683c7cf",
+  "plan_input_root": "release/inputs/sticks",
+  "campaigns": [
+    {
+      "campaign_id": "0.c0011",
+      "declaration_source": "campaign_registry",
+      "declared_classification": "adapted",
+      "declared_techniques": [
+        "T1608.001",
+        "T1566.002",
+        "T1204.001",
+        "T1204.002",
+        "T1566.001",
+        "T1059.005",
+        "T1583.001",
+        "T1587.003"
+      ],
+      "techniques": [
+        {
+          "technique_id": "T1608.001",
+          "technique_name": "Upload Malware",
+          "attack_object_id": "attack-pattern--3ee16395-03f0-4690-a32e-69ce9ada0f9e",
+          "attck_platforms": [
+            "PRE"
+          ],
+          "windows_documented": false,
+          "linux_documented": false,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1566.002",
+          "technique_name": "Spearphishing Link",
+          "attack_object_id": "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7",
+          "attck_platforms": [
+            "Identity Provider",
+            "Linux",
+            "Office Suite",
+            "SaaS",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1204.001",
+          "technique_name": "Malicious Link",
+          "attack_object_id": "attack-pattern--ef67e13e-5598-4adc-bdb2-998225874fa9",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1204.002",
+          "technique_name": "Malicious File",
+          "attack_object_id": "attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1566.001",
+          "technique_name": "Spearphishing Attachment",
+          "attack_object_id": "attack-pattern--2e34237d-8574-43f6-aace-ae2915de8597",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1059.005",
+          "technique_name": "Visual Basic",
+          "attack_object_id": "attack-pattern--dfd7cc1d-e1d8-4394-a198-97c4cab8aa67",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1583.001",
+          "technique_name": "Domains",
+          "attack_object_id": "attack-pattern--40f5caa0-4cb7-4117-89fc-d421bb493df3",
+          "attck_platforms": [
+            "PRE"
+          ],
+          "windows_documented": false,
+          "linux_documented": false,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1587.003",
+          "technique_name": "Digital Certificates",
+          "attack_object_id": "attack-pattern--1cec9319-743b-4840-bb65-431547bce82a",
+          "attck_platforms": [
+            "PRE"
+          ],
+          "windows_documented": false,
+          "linux_documented": false,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        }
+      ],
+      "windows_platform_label_present": true,
+      "linux_platform_label_present": true,
+      "native_windows_backend_decision": "requires_external_evidence",
+      "missing_evidence": [
+        "native Windows semantics require procedure/source evidence beyond ATT&CK platform labels"
+      ],
+      "provenance": [
+        {
+          "kind": "analyst_declared_scope",
+          "source": "src/executors/campaign_registry.yml",
+          "source_sha256": "49ad0c3a9e814e3d478899d5b52ffcb2dd34078b8efc89845effc33e7683c7cf",
+          "detail": "campaign registry declares the executable campaign and its current fidelity classification"
+        }
+      ],
+      "procedural_provenance": null
+    },
+    {
+      "campaign_id": "0.pikabot_distribution_february_2024",
+      "declaration_source": "campaign_registry",
+      "declared_classification": "adapted",
+      "declared_techniques": [
+        "T1574",
+        "T1059.007",
+        "T1059.001",
+        "T1566.002"
+      ],
+      "techniques": [
+        {
+          "technique_id": "T1574",
+          "technique_name": "Hijack Execution Flow",
+          "attack_object_id": "attack-pattern--aedfca76-3b30-4866-b2aa-0f1d7fd1e4b6",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1059.007",
+          "technique_name": "JavaScript",
+          "attack_object_id": "attack-pattern--0f4a0c76-ab2d-4cb0-85d3-3f0efb8cba0d",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1059.001",
+          "technique_name": "PowerShell",
+          "attack_object_id": "attack-pattern--970a3432-3237-47ad-bcca-7d8cbb217736",
+          "attck_platforms": [
+            "Windows"
+          ],
+          "windows_documented": true,
+          "linux_documented": false,
+          "windows_only_platform_label": true,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1566.002",
+          "technique_name": "Spearphishing Link",
+          "attack_object_id": "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7",
+          "attck_platforms": [
+            "Identity Provider",
+            "Linux",
+            "Office Suite",
+            "SaaS",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        }
+      ],
+      "windows_platform_label_present": true,
+      "linux_platform_label_present": true,
+      "native_windows_backend_decision": "requires_external_evidence",
+      "missing_evidence": [
+        "native Windows semantics require procedure/source evidence beyond ATT&CK platform labels",
+        "Windows-only ATT&CK platform labels require a campaign-level fidelity decision before native execution can be claimed"
+      ],
+      "provenance": [
+        {
+          "kind": "analyst_declared_scope",
+          "source": "src/executors/campaign_registry.yml",
+          "source_sha256": "49ad0c3a9e814e3d478899d5b52ffcb2dd34078b8efc89845effc33e7683c7cf",
+          "detail": "campaign registry declares the executable campaign and its current fidelity classification"
+        }
+      ],
+      "procedural_provenance": null
+    },
+    {
+      "campaign_id": "C0045",
+      "declaration_source": "verified_procedural_plan",
+      "declared_classification": "not_declared_in_registry",
+      "declared_techniques": [
+        "T1588.002",
+        "T1190",
+        "T1059.006",
+        "T1546.004",
+        "T1068",
+        "T1027.013",
+        "T1003.008",
+        "T1016",
+        "T1105",
+        "T1496.001"
+      ],
+      "techniques": [
+        {
+          "technique_id": "T1588.002",
+          "technique_name": "Tool",
+          "attack_object_id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+          "attck_platforms": [
+            "PRE"
+          ],
+          "windows_documented": false,
+          "linux_documented": false,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1190",
+          "technique_name": "Exploit Public-Facing Application",
+          "attack_object_id": "attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c",
+          "attck_platforms": [
+            "Containers",
+            "ESXi",
+            "IaaS",
+            "Linux",
+            "Network Devices",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1059.006",
+          "technique_name": "Python",
+          "attack_object_id": "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+          "attck_platforms": [
+            "ESXi",
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1546.004",
+          "technique_name": "Unix Shell Configuration Modification",
+          "attack_object_id": "attack-pattern--b63a34e8-0a61-4c97-a23b-bf8a2ed812e2",
+          "attck_platforms": [
+            "Linux",
+            "macOS"
+          ],
+          "windows_documented": false,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1068",
+          "technique_name": "Exploitation for Privilege Escalation",
+          "attack_object_id": "attack-pattern--b21c3b2d-02e6-45b1-980b-e69051040839",
+          "attck_platforms": [
+            "Containers",
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1027.013",
+          "technique_name": "Encrypted/Encoded File",
+          "attack_object_id": "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+          "attck_platforms": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1003.008",
+          "technique_name": "/etc/passwd and /etc/shadow",
+          "attack_object_id": "attack-pattern--d0b4fcdb-d67d-4ed2-99ce-788b12f8c0f4",
+          "attck_platforms": [
+            "Linux"
+          ],
+          "windows_documented": false,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1016",
+          "technique_name": "System Network Configuration Discovery",
+          "attack_object_id": "attack-pattern--707399d6-ab3e-4963-9315-d9d3818cd6a0",
+          "attck_platforms": [
+            "ESXi",
+            "Linux",
+            "Network Devices",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1105",
+          "technique_name": "Ingress Tool Transfer",
+          "attack_object_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+          "attck_platforms": [
+            "ESXi",
+            "Linux",
+            "Network Devices",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        },
+        {
+          "technique_id": "T1496.001",
+          "technique_name": "Compute Hijacking",
+          "attack_object_id": "attack-pattern--a718a0c8-5768-41a1-9958-a1cc3f995e99",
+          "attck_platforms": [
+            "Containers",
+            "IaaS",
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "windows_documented": true,
+          "linux_documented": true,
+          "windows_only_platform_label": false,
+          "native_windows_semantics": "requires_external_evidence",
+          "provenance": [
+            {
+              "kind": "corpus_supported",
+              "source": "data/stix/enterprise-attack.json",
+              "source_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+              "detail": "ATT&CK attack-pattern x_mitre_platforms label"
+            }
+          ]
+        }
+      ],
+      "windows_platform_label_present": true,
+      "linux_platform_label_present": true,
+      "native_windows_backend_decision": "requires_external_evidence",
+      "missing_evidence": [
+        "no executable campaign declaration or fidelity classification is present in the campaign registry",
+        "verified procedure descriptions are retained as provenance but are not interpreted into backend requirements by this audit",
+        "native Windows semantics require procedure/source evidence beyond ATT&CK platform labels"
+      ],
+      "provenance": [
+        {
+          "kind": "verified_procedural_plan",
+          "source": "release/inputs/sticks/c0045-v1/C0045.procedural-plan.json",
+          "source_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+          "detail": "procedure relationship identifiers and copied descriptions were structurally verified against the pinned ATT&CK bundle"
+        }
+      ],
+      "procedural_provenance": {
+        "plan_path": "release/inputs/sticks/c0045-v1/C0045.procedural-plan.json",
+        "plan_content_sha256": "89d8da6c27b9ead855d6080535072a47ec63c0bc841f5c2389652cbcbc49a911",
+        "source_bundle_sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+        "source_object_count": 24772,
+        "source_campaign_stix_id": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+        "source_campaign_external_id": "C0045",
+        "technique_ids": [
+          "T1588.002",
+          "T1190",
+          "T1059.006",
+          "T1546.004",
+          "T1068",
+          "T1027.013",
+          "T1003.008",
+          "T1016",
+          "T1105",
+          "T1496.001"
+        ],
+        "technique_stix_ids": [
+          "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+          "attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c",
+          "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+          "attack-pattern--b63a34e8-0a61-4c97-a23b-bf8a2ed812e2",
+          "attack-pattern--b21c3b2d-02e6-45b1-980b-e69051040839",
+          "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+          "attack-pattern--d0b4fcdb-d67d-4ed2-99ce-788b12f8c0f4",
+          "attack-pattern--707399d6-ab3e-4963-9315-d9d3818cd6a0",
+          "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+          "attack-pattern--a718a0c8-5768-41a1-9958-a1cc3f995e99"
+        ],
+        "relationship_count": 10,
+        "procedure_description_count": 10,
+        "structural_validation": "verified_against_pinned_stix",
+        "semantic_interpretation": "not_performed",
+        "non_decisive_reason": "The audit verifies STIX identifiers and copied procedure text, but it does not interpret that text as an operating-system, credential, or backend requirement."
+      }
+    }
+  ],
+  "non_claim": "This audit does not establish that a Windows backend is qualified or required. It validates copied procedure provenance only, does not interpret natural-language procedures into backend requirements, and requires separate qualified execution evidence for any native-semantics claim."
+}

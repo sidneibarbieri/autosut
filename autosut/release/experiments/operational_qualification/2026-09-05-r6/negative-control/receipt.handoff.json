@@ -1,0 +1,10 @@
+{
+  "schema_version": "autosut-supervision-handoff/v1",
+  "supervision_id": "7d02c418d22840b5bc06fd6833685dfa",
+  "experiment": "multihost",
+  "entrypoint": "run_caldera_experiment_multihost.py",
+  "run_id": "multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0",
+  "bundle_relative_path": "release/experiments/operational_qualification/2026-09-05-r6/negative-control/bundles/multihost_caldera_causal-negative-s1_20260905T130227Z-e80184a0",
+  "binding_sha256": "61acdef1535f8e812f1fe8affaaf14671e0e32ad680d063553f6c4bd4dda6b09",
+  "created_at": "2026-09-05T13:02:27.390367+00:00"
+}

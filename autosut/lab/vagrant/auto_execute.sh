@@ -57,7 +57,7 @@ validate_infrastructure() {
     if curl -s http://192.168.56.20/ >/dev/null 2>&1; then
         log_info "OK Apache web server responding"
     else
-        log_warn "⚠ Apache may not be fully ready (proceeding anyway)"
+        log_warn "[warn] Apache may not be fully ready (proceeding anyway)"
     fi
 
     # Check attacker
@@ -472,10 +472,10 @@ EOF
     echo "======================================================================"
 
     if [ $success_count -eq $total ]; then
-        log_info "🎉 All techniques executed successfully!"
+        log_info "All techniques executed successfully!"
         exit 0
     else
-        log_warn "⚠️  Campaign completed with some issues"
+        log_warn "[warn]  Campaign completed with some issues"
         exit 0  # Still success, partial execution is acceptable
     fi
 }

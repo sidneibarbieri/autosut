@@ -1,0 +1,505 @@
+{
+  "campaign_id": "0.apt41_dust",
+  "run_id": "0.apt41_dust_20260909_114537",
+  "timestamp": "2026-09-09T11:49:18.391537Z",
+  "attacker": {
+    "profile_id": "apt41_dust_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "multi-service client for APT41 DUST."
+  },
+  "sut": {
+    "sut_id": "apt41_dust_dual_ops",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh",
+      "apache2",
+      "mysql"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "dustops",
+          "secret": "Dust2024!",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (dustops:Dust2024!).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/home/dustops/intel/targets.txt",
+          "content_text": "Targets: target-financial-01, target-financial-02\n",
+          "content_b64": null,
+          "owner": "dustops",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/targets.txt).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/dustops/intel/financials.csv",
+          "content_text": "Q,Account,Amount\nQ1,A123,1000\n",
+          "content_b64": null,
+          "owner": "dustops",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/dustops/intel/financials.csv).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/tmp/staged_payload.sh",
+          "content_text": "#!/bin/sh\necho payload_ran\n",
+          "content_b64": null,
+          "owner": "dustops",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/staged_payload.sh).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "expose_to": "private_network",
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        },
+        {
+          "port": 3306,
+          "protocol": "tcp",
+          "service": "mysql",
+          "expose_to": "private_network",
+          "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "name": "apache_httpd",
+          "version": "default",
+          "recipe": "apache_default_site",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        },
+        {
+          "name": "mysql",
+          "version": "default",
+          "recipe": "mysql_default_instance",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "MySQL instance the lab profile declares (default_instance_exposed).",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+    },
+    "topology": null,
+    "notes": "0.apt41_dust \u2014 APT41 DUST dual espionage + financial ops on multi-service Linux SUT (ssh + apache + mysql)."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1593.002",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1593.002_inspired.log"
+      ],
+      "duration_sec": 0.15240900008939207,
+      "notes": "Inspired representation of Search Engines: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1594",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1594_inspired.log"
+      ],
+      "duration_sec": 0.17546804097946733,
+      "notes": "Inspired representation of Search Victim-Owned Websites: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1596.005",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1596.005_inspired.log"
+      ],
+      "duration_sec": 0.17589912505354732,
+      "notes": "Inspired representation of Scan Databases: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1583.007",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1583.007_inspired.log"
+      ],
+      "duration_sec": 0.17831724998541176,
+      "notes": "Inspired representation of Serverless: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1586.003",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1586.003_inspired.log"
+      ],
+      "duration_sec": 0.12157774996012449,
+      "notes": "Inspired representation of Compromise Accounts: Cloud Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1588.003",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.003_cert.log"
+      ],
+      "duration_sec": 1.4705521669238806,
+      "notes": "Adapted: real openssl X.509 cert generated.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1505.003",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1505.003_inspired.log"
+      ],
+      "duration_sec": 0.16809274989645928,
+      "notes": "Inspired representation of Web Shell: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1543.003",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1543.003_masquerade.log"
+      ],
+      "duration_sec": 0.3960125839803368,
+      "notes": "Adapted: payload renamed to mimic a system service binary.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1574.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1574.001_masquerade.log"
+      ],
+      "duration_sec": 0.18381816591136158,
+      "notes": "Adapted: payload renamed to mimic a system service binary.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1569.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1569.002_system_process.log"
+      ],
+      "duration_sec": 0.2722036250634119,
+      "notes": "Adapted: a systemd service unit is really written and its declared action executed in the bounded SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1027.013",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1027.013_encoded_file.log"
+      ],
+      "duration_sec": 0.5734546250896528,
+      "notes": "Adapted: a payload is really base64-encoded then AES-256 encrypted on disk inside the SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1036.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1036.004_masquerade.log"
+      ],
+      "duration_sec": 0.37012662494089454,
+      "notes": "Adapted: payload renamed to mimic a system service binary.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1553.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1553.002_cert.log"
+      ],
+      "duration_sec": 1.2727701249532402,
+      "notes": "Adapted: real openssl X.509 cert generated.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1070.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1070.004_file_deletion.log"
+      ],
+      "duration_sec": 0.17689358396455646,
+      "notes": "Adapted: a staged indicator file is really created then removed; absence is verified.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1213.006",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1213.006_archive.log"
+      ],
+      "duration_sec": 0.37998716603033245,
+      "notes": "Adapted: real tar+gzip archive of lab data.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1119",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1119_archive.log"
+      ],
+      "duration_sec": 0.2973468330455944,
+      "notes": "Adapted: real tar+gzip archive of lab data.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1074.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1074.001_archive.log"
+      ],
+      "duration_sec": 0.37656804092694074,
+      "notes": "Adapted: real tar+gzip archive of lab data.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1560.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1560.001_archive.log"
+      ],
+      "duration_sec": 0.37545020796824247,
+      "notes": "Adapted: real tar+gzip archive of lab data.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1102",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1102_inspired.log"
+      ],
+      "duration_sec": 0.17264466697815806,
+      "notes": "Inspired representation of Web Service: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1071.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1071.001_inspired.log"
+      ],
+      "duration_sec": 0.11522316699847579,
+      "notes": "Inspired representation of Web Protocols: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1573.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1573.002_inspired.log"
+      ],
+      "duration_sec": 0.16769316606223583,
+      "notes": "Inspired representation of Asymmetric Cryptography: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ],
+      "duration_sec": 0.21170112502295524,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1567.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "failure",
+      "evidence_files": [
+        "techniques/T1567.002_seed.log",
+        "techniques/T1567.002_exfil.log"
+      ],
+      "duration_sec": 2.252356666023843,
+      "notes": "Adapted: real HTTP exfil of staged file from target to attacker.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

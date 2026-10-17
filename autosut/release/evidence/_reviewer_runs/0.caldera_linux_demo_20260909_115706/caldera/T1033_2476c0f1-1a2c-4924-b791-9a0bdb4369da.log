@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: 12dd02e0-e2ba-4ea7-890b-b5c915c0d3c8
+link_id: 2476c0f1-1a2c-4924-b791-9a0bdb4369da
+ability_id: bd527b63-9f9e-46e0-9816-b8434d2b8989
+ability_name: Current User
+command: whoami
+status: 0
+exit_code: 0
+--- stdout ---
+root
+--- stderr ---
+

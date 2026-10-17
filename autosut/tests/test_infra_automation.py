@@ -4,6 +4,8 @@ import importlib.util
 import sys
 from pathlib import Path
 
+import pytest
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODULE_PATH = PROJECT_ROOT / "src" / "utils" / "infra_automation.py"
@@ -29,29 +31,33 @@ def test_infra_automation_summary_counts_current_published_subset() -> None:
         load_sut_profile,
         validate_campaign_sut_pair,
     )
-    from scripts.generate_corpus_state import latest_summary  # type: ignore
+    from evaluation.canonical_operational_witness import (  # type: ignore
+        assess_caldera_dispatch_witness,
+    )
 
     module = _load_module()
     campaign_ids = sorted(set(list_campaigns()) & set(list_sut_profiles()))
+    assessment = assess_caldera_dispatch_witness(PROJECT_ROOT)
+    assert assessment.status == "supported_bounded"
+    assert assessment.witness is not None
     summary = module.build_infra_automation_summary(
-        project_root=PROJECT_ROOT,
         campaign_ids=campaign_ids,
         load_campaign=load_campaign,
         load_sut_profile=load_sut_profile,
         validate_campaign_sut_pair=validate_campaign_sut_pair,
-        latest_summary=latest_summary,
+        bounded_dispatch_witness_campaign_ids=frozenset(
+            {assessment.witness.campaign_id}
+        ),
     )
 
     assert summary.totals.published_campaigns == 14
     assert summary.totals.campaigns_with_strict_pair_validation == 12
     assert summary.totals.campaigns_with_base_weaknesses == 14
     assert summary.totals.campaigns_with_step_overlays == 1
-    # After the S21 evidence-hygiene sweep, only canonical golden runs
-    # live at the evidence root. Non-golden runs (partial, empty, broken,
-    # pre-final-orchestrator) are under release/evidence/_archive/ so the
-    # campaigns_with_latest_evidence count reflects the strict golden
-    # subset rather than every historical run. See release/golden_runs.json.
-    assert summary.totals.campaigns_with_latest_evidence >= 1
+    assert summary.totals.campaigns_with_bounded_dispatch_witness == 1
+    assert [
+        row.campaign_id for row in summary.rows if row.has_bounded_dispatch_witness
+    ] == ["0.shadowray"]
     assert summary.totals.campaigns_with_single_target_host == 14
     assert summary.totals.campaigns_with_multi_target_host == 0
     assert summary.totals.campaigns_with_multi_vm_runtime == 14
@@ -90,12 +96,10 @@ def test_infra_automation_supports_multi_target_topology_classification() -> Non
             self.hosts = {"target-base": _Host(), "target-secondary": _Host()}
 
     summary = module.build_infra_automation_summary(
-        project_root=PROJECT_ROOT,
         campaign_ids=["demo"],
         load_campaign=lambda _: _Campaign(),
         load_sut_profile=lambda _: _SUT(),
         validate_campaign_sut_pair=lambda _: None,
-        latest_summary=lambda _: None,
     )
     row = summary.rows[0]
 
@@ -108,3 +112,16 @@ def test_infra_automation_supports_multi_target_topology_classification() -> Non
         "target-linux-1",
         "target-linux-2",
     ]
+
+
+def test_infra_automation_rejects_unpublished_dispatch_witness() -> None:
+    module = _load_module()
+
+    with pytest.raises(ValueError, match="not in the published subset"):
+        module.build_infra_automation_summary(
+            campaign_ids=[],
+            load_campaign=lambda _: None,
+            load_sut_profile=lambda _: None,
+            validate_campaign_sut_pair=lambda _: None,
+            bounded_dispatch_witness_campaign_ids=frozenset({"missing"}),
+        )

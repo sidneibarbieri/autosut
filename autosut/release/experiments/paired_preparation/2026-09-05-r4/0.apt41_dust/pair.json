@@ -1,0 +1,37 @@
+{
+  "campaign_id": "0.apt41_dust",
+  "source_campaign_id": "C0040",
+  "status": "blocked",
+  "reasons": [
+    "unsupported_platform_requirements"
+  ],
+  "source_steps": 23,
+  "planned_steps": 0,
+  "unresolved_technique_ids": [
+    "T1569.002",
+    "T1505.003",
+    "T1543.003",
+    "T1574.001",
+    "T1027.013",
+    "T1036.004",
+    "T1070.004",
+    "T1553.002",
+    "T1074.001",
+    "T1119",
+    "T1213.006",
+    "T1560.001",
+    "T1071.001",
+    "T1102",
+    "T1105",
+    "T1573.002",
+    "T1567.002"
+  ],
+  "contract_sha256": null,
+  "files": {
+    "campaign-source.json": "e5ed49bd434619ff09bcae09431442a90e87852447968c57e25471c1db918e13",
+    "campaign.json": "e5bd5cc2dd46063db44a5c491bd4b6b9512a53359ee7b23505923c992579feff",
+    "procedural-plan.json": "0ff1c8a5dc160d105ca38c5fcb7dc8e734d4f3f9f4763b44bb7c94c6e73375d2",
+    "sut-constraints.json": "a22acd24a5aff62eededa29b28822d13e278fe03a9b31d6cf2ca7a47683018f9"
+  },
+  "execution_status": "not_run"
+}

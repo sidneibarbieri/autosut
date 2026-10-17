@@ -1,0 +1,110 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0043",
+  "source_plan_sha256": "a7ef2e63324a3463944dcec0aafa38691fede9879d060d0991b24aad68ce521b",
+  "platform_resolution": {
+    "selected_platforms": [
+      "Linux",
+      "Network Devices"
+    ],
+    "materializable_platforms": [
+      "Linux"
+    ],
+    "unsupported_platforms": [
+      "Network Devices"
+    ],
+    "uncovered_technique_ids": [
+      "T1599"
+    ],
+    "complete": false
+  },
+  "requirements": [
+    {
+      "requirement_id": "T1599.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Network Devices"
+      ],
+      "technique_ids": [
+        "T1599"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1071.001.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1071.001"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1568.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1568"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1568.service.1",
+      "kind": "service",
+      "acceptable_values": [
+        "private-lab-resolver"
+      ],
+      "technique_ids": [
+        "T1568"
+      ],
+      "source": "curated_rule",
+      "rationale": "Dynamic resolution requires a declared resolver with no external DNS dependency."
+    },
+    {
+      "requirement_id": "T1571.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1571"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    },
+    {
+      "requirement_id": "T1573.002.platform",
+      "kind": "platform",
+      "acceptable_values": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Network Devices",
+        "ESXi"
+      ],
+      "technique_ids": [
+        "T1573.002"
+      ],
+      "source": "stix_field",
+      "rationale": "Derived directly from x_mitre_platforms."
+    }
+  ],
+  "content_sha256": "1016598381a3bf7a215218f929f7ee0646a74523e981fcb0934b2a141f8cfebc"
+}

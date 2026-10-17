@@ -5,12 +5,13 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
 class ConcretizedStepInput(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
 
     sequence: int
     technique_id: str
@@ -25,26 +26,31 @@ class ConcretizedStepInput(BaseModel):
 
 
 class PlanningCertificateInput(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
 
     initial_facts: list[str] = Field(default_factory=list)
     goal_facts: list[str] = Field(default_factory=list)
     valid: bool
     unresolved_goals: list[str] = Field(default_factory=list)
     transitions: list[dict] = Field(default_factory=list)
+    causal_links: list[dict] = Field(default_factory=list)
+    final_facts: list[str] = Field(default_factory=list)
     content_sha256: str
 
 
 class ConcretizedPlanInput(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
 
-    schema_version: str
+    schema_version: Literal["1"]
+    ordering_policy: str
     campaign_id: str
     source_plan_sha256: str
     binding_catalog_sha256: str
     action_catalog_sha256: str
     steps: list[ConcretizedStepInput] = Field(default_factory=list)
     unresolved_technique_ids: list[str] = Field(default_factory=list)
+    rejected_candidates: list[dict] = Field(default_factory=list)
+    retrieval_traces: list[dict] = Field(default_factory=list)
     planning_certificate: PlanningCertificateInput
     llm_call_sha256: str | None = None
     execution_semantic_sha256: str

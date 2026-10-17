@@ -1,0 +1,16 @@
+{
+  "campaign_id": "C0010",
+  "model": "qwen2.5-coder:14b",
+  "sample": 3,
+  "temperature": 0.7,
+  "platform": "Linux",
+  "services": [
+    {
+      "host_role": "internal-host",
+      "product": "Apache HTTP Server",
+      "version": "2.4.54",
+      "port": "80",
+      "exposure": "internal-only"
+    }
+  ]
+}

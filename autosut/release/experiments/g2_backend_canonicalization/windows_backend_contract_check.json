@@ -1,0 +1,31 @@
+{
+  "check": "WindowsQemuEnvironment implements the EnvironmentBackend contract and drives a live Windows ARM64 guest through it",
+  "date_observed": "2026-08-12",
+  "environment": "author environment, unfrozen revision",
+  "static_conformance": {
+    "subclass_of_EnvironmentBackend": true,
+    "check_runs_without_a_vm": true,
+    "check_result": "ready=true (qemu-system-aarch64, swtpm, edk2 firmware present)",
+    "select_backend_routing": {
+      "windows-qemu": "WindowsQemuEnvironment",
+      "qemu": "QEMUEnvironment",
+      "docker": "DockerEnvironment"
+    }
+  },
+  "live_contract_run": {
+    "bring_up_seconds": 62,
+    "host_id": "AUTOSUT-8O2EB99@windows-qemu:62036",
+    "run_shell_identity": "AUTOSUT-8O2EB99/labadmin (exit 0)",
+    "run_shell_round_trip": "wrote HKLM\\SOFTWARE\\AutoSUT_G2\\probe='g2ok' and read it back as 'g2ok'",
+    "teardown_clean": true,
+    "total_seconds": 71,
+    "residual_qemu": []
+  },
+  "meaning": "Windows is now a first-class execution substrate under the SAME contract as Docker and Linux/QEMU: the orchestrator calls bring_up / run_shell / teardown and never sees qcow2, swtpm, ramfb, WinRM or PowerShell. run_shell executes whatever command it is given (here PowerShell over WinRM); OS-specific procedure text belongs to the campaign and SUT profile, not the backend.",
+  "not_yet": [
+    "The cyber-gate stages (agent enroll, ability, independent oracle, negative control) are not yet expressed as shared lifecycle stages over env.run_shell + CalderaClient; windows_cyber_gate.py still carries its own Guest. Migrating it to consume this backend removes the duplicated boot recipe.",
+    "Evidence bundles do not yet converge to one common schema across backends.",
+    "The WinRM credential is still the interim env-supplied sealed value; the ephemeral per-run credential provider (WindowsSutProfile via parameterized unattend/.ppkg, destroyed on teardown) is the next G2 step."
+  ],
+  "honest_status": "G2 foundational piece: Windows conforms to the canonical backend contract, validated end-to-end on a real guest in the author environment on an unfrozen revision. Not a G2 pass: G2 passes only when the same orchestration path drives all relevant backends through the same lifecycle with no backend-specific scientific logic in the experiment, and bundles converge to a common schema."
+}

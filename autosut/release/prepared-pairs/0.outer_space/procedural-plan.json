@@ -1,0 +1,194 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0042",
+  "campaign_name": "Outer Space",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--a1f5df89-ec82-45ef-b229-4ca6a407dc4f",
+    "campaign_external_id": "C0042"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1584.004",
+      "technique_stix_id": "attack-pattern--e196b5c5-8118-4a1c-ab8a-936586ce3db5",
+      "name": "Server",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--3c5c7ef8-b900-43b0-a6ca-b3027ac50c9e"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) compromised an Israeli human resources site to use as a C2 server.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1585.003",
+      "technique_stix_id": "attack-pattern--926d8cfd-1d0d-4da2-ab49-3ca10ec3f3b5",
+      "name": "Cloud Accounts",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--9237a0b7-99a9-4902-a74f-7d7958d5bec6"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) created M365 email accounts to be used as part of C2.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1587.001",
+      "technique_stix_id": "attack-pattern--212306d8-efa4-44c9-8c2d-ed3d2e224aa0",
+      "name": "Malware",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--bd416071-89a5-4d96-8978-d956491b1010"
+      ],
+      "procedure_descriptions": [
+        "For [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) created new implants including the [Solar](https://attack.mitre.org/software/S1166) backdoor.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1059.005",
+      "technique_stix_id": "attack-pattern--dfd7cc1d-e1d8-4394-a198-97c4cab8aa67",
+      "name": "Visual Basic",
+      "execution_domain": "target",
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--e2a5ad0c-a978-4da8-a634-3bffbf9722d3"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) used VBS droppers to deploy malware.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1027.013",
+      "technique_stix_id": "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+      "name": "Encrypted/Encoded File",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--ae7a51b0-da52-4793-b46b-0711ee85c086"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) deployed VBS droppers with obfuscated strings.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1217",
+      "technique_stix_id": "attack-pattern--5e4a2073-9643-44cb-a0b5-e7f4048446c7",
+      "name": "Browser Information Discovery",
+      "execution_domain": "target",
+      "tactics": [
+        "discovery"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--3c770dba-9357-4a2b-9431-37bf95c080c5"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) used a Chrome data dumper named MKG.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_stix_id": "attack-pattern--df8b2a25-8bdf-4856-953c-a04372b1c161",
+      "name": "Web Protocols",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--7f6086a0-1580-4f88-a607-221caeb8af19"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) used HTTP to communicate between installed backdoors and compromised servers including via the Microsoft Exchange Web Services API.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--237d41a4-c74c-4663-8e79-6d7995fc065a"
+      ],
+      "procedure_descriptions": [
+        "During [Outer Space](https://attack.mitre.org/campaigns/C0042), [OilRig](https://attack.mitre.org/groups/G0049) downloaded additional tools to comrpomised infrastructure.(Citation: ESET OilRig Campaigns Sep 2023)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "46101fa011822e932329206527a222be68436a7dbe94d698a875751bc8632f69"
+}

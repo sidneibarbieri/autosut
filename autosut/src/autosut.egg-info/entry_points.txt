@@ -1,0 +1,2 @@
+[console_scripts]
+autosut-run = runners.campaign_runner:main

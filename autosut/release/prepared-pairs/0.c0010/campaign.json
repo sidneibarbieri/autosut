@@ -1,0 +1,275 @@
+{
+  "campaign_id": "0.c0010",
+  "source_campaign_id": "C0010",
+  "description": "C0010 - UNC3890 infrastructure preparation, watering-hole staging, and tool delivery chain aligned with the legacy Docker corpus",
+  "objective": "Reproduce the legacy nine-technique C0010 chain with controlled infrastructure staging and lab-safe watering-hole interaction.",
+  "execution_contract": {
+    "scope": "validated_controlled_slice",
+    "initial_facts": [
+      "sut.ready",
+      "actor.ready",
+      "network:http_available",
+      "c2_channel"
+    ],
+    "techniques": [
+      {
+        "technique_id": "T1583.001",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "infrastructure.domain"
+        ]
+      },
+      {
+        "technique_id": "T1584.001",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "infrastructure.compromised_domain"
+        ]
+      },
+      {
+        "technique_id": "T1587.001",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "actor.capability.specified"
+        ]
+      },
+      {
+        "technique_id": "T1588.002",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "actor.toolkit.ready"
+        ]
+      },
+      {
+        "technique_id": "T1608.001",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "actor.payload.ready"
+        ]
+      },
+      {
+        "technique_id": "T1608.002",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "actor.tool.staged"
+        ]
+      },
+      {
+        "technique_id": "T1608.004",
+        "requires": [
+          "actor.ready"
+        ],
+        "produces": [
+          "web.target.ready"
+        ]
+      },
+      {
+        "technique_id": "T1189",
+        "requires": [
+          "web.target.ready"
+        ],
+        "produces": [
+          "access.target.browser_context"
+        ]
+      },
+      {
+        "technique_id": "T1105",
+        "requires": [
+          "access.target.browser_context",
+          "actor.tool.staged"
+        ],
+        "produces": [
+          "transfer.target.payload"
+        ]
+      }
+    ]
+  },
+  "sut": {
+    "required_vms": [
+      "caldera",
+      "attacker",
+      "target"
+    ],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 12
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": [
+          "ssh",
+          "apache2"
+        ]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1584.001",
+      "name": "Domains",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "infrastructure:compromised_domain"
+      ],
+      "description": "During C0010, UNC3890 actors likely compromised the domain of a legitimate Israeli shipping company.",
+      "procedure_summary": "Represent compromise of a legitimate shipping-domain asset through a lab-safe structured manifest."
+    },
+    {
+      "technique_id": "T1608.001",
+      "name": "Upload Malware",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "resources:payload_prepared"
+      ],
+      "description": "For C0010, UNC3890 actors staged malware on their infrastructure for direct download onto a compromised system.",
+      "procedure_summary": "Stage a benign payload artifact that stands in for malware prepared on attacker-controlled infrastructure."
+    },
+    {
+      "technique_id": "T1608.004",
+      "name": "Drive-by Target",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "watering_hole:staged"
+      ],
+      "description": "For C0010, the threat actors compromised the login page of a legitimate Israeli shipping company and likely established a watering hole that collected visitor information.",
+      "procedure_summary": "Stage a benign landing page and client-side script to represent the compromised watering-hole target."
+    },
+    {
+      "technique_id": "T1189",
+      "name": "Drive-by Compromise",
+      "tactic": "initial-access",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "network:http_available"
+      ],
+      "produces": [
+        "access:initial",
+        "watering_hole:visited"
+      ],
+      "description": "During C0010, UNC3890 actors likely established a watering hole that was hosted on a login page of a legitimate Israeli shipping company that was active until at least November 2021.",
+      "procedure_summary": "Fetch the staged watering-hole page and its client-side script over HTTP without delivering an exploit."
+    },
+    {
+      "technique_id": "T1587.001",
+      "name": "Malware",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "resources:malware_spec"
+      ],
+      "description": "For C0010, UNC3890 actors used unique malware, including SUGARUSH and SUGARDUMP.",
+      "procedure_summary": "Capture malware-development intent through a benign capability specification rather than a live payload."
+    },
+    {
+      "technique_id": "T1583.001",
+      "name": "Domains",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "infrastructure:domain"
+      ],
+      "description": "For C0010, UNC3890 actors established domains that appeared to be legitimate services and entities, such as LinkedIn, Facebook, Office 365, and Pfizer.",
+      "procedure_summary": "Represent lookalike-domain acquisition through a controlled infrastructure artifact."
+    },
+    {
+      "technique_id": "T1608.002",
+      "name": "Upload Tool",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "resources:tool_uploaded"
+      ],
+      "description": "For C0010, UNC3890 actors staged tools on their infrastructure to download directly onto a compromised system.",
+      "procedure_summary": "Stage a benign tool artifact for later transfer into the compromised environment."
+    },
+    {
+      "technique_id": "T1588.002",
+      "name": "Tool",
+      "tactic": "resource-development",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "resources:staging_directory"
+      ],
+      "produces": [
+        "artifacts:recon_toolkit"
+      ],
+      "description": "For C0010, UNC3890 actors obtained multiple publicly-available tools, including METASPLOIT, UNICORN, and NorthStar C2.",
+      "procedure_summary": "Build a benign toolkit artifact that stands in for publicly obtained offensive tooling."
+    },
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": [
+        "network:http_available"
+      ],
+      "produces": [
+        "payload:staged"
+      ],
+      "description": "During C0010, UNC3890 actors downloaded tools and malware onto a compromised host.",
+      "procedure_summary": "Transfer a benign payload over HTTP within the lab substrate to preserve ingress-tool behavior."
+    }
+  ]
+}

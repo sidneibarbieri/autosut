@@ -69,21 +69,15 @@ def test_shadowray_contract_records_ordered_state() -> None:
 
     assert ledger.contract_coverage == "declared"
     assert [transition.missing_requirements for transition in ledger.transitions] == [[]] * 10
-    assert [fact.fact_id for fact in ledger.facts] == [
-        "sut.ready",
-        "actor.ready",
-        "sut.ray_dashboard.reachable",
-        "actor.toolkit.ready",
-        "access.target.shell",
-        "execution.target.python",
-        "persistence.target.shell_config",
-        "assessment.target.privilege_boundary",
-        "artifact.target.encoded",
-        "collection.target.credential_files",
-        "discovery.target.network",
-        "transfer.target.payload",
-        "impact.target.compute",
-    ]
+    contract = json.loads(
+        (PROJECT_ROOT / "release/plans/C0045.verified-executable-contract.json").read_text()
+    )
+    expected_facts = list(contract["initial_facts"])
+    for transition in contract["transitions"]:
+        expected_facts.extend(transition["produces"])
+    assert [fact.fact_id for fact in ledger.facts] == expected_facts
+    assert ledger.facts[-1].fact_id == "system:cpu_usage"
+    assert "impact.target.compute" in expected_facts
     assert len(ledger.content_sha256) == 64
 
 

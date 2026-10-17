@@ -1,0 +1,26 @@
+{
+  "bundle": "enterprise-attack.json",
+  "seed": 20261006,
+  "population_size": 697,
+  "sample_size": 152,
+  "stratum_sizes": {
+    "R7_CF_CONTAINER_COMPATIBLE": 19,
+    "R1_ID_PLATFORM_KEYWORD": 25,
+    "R3_ID_LATERAL_TACTIC": 14,
+    "R4_VMR_KERNEL_BOOT": 17,
+    "R6_VMR_NAME_PATTERN": 17,
+    "fallback": 60
+  },
+  "population_stratum_sizes": {
+    "R7_CF_CONTAINER_COMPATIBLE": 19,
+    "R1_ID_PLATFORM_KEYWORD": 133,
+    "R3_ID_LATERAL_TACTIC": 14,
+    "R4_VMR_KERNEL_BOOT": 34,
+    "R6_VMR_NAME_PATTERN": 27,
+    "fallback": 470
+  },
+  "blind_sheets": [
+    "compatibility_annotation_sheet_A.csv",
+    "compatibility_annotation_sheet_B.csv"
+  ]
+}

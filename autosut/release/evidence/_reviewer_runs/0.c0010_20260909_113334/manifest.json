@@ -1,0 +1,252 @@
+{
+  "campaign_id": "0.c0010",
+  "run_id": "0.c0010_20260909_113334",
+  "timestamp": "2026-09-09T11:35:41.304944Z",
+  "attacker": {
+    "profile_id": "c0010_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh+http client for watering-hole flow."
+  },
+  "sut": {
+    "sut_id": "c0010_apt20_watering_hole",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh",
+      "apache2"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "ubuntu",
+          "secret": "ubuntu",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (ubuntu:ubuntu).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/var/www/html/index.html",
+          "content_text": "<html><body>Welcome to the lab landing page.</body></html>\n",
+          "content_b64": null,
+          "owner": "www-data",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/var/www/html/index.html).",
+          "source": "analyst_authored"
+        },
+        {
+          "path": "/home/ubuntu/shipping_notice.txt",
+          "content_text": "Shipping notice \u2014 internal use only.\n",
+          "content_b64": null,
+          "owner": "ubuntu",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/home/ubuntu/shipping_notice.txt).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "expose_to": "private_network",
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        },
+        {
+          "name": "apache_httpd",
+          "version": "default",
+          "recipe": "apache_default_site",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "HTTP web surface required by this lab profile.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.c0010 \u2014 APT20 Operation Wocao watering-hole chain. Linux web target with weak ssh + apache landing page."
+    },
+    "topology": null,
+    "notes": "0.c0010 \u2014 APT20 Operation Wocao watering-hole chain. Linux web target with weak ssh + apache landing page."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1584.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1584.001_inspired.log"
+      ],
+      "duration_sec": 0.1043367920210585,
+      "notes": "Inspired representation of Domains: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.001",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.001_artifact.log"
+      ],
+      "duration_sec": 0.12646291707642376,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.004_inspired.log"
+      ],
+      "duration_sec": 0.10264216701034456,
+      "notes": "Inspired representation of Drive-by Target: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1189",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1189_inspired.log"
+      ],
+      "duration_sec": 0.09813695796765387,
+      "notes": "Inspired representation of Drive-by Compromise: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1587.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1587.001_inspired.log"
+      ],
+      "duration_sec": 0.10134137491695583,
+      "notes": "Inspired representation of Malware: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1583.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1583.001_inspired.log"
+      ],
+      "duration_sec": 0.10354866599664092,
+      "notes": "Inspired representation of Domains: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.002_inspired.log"
+      ],
+      "duration_sec": 0.09636850003153086,
+      "notes": "Inspired representation of Upload Tool: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1588.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.002_artifact.log"
+      ],
+      "duration_sec": 0.12591354199685156,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1105",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1105_artifact.log"
+      ],
+      "duration_sec": 0.12176737491972744,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

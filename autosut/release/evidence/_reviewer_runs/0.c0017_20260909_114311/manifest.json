@@ -1,0 +1,176 @@
+{
+  "campaign_id": "0.c0017",
+  "run_id": "0.c0017_20260909_114311",
+  "timestamp": "2026-09-09T11:44:24.732727Z",
+  "attacker": {
+    "profile_id": "c0017_attacker",
+    "capabilities": [
+      "ssh_client",
+      "http_client"
+    ],
+    "notes": "ssh client for APT29 stealth flow."
+  },
+  "sut": {
+    "sut_id": "c0017_apt29_stealth",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "ssh"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "testuser",
+          "secret": "password123",
+          "location": null,
+          "purpose": "Operator account declared by the lab profile declaration (testuser:password123).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/tmp/phishing_context.txt",
+          "content_text": "Phishing payload context \u2014 staging\n",
+          "content_b64": null,
+          "owner": "testuser",
+          "mode": "0644",
+          "purpose": "Decoy artefact declared by the lab profile (/tmp/phishing_context.txt).",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "expose_to": "private_network",
+          "purpose": "SSH service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "applications": [
+        {
+          "name": "openssh",
+          "version": "default",
+          "recipe": "openssh_weak_password",
+          "cve_pins": [],
+          "config": {},
+          "image_override": null,
+          "purpose": "ssh service with password authentication enabled.",
+          "source": "analyst_authored"
+        }
+      ],
+      "notes": "0.c0017 \u2014 APT29-style stealth execution and persistence flow on a minimal Linux SUT."
+    },
+    "topology": null,
+    "notes": "0.c0017 \u2014 APT29-style stealth execution and persistence flow on a minimal Linux SUT."
+  },
+  "cves_injected": [],
+  "techniques": [
+    {
+      "technique_id": "T1059.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.004_shell.log"
+      ],
+      "duration_sec": 0.8779436670010909,
+      "notes": "Adapted: real shell + python interpreter execution.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1083_discovery.log"
+      ],
+      "duration_sec": 0.13866883295122534,
+      "notes": "Adapted: real filesystem enumeration via ls + find.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1053",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1053_scheduled_job.log"
+      ],
+      "duration_sec": 0.13769454194698483,
+      "notes": "Adapted: real cron entry and executable staged inside the bounded SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1543",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1543_system_process.log"
+      ],
+      "duration_sec": 0.15169708407483995,
+      "notes": "Adapted: a systemd service unit is really written and its declared action executed in the bounded SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1027",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1027_obfuscation.log"
+      ],
+      "duration_sec": 0.523200707975775,
+      "notes": "Adapted: real bounded payload obfuscated with base64 and hashed.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1564",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1564_hidden_artifact.log"
+      ],
+      "duration_sec": 0.13421150005888194,
+      "notes": "Adapted: real dot-prefixed hidden artifact created in the bounded SUT.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

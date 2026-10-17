@@ -1,4 +1,4 @@
-# SUT Profile: 0.fox_kitten — Multi-Host Fox Kitten (G0117) Environment
+# SUT Profile: 0.fox_kitten - Multi-Host Fox Kitten (G0117) Environment
 # Requirements: caldera, attacker, target (with vulnerable web app and SSH pivot)
 
 profile_id: "0.fox_kitten"

@@ -1,0 +1,7 @@
+$ python3 -c 'import pathlib,hashlib,json; root=pathlib.Path('"'"'/tmp/autosut-bound'"'"'); chunks=sorted(root.glob("chunk-*")); assert chunks and all(0<len(item.read_bytes())<=1024 for item in chunks); data=b"".join(item.read_bytes() for item in chunks); assert data==(root/"collection.tar").read_bytes(); print(json.dumps({"sha256":hashlib.sha256(data).hexdigest(),"chunks":[item.name for item in chunks],"external_transfer":False}))'
+exit_code: 0
+--- stdout ---
+{"sha256": "62c23501c97c4a9f0f9fb6a49bb89be6af7829b9da04445ebc57a7f1bc2c9f21", "chunks": ["chunk-0000", "chunk-1024", "chunk-2048", "chunk-3072", "chunk-4096", "chunk-5120", "chunk-6144", "chunk-7168", "chunk-8192", "chunk-9216"], "external_transfer": false}
+
+--- stderr ---
+

@@ -1,0 +1,19 @@
+{
+  "campaign_id": "0.outer_space",
+  "source_campaign_id": "C0042",
+  "status": "blocked",
+  "reasons": [
+    "missing_execution_contract"
+  ],
+  "source_steps": 8,
+  "planned_steps": 0,
+  "unresolved_technique_ids": [],
+  "contract_sha256": null,
+  "files": {
+    "campaign-source.json": "bdb5c4c78bf00e838f7d8fc6d02ae04880dc58dd8a1ebcb90b438413f4abbc45",
+    "campaign.json": "9a11d495a3e4d25100ff0628459f3df465c996cd3f9a99a8df0c955df11e0136",
+    "procedural-plan.json": "5f8c777852bc6b266d31297c50266e6a4463ade7313f827bc8d868eb57fc2026",
+    "sut-constraints.json": "2b9825de58f6ef97cc8b3d6961f68e76fc91260ac01b0144229377e18eab58fc"
+  },
+  "execution_status": "not_run"
+}

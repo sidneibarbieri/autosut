@@ -6,3 +6,5 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 python3 "$ROOT_DIR/autosut/scripts/verify_artifact_manifest.py"   --root "$ROOT_DIR" --allow-runtime-state
 cd "$ROOT_DIR/autosut"
 bash run_review_check.sh
+python3 "$ROOT_DIR/autosut/scripts/check_public_surface.py"
+python3 "$ROOT_DIR/autosut/scripts/verify_artifact_manifest.py"   --root "$ROOT_DIR" --allow-runtime-state

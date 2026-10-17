@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import csv
 import importlib.util
 import random
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import pytest
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SCRIPT_PATH = (
@@ -26,6 +28,59 @@ def _load_module():
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
+
+
+def test_campaign_profile_population_matches_exact_ids() -> None:
+    pipeline = _load_module()
+    campaigns = [{"id": "campaign--one"}, {"id": "campaign--excluded"}]
+    report = {"total_campaigns": 1, "rows": [{"campaign_id": "campaign--one"}]}
+    assert pipeline.validate_campaign_profile_population(
+        campaigns, {"campaign--excluded"}, report
+    ) == 1
+
+
+@pytest.mark.parametrize("rows,total", [
+    ([{"campaign_id": "campaign--other"}], 1),
+    ([{"campaign_id": "campaign--one"}, {"campaign_id": "campaign--one"}], 2),
+    ([{"campaign_id": "campaign--one"}], 52),
+    ([], 0),
+])
+def test_campaign_profile_population_refuses_stale_or_wrong_inventory(rows, total) -> None:
+    pipeline = _load_module()
+    with pytest.raises(ValueError):
+        pipeline.validate_campaign_profile_population(
+            [{"id": "campaign--one"}], set(), {"total_campaigns": total, "rows": rows}
+        )
+
+
+@pytest.mark.parametrize("campaigns,excluded", [
+    ([{"id": "campaign--one"}, {"id": "campaign--one"}], set()),
+    ([{"id": "campaign--one"}], {"campaign--absent"}),
+])
+def test_campaign_profile_population_refuses_invalid_source_inventory(campaigns, excluded):
+    pipeline = _load_module()
+    with pytest.raises(ValueError):
+        pipeline.validate_campaign_profile_population(
+            campaigns, excluded,
+            {"total_campaigns": 1, "rows": [{"campaign_id": "campaign--one"}]},
+        )
+
+
+def test_pinned_profile_rows_match_current_bundle_population() -> None:
+    pipeline = _load_module()
+    objects = pipeline.load_bundle(pipeline.ENTERPRISE_FILE)
+    by_type, _ = pipeline.index_objects_by_type(objects)
+    campaigns = by_type["campaign"]
+    uses_sources = {
+        relationship["source_ref"] for relationship in by_type["relationship"]
+        if relationship["relationship_type"] == "uses"
+    }
+    excluded = {campaign["id"] for campaign in campaigns} - uses_sources
+    with (pipeline.AUDIT_DIR / "campaign_profile_completeness.csv").open() as stream:
+        rows = list(csv.DictReader(stream))
+    assert pipeline.validate_campaign_profile_population(
+        campaigns, excluded, {"total_campaigns": len(rows), "rows": rows}
+    ) == len(rows)
 
 
 def test_campaign_precision_reference_uses_linked_software() -> None:
@@ -249,3 +304,29 @@ def test_convergence_rate_excludes_single_signal_rows(tmp_path: Path) -> None:
     assert result["assessable_convergence_count"] == 1
     assert result["assessable_divergence_count"] == 1
     assert result["assessable_convergence_rate_pct"] == 50.0
+
+
+def _tactic(identifier: str, shortname: str) -> dict:
+    return {"type": "x-mitre-tactic", "id": identifier, "x_mitre_shortname": shortname}
+
+
+def test_tactic_order_follows_the_pinned_matrix() -> None:
+    module = _load_module()
+    objects = [
+        _tactic("x-mitre-tactic--a", "stealth"),
+        _tactic("x-mitre-tactic--b", "defense-impairment"),
+        _tactic("x-mitre-tactic--c", "impact"),
+        {
+            "type": "x-mitre-matrix",
+            "tactic_refs": ["x-mitre-tactic--a", "x-mitre-tactic--b", "x-mitre-tactic--c"],
+        },
+    ]
+
+    assert module.enterprise_tactic_order(objects) == ["stealth", "defense-impairment", "impact"]
+
+
+def test_tactic_order_requires_exactly_one_active_matrix() -> None:
+    module = _load_module()
+
+    with pytest.raises(ValueError, match="found 0"):
+        module.enterprise_tactic_order([_tactic("x-mitre-tactic--a", "impact")])

@@ -1,0 +1,536 @@
+{
+  "name": "multihost-multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb",
+  "host_group": [
+    {
+      "paw": "hostabcf71129ed",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "red",
+      "architecture": "arm64",
+      "platform": "linux",
+      "server": "http://172.19.0.2:8888",
+      "upstream_dest": "http://172.19.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 31,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "0a9d8228222b",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.19.0.3"
+      ],
+      "display_name": "0a9d8228222b$root",
+      "created": "2026-09-05T13:00:17Z",
+      "last_seen": "2026-09-05T13:02:00Z",
+      "links": [
+        {
+          "id": "eef42651-14bb-43e6-804a-91c0ea898ef7",
+          "paw": "hostabcf71129ed",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-09-05T13:00:17Z",
+          "pin": 0,
+          "pid": "36",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "eef42651-14bb-43e6-804a-91c0ea898ef7",
+          "collect": "2026-09-05T13:00:17Z",
+          "finish": "2026-09-05T13:00:17Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "0a9d8228222b",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-09-05T13:00:17Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    },
+    {
+      "paw": "hostb11412974e2",
+      "sleep_min": 30,
+      "sleep_max": 60,
+      "watchdog": 0,
+      "group": "red",
+      "architecture": "arm64",
+      "platform": "linux",
+      "server": "http://172.19.0.2:8888",
+      "upstream_dest": "http://172.19.0.2:8888",
+      "username": "root",
+      "location": "/usr/local/bin/sandcat",
+      "pid": 25,
+      "ppid": 1,
+      "trusted": true,
+      "executors": [
+        "proc",
+        "sh"
+      ],
+      "privilege": "Elevated",
+      "exe_name": "sandcat",
+      "host": "fb9fe4c65f27",
+      "contact": "HTTP",
+      "proxy_receivers": {},
+      "proxy_chain": [],
+      "origin_link_id": "",
+      "deadman_enabled": true,
+      "available_contacts": [
+        "HTTP"
+      ],
+      "host_ip_addrs": [
+        "172.19.0.4"
+      ],
+      "display_name": "fb9fe4c65f27$root",
+      "created": "2026-09-05T13:00:20Z",
+      "last_seen": "2026-09-05T13:01:29Z",
+      "links": [
+        {
+          "id": "d2d6c683-e8f1-40c7-8b0e-f0f9f89968ef",
+          "paw": "hostb11412974e2",
+          "command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "plaintext_command": "PiAkSE9NRS8uYmFzaF9oaXN0b3J5ICYmIHVuc2V0IEhJU1RGSUxF",
+          "status": 0,
+          "score": 0,
+          "jitter": 0,
+          "decide": "2026-09-05T13:00:20Z",
+          "pin": 0,
+          "pid": "30",
+          "facts": [],
+          "relationships": [],
+          "used": [],
+          "unique": "d2d6c683-e8f1-40c7-8b0e-f0f9f89968ef",
+          "collect": "2026-09-05T13:00:20Z",
+          "finish": "2026-09-05T13:00:20Z",
+          "ability": {
+            "ability_id": "43b3754c-def4-4699-a673-1d85648fda6a",
+            "tactic": "defense-evasion",
+            "technique_name": "Indicator Removal on Host: Clear Command History",
+            "technique_id": "T1070.003",
+            "name": "Avoid logs",
+            "description": "Stop terminal from logging history",
+            "executors": [
+              {
+                "name": "sh",
+                "platform": "darwin",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "sh",
+                "platform": "linux",
+                "command": "> $HOME/.bash_history && unset HISTFILE",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              },
+              {
+                "name": "psh",
+                "platform": "windows",
+                "command": "Clear-History;Clear",
+                "code": null,
+                "language": null,
+                "build_target": null,
+                "payloads": [],
+                "uploads": [],
+                "timeout": 60,
+                "parsers": [],
+                "cleanup": [],
+                "variations": [],
+                "additional_info": {}
+              }
+            ],
+            "requirements": [],
+            "privilege": null,
+            "repeatable": false,
+            "buckets": [
+              "defense-evasion"
+            ],
+            "additional_info": {},
+            "access": {},
+            "singleton": false,
+            "plugin": "stockpile",
+            "delete_payload": true
+          },
+          "executor": {
+            "name": "sh",
+            "platform": "linux",
+            "command": "> $HOME/.bash_history && unset HISTFILE",
+            "code": null,
+            "language": null,
+            "build_target": null,
+            "payloads": [],
+            "uploads": [],
+            "timeout": 60,
+            "parsers": [],
+            "cleanup": [],
+            "variations": [],
+            "additional_info": {}
+          },
+          "cleanup": 0,
+          "visibility": {
+            "score": 50,
+            "adjustments": []
+          },
+          "host": "fb9fe4c65f27",
+          "output": "False",
+          "deadman": false,
+          "agent_reported_time": "2026-09-05T13:00:20Z"
+        }
+      ],
+      "pending_contact": "HTTP"
+    }
+  ],
+  "start": "2026-09-05T13:00:21Z",
+  "steps": {
+    "hostabcf71129ed": {
+      "steps": [
+        {
+          "link_id": "b691659a-8829-4f78-bea5-13ab3de55312",
+          "ability_id": "d5c72be5-c033-57e9-8a91-81aacac7ec9b",
+          "command": "cat /tmp/host_a_credential",
+          "plaintext_command": "cat /tmp/host_a_credential",
+          "delegated": "2026-09-05T13:00:21Z",
+          "run": "2026-09-05T13:01:13Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 38,
+          "description": "produce host-A credential fact",
+          "name": "produce host-A credential fact",
+          "attack": {
+            "tactic": "credential-access",
+            "technique_name": "Credentials In Files",
+            "technique_id": "T1552.001"
+          },
+          "output": {
+            "stdout": "s3cr3t-ff618308f8a925fb",
+            "stderr": "",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-09-05T13:01:13Z"
+        },
+        {
+          "link_id": "ea1a0f57-6db5-4ced-8503-8155e8901977",
+          "ability_id": "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1",
+          "command": "printf '%s' 's3cr3t-ff618308f8a925fb' > /tmp/host_b_marker && cat /tmp/host_b_marker",
+          "plaintext_command": "printf '%s' 's3cr3t-ff618308f8a925fb' > /tmp/host_b_marker && cat /tmp/host_b_marker",
+          "delegated": "2026-09-05T13:01:16Z",
+          "run": "2026-09-05T13:02:00Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 40,
+          "description": "consume fact on host-B",
+          "name": "consume fact on host-B",
+          "attack": {
+            "tactic": "lateral-movement",
+            "technique_name": "Remote Services",
+            "technique_id": "T1021"
+          },
+          "output": {
+            "stdout": "s3cr3t-ff618308f8a925fb",
+            "stderr": "",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-09-05T13:02:00Z"
+        }
+      ]
+    },
+    "hostb11412974e2": {
+      "steps": [
+        {
+          "link_id": "36410d9e-9efb-4ae6-b569-af98079b55df",
+          "ability_id": "d5c72be5-c033-57e9-8a91-81aacac7ec9b",
+          "command": "cat /tmp/host_a_credential",
+          "plaintext_command": "cat /tmp/host_a_credential",
+          "delegated": "2026-09-05T13:00:21Z",
+          "run": "2026-09-05T13:00:54Z",
+          "status": 1,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 31,
+          "description": "produce host-A credential fact",
+          "name": "produce host-A credential fact",
+          "attack": {
+            "tactic": "credential-access",
+            "technique_name": "Credentials In Files",
+            "technique_id": "T1552.001"
+          },
+          "output": {
+            "stdout": "",
+            "stderr": "cat: /tmp/host_a_credential: No such file or directory",
+            "exit_code": "1"
+          },
+          "agent_reported_time": "2026-09-05T13:00:54Z"
+        },
+        {
+          "link_id": "d7db6951-8800-4f86-94fc-6363fbdafb6c",
+          "ability_id": "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1",
+          "command": "printf '%s' 's3cr3t-ff618308f8a925fb' > /tmp/host_b_marker && cat /tmp/host_b_marker",
+          "plaintext_command": "printf '%s' 's3cr3t-ff618308f8a925fb' > /tmp/host_b_marker && cat /tmp/host_b_marker",
+          "delegated": "2026-09-05T13:01:16Z",
+          "run": "2026-09-05T13:01:29Z",
+          "status": 0,
+          "platform": "linux",
+          "executor": "sh",
+          "pid": 33,
+          "description": "consume fact on host-B",
+          "name": "consume fact on host-B",
+          "attack": {
+            "tactic": "lateral-movement",
+            "technique_name": "Remote Services",
+            "technique_id": "T1021"
+          },
+          "output": {
+            "stdout": "s3cr3t-ff618308f8a925fb",
+            "stderr": "",
+            "exit_code": "0"
+          },
+          "agent_reported_time": "2026-09-05T13:01:29Z"
+        }
+      ]
+    }
+  },
+  "finish": "2026-09-05T13:02:02Z",
+  "planner": "atomic",
+  "adversary": {
+    "adversary_id": "8c1ba7cd-f121-4c84-a7c9-5eebd97c9c71",
+    "name": "multihost-multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb",
+    "description": "AutoSUT-generated adversary",
+    "atomic_ordering": [
+      "d5c72be5-c033-57e9-8a91-81aacac7ec9b",
+      "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1"
+    ],
+    "objective": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "tags": [
+      "autosut"
+    ],
+    "has_repeatable_abilities": false,
+    "plugin": ""
+  },
+  "jitter": "0/0",
+  "objectives": {
+    "id": "495a9828-cab1-44dd-a0ca-66e58177d8cc",
+    "name": "default",
+    "description": "This is a default objective that runs forever.",
+    "goals": [
+      {
+        "target": "exhaustion",
+        "value": "complete",
+        "count": 1048576,
+        "operator": "==",
+        "achieved": false
+      }
+    ],
+    "percentage": 0.0
+  },
+  "facts": [
+    {
+      "unique": "file.sensitive.extensionwav",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "wav",
+      "created": "2026-09-05T12:59:22Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionyml",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "yml",
+      "created": "2026-09-05T12:59:22Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "file.sensitive.extensionpng",
+      "trait": "file.sensitive.extension",
+      "name": "file.sensitive.extension",
+      "value": "png",
+      "created": "2026-09-05T12:59:22Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "server.malicious.urlkeyloggedsite.com",
+      "trait": "server.malicious.url",
+      "name": "server.malicious.url",
+      "value": "keyloggedsite.com",
+      "created": "2026-09-05T12:59:22Z",
+      "score": 1,
+      "source": "ed32b9c3-9593-4c33-b0db-e2007315096b",
+      "origin_type": "IMPORTED",
+      "links": [],
+      "relationships": [],
+      "limit_count": -1,
+      "collected_by": [],
+      "technique_id": ""
+    },
+    {
+      "unique": "shadow.credentials3cr3t-ff618308f8a925fb",
+      "trait": "shadow.credential",
+      "name": "shadow.credential",
+      "value": "s3cr3t-ff618308f8a925fb",
+      "created": "2026-09-05T13:01:13Z",
+      "score": 1,
+      "source": "2e4abf52-5fbf-44ba-8480-7fae52e5ddac",
+      "origin_type": "LEARNED",
+      "links": [
+        "b691659a-8829-4f78-bea5-13ab3de55312"
+      ],
+      "relationships": [
+        "shadow.credential(s3cr3t-ff618308f8a925fb)"
+      ],
+      "limit_count": -1,
+      "collected_by": [
+        "hostabcf71129ed"
+      ],
+      "technique_id": "T1552.001"
+    }
+  ],
+  "skipped_abilities": [
+    {
+      "hostabcf71129ed": []
+    },
+    {
+      "hostb11412974e2": []
+    }
+  ]
+}

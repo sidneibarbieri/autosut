@@ -1,0 +1,62 @@
+{
+  "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf",
+  "seed": 1,
+  "effect_marker_file": "/tmp/autosut_effect_b6b264ff250c28f0.txt",
+  "effect_marker_value": "autosut-0272e50a1b0e4964f5ec2767be740f09",
+  "caldera_image_cache_hit": true,
+  "caldera_image_preparation_seconds": 0.042,
+  "caldera_container_ip": "172.17.0.2",
+  "caldera_ready_seconds": 12.1,
+  "realization": "surrogate",
+  "ray_ip": "172.17.0.4",
+  "confirmed_answering_service": "surrogate",
+  "environment_provenance": {
+    "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf",
+    "protocol_version": "caldera-experiment/1",
+    "host_os": "Darwin 25.5.0",
+    "host_architecture": "arm64",
+    "python": "Python 3.14.7",
+    "docker_client": "29.7.2",
+    "docker_server": "29.2.1",
+    "images": {
+      "caldera": {
+        "declared_reference": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "image_id": "sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "architecture": "amd64",
+        "resolved_repo_digest": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7"
+      },
+      "sut_and_attacker": {
+        "declared_reference": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "image_id": "sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "architecture": "arm64",
+        "resolved_repo_digest": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
+      }
+    }
+  },
+  "attacker": "autosut-af00586b-attacker",
+  "paw": "exp3eb767e1c6",
+  "sandcat_build_attempts": [
+    "attempt 1: wrong architecture (not aarch64)",
+    "attempt 2: built aarch64"
+  ],
+  "agent_paw": "exp3eb767e1c6",
+  "admitted_contract_sha256": "3e230b19a2383374aac835af1344982c3f4adb0818797f2601efdd2ca7ffe2cf",
+  "admitted_goal_facts": [
+    "access.target.shell",
+    "access:initial"
+  ],
+  "operation": {
+    "operation_id": "d75c1b78-7cf2-48e4-9e3f-3750e43ba169",
+    "operation_state": "finished",
+    "links": [
+      {
+        "paw": "exp3eb767e1c6",
+        "ability_id": "493caf4d-019c-585b-a604-a7b740be18c2",
+        "status": 0,
+        "exit_code": "0"
+      }
+    ]
+  },
+  "independent_effect_confirmed": true,
+  "execution_state_persisted": true
+}

@@ -1,0 +1,140 @@
+{
+  "source": "NVD CVE API 2.0",
+  "records": [
+    {
+      "cve_id": "CVE-2014-6352",
+      "sha256": "cfa20a346a3a1ea4759b56f550dde602d81308e698360e8a539d0ae54af73a49",
+      "retrieved_at": "2026-10-07T16:37:31Z"
+    },
+    {
+      "cve_id": "CVE-2014-7169",
+      "sha256": "ed7857946eef721ff9db77c3fb0f8eb4e087fe2e9d2ff94098f69cdc014d1427",
+      "retrieved_at": "2026-10-07T16:37:38Z"
+    },
+    {
+      "cve_id": "CVE-2015-3113",
+      "sha256": "7c51e21eac98a2e39ac4f071144e7ed1d6cccde487a14537af9d65aa09e2adf7",
+      "retrieved_at": "2026-10-07T16:37:45Z"
+    },
+    {
+      "cve_id": "CVE-2016-6662",
+      "sha256": "0e208674ccab46a3e63dd56191555a189ab7ade28f54fd6d7c84d02e76af5376",
+      "retrieved_at": "2026-10-07T16:37:52Z"
+    },
+    {
+      "cve_id": "CVE-2017-0176",
+      "sha256": "a30d0940ab5c45a505fae7c601d9593471bb78553119473fad4f550cc45c7337",
+      "retrieved_at": "2026-10-07T16:38:00Z"
+    },
+    {
+      "cve_id": "CVE-2017-0199",
+      "sha256": "99dda7e77b5ce69fa20141a448197b52eca8f2691c980ec69ea50851606970dc",
+      "retrieved_at": "2026-10-07T16:38:07Z"
+    },
+    {
+      "cve_id": "CVE-2017-8625",
+      "sha256": "89ba1f9b4c2047f01eb6a175485cf611689bfbd53abf4eb6053db3d55b4e4b4d",
+      "retrieved_at": "2026-10-07T16:38:14Z"
+    },
+    {
+      "cve_id": "CVE-2017-8759",
+      "sha256": "c16cba210c7d986d645a862b383ccf931538d5cff13e8c76ed8bff374750abdc",
+      "retrieved_at": "2026-10-07T16:38:22Z"
+    },
+    {
+      "cve_id": "CVE-2019-3610",
+      "sha256": "db9f3296a5b749f1d04b92a9c2268a80b96d33de051b92ae283203f2ceb1ff4e",
+      "retrieved_at": "2026-10-07T16:38:29Z"
+    },
+    {
+      "cve_id": "CVE-2021-30724",
+      "sha256": "9e1010c0914eb712b0a420ce65b384fbb28814c6777453fc6c3b17658ff23e96",
+      "retrieved_at": "2026-10-07T16:38:36Z"
+    },
+    {
+      "cve_id": "CVE-2021-32648",
+      "sha256": "3460e5f41fe54402082048e8c7a7eb39e4a93b92a31cd1fcc42bfba403962d6d",
+      "retrieved_at": "2026-10-07T16:39:54Z"
+    },
+    {
+      "cve_id": "CVE-2022-0185",
+      "sha256": "e2d885a2e89fb605c7075817159c197aabb0c88b15a8ae098e625b4299c294f3",
+      "retrieved_at": "2026-10-07T16:40:01Z"
+    },
+    {
+      "cve_id": "CVE-2022-21894",
+      "sha256": "6206c570f7441da45ba648d278a662f9f2c5083c5a7710eb9d4fcfcc08f4b1b4",
+      "retrieved_at": "2026-10-07T16:40:08Z"
+    },
+    {
+      "cve_id": "CVE-2022-38028",
+      "sha256": "0f63a061aaf4fc9da64fb564b017b6dfc142d24d30477a4d7d89d8f2b9c8d9df",
+      "retrieved_at": "2026-10-07T16:40:15Z"
+    },
+    {
+      "cve_id": "CVE-2022-42475",
+      "sha256": "428cbbc362080c85ea2b74b5db9ca36f35fca49ce038d1c6a2ee8c8e07e7d546",
+      "retrieved_at": "2026-10-07T16:40:23Z"
+    },
+    {
+      "cve_id": "CVE-2023-1389",
+      "sha256": "3f0d4178bf96b697164a73126634d7054c413b71be3c3f9915c8010dfbc7561b",
+      "retrieved_at": "2026-10-07T16:40:30Z"
+    },
+    {
+      "cve_id": "CVE-2023-48022",
+      "sha256": "5e50561605a7e72b0cacbfa46e9a70e79c9d5ad03c1b4dee6a94946773e41657",
+      "retrieved_at": "2026-10-07T16:40:37Z"
+    },
+    {
+      "cve_id": "CVE-2024-1708",
+      "sha256": "45ad92a1e7c27ba05e14cac3a81eafab1616aa44e3aa88472654379345cdbbde",
+      "retrieved_at": "2026-10-07T16:41:03Z"
+    },
+    {
+      "cve_id": "CVE-2024-1709",
+      "sha256": "29974037db6f04aee2b39023778223628d940740530e06203bb794254e977048",
+      "retrieved_at": "2026-10-07T16:41:10Z"
+    },
+    {
+      "cve_id": "CVE-2024-3400",
+      "sha256": "c283c7ba57049f650dd9d1fc60843584a31897d273291000cd2c51f9be29a6de",
+      "retrieved_at": "2026-10-07T16:41:17Z"
+    },
+    {
+      "cve_id": "CVE-2024-39717",
+      "sha256": "1c0d6e4d162a17afa7f07d431d4a7a91b30db2f1df9f2a3847d8ed873ea168a8",
+      "retrieved_at": "2026-10-07T16:41:24Z"
+    },
+    {
+      "cve_id": "CVE-2024-55591",
+      "sha256": "456b5c0434dc8115fa4863fb38c5a1afc09bac9d8cbe6478267534b22e476369",
+      "retrieved_at": "2026-10-07T16:41:31Z"
+    },
+    {
+      "cve_id": "CVE-2025-22457",
+      "sha256": "0f2a17ca3f12e360328ca71ec521634a1e2a9b1f184669ebc6d52b0e60e22130",
+      "retrieved_at": "2026-10-07T16:41:39Z"
+    },
+    {
+      "cve_id": "CVE-2025-49704",
+      "sha256": "73acc7d76411862cb6ce2da796a63805969d3bbe0fdb0002b8e44c3b7bd01de7",
+      "retrieved_at": "2026-10-07T16:41:46Z"
+    },
+    {
+      "cve_id": "CVE-2025-49706",
+      "sha256": "d222505d3b2efe63a31e91d7e7dbf6ac0563726c15a5f553369ee9e6162cf602",
+      "retrieved_at": "2026-10-07T16:41:53Z"
+    },
+    {
+      "cve_id": "CVE-2025-53770",
+      "sha256": "6baab2cc6dba6263eeacb8907cc58a19a6a132ca9d7ce13b52dcb20eaef1b502",
+      "retrieved_at": "2026-10-07T16:42:00Z"
+    },
+    {
+      "cve_id": "CVE-2025-53771",
+      "sha256": "4678723ebd8973d72d72d209ad8bf7be31718879929582fa75872f048904e1e8",
+      "retrieved_at": "2026-10-07T16:42:07Z"
+    }
+  ]
+}

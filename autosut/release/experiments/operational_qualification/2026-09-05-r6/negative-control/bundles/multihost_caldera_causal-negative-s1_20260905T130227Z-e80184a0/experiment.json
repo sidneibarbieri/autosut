@@ -1,0 +1,67 @@
+{
+  "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf",
+  "seed": 1,
+  "synthetic_credential": "s3cr3t-ff618308f8a925fb",
+  "negative_control": true,
+  "network": "autosut-e80184a0-net",
+  "caldera_image_cache_hit": true,
+  "caldera_image_preparation_seconds": 0.034,
+  "caldera_net_ip": "172.19.0.2",
+  "caldera_ready_seconds": 12.1,
+  "host_a": "autosut-e80184a0-host-a",
+  "host_b": "autosut-e80184a0-host-b",
+  "environment_provenance": {
+    "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf",
+    "protocol_version": "caldera-experiment/1",
+    "host_os": "Darwin 25.5.0",
+    "host_architecture": "arm64",
+    "python": "Python 3.14.7",
+    "docker_client": "29.7.2",
+    "docker_server": "29.2.1",
+    "images": {
+      "caldera": {
+        "declared_reference": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "image_id": "sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7",
+        "architecture": "amd64",
+        "resolved_repo_digest": "ghcr.io/mitre/caldera@sha256:97a8f9fd052aaabdee76e8367d1ec985b3e44e6add0b27a28d8fee9cafe426c7"
+      },
+      "sut_and_attacker": {
+        "declared_reference": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "image_id": "sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+        "architecture": "arm64",
+        "resolved_repo_digest": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7"
+      }
+    }
+  },
+  "build_attempts": {
+    "a": [
+      "attempt 1: no binary returned",
+      "attempt 2: built aarch64"
+    ],
+    "b": [
+      "attempt 1: built aarch64"
+    ]
+  },
+  "paw_a": "hostabcf71129ed",
+  "agent_paw_a": "hostabcf71129ed",
+  "paw_b": "hostb11412974e2",
+  "agent_paw_b": "hostb11412974e2",
+  "produce_ability_id": "d5c72be5-c033-57e9-8a91-81aacac7ec9b",
+  "consume_ability_id": "a5f07aea-0fba-56de-ab32-ddf2b5cb28b1",
+  "operation": {
+    "operation_id": "60292898-ba5a-4532-95af-78cb443c9110",
+    "operation_state": "finished",
+    "links": []
+  },
+  "effect_probe": {
+    "returncode": 0,
+    "stdout": "__ABSENT__",
+    "stderr": "",
+    "expected": "__ABSENT__"
+  },
+  "host_b_marker": "__ABSENT__",
+  "fact_propagated": false,
+  "scenario_effect_confirmed": true,
+  "realization": "multi_host_infrastructure_scenario",
+  "independent_effect_confirmed": true
+}

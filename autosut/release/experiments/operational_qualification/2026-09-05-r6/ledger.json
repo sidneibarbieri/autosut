@@ -1,0 +1,158 @@
+{
+  "schema_version": "autosut-operational-ledger/v1",
+  "plan": {
+    "schema_version": "autosut-operational-plan/v1",
+    "experiment_id": "autosut-current-operational-v1",
+    "arms": [
+      "autosut-supervised"
+    ],
+    "environments": [
+      {
+        "environment_id": "shadowray-single-host-surrogate",
+        "critical_assets": [
+          {
+            "asset_id": "ray-command-effect",
+            "description": "independently observed command effect in the isolated SUT"
+          }
+        ],
+        "topology_sha256": "1846ef6d8f2e9655832d4b4385ea9579f369afb5de4ec256700ada3c28ee76c4"
+      },
+      {
+        "environment_id": "multihost-caldera-fact-chain",
+        "critical_assets": [
+          {
+            "asset_id": "host-b-propagated-fact",
+            "description": "independently observed fact propagation from host A to host B"
+          }
+        ],
+        "topology_sha256": "d251173f47012fbd147725c66bd26a5e9db3749a5fa07d8a7d71b7e7319dd2bc"
+      }
+    ],
+    "seeds": [
+      1
+    ],
+    "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf",
+    "protocol_sha256": "306cf1f5dbd0ff83731195d571f1d86e22c57bf2a2e2dc6091d0ff7a51cab61d",
+    "content_sha256": "e5bef165728b3b6cd6a2798c3d1949c57ee4cc3279903aa9b0e12393f5850d8a"
+  },
+  "cells": [
+    {
+      "schema_version": "autosut-operational-cell/v1",
+      "experiment_id": "autosut-current-operational-v1",
+      "plan_sha256": "e5bef165728b3b6cd6a2798c3d1949c57ee4cc3279903aa9b0e12393f5850d8a",
+      "arm": "autosut-supervised",
+      "environment_id": "shadowray-single-host-surrogate",
+      "seed": 1,
+      "status": "completed",
+      "lifecycle_qualified": true,
+      "clean_teardown": true,
+      "acquisitions": [
+        {
+          "asset_id": "ray-command-effect",
+          "effect_verified": true,
+          "evidence": [
+            {
+              "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/experiment.json",
+              "sha256": "9341299e718a22312ba0620108a7e49222998335a2ef94f46ac7727f964bd71f"
+            },
+            {
+              "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/lifecycle-result.json",
+              "sha256": "52f1ab206d584c0fcf353e3c9b7d4501c6944bc376cd8a5d78e5777b6b4fd760"
+            }
+          ]
+        }
+      ],
+      "interventions": [],
+      "accounting": {
+        "wall_seconds": 189.852,
+        "active_compute_seconds": 189.457,
+        "model_seconds": 0.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "model_cost_usd": 0.0
+      },
+      "terminal_evidence": [
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/logs/autosut-supervised__shadowray-single-host-surrogate__s1.log",
+          "sha256": "a72cab3ff45a069363448306a5062ae73f531c200b57749a456be5c4db774014"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__shadowray-single-host-surrogate__s1.json",
+          "sha256": "86954860579efda93e6efa55a13a4116abfd5544e024a356b46225f85a3e4c66"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/manifest.json",
+          "sha256": "cde1c2a6ac0fe847ca8323427c3934c39dadc30a43a5f4ef8cd7af361ac47a6a"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/experiment.json",
+          "sha256": "9341299e718a22312ba0620108a7e49222998335a2ef94f46ac7727f964bd71f"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b/lifecycle-result.json",
+          "sha256": "52f1ab206d584c0fcf353e3c9b7d4501c6944bc376cd8a5d78e5777b6b4fd760"
+        }
+      ],
+      "failure_reason": null
+    },
+    {
+      "schema_version": "autosut-operational-cell/v1",
+      "experiment_id": "autosut-current-operational-v1",
+      "plan_sha256": "e5bef165728b3b6cd6a2798c3d1949c57ee4cc3279903aa9b0e12393f5850d8a",
+      "arm": "autosut-supervised",
+      "environment_id": "multihost-caldera-fact-chain",
+      "seed": 1,
+      "status": "completed",
+      "lifecycle_qualified": true,
+      "clean_teardown": true,
+      "acquisitions": [
+        {
+          "asset_id": "host-b-propagated-fact",
+          "effect_verified": true,
+          "evidence": [
+            {
+              "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/experiment.json",
+              "sha256": "2a9f71cb5ac4e017c514f314e5cda60dd5f882d011bb4e13b1f7a822275d30ee"
+            },
+            {
+              "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/lifecycle-result.json",
+              "sha256": "912acac4fa8c8baadfe084e144d81ee13d8af74fbf0ccde4970c44a3c37b33fb"
+            }
+          ]
+        }
+      ],
+      "interventions": [],
+      "accounting": {
+        "wall_seconds": 168.84,
+        "active_compute_seconds": 168.443,
+        "model_seconds": 0.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "model_cost_usd": 0.0
+      },
+      "terminal_evidence": [
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/logs/autosut-supervised__multihost-caldera-fact-chain__s1.log",
+          "sha256": "525fc348340643784a7134ca52a7ef085cbb30d98477e4d683d3994c1ea82f37"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/receipts/autosut-supervised__multihost-caldera-fact-chain__s1.json",
+          "sha256": "db449a3549f1c92b1a0be5f44b20d5f21bb7b3d3f46cdf6241819558bff73211"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/manifest.json",
+          "sha256": "5924dc5acbe72e06216142ca80f48bc851b36c8c13a9e0ae8fab6cb835b1288d"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/experiment.json",
+          "sha256": "2a9f71cb5ac4e017c514f314e5cda60dd5f882d011bb4e13b1f7a822275d30ee"
+        },
+        {
+          "path": "release/experiments/operational_qualification/2026-09-05-r6/bundles/multihost_caldera_autosut-supervised__multihost-caldera-fact-chain__s1_20260905T125914Z-03403ebb/lifecycle-result.json",
+          "sha256": "912acac4fa8c8baadfe084e144d81ee13d8af74fbf0ccde4970c44a3c37b33fb"
+        }
+      ],
+      "failure_reason": null
+    }
+  ]
+}

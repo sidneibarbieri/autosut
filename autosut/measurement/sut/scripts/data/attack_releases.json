@@ -1,0 +1,47 @@
+{
+  "source": "mitre-attack/attack-stix-data",
+  "releases": [
+    {
+      "release": "8.2",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-8.2.json",
+      "sha256": "8af8ba82d52c2735b1ae6804ab4f2cb8812121d8cdc37e5523ffba671d9ea69b",
+      "bytes": 22349108
+    },
+    {
+      "release": "10.1",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-10.1.json",
+      "sha256": "0a999035f26f4326ad670ec51727014fd42c21fca4bda4be784ac6ad0510fcb6",
+      "bytes": 31165486
+    },
+    {
+      "release": "12.1",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-12.1.json",
+      "sha256": "e84679af4bc46bba2ba92f60182101f146d5b966898e47924de7321e6bffeaa1",
+      "bytes": 38207821
+    },
+    {
+      "release": "14.1",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-14.1.json",
+      "sha256": "13af7514ad1bcb59deba6b6b46571168544bbe674eb52f41361916bb1cd9c3d6",
+      "bytes": 41775867
+    },
+    {
+      "release": "16.1",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-16.1.json",
+      "sha256": "8423d8dac3fc2feb825bb07d26e5f5d905e08a88f6fe4652cc20834cbe982813",
+      "bytes": 46485155
+    },
+    {
+      "release": "18.1",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-18.1.json",
+      "sha256": "f857d8f78f2f0c0b7db321a711a39fba98546c1e3076a657684850c83d0962fb",
+      "bytes": 50713170
+    },
+    {
+      "release": "19.2",
+      "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-19.2.json",
+      "sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+      "bytes": 53835637
+    }
+  ]
+}

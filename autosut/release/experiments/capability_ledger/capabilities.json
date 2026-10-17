@@ -1,0 +1,139 @@
+{
+  "records": [
+    {
+      "capability": "lifecycle.docker_sut_materialize_execute_teardown",
+      "level": "end_to_end_validated",
+      "clean_runs_observed": 5,
+      "implementation_revision": null,
+      "applies_to_current_revision": false,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "release/experiments/docker_qualification/qualification.json"
+      ],
+      "note": "Scope: the SUT lifecycle (materialize, execute, verified teardown, verify-clean) for campaign 0.c0010; it does NOT include a Caldera instance created and destroyed inside the run, nor per-stage timing, so it does not qualify the full experiment and does not on its own back the central contribution (the full CTI-to-isolated-Caldera-to-verified-effect experiment). Level derived from 5 clean run bundle(s) and 1 failure-injection run(s); reproducible requires at least 5 clean runs and a failure run that still reached clean. Each run's manifest hash is recorded so the summary is verifiable against the sealed bundles."
+    },
+    {
+      "capability": "experiment.docker_isolated_caldera_integration",
+      "level": "end_to_end_validated",
+      "clean_runs_observed": 5,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489",
+      "applies_to_current_revision": false,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "release/experiments/caldera_experiment/qualification.json"
+      ],
+      "note": "5/5 runs clean; 5 confirmed the effect. Realizations observed: ['surrogate']. Set revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-41d5a12a6b632489; current revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-6cf32752800b5f19. reproducible requires a full clean set produced on the current revision. The effect confirmed is the operation's marker-file write, verified independently; with a surrogate service this qualifies the integration and dispatch, not real-CVE exploitation."
+    },
+    {
+      "capability": "experiment.docker_multihost_fact_chain_infrastructure",
+      "level": "end_to_end_validated",
+      "clean_runs_observed": 5,
+      "implementation_revision": "cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba",
+      "applies_to_current_revision": false,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "release/experiments/multihost_qualification/qualification.json"
+      ],
+      "note": "5/5 runs clean; 5 confirmed the effect. Realizations observed: ['multi_host_infrastructure_scenario']. Set revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba; current revision: cc56876c924b0a04071432c9607971571aefd2c9+tree-2f203971baea9bba. reproducible requires a full clean set produced on the current revision. The effect confirmed is the operation's marker-file write, verified independently; with a surrogate service this qualifies the integration and dispatch, not real-CVE exploitation."
+    },
+    {
+      "capability": "infrastructure.preflight",
+      "level": "component_tested",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [],
+      "note": "Host qualification matrix; 5 unit tests. No materialization performed."
+    },
+    {
+      "capability": "infrastructure.run_context",
+      "level": "component_tested",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [],
+      "note": "run_id namespacing, execution lock, sealed manifest; 6 unit tests in isolation. Not yet exercised by a real lifecycle run."
+    },
+    {
+      "capability": "infrastructure.capability_ledger",
+      "level": "component_tested",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [],
+      "note": "This taxonomy; 7 unit tests enforcing that a level cannot exceed its evidence."
+    },
+    {
+      "capability": "infrastructure.process_supervision_termination",
+      "level": "integration_tested",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "tests/test_process_supervisor.py",
+        "tests/test_supervised_docker_sweep.py"
+      ],
+      "note": "OS-level termination primitive + real Docker namespace sweep, wrapped as the supervised entrypoint scripts/run_supervised.py. 6 unit tests prove termination (a SIGTERM-trapping child is still killed by SIGKILL; a group kill reaches a grandchild). 2 Docker-gated integration tests prove the sweep against REAL containers: the sweep removes an autosut container, and a hung run that created a container is terminated by its process group and its container swept (residual empty). This is genuine termination, unlike the in-process watchdog whose thread.join is race-mitigation only. This level is bounded: integration_tested reflects the PRIMITIVE + sweep proven against a real Docker dependency, NOT the canonical experiment path. Promotion is evidence-gated, never automatic. One happy-path supervised full caldera run IS now recorded under run_supervised.py (9/9 stages ok, effect confirmed, final_state clean, residual none, supervisor exit 0 with escalation=[], sweep empty) -- but escalation=[] means no signal fired, so that run validates the WRAPPER, not termination. Termination on REAL experiment stages, and R4 resolution, require the structured cross-stage interruption matrix (materialize/readiness/provision/sandcat/enroll/operation/persist/teardown x SIGINT,SIGTERM,deadline) with clean residual inventory. That matrix is not yet run, and the qualifying batches do not yet route exclusively through run_supervised.py, so R4 is integration-proven-on-Docker, NOT resolved."
+    },
+    {
+      "capability": "backend.qemu_linux_arm64",
+      "level": "implemented",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [],
+      "note": "QEMUEnvironment code exists; preflight reports requires_boot_qualification (toolchain + HVF present, boot never proven on this host). Not self-materializing yet (base image/firmware not pinned by hash; no overlay/cloud-init/run_id)."
+    },
+    {
+      "capability": "backend.windows_x86_64",
+      "level": "development_in_progress",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [],
+      "note": "Native Windows is an active but unqualified development track. The current source includes a credential-free unattended template, a per-run renderer, and host preflight checks; no native Windows guest boot, procedure execution, teardown, or independent reproduction has passed. The corpus question is controlled by the hash-bound human-adjudication protocol in docs/NATIVE_WINDOWS_CORPUS_ADJUDICATION.md: ATT&CK platform labels only triage review packets and cannot determine semantics. Until a frozen vendored corpus, complete protocol-defined adjudication, and separate execution qualification exist, this capability is not qualified and cannot support a claim."
+    },
+    {
+      "capability": "caldera.operation_dispatch",
+      "level": "integration_tested",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "release/evidence/shadowray_caldera/milestone.json"
+      ],
+      "note": "Real Caldera: custom ability authored via API, real Sandcat agent enrolled, real operation dispatched, effect confirmed by an independent probe outside the executor -- reproduced twice. Ran against the persistent dev Caldera, not a per-run isolated instance, so not promoted to end_to_end_validated."
+    },
+    {
+      "capability": "caldera.isolated_instance_per_run",
+      "level": "integration_tested",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "release/experiments/caldera_isolation/qualification.json"
+      ],
+      "note": "A fresh Caldera is materialized on its own port, answers its API (ready in ~12s), yields its randomized red key, and is force-removed with confirmed absence -- all timed. Isolation primitive only; it does not yet enroll a Sandcat or run an operation, so it does not qualify the full experiment on its own."
+    },
+    {
+      "capability": "sut.shadowray_ray_injection",
+      "level": "surrogate",
+      "clean_runs_observed": 0,
+      "implementation_revision": null,
+      "applies_to_current_revision": true,
+      "reproduction_context": "author_environment",
+      "evidence_paths": [
+        "release/evidence/shadowray_caldera/milestone.json"
+      ],
+      "note": "The Ray dashboard was realized as a declared surrogate, not the real CVE-2023-48022 service, in the recorded runs. Labeled surrogate; must not back a real-effect claim."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Caldera link
+operation_id: 7b7ade75-06ad-4dcc-968a-fb785924974b
+link_id: 1fae89a7-d84a-4af1-9281-5f03fe4f5237
+ability_id: b18e8767-b7ea-41a3-8e80-baf65a5ddef5
+ability_name: Check Python
+command: python3 --version;python2 --version;python --version
+status: 0
+exit_code: 0
+--- stdout ---
+Python 3.11.15Python 3.11.15
+--- stderr ---
+sh: 1: python2: not found

@@ -1,0 +1,19 @@
+{
+  "template_id": "record-controlled-domain",
+  "bindings": {
+    "actor": "actor.primary",
+    "manifest": "infrastructure.lab_manifest"
+  },
+  "declared_predicates": [
+    "manifest_hash_recorded",
+    "no_external_registration"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/domain",
+      "expected_sha256": "f13fcc584fd702bec84f899d8b9d5f6268fe722f58f9151bc8f07c05775a2c88",
+      "observed_sha256": "f13fcc584fd702bec84f899d8b9d5f6268fe722f58f9151bc8f07c05775a2c88"
+    }
+  ],
+  "fidelity_ceiling": "inspired"
+}

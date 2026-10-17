@@ -33,7 +33,7 @@ def shadowray_sut() -> SUTProfile:
                         "unauthenticated job-submission endpoint exploited "
                         "by CVE-2023-48022.",
                 # The *absence* of authentication is not a lab credential
-                # choice — it IS the CVE-2023-48022 vulnerability property.
+                # choice - it IS the CVE-2023-48022 vulnerability property.
                 source=ProvenanceSource.external_reference,
             ),
         ],
@@ -42,7 +42,7 @@ def shadowray_sut() -> SUTProfile:
                 path="/opt/sensitive/credentials.txt",
                 content_text="API_KEY=ya29.demo-credential\n",
                 owner="root", mode="0644",
-                purpose="Decoy ML-pipeline credentials — T1005 collection "
+                purpose="Decoy ML-pipeline credentials - T1005 collection "
                         "target after the unauthenticated job-submission RCE.",
                 source=ProvenanceSource.analyst_authored,
             ),
@@ -50,17 +50,17 @@ def shadowray_sut() -> SUTProfile:
                 path="/opt/sensitive/manifest.txt",
                 content_text="training_dataset_v3.parquet\n",
                 owner="root", mode="0644",
-                purpose="Decoy ML-pipeline artefact manifest — T1083 / T1005 "
+                purpose="Decoy ML-pipeline artefact manifest - T1083 / T1005 "
                         "target post-exploitation.",
                 source=ProvenanceSource.analyst_authored,
             ),
         ],
         exposures=[
             # :8265 is the documented Ray dashboard exploit surface for
-            # CVE-2023-48022 — the corpus tells us this port must be exposed.
+            # CVE-2023-48022 - the corpus tells us this port must be exposed.
             NetworkExposure(port=8265, service="ray_dashboard_http",
                              expose_to="private_network",
-                             purpose="Documented CVE-2023-48022 exploit surface — "
+                             purpose="Documented CVE-2023-48022 exploit surface - "
                                      "the unauthenticated Ray dashboard "
                                      "job-submission endpoint.",
                              source=ProvenanceSource.external_reference),
@@ -73,7 +73,7 @@ def shadowray_sut() -> SUTProfile:
     )
     return SUTProfile(
         sut_id="linux_python_compute_node",
-        base_image="python:3.11-slim",
+        base_image="python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
         services=["python3", "ray_2_6_3"],
         memory_mb=4096,
         smp=2,
@@ -161,7 +161,7 @@ def c0011_sut() -> SUTProfile:
                 content_text=("CONFIDENTIAL DATA - Company Secrets\n"
                               "API Keys: LAB_DECOY_API_KEY\n"),
                 owner="vulnuser", mode="0644",
-                purpose="Decoy sensitive document — collection target for "
+                purpose="Decoy sensitive document - collection target for "
                         "T1005 / T1213.",
                 source=ProvenanceSource.analyst_authored,
             ),
@@ -169,7 +169,7 @@ def c0011_sut() -> SUTProfile:
                 path="/home/vulnuser/documents/passwords.txt",
                 content_text="admin:admin123\ndbuser:dbpass456\n",
                 owner="vulnuser", mode="0600",
-                purpose="Decoy credentials store — collection target "
+                purpose="Decoy credentials store - collection target "
                         "for T1552.001.",
                 source=ProvenanceSource.analyst_authored,
             ),
@@ -189,7 +189,7 @@ def c0011_sut() -> SUTProfile:
                 recipe="openssh_weak_password",
                 purpose="ssh service the lab weak credential reaches "
                         "(password authentication enabled).",
-                # Generic inherited service, no CVE — the campaign needs an
+                # Generic inherited service, no CVE - the campaign needs an
                 # affordance, not this specific product.
                 source=ProvenanceSource.analyst_authored,
             ),
@@ -206,13 +206,13 @@ def c0011_sut() -> SUTProfile:
     )
     return SUTProfile(
         sut_id="linux_generic_workstation",
-        base_image="python:3.11-slim",
+        base_image="python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
         services=["ssh", "openssl"],
         memory_mb=1024,
         smp=1,
         composition=composition,
-        notes="c0011 — realistic Linux workstation with weak SSH, decoy "
-              "sensitive files, and ssh service. Base is python:3.11-slim "
+        notes="c0011 - realistic Linux workstation with weak SSH, decoy "
+              "sensitive files, and ssh service. Base is python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7 "
               "because the c0011 technique recipes assume openssl and python3.",
     )
 
@@ -231,7 +231,7 @@ def c0011_cves() -> list[CVEInjection]:
 
 
 # ---------------------------------------------------------------------------
-# 0.pivot_demo — three-host SSH pivot reference campaign
+# 0.pivot_demo - three-host SSH pivot reference campaign
 # ---------------------------------------------------------------------------
 
 _PIVOT_BASE_IMAGE = "alpine:3.19"
@@ -266,7 +266,7 @@ def pivot_demo_attacker() -> AttackerProfile:
 
 
 # ---------------------------------------------------------------------------
-# 0.operation_midnighteclipse — Palo Alto GlobalProtect CVE-2024-3400 surrogate
+# 0.operation_midnighteclipse - Palo Alto GlobalProtect CVE-2024-3400 surrogate
 # ---------------------------------------------------------------------------
 
 def midnighteclipse_attacker() -> AttackerProfile:
@@ -316,18 +316,18 @@ def midnighteclipse_sut() -> SUTProfile:
     )
     return SUTProfile(
         sut_id="globalprotect_target",
-        base_image="python:3.11-slim",
+        base_image="python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
         services=["python3", "openssl"],
         memory_mb=1024, smp=1,
         composition=composition,
-        notes="Surrogate of the Palo Alto GlobalProtect appliance — "
+        notes="Surrogate of the Palo Alto GlobalProtect appliance - "
               "CVE-2024-3400 SESSID command-injection semantics are "
               "preserved by the injector recipe.",
     )
 
 
 # ---------------------------------------------------------------------------
-# 0.salesforce_data_exfiltration — CRM API surrogate
+# 0.salesforce_data_exfiltration - CRM API surrogate
 # ---------------------------------------------------------------------------
 
 def salesforce_attacker() -> AttackerProfile:
@@ -353,7 +353,7 @@ def salesforce_sut() -> SUTProfile:
             Credential(
                 kind="api_token", user="api_consumer", secret="LAB-TOKEN",
                 purpose="Bearer token the surrogate Salesforce-style API "
-                        "requires for /services/data/v59.0/query — matches "
+                        "requires for /services/data/v59.0/query - matches "
                         "the salesforce_api_surrogate injector recipe.",
                 # No CVE backs this; the token is a surrogate-only affordance
                 # AutoSUT concretized so the exfil campaign has something to hit.
@@ -383,7 +383,7 @@ def salesforce_sut() -> SUTProfile:
     )
     return SUTProfile(
         sut_id="crm_surrogate_target",
-        base_image="python:3.11-slim",
+        base_image="python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
         services=["python3", "openssl"],
         memory_mb=1024, smp=1,
         composition=composition,
@@ -412,7 +412,7 @@ def dmz_segmentation_sut() -> SUTProfile:
     )
     topology = Topology(
         zones=[
-            # Topology is the dimension public CTI supports least — ATT&CK/STIX
+            # Topology is the dimension public CTI supports least - ATT&CK/STIX
             # rarely pin zone counts or trust boundaries, so every zone is an
             # explicit analyst lab choice rather than corpus evidence.
             Zone(name="internet_edge",
@@ -455,7 +455,7 @@ def dmz_segmentation_sut() -> SUTProfile:
                                      "pivot chain can cross zone boundaries.",
                              source=ProvenanceSource.analyst_authored),
         ],
-        notes="Pivot target — accepts lab SSH credential.",
+        notes="Pivot target - accepts lab SSH credential.",
     )
     attacker_comp = SUTComposition(
         notes="Attacker has no pre-staged credentials of its own.",
@@ -535,7 +535,7 @@ def cve_2021_41773_sut() -> SUTProfile:
                 version="2.4.49",
                 recipe="apache_httpd_2.4.49_cve_2021_41773",
                 cve_pins=["CVE-2021-41773"],
-                purpose="Vulnerable web server — pre-patch httpd 2.4.49 with "
+                purpose="Vulnerable web server - pre-patch httpd 2.4.49 with "
                         "the Alias+cgi-bin trigger the advisory documents.",
                 # CVE-anchored version pin -> version + product are
                 # corpus-supported by NVD/MITRE; the install recipe choice
@@ -602,7 +602,7 @@ def pivot_demo_sut() -> SUTProfile:
         credentials=[
             Credential(
                 kind="password", user=_PIVOT_LAB_USER, secret=_PIVOT_LAB_PW,
-                purpose="Lab pre-staged weak credential — the attacker "
+                purpose="Lab pre-staged weak credential - the attacker "
                         "discovers it via T1110.001 brute-force against the "
                         "target's SSH service.",
                 # T1110.001 brute-force implies a discoverable credential; the
@@ -668,12 +668,12 @@ def pivot_demo_sut() -> SUTProfile:
         hosts=hosts,
         notes="Three-host SSH pivot reference. Lab pre-stages a single "
               "weak password on both targets to satisfy a minimal Q3 audit "
-              "trail — the attacker still has to discover it via T1110.001.",
+              "trail - the attacker still has to discover it via T1110.001.",
     )
 
 
 # ---------------------------------------------------------------------------
-# 0.web_demo — two-host edge-HTTP witness (Apache <-> Nginx)
+# 0.web_demo - two-host edge-HTTP witness (Apache <-> Nginx)
 # ---------------------------------------------------------------------------
 
 _WEB_BASE_IMAGE = "alpine:3.19"
@@ -799,7 +799,7 @@ def _inspired_single_host_sut(*, sut_id: str, user: str, password: str,
     each lands as a :class:`StagedArtifact`. ``extra_services`` may list
     additional services (``apache2``, ``mysql``) that are declared as
     :class:`ApplicationStack` entries even when no install recipe exists
-    yet — the composer logs the gap rather than fake the install.
+    yet - the composer logs the gap rather than fake the install.
     """
     from .models import (
         ApplicationStack, Credential, NetworkExposure, StagedArtifact,
@@ -875,7 +875,7 @@ def _inspired_single_host_sut(*, sut_id: str, user: str, password: str,
     )
     return SUTProfile(
         sut_id=sut_id,
-        base_image="python:3.11-slim",
+        base_image="python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
         services=["ssh", *extra_services],
         memory_mb=1024, smp=1,
         composition=composition,
@@ -891,10 +891,10 @@ def c0010_sut() -> SUTProfile:
             ("/var/www/html/index.html", "www-data",
              "<html><body>Welcome to the lab landing page.</body></html>\n"),
             ("/home/ubuntu/shipping_notice.txt", "ubuntu",
-             "Shipping notice — internal use only.\n"),
+             "Shipping notice - internal use only.\n"),
         ],
         extra_services=("apache2",),
-        notes="0.c0010 — APT20 Operation Wocao watering-hole chain. Linux "
+        notes="0.c0010 - APT20 Operation Wocao watering-hole chain. Linux "
               "web target with weak ssh + apache landing page.",
     )
 
@@ -904,7 +904,7 @@ def c0012_sut() -> SUTProfile:
         sut_id="c0012_apt28_recon",
         user="ubuntu", password="ubuntu",
         file_specs=[],
-        notes="0.c0012 — APT28-style reconnaissance against minimal Linux SUT "
+        notes="0.c0012 - APT28-style reconnaissance against minimal Linux SUT "
               "with weak ssh.",
     )
 
@@ -915,7 +915,7 @@ def c0013_sut() -> SUTProfile:
         user="ubuntu", password="ubuntu",
         file_specs=[],
         extra_services=("apache2",),
-        notes="0.c0013 — Lazarus-style intrusion with shell access and "
+        notes="0.c0013 - Lazarus-style intrusion with shell access and "
               "tool transfer over a Linux web surface.",
     )
 
@@ -926,11 +926,11 @@ def c0015_sut() -> SUTProfile:
         user="testuser", password="password123",
         file_specs=[
             ("/tmp/sensitive_data.txt", "testuser",
-             "Confidential data — staging\n"),
+             "Confidential data - staging\n"),
             ("/tmp/credentials.txt", "testuser",
              "admin:admin\nroot:toor\n"),
         ],
-        notes="0.c0015 — minimal Linux SUT for credentialed access and "
+        notes="0.c0015 - minimal Linux SUT for credentialed access and "
               "post-compromise enumeration / collection.",
     )
 
@@ -941,9 +941,9 @@ def c0017_sut() -> SUTProfile:
         user="testuser", password="password123",
         file_specs=[
             ("/tmp/phishing_context.txt", "testuser",
-             "Phishing payload context — staging\n"),
+             "Phishing payload context - staging\n"),
         ],
-        notes="0.c0017 — APT29-style stealth execution and persistence "
+        notes="0.c0017 - APT29-style stealth execution and persistence "
               "flow on a minimal Linux SUT.",
     )
 
@@ -956,9 +956,9 @@ def c0026_sut() -> SUTProfile:
             ("/home/ubuntu/andromeda_notes.txt", "ubuntu",
              "Operation notes\n"),
             ("/home/ubuntu/staged_docs/report_2021.txt", "ubuntu",
-             "Quarterly report — internal\n"),
+             "Quarterly report - internal\n"),
         ],
-        notes="0.c0026 — Linux collection / archive / chunked exfil flow.",
+        notes="0.c0026 - Linux collection / archive / chunked exfil flow.",
     )
 
 
@@ -975,7 +975,7 @@ def apt41_dust_sut() -> SUTProfile:
              "#!/bin/sh\necho payload_ran\n"),
         ],
         extra_services=("apache2", "mysql"),
-        notes="0.apt41_dust — APT41 DUST dual espionage + financial ops on "
+        notes="0.apt41_dust - APT41 DUST dual espionage + financial ops on "
               "multi-service Linux SUT (ssh + apache + mysql).",
     )
 
@@ -991,7 +991,7 @@ def apt41_dust_full_sut() -> SUTProfile:
              "SIMULATED SSH KEY MATERIAL\nLAB_DECOY_KEY\n"
              "END SIMULATED SSH KEY MATERIAL\n"),
         ],
-        notes="0.apt41_dust_full — extended APT41 DUST chain (discovery, "
+        notes="0.apt41_dust_full - extended APT41 DUST chain (discovery, "
               "collection, exfil, impact) on minimal Linux SUT.",
     )
 
@@ -1002,14 +1002,14 @@ def costaricto_sut() -> SUTProfile:
         user="reconuser", password="reconpass123",
         file_specs=[
             ("/home/reconuser/collection/finance_notes.txt", "reconuser",
-             "Finance reconnaissance notes — internal\n"),
+             "Finance reconnaissance notes - internal\n"),
             ("/home/reconuser/proxy/multi_hop_proxy.conf", "reconuser",
              "# multi-hop proxy configuration\nfrontends=proxy1,proxy2\n"),
             ("/home/reconuser/tools/network_scan.sh", "reconuser",
              "#!/bin/sh\nfor host in target1 target2; do nc -z -w 1 $host 22; done\n"),
         ],
         extra_services=("apache2",),
-        notes="0.costaricto — service discovery, tool staging, local "
+        notes="0.costaricto - service discovery, tool staging, local "
               "collection and proxy artefacts on Linux SUT.",
     )
 
@@ -1028,7 +1028,7 @@ def outer_space_sut() -> SUTProfile:
              "TEFCX1BBWUxPQUQK\n"),
         ],
         extra_services=("apache2",),
-        notes="0.outer_space — browser discovery, tool staging, cloud "
+        notes="0.outer_space - browser discovery, tool staging, cloud "
               "infrastructure artefacts on Linux SUT.",
     )
 

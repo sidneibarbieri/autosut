@@ -1,0 +1,13 @@
+{
+  "sut_id": "C0010-sut",
+  "base_image": "python:3.11-slim",
+  "platform_source": "autosut_concretized",
+  "services": [],
+  "memory_mb": 4096,
+  "smp": 2,
+  "backend": "docker",
+  "hosts": null,
+  "composition": null,
+  "topology": null,
+  "notes": null
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "autosut-corpus-repeatability/v1",
+  "source_corpus": "release/corpus-suts-20261001-enterprise-r3",
+  "regenerated_corpus": "release/corpus-suts-20261002-repeatability-r1",
+  "source_plan_directory": "../../sticks/artifact/release/plans/enterprise",
+  "file_count": 111,
+  "path_differences": 0,
+  "content_differences": 0,
+  "manifest_sha256": "1bbc069e163eb3d04743e4a544817ddf18d51ac0af605102cac8b2e859899439",
+  "campaigns": 55,
+  "steps": 1146,
+  "blueprints_generated": 13,
+  "partial_plans_generated": 42,
+  "method": "Regenerated with scripts/generate_corpus_suts.py; compared relative paths and SHA-256 of every generated file."
+}

@@ -74,30 +74,14 @@ class UnifiedCampaignRunner:
         self.sut = load_sut_profile(self.campaign.sut_profile_id)
 
         self.accumulated_capabilities: Set[str] = set(BASE_CAPABILITIES)
-        self._seed_sut_capabilities()
         self.output_dir = Path(output_dir) if output_dir else Path("results/evidence")
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-    def _seed_sut_capabilities(self) -> None:
-        """Derive initial capabilities from declared SUT profile weaknesses.
-
-        When a SUT profile declares weak_credentials the lab substrate has
-        pre-staged SSH access, so access:initial is operationally available
-        before any technique step runs.  code_execution follows once shell
-        access is established.
-        """
-        for host in self.sut.hosts.values():
-            has_weak_creds = any(
-                w.weakness_type in {"weak_credentials", "weak_ssh_password"}
-                for w in host.deliberate_weaknesses
-            )
-            has_ssh = any(s.name == "ssh" for s in host.services)
-            if has_weak_creds and has_ssh:
-                self.accumulated_capabilities.add("access:initial")
-                self.accumulated_capabilities.add("code_execution")
-
     def run(self) -> CampaignEvidence:
         """Execute full campaign and return structured evidence."""
+        error = validate_campaign_sut_pair(self.campaign.campaign_id)
+        if error:
+            raise ValueError(f"Campaign/SUT validation failed: {error}")
         start_time = datetime.now()
         steps = self.campaign.steps
         total = len(steps)
@@ -117,11 +101,6 @@ class UnifiedCampaignRunner:
             print("  Infrastructure: local (no lab VMs detected)")
         print(f"{'=' * 70}\n")
 
-        # Pre-flight validation
-        error = validate_campaign_sut_pair(self.campaign.campaign_id)
-        if error:
-            print(f"[WARN] Campaign/SUT validation: {error}")
-
         evidence = CampaignEvidence(
             campaign_id=self.campaign.campaign_id,
             sut_profile_id=self.sut.campaign_id,
@@ -139,7 +118,7 @@ class UnifiedCampaignRunner:
                     f"step: {step.technique_id}",
                     f"capabilities: {sorted(self.accumulated_capabilities)}",
                 )
-            print(f"[{i}/{total}] {step.technique_id} — {step.technique_name}")
+            print(f"[{i}/{total}] {step.technique_id} - {step.technique_name}")
             print(
                 f"         declared_mode={step.expected_mode.value}  "
                 f"declared_fidelity={step.expected_fidelity.value}"
@@ -170,7 +149,7 @@ class UnifiedCampaignRunner:
         evidence.end_time = datetime.now()
         evidence.compute_summary()
 
-        # Populate ACM-aligned artifact metadata
+        # Populate artifact-evaluation metadata
         import platform as plat
 
         duration_ms = int(
@@ -184,7 +163,7 @@ class UnifiedCampaignRunner:
             )
         if plat.machine() == "arm64":
             limitations.append(
-                "Executed on ARM64 — QEMU provider may ignore private network config"
+                "Executed on ARM64 - QEMU provider may ignore private network config"
             )
 
         evidence.artifact_metadata = ArtifactMetadata(
@@ -210,6 +189,14 @@ class UnifiedCampaignRunner:
         start_time = datetime.now()
         sut_adjustments_applied: list[str] = []
         sut_adjustment_errors: list[str] = []
+
+        if step.sut_delta and not self._infrastructure_provider:
+            return self._make_skipped_evidence(
+                step,
+                start_time,
+                "Required SUT delta cannot be applied: no lab infrastructure detected",
+                sut_adjustment_errors=["No lab infrastructure detected"],
+            )
 
         if step.sut_delta and self._infrastructure_provider:
             delta_result = apply_step_sut_delta(

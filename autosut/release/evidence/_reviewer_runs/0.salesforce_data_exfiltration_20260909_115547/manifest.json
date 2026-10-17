@@ -1,0 +1,377 @@
+{
+  "campaign_id": "0.salesforce_data_exfiltration",
+  "run_id": "0.salesforce_data_exfiltration_20260909_115547",
+  "timestamp": "2026-09-09T11:56:45.714346Z",
+  "attacker": {
+    "profile_id": "salesforce_attacker",
+    "capabilities": [
+      "bearer_token",
+      "http_client"
+    ],
+    "notes": "curl + python3 for Bearer-authenticated CRM REST API queries."
+  },
+  "sut": {
+    "sut_id": "crm_surrogate_target",
+    "base_image": "python@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7",
+    "platform_source": "analyst_authored",
+    "services": [
+      "python3",
+      "openssl"
+    ],
+    "memory_mb": 1024,
+    "smp": 1,
+    "backend": null,
+    "hosts": null,
+    "composition": {
+      "credentials": [
+        {
+          "kind": "password",
+          "user": "salesops",
+          "secret": "SalesOps123!",
+          "location": null,
+          "purpose": "Operator account for the Salesforce-style API surrogate.",
+          "source": "autosut_concretized"
+        },
+        {
+          "kind": "api_token",
+          "user": "api_consumer",
+          "secret": "LAB-TOKEN",
+          "location": null,
+          "purpose": "Bearer token the surrogate Salesforce-style API requires for /services/data/v59.0/query \u2014 matches the salesforce_api_surrogate injector recipe.",
+          "source": "autosut_concretized"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "/opt/crm/records.json",
+          "content_text": "{\"records\":[{\"Name\":\"Acme\",\"Email\":\"contact@acme.test\"}]}\n",
+          "content_b64": null,
+          "owner": "root",
+          "mode": "0644",
+          "purpose": "Decoy CRM record the API surrogate serves.",
+          "source": "analyst_authored"
+        }
+      ],
+      "exposures": [
+        {
+          "port": 8443,
+          "protocol": "tcp",
+          "service": "crm_rest_api_surrogate",
+          "expose_to": "private_network",
+          "purpose": "Named-product surrogate CRM REST surface the exfiltration campaign targets (no disclosed CVE).",
+          "source": "autosut_concretized"
+        }
+      ],
+      "applications": [],
+      "notes": "Realism for the Salesforce-style CRM surrogate."
+    },
+    "topology": null,
+    "notes": "Surrogate of a Salesforce REST API for exercising CRM data exfiltration techniques (T1213.004 etc.)."
+  },
+  "cves_injected": [
+    {
+      "cve_id": "N/A_salesforce_surrogate",
+      "fidelity": "adapted",
+      "realization": "surrogate",
+      "success": true,
+      "log_path": "sut/cve_injection_salesforce_surrogate.log",
+      "notes": "Surrogate Salesforce REST API. No CVE; the technique sequence exercises Bearer-token API exfiltration semantics."
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1598.004",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1598.004_inspired.log"
+      ],
+      "duration_sec": 0.10908270801883191,
+      "notes": "Inspired representation of Spearphishing Voice: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1585",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1585_inspired.log"
+      ],
+      "duration_sec": 0.11232766602188349,
+      "notes": "Inspired representation of Establish Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1585.002",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1585.002_inspired.log"
+      ],
+      "duration_sec": 0.0978664169088006,
+      "notes": "Inspired representation of Establish Accounts: Email Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1586.002",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1586.002_inspired.log"
+      ],
+      "duration_sec": 0.09895316697657108,
+      "notes": "Inspired representation of Compromise Accounts: Email Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1587.001",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1587.001_inspired.log"
+      ],
+      "duration_sec": 0.1003728749928996,
+      "notes": "Inspired representation of Malware: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1588.002",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1588.002_artifact.log"
+      ],
+      "duration_sec": 0.12197475007269531,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1608.005",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1608.005_artifact.log"
+      ],
+      "duration_sec": 0.12462183297611773,
+      "notes": "Adapted: payload artifact written with SHA-256 recorded.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1671",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1671_inspired.log"
+      ],
+      "duration_sec": 0.10122283396776766,
+      "notes": "Inspired representation of Cloud Application Integration: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1059.006",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1059.006_shell.log"
+      ],
+      "duration_sec": 0.4205381670035422,
+      "notes": "Adapted: real shell + python interpreter execution.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1036",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1036_masquerade.log"
+      ],
+      "duration_sec": 0.12521087494678795,
+      "notes": "Adapted: payload renamed to mimic a system service binary.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1078.002",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1078.002_inspired.log"
+      ],
+      "duration_sec": 0.09509304200764745,
+      "notes": "Inspired representation of Valid Accounts: Domain Accounts: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1656",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1656_inspired.log"
+      ],
+      "duration_sec": 0.1076592089375481,
+      "notes": "Inspired representation of Impersonation: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1083",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1083_discovery.log"
+      ],
+      "duration_sec": 0.14259945903904736,
+      "notes": "Adapted: real filesystem enumeration via ls + find.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1213.004",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "surrogate",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1213.004_crm_query.log"
+      ],
+      "duration_sec": 0.09094050002750009,
+      "notes": "Adapted: CRM REST query against Salesforce surrogate with Bearer token; preserves API-exfil semantics of the original technique.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1090",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1090_inspired.log"
+      ],
+      "duration_sec": 0.10103866702411324,
+      "notes": "Inspired representation of Proxy: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1090.003",
+      "declared_fidelity": "inspired",
+      "executed_fidelity": "inspired",
+      "declared_mode": "naive_simulated",
+      "executed_mode": "naive_simulated",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1090.003_inspired.log"
+      ],
+      "duration_sec": 0.09909229201730341,
+      "notes": "Inspired representation of Multi-hop Proxy: a marker was recorded, but no specific protocol or product was invoked and no campaign state is produced.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1020",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1020_seed.log",
+        "techniques/T1020_exfil.log"
+      ],
+      "duration_sec": 2.1857862499309704,
+      "notes": "Adapted: real HTTP exfil of staged file from target to attacker.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    },
+    {
+      "technique_id": "T1567",
+      "declared_fidelity": "adapted",
+      "executed_fidelity": "adapted",
+      "declared_mode": "real_controlled",
+      "executed_mode": "real_controlled",
+      "realization": "generic_primitive",
+      "status": "success",
+      "evidence_files": [
+        "techniques/T1567_seed.log",
+        "techniques/T1567_exfil.log"
+      ],
+      "duration_sec": 2.2081213330384344,
+      "notes": "Adapted: real HTTP exfil of staged file from target to attacker.",
+      "caldera_ability_id": null,
+      "caldera_ability_name": null
+    }
+  ],
+  "teardown_clean": true,
+  "manifest_path": "manifest.json",
+  "summary_path": "summary.json",
+  "campaign_state_path": "campaign_state.json"
+}

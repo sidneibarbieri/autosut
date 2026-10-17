@@ -1,0 +1,23 @@
+{
+  "campaign_id": "0.operation_midnighteclipse",
+  "source_campaign_id": "C0048",
+  "status": "blocked",
+  "reasons": [
+    "unsupported_platform_requirements"
+  ],
+  "source_steps": 17,
+  "planned_steps": 0,
+  "unresolved_technique_ids": [
+    "T1003.003",
+    "T1021.002",
+    "T1021.006"
+  ],
+  "contract_sha256": null,
+  "files": {
+    "campaign-source.json": "dbd35fcf1d1dd3251e27e33f20098465183ed1de3d901ab346c4b760651a9a50",
+    "campaign.json": "7b31936f1c74ab1224cf215b1b5003b80dea235c495974a3ecb8aae461eca179",
+    "procedural-plan.json": "0f161420bb124e96dad3358b09795ab21a7b18a62cc28c8e35b54513b98d331e",
+    "sut-constraints.json": "569fdb4c2ba2ee935e4cbb0500510daf9ff4e33e0a76ce7c681e95f811fcf959"
+  },
+  "execution_status": "not_run"
+}

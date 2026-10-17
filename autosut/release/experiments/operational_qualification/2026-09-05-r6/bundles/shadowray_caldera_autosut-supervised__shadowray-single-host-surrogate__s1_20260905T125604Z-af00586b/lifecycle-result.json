@@ -1,0 +1,92 @@
+{
+  "run_id": "shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "label": "autosut-supervised__shadowray-single-host-surrogate__s1",
+  "stages": [
+    {
+      "name": "materialize_caldera",
+      "seconds": 0.147,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_caldera_readiness",
+      "seconds": 12.139,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "materialize_sut",
+      "seconds": 71.462,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "enroll_agent",
+      "seconds": 47.058,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "admit_execution_slice",
+      "seconds": 0.378,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "register_and_execute",
+      "seconds": 57.756,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "verify_effect",
+      "seconds": 0.038,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "persist_execution_evidence",
+      "seconds": 0.0,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_attacker",
+      "seconds": 0.09,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_sut",
+      "seconds": 0.177,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    },
+    {
+      "name": "destroy_caldera",
+      "seconds": 0.179,
+      "succeeded": true,
+      "error": null,
+      "traceback": null
+    }
+  ],
+  "total_seconds": 189.457,
+  "forward_completed": true,
+  "residual": {
+    "scope": "docker.autosut",
+    "residual_resources": []
+  },
+  "final_state": "clean",
+  "evidence_dir": "release/experiments/operational_qualification/2026-09-05-r6/bundles/shadowray_caldera_autosut-supervised__shadowray-single-host-surrogate__s1_20260905T125604Z-af00586b",
+  "implementation_revision": "be9c252d4cd4e7b9b08e03c27a48b471f3d61e79+tree-8d787d20c90221cf"
+}

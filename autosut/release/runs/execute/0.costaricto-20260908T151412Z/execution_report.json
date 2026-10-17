@@ -1,0 +1,190 @@
+{
+  "campaign_id": "0.costaricto",
+  "host_id": "autosut-2a1178f063",
+  "runs": [
+    {
+      "technique_id": "T1046",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "bash /home/reconuser/tools/network_scan.sh > /home/reconuser/collection/finance_notes.txt && echo 'Network scan completed' >> /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "Network scan completed",
+      "exit_code": 127,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1105",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "cp /home/reconuser/tools/network_scan.sh /home/reconuser/collection/finance_notes.txt && echo 'T1105 executed' >> /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "T1105 executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1090.003",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "cat /home/reconuser/proxy/multi_hop_proxy.conf > /home/reconuser/collection/finance_notes.txt && echo 'Multi-hop proxy used' >> /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "Multi-hop proxy used",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1053.005",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Executed scheduled task for persistence' > /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "Executed scheduled task for persistence",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1588.002",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "cat /home/reconuser/tools/network_scan.sh > /home/reconuser/collection/finance_notes.txt && echo 'T1588.002 executed' >> /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "T1588.002 executed",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1133",
+      "admitted": false,
+      "executed": false,
+      "effect_observed": false,
+      "command": "cat /home/reconuser/collection/finance_notes.txt > /home/reconuser/collection/finance_notes_backup.txt && echo 'T1133 executed' > /home/reconuser/collection/finance_notes_backup.txt",
+      "effect_marker": "T1133 executed",
+      "exit_code": null,
+      "abstained_reason": "command required resources the host does not provide \u2014 file paths: /home/reconuser/collection/finance_notes_backup.txt",
+      "rehearsal": {
+        "consistent": false,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [
+          "/home/reconuser/collection/finance_notes_backup.txt"
+        ],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1583.001",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Effect marker for T1583.001' > /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "Effect marker for T1583.001",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1587.001",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": true,
+      "command": "echo 'Malware developed for targeted operations' > /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "Malware developed for targeted operations",
+      "exit_code": 0,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1005",
+      "admitted": false,
+      "executed": false,
+      "effect_observed": false,
+      "command": "cat /home/reconuser/collection/finance_notes.txt > /home/reconuser/collection/finance_notes_backup.txt && echo 'T1005 executed' > /home/reconuser/collection/backup_marker.txt",
+      "effect_marker": "T1005 executed",
+      "exit_code": null,
+      "abstained_reason": "command required resources the host does not provide \u2014 file paths: /home/reconuser/collection/finance_notes_backup.txt",
+      "rehearsal": {
+        "consistent": false,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [
+          "/home/reconuser/collection/finance_notes_backup.txt"
+        ],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    },
+    {
+      "technique_id": "T1572",
+      "admitted": true,
+      "executed": true,
+      "effect_observed": false,
+      "command": "bash /home/reconuser/tools/network_scan.sh > /home/reconuser/collection/finance_notes.txt && echo 'T1572 executed' >> /home/reconuser/collection/finance_notes.txt",
+      "effect_marker": "T1572 executed",
+      "exit_code": 127,
+      "abstained_reason": null,
+      "rehearsal": {
+        "consistent": true,
+        "missing_credential_users": [],
+        "missing_services": [],
+        "missing_artifact_paths": [],
+        "missing_commands": [],
+        "remote_requirement_unmet": []
+      }
+    }
+  ]
+}

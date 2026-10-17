@@ -106,7 +106,7 @@ def run(target_technique: str = "T1083") -> int:
     if not ability:
         print(f"[smoke] FAIL: no Caldera ability for {target_technique}")
         return 3
-    print(f"[smoke] ability: {ability['ability_id']} — {ability['name']}")
+    print(f"[smoke] ability: {ability['ability_id']} - {ability['name']}")
     # Confirm a linux executor exists.
     linux_execs = [e for e in ability.get("executors", [])
                    if e.get("platform") == "linux"]
@@ -196,7 +196,7 @@ def run(target_technique: str = "T1083") -> int:
                 if stdout:
                     print(f"[smoke]   stdout (truncated):\n{stdout}")
         if not any_link:
-            print("[smoke] FAIL: report contained no links — likely the agent "
+            print("[smoke] FAIL: report contained no links - likely the agent "
                   "never picked up the ability before timeout. Sandcat log:")
             proc = subprocess.run(
                 ["docker", "exec", container, "cat", "/tmp/sandcat.log"],

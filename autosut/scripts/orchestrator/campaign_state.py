@@ -8,12 +8,29 @@ from __future__ import annotations
 
 import hashlib
 import json
+from contextlib import contextmanager
+from contextvars import ContextVar
 from enum import Enum
 from pathlib import Path
 
 from pydantic import BaseModel, Field
 
 from .models import ExecutionMode, RunResult
+
+_active_contract: ContextVar[Path | None] = ContextVar("active_contract", default=None)
+_active_campaign_spec: ContextVar[Path | None] = ContextVar("active_campaign_spec", default=None)
+
+
+@contextmanager
+def use_verified_contract(path: Path, campaign_spec: Path | None = None):
+    """Scope a prepared contract to one replay without modifying release evidence."""
+    token = _active_contract.set(path)
+    spec_token = _active_campaign_spec.set(campaign_spec)
+    try:
+        yield
+    finally:
+        _active_contract.reset(token)
+        _active_campaign_spec.reset(spec_token)
 
 
 class FactSource(str, Enum):
@@ -112,8 +129,11 @@ def _fact_from_id(fact_id: str) -> StateFact:
 
 
 def _campaign_spec(campaign_id: str) -> dict:
-    path = Path(__file__).resolve().parents[2] / "campaigns" / f"{campaign_id}.json"
-    return json.loads(path.read_text(encoding="utf-8"))
+    path = _active_campaign_spec.get() or (Path(__file__).resolve().parents[2] / "campaigns" / f"{campaign_id}.json")
+    spec = json.loads(path.read_text(encoding="utf-8"))
+    if spec.get("campaign_id") != campaign_id:
+        raise ValueError("campaign specification identity differs from execution")
+    return spec
 
 
 def _verified_contract_payload(campaign_id: str) -> dict | None:
@@ -121,7 +141,7 @@ def _verified_contract_payload(campaign_id: str) -> dict | None:
     source_campaign_id = campaign_spec.get("source_campaign_id")
     if not source_campaign_id:
         return None
-    path = (
+    path = _active_contract.get() or (
         Path(__file__).resolve().parents[2]
         / "release"
         / "plans"
@@ -235,7 +255,7 @@ def build_ledger(result: RunResult) -> CampaignStateLedger:
         if verified_contract_path is not None and verified_contract_path.exists()
         else legacy_contract_path
     )
-    executable_contract_payload = (
+    executable_contract_payload = _verified_contract_payload(result.campaign_id) or (
         json.loads(executable_contract_path.read_text(encoding="utf-8"))
         if executable_contract_path is not None
         and executable_contract_path.exists()
