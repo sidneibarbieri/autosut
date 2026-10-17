@@ -1,0 +1,7 @@
+$ mysql --version
+exit_code: 0
+--- stdout ---
+mysql  Ver 15.1 Distrib 10.11.14-MariaDB, for Linux (aarch64) using readline 5.1
+
+--- stderr ---
+

@@ -28,9 +28,8 @@ for root in (PROJECT_ROOT / "src", PROJECT_ROOT / "scripts"):
 from pydantic import BaseModel, ConfigDict, Field  # noqa: E402
 
 from planning.blueprint_materialization import sut_profile_from_blueprint  # noqa: E402
-from planning.campaign_pair import PairPreparation  # noqa: E402
+from planning.prepared_replay import load_prepared_pair  # noqa: E402
 from planning.replay_network import ReplayNetwork  # noqa: E402
-from planning.sut_blueprint import SUTBlueprint  # noqa: E402
 from orchestrator.models import (  # noqa: E402
     CVEInjection,
     FidelityLevel,
@@ -39,9 +38,11 @@ from orchestrator.models import (  # noqa: E402
     RunResult,
 )
 from orchestrator.orchestrator import CampaignOrchestrator  # noqa: E402
+from orchestrator.campaign_state import CampaignStateLedger, use_verified_contract  # noqa: E402
 
-CONSEQUENCE_ROOT = PROJECT_ROOT / "release" / "experiments" / "consequence_study"
+CONSEQUENCE_ROOT = PROJECT_ROOT / "results" / "evidence" / "consequence_study"
 VULNERABILITY_DEPENDENT_STEP = "T1190"
+STUDY_CAMPAIGN_ID = "0.shadowray"
 
 
 class ConsequenceRunRequest(BaseModel):
@@ -159,8 +160,8 @@ def summarize_arm(arm: str, repetition: int, result: RunResult) -> ArmOutcome:
 
 
 def run_arm(pair_dir: Path, arm: str, repetition: int, run_root: Path) -> ArmOutcome:
-    pair = PairPreparation.model_validate_json((pair_dir / "pair.json").read_text())
-    blueprint = SUTBlueprint.model_validate_json((pair_dir / "sut-blueprint.json").read_text())
+    pair, blueprint, contract = load_prepared_pair(pair_dir)
+    require_study_campaign(pair.campaign_id)
     profile = sut_profile_from_blueprint(blueprint)
     if profile.backend != "docker" or profile.is_multi_host:
         raise ValueError("the consequence study requires a single Docker target")
@@ -169,7 +170,10 @@ def run_arm(pair_dir: Path, arm: str, repetition: int, run_root: Path) -> ArmOut
         raise ValueError(f"run directory already exists: {run_dir}")
     run_dir.mkdir(parents=True)
 
-    with ReplayNetwork() as network:
+    with use_verified_contract(
+        pair_dir / "executable-contract.json",
+        pair_dir / "campaign-source.json",
+    ), ReplayNetwork() as network:
         def isolate_only(target, attacker, evidence_dir, realization):
             # Both arms are surrogates, so the real-Ray rebind never applies;
             # this only isolates the target from the host gateway.
@@ -183,9 +187,22 @@ def run_arm(pair_dir: Path, arm: str, repetition: int, run_root: Path) -> ArmOut
             before_execution=isolate_only,
             cve_override=[ARMS[arm]()],
         )
+    ledger = CampaignStateLedger.model_validate_json(
+        (run_dir / "campaign_state.json").read_text()
+    )
+    declared_steps = [step.technique_id for step in contract.transitions]
+    if ledger.executable_contract_sha256 != contract.content_sha256:
+        raise ValueError("executed contract differs from prepared contract")
+    if ledger.declared_technique_ids != declared_steps or ledger.executed_technique_ids != declared_steps:
+        raise ValueError("executed sequence differs from prepared contract")
     outcome = summarize_arm(arm, repetition, result)
     (run_dir / "arm-outcome.json").write_text(outcome.model_dump_json(indent=2) + "\n")
     return outcome
+
+
+def require_study_campaign(campaign_id: str) -> None:
+    if campaign_id != STUDY_CAMPAIGN_ID:
+        raise ValueError(f"consequence study requires {STUDY_CAMPAIGN_ID}, got {campaign_id}")
 
 
 def primary_comparison(reachable: list[ArmOutcome], guarded: list[ArmOutcome]) -> dict:
@@ -214,6 +231,8 @@ def main() -> int:
     args = parser.parse_args()
 
     request = ConsequenceRunRequest(pair=args.pair, run_id=args.run_id, repetitions=args.repetitions)
+    pair, _, _ = load_prepared_pair(request.pair.resolve())
+    require_study_campaign(pair.campaign_id)
     run_root = create_run_directory(request)
 
     outcomes = {arm: [] for arm in ARMS}

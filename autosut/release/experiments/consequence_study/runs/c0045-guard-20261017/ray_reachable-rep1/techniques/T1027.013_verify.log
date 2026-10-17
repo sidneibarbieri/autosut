@@ -1,0 +1,8 @@
+$ python3 -c 'import base64,hashlib; source=open("/tmp/encoded_source","rb").read(); encoded=open("/tmp/T1027.013.out","rb").read(); assert base64.b64decode(encoded)==source; print(hashlib.sha256(source).hexdigest()); print(hashlib.sha256(encoded).hexdigest())' 
+exit_code: 0
+--- stdout ---
+97868723607420447ee61686877defe85cd4b155ee59ad380d7a97354714b3ab
+02715480371529fa4ac66a1c2f88260e9fee156e986e897e6a4ed65828904ac9
+
+--- stderr ---
+

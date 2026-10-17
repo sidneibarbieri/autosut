@@ -1,5 +1,9 @@
 {
-  "run_id": "c0045-consequence-20261006T212539Z",
+  "run_id": "c0045-guard-20261017",
   "experimental_unit": "C0045",
-  "repetitions": 2
+  "repetitions": 2,
+  "runs_path": "release/experiments/consequence_study/runs",
+  "plan_path": "release/prepared-pairs/0.shadowray/procedural-plan.json",
+  "contract_path": "release/prepared-pairs/0.shadowray/executable-contract.json",
+  "implementation_revision": "b448bec4544f8508a53a1ad40cc3c3bb3fe6552c+tree-c40e598167f6cc09"
 }

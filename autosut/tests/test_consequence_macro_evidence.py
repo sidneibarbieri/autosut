@@ -42,6 +42,45 @@ def _copy_evidence(destination: Path) -> Path:
     return run
 
 
+def _select_historical_run(renderer, monkeypatch) -> None:
+    monkeypatch.setattr(renderer, "PAPER_RUN_SELECTION", {
+        "run_id": SOURCE_RUN.name,
+        "experimental_unit": "C0045",
+        "repetitions": 2,
+    })
+
+
+def test_selected_prepared_pair_run_matches_paper_macros():
+    renderer = _renderer()
+
+    assert renderer.PAPER_RUN_SELECTION["run_id"] == "c0045-guard-20261017"
+    assert renderer.consequence_macros() == {
+        "consequenceReachableSteps": "10",
+        "consequenceGuardedSteps": "1",
+        "consequenceStepDelta": "9",
+        "consequenceGuardedStop": "T1190",
+        "consequenceRepetitions": "2",
+    }
+
+
+def test_selected_run_rejects_wrong_implementation_revision(monkeypatch):
+    renderer = _renderer()
+    selection = {**renderer.PAPER_RUN_SELECTION, "implementation_revision": "0" * 40}
+    monkeypatch.setattr(renderer, "PAPER_RUN_SELECTION", selection)
+
+    with pytest.raises(ValueError, match="implementation revision mismatch"):
+        renderer.consequence_macros()
+
+
+def test_selected_run_rejects_escaping_source_path(monkeypatch):
+    renderer = _renderer()
+    selection = {**renderer.PAPER_RUN_SELECTION, "plan_path": "../outside.json"}
+    monkeypatch.setattr(renderer, "PAPER_RUN_SELECTION", selection)
+
+    with pytest.raises(ValueError, match="unsafe paper evidence path"):
+        renderer.consequence_macros()
+
+
 def test_new_run_cannot_change_the_selected_paper_result(tmp_path, monkeypatch):
     renderer = _renderer()
     runs = tmp_path / "runs"
@@ -134,6 +173,7 @@ def test_equal_length_arms_must_use_the_same_technique_sequence(tmp_path, monkey
 
 def test_selected_run_requires_referenced_logs(tmp_path, monkeypatch):
     renderer = _renderer()
+    _select_historical_run(renderer, monkeypatch)
     selected = _copy_evidence(tmp_path / "runs")
     monkeypatch.setattr(renderer, "CONSEQUENCE_RUNS", selected.parent)
     (selected / "ray_reachable-rep1" / "techniques" / "T1588.002_toolkit.log").unlink()
@@ -144,6 +184,7 @@ def test_selected_run_requires_referenced_logs(tmp_path, monkeypatch):
 
 def test_selected_run_rejects_wrong_input_binding(tmp_path, monkeypatch):
     renderer = _renderer()
+    _select_historical_run(renderer, monkeypatch)
     selected = _copy_evidence(tmp_path / "runs")
     monkeypatch.setattr(renderer, "CONSEQUENCE_RUNS", selected.parent)
     path = selected / "ray_guarded-rep1" / "campaign_state.json"
@@ -157,6 +198,7 @@ def test_selected_run_rejects_wrong_input_binding(tmp_path, monkeypatch):
 
 def test_selected_run_rejects_outcome_manifest_disagreement(tmp_path, monkeypatch):
     renderer = _renderer()
+    _select_historical_run(renderer, monkeypatch)
     selected = _copy_evidence(tmp_path / "runs")
     monkeypatch.setattr(renderer, "CONSEQUENCE_RUNS", selected.parent)
     path = selected / "ray_reachable-rep1" / "manifest.json"
@@ -170,6 +212,7 @@ def test_selected_run_rejects_outcome_manifest_disagreement(tmp_path, monkeypatc
 
 def test_selected_run_rejects_input_content_tampering(tmp_path, monkeypatch):
     renderer = _renderer()
+    _select_historical_run(renderer, monkeypatch)
     path = tmp_path / "plan.json"
     payload = json.loads(renderer.CONSEQUENCE_PLAN.read_text(encoding="utf-8"))
     payload["content_sha256"] = "0" * 64
@@ -183,6 +226,7 @@ def test_selected_run_rejects_input_content_tampering(tmp_path, monkeypatch):
 @pytest.mark.parametrize("reference", ["../outside.log", "/tmp/outside.log"])
 def test_selected_run_rejects_escaping_evidence_paths(tmp_path, monkeypatch, reference):
     renderer = _renderer()
+    _select_historical_run(renderer, monkeypatch)
     selected = _copy_evidence(tmp_path / "runs")
     monkeypatch.setattr(renderer, "CONSEQUENCE_RUNS", selected.parent)
     folder = selected / "ray_reachable-rep1"

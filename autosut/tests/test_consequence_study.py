@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import sys
+import shutil
+from contextlib import nullcontext
 from pathlib import Path
 
 import pytest
@@ -157,3 +159,69 @@ def test_valid_request_creates_one_distinct_run_directory(tmp_path, monkeypatch)
 
     assert created == tmp_path / "study" / "runs" / request.run_id
     assert created.is_dir()
+
+
+def test_new_runs_are_outside_frozen_release():
+    assert study.CONSEQUENCE_ROOT == PROJECT_ROOT / "results" / "evidence" / "consequence_study"
+
+
+def test_run_arm_rejects_changed_prepared_contract_before_backend(tmp_path, monkeypatch):
+    source = PROJECT_ROOT / "release" / "prepared-pairs" / "0.shadowray"
+    pair = tmp_path / "pair"
+    shutil.copytree(source, pair)
+    contract = pair / "executable-contract.json"
+    contract.write_text(contract.read_text() + "\n")
+    monkeypatch.setattr(study, "ReplayNetwork", lambda: pytest.fail("backend must not start"))
+
+    with pytest.raises(ValueError, match="pair input hash mismatch"):
+        study.run_arm(pair, "ray_reachable", 1, tmp_path / "run")
+
+    assert not (tmp_path / "run").exists()
+
+
+def test_run_arm_rejects_another_prepared_campaign_before_backend(tmp_path, monkeypatch):
+    pair = PROJECT_ROOT / "release" / "prepared-pairs" / "0.c0010"
+    monkeypatch.setattr(study, "ReplayNetwork", lambda: pytest.fail("backend must not start"))
+
+    with pytest.raises(ValueError, match="requires 0.shadowray"):
+        study.run_arm(pair, "ray_reachable", 1, tmp_path / "run")
+
+    assert not (tmp_path / "run").exists()
+
+
+def test_main_rejects_another_campaign_without_creating_evidence(tmp_path, monkeypatch):
+    root = tmp_path / "study"
+    pair = PROJECT_ROOT / "release" / "prepared-pairs" / "0.c0010"
+    monkeypatch.setattr(study, "CONSEQUENCE_ROOT", root)
+    monkeypatch.setattr(sys, "argv", ["study", "--pair", str(pair), "--run-id", "wrong-campaign"])
+    monkeypatch.setattr(study, "ReplayNetwork", lambda: pytest.fail("backend must not start"))
+
+    with pytest.raises(ValueError, match="requires 0.shadowray"):
+        study.main()
+
+    assert not root.exists()
+
+
+def test_run_arm_rejects_a_different_executed_contract(tmp_path, monkeypatch):
+    pair = PROJECT_ROOT / "release" / "prepared-pairs" / "0.shadowray"
+    historical_ledger = (
+        PROJECT_ROOT
+        / "release"
+        / "experiments"
+        / "consequence_study"
+        / "runs"
+        / "c0045-consequence-20261006T212539Z"
+        / "ray_reachable-rep1"
+        / "campaign_state.json"
+    )
+
+    class DifferentContractRunner:
+        def run_campaign(self, campaign_id, *, run_dir, **kwargs):
+            shutil.copyfile(historical_ledger, run_dir / "campaign_state.json")
+            return _result(["success"] * len(CHAIN))
+
+    monkeypatch.setattr(study, "ReplayNetwork", nullcontext)
+    monkeypatch.setattr(study, "CampaignOrchestrator", DifferentContractRunner)
+
+    with pytest.raises(ValueError, match="executed contract differs"):
+        study.run_arm(pair, "ray_reachable", 1, tmp_path)

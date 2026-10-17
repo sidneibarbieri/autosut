@@ -1,0 +1,18 @@
+{
+  "internal": true,
+  "network": "autosut-joint-57b452e5df3d",
+  "containers": [
+    {
+      "container": "autosut-a71d83d8b3",
+      "network": "autosut-joint-57b452e5df3d",
+      "address": "172.19.0.2"
+    },
+    {
+      "container": "autosut-att-c0e46a4a",
+      "network": "autosut-joint-57b452e5df3d",
+      "address": "172.19.0.3"
+    }
+  ],
+  "setup_network_access": "Package installation precedes replay isolation.",
+  "host_gateway_access": "blocked_observed"
+}

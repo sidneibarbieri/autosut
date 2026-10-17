@@ -1,0 +1,7 @@
+$ mkdir -p /tmp/autosut_toolkit && printf '#!/usr/bin/env python3\nprint(\"bounded-recon\")\n' > /tmp/autosut_toolkit/recon.py && sha256sum /tmp/autosut_toolkit/recon.py
+exit_code: 0
+--- stdout ---
+d6d13d5c523a836fbb644fe7702bcea279b8be87083a6d2610693031d4f8d3d8  /tmp/autosut_toolkit/recon.py
+
+--- stderr ---
+

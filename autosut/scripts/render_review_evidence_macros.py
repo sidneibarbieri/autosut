@@ -43,6 +43,22 @@ class PaperRunSelection(BaseModel):
     run_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
     experimental_unit: Literal["C0045"]
     repetitions: int = Field(ge=2)
+    runs_path: str | None = None
+    plan_path: str | None = None
+    contract_path: str | None = None
+    implementation_revision: str | None = None
+
+
+def _selected_path(relative: str | None, default: Path) -> Path:
+    if relative is None:
+        return default
+    path = Path(relative)
+    if path.is_absolute() or not path.parts or ".." in path.parts:
+        raise ValueError(f"unsafe paper evidence path: {relative}")
+    selected = (PROJECT_ROOT / path).resolve()
+    if not selected.is_relative_to(PROJECT_ROOT.resolve()):
+        raise ValueError(f"paper evidence path escapes the package: {relative}")
+    return selected
 
 
 class RecordedArm(BaseModel):
@@ -157,7 +173,7 @@ def _checked_arm(path: Path, arm_name: str, repetition: int) -> RecordedArm:
 
 def _selected_comparison() -> tuple[dict, int]:
     selection = PaperRunSelection.model_validate(PAPER_RUN_SELECTION)
-    run = CONSEQUENCE_RUNS / selection.run_id
+    run = _selected_path(selection.runs_path, CONSEQUENCE_RUNS) / selection.run_id
     repetitions = selection.repetitions
     arms = {
         arm_name: [
@@ -175,14 +191,18 @@ def _selected_comparison() -> tuple[dict, int]:
         raise ValueError("consequence arms use different procedures")
     if any(len({record.execution_semantic_sha256 for record in records}) != 1 for records in arms.values()):
         raise ValueError("consequence repetitions disagree")
-    plan = _checked_input(CONSEQUENCE_PLAN)
-    contract = _checked_input(CONSEQUENCE_CONTRACT)
+    plan = _checked_input(_selected_path(selection.plan_path, CONSEQUENCE_PLAN))
+    contract = _checked_input(_selected_path(selection.contract_path, CONSEQUENCE_CONTRACT))
     if contract["source_plan_sha256"] != plan["content_sha256"]:
         raise ValueError("consequence contract/plan binding mismatch")
     for arm_name, records in arms.items():
         for record in records:
             folder = run / f"{arm_name}-rep{record.repetition}"
             _check_execution_binding(folder, record, plan, contract)
+            if selection.implementation_revision is not None:
+                provenance = json.loads((folder / "provenance.json").read_text(encoding="utf-8"))
+                if provenance.get("implementation_revision") != selection.implementation_revision:
+                    raise ValueError(f"consequence implementation revision mismatch: {folder}")
     reachable = arms["ray_reachable"][0]
     guarded = arms["ray_guarded"][0]
     expected = {

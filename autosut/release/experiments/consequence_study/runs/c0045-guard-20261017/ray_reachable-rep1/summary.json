@@ -1,0 +1,15 @@
+{
+  "campaign_id": "0.shadowray",
+  "timestamp": "2026-10-17T15:36:17+00:00",
+  "total_techniques": 10,
+  "successful": 10,
+  "evidence_backed_successful": 10,
+  "adapted_successful": 9,
+  "marker_only_successful": 0,
+  "caldera_driven_successful": 0,
+  "fidelity_distribution": {
+    "adapted": 9,
+    "inspired": 1
+  },
+  "evidence_directory": "results/evidence/consequence_study/runs/c0045-guard-20261017/ray_reachable-rep1"
+}

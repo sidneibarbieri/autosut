@@ -1,0 +1,7 @@
+docker stop autosut-att-c58dceb8
+exit_code: 0
+stdout: autosut-att-c58dceb8
+
+stderr: 
+verified_absent: true
+verification_error: (none)

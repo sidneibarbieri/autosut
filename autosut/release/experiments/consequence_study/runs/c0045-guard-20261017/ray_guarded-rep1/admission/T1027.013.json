@@ -1,0 +1,7 @@
+{
+  "technique_id": "T1027.013",
+  "missing_requirements": [
+    "access.target.shell"
+  ],
+  "decision": "abstained_before_dispatch"
+}
