@@ -171,11 +171,11 @@ qualification. It must be connected to a campaign-bound procedure,
 independent observation, and the promotion rule below before any experimental
 claim is made.
 
-The planning adapter is intentionally not registered in the generic
-`select_backend` execution factory yet. That factory promises a runnable SUT;
-registering an unqualified provider there would make a rendering capability
-look like a completed Windows backend. Registration belongs after the
-qualification rule has been satisfied, not before.
+`select_backend` routes a SUT profile declaring `windows-qemu` to
+`WindowsQemuEnvironment`; the Windows integration driver uses that route.
+This selects an implementation, not a qualified campaign backend. The
+`WindowsVagrantMaterializer` remains a separate planning/materialization path.
+Neither route establishes campaign-bound execution or the promotion rule below.
 
 ## Promotion rule
 

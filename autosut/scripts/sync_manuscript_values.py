@@ -167,9 +167,11 @@ def sync_paper(paper_dir: Path, *, check: bool = False) -> SyncResult:
     return SyncResult(status=status, details=details, macros_written=len(measurement_macros))
 
 
-def write_report(result: SyncResult) -> None:
-    OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_JSON.write_text(json.dumps({"result": asdict(result)}, indent=2), encoding="utf-8")
+def write_report(result: SyncResult, report_dir: Path | None = None) -> tuple[Path, Path]:
+    output_json = (report_dir / OUTPUT_JSON.name) if report_dir else OUTPUT_JSON
+    output_md = (report_dir / OUTPUT_MD.name) if report_dir else OUTPUT_MD
+    output_json.parent.mkdir(parents=True, exist_ok=True)
+    output_json.write_text(json.dumps({"result": asdict(result)}, indent=2), encoding="utf-8")
 
     lines = [
         "# Manuscript Values Sync",
@@ -179,11 +181,17 @@ def write_report(result: SyncResult) -> None:
         f"- Details: {result.details}",
         "",
     ]
-    OUTPUT_MD.write_text("\n".join(lines), encoding="utf-8")
+    output_md.write_text("\n".join(lines), encoding="utf-8")
+    return output_json, output_md
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--report-dir",
+        type=Path,
+        help="directory for validation reports (keeps a sealed package unchanged)",
+    )
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument(
         "--check",
@@ -199,12 +207,12 @@ def main() -> int:
 
     paper_dir = resolve_paper_dir()
     result = sync_paper(paper_dir, check=args.check or args.dry_run)
-    write_report(result)
+    output_json, output_md = write_report(result, args.report_dir)
 
     print(f"Status: {result.status}")
     print(f"Details: {result.details}")
-    print(f"Wrote {OUTPUT_JSON}")
-    print(f"Wrote {OUTPUT_MD}")
+    print(f"Wrote {output_json}")
+    print(f"Wrote {output_md}")
     return 1 if result.status in {"blocked", "out_of_sync"} else 0
 
 

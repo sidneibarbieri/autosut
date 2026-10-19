@@ -1,6 +1,6 @@
 # Artifact Manifest
 
-- Files: `2655`
+- Files: `2657`
 - Hash: SHA-256
 
 | Path | Bytes | SHA-256 |
@@ -13,7 +13,7 @@
 | `autosut/.gitattributes` | 167 | `0bc7aa45c5b9f6f8b153a875854f90e7c33c9d34e520f6b2f94219f66c6965ce` |
 | `autosut/.python-version` | 8 | `db82937e1f1830581a9553c7814f5c5fcacb6dfdef8310b43e9a812c887acaf5` |
 | `autosut/ARCHITECTURE.md` | 12938 | `fb9d6f8bb6c5af44c79573447cf85fba21dcc7041b1eb98c9b89d094283f2a74` |
-| `autosut/IMPLEMENTATION_REVISION.json` | 228 | `dfec19f7cf67f85fbd5e38b399012f0bf8f76404fd631a0b04a6ad271b661a28` |
+| `autosut/IMPLEMENTATION_REVISION.json` | 228 | `22fc131e2776ed62cb8ec07302e4c42737ee84c3b1ca01df13ad117280565a61` |
 | `autosut/LICENSE` | 1072 | `ba74618b17135ebe223b82e2796827029a13aa64756ff3c2c1d32df16490bf4c` |
 | `autosut/MANIFEST.md` | 3508 | `9eed6c29350959eb9dd17b2345ac1f08749d448c90fc5295b255e64d9ec5c570` |
 | `autosut/PROVENANCE.md` | 1301 | `ac7b50627ba7852ec2bb133e5247f79643c42aff420c65cfc98d3ca229434217` |
@@ -87,7 +87,7 @@
 | `autosut/docs/README_REALISTIC.md` | 997 | `7d00063398aff9b1e58c1f8e221f22dc2f2616b681929d24dfe9d4b57815a750` |
 | `autosut/docs/SCENARIO_ADMISSION.md` | 2699 | `47b5c4beecd1b3e28aad64f16df9ce96de60c69c47a7d75d93e215884d279368` |
 | `autosut/docs/SEMANTIC_ENRICHMENT_PROTOCOL.md` | 7804 | `df720dde69b8b0c90fd37aa659fd713121d9733f4545a8d4f5b315ea4e069ad3` |
-| `autosut/docs/WINDOWS_PROVIDER_DEVELOPMENT.md` | 19262 | `6130cfb22968b5885857d2b1f3a5582a19228639f4707406e2509b96e99b379f` |
+| `autosut/docs/WINDOWS_PROVIDER_DEVELOPMENT.md` | 19288 | `378b3b49fa196a1bb4e1ecf962f8610a99cc86b12ef896235917fe916bdfa402` |
 | `autosut/docs/architecture/EXECUTION_MODEL.md` | 4254 | `a7704a79b595bdfef798a61e4c9a9cc436ccb3a7943186fb286bb66ec075fab1` |
 | `autosut/docs/architecture/PROPOSAL_ADMISSION_BOUNDARY.md` | 4532 | `e29dc51b0e930bf8ab3c08a1dfa842457edbf00fb851f8983d8a7c54afe81885` |
 | `autosut/docs/architecture.md` | 2513 | `d4ac6b3b72bdc13318439d2c6ef06d3d123dec53c2a5341d6b940746ffe62641` |
@@ -169,7 +169,7 @@
 | `autosut/measurement/sut/docker-compose.caldera.yml` | 1129 | `7ccfd6fb71e8ac057e2c3de6113e4581b55d594438f0188f7cba7adbf672171f` |
 | `autosut/measurement/sut/docker-compose.multi-host.yml` | 1567 | `a9275fc960bf5735c69d6223bfa0d9cc782f5ce8edf19f2e953f7d2a10b0b130` |
 | `autosut/measurement/sut/docker-compose.yml` | 2302 | `296ba4c4fc98402d0426bbc4fa2f1efe742f564063bff07a8f11947f4942c067` |
-| `autosut/measurement/sut/release_check.sh` | 42404 | `79228bdc4b410c690eafd4fa0d291fa2a3d8a85d45689feb11f24428c2598df5` |
+| `autosut/measurement/sut/release_check.sh` | 42601 | `a3a22b0716f28df5ed69ee064e696d29569cb8a959152ee9b4522862dbb095f9` |
 | `autosut/measurement/sut/requirements.txt` | 99 | `408a0bf05b34814a426f99ff825c5fccd3ff37904a1d3d0c6e437710c0d82f97` |
 | `autosut/measurement/sut/scripts/0.c0011_activity_plan.md` | 5675 | `9e490a9f1d3871d7b18cdd9f488901062650999b160b638671f2c6622c2e8fa2` |
 | `autosut/measurement/sut/scripts/agent_deployer.py` | 7353 | `9a6e2f96f8f7a01e05ace1f58882a72e5239424da466aa48a6cba7f037e5194b` |
@@ -623,7 +623,7 @@
 | `autosut/measurement/sut/scripts/sanitize_bibliography_policy.py` | 4482 | `fa1aacfbd90659cfa06d325c0ff54794b2c6e10b6d490077997c219ca5b35766` |
 | `autosut/measurement/sut/scripts/score_compatibility_judgments.py` | 7604 | `75579faef499d664c5087594b4b09ffcd8d08b57b4713630ca40c81a13b486b5` |
 | `autosut/measurement/sut/scripts/start_environment.sh` | 1304 | `44702156613616f75467706bb35d5e768eaff4aa89528fa4590cf0621a51a95d` |
-| `autosut/measurement/sut/scripts/sut_measurement_pipeline.py` | 239046 | `04246f3f59e80076441b76e9ae3011604b7e0e76095718f0b270aab76d64d7c4` |
+| `autosut/measurement/sut/scripts/sut_measurement_pipeline.py` | 239124 | `b3b788470b2b3a9d798b8195fc3e8f870514eb360a1fb941a574c9e6898831ba` |
 | `autosut/measurement/sut/scripts/sut_provisioner.py` | 6430 | `1140b3b0c043760398d4ed19dee3f6f34508f483368e57725ed98343d8ac29e9` |
 | `autosut/multi_vm_manager_2vm.py` | 14248 | `feba37ef2fcf14d8c875722ef82c450f9c733f2dcd30bdf477b6aa7e0dd470d6` |
 | `autosut/pyproject.toml` | 1891 | `36cb93ac1944e66004ffc6d76424893218c336611c784906ff766e1305ab6d46` |
@@ -2239,6 +2239,7 @@
 | `autosut/scripts/build_capability_ledger.py` | 14296 | `3ce673f35a9064d0caa97387f37a49a7b78fb6214875afaf6f8a5dc70c0c301c` |
 | `autosut/scripts/build_current_operational_protocol.py` | 4002 | `3529447940fff82e113f26a7439ccb5c2dfd5bd8c9dc026c2b61da54c001cbea` |
 | `autosut/scripts/build_docker_qualification.py` | 3891 | `452c371548c7463bdff2caebb9099076385e460b524d0c05acdaa5f83c3f438b` |
+| `autosut/scripts/build_manuscript.py` | 2981 | `5969ee62312eac447bb193548ef64f2bd9344a3c648c7e64c0df4e102b21553f` |
 | `autosut/scripts/build_multihost_qualification.py` | 5383 | `c399b8a4c05219bab0e99ff61c6be6a0be0345a084b0cdcea4b6e0cf54b0877f` |
 | `autosut/scripts/build_native_windows_adjudication.py` | 6791 | `642204d1a65a4a901bc38c802e8f1f0801c50cdcc616247b8c72efe3288d384a` |
 | `autosut/scripts/build_orchestrated_batch_values.py` | 3830 | `a74b3f2575e8fcdec98900d73f9e4329c65297035221fd0c2d365a03048648f2` |
@@ -2248,6 +2249,7 @@
 | `autosut/scripts/caldera_dispatch_smoke.py` | 8555 | `7a5dbabdf437c9f4771612b876489e53a5b1e415e24d9c0c238d754485aef1e9` |
 | `autosut/scripts/campaigns/run.py` | 865 | `66f66ae6b0a7b741fead8c0299c827b3525487368be64bbd759b7ec752e53ac3` |
 | `autosut/scripts/certify_joint_realizations.py` | 1973 | `095a88c1c7f3d92858753fd1c570c557ee49c11bd82f6f46f6235897d82b49b1` |
+| `autosut/scripts/check_paper_hygiene.py` | 3133 | `18a6dca734f0e4f98b5339c9362651fdab0a32299d37e49dc4981210884deea2` |
 | `autosut/scripts/check_public_surface.py` | 19845 | `b2fdf26779c3c8b1edf6185eda18b3a41f656e466094085335e7fc1d3ff7578d` |
 | `autosut/scripts/collect_evidence.sh` | 1989 | `6d916e6fb07bccd9d589c3567bc5f78f3b7a783dc085068a12d0d2b395dd0bef` |
 | `autosut/scripts/collect_operational_ledger.py` | 11469 | `6195b890b012c859a22a33d9ddb1176e95df52d4a7dbc2102e180a5a7924976b` |
@@ -2290,7 +2292,7 @@
 | `autosut/scripts/infra/windows_panther_acquisition.py` | 7303 | `a7fb6f0f9c290a350caa58943b914413cf542897c47aa2b4da41c620508b5134` |
 | `autosut/scripts/infra/windows_secret_audit.py` | 3532 | `e9db46a5d19307b4545b6fec20670645fa05322d131c8f178c9e2f969057ead9` |
 | `autosut/scripts/infra/windows_surface_scan.py` | 2530 | `5c1bbf146955d741739ae65b44ad7239a38182f7ef1d2ec2f743280388eafd42` |
-| `autosut/scripts/measurement_diagnostics.py` | 1085 | `c371143a6f9397bc6d3db8a5c87fb4514eca3a996790cf876f4c6a163efa95b7` |
+| `autosut/scripts/measurement_diagnostics.py` | 1221 | `3c5eb5b825c1e7bb028604fdee74b1f1ff3cb02daf22ff5b6c6a4c3c2a033730` |
 | `autosut/scripts/measurement_log_directory.sh` | 438 | `470e4c1c0b126f9f640da2786d914fbb55ccfee1810655ea4c5442dcd4cafc22` |
 | `autosut/scripts/orchestrator/__init__.py` | 806 | `0a287d29f8cbab475b9370fa1d6f8fd7e1598fccc378aa7de96639f54aed40f5` |
 | `autosut/scripts/orchestrator/attacker.py` | 4165 | `04ca373495638de102ea0dfe2016bb16800b2b85444419307a59e6d43f714259` |
@@ -2362,7 +2364,7 @@
 | `autosut/scripts/screen_consequence_population.py` | 7395 | `d6a9e3ff8d5a085532143539059d38ad3cc058c1080b7082e39ea152c296f75b` |
 | `autosut/scripts/setup.sh` | 8669 | `bf117249713661ebd8cfc604fc035ab1175917b429dee687ef5086d276e88295` |
 | `autosut/scripts/summarize_execution_validity.py` | 4642 | `a08043741cbc158f7ac8c45a1afdeaecc4917ce4bae648577538eab94c13986d` |
-| `autosut/scripts/sync_manuscript_values.py` | 7106 | `699f57cc69e7dbb8f0be31c0f07a0c73b60d6ff634a65fbbe7d217b1b08df5ee` |
+| `autosut/scripts/sync_manuscript_values.py` | 7541 | `41f8723c3141c2a407a26d8566aa2c16ba8a5bfb4b8cb667f7047852434eed05` |
 | `autosut/scripts/synthesize_sut_blueprint.py` | 1170 | `334eb5f6337e8c3b7e3428f1535b71b77e66c5eca8c808ef24d1f55cf45e15ea` |
 | `autosut/scripts/up_lab.sh` | 11705 | `e13319beb06fb7e80df4a59e9779fa6cfe17949272e80dcc3d3650651252aea9` |
 | `autosut/scripts/validate/connectivity.py` | 1675 | `a7897ad5bc1ba9c5d09f89fc74aa3a49b6effc17d5dc69cb62795e6e46d1cae0` |
@@ -2636,11 +2638,11 @@
 | `autosut/tests/test_sut_constraints.py` | 5899 | `6aa70495f064f709e64cf9ea8330611654c20d619aa8355d681db8e090564395` |
 | `autosut/tests/test_sut_measurement_pipeline.py` | 11162 | `b3209fa715bf8f6086e08d60819bca3feff1b7cd1e652e2bcaa7711e43a2b286` |
 | `autosut/tests/test_sut_synthesizer.py` | 4188 | `a149bbe813926e85bec358906b969d681c0fad8e1d365c59507b7bdf11f4a619` |
-| `autosut/tests/test_sync_manuscript_values.py` | 4994 | `5acb72dee889a83c70eb075823d44e9416df0ce73052eed727b43941a187c7d3` |
+| `autosut/tests/test_sync_manuscript_values.py` | 5485 | `90a9bbe8272751e098c011ffca5b4b724ab92138b8fb69629c8408821493a9ca` |
 | `autosut/tests/test_vagrant_provider_env.py` | 4198 | `8d0c78500f4c12cef6268b532796b89311313a12dc670483556c5e22a32de2f0` |
 | `autosut/tests/test_validate_claim_surface.py` | 3454 | `36b6a23862c8c5ce79de64ef71d6f79deaf8202541e869af2ae4ff680197ff43` |
 | `autosut/tests/test_verified_contract.py` | 2510 | `c4c26b13e8ccf4faa935b8edc4e1180ce4dc67d41c9e3836ca1962fd4ed7a3e6` |
-| `autosut/tests/test_verify_artifact_manifest.py` | 11455 | `d52409ee35af9bd42470a2241984d1ce949176b35c29232cd763c2e36fe0f6f8` |
+| `autosut/tests/test_verify_artifact_manifest.py` | 11647 | `e7acf97a2b2a4f8e038f159354f4c77ec74d3b472b654532195a10f2241065ce` |
 | `autosut/tests/test_verify_clean.py` | 1787 | `a99d768ce1114dcae125e83011ac241365146c17700193fbcc4ed3cf1679872e` |
 | `autosut/tests/test_windows_base_builder.py` | 6350 | `3492b5368dfce5383670ded2ac3a8aaac938c58e9e32420a09b14008241c334e` |
 | `autosut/tests/test_windows_crash_recovery.py` | 7748 | `a99f599e097eab0662afbbd8ede440ee03a908ace31f492928f99b9c0c0c6463` |

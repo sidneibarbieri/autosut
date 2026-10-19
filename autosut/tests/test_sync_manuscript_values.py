@@ -41,6 +41,18 @@ def test_write_report_emits_json_and_markdown(tmp_path: Path) -> None:
     assert "- Macros written: `133`" in report_text
 
 
+def test_write_report_can_target_runtime_directory(tmp_path: Path) -> None:
+    module = _load_module()
+    output_json, output_md = module.write_report(
+        module.SyncResult(status="in_sync", details="values match", macros_written=2),
+        tmp_path / "runtime",
+    )
+
+    assert output_json == tmp_path / "runtime" / "manuscript_values_sync.json"
+    assert output_md == tmp_path / "runtime" / "MANUSCRIPT_VALUES_SYNC.md"
+    assert output_json.is_file() and output_md.is_file()
+
+
 def test_extract_macros_parses_newcommand() -> None:
     module = _load_module()
     text = r"\newcommand{\fooCount}{42}\newcommand{\barPct}{12.3}"

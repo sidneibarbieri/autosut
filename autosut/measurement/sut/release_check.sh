@@ -56,6 +56,11 @@ fail() { printf '[release-check][FAIL] %s\n' "$*" >&2; exit 1; }
 source "$AUTOSUT_ROOT/scripts/measurement_log_directory.sh"
 MEASUREMENT_LOG_DIR="$(create_measurement_log_directory "$AUTOSUT_ROOT")"
 log "Measurement diagnostics: $MEASUREMENT_LOG_DIR"
+MACRO_COVERAGE_PATH="$MEAS_SCRIPTS/results/macro_coverage.json"
+if [[ "$HAS_MANUSCRIPT_DIR" == "1" && "$SYNC_MANUSCRIPT_VALUES" == "0" ]]; then
+  MACRO_COVERAGE_PATH="$MEASUREMENT_LOG_DIR/macro_coverage.json"
+fi
+export MACRO_COVERAGE_PATH
 
 PYTHON_BIN="$(autosut_resolve_python "$AUTOSUT_ROOT" "$AUTOSUT_ROOT/requirements-reviewer.txt")"
 
@@ -189,7 +194,7 @@ if [[ "$HAS_MANUSCRIPT_DIR" == "1" ]]; then
     log "Copied $generated_figure_count generated figure template(s) into the manuscript (explicit opt-in)"
   else
     log "1f) Validating manuscript values against measured outputs (read-only)"
-    "$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/sync_manuscript_values.py" --check >"$MEASUREMENT_LOG_DIR/measurement_sync_release.log" 2>&1 || {
+    "$PYTHON_BIN" "$AUTOSUT_ROOT/scripts/sync_manuscript_values.py" --check --report-dir "$MEASUREMENT_LOG_DIR" >"$MEASUREMENT_LOG_DIR/measurement_sync_release.log" 2>&1 || {
       cat "$MEASUREMENT_LOG_DIR/measurement_sync_release.log" >&2
       fail "manuscript values differ from measured outputs"
     }
@@ -716,13 +721,12 @@ else
 fi
 
 log "6d) Ensuring macro coverage report exists and is non-empty"
-[[ -f "$MEAS_SCRIPTS/results/macro_coverage.json" ]] || fail "missing macro_coverage.json"
+[[ -f "$MACRO_COVERAGE_PATH" ]] || fail "missing macro_coverage.json"
 "$PYTHON_BIN" - <<'PY'
 import json, sys
 import os
 from pathlib import Path
-meas_scripts = Path(os.environ["MEAS_SCRIPTS"])
-p = meas_scripts / 'results' / 'macro_coverage.json'
+p = Path(os.environ["MACRO_COVERAGE_PATH"])
 d = json.loads(p.read_text(encoding='utf-8'))
 used = int(d.get('manuscript_macro_count', 0))
 generated = int(d.get('generated_macro_count', 0))

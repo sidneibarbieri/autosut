@@ -75,6 +75,11 @@ def test_measurement_logs_have_exact_runtime_allowance(tmp_path):
     directory.mkdir(parents=True)
     log = directory / "measurement_pipeline_release.log"
     log.write_text("diagnostic\n")
+    for report_name in (
+        "macro_coverage.json", "manuscript_values_sync.json",
+        "MANUSCRIPT_VALUES_SYNC.md",
+    ):
+        (directory / report_name).write_text("diagnostic\n")
     assert verify_manifest(tmp_path, manifest, allow_runtime_state=True) == []
     assert verify_manifest(tmp_path, manifest)
     unexpected = directory / "unlisted.txt"

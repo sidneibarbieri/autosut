@@ -4530,7 +4530,8 @@ def main():
         )
     else:
         print("  Standalone macro export: no explicit PAPER_DIR; exporting all generated macros.")
-    with open(RESULTS_DIR / 'macro_coverage.json', 'w', encoding='utf-8') as f:
+    coverage_path = Path(os.environ.get('MACRO_COVERAGE_PATH', RESULTS_DIR / 'macro_coverage.json'))
+    with coverage_path.open('w', encoding='utf-8') as f:
         json.dump(macro_coverage, f, indent=2)
 
     # ── Merge SUT-configuration provenance, measured by a separate frozen experiment ──
