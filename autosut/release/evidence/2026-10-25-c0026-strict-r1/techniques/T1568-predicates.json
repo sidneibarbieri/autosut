@@ -1,0 +1,19 @@
+{
+  "template_id": "resolve-lab-domain",
+  "bindings": {
+    "domain": "infrastructure.lab_manifest",
+    "target": "target.primary"
+  },
+  "declared_predicates": [
+    "resolver_query_logged",
+    "external_dns_absent"
+  ],
+  "observations": [
+    {
+      "resolved_address": "172.19.0.3",
+      "expected_address": "172.19.0.3",
+      "resolver_scope": "Docker embedded DNS on private network"
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

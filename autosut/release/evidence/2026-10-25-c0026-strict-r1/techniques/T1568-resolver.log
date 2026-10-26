@@ -1,0 +1,7 @@
+$ python3 -c 'import socket; print(socket.gethostbyname("autosut-channel.test"))'
+exit_code: 0
+--- stdout ---
+172.19.0.3
+
+--- stderr ---
+

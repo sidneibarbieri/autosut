@@ -1,0 +1,7 @@
+docker stop autosut-408f155b11
+exit_code: 0
+stdout: autosut-408f155b11
+
+stderr: 
+verified_absent: true
+verification_error: (none)

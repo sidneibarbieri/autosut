@@ -1,0 +1,19 @@
+{
+  "template_id": "specify-benign-capability",
+  "bindings": {
+    "actor": "actor.primary",
+    "specification": "capability.benign_specification"
+  },
+  "declared_predicates": [
+    "specification_hash_recorded",
+    "no_harmful_payload_present"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/specification",
+      "expected_sha256": "bb0b9c8df2cde809603806d7ea0c4b7e2de686b30972669f6337d75c82b67e0f",
+      "observed_sha256": "bb0b9c8df2cde809603806d7ea0c4b7e2de686b30972669f6337d75c82b67e0f"
+    }
+  ],
+  "fidelity_ceiling": "inspired"
+}

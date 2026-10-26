@@ -1,0 +1,21 @@
+{
+  "template_id": "archive-declared-collection",
+  "bindings": {
+    "archive_tool": "archive_tool.local",
+    "target": "target.primary"
+  },
+  "declared_predicates": [
+    "archive_hash_recorded",
+    "input_manifest_recorded"
+  ],
+  "observations": [
+    {
+      "archive_sha256": "d46dfd0e8d2d326560c9a0edc0198a746ea12ebe56136851e9406baf65d4d913",
+      "input_manifest": [
+        "collection"
+      ],
+      "fixture_sha256": "2c17dcf7953c143ddf22889720f9533ffe0eb64d0a329d508609957d91c813e0"
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

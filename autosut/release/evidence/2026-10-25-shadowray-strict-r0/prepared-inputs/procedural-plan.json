@@ -1,0 +1,248 @@
+{
+  "schema_version": "1",
+  "compiler_version": "1",
+  "campaign_id": "C0045",
+  "campaign_name": "ShadowRay",
+  "source": {
+    "bundle_sha256": "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4",
+    "object_count": 26086,
+    "campaign_stix_id": "campaign--57899965-b171-48ed-bbb4-8faffa3d836a",
+    "campaign_external_id": "C0045"
+  },
+  "ordering_policy": "tactic_rank_then_technique_id",
+  "steps": [
+    {
+      "technique_id": "T1588.002",
+      "technique_stix_id": "attack-pattern--a2fdce72-04b2-409a-ac10-cc1695f4fce0",
+      "name": "Tool",
+      "execution_domain": "attacker",
+      "tactics": [
+        "resource-development"
+      ],
+      "platforms": [
+        "PRE"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--7e2a54af-5e8f-4431-810d-7fcaa4c1eca0"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used tools including the XMRig miner and Interactsh.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1190",
+      "technique_stix_id": "attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c",
+      "name": "Exploit Public-Facing Application",
+      "execution_domain": "boundary",
+      "tactics": [
+        "initial-access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--0beabd79-c7a6-449b-806b-c50979cbc3d7"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors exploited CVE-2023-48022 on publicly exposed Ray servers to steal computing power and to expose sensitive data.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1059.006",
+      "technique_stix_id": "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+      "name": "Python",
+      "execution_domain": "target",
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--c4d89012-734f-472c-9e07-f99fcdcf7077"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used the Python `pty` module to open reverse shells.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1546.004",
+      "technique_stix_id": "attack-pattern--b63a34e8-0a61-4c97-a23b-bf8a2ed812e2",
+      "name": "Unix Shell Configuration Modification",
+      "execution_domain": "target",
+      "tactics": [
+        "persistence",
+        "privilege-escalation"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--5fc5853a-6936-4a4c-bd3b-5e961bffb6c2"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors executed commands on interactive and reverse shells.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1068",
+      "technique_stix_id": "attack-pattern--b21c3b2d-02e6-45b1-980b-e69051040839",
+      "name": "Exploitation for Privilege Escalation",
+      "execution_domain": "target",
+      "tactics": [
+        "privilege-escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--dd6e1e11-1022-4a67-9a4d-197a9dcf14dc"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors downloaded a privilege escalation payload to gain root access.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1027.013",
+      "technique_stix_id": "attack-pattern--0d91b3c0-5e50-47c3-949a-2a796f04d144",
+      "name": "Encrypted/Encoded File",
+      "execution_domain": "target",
+      "tactics": [
+        "stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--153487c1-62aa-4465-8f8a-61674796df69"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used Base64-encrypted Python code to evade detection.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1003.008",
+      "technique_stix_id": "attack-pattern--d0b4fcdb-d67d-4ed2-99ce-788b12f8c0f4",
+      "name": "/etc/passwd and /etc/shadow",
+      "execution_domain": "target",
+      "tactics": [
+        "credential-access"
+      ],
+      "platforms": [
+        "Linux"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--3f175143-5655-4017-8e93-305f903d143f"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors used `cat /etc/shadow` to steal password hashes.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1016",
+      "technique_stix_id": "attack-pattern--707399d6-ab3e-4963-9315-d9d3818cd6a0",
+      "name": "System Network Configuration Discovery",
+      "execution_domain": "target",
+      "tactics": [
+        "discovery"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--d1b967b3-3b02-4b35-8b91-520e17fb7f52"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors invoked DNS queries from targeted machines to identify their IP addresses.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "technique_stix_id": "attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add",
+      "name": "Ingress Tool Transfer",
+      "execution_domain": "boundary",
+      "tactics": [
+        "command-and-control"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "Network Devices",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--9ef645f2-0d90-45e8-bf8f-1c1f6b244c2e"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors downloaded and executed the XMRig miner on targeted hosts.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    },
+    {
+      "technique_id": "T1496.001",
+      "technique_stix_id": "attack-pattern--a718a0c8-5768-41a1-9958-a1cc3f995e99",
+      "name": "Compute Hijacking",
+      "execution_domain": "target",
+      "tactics": [
+        "impact"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "permissions_required": [],
+      "system_requirements": [],
+      "relationship_ids": [
+        "relationship--f503a9ba-4761-4932-8ebc-53b03680a316"
+      ],
+      "procedure_descriptions": [
+        "During [ShadowRay](https://attack.mitre.org/campaigns/C0045), threat actors leveraged graphics processing units (GPU) on compromised nodes for cryptocurrency mining.(Citation: Oligo ShadowRay Campaign MAR 2024)"
+      ]
+    }
+  ],
+  "limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "content_sha256": "c63c19ea8366bd75991e62c9a12faee48417afbe453a6abbefa3353b34ab6db1"
+}

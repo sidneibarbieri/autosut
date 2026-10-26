@@ -1,0 +1,19 @@
+{
+  "template_id": "stage-lab-web-target",
+  "bindings": {
+    "actor": "actor.primary",
+    "web_asset": "web_asset.benign_landing"
+  },
+  "declared_predicates": [
+    "web_asset_hash_recorded",
+    "lab_scope_verified"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/index.html",
+      "expected_sha256": "75c8fb07ca8e7058c68c62391f383ab530b5a1cd739731bf0580eacc6c630e9a",
+      "observed_sha256": "75c8fb07ca8e7058c68c62391f383ab530b5a1cd739731bf0580eacc6c630e9a"
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

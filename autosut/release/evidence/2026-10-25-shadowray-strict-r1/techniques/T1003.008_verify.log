@@ -1,0 +1,8 @@
+$ test -s /tmp/T1003.008.out && cmp /tmp/autosut_credential_fixture /tmp/T1003.008.out && sha256sum /tmp/autosut_credential_fixture /tmp/T1003.008.out
+exit_code: 0
+--- stdout ---
+bb303b1bbd666d20897e1c8cec234cc1d3886aafa50a427a1ff0cf04c9b6f7ca  /tmp/autosut_credential_fixture
+bb303b1bbd666d20897e1c8cec234cc1d3886aafa50a427a1ff0cf04c9b6f7ca  /tmp/T1003.008.out
+
+--- stderr ---
+

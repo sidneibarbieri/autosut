@@ -1,0 +1,114 @@
+{
+  "campaign_id": "0.c0026",
+  "source_campaign_id": "C0026",
+  "description": "C0026 - ANDROMEDA-aligned collection and staged exfiltration chain adapted to a Linux lab substrate",
+  "objective": "Reproduce the legacy six-technique C0026 chain with VM-backed collection, archiving, chunking, and controlled infrastructure staging.",
+  "execution_contract": {
+    "scope": "validated_controlled_slice",
+    "initial_facts": ["sut.ready", "actor.ready", "network:http_available", "code_execution"],
+    "techniques": [
+      {"technique_id": "T1583.001", "requires": ["actor.ready"], "produces": ["infrastructure.domain"]},
+      {"technique_id": "T1568", "requires": ["infrastructure.domain"], "produces": ["channel.resolved"]},
+      {"technique_id": "T1105", "requires": ["channel.resolved"], "produces": ["payload.target.staged"]},
+      {"technique_id": "T1005", "requires": ["payload.target.staged"], "produces": ["collection.local"]},
+      {"technique_id": "T1560.001", "requires": ["collection.local"], "produces": ["collection.archive"]},
+      {"technique_id": "T1030", "requires": ["collection.archive"], "produces": ["exfiltration.chunked"]}
+    ]
+  },
+  "sut": {
+    "required_vms": ["caldera", "attacker", "target"],
+    "min_hosts": 3,
+    "estimated_duration_minutes": 12
+  },
+  "vulnerabilities": [
+    {
+      "type": "weak_credentials",
+      "target": "target",
+      "config": {
+        "username": "ubuntu",
+        "password": "ubuntu"
+      }
+    },
+    {
+      "type": "misconfigured_services",
+      "target": "target",
+      "config": {
+        "services": ["ssh"]
+      }
+    }
+  ],
+  "techniques": [
+    {
+      "technique_id": "T1583.001",
+      "name": "Domains",
+      "tactic": "resource-development",
+      "platform": "any",
+      "expected_fidelity": "inspired",
+      "expected_mode": "naive_simulated",
+      "requires": ["resources:staging_directory"],
+      "produces": ["infrastructure:domain"],
+      "description": "For C0026, the threat actors re-registered expired C2 domains previously used for ANDROMEDA malware.",
+      "procedure_summary": "Model re-registration of previously used ANDROMEDA C2 domains through a controlled infrastructure artifact."
+    },
+    {
+      "technique_id": "T1568",
+      "name": "Dynamic Resolution",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["infrastructure:domain"],
+      "produces": ["c2_channel"],
+      "description": "During C0026, the threat actors re-registered a ClouDNS dynamic DNS subdomain which was previously used by ANDROMEDA.",
+      "procedure_summary": "Resolve a lab-only dynamic domain on the target VM to preserve the observable resolution behavior without external DNS dependence."
+    },
+    {
+      "technique_id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "command-and-control",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["c2_channel"],
+      "produces": ["payload:staged"],
+      "description": "During C0026, the threat actors downloaded malicious payloads onto select compromised hosts.",
+      "procedure_summary": "Transfer a benign payload over HTTP inside the current execution substrate to preserve ingress tool transfer behavior."
+    },
+    {
+      "technique_id": "T1005",
+      "name": "Data from Local System",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["payload:staged"],
+      "produces": ["collection:local_data"],
+      "description": "During C0026, the threat actors collected documents from compromised hosts.",
+      "procedure_summary": "Collect benign host-local files from the target substrate into a constrained evidence bundle."
+    },
+    {
+      "technique_id": "T1560.001",
+      "name": "Archive via Utility",
+      "tactic": "collection",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["collection:local_data"],
+      "produces": ["collection:archive"],
+      "description": "During C0026, the threat actors used WinRAR to collect documents on targeted systems and only exfiltrated files created after January 1, 2021.",
+      "procedure_summary": "Archive collected benign data with native utilities on the target substrate before the exfiltration stage."
+    },
+    {
+      "technique_id": "T1030",
+      "name": "Data Transfer Size Limits",
+      "tactic": "exfiltration",
+      "platform": "linux",
+      "expected_fidelity": "adapted",
+      "expected_mode": "real_controlled",
+      "requires": ["collection:archive"],
+      "produces": ["exfiltration:chunked_transfer"],
+      "description": "During C0026, the threat actors split encrypted archives containing stolen files and information into 3MB parts prior to exfiltration.",
+      "procedure_summary": "Split the archive into bounded chunks to preserve the exfiltration pattern without sending sensitive content outside the lab."
+    }
+  ]
+}

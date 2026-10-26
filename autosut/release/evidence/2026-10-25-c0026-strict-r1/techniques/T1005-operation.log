@@ -1,0 +1,6 @@
+$ python3 -c 'import shutil; shutil.copyfile('"'"'/tmp/autosut-bound/fixture'"'"','"'"'/tmp/autosut-bound/collection'"'"')'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

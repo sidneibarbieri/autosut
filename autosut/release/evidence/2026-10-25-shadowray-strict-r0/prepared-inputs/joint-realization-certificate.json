@@ -1,0 +1,528 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0045",
+  "sut_id": "0.shadowray",
+  "realization_space_sha256": "d8c01b0a86983aed68b8c587a33ed4126c5633ebe8973b1909c468be703bd23f",
+  "sut_blueprint_sha256": "dd6e3a492c51852beaa7cdd23c5664dc1548481566d8d345433a29d993591739",
+  "binding_catalog_sha256": "05e63a45d18e15dcee99dda9f86db7c586ad5b6f59a209bd2b0663f52d74cc59",
+  "enumeration_status": "bounded",
+  "compatibility_scope": "declared_sut_contract_only",
+  "operational_status": "not_run",
+  "compatible_realization_count": 64,
+  "selected_realization_sha256": "3e34b01846db4dc12243bf63677327f0f3b2f0246328e2835b8977c62b5e3391",
+  "assessments": [
+    {
+      "rank": 1,
+      "realization_sha256": "3e34b01846db4dc12243bf63677327f0f3b2f0246328e2835b8977c62b5e3391",
+      "execution_semantic_sha256": "2f33d06b907168a0264fd79335b484aa27da4fc4811449f2b7d983aef7c39120",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 2,
+      "realization_sha256": "b99043b1a180c22a5aacf6e15e850c1376ed005279fda01844e945c2da5f7f9b",
+      "execution_semantic_sha256": "4ea620c772c5e1b6f21c75a1f190866ae0431f7b688feb82e631c897f83341a4",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 3,
+      "realization_sha256": "440518e1b7be8efc3021f1bd95fabf58def02dcdcfceef3ce28d7be867fe96ad",
+      "execution_semantic_sha256": "f3658b2b22ae06e6c4e4ded302ac98915de81e00b69bf2b105c8ef0bb60d5edb",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 4,
+      "realization_sha256": "0a48b3aae05c4c044474c4bea27baf0e110cdd1ad665c91ce66aca7bcb0026fe",
+      "execution_semantic_sha256": "82424f44d1a23725a47afe2b9df2975c4080cd32a4f57c5195526627fd585c80",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 5,
+      "realization_sha256": "cd7ad834227d05d05005dee93d2bac43c27df3f6a319aa6dfa5cd6eef18690bc",
+      "execution_semantic_sha256": "46eafedc834ef798bbf1e7e1eaa97d373031c1202b60a2398e9ef27d3e9d141f",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 6,
+      "realization_sha256": "f73e0fd903dfe4ebb0e9f9176723d447cedc281c347ac7108baa69053e520768",
+      "execution_semantic_sha256": "9e7845485c5b25103cc5c8cd6f6abab7ce282c1704a4256d67345d152370f0f7",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 7,
+      "realization_sha256": "c06f742aabe560b36444ac1699bfa49223ed810725771c28a9bd4c525e2568e3",
+      "execution_semantic_sha256": "b5aa46663a07563e94e4c59fb16867a4d9cb1964df6ec1f59de25b1c8f753324",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 8,
+      "realization_sha256": "058d31263c146e1f46edba9f1d6409cd92050c286da2e353c05abe9a8b2115c8",
+      "execution_semantic_sha256": "bcbc363b5e49ba68b4c963524679fa140850b4bf3d2581f0b0fd809a1edb40a2",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 9,
+      "realization_sha256": "42a6d6e42a5c447a46fa092d023c11c124e85587567c4d3fbeb6c726b3d5aa87",
+      "execution_semantic_sha256": "fb625b961a2f70068050576cfbca92bf79ad1f5ff3adba9977996c9d6520e276",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 10,
+      "realization_sha256": "a231d74ab442fe7389c096d5a676994825fb9b66dca3fba98d7a71e7dfe3a93c",
+      "execution_semantic_sha256": "b0bac4726c21c49c3081a07d290bb0b50c56d5ed2271bdc3301da13e745cee60",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 11,
+      "realization_sha256": "4fb904133923faf574f18f0329b7d1e01b7853095115219082a16eb9a527cbaa",
+      "execution_semantic_sha256": "24eade350035f4398fda2902493e296d070a5777fc7a4834c4e1936185ac3c14",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 12,
+      "realization_sha256": "e00c13a9aac2bc142bff0387e69cad9e115e7f9b41c754a50108009f291ea3b7",
+      "execution_semantic_sha256": "fb9d2f148a21eb585aa05ed0e76aee561d4a26095846443e999a0e0c4a682640",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 13,
+      "realization_sha256": "c3cd4b4445102faf9af1f021ff2abf1f2abcea84090b6e2c8f84d4a4097ba7ca",
+      "execution_semantic_sha256": "35c28fe4db31c306728aad90daa7e27c9c6b906958dbff1dd6db55ce2c59ced8",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 14,
+      "realization_sha256": "7b82fca9578684bab76bdd8ecbccd085b6701d8e3ac53d76e7707476d7e26fa0",
+      "execution_semantic_sha256": "37c8d8df0880a50b4aa99fc9fc4293f7947c84e3e9ff991d777d6b092554f389",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 15,
+      "realization_sha256": "499950bb4e6e207ad769d835820d934e0cfd1f994811ddf0a02ef550e4b57442",
+      "execution_semantic_sha256": "01e856fd48fc5ccf5f779fb38ecbd18245a55df2a86decc403e6f81187970a2d",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 16,
+      "realization_sha256": "59be1b43768b4306e6edb63e0479c0d64a68b9c3092f4c2bb564ff5a6b476d92",
+      "execution_semantic_sha256": "986b0de267fbc58ea3206f7c16393cd03be5c9ba83b7c395deb5c3bf48218f0e",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 17,
+      "realization_sha256": "28b035a70037efc103bf1d6872b5ad4fdb2c38f3a648cbc455e9a751df9888cc",
+      "execution_semantic_sha256": "069dc5445d23a3bf2abd194ec71927bd22639f8559d2732c254f7813739f8253",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 18,
+      "realization_sha256": "6ec83dd342a57d892d83a0e52bb9ffda3e758eb160bdfaf7732b7e2c55de5054",
+      "execution_semantic_sha256": "4592730fcdb01935ef367394525744f1fefac415baad59350de95694fb16abd6",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 19,
+      "realization_sha256": "8c90103eed6b1e8fba09cff86a5cb782316be540191e19ffdbf43db4a332fd5f",
+      "execution_semantic_sha256": "283bdddd13e126f01539df9fe33055d0ec7eec9eac5f392967961f59565b6c03",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 20,
+      "realization_sha256": "7c33cc7cc7bb37087257ff4859af854fae4d78e005f5624ce0ebef99183d624a",
+      "execution_semantic_sha256": "22f5af421062e752ba9c5992734636cf222d77388f2077b6380013205cc9ae30",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 21,
+      "realization_sha256": "7140adf7745efc8cb4b864673559e32b9789c6700700f3e295ad22d67b250ddc",
+      "execution_semantic_sha256": "761667ab0e601ea664b4a730c8e3074427358d7299e574124774f6a869a9e0cf",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 22,
+      "realization_sha256": "7742a23ec5908261d3ca1b469fa6b9a5a81d01d0688c3b9925a513ca3dedbc30",
+      "execution_semantic_sha256": "31302ac96246a7ef9821287edd6340e709c5cc1c0f8be26d0041b8790b023937",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 23,
+      "realization_sha256": "e99b257dbf2208bddcc4aa5d40a65d986d4cd97995b9f559be95ada262a03bc4",
+      "execution_semantic_sha256": "dd339595b5da71a97768e631b512a48653d6f3e1b6498ca8991455363df14fd8",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 24,
+      "realization_sha256": "4c4e2d2bb92934cb74aa61e6b345ea305ed5069ae9d4810c5401a4a6b62b773c",
+      "execution_semantic_sha256": "1d8aff1d981a59718efb2be16d9127454b4176991d215881e26d3e15674de40f",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 25,
+      "realization_sha256": "cafefe1e525c8ba29cd0f96176b9679b8c9e4bfc944bd4fb44e9a0f1e99f04c2",
+      "execution_semantic_sha256": "35f7f3127218719e9db0329f44511650b76ae21bb57a4c1b823bff3b202e1a81",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 26,
+      "realization_sha256": "78f08218eef5292cc86cc5841861778e5bdff0110fc2d2378351feaaa72a7e28",
+      "execution_semantic_sha256": "f02630fd65ffa50ecf50f71338ba0a63bf5818393e6c14bab2a09368a6ba1618",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 27,
+      "realization_sha256": "6b0520fb0597cbc4fde46da92651be0d2896aa0ad7e388886a695d8381b26083",
+      "execution_semantic_sha256": "60481e6687554e2f42f2a99be8216351c680f1abfb54fde1725946049fd9c9db",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 28,
+      "realization_sha256": "43901053afdc189e7777093f95ae78a12d37360cb622df81c292b7e11168c50f",
+      "execution_semantic_sha256": "9069ccfe34a2f376ac214dc0401e33b78bfe4810693507dc8233fd1bfd5faadb",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 29,
+      "realization_sha256": "18245a28ffe641d0b8db7eaa361debbb166f852287ed808dbb505c67d94eb131",
+      "execution_semantic_sha256": "98ed812efef5d99d2930fe4bb234d9bf7f59eb92a4823fc4aa9f9c78952306a5",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 30,
+      "realization_sha256": "1b9f2a0dae6baeb8e0ee90a9342b9c435d127908e24265fb720b9b0309b35abf",
+      "execution_semantic_sha256": "a3adc6514b2689801d14ae9a503bc8febf1b14699e13a9f84a3c171df9f99390",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 31,
+      "realization_sha256": "579018b38bc04998bd1e95c3523b348bfca549616fc9e3ea3099cb3bb7fa8032",
+      "execution_semantic_sha256": "857c0231c8c316400fe29697f3a450871e166feb1420ae75e494d67f0e289456",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 32,
+      "realization_sha256": "b37b8f99a2a551b245a772d491ddc6fd7f32b269f4bf01f695c513879c320766",
+      "execution_semantic_sha256": "d809bf33a76aacbf6694b8027bd898bff315c464ad004811f640f7d3d8f7115b",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 33,
+      "realization_sha256": "7a8c9b64972e44491d67a61b449478b464a22ab71e433659d359f537c3913bf3",
+      "execution_semantic_sha256": "5fa0389d35c425b315faea8fe7c9d955392f36219bd976c9e6badb7afc83fc76",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 34,
+      "realization_sha256": "22f449d468fb65479f4fca04b556f2f41baa5193290dce236eee5daa83f6592b",
+      "execution_semantic_sha256": "23c55972e24089479d9c9c40a0fb0cca836e4eddd0599e09d6023d60a78cc208",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 35,
+      "realization_sha256": "30e91076c98d968ea4741299f98938dbc25f09e43043db193b1e6e6e87646c14",
+      "execution_semantic_sha256": "bb0ffbced4f6f304b8889815b99caa5c4a09d8fe98ce6e49be76d89b1804776c",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 36,
+      "realization_sha256": "e73fa448fb9d2c259c3380ca689bf2df7532acb8b6cd17fd1e99e3170ddfc031",
+      "execution_semantic_sha256": "462e7dd60fe9d4621bb6e9b7301341635c64d8054ada8b94650626cfbd98af33",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 37,
+      "realization_sha256": "54098f8871837292259fcf80e27a69e1f486f612156fd4c426bae07d88bdeefd",
+      "execution_semantic_sha256": "e1c35600ea511eb15baac864f27d1c50ffff299dc358bf4cef3b2ecdf7ba9e77",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 38,
+      "realization_sha256": "d498220b9833dfe38a9ed5bfc8fc369ac2b2170044526594002467cec1436782",
+      "execution_semantic_sha256": "279ff31190d990f2ec28a2566cfa7943a0f6133046acb841c29cf39cf141d083",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 39,
+      "realization_sha256": "709ca6a328716ec9c46f7e294162a61ab82496e5c498420f38bccfec42515972",
+      "execution_semantic_sha256": "073b463e97a28b4aaed344e8ce09f9c57b78ed2765a4ca758de3995697a8296c",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 40,
+      "realization_sha256": "480fd261da04125be23ccf1518cb668121719739d05c28deb162e3f012405f32",
+      "execution_semantic_sha256": "a4338620032560c35cd749b59ce874ecd1a576109f091059d8a901ef5e92b3f8",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 41,
+      "realization_sha256": "548b834179773f98f153abde16fa53df2fad424c9014dbb2bce696391e22eb47",
+      "execution_semantic_sha256": "a5f201c88ae1deabd183d410514a59829c127fe3f3643ba43cfeaaf3058f29ca",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 42,
+      "realization_sha256": "5a5966c294ea57d02dabdb476a52ce8e62797ebf50dc153c7dc497e9a5da5bab",
+      "execution_semantic_sha256": "804f2fbc59955bdbb0814bab465d5d749fabe65258c39143e904da02492848bf",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 43,
+      "realization_sha256": "6ae3d47a3c87275d917e69599667d768802ca5561f49444d427379fda7f17b41",
+      "execution_semantic_sha256": "65928713bc701449a7e797004c9139dd5b9646f1ac606aaf44a39dc3691b4db2",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 44,
+      "realization_sha256": "de229139be5fe4b844adbdbab6363183eae2e63943a4bb602af3cc9ed33c52db",
+      "execution_semantic_sha256": "d3ea9c22f46868182d32601f6e896f11672dff0c78fcf2f4f7879ead0d870405",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 45,
+      "realization_sha256": "777fe2e1d3670f2833e6252f7d2215caad502886b8dfaff242d7eecc1d62f0f1",
+      "execution_semantic_sha256": "a03d28af414262b0bf366583ccc15479c56ead9fbe19520552574cdfe8a430c5",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 46,
+      "realization_sha256": "e8d93d4e3a32e42dcfda8b04151b430248fb062aac7283fecfe47f5c30580103",
+      "execution_semantic_sha256": "5ac63f93e05162b3bab2b25c48c8b89ca81ded5b3d38c043b8c90d93fa288673",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 47,
+      "realization_sha256": "92b566554b5242134182c8387ba8598262ba275314a6833b4e753512af2a3bb1",
+      "execution_semantic_sha256": "c35782c022ef225ac7325e0fa8c99369eb7368013951c553e2543dabe60a04f3",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 48,
+      "realization_sha256": "e85561e9c35e1b18e20eb212d1e0c32ac253b9cda7de53df46145e5ea485bf2e",
+      "execution_semantic_sha256": "4bd000e834e396acc63ffa2352c45f1ec540881e2fca0713c11b4c246e254df8",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 49,
+      "realization_sha256": "6eaa16b09e17e6f2c9f9a2465d2e0bed31d5ed1213f228d41ed67cad951b00f3",
+      "execution_semantic_sha256": "a034039084f2d0dc9a51f63eed1cb7f6993bbb4e2692f6b286ecdcc7c184dea3",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 50,
+      "realization_sha256": "e61c8c624458b480e86b119c57854c08a0f0580dd74b7a0da55e238b6ea3f28d",
+      "execution_semantic_sha256": "bcc787c2b330b1cb6728b5b937d9cb03255aaffb1852376d4ffe6c200ea14fe0",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 51,
+      "realization_sha256": "be7b1803141ad3a03cc6a0a7e156bb60bbc8611b3943656e280700786aeb882d",
+      "execution_semantic_sha256": "500ffb0f7f1a65e33dcadae397f946fe2844c2585907cb4f30b4b32cef3dede2",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 52,
+      "realization_sha256": "2b14c8e7f657f070c7088593da49da64a8d3e8da4dda846c5658a337ecb3d2b3",
+      "execution_semantic_sha256": "a3586abe50a708c342604646eaf46793fdb5d3cba2455c69f7b4e0495a656315",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 53,
+      "realization_sha256": "25e926a4173cca86aaeadc1ec8926abb5332126feb8db8ff93ab83b25eb2b877",
+      "execution_semantic_sha256": "14650b0a83c277f2545b2bb8a3cf8d1804a51a7f6f38fee47817603e3d90879b",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 54,
+      "realization_sha256": "0699cae8ef17c867df928418e12007f5cb51141a9402cd911babbcaf5a98ac53",
+      "execution_semantic_sha256": "a98e94a28751d8f0a6319d8ca1a3d74493cb19ccd09c127c734312ba3fb60321",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 55,
+      "realization_sha256": "f72b49d9f44558d8d113341fa938f6f475a225a6ef9eb54be6f0772dda56acbb",
+      "execution_semantic_sha256": "2b929128579481b5afe020a59286a286feb3a97015d1023bd69867e95e619f01",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 56,
+      "realization_sha256": "f8a7580578db11562c60f3fce3658bdfab480e91412e54274e7b1a82a202c088",
+      "execution_semantic_sha256": "22804a0133fffee9d991e41d023f94d3c728674f19eb411c0c0b2fc34bc88ae7",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 57,
+      "realization_sha256": "1f8008a6a564f2ddeb58cf214d5bcd8a81977f18d71468c480a03ca318249cde",
+      "execution_semantic_sha256": "9f69227af9930ea30642b817fc9b422f4ab72b9f0063bdcdac8c9a1e6bc68cd2",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 58,
+      "realization_sha256": "e1b8ef4e736ae7bd2834583d93a435d3ce188ed46989c0fe71b93cfece8520c7",
+      "execution_semantic_sha256": "b1bedf27144a152a52a7e912947055e986be7cbf1300c399b0147ced35356c63",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 59,
+      "realization_sha256": "bdcb2f60c9a65700699c50a20a4545a91d4397c04c4be04f082dac62e36cdf76",
+      "execution_semantic_sha256": "ace330de2a7dd05643c347473090f97280e3e07fd6ce785b7c33de68c20c40bd",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 60,
+      "realization_sha256": "ee214b88bfa5229334b8563f0332837e040f2adfd460db64bcbacac35748ba74",
+      "execution_semantic_sha256": "24d105d8f8b90b407d2d6a54e71823b19454efd6d60a3333831a4e38ed94da06",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 61,
+      "realization_sha256": "3e147f81d11feb12af6223d19b113f1dd455c5b093cc2e31656980e2fb802884",
+      "execution_semantic_sha256": "1e089fcb7388ed0c19531a1fbe4afc5abd24b2bfb57c5041c99a4dbff234abbc",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 62,
+      "realization_sha256": "e688f1f298d0aab64c3a53d4a7fd57923df6b7f3570bd000f8e7054517304e8b",
+      "execution_semantic_sha256": "3cd59ff977e66631acee15d14046e3df7a5d7ea830408ec5feb9c866619c3e04",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 63,
+      "realization_sha256": "a03d743a21c7a2acaad7fe7461726597e8b6c78c264b9bf08e0d42dbe4e5413a",
+      "execution_semantic_sha256": "739d86bda1a9a5579b10bc98f708dbaa9b26af06c32cd094e1c979e5ecce62fd",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    },
+    {
+      "rank": 64,
+      "realization_sha256": "0baa108af5edc66aceed96281da1ec647951143336599c091d1acd66b37ce16c",
+      "execution_semantic_sha256": "abedae1eac34d0f56de9072f445b7b5d5e237c37b4a836e09bb6bc9c12587e98",
+      "compatible": true,
+      "used_binding_count": 13,
+      "issues": []
+    }
+  ],
+  "content_sha256": "c240778013ece989b49f9a9ed26238548d57176e0b540f36c4bf96df8cbb87f3"
+}

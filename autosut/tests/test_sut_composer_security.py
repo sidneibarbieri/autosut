@@ -10,8 +10,15 @@ import pytest
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
-from orchestrator.models import Credential, StagedArtifact, SUTComposition  # noqa: E402
+from orchestrator.models import (  # noqa: E402
+    ApplicationStack,
+    Credential,
+    StagedArtifact,
+    SUTComposition,
+)
 from orchestrator.environment_base import CommandResult  # noqa: E402
+from orchestrator import sut_composer  # noqa: E402
+from orchestrator.sut_applications import RecipeResult  # noqa: E402
 from orchestrator.sut_composer import _apply_artifact, apply_composition  # noqa: E402
 
 
@@ -28,9 +35,11 @@ class ShellHost:
 class RecordingHost:
     def __init__(self) -> None:
         self.calls: list[tuple[str, str | None]] = []
+        self.events: list[str] = []
 
     def run_shell(self, command: str, log_name=None, timeout=600):
         self.calls.append((command, log_name))
+        self.events.append("credential" if "chpasswd" in command else "artifact")
         return CommandResult(command, 0, "", "")
 
 
@@ -75,3 +84,32 @@ def test_rejects_multiline_password_before_any_host_mutation(tmp_path):
     with pytest.raises(ValueError, match="multiline"):
         apply_composition(host, "lab", composition, tmp_path)
     assert not host.calls
+
+
+def test_composition_creates_declared_users_and_services_before_owned_artifacts(
+    tmp_path, monkeypatch
+) -> None:
+    """Artifacts may be owned by accounts created by the declared service."""
+    host = RecordingHost()
+    def install_test_service(_env, _stack, _run_dir) -> RecipeResult:
+        _env.events.append("application")
+        return RecipeResult(ok=True, detail="installed", evidence_files=[])
+
+    monkeypatch.setitem(sut_composer.RECIPES, "test_service", install_test_service)
+    composition = SUTComposition(
+        credentials=[Credential(kind="password", user="labuser", secret="password")],
+        applications=[
+            ApplicationStack(name="test-service", version="1", recipe="test_service")
+        ],
+        artifacts=[
+            StagedArtifact(
+                path="/srv/test-service/index.html",
+                content_text="fixture",
+                owner="serviceuser",
+            )
+        ],
+    )
+
+    apply_composition(host, "lab", composition, tmp_path)
+
+    assert host.events == ["credential", "application", "artifact"]

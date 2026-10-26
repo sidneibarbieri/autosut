@@ -1,0 +1,7 @@
+$ python3 -c 'import pathlib,hashlib; print(hashlib.sha256(pathlib.Path('"'"'/tmp/autosut-bound/collection'"'"').read_bytes()).hexdigest())'
+exit_code: 0
+--- stdout ---
+2c17dcf7953c143ddf22889720f9533ffe0eb64d0a329d508609957d91c813e0
+
+--- stderr ---
+

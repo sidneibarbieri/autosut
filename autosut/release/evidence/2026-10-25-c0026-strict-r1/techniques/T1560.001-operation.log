@@ -1,0 +1,6 @@
+$ python3 -c 'import tarfile; archive=tarfile.open('"'"'/tmp/autosut-bound/collection.tar'"'"',"w"); archive.add('"'"'/tmp/autosut-bound/collection'"'"',arcname="collection"); archive.close()'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib; pathlib.Path('"'"'/tmp/autosut-bound/toolkit'"'"').write_bytes(b'"'"'print("AUTOSUT_BENIGN_TOOL")\n'"'"')'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

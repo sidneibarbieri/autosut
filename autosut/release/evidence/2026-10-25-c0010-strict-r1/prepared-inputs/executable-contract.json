@@ -1,0 +1,209 @@
+{
+  "schema_version": "1",
+  "campaign_id": "0.c0010",
+  "source_campaign_id": "C0010",
+  "source_plan_sha256": "24c7d91dbe879dcc357957569bde0bfb677cbf163ed9b56bb04c925a5f28eaf4",
+  "concretized_plan_sha256": "17e904de724aa69e3bdb77644312c047ae6358b609afe698b62fbdd69d2f96e7",
+  "binding_catalog_sha256": "72567af29a63b677010de78bc035d681ed20c04775563e91e888a38296effc39",
+  "planning_certificate_sha256": "1a1859809647f351f52e27e600c7b801742d353ba1739769e7f5313f4e81f925",
+  "scope": "validated_controlled_slice",
+  "initial_facts": [
+    "sut.ready",
+    "actor.ready",
+    "network:http_available",
+    "c2_channel"
+  ],
+  "transitions": [
+    {
+      "technique_id": "T1583.001",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.domain"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "record-controlled-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_registration"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1584.001",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "infrastructure.compromised_domain"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "record-controlled-compromised-domain",
+      "bindings": {
+        "actor": "actor.primary",
+        "manifest": "infrastructure.lab_manifest"
+      },
+      "evidence_predicates": [
+        "manifest_hash_recorded",
+        "no_external_compromise"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1587.001",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.capability.specified"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "specify-benign-capability",
+      "bindings": {
+        "actor": "actor.primary",
+        "specification": "capability.benign_specification"
+      },
+      "evidence_predicates": [
+        "specification_hash_recorded",
+        "no_harmful_payload_present"
+      ],
+      "fidelity_ceiling": "inspired"
+    },
+    {
+      "technique_id": "T1588.002",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.toolkit.ready",
+        "artifacts:recon_toolkit",
+        "system:toolkit"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "stage-benign-toolkit",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1608.001",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.payload.ready"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "stage-benign-payload",
+      "bindings": {
+        "actor": "actor.primary",
+        "payload": "payload.benign"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "payload_policy_verified"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1608.002",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "actor.tool.staged"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "stage-benign-tool",
+      "bindings": {
+        "actor": "actor.primary",
+        "toolkit": "toolkit.benign"
+      },
+      "evidence_predicates": [
+        "artifact_hash_recorded",
+        "tool_policy_verified"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1608.004",
+      "requires": [
+        "actor.ready"
+      ],
+      "produces": [
+        "web.target.ready"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "stage-lab-web-target",
+      "bindings": {
+        "actor": "actor.primary",
+        "web_asset": "web_asset.benign_landing"
+      },
+      "evidence_predicates": [
+        "web_asset_hash_recorded",
+        "lab_scope_verified"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1189",
+      "requires": [
+        "web.target.ready",
+        "network:http_available"
+      ],
+      "produces": [
+        "access.target.browser_context",
+        "access:initial",
+        "watering_hole:visited"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "visit-declared-web-target",
+      "bindings": {
+        "endpoint": "endpoint.public_service",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "http_request_logged",
+        "no_exploit_delivered"
+      ],
+      "fidelity_ceiling": "adapted"
+    },
+    {
+      "technique_id": "T1105",
+      "requires": [
+        "access.target.browser_context",
+        "actor.tool.staged",
+        "c2_channel",
+        "network:http_available"
+      ],
+      "produces": [
+        "transfer.target.payload",
+        "artifacts:downloaded_tool",
+        "artifacts:tool_script",
+        "payload:staged"
+      ],
+      "evidence_policy": "successful_outcome_with_declared_evidence_files",
+      "template_id": "transfer-staged-benign-tool",
+      "bindings": {
+        "channel": "channel.private_http",
+        "payload": "payload.benign",
+        "target": "target.primary"
+      },
+      "evidence_predicates": [
+        "source_and_destination_hashes_match"
+      ],
+      "fidelity_ceiling": "adapted"
+    }
+  ],
+  "content_sha256": "135050b9105c480dee69f10e819f9c603015fcc70bbed83f88ae794ffbbf5218"
+}

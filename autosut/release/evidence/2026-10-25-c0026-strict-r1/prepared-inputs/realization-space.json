@@ -1,0 +1,2032 @@
+{
+  "schema_version": "1",
+  "campaign_id": "C0026",
+  "source_plan_sha256": "32b6206f5273788e3383f82058bfa7ffaa5e34a6dd6459a79f082c160bbda8d8",
+  "binding_catalog_sha256": "09cf42cd8a9fe7a1523caf3c4c680b9d325f8291ccf57f4bea10bcef8092f4b9",
+  "action_catalog_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+  "source_ordering_policy": "tactic_rank_then_technique_id",
+  "source_limitations": [
+    "ATT&CK uses-links do not encode a historical total order; the compiler applies a declared tactic-rank policy.",
+    "Technique metadata constrains procedures but does not uniquely determine an executable target environment."
+  ],
+  "generation_policy": "bounded_search_over_versioned_admitted_candidates",
+  "candidate_universe": "finite_catalog_plus_supplied_proposals",
+  "template_overlay_sha256": null,
+  "operational_status": "not_run",
+  "source_step_count": 6,
+  "maximum_realizations": 64,
+  "maximum_search_states": 10000,
+  "search_states_explored": 10,
+  "procedure_assignments_explored": 3,
+  "ordering_search_states_explored": 7,
+  "seeded_realization_count": 1,
+  "search_exhausted": true,
+  "truncation_reason": null,
+  "enumeration_status": "exhaustive",
+  "dead_end_count": 0,
+  "maximal_realized_steps": 6,
+  "dead_end_technique_ids": [],
+  "candidate_inventory": [
+    {
+      "source_step_index": 0,
+      "technique_id": "T1583.001",
+      "retrieved_template_ids": [
+        "record-controlled-domain",
+        "specify-benign-capability",
+        "stage-benign-payload",
+        "stage-benign-tool",
+        "stage-benign-toolkit",
+        "stage-lab-web-target",
+        "record-controlled-compromised-domain",
+        "archive-declared-collection",
+        "beacon-over-web-protocol",
+        "collect-local-files",
+        "delete-staged-tool",
+        "exfiltrate-archive-to-declared-store",
+        "inspect-declared-network",
+        "resolve-lab-domain",
+        "run-benign-python",
+        "split-declared-archive",
+        "transfer-staged-benign-tool",
+        "visit-declared-web-target"
+      ],
+      "finite_domain_candidate_count": 1,
+      "supplied_proposal_count": 0,
+      "unique_candidate_count": 1
+    },
+    {
+      "source_step_index": 1,
+      "technique_id": "T1005",
+      "retrieved_template_ids": [
+        "collect-declared-data-fixture",
+        "archive-declared-collection",
+        "collect-local-files",
+        "run-benign-python",
+        "run-bounded-compute-workload",
+        "stage-local-archive",
+        "assess-privilege-boundary",
+        "inspect-declared-network",
+        "delete-staged-tool",
+        "encode-benign-artifact",
+        "read-declared-credential-fixture",
+        "write-lab-shell-config",
+        "beacon-over-web-protocol",
+        "exfiltrate-archive-to-declared-store",
+        "split-declared-archive",
+        "stage-benign-toolkit",
+        "transfer-staged-benign-tool",
+        "visit-declared-web-target",
+        "probe-declared-public-service",
+        "record-controlled-compromised-domain",
+        "resolve-lab-domain",
+        "stage-benign-payload",
+        "stage-lab-web-target",
+        "transfer-benign-payload",
+        "transfer-over-resolved-lab-channel"
+      ],
+      "finite_domain_candidate_count": 1,
+      "supplied_proposal_count": 0,
+      "unique_candidate_count": 1
+    },
+    {
+      "source_step_index": 2,
+      "technique_id": "T1560.001",
+      "retrieved_template_ids": [
+        "archive-declared-collection",
+        "collect-declared-data-fixture",
+        "collect-local-files",
+        "stage-local-archive",
+        "inspect-declared-network",
+        "run-benign-python",
+        "assess-privilege-boundary",
+        "delete-staged-tool",
+        "encode-benign-artifact",
+        "read-declared-credential-fixture",
+        "run-bounded-compute-workload",
+        "write-lab-shell-config",
+        "exfiltrate-archive-to-declared-store",
+        "beacon-over-web-protocol",
+        "split-declared-archive",
+        "stage-lab-web-target",
+        "resolve-lab-domain",
+        "stage-benign-payload",
+        "stage-benign-toolkit",
+        "transfer-over-resolved-lab-channel",
+        "transfer-staged-benign-tool",
+        "visit-declared-web-target"
+      ],
+      "finite_domain_candidate_count": 1,
+      "supplied_proposal_count": 0,
+      "unique_candidate_count": 1
+    },
+    {
+      "source_step_index": 3,
+      "technique_id": "T1105",
+      "retrieved_template_ids": [
+        "transfer-staged-benign-tool",
+        "transfer-benign-payload",
+        "transfer-over-resolved-lab-channel",
+        "beacon-over-web-protocol",
+        "exfiltrate-archive-to-declared-store",
+        "visit-declared-web-target",
+        "probe-declared-public-service",
+        "resolve-lab-domain",
+        "split-declared-archive",
+        "archive-declared-collection",
+        "collect-local-files",
+        "delete-staged-tool",
+        "inspect-declared-network",
+        "run-benign-python",
+        "stage-benign-payload",
+        "stage-benign-tool",
+        "stage-benign-toolkit",
+        "stage-lab-web-target"
+      ],
+      "finite_domain_candidate_count": 3,
+      "supplied_proposal_count": 0,
+      "unique_candidate_count": 3
+    },
+    {
+      "source_step_index": 4,
+      "technique_id": "T1568",
+      "retrieved_template_ids": [
+        "resolve-lab-domain",
+        "beacon-over-web-protocol",
+        "exfiltrate-archive-to-declared-store",
+        "transfer-staged-benign-tool",
+        "probe-declared-public-service",
+        "split-declared-archive",
+        "transfer-benign-payload",
+        "transfer-over-resolved-lab-channel",
+        "visit-declared-web-target",
+        "archive-declared-collection",
+        "collect-local-files",
+        "delete-staged-tool",
+        "run-benign-python",
+        "stage-benign-payload",
+        "stage-benign-toolkit",
+        "stage-lab-web-target",
+        "assess-privilege-boundary",
+        "collect-declared-data-fixture",
+        "encode-benign-artifact",
+        "inspect-declared-network",
+        "read-declared-credential-fixture",
+        "record-controlled-compromised-domain",
+        "record-controlled-domain",
+        "run-bounded-compute-workload",
+        "specify-benign-capability",
+        "stage-benign-tool",
+        "stage-local-archive",
+        "write-lab-shell-config"
+      ],
+      "finite_domain_candidate_count": 1,
+      "supplied_proposal_count": 0,
+      "unique_candidate_count": 1
+    },
+    {
+      "source_step_index": 5,
+      "technique_id": "T1030",
+      "retrieved_template_ids": [
+        "split-declared-archive",
+        "beacon-over-web-protocol",
+        "exfiltrate-archive-to-declared-store",
+        "transfer-staged-benign-tool",
+        "resolve-lab-domain",
+        "transfer-benign-payload",
+        "transfer-over-resolved-lab-channel",
+        "visit-declared-web-target",
+        "probe-declared-public-service",
+        "collect-local-files",
+        "stage-local-archive",
+        "archive-declared-collection",
+        "collect-declared-data-fixture",
+        "delete-staged-tool",
+        "encode-benign-artifact",
+        "inspect-declared-network",
+        "run-benign-python",
+        "stage-benign-payload",
+        "stage-benign-toolkit",
+        "stage-lab-web-target",
+        "write-lab-shell-config"
+      ],
+      "finite_domain_candidate_count": 1,
+      "supplied_proposal_count": 0,
+      "unique_candidate_count": 1
+    }
+  ],
+  "retrieval_traces": [
+    {
+      "technique_id": "T1583.001",
+      "query_sha256": "18feaa2644fcbdea79700a36b689b0f4d7ce162b0e27f6c4d51e45b2caa4ef0c",
+      "index_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+      "candidates": [
+        {
+          "template_id": "record-controlled-domain",
+          "score": 1101,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "t1583.001"
+          ]
+        },
+        {
+          "template_id": "specify-benign-capability",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "malware."
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "for"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "delete-staged-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "previously"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "split-declared-archive",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1005",
+      "query_sha256": "b8bbcfbe54bb46854835b8294b13bda336216f2fe0361957d5ca0640ed101ddd",
+      "index_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+      "candidates": [
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "data",
+            "t1005"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "local",
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "system",
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-bounded-compute-workload",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "local",
+            "system"
+          ]
+        },
+        {
+          "template_id": "stage-local-archive",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collected",
+            "collection"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "local"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "delete-staged-tool",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "split-declared-archive",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "local",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "system",
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "local"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1560.001",
+      "query_sha256": "0f528aa68e20ee0c31317f4caa9b818ceeecd1a1062167785de1e3b15441d902",
+      "index_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+      "candidates": [
+        {
+          "template_id": "archive-declared-collection",
+          "score": 1104,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "archive",
+            "collection",
+            "t1560.001",
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collect",
+            "collection",
+            "only"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "collection",
+            "files",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-local-archive",
+          "score": 103,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "archive",
+            "collection",
+            "files"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "only",
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "delete-staged-tool",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "run-bounded-compute-workload",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 3,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "archive",
+            "the",
+            "to"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the",
+            "to"
+          ]
+        },
+        {
+          "template_id": "split-declared-archive",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "archive",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "on",
+            "the"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "after"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1105",
+      "query_sha256": "80c2a53db5e53fb5463563a7d05a4c62741251e24664df20a5f41836730ab658",
+      "index_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+      "candidates": [
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 1105,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "the",
+            "tool",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "t1105",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network",
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "network"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "split-declared-archive",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "delete-staged-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "tool"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "tool"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1568",
+      "query_sha256": "92ea5c50b384c01696bfd45027131b0989e6caca8f55f97b02bd1f59535f10aa",
+      "index_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+      "candidates": [
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 1103,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "t1568",
+            "the"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "split-declared-archive",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "delete-staged-tool",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "previously"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a",
+            "the"
+          ]
+        },
+        {
+          "template_id": "assess-privilege-boundary",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "read-declared-credential-fixture",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "record-controlled-compromised-domain",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "record-controlled-domain",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "run-bounded-compute-workload",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "specify-benign-capability",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "stage-benign-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "stage-local-archive",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        },
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "technique_id": "T1030",
+      "query_sha256": "8c3d441a466b7fa7e6bcff4623dbc8168d61f8fe483f87d87da5d508fe0440c4",
+      "index_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+      "candidates": [
+        {
+          "template_id": "split-declared-archive",
+          "score": 1106,
+          "exact_technique_match": true,
+          "domain_match": true,
+          "shared_terms": [
+            "exfiltration",
+            "exfiltration.",
+            "into",
+            "split",
+            "t1030",
+            "the"
+          ]
+        },
+        {
+          "template_id": "beacon-over-web-protocol",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the",
+            "to"
+          ]
+        },
+        {
+          "template_id": "exfiltrate-archive-to-declared-store",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the",
+            "to"
+          ]
+        },
+        {
+          "template_id": "transfer-staged-benign-tool",
+          "score": 102,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the",
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "resolve-lab-domain",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "transfer-benign-payload",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "transfer-over-resolved-lab-channel",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "transfer"
+          ]
+        },
+        {
+          "template_id": "visit-declared-web-target",
+          "score": 101,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "probe-declared-public-service",
+          "score": 100,
+          "exact_technique_match": false,
+          "domain_match": true,
+          "shared_terms": []
+        },
+        {
+          "template_id": "collect-local-files",
+          "score": 4,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "and",
+            "files",
+            "into",
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-local-archive",
+          "score": 2,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "files",
+            "into"
+          ]
+        },
+        {
+          "template_id": "archive-declared-collection",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "collect-declared-data-fixture",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "data"
+          ]
+        },
+        {
+          "template_id": "delete-staged-tool",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "and"
+          ]
+        },
+        {
+          "template_id": "encode-benign-artifact",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "and"
+          ]
+        },
+        {
+          "template_id": "inspect-declared-network",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "run-benign-python",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-payload",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-benign-toolkit",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "stage-lab-web-target",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "the"
+          ]
+        },
+        {
+          "template_id": "write-lab-shell-config",
+          "score": 1,
+          "exact_technique_match": false,
+          "domain_match": false,
+          "shared_terms": [
+            "and"
+          ]
+        }
+      ]
+    }
+  ],
+  "step_realization_coverage": [
+    {
+      "source_step_index": 0,
+      "technique_id": "T1583.001",
+      "candidate_count": 1,
+      "realized_procedure_assignment_count": 1,
+      "realized_behavior_contract_count": 1,
+      "realized_binding_variant_count": 1,
+      "realized_template_ids": [
+        "record-controlled-domain"
+      ],
+      "realized_sequence_positions": [
+        1
+      ]
+    },
+    {
+      "source_step_index": 1,
+      "technique_id": "T1005",
+      "candidate_count": 1,
+      "realized_procedure_assignment_count": 1,
+      "realized_behavior_contract_count": 1,
+      "realized_binding_variant_count": 1,
+      "realized_template_ids": [
+        "collect-declared-data-fixture"
+      ],
+      "realized_sequence_positions": [
+        4
+      ]
+    },
+    {
+      "source_step_index": 2,
+      "technique_id": "T1560.001",
+      "candidate_count": 1,
+      "realized_procedure_assignment_count": 1,
+      "realized_behavior_contract_count": 1,
+      "realized_binding_variant_count": 1,
+      "realized_template_ids": [
+        "archive-declared-collection"
+      ],
+      "realized_sequence_positions": [
+        5
+      ]
+    },
+    {
+      "source_step_index": 3,
+      "technique_id": "T1105",
+      "candidate_count": 3,
+      "realized_procedure_assignment_count": 1,
+      "realized_behavior_contract_count": 1,
+      "realized_binding_variant_count": 1,
+      "realized_template_ids": [
+        "transfer-over-resolved-lab-channel"
+      ],
+      "realized_sequence_positions": [
+        3
+      ]
+    },
+    {
+      "source_step_index": 4,
+      "technique_id": "T1568",
+      "candidate_count": 1,
+      "realized_procedure_assignment_count": 1,
+      "realized_behavior_contract_count": 1,
+      "realized_binding_variant_count": 1,
+      "realized_template_ids": [
+        "resolve-lab-domain"
+      ],
+      "realized_sequence_positions": [
+        2
+      ]
+    },
+    {
+      "source_step_index": 5,
+      "technique_id": "T1030",
+      "candidate_count": 1,
+      "realized_procedure_assignment_count": 1,
+      "realized_behavior_contract_count": 1,
+      "realized_binding_variant_count": 1,
+      "realized_template_ids": [
+        "split-declared-archive"
+      ],
+      "realized_sequence_positions": [
+        6
+      ]
+    }
+  ],
+  "blocker_counts": [],
+  "realization_count": 1,
+  "ordering_variant_count": 1,
+  "procedure_assignment_variant_count": 1,
+  "behavior_contract_variant_count": 1,
+  "causal_structure_variant_count": 1,
+  "graph_variant_count": 1,
+  "realizations": [
+    {
+      "rank": 1,
+      "source_step_order": [
+        0,
+        4,
+        3,
+        1,
+        2,
+        5
+      ],
+      "total_assumption_count": 5,
+      "minimum_fidelity_ceiling": "inspired",
+      "proposal_sources": [
+        "finite_domain_solver"
+      ],
+      "plan": {
+        "schema_version": "1",
+        "ordering_policy": "causal_topological_realization",
+        "campaign_id": "C0026",
+        "source_plan_sha256": "32b6206f5273788e3383f82058bfa7ffaa5e34a6dd6459a79f082c160bbda8d8",
+        "binding_catalog_sha256": "09cf42cd8a9fe7a1523caf3c4c680b9d325f8291ccf57f4bea10bcef8092f4b9",
+        "action_catalog_sha256": "08a72b4001d5aa18f93adb43001ea2b66bff4c933d7e0f8b0104b14b716072fe",
+        "steps": [
+          {
+            "sequence": 1,
+            "technique_id": "T1583.001",
+            "template_id": "record-controlled-domain",
+            "bindings": {
+              "actor": "actor.primary",
+              "manifest": "infrastructure.lab_manifest"
+            },
+            "requires": [
+              "actor.ready"
+            ],
+            "produces": [
+              "infrastructure.domain"
+            ],
+            "evidence_predicates": [
+              "manifest_hash_recorded",
+              "no_external_registration"
+            ],
+            "fidelity_ceiling": "inspired",
+            "proposal_source": "finite_domain_solver",
+            "assumption_count": 1
+          },
+          {
+            "sequence": 2,
+            "technique_id": "T1568",
+            "template_id": "resolve-lab-domain",
+            "bindings": {
+              "domain": "infrastructure.lab_manifest",
+              "target": "target.primary"
+            },
+            "requires": [
+              "infrastructure.domain"
+            ],
+            "produces": [
+              "channel.resolved",
+              "c2_channel"
+            ],
+            "evidence_predicates": [
+              "resolver_query_logged",
+              "external_dns_absent"
+            ],
+            "fidelity_ceiling": "adapted",
+            "proposal_source": "finite_domain_solver",
+            "assumption_count": 1
+          },
+          {
+            "sequence": 3,
+            "technique_id": "T1105",
+            "template_id": "transfer-over-resolved-lab-channel",
+            "bindings": {
+              "channel": "channel.private_http",
+              "payload": "payload.benign",
+              "target": "target.primary"
+            },
+            "requires": [
+              "channel.resolved",
+              "c2_channel",
+              "network:http_available"
+            ],
+            "produces": [
+              "payload.target.staged",
+              "artifacts:downloaded_tool",
+              "artifacts:tool_script",
+              "payload:staged"
+            ],
+            "evidence_predicates": [
+              "source_and_destination_hashes_match"
+            ],
+            "fidelity_ceiling": "adapted",
+            "proposal_source": "finite_domain_solver",
+            "assumption_count": 1
+          },
+          {
+            "sequence": 4,
+            "technique_id": "T1005",
+            "template_id": "collect-declared-data-fixture",
+            "bindings": {
+              "data_source": "data.synthetic_fixture",
+              "target": "target.primary"
+            },
+            "requires": [
+              "payload.target.staged",
+              "code_execution"
+            ],
+            "produces": [
+              "collection.local",
+              "discovery:file_listing",
+              "collection:local_data"
+            ],
+            "evidence_predicates": [
+              "fixture_hash_recorded",
+              "no_host_data_collected"
+            ],
+            "fidelity_ceiling": "adapted",
+            "proposal_source": "finite_domain_solver",
+            "assumption_count": 0
+          },
+          {
+            "sequence": 5,
+            "technique_id": "T1560.001",
+            "template_id": "archive-declared-collection",
+            "bindings": {
+              "archive_tool": "archive_tool.local",
+              "target": "target.primary"
+            },
+            "requires": [
+              "collection.local",
+              "discovery:file_listing",
+              "collection:local_data"
+            ],
+            "produces": [
+              "collection.archive"
+            ],
+            "evidence_predicates": [
+              "archive_hash_recorded",
+              "input_manifest_recorded"
+            ],
+            "fidelity_ceiling": "adapted",
+            "proposal_source": "finite_domain_solver",
+            "assumption_count": 0
+          },
+          {
+            "sequence": 6,
+            "technique_id": "T1030",
+            "template_id": "split-declared-archive",
+            "bindings": {
+              "archive": "archive.synthetic_collection",
+              "chunk_policy": "chunk_policy.bounded_local"
+            },
+            "requires": [
+              "collection.archive"
+            ],
+            "produces": [
+              "exfiltration.chunked",
+              "exfiltration:chunked_transfer"
+            ],
+            "evidence_predicates": [
+              "chunk_manifest_recorded",
+              "no_external_transfer"
+            ],
+            "fidelity_ceiling": "adapted",
+            "proposal_source": "finite_domain_solver",
+            "assumption_count": 2
+          }
+        ],
+        "unresolved_technique_ids": [],
+        "rejected_candidates": [],
+        "retrieval_traces": [],
+        "planning_certificate": {
+          "initial_facts": [
+            "actor.ready",
+            "code_execution",
+            "network:http_available",
+            "sut.ready"
+          ],
+          "goal_facts": [
+            "exfiltration.chunked"
+          ],
+          "transitions": [
+            {
+              "sequence": 1,
+              "technique_id": "T1583.001",
+              "state_before_sha256": "fd1a157cec286b8da65ecd8a280b70d9441bdf727edef53395d8cce6dd2b26d3",
+              "state_after_sha256": "5700b01b9f1504aa0e639d36d4ba3d44a8227bb32ea9015e5692b7c4ea999050",
+              "added_facts": [
+                "infrastructure.domain"
+              ]
+            },
+            {
+              "sequence": 2,
+              "technique_id": "T1568",
+              "state_before_sha256": "5700b01b9f1504aa0e639d36d4ba3d44a8227bb32ea9015e5692b7c4ea999050",
+              "state_after_sha256": "8e77531d1d4f034c3a8ccee1cee9ca23017dd5cd65fb2c6b4e55c98ec5f16533",
+              "added_facts": [
+                "c2_channel",
+                "channel.resolved"
+              ]
+            },
+            {
+              "sequence": 3,
+              "technique_id": "T1105",
+              "state_before_sha256": "8e77531d1d4f034c3a8ccee1cee9ca23017dd5cd65fb2c6b4e55c98ec5f16533",
+              "state_after_sha256": "0d9a1b387ace5202200e4a243bcab5a96f7b55fccf34dd4057ed063100164978",
+              "added_facts": [
+                "artifacts:downloaded_tool",
+                "artifacts:tool_script",
+                "payload.target.staged",
+                "payload:staged"
+              ]
+            },
+            {
+              "sequence": 4,
+              "technique_id": "T1005",
+              "state_before_sha256": "0d9a1b387ace5202200e4a243bcab5a96f7b55fccf34dd4057ed063100164978",
+              "state_after_sha256": "beb120b57dabb9d29d3331ef79adcc0f5e8ecd0122b1e3a80b1abe4825c006f7",
+              "added_facts": [
+                "collection.local",
+                "collection:local_data",
+                "discovery:file_listing"
+              ]
+            },
+            {
+              "sequence": 5,
+              "technique_id": "T1560.001",
+              "state_before_sha256": "beb120b57dabb9d29d3331ef79adcc0f5e8ecd0122b1e3a80b1abe4825c006f7",
+              "state_after_sha256": "73499e1ef802608115f975d6f3327108b484cfa89494b84911787a5742b816de",
+              "added_facts": [
+                "collection.archive"
+              ]
+            },
+            {
+              "sequence": 6,
+              "technique_id": "T1030",
+              "state_before_sha256": "73499e1ef802608115f975d6f3327108b484cfa89494b84911787a5742b816de",
+              "state_after_sha256": "7376e6d5b44b987dfc867a89a0b32d1f30b20f0edb28a8ff885c3a98f3f76d0b",
+              "added_facts": [
+                "exfiltration.chunked",
+                "exfiltration:chunked_transfer"
+              ]
+            }
+          ],
+          "causal_links": [
+            {
+              "fact_id": "actor.ready",
+              "producer_sequence": 0,
+              "consumer_sequence": 1
+            },
+            {
+              "fact_id": "infrastructure.domain",
+              "producer_sequence": 1,
+              "consumer_sequence": 2
+            },
+            {
+              "fact_id": "channel.resolved",
+              "producer_sequence": 2,
+              "consumer_sequence": 3
+            },
+            {
+              "fact_id": "c2_channel",
+              "producer_sequence": 2,
+              "consumer_sequence": 3
+            },
+            {
+              "fact_id": "network:http_available",
+              "producer_sequence": 0,
+              "consumer_sequence": 3
+            },
+            {
+              "fact_id": "payload.target.staged",
+              "producer_sequence": 3,
+              "consumer_sequence": 4
+            },
+            {
+              "fact_id": "code_execution",
+              "producer_sequence": 0,
+              "consumer_sequence": 4
+            },
+            {
+              "fact_id": "collection.local",
+              "producer_sequence": 4,
+              "consumer_sequence": 5
+            },
+            {
+              "fact_id": "discovery:file_listing",
+              "producer_sequence": 4,
+              "consumer_sequence": 5
+            },
+            {
+              "fact_id": "collection:local_data",
+              "producer_sequence": 4,
+              "consumer_sequence": 5
+            },
+            {
+              "fact_id": "collection.archive",
+              "producer_sequence": 5,
+              "consumer_sequence": 6
+            }
+          ],
+          "final_facts": [
+            "actor.ready",
+            "artifacts:downloaded_tool",
+            "artifacts:tool_script",
+            "c2_channel",
+            "channel.resolved",
+            "code_execution",
+            "collection.archive",
+            "collection.local",
+            "collection:local_data",
+            "discovery:file_listing",
+            "exfiltration.chunked",
+            "exfiltration:chunked_transfer",
+            "infrastructure.domain",
+            "network:http_available",
+            "payload.target.staged",
+            "payload:staged",
+            "sut.ready"
+          ],
+          "unresolved_goals": [],
+          "valid": true,
+          "content_sha256": "ae747a525ed2a58e23ce0bef9f781600c6770ed4d853155e5b6a3f46a7f3cf0c"
+        },
+        "llm_call_sha256": null,
+        "execution_semantic_sha256": "c1547a99f2615ee2eb9d86d902c7586147fa55c7d5c7b1a186096b50ea9b5f1d",
+        "content_sha256": "045952ef5db0e95dd3ee16d13729e18a21820500e29915cff62318c38035ad1e"
+      },
+      "graph": {
+        "graph_kind": "causal_procedure_realization",
+        "initial_facts": [
+          "actor.ready",
+          "code_execution",
+          "network:http_available",
+          "sut.ready"
+        ],
+        "goal_facts": [
+          "exfiltration.chunked"
+        ],
+        "source_step_order": [
+          0,
+          4,
+          3,
+          1,
+          2,
+          5
+        ],
+        "nodes": [
+          {
+            "sequence": 1,
+            "source_step_index": 0,
+            "technique_id": "T1583.001",
+            "template_id": "record-controlled-domain"
+          },
+          {
+            "sequence": 2,
+            "source_step_index": 4,
+            "technique_id": "T1568",
+            "template_id": "resolve-lab-domain"
+          },
+          {
+            "sequence": 3,
+            "source_step_index": 3,
+            "technique_id": "T1105",
+            "template_id": "transfer-over-resolved-lab-channel"
+          },
+          {
+            "sequence": 4,
+            "source_step_index": 1,
+            "technique_id": "T1005",
+            "template_id": "collect-declared-data-fixture"
+          },
+          {
+            "sequence": 5,
+            "source_step_index": 2,
+            "technique_id": "T1560.001",
+            "template_id": "archive-declared-collection"
+          },
+          {
+            "sequence": 6,
+            "source_step_index": 5,
+            "technique_id": "T1030",
+            "template_id": "split-declared-archive"
+          }
+        ],
+        "edges": [
+          {
+            "fact_id": "actor.ready",
+            "producer_sequence": 0,
+            "consumer_sequence": 1
+          },
+          {
+            "fact_id": "infrastructure.domain",
+            "producer_sequence": 1,
+            "consumer_sequence": 2
+          },
+          {
+            "fact_id": "channel.resolved",
+            "producer_sequence": 2,
+            "consumer_sequence": 3
+          },
+          {
+            "fact_id": "c2_channel",
+            "producer_sequence": 2,
+            "consumer_sequence": 3
+          },
+          {
+            "fact_id": "network:http_available",
+            "producer_sequence": 0,
+            "consumer_sequence": 3
+          },
+          {
+            "fact_id": "payload.target.staged",
+            "producer_sequence": 3,
+            "consumer_sequence": 4
+          },
+          {
+            "fact_id": "code_execution",
+            "producer_sequence": 0,
+            "consumer_sequence": 4
+          },
+          {
+            "fact_id": "collection.local",
+            "producer_sequence": 4,
+            "consumer_sequence": 5
+          },
+          {
+            "fact_id": "discovery:file_listing",
+            "producer_sequence": 4,
+            "consumer_sequence": 5
+          },
+          {
+            "fact_id": "collection:local_data",
+            "producer_sequence": 4,
+            "consumer_sequence": 5
+          },
+          {
+            "fact_id": "collection.archive",
+            "producer_sequence": 5,
+            "consumer_sequence": 6
+          }
+        ],
+        "causal_structure_sha256": "c56200ed47babbab1bd0369f7d7c193f6f382a2355d44aafb6c2f7069706e572",
+        "content_sha256": "aeca7ec553e36b9bda1709e91dfc1090e512f43769d8cf3b1c56bd738f2a7eab"
+      },
+      "content_sha256": "ea875c104da400b4b36e885b32910cfadc3707ef68464162c4b3b357a1a03320"
+    }
+  ],
+  "content_sha256": "5f0b7d8bcb5fbfba0e2085da32998b9d4b860a60b776da83110dce6563cee1c2"
+}

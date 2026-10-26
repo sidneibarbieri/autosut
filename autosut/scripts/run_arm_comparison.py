@@ -79,7 +79,11 @@ def main() -> int:
             "assumption_bearing_step_count",
             "execution_semantic_sha256",
         ]
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=fieldnames,
+            lineterminator="\n",
+        )
         writer.writeheader()
         for arm in verified_report.arms:
             row = arm.model_dump()
