@@ -1,0 +1,19 @@
+{
+  "template_id": "stage-benign-tool",
+  "bindings": {
+    "actor": "actor.primary",
+    "toolkit": "toolkit.benign"
+  },
+  "declared_predicates": [
+    "artifact_hash_recorded",
+    "tool_policy_verified"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/toolkit",
+      "expected_sha256": "10c082764262c81d5a97818813a3a9ddb8465368136171d0db0fd1807a7e1474",
+      "observed_sha256": "10c082764262c81d5a97818813a3a9ddb8465368136171d0db0fd1807a7e1474"
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

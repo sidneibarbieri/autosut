@@ -1,0 +1,19 @@
+{
+  "template_id": "collect-declared-data-fixture",
+  "bindings": {
+    "data_source": "data.synthetic_fixture",
+    "target": "target.primary"
+  },
+  "declared_predicates": [
+    "fixture_hash_recorded",
+    "no_host_data_collected"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/collection",
+      "expected_sha256": "2c17dcf7953c143ddf22889720f9533ffe0eb64d0a329d508609957d91c813e0",
+      "observed_sha256": "2c17dcf7953c143ddf22889720f9533ffe0eb64d0a329d508609957d91c813e0"
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

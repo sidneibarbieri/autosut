@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib; pathlib.Path('"'"'/tmp/autosut-bound/specification'"'"').write_bytes(b'"'"'{"domain": "autosut-channel.test", "external_action": false, "operation": "specification", "scope": "private laboratory only"}'"'"')'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

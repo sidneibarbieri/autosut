@@ -1,0 +1,15 @@
+{
+  "campaign_id": "0.c0026",
+  "timestamp": "2026-10-26T02:28:46+00:00",
+  "total_techniques": 6,
+  "successful": 6,
+  "evidence_backed_successful": 6,
+  "adapted_successful": 5,
+  "marker_only_successful": 0,
+  "caldera_driven_successful": 0,
+  "fidelity_distribution": {
+    "inspired": 1,
+    "adapted": 5
+  },
+  "evidence_directory": "release/evidence/2026-10-25-c0026-strict-r1"
+}

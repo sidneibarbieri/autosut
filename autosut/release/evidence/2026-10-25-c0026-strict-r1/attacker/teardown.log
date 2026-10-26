@@ -1,0 +1,7 @@
+docker stop autosut-att-e51cc7fa
+exit_code: 0
+stdout: autosut-att-e51cc7fa
+
+stderr: 
+verified_absent: true
+verification_error: (none)

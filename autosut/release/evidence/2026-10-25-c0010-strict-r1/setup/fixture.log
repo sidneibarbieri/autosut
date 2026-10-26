@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib; pathlib.Path('"'"'/tmp/autosut-bound'"'"').mkdir(); pathlib.Path('"'"'/tmp/autosut-bound/fixture'"'"').write_bytes(b'"'"'SYNTHETIC LAB RECORD\nNo operational data.\n'"'"')'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

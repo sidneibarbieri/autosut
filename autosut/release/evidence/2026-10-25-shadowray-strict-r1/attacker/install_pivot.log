@@ -1,0 +1,8 @@
+$ ssh -V 2>&1 | head -1; socat -V | head -1
+exit_code: 0
+--- stdout ---
+OpenSSH_9.6p1, OpenSSL 3.1.8 11 Feb 2025
+socat by Gerhard Rieger and contributors - see www.dest-unreach.org
+
+--- stderr ---
+

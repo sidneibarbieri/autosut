@@ -1,0 +1,31 @@
+{
+  "campaign_id": "0.c0026",
+  "source_campaign_id": "C0026",
+  "status": "prepared",
+  "reasons": [],
+  "source_steps": 6,
+  "planned_steps": 6,
+  "unresolved_technique_ids": [],
+  "contract_sha256": "7de46b62495937484ee84912d62de7d9b69abf2bde1c846ff5b2d0a62640b89e",
+  "realization_space_sha256": "5f0b7d8bcb5fbfba0e2085da32998b9d4b860a60b776da83110dce6563cee1c2",
+  "joint_certificate_sha256": "0ae9a7c8b22e3140bda4c6c1bddc9c5a738a9154a70684cd729b9aeb3738a1c2",
+  "compatible_realization_count": 1,
+  "selected_realization_sha256": "ea875c104da400b4b36e885b32910cfadc3707ef68464162c4b3b357a1a03320",
+  "enumeration_status": "exhaustive",
+  "files": {
+    "action_templates.json": "c01294718f57c9f1f75edcfa673b5e92de4ef5bca9600e2a34eb3eec334ecdfd",
+    "binding-catalog.json": "fb4497bda4e256fe64d0413a71327ada7aea6240deef50a38c6d2059d37bce27",
+    "campaign-source.json": "a2bd156de68f2e4df8b7bf4934dfa0da183242ef5d76ebcc635d4c8080bbb3cd",
+    "campaign.json": "9e67c1e50a3455f9faf8355a918df20f6021b62380ce0deb8c04764033ad2285",
+    "compiler-receipt.json": "30d70b304a06ffd1d7c4da4b6e22bedb31ddb8bc163f8234935f55cddf0b90ba",
+    "concretized-plan.json": "548fceb4bac94e46272cb78af4aae644342a1314bbafc34e5ff79ec5512d3c7b",
+    "executable-contract.json": "7f97c66956f452ef3135d5fec4a8103871ec7d9fceaa623bb234c439b802ce26",
+    "joint-realization-certificate.json": "ffe9fd1c80a10c87c194c06c7d569533d1ea9fe666f7d36b6c5eff92035481b7",
+    "procedural-plan.json": "35d2e73db12b2dce23b9edba7cb9b76688d9142d43cd87783dc8277622c79e0b",
+    "realization-compiler-receipt.json": "7646bd9629e8cc79c221aaf18c00a17e53de83ae2f8a8798772e7925383ecf0a",
+    "realization-space.json": "62a4ec4c7e51a8d4e5dc903f6ba8e03e50cdd90b807f30459c62590ead554157",
+    "sut-blueprint.json": "d82fbcd8b1f59efecee6c250b82efef0d0bd774277df70ede06a80a556ed32d7",
+    "sut-constraints.json": "64eb49193e8622e4c4637baf9c32cca56129a5ce3fe89dafb6af2e22d8b714bb"
+  },
+  "execution_status": "not_run"
+}

@@ -1,0 +1,6 @@
+$ python3 -c 'import pathlib; root=pathlib.Path('"'"'/tmp/autosut-bound'"'"'); data=(root/"collection.tar").read_bytes(); [(root/f"chunk-{index:04}").write_bytes(data[index:index+1024]) for index in range(0,len(data),1024)]'
+exit_code: 0
+--- stdout ---
+
+--- stderr ---
+

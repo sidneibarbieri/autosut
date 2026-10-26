@@ -208,16 +208,15 @@ def apply_composition(env: EnvironmentBackend, host_name: str,
                        run_dir: Path) -> CompositionResult:
     """Apply every element in ``comp`` to ``env``. Order matters:
 
-    1. Artifacts first (decoy data the application configs may reference).
-    2. Credentials next (some apps consume them at install time).
-    3. Applications (each recipe runs its own install + start).
+    1. Credentials first (the declared account may own a later artifact).
+    2. Applications next (the recipe may create a service account such as
+       ``www-data`` that owns a later artifact).
+    3. Artifacts after their declared owners exist (application configs may
+       reference the decoy data once it is present).
     4. Exposures last (record the post-install network surface).
     """
     _validate_composition(comp, host_name)
     all_evidence: list[str] = []
-
-    for idx, art in enumerate(comp.artifacts):
-        all_evidence.extend(_apply_artifact(env, art, run_dir, idx))
 
     for idx, cred in enumerate(comp.credentials):
         all_evidence.extend(_apply_credential(env, cred, run_dir, idx))
@@ -231,6 +230,9 @@ def apply_composition(env: EnvironmentBackend, host_name: str,
             app_ok += 1
         else:
             app_fail += 1
+
+    for idx, art in enumerate(comp.artifacts):
+        all_evidence.extend(_apply_artifact(env, art, run_dir, idx))
 
     for idx, expo in enumerate(comp.exposures):
         all_evidence.extend(_record_exposure(expo, run_dir, idx))

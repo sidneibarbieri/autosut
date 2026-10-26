@@ -1,0 +1,79 @@
+{
+  "campaign_id": "0.c0026",
+  "total_elements": 1,
+  "by_source": {
+    "corpus_supported": 0,
+    "external_reference": 0,
+    "analyst_authored": 0,
+    "autosut_concretized": 1,
+    "inferred": 0
+  },
+  "percentages": {
+    "corpus_supported": 0.0,
+    "external_reference": 0.0,
+    "analyst_authored": 0.0,
+    "autosut_concretized": 100.0,
+    "inferred": 0.0
+  },
+  "by_dimension": {
+    "platform": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 1,
+      "inferred": 0
+    },
+    "software": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "vulnerability": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "credentials": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "exposures": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "artifacts": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    },
+    "topology": {
+      "corpus_supported": 0,
+      "external_reference": 0,
+      "analyst_authored": 0,
+      "autosut_concretized": 0,
+      "inferred": 0
+    }
+  },
+  "elements": [
+    {
+      "dimension": "platform",
+      "identifier": "platform.linux",
+      "value": "linux",
+      "source": "autosut_concretized",
+      "host": null,
+      "purpose": "materialised as python:3.11-slim"
+    }
+  ]
+}

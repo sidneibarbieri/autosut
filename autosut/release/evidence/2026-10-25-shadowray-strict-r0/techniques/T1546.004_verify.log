@@ -1,0 +1,7 @@
+$ grep -qx 'export AUTOSUT_LAB_HOOK=1' /tmp/autosut_home/.bashrc && test "$(cat /tmp/T1546.004.out)" = 1 && sha256sum /tmp/autosut_home/.bashrc
+exit_code: 0
+--- stdout ---
+36c73aba8246881281368797bc9f181d58ac8fc1b6443f070163a02841a55258  /tmp/autosut_home/.bashrc
+
+--- stderr ---
+

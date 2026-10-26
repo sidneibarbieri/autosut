@@ -1,0 +1,23 @@
+{
+  "template_id": "visit-declared-web-target",
+  "bindings": {
+    "endpoint": "endpoint.public_service",
+    "target": "target.primary"
+  },
+  "declared_predicates": [
+    "http_request_logged",
+    "no_exploit_delivered"
+  ],
+  "observations": [
+    {
+      "path": "/tmp/autosut-bound/visit",
+      "expected_sha256": "75c8fb07ca8e7058c68c62391f383ab530b5a1cd739731bf0580eacc6c630e9a",
+      "observed_sha256": "75c8fb07ca8e7058c68c62391f383ab530b5a1cd739731bf0580eacc6c630e9a"
+    },
+    {
+      "server_request_observed": true,
+      "no_exploit_delivered": true
+    }
+  ],
+  "fidelity_ceiling": "adapted"
+}

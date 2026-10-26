@@ -1,0 +1,7 @@
+$ test -s /tmp/T1105.out && cat /tmp/T1105.out
+exit_code: 0
+--- stdout ---
+404b920c64f2132dd843510826db8badcbfc5b41a536b3f3d7ec20741143a3f9  /tmp/T1105_payload.txt
+
+--- stderr ---
+

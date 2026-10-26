@@ -1,0 +1,8 @@
+$ for i in $(seq 1 30); do   test -s /tmp/cve_marker.txt && break;   sleep 1; done; cat /tmp/cve_marker.txt 2>/dev/null || echo MISSING; cat /tmp/cve_host.txt 2>/dev/null || echo MISSING
+exit_code: 0
+--- stdout ---
+SHADOWRAY_CVE_OK
+ae619938766d
+
+--- stderr ---
+
