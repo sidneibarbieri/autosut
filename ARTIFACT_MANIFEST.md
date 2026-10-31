@@ -1,6 +1,6 @@
 # Artifact Manifest
 
-- Files: `2888`
+- Files: `2891`
 - Hash: SHA-256
 
 | Path | Bytes | SHA-256 |
@@ -10,15 +10,15 @@
 | `README.md` | 8951 | `cf949bd2c21a4a2d50f0cec5b5bd181103e9f28a7ddf314c3c0d367f5619dd5b` |
 | `autosut/.docker/dmz-host/Dockerfile` | 550 | `64c0aa877f74db59873815eb6ec2c309f671955a088646190ce4be4ab5be86b3` |
 | `autosut/.flake8` | 31 | `eda03f3b4590bf808a342f504995cb21e869a04c304787550c059f1c1580445f` |
-| `autosut/.gitattributes` | 167 | `0bc7aa45c5b9f6f8b153a875854f90e7c33c9d34e520f6b2f94219f66c6965ce` |
+| `autosut/.gitattributes` | 185 | `57f24c8cd97a5b5d35b47e7b9ce872f2b8343005cb8352b48dac25dd2e77f72e` |
 | `autosut/.python-version` | 8 | `db82937e1f1830581a9553c7814f5c5fcacb6dfdef8310b43e9a812c887acaf5` |
 | `autosut/ARCHITECTURE.md` | 12938 | `fb9d6f8bb6c5af44c79573447cf85fba21dcc7041b1eb98c9b89d094283f2a74` |
-| `autosut/IMPLEMENTATION_REVISION.json` | 228 | `35cfe4e053a5ee5442b221c3f68be78680664f50b9147ed51b9175d10168712b` |
+| `autosut/IMPLEMENTATION_REVISION.json` | 206 | `504d57afa007a7717dc44af47af1130c68190480446aa94a32918f9699172c65` |
 | `autosut/LICENSE` | 1072 | `ba74618b17135ebe223b82e2796827029a13aa64756ff3c2c1d32df16490bf4c` |
 | `autosut/MANIFEST.md` | 3508 | `9eed6c29350959eb9dd17b2345ac1f08749d448c90fc5295b255e64d9ec5c570` |
 | `autosut/PROVENANCE.md` | 1301 | `ac7b50627ba7852ec2bb133e5247f79643c42aff420c65cfc98d3ca229434217` |
 | `autosut/PUBLIC_REPOSITORY_SCOPE.md` | 4343 | `d7205599bcf78b9c5fd339cfcaa7781f005f4817723093c2e0bff4b4dba93619` |
-| `autosut/README.md` | 32621 | `4e0aa5896a4e45127bc23f1cb4b16c3cc39d367b0a20e3a978259d0046ec5490` |
+| `autosut/README.md` | 32639 | `c9748f2b25e63fc7260012a96c2356709963acbb9b042981f693e960ff2bf4e3` |
 | `autosut/README_MULTI_VM.md` | 1564 | `7e2d9c48e1fa1cbd6fd1c7c88dc9aa232777c0b6ad115b8ce2c683f33485f51a` |
 | `autosut/REPRODUCIBILITY.md` | 9867 | `271e6faa159627469957e8882bc1f235256de3bf7e61cb7ac7204a60c1e7ede3` |
 | `autosut/REVIEWER_GUIDE.md` | 21806 | `427ce01297bd600f1383c5913ad18f5d25419269d0bf67fad3e6251cd2c726bb` |
@@ -178,6 +178,7 @@
 | `autosut/measurement/sut/scripts/build_compatibility_validation_sample.py` | 6031 | `891ac09b2a99edbce98477c672046dff1d2985697dfe9b0065606b1b9612ac55` |
 | `autosut/measurement/sut/scripts/campaign_analyzer.py` | 1484 | `5425c5e3bf93f70ad0a09563bb548b50994194970f744358258423cdc5b498c5` |
 | `autosut/measurement/sut/scripts/campaign_runner.py` | 1790 | `d15d4d486e594027cea36ad292319c01a1ef9682b4699d3537470e9cd283e97c` |
+| `autosut/measurement/sut/scripts/canonical_product_sensitivity.py` | 4323 | `db464f59fc94ddced8e07711ae1da7ed485324a3a8e3f00803cc298ace7af58c` |
 | `autosut/measurement/sut/scripts/compatibility_policy_ablation.py` | 5890 | `a91f05e77494cc7552378bc4d63e33e649d5eba947892c811179426e49d6324f` |
 | `autosut/measurement/sut/scripts/data/FIGHT_SNAPSHOT.md` | 1852 | `e12df0fa3364c03d2e053d335034b9260e7fa4ab525c36576f58186a1acfab11` |
 | `autosut/measurement/sut/scripts/data/attack-releases/enterprise-attack-10.1.json` | 31165486 | `0a999035f26f4326ad670ec51727014fd42c21fca4bda4be784ac6ad0510fcb6` |
@@ -593,6 +594,7 @@
 | `autosut/measurement/sut/scripts/results/audit/technique_compatibility.csv` | 173526 | `a5c10b7eae24e6f7da6fe55c1eee1cdb18deb7d721edb92ba158d54f61bca7db` |
 | `autosut/measurement/sut/scripts/results/audit/threshold_collapse_degree_null_distribution.csv` | 36020 | `27854852a59a07cbc9532f225d5d35566ace1fd11a20c6b939974cc3fda35c16` |
 | `autosut/measurement/sut/scripts/results/audit/threshold_collapse_leave_one_out.csv` | 13867 | `026fffdb7cafff6c9c45aea91336ee3cf151032ef980ad513d37aa2783c22093` |
+| `autosut/measurement/sut/scripts/results/canonical_product_sensitivity.json` | 592 | `17dfd59ff120b071cf3e525d1b648aa7e75d3c4d499876b75b555020f8dcf5fc` |
 | `autosut/measurement/sut/scripts/results/claim_evidence_map.csv` | 6836 | `948adeaba4cf7801d854a70877ded6e3cd742bd81ea9c7b5b5f9af1d1ce87a1c` |
 | `autosut/measurement/sut/scripts/results/compatibility_judge_validation.json` | 4729 | `76a42b96c3c1de96e3ec63ed66584f303252bf74e016df1e8a9a839637757536` |
 | `autosut/measurement/sut/scripts/results/compatibility_policy_ablation.json` | 2694 | `4df09fb67f6129d92d48db1a5009e2ed30a9975c059119d7b03b940f66f6e69f` |
@@ -2394,7 +2396,7 @@
 | `autosut/release/provenance/support_matrix.csv` | 286 | `391eebebaaedc9f4725df1e9d2adcf19ba6bbb86ef1f973e7ac575f809abc352` |
 | `autosut/release/realism_analysis_report.json` | 4084 | `4754aa77e9a9bdc9311df2d6438afa270de2d51836495928cff8214f20577bc6` |
 | `autosut/release/replay_evidence_audit.json` | 70916 | `118a569dd1b476a734a726164668ae1a6aa8bb5ba8cc090476cfc4489410a3d7` |
-| `autosut/release/review_evidence_macros.tex` | 3277 | `089c1680ecd22a3e9f5b688b2328b07734b6e4968b19c3eee54369e89186c7e6` |
+| `autosut/release/review_evidence_macros.tex` | 3559 | `f32ef751f97b92cc69f9ac2f4e2ba9d6fd4e29371c0010d8bee72d6ea1b40eb0` |
 | `autosut/release/runs/execute/0.c0026-20260908T152614Z/execution_report.json` | 3627 | `d3625cbb473f8e17138ce02e8f02e8126e430a27fcefe476d6c05c653c66662e` |
 | `autosut/release/runs/execute/0.c0026-20260908T154028Z/execution_report.json` | 3610 | `fc50356d40d81c5dc1b90847407aa61666e07d3cf33e6f032a87a52e197af7bd` |
 | `autosut/release/runs/execute/0.c0026-20260908T154141Z/execution_report.json` | 3610 | `cacf2f73ecae7fe0adccfe6ba4ddccc61f62208c3033c2fe8881e739278dfdbf` |
@@ -2565,7 +2567,7 @@
 | `autosut/scripts/refresh_mitre_bundle.py` | 1217 | `ca097e191eb71434dddcfe6aaa7c165a46aa48171c984519cd265ceb3f65bdc1` |
 | `autosut/scripts/release_clock.py` | 1301 | `792be106c1965bb31ce5dc4e698c42153c07dfc288b8f6654397e399fd812ead` |
 | `autosut/scripts/render_attack_graph.py` | 6474 | `f4e2bee63e3f2aa9e4f4f33686fa42ab5350ca5109070ccb9d4f4c3714ba6e09` |
-| `autosut/scripts/render_review_evidence_macros.py` | 17855 | `c624009b24feb04bdc455f385b1424386b501566aa37db55f071b747fbab40ad` |
+| `autosut/scripts/render_review_evidence_macros.py` | 18685 | `1e55b5d3747bfa86f8b4a7c268b155bde1ced0db832c836e9fdf9d928d27fc53` |
 | `autosut/scripts/render_windows_unattend.py` | 7219 | `e4a1045943470f6a5bd88b9c5292c9d880755a3b90eca8c590b4bf7731686d5a` |
 | `autosut/scripts/reset.sh` | 380 | `184fcf65d0c481586dbc84b076d509bbb45def5f2955456496ad4b373a54bfcd` |
 | `autosut/scripts/run_admitted_arm.py` | 5968 | `e2b4ea3c4f9f90caede4df9818432b1dc0beefbd1fa2d562f4ab133526b4237f` |
@@ -2752,6 +2754,7 @@
 | `autosut/tests/test_campaign_runner_sut_delta.py` | 5923 | `4866ef556a2eb81596831dc9697ef4edf83202ddefcb90af471a385401904f4b` |
 | `autosut/tests/test_campaign_state.py` | 5618 | `c06c826d679eed72b440573ddb9a7cddefa62f67f15f935633981a9d93617f57` |
 | `autosut/tests/test_canonical_operational_witness.py` | 2495 | `95b3c29375a046ca9262b470dafe29d0ea1009ef5ea6a9d31645216bc50983af` |
+| `autosut/tests/test_canonical_product_sensitivity.py` | 1417 | `a113e115728c30d10ad7c8ebe04f13e33ac94537a381b0cc9f66a0ea2e413c18` |
 | `autosut/tests/test_capability.py` | 4337 | `459d282f6b495ed8762ef0cf568b2a7e3f65b383f53341c6b43bdf4c9c71e23f` |
 | `autosut/tests/test_check_public_surface.py` | 7825 | `aa624ba426f3ace251db4b013c33a09d4ff279102f74fedf42f5e8f17acc1f9f` |
 | `autosut/tests/test_claim_evidence_ledger.py` | 2334 | `c0e7c772949f0739a1914889768eacfade86680ea6ff387b05ecf383dadb9a18` |

@@ -1,0 +1,30 @@
+{
+  "canonical_products": 823,
+  "delta": 0.1,
+  "merged_groups": [
+    [
+      "More_eggs",
+      "SpicyOmelette"
+    ],
+    [
+      "POWERSOURCE",
+      "TEXTMATE"
+    ]
+  ],
+  "object_identity": {
+    "collapse_pp": 1.2422,
+    "k1_confused": 2,
+    "k2_confused": 0,
+    "k2_profiles": 135,
+    "profiles": 161
+  },
+  "product_identity": {
+    "collapse_pp": 1.2422,
+    "k1_confused": 2,
+    "k2_confused": 0,
+    "k2_profiles": 135,
+    "profiles": 161
+  },
+  "question": "Does merging software objects that name the same product change profile confusion?",
+  "software_objects": 825
+}

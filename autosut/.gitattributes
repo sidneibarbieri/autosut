@@ -1,5 +1,6 @@
 * text=auto
 *.csv -text
+*.log -text -diff
 *.json text eol=lf
 *.md text eol=lf
 *.py text eol=lf

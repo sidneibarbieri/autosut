@@ -182,7 +182,7 @@ Sealed receipts for all three slices are under `release/evidence/2026-10-25-c001
 `release/evidence/2026-10-25-shadowray-strict-r1/`. The latter two are separate ShadowRay
 executions under the same frozen contract. Each includes the prepared inputs, observed
 effect records, a file inventory, and a digest bound to its receipt. Audit one without starting
-Docker using `python3 scripts/audit_prepared_pair_replay.py --pair release/prepared-pairs/0.c0010
+Docker using `.venv/bin/python scripts/audit_prepared_pair_replay.py --pair release/prepared-pairs/0.c0010
 --evidence release/evidence/2026-10-25-c0010-strict-r1 --require-integrity`; substitute the
 matching pair and evidence directory for the other two slices.
 C0045 uses the actual Ray 2.6.3 Jobs API on a pinned Python 3.10 image. The receipt reports
@@ -191,7 +191,7 @@ These bounded executions do not reconstruct the historical campaigns. Five of th
 pairs remain blocked, and the 55-plan upstream corpus has 13 complete SUT blueprints but no
 claim of complete campaign execution. See `docs/joint_replay.md` for commands and limits.
 To inspect a completed pair without starting Docker, run
-`python3 scripts/audit_prepared_pair_replay.py --pair release/prepared-pairs/0.shadowray --evidence release/evidence/2026-10-01-joint-e2e-r6/0.shadowray`.
+`.venv/bin/python scripts/audit_prepared_pair_replay.py --pair release/prepared-pairs/0.shadowray --evidence release/evidence/2026-10-01-joint-e2e-r6/0.shadowray`.
 
 ### Bounded operation qualification
 
