@@ -480,7 +480,7 @@ PY
 if [[ "$HAS_MANUSCRIPT_DIR" == "1" ]]; then
 log "3b) Validating static tables in manuscript against measured artifacts"
 "$PYTHON_BIN" - <<'PY'
-import csv, re, sys
+import csv, json, re, sys
 import os
 from pathlib import Path
 
@@ -498,14 +498,6 @@ required_dataset_rows = [
         ],
     ),
     (
-        "Mobile dataset row",
-        [r"Mobile     & 190 & 3 & 17 & 123 \\"],
-    ),
-    (
-        "ICS dataset row",
-        [r"ICS        & 95 & 8 & 16 & 30 \\"],
-    ),
-    (
         "CAPEC raw-snapshot dataset row",
         [r"CAPEC      & 615 & 0 & 0 & 0 \\"],
     ),
@@ -517,6 +509,20 @@ required_dataset_rows = [
 for label, alternatives in required_dataset_rows:
     if not any(row in main for row in alternatives):
         print(f"[release-check][FAIL] dataset table row missing/mismatched: {label}")
+        sys.exit(1)
+
+for source_name, bundle_name in (("Mobile", "mobile-attack.json"), ("ICS", "ics-attack.json")):
+    objects = json.loads((meas_scripts / "data" / bundle_name).read_text(encoding="utf-8"))["objects"]
+    object_types = [item["type"] for item in objects]
+    expected_cells = [
+        object_types.count("attack-pattern"), object_types.count("campaign"),
+        object_types.count("intrusion-set"),
+        object_types.count("malware") + object_types.count("tool"),
+    ]
+    row = re.search(r"^" + source_name + r"\s*&([^\n]+)", main, re.MULTILINE)
+    cells = re.findall(r"\d+", row.group(1)) if row else []
+    if cells != [str(value) for value in expected_cells]:
+        print(f"[release-check][FAIL] {source_name} dataset row differs from source bundle totals")
         sys.exit(1)
 
 dataset_label = main.find(r"\label{tab:dataset}")

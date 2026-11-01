@@ -1,6 +1,6 @@
 # Artifact Manifest
 
-- Files: `2891`
+- Files: `2892`
 - Hash: SHA-256
 
 | Path | Bytes | SHA-256 |
@@ -169,7 +169,7 @@
 | `autosut/measurement/sut/docker-compose.caldera.yml` | 1129 | `7ccfd6fb71e8ac057e2c3de6113e4581b55d594438f0188f7cba7adbf672171f` |
 | `autosut/measurement/sut/docker-compose.multi-host.yml` | 1567 | `a9275fc960bf5735c69d6223bfa0d9cc782f5ce8edf19f2e953f7d2a10b0b130` |
 | `autosut/measurement/sut/docker-compose.yml` | 2302 | `296ba4c4fc98402d0426bbc4fa2f1efe742f564063bff07a8f11947f4942c067` |
-| `autosut/measurement/sut/release_check.sh` | 42601 | `a3a22b0716f28df5ed69ee064e696d29569cb8a959152ee9b4522862dbb095f9` |
+| `autosut/measurement/sut/release_check.sh` | 43218 | `2f3f36b7fcda88ab3f4c73a2e1ca0f8e34e75127ef0a9dd72e0d9b62852dffbe` |
 | `autosut/measurement/sut/requirements.txt` | 99 | `408a0bf05b34814a426f99ff825c5fccd3ff37904a1d3d0c6e437710c0d82f97` |
 | `autosut/measurement/sut/scripts/0.c0011_activity_plan.md` | 5675 | `9e490a9f1d3871d7b18cdd9f488901062650999b160b638671f2c6622c2e8fa2` |
 | `autosut/measurement/sut/scripts/agent_deployer.py` | 7353 | `9a6e2f96f8f7a01e05ace1f58882a72e5239424da466aa48a6cba7f037e5194b` |
@@ -2773,6 +2773,7 @@
 | `autosut/tests/test_dashboard_table_accessibility.py` | 1656 | `225c9fadaca47b00252d8a8cdead958699f1a72dde9442eb9548693b8125d47f` |
 | `autosut/tests/test_dashboard_theme.py` | 1854 | `955d21e42bf5e296c1006734ef452ffa3269db85ec2f5125277b845cfad1d965` |
 | `autosut/tests/test_data.py` | 2019 | `8f7579a7a1376ea82f941d61415968debe8278867213796b24eb9cd346421376` |
+| `autosut/tests/test_dataset_table_source_totals.py` | 1275 | `49bf4a0d56b706866c2c99ecf5c8f0639b02244bf6375618585a9f67e7d66928` |
 | `autosut/tests/test_demo.py` | 1304 | `137bcada1bd35d737a78053d98e6cc75e512d94c041226e72487eca8627f39dd` |
 | `autosut/tests/test_dependency_contract.py` | 2927 | `398c895f3c4fb1c5b19b9fd69bb1fb118cd80c8ea8282fee28a74e61feca9e63` |
 | `autosut/tests/test_docker_namespace.py` | 3430 | `c185c479582df53ebf7a2dc8b1672e4d068f9b8088c2faab7c73fef7fd4552ce` |
