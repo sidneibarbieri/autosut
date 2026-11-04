@@ -7,7 +7,7 @@
 | --- | ---: | --- |
 | `.gitignore` | 1775 | `d8cdb0ed7555244a5ea09c4523d1e5a33bba24e60552b4e78d501f09b5ae6747` |
 | `ARTIFACT_BOUNDARY.md` | 1398 | `3893a366813f8e35fe41897b2b05d66b8bb0a1a6668cbed794118be9c80e6568` |
-| `README.md` | 8951 | `cf949bd2c21a4a2d50f0cec5b5bd181103e9f28a7ddf314c3c0d367f5619dd5b` |
+| `README.md` | 9247 | `16f96fe8c72b20a36b55125922da8952f38d5299d12660c39ae7bb5f2a69df5c` |
 | `autosut/.docker/dmz-host/Dockerfile` | 550 | `64c0aa877f74db59873815eb6ec2c309f671955a088646190ce4be4ab5be86b3` |
 | `autosut/.flake8` | 31 | `eda03f3b4590bf808a342f504995cb21e869a04c304787550c059f1c1580445f` |
 | `autosut/.gitattributes` | 185 | `57f24c8cd97a5b5d35b47e7b9ce872f2b8343005cb8352b48dac25dd2e77f72e` |
@@ -754,7 +754,7 @@
 | `autosut/release/corpus-suts-20261001-enterprise-r3/manifest.json` | 90287 | `1bbc069e163eb3d04743e4a544817ddf18d51ac0af605102cac8b2e859899439` |
 | `autosut/release/cve_resolution_candidates.json` | 9338 | `2e65d59952155c1ff4c966f1eb381661b782edfb45fd3cb9c4ff5fc52e30c40d` |
 | `autosut/release/dashboard/autosut-mark.svg` | 387 | `4182ad0bf7cb4146de82a8fb5b361fa15466b07339637eaeccec184afac42dc9` |
-| `autosut/release/dashboard/dashboard-preview.png` | 157528 | `9cf1eea9b697fabde2ee5240dc43cfb25563ca4bf5919f59d87ebd13d24131db` |
+| `autosut/release/dashboard/dashboard-preview.png` | 169224 | `e1917ac1fb84dd0617132a62119b6217c37d3010f5b22baa18722e37dbf1e307` |
 | `autosut/release/dashboard/data/CORPUS_STATE.md` | 3928 | `1bfb5be8a1dd9a5bdb3a69ee2efc53798f007036c0b021ce9ed8d69b9122149b` |
 | `autosut/release/dashboard/data/ENVIRONMENT_PROVENANCE.md` | 3435 | `6abdb0684b4682dba0914583ce99fa5807c906e1fc732b853c9517e1f22fa573` |
 | `autosut/release/dashboard/data/all_cves.csv` | 717 | `92d58e1a47bb33177306ca4fdf33c2ae5b20ae846823306b6a7943f2a8e2d69f` |
@@ -805,7 +805,7 @@
 | `autosut/release/dashboard/data/technique_compatibility.csv` | 173526 | `a5c10b7eae24e6f7da6fe55c1eee1cdb18deb7d721edb92ba158d54f61bca7db` |
 | `autosut/release/dashboard/data/threshold_collapse_degree_null_distribution.csv` | 36020 | `27854852a59a07cbc9532f225d5d35566ace1fd11a20c6b939974cc3fda35c16` |
 | `autosut/release/dashboard/data/threshold_collapse_leave_one_out.csv` | 13867 | `026fffdb7cafff6c9c45aea91336ee3cf151032ef980ad513d37aa2783c22093` |
-| `autosut/release/dashboard/index.html` | 60971 | `b0f4953819d06b8aa49da145fd274d32df41169e7f05f28f43d877ae1c9461a2` |
+| `autosut/release/dashboard/index.html` | 61288 | `b30d606ad4543e82f7492288cc10e23f4ee175934f68b5c0419f72578a954484` |
 | `autosut/release/dashboard/style.css` | 13690 | `197ae20bfbd25b25b2beca9651739d5edfbf906c4c2d904d03c6506a7eeb5adc` |
 | `autosut/release/enriched/C0010.stix.json` | 87772 | `5c4d4bb1b0ab920d07175f18508b86857241456e1016c0962084c02981971258` |
 | `autosut/release/enriched/C0026.stix.json` | 59067 | `931b024cb54cd17b4142d32a3778b18a8193f7a3ce229772dfeeec087ba54757` |
@@ -2476,7 +2476,7 @@
 | `autosut/scripts/build_multihost_qualification.py` | 5383 | `c399b8a4c05219bab0e99ff61c6be6a0be0345a084b0cdcea4b6e0cf54b0877f` |
 | `autosut/scripts/build_native_windows_adjudication.py` | 6791 | `642204d1a65a4a901bc38c802e8f1f0801c50cdcc616247b8c72efe3288d384a` |
 | `autosut/scripts/build_orchestrated_batch_values.py` | 3830 | `a74b3f2575e8fcdec98900d73f9e4329c65297035221fd0c2d365a03048648f2` |
-| `autosut/scripts/build_reviewer_dashboard.py` | 64864 | `78bbb99ff0e5442a3da5e900d67e6c7ae351a018d45f9700506599416c66faf1` |
+| `autosut/scripts/build_reviewer_dashboard.py` | 65677 | `2bd612edc06cbccf5ecbc48439dda623c71af4be62563063d759b36209eedf13` |
 | `autosut/scripts/build_subdetermination_artifact.py` | 3365 | `88d8f2a5369218f5512245f63f8bb529715c27c08a1d64594c58866a7b634bd9` |
 | `autosut/scripts/build_sut_configuration_evidence.py` | 7497 | `b75f09ff7f38715694736978a097b80e45c349ed58f5825bd81a81b146b734df` |
 | `autosut/scripts/caldera_dispatch_smoke.py` | 8555 | `7a5dbabdf437c9f4771612b876489e53a5b1e415e24d9c0c238d754485aef1e9` |

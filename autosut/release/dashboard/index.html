@@ -50,7 +50,16 @@
     at least one executable witness.</p>
   <div class='overview-grid'>
     <div class='overview-card'>
-      <strong>Environment gap</strong>
+      <strong>Same CTI, different outcome (paper RQ3)</strong>
+      <span>Two laboratory surrogates satisfy every constraint derived from
+        ShadowRay (C0045). The same procedure executes all
+        10 steps on one and
+        1 on the other, stopping at
+        T1190 with HTTP 401;
+        2 repetitions per arm.</span>
+    </div>
+    <div class='overview-card'>
+      <strong>Artifact provenance audit (not a paper result)</strong>
       <span>139 SUT elements: 2.2%
         corpus-supported, 3.6% externally anchored,
         15.8% AutoSUT-concretized,
@@ -65,11 +74,8 @@
     <div class='overview-card'>
       <strong>Bounded operational witnesses</strong>
       <span>3 ledger claims are supported only within their
-        stated witness scope; no card reports a campaign-wide execution rate.</span>
-    </div>
-    <div class='overview-card'>
-      <strong>Boundary</strong>
-      <span>No VM images are shipped; VM-backed reproduction uses a local
+        stated witness scope; no card reports a campaign-wide execution rate.
+        No VM images are shipped; VM-backed reproduction uses a local
         provider.</span>
     </div>
   </div>

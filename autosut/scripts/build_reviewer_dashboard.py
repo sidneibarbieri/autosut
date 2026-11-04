@@ -27,6 +27,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 AUDIT_DIR = PROJECT_ROOT / "measurement" / "sut" / "scripts" / "results" / "audit"
 RESULTS_DIR = PROJECT_ROOT / "measurement" / "sut" / "scripts" / "results"
 MACRO_TEX = PROJECT_ROOT / "release" / "study_values.tex"
+REVIEW_MACRO_TEX = PROJECT_ROOT / "release" / "review_evidence_macros.tex"
 DASHBOARD_DIR = PROJECT_ROOT / "release" / "dashboard"
 DATA_DIR = DASHBOARD_DIR / "data"
 MACRO_PATTERN = re.compile(r"\\newcommand\{\\([A-Za-z][A-Za-z0-9]+)\}\{([^}]*)\}")
@@ -408,6 +409,12 @@ def load_macros() -> dict[str, str]:
     return {m.group(1): m.group(2) for m in MACRO_PATTERN.finditer(text)}
 
 
+def load_review_macros() -> dict[str, str]:
+    """Paper values bound to the consequence receipts; the gate checks them."""
+    text = REVIEW_MACRO_TEX.read_text(encoding="utf-8")
+    return {m.group(1): m.group(2) for m in MACRO_PATTERN.finditer(text)}
+
+
 def load_csv(path: Path, limit: int | None = None) -> tuple[list[str], list[list[str]]]:
     with path.open(newline="", encoding="utf-8") as handle:
         reader = csv.reader(handle)
@@ -736,6 +743,7 @@ def render_claim_ledger(ledger: dict) -> str:
 
 def render_audit_overview(merged, ledger: dict) -> str:
     pct = merged.percentages
+    review = load_review_macros()
     bounded_claims = sum(
         claim["status"] == "supported_bounded" for claim in ledger["claims"]
     )
@@ -749,7 +757,16 @@ def render_audit_overview(merged, ledger: dict) -> str:
     at least one executable witness.</p>
   <div class='overview-grid'>
     <div class='overview-card'>
-      <strong>Environment gap</strong>
+      <strong>Same CTI, different outcome (paper RQ3)</strong>
+      <span>Two laboratory surrogates satisfy every constraint derived from
+        ShadowRay (C0045). The same procedure executes all
+        {review['consequenceReachableSteps']} steps on one and
+        {review['consequenceGuardedSteps']} on the other, stopping at
+        {review['consequenceGuardedStop']} with HTTP 401;
+        {review['consequenceRepetitions']} repetitions per arm.</span>
+    </div>
+    <div class='overview-card'>
+      <strong>Artifact provenance audit (not a paper result)</strong>
       <span>{merged.total_elements} SUT elements: {pct['corpus_supported']}%
         corpus-supported, {pct['external_reference']}% externally anchored,
         {pct['autosut_concretized']}% AutoSUT-concretized,
@@ -764,11 +781,8 @@ def render_audit_overview(merged, ledger: dict) -> str:
     <div class='overview-card'>
       <strong>Bounded operational witnesses</strong>
       <span>{bounded_claims} ledger claims are supported only within their
-        stated witness scope; no card reports a campaign-wide execution rate.</span>
-    </div>
-    <div class='overview-card'>
-      <strong>Boundary</strong>
-      <span>No VM images are shipped; VM-backed reproduction uses a local
+        stated witness scope; no card reports a campaign-wide execution rate.
+        No VM images are shipped; VM-backed reproduction uses a local
         provider.</span>
     </div>
   </div>

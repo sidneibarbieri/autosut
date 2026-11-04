@@ -174,9 +174,13 @@ interpretations are listed there explicitly.
 Run `bash run_review_check.sh` from the package root for every claim below.
 No configuration edit or credential is required for the primary path.
 
-Ledger claim identifiers are stable and predate the manuscript's grouping
-into three questions: ledger RQ1 and RQ3 support manuscript RQ1, ledger RQ2
-supports RQ2, and ledger RQ4 with the C0045 study supports RQ3.
+Start from the paper's question; the ledger keeps older, stable identifiers.
+
+| Paper question | Ledger entries below | What to inspect |
+| --- | --- | --- |
+| RQ1: environment information in structured CTI | RQ1, RQ3 | regenerated corpus tables and profile-distance outputs |
+| RQ2: what the routing policy adds | RQ2 | routing labels, rule surface, sensitivity outputs |
+| RQ3: non-uniqueness and its consequence (ShadowRay, C0045) | RQ4 | constructive witnesses and the two-surrogate consequence receipts |
 
 ### RQ1: Structured Environment Evidence
 
