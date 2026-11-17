@@ -42,6 +42,7 @@ from infrastructure.fleet_capabilities import require_docker_fleet_backend
 
 from .docker_lifecycle import remove_network
 from .environment import DockerEnvironment
+from .docker_images import configured_lock, resolve_image
 from .environment_base import CommandResult, EnvironmentBackend
 from .models import SUTHost, SUTProfile
 
@@ -461,10 +462,12 @@ def _bring_up_docker_host(host_spec: SUTHost, network_name: str,
     setup_log = run_dir / "sut" / f"{host_spec.name}_setup.log"
     setup_log.parent.mkdir(parents=True, exist_ok=True)
 
-    subprocess.run(
-        ["docker", "pull", host_spec.base_image],
-        capture_output=True, text=True, check=False,
-    )
+    base_image = resolve_image(host_spec.base_image)
+    if configured_lock() is None:
+        subprocess.run(
+            ["docker", "pull", host_spec.base_image],
+            capture_output=True, text=True, check=False,
+        )
     proc = subprocess.run(
         [
             "docker", "run", "-d",
@@ -476,14 +479,14 @@ def _bring_up_docker_host(host_spec: SUTHost, network_name: str,
             "--memory", f"{host_spec.memory_mb}m",
             "--cpus", str(host_spec.smp),
             "--shm-size", "512m",
-            host_spec.base_image,
+            base_image,
             "sleep", "infinity",
         ],
         capture_output=True, text=True, check=True,
     )
     setup_log.write_text(
         f"# host bring-up: {host_spec.name} ({host_spec.role})\n"
-        f"image: {host_spec.base_image}\n"
+        f"image: {host_spec.base_image}\nresolved_image: {base_image}\n"
         f"container: {container_name}\n"
         f"network: {network_name}\n"
         f"container_id: {proc.stdout.strip()}\n",

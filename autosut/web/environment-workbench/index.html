@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoSUT · Environment planning</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1b33%27/%3E%3Cpath d=%27M32 14 48 23v18L32 50 16 41V23z%27 fill=%27none%27 stroke=%27%23c9760a%27 stroke-width=%275%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M16 23l16 9 16-9M32 32v18%27 fill=%27none%27 stroke=%27%23c9760a%27 stroke-width=%275%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/environment-map.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="app-header"><div class="app-identity"><svg class="app-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0b1b33"/><path d="M32 14 48 23v18L32 50 16 41V23z" fill="none" stroke="#c9760a" stroke-width="5" stroke-linejoin="round"/><path d="M16 23l16 9 16-9M32 32v18" fill="none" stroke="#c9760a" stroke-width="5" stroke-linejoin="round"/></svg><div><p class="product-name">AutoSUT</p><p class="app-title">Environment planning</p></div></div><div class="scope-status"><span class="status-dot" aria-hidden="true"></span><span>Planning only · not_run</span></div></header>
+  <main>
+    <section aria-labelledby="input-heading" class="input-panel">
+      <p class="eyebrow">1 · Supply a procedural plan</p>
+      <h1 id="input-heading">What does this campaign require?</h1>
+      <p>Import a STICKS procedural-plan JSON. AutoSUT verifies its content hash and resolves the declared requirements.</p>
+      <div class="actions"><button id="example">Load pinned C0045 example</button><label class="file-label">Import JSON<input id="file" type="file" accept=".json,application/json"></label></div>
+      <label for="plan">Procedural-plan JSON</label>
+      <textarea id="plan" spellcheck="false" placeholder="Load the example or import your procedural plan."></textarea>
+      <p class="hint">Limit: 1 MiB. The content hash checks integrity; it does not authenticate the author. Edits without a matching source-export hash are rejected. AutoSUT does not silently replace it.</p>
+      <button id="resolve" class="primary">Resolve environment requirements</button>
+      <p id="message" role="status" aria-live="polite">No input loaded.</p>
+    </section>
+    <section aria-labelledby="output-heading" class="output-panel">
+      <p class="eyebrow">2 · Inspect and export the requirements</p>
+      <h2 id="output-heading">Environment requirements</h2>
+      <p class="boundary">Platform coverage is a planning result. Service readiness, vulnerability susceptibility and target effects require a separate laboratory run.</p>
+      <div id="empty">No result yet. Supply a plan and resolve its requirements.</div>
+      <div id="result" hidden>
+        <div class="result-header"><h3 id="campaign"></h3><button id="download">Download planning JSON</button></div>
+        <dl class="metrics"><div><dt>Selected platforms</dt><dd id="platforms"></dd></div><div><dt>Platform coverage</dt><dd id="coverage"></dd></div><div><dt>Requirements</dt><dd id="count"></dd></div></dl>
+        <p id="uncovered"></p>
+        <h4 class="map-heading">Environment the campaign implies</h4>
+        <p class="hint">Where each step runs and what that zone must provide. Hover a requirement for its rationale.</p>
+        <div class="environment-map" id="environment-map"></div>
+        <details><summary>Verified input and constraint hashes</summary><pre id="hashes"></pre></details>
+        <div class="table-scroll"><table><caption>Each requirement retains its origin and rationale.</caption><thead><tr><th>Requirement</th><th>Acceptable values</th><th>Techniques</th><th>Source and rationale</th></tr></thead><tbody id="requirements"></tbody></table></div>
+        <details><summary>Complete planning JSON</summary><pre id="json"></pre></details>
+        <p>Repeat from the artifact directory with the original input file:</p><code id="cli"></code>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

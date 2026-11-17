@@ -19,6 +19,7 @@ from pathlib import Path
 # Make the orchestrator package importable without installing it.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from orchestrator.docker_images import image_lock_scope
 from orchestrator import build_default
 from orchestrator.catalog import implemented_campaigns, known_campaigns
 from run_all_orchestrated_campaigns import (
@@ -44,6 +45,8 @@ def main() -> int:
     )
     parser.add_argument("--list", action="store_true",
                         help="list all known campaigns and exit")
+    parser.add_argument('--docker-image-lock', type=Path,
+                        help='Verify preloaded Docker image identities; no image pull/build in this mode.')
     args = parser.parse_args()
 
     if args.list:
@@ -61,23 +64,24 @@ def main() -> int:
     # starts a just-in-time build and the technique is recorded as a failure.
     # Applying it here means the single-campaign command behaves like the full
     # reviewer runner without extra steps.
-    needs_caldera = args.campaign in CALDERA_REQUIRED_CAMPAIGNS
-    prev_platform = None
-    if needs_caldera:
-        if not ensure_caldera_ready():
-            print("[caldera] C2 not reachable; caldera-driven techniques will "
-                  "be recorded as failures (run scripts/up_lab.sh or use "
-                  "scripts/run_all_orchestrated_campaigns.py).", file=sys.stderr)
-        prev_platform = set_caldera_platform_if_needed(args.campaign)
-
-    try:
-        orch = build_default()
-        result = orch.run_campaign(
-            args.campaign, fidelity_preference=args.fidelity,
-        )
-    finally:
+    with image_lock_scope(args.docker_image_lock):
+        needs_caldera = args.campaign in CALDERA_REQUIRED_CAMPAIGNS
+        prev_platform = None
         if needs_caldera:
-            restore_docker_platform(prev_platform)
+            if not ensure_caldera_ready():
+                print("[caldera] C2 not reachable; caldera-driven techniques will "
+                      "be recorded as failures (run scripts/up_lab.sh or use "
+                      "scripts/run_all_orchestrated_campaigns.py).", file=sys.stderr)
+            prev_platform = set_caldera_platform_if_needed(args.campaign)
+
+        try:
+            orch = build_default()
+            result = orch.run_campaign(
+                args.campaign, fidelity_preference=args.fidelity,
+            )
+        finally:
+            if needs_caldera:
+                restore_docker_platform(prev_platform)
 
     print(f"\n[orchestrator] run_id: {result.run_id}")
     print(f"[orchestrator] techniques: {result.successful}/{result.total_techniques} successful")

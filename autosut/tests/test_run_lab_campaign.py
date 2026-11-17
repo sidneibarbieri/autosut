@@ -222,3 +222,13 @@ def test_persist_derived_state_skips_restore_and_cleanup(
         [sys.executable, str(module.GENERATE_CORPUS_STATE_SCRIPT)],
         ["bash", str(module.DESTROY_LAB_SCRIPT), "--campaign", "0.c0011"],
     ]
+
+
+@pytest.mark.parametrize("first_error", [RuntimeError("execution failed"), KeyboardInterrupt()])
+def test_grouped_failures_preserve_original_exceptions(first_error):
+    from exceptiongroup import BaseExceptionGroup
+    module = _load_module()
+    cleanup_error = RuntimeError("cleanup failed")
+    with pytest.raises(BaseExceptionGroup) as caught:
+        module._raise_errors([first_error, cleanup_error])
+    assert caught.value.exceptions == (first_error, cleanup_error)

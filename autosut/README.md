@@ -48,9 +48,53 @@ as its own evidence of technique effect. See `docs/architecture/PROPOSAL_ADMISSI
 python3 scripts/emulate.py release/inputs/sticks/c0045-v1/C0045.procedural-plan.json
 ```
 
+To retain the verified input and the derived requirements as JSON:
+
+```bash
+python3 scripts/emulate.py release/inputs/sticks/c0045-v1/C0045.procedural-plan.json \
+  --output /tmp/autosut-C0045-planning.json
+```
+
+Use a new output filename. The export preserves the input plan, its verified
+content hash, and the resolved requirements with their source and rationale.
+`operational_status=not_run` means no infrastructure or campaign was executed.
+Platform-resolution completeness only describes coverage of the declared
+platforms; it does not verify service availability, vulnerability susceptibility,
+or target effects. Those require the separate operational paths below.
+
+### Inspect requirements in the local interface
+
+After installing the pinned reviewer dependencies, start the planning interface:
+
+```bash
+.venv/bin/python scripts/run_environment_workbench.py --port 8772
+```
+
+![AutoSUT planning interface resolving the pinned C0045 input into eleven requirements, with Linux platform coverage, provenance and a planning-only export](docs/img/environment-workbench.png)
+
+Open `http://127.0.0.1:8772`. Load the pinned C0045 example or import your own
+procedural-plan JSON, then select **Resolve environment requirements**.
+The environment map groups the steps by where they run (attacker side, exposed
+boundary, target system) and shows what each zone must provide, with platform
+coverage checked against the selected platform. The table separates fields from
+the STIX input (`stix_field`) from requirements introduced by the declared
+rules (`curated_rule`). Inspect uncovered techniques,
+the two content hashes and the full JSON before downloading the planning result.
+The export includes the verified input under `plan`; it is not itself a raw
+procedural-plan input. To repeat by CLI, use the original input file with
+`scripts/emulate.py --output` as above. Both interfaces invoke the same resolver.
+
+Editing or importing input clears the previous result. Invalid JSON, a mismatched
+content hash, unknown fields or input above 1 MiB is rejected; reload a valid plan
+and resolve again to recover. Hash consistency checks integrity, not authorship.
+The server binds only to loopback, rejects other origins, and executes no host
+actions. Keep it local; press Ctrl+C in its terminal to stop it. The separate
+evidence dashboard remains available for inspecting the frozen research results.
+
 Takes a procedural plan, the typed form of a campaign, and prints what the procedure requires from a
 System Under Test, which of those requirements a laboratory can materialize today, and which
-techniques are left uncovered. A Linux campaign resolves end to end; a campaign that needs Windows
+techniques are left uncovered. Linux platform requirements can be covered by the declared backend;
+a campaign that needs Windows
 for credential dumping or remote services reports those techniques as uncovered rather than
 pretending the environment exists. That per-technique statement is the environment semantics gap
 applied to one campaign.
@@ -324,6 +368,11 @@ them.
 | Docker smoke replay | `bash artifact/setup.sh && bash artifact/run.sh && bash artifact/validate.sh` | Python 3.10+, `venv`, `docker` | Docker-capable host | smallest live campaign/SUT execution trace |
 | Orchestrated campaign replay | `python3 scripts/run_all_orchestrated_campaigns.py --preflight-only` then `python3 scripts/run_all_orchestrated_campaigns.py --isolate-campaigns --campaign-timeout-seconds 1200` | Python 3.10+, `docker` | Docker-capable host | sequentially replay all implemented campaign/SUT pairs and write TSV/JSON status reports |
 | VM backend materials | inspect source and capability ledger | Python 3.10+, `vagrant`, `qemu` or `libvirt` | 8 CPU cores, 16 GB RAM, 25 GB free disk recommended | implementation and future qualification material; not a released claim gate |
+
+For controlled runs with preloaded image identities, use
+`bash artifact/run.sh --image-lock /tmp/autosut-images.json`.
+See [Docker image locks](docs/docker-image-lock.md) for capture, verification, portable OCI export,
+destination-machine requirements and the limits of this contract.
 
 The first path is the fast, host-only validation contract. The Docker smoke
 path runs two compact, complementary campaign/SUT slices: one infrastructure

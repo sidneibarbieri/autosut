@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .docker_lifecycle import stop_container
+from .docker_images import configured_lock, resolve_image
 from .models import AttackerProfile
 
 
@@ -35,6 +36,8 @@ CAPABILITY_INSTALL = {
 
 def ensure_attacker_image() -> str:
     """Ensure the reusable attacker image exists before a campaign starts."""
+    if configured_lock() is not None:
+        return resolve_image(ATTACKER_IMAGE)
     inspect = subprocess.run(
         ["docker", "image", "inspect", ATTACKER_IMAGE],
         capture_output=True,

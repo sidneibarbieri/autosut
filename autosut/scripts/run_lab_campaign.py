@@ -23,6 +23,8 @@ import tempfile
 from pathlib import Path
 from typing import Sequence
 
+from exceptiongroup import BaseExceptionGroup
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 UP_LAB_SCRIPT = PROJECT_ROOT / "scripts" / "up_lab.sh"
@@ -77,7 +79,7 @@ def _raise_errors(errors: list[BaseException]) -> None:
         return
     if len(errors) == 1:
         raise errors[0]
-    raise ExceptionGroup("VM-backed execution encountered multiple failures", errors)
+    raise BaseExceptionGroup("VM-backed execution encountered multiple failures", errors)
 
 
 def _evidence_available() -> bool:

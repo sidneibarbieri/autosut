@@ -2,6 +2,12 @@
 
 The operational path links a STICKS plan to an AutoSUT blueprint, a bound procedural contract, a materialized Docker target, and observed effects. It uses the deterministic compiler, reviewed template adapters, and evidence ledger. It makes no LLM calls. C0010, C0026, and C0045 have prepared executable pairs. Their adapted and inspired fidelity labels remain part of every outcome.
 
+## SUT-first operation binding: research hypothesis
+
+A coauthor proposed generating and qualifying the SUT before finalizing the operation. The useful ordering is: extract campaign requirements from CTI, construct a candidate SUT, verify its readiness and declared commitments, then bind executable abilities to that qualified SUT and run a fresh operation. The campaign requirements still precede SUT construction; otherwise the environment has no target contract.
+
+This ordering could remove failed operation bindings caused by an unready or incompatible SUT. It does not by itself make the pipeline fully automated: unsupported platforms, missing service recipes, absent template adapters, and facts not supplied by CTI still require explicit commitments or a blocked result. The current prepared-pair path binds a procedural contract before target materialization, so a SUT-first variant is a prospective comparison, not a result of the released runs. Evaluate it against the current ordering on the same campaign requirements, counting qualified pairs, binding failures, introduced commitments, effect-backed completions, and setup cost. Keep exploratory repairs separate from the final clean run.
+
 ## Prepare
 
 For CTI plans without author-written campaign specifications, add

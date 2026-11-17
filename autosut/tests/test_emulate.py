@@ -15,10 +15,12 @@ def _emulate(plan: Path) -> subprocess.CompletedProcess:
     )
 
 
-def test_reports_a_materializable_linux_campaign():
+def test_reports_platform_coverage_without_implying_a_provisioned_host():
     result = _emulate(C0045_PLAN)
     assert result.returncode == 0, result.stderr
-    assert "materializable end to end" in result.stdout
+    assert "Declared platform requirements are covered by the Linux backend" in result.stdout
+    assert "Operational status: not_run" in result.stdout
+    assert "service readiness and target effects are not verified" in result.stdout
     assert "The procedure needs a System Under Test" in result.stdout
 
 

@@ -21,18 +21,17 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from planning.procedural_plan import load_procedural_plan  # noqa: E402
-from planning.sut_constraints import resolve_sut_constraints  # noqa: E402
+from planning.environment_workbench import (  # noqa: E402
+    EnvironmentPlanningResult,
+    plan_environment,
+)
 
-# The backends a laboratory can materialize today. Linux is provisioned; the others are declared
-# where a real backend exists, so this set is the honest statement of current reach.
-MATERIALIZABLE_PLATFORMS = {"Linux"}
 RULE = "-" * 78
 
 
-def summarize(plan_path: Path) -> None:
-    plan = load_procedural_plan(plan_path)
-    constraints = resolve_sut_constraints(plan, materializable_platforms=MATERIALIZABLE_PLATFORMS)
+def summarize(result: EnvironmentPlanningResult) -> None:
+    plan = result.plan
+    constraints = result.constraints
     resolution = constraints.platform_resolution
 
     print(RULE)
@@ -43,29 +42,54 @@ def summarize(plan_path: Path) -> None:
     for requirement in constraints.requirements:
         if requirement.kind == "platform":
             techniques = ", ".join(requirement.technique_ids)
-            print(f"  {techniques:<16} platform in {{{', '.join(requirement.acceptable_values)}}}")
+            print(
+                f"  {techniques:<16} platform in {{{', '.join(requirement.acceptable_values)}}}"
+            )
 
     print("\nWhat a laboratory can materialize today:")
-    print(f"  selected platforms:      {', '.join(resolution.selected_platforms) or 'none'}")
-    print(f"  materializable here:     {', '.join(resolution.materializable_platforms)}")
+    print(
+        f"  selected platforms:      {', '.join(resolution.selected_platforms) or 'none'}"
+    )
+    print(
+        f"  materializable here:     {', '.join(resolution.materializable_platforms)}"
+    )
     if resolution.unsupported_platforms:
-        print(f"  not materializable:      {', '.join(resolution.unsupported_platforms)}")
+        print(
+            f"  not materializable:      {', '.join(resolution.unsupported_platforms)}"
+        )
     if resolution.uncovered_technique_ids:
-        print(f"  techniques left uncovered: {', '.join(resolution.uncovered_technique_ids)}")
+        print(
+            f"  techniques left uncovered: {', '.join(resolution.uncovered_technique_ids)}"
+        )
 
     print()
     if resolution.complete:
-        print("  This environment is materializable end to end from the measured requirements.")
+        print(
+            "  Declared platform requirements are covered by the Linux backend."
+        )
     else:
-        print("  This environment is not materializable here: the requirement outruns what a")
-        print("  Linux laboratory covers. The gap is reported per technique rather than filled in,")
+        print(
+            "  This environment is not materializable here: the requirement outruns what a"
+        )
+        print(
+            "  Linux laboratory covers. The gap is reported per technique rather than filled in,"
+        )
         print("  which is what the environment semantics gap means for this campaign.")
+    print("  Operational status: not_run; service readiness and target effects are not verified.")
     print(RULE)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("plan", help="procedural plan compiled from a campaign, e.g. C0045.procedural-plan.json")
+    parser.add_argument(
+        "plan",
+        help="procedural plan compiled from a campaign, e.g. C0045.procedural-plan.json",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        help="Write a new planning JSON file; never overwrites an existing file",
+    )
     return parser.parse_args()
 
 
@@ -74,7 +98,12 @@ def main() -> int:
     plan_path = Path(args.plan)
     if not plan_path.is_file():
         raise FileNotFoundError(f"procedural plan not found: {plan_path}")
-    summarize(plan_path)
+    result = plan_environment(plan_path)
+    if args.output is not None:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        with args.output.open("x", encoding="utf-8") as output:
+            output.write(result.model_dump_json(indent=2) + "\n")
+    summarize(result)
     return 0
 
 

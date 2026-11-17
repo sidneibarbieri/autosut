@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import sys
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -46,3 +47,10 @@ def test_pair_clone_uses_the_qualified_windows_vm_resources(tmp_path):
     assert profile.smp == 4
     assert profile.memory_mb == 6144
     assert profile.backend == "windows-qemu"
+
+
+@pytest.mark.parametrize("payload", [b"", b"credential-image-boundary" * 100000])
+def test_image_hash_uses_portable_streaming_digest(tmp_path, payload):
+    path = tmp_path / "image.raw"
+    path.write_bytes(payload)
+    assert windows_credential_pair._sha256(path) == hashlib.sha256(payload).hexdigest()

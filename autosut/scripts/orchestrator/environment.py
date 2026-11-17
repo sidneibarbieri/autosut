@@ -23,6 +23,7 @@ from pathlib import Path
 # now ``environment_base``.
 from .environment_base import BackendReadiness, CommandResult, EnvironmentBackend  # noqa: F401
 from .docker_lifecycle import stop_container
+from .docker_images import configured_lock, resolve_image
 from .models import SUTProfile
 
 
@@ -65,10 +66,12 @@ class DockerEnvironment(EnvironmentBackend):
 
         platform = os.environ.get("AUTOSUT_DOCKER_PLATFORM", "").strip()
         platform_args = ["--platform", platform] if platform else []
-        subprocess.run(
-            ["docker", "pull", *platform_args, sut.base_image],
-            capture_output=True, text=True, check=False,
-        )
+        base_image = resolve_image(sut.base_image)
+        if configured_lock() is None:
+            subprocess.run(
+                ["docker", "pull", *platform_args, sut.base_image],
+                capture_output=True, text=True, check=False,
+            )
         proc = subprocess.run(
             [
                 "docker", "run", "-d",
@@ -78,7 +81,7 @@ class DockerEnvironment(EnvironmentBackend):
                 "--memory", f"{sut.memory_mb}m",
                 "--cpus", str(sut.smp),
                 "--shm-size", "1024m",  # ray needs /dev/shm for plasma store
-                sut.base_image,
+                base_image,
                 "sleep", "infinity",
             ],
             capture_output=True, text=True, check=True,
@@ -86,7 +89,7 @@ class DockerEnvironment(EnvironmentBackend):
         log_path = run_dir / "sut" / "setup.log"
         log_path.parent.mkdir(parents=True, exist_ok=True)
         log_path.write_text(
-            f"# container bring-up\nimage: {sut.base_image}\nname: {container_name}\n"
+            f"# container bring-up\nimage: {sut.base_image}\nresolved_image: {base_image}\nname: {container_name}\n"
             f"platform: {platform or 'default'}\n"
             f"container_id: {proc.stdout.strip()}\n",
             encoding="utf-8",

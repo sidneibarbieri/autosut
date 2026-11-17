@@ -8,7 +8,7 @@ omits a required guarantee is rejected rather than assumed sound.
 from __future__ import annotations
 
 import hashlib
-from enum import StrEnum
+from enum import Enum
 from pathlib import Path, PurePosixPath
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -86,7 +86,7 @@ class ResidualEvidence(BaseModel):
     residual_resources: list[str]
 
 
-class SecretAuditSurface(StrEnum):
+class SecretAuditSurface(str, Enum):
     """Credential persistence surfaces required by Windows qualification."""
 
     BASE_IMAGE = "base_image"
@@ -97,6 +97,9 @@ class SecretAuditSurface(StrEnum):
     PROVISIONING_MEDIA = "provisioning_media"
     HOST_TEMPORARY = "host_temporary"
     CONTROLLER_STATE = "controller_state"
+
+    def __str__(self) -> str:
+        return self.value
 
 
 class SecretSurfaceReceipt(BaseModel):

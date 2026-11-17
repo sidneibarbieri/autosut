@@ -166,3 +166,14 @@ def test_replay_raises_when_a_prompt_diverges(tmp_path):
     import pytest as _pytest
     with _pytest.raises(ReplayMismatch):
         replay("DIFFERENT", "PROMPT")
+
+
+@pytest.mark.parametrize("base_url", ["file:///etc/passwd", "ftp://example.org/v1", "127.0.0.1:1234/v1"])
+def test_non_http_endpoint_is_rejected_before_any_request(base_url):
+    with pytest.raises(ValueError, match="http:// or https://"):
+        ProviderConfig(provider="openai_compatible", model="m", base_url=base_url)
+
+
+@pytest.mark.parametrize("base_url", ["", "http://127.0.0.1:1234/v1", "https://api.openai.com/v1"])
+def test_http_endpoints_and_unset_endpoint_are_accepted(base_url):
+    assert ProviderConfig(provider="openai_compatible", model="m", base_url=base_url).base_url == base_url

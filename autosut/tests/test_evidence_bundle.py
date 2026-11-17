@@ -26,6 +26,7 @@ from infrastructure.evidence_bundle import (  # noqa: E402
     RunIdentity,
     SecretAuditEvidence,
     SecretSurfaceReceipt,
+    SecretAuditSurface,
     seal_bundle,
     validate_bundle,
 )
@@ -677,3 +678,16 @@ def test_overlay_disposal_rejects_digest_from_different_run(tmp_path):
     (run_dir / "manifest.json").write_text("{}", encoding="utf-8")
     with pytest.raises(ValueError, match="manifest digest"):
         verify_overlay_disposal(run_dir, receipt_path)
+
+
+@pytest.mark.parametrize("surface", list(SecretAuditSurface))
+def test_secret_surface_keeps_string_and_json_contract(surface):
+    assert str(surface) == surface.value
+    assert f"{surface}" == surface.value
+    assert surface == surface.value
+    assert json.loads(json.dumps(surface)) == surface.value
+    receipt = SecretSurfaceReceipt(
+        surface=surface, receipt_path="scan.json", receipt_sha256="a" * 64,
+        files_scanned=0, completed=True, leak_found=False,
+    )
+    assert json.loads(receipt.model_dump_json())["surface"] == surface.value

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Callable, Literal, Optional
@@ -102,6 +103,14 @@ class ProviderConfig(BaseModel):
     output_usd_per_million_tokens: float | None = Field(default=None, ge=0)
     # Only for the replay provider: the recorded transcript to reproduce a run without a key.
     transcript_path: Optional[str] = None
+
+    @model_validator(mode="after")
+    def validates_endpoint_scheme(self) -> "ProviderConfig":
+        # The endpoint reaches urllib.request.urlopen, which also opens file:// and
+        # other local schemes; only an HTTP(S) model endpoint is a valid target.
+        if self.base_url and urllib.parse.urlsplit(self.base_url).scheme not in {"http", "https"}:
+            raise ValueError("provider base_url must be an http:// or https:// URL")
+        return self
 
     @model_validator(mode="after")
     def validates_cost_configuration(self) -> "ProviderConfig":
@@ -224,7 +233,8 @@ def _post_openai_chat(base_url: str, api_key: str, body: dict, timeout_seconds: 
         data=json.dumps(body).encode("utf-8"),
         headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
     )
-    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
+    # Bandit B310 is safe here: ProviderConfig.validates_endpoint_scheme admits only http(s) URLs.
+    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:  # nosec B310
         return json.loads(response.read())
 
 

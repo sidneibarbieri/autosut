@@ -59,10 +59,21 @@ class ProceduralPlanInput(BaseModel):
 
 def load_procedural_plan(path: Path) -> ProceduralPlanInput:
     payload = json.loads(path.read_text(encoding="utf-8"))
+    return parse_procedural_plan(payload, source=str(path))
+
+
+def parse_procedural_plan(
+    payload: object, *, source: str = "input"
+) -> ProceduralPlanInput:
+    """Verify the same content contract for file and interactive inputs."""
+    if not isinstance(payload, dict):
+        raise ValueError("procedural plan must be a JSON object")
     expected_hash = payload.get("content_sha256", "")
-    hashed_payload = {key: value for key, value in payload.items() if key != "content_sha256"}
+    hashed_payload = {
+        key: value for key, value in payload.items() if key != "content_sha256"
+    }
     encoded = json.dumps(hashed_payload, sort_keys=True, separators=(",", ":")).encode()
     actual_hash = hashlib.sha256(encoded).hexdigest()
     if actual_hash != expected_hash:
-        raise ValueError(f"procedural plan hash mismatch: {path}")
+        raise ValueError(f"procedural plan hash mismatch: {source}")
     return ProceduralPlanInput.model_validate(payload)

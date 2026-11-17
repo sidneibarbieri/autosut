@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Sequence
 
 import yaml
+from exceptiongroup import ExceptionGroup
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent

@@ -524,6 +524,13 @@ class WindowsMaterializationError(RuntimeError):
     """A safe materialization precondition or Vagrant command did not succeed."""
 
 
+def _add_error_note(error: BaseException, note: str) -> None:
+    if hasattr(error, "add_note"):
+        error.add_note(note)
+    else:
+        error.__notes__ = [*getattr(error, "__notes__", []), note]
+
+
 class WindowsVagrantSession:
     """One isolated Vagrant attempt, with explicit start and teardown operations.
 
@@ -628,7 +635,7 @@ class WindowsVagrantSession:
             self.teardown()
         except WindowsMaterializationError as teardown_error:
             if isinstance(exc_value, BaseException):
-                exc_value.add_note(
+                _add_error_note(exc_value,
                     "Windows Vagrant teardown also failed; inspect the redacted materialization receipt: "
                     f"{self.run_dir / 'windows-materialization-receipt.json'}"
                 )
@@ -682,7 +689,7 @@ class WindowsVagrantSession:
                 "vagrant up did not complete and the scoped vagrant destroy attempt also failed; "
                 f"see {self.run_dir / 'windows-materialization-receipt.json'}"
             )
-            combined_error.add_note(f"teardown failure: {teardown_error}")
+            _add_error_note(combined_error, f"teardown failure: {teardown_error}")
             raise combined_error from start_error
 
     def _teardown_after_interruption(
@@ -692,11 +699,11 @@ class WindowsVagrantSession:
         try:
             self.teardown(timeout_seconds=timeout_seconds)
         except WindowsMaterializationError as teardown_error:
-            interruption.add_note(
+            _add_error_note(interruption,
                 "Windows Vagrant teardown also failed after interruption; inspect the redacted "
                 f"materialization receipt: {self.run_dir / 'windows-materialization-receipt.json'}"
             )
-            interruption.add_note(f"teardown failure: {teardown_error}")
+            _add_error_note(interruption, f"teardown failure: {teardown_error}")
 
     def _write_receipt(self) -> None:
         _write_deterministic_or_replace(

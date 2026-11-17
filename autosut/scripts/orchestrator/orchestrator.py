@@ -28,6 +28,7 @@ from . import catalog
 from . import executor as executor_mod
 from . import injector as injector_mod
 from . import multi_host_executor as multi_host_mod
+from .docker_images import configured_lock, verify_campaign_images
 from .environment import DockerEnvironment  # noqa: F401 - legacy alias
 from .environment_base import select_backend
 from .host_fleet import HostFleet
@@ -92,6 +93,15 @@ class CampaignOrchestrator:
         else:
             run_id = run_dir.name
         run_dir.mkdir(parents=True, exist_ok=True)
+        if configured_lock() is not None and sut_profile.backend not in (None, 'docker'):
+            raise ValueError('Docker image locks require a Docker SUT backend')
+        image_references = (
+            [host.base_image for host in sut_profile.hosts]
+            if sut_profile.is_multi_host else [sut_profile.base_image]
+        )
+        if not sut_profile.is_multi_host:
+            image_references.append(attacker_mod.ATTACKER_IMAGE)
+        verify_campaign_images(image_references, run_dir)
         (run_dir / "provenance.json").write_text(
             json.dumps(_provenance(), indent=2), encoding="utf-8",
         )
