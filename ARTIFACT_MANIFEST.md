@@ -1,13 +1,13 @@
 # Artifact Manifest
 
-- Files: `2916`
+- Files: `2917`
 - Hash: SHA-256
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
 | `.gitignore` | 1775 | `d8cdb0ed7555244a5ea09c4523d1e5a33bba24e60552b4e78d501f09b5ae6747` |
 | `ARTIFACT_BOUNDARY.md` | 1398 | `3893a366813f8e35fe41897b2b05d66b8bb0a1a6668cbed794118be9c80e6568` |
-| `README.md` | 9867 | `c4db03088932593d5d3612259cc4cc25f1148ed63d1ded86923eb201e1fc4242` |
+| `README.md` | 10719 | `e9e65edb4606f311af6bd572dfceadd7601ce99a6b9bf757f5a67ecb688c3b2e` |
 | `autosut/.docker/dmz-host/Dockerfile` | 550 | `64c0aa877f74db59873815eb6ec2c309f671955a088646190ce4be4ab5be86b3` |
 | `autosut/.flake8` | 31 | `eda03f3b4590bf808a342f504995cb21e869a04c304787550c059f1c1580445f` |
 | `autosut/.gitattributes` | 185 | `57f24c8cd97a5b5d35b47e7b9ce872f2b8343005cb8352b48dac25dd2e77f72e` |
@@ -88,9 +88,9 @@
 | `autosut/docs/SCENARIO_ADMISSION.md` | 2699 | `47b5c4beecd1b3e28aad64f16df9ce96de60c69c47a7d75d93e215884d279368` |
 | `autosut/docs/SEMANTIC_ENRICHMENT_PROTOCOL.md` | 7804 | `df720dde69b8b0c90fd37aa659fd713121d9733f4545a8d4f5b315ea4e069ad3` |
 | `autosut/docs/WINDOWS_PROVIDER_DEVELOPMENT.md` | 19288 | `378b3b49fa196a1bb4e1ecf962f8610a99cc86b12ef896235917fe916bdfa402` |
+| `autosut/docs/architecture.md` | 2513 | `d4ac6b3b72bdc13318439d2c6ef06d3d123dec53c2a5341d6b940746ffe62641` |
 | `autosut/docs/architecture/EXECUTION_MODEL.md` | 4254 | `a7704a79b595bdfef798a61e4c9a9cc436ccb3a7943186fb286bb66ec075fab1` |
 | `autosut/docs/architecture/PROPOSAL_ADMISSION_BOUNDARY.md` | 4532 | `e29dc51b0e930bf8ab3c08a1dfa842457edbf00fb851f8983d8a7c54afe81885` |
-| `autosut/docs/architecture.md` | 2513 | `d4ac6b3b72bdc13318439d2c6ef06d3d123dec53c2a5341d6b940746ffe62641` |
 | `autosut/docs/docker-image-lock.md` | 4462 | `f44fc36c42be5ca14c02f0109b14c4dadb8789fd79a9768dcfc9e350bd70e4c5` |
 | `autosut/docs/img/environment-workbench.png` | 160167 | `05f9b0194a6d90e782bd0a86003420a62e0a7f5f2662562103f3839ab792fe97` |
 | `autosut/docs/joint_replay.md` | 13287 | `5e0651f17ae470c69d52b7d594be68245329c39fe1a85e8d920fb9f37b28f440` |
@@ -114,14 +114,14 @@
 | `autosut/lab/campaign-setup/target-side/outer_space_sutb.sh` | 1569 | `8a7741b4f9b3ac021ba6cef60ccebd5535f8683bd6d7ce8d660e518d5b8be74b` |
 | `autosut/lab/campaign-setup/target-side/salesforce_data_exfiltration_sutb.sh` | 1586 | `c12e70e573ef78f8a7c2b7a54d6d07d837ac70aa2ec12678b12195b5ec523bb0` |
 | `autosut/lab/campaign-setup/target-side/shadowray_sutb.sh` | 1645 | `6a8d63c21eb4a48d81aaa7c028f0f685508d54cd70505123c39b5f74152a80b2` |
+| `autosut/lab/docker-campaign/docker-compose.yml` | 4479 | `4375862d2a2138dc4470db3d1422f30c923156e67010b9122ab72939964f7bf4` |
+| `autosut/lab/docker-campaign/rebuild.sh` | 108 | `355d9151f594d6565b35cf29e5944c1df4cd8bd0a639ffeaaa357b7bd94206a8` |
+| `autosut/lab/docker-campaign/rebuild_ngixAndDb.sh` | 109 | `74266913873de71d4a2e697d9b6f007e239cbaa3b224fe1a2e5b0ac7359e51e2` |
 | `autosut/lab/docker/attacker/Dockerfile` | 584 | `f7d5da0cb36afe561811585c2dd52f4436661fcf30f4628746440cfd559dfb5d` |
 | `autosut/lab/docker/docker-compose.yml` | 723 | `5fc5ba84e72c86a1b97b2e08d1e4082a4cf5e5a92b724c94addc697a77cf22dd` |
 | `autosut/lab/docker/docker_campaign_adapter.py` | 10169 | `3df8b960fbf0e7bb1040ce2f2f242de289393f113c70b93b5531d9ff04df069b` |
 | `autosut/lab/docker/execute_campaign.sh` | 1845 | `d8ba7abb54534098630a03ce4990bf9019b6ebeb78d8fb8c839e5ca4aac69738` |
 | `autosut/lab/docker/target/Dockerfile` | 864 | `8b9641a20a49823d11e5ff26bae848189b02284d4b1475fd746ffe91fd5d00d1` |
-| `autosut/lab/docker-campaign/docker-compose.yml` | 4479 | `4375862d2a2138dc4470db3d1422f30c923156e67010b9122ab72939964f7bf4` |
-| `autosut/lab/docker-campaign/rebuild.sh` | 108 | `355d9151f594d6565b35cf29e5944c1df4cd8bd0a639ffeaaa357b7bd94206a8` |
-| `autosut/lab/docker-campaign/rebuild_ngixAndDb.sh` | 109 | `74266913873de71d4a2e697d9b6f007e239cbaa3b224fe1a2e5b0ac7359e51e2` |
 | `autosut/lab/health_check.py` | 20781 | `d406c7c477348965ccb088c3951dec6b8ddf487664f6dda6da6e26456da72d6a` |
 | `autosut/lab/provisioning/windows-workgroup-lateral/autounattend.host_a.x86_64.xml` | 7488 | `d5680e52abe6d5d1366ea4863fdd46fb2011a946fe0148545780b450918b13c8` |
 | `autosut/lab/provisioning/windows-workgroup-lateral/autounattend.host_a.xml` | 11133 | `4544c1107d24cd7ebcb60b3026c13ae9f19a840fe7779251d8674ea3da9d6d32` |
@@ -2564,7 +2564,7 @@
 | `autosut/scripts/probe_corpus_base_host.py` | 4440 | `abdb7025466db0d394122aaf7a520f315e48e597c7cc9ce25cc18b1c1ac36977` |
 | `autosut/scripts/probe_corpus_ingress.py` | 202 | `9031b2fef96b04a0cbfecc072fc5b84a2a96fb1b90b696550bdd4d106dd6a617` |
 | `autosut/scripts/probe_corpus_network_resources.py` | 15156 | `27c69f87033dfc47f7eaf3d371bd3ce3c282b6bb889cd8687f0529e374190328` |
-| `autosut/scripts/prove_subdetermination.py` | 1375 | `3fd8d9bef98f1156b7ac70715d95af2953ab0576dfd2d5188d3d05225061c307` |
+| `autosut/scripts/prove_subdetermination.py` | 1423 | `e8c71fdbbb670d4014b072785dc0c7fd2c866facb65ea36f66d1a1c01087654d` |
 | `autosut/scripts/publish_study_values.py` | 1816 | `29a7c2498adb5f898cda25821669d095dba151dda429f1e58e8be02f89563ed3` |
 | `autosut/scripts/python_env.sh` | 3533 | `25da4324275951ff37a4d56cf41492cdcb9c407285f9c6943ae5e0ec3bd3af1e` |
 | `autosut/scripts/qemu_backend_smoke.py` | 2464 | `5b87665d4d8ee657a7612823972e4c57d4840aa3873ba736df0a4da50212c5ff` |
@@ -2883,6 +2883,7 @@
 | `autosut/tests/test_stix_environment_extension.py` | 2341 | `c70ebb1416538824054b8bf9a149b89eedd21e9a396f6baa452862932933c9c3` |
 | `autosut/tests/test_stix_parser.py` | 1584 | `b32ef5df430a4bb3658a3fde4a56343cff5af3687f64904fa589e5da8bf48a09` |
 | `autosut/tests/test_subdetermination.py` | 11269 | `dfdd6848765df4147ebbf825302418f8239fd5e33fdfbc94b107aabb4bc65c15` |
+| `autosut/tests/test_subdetermination_cli_exit.py` | 1079 | `5b0e5dd7150ad08376cc231c9fb3981d9c1a5b4dae74ed6eefef58adda9bcb84` |
 | `autosut/tests/test_supervised_docker_sweep.py` | 2949 | `a0120189e4a18ae0283b25f0a96c9ecae2b0221206c484bb3dd1e766b774dcb8` |
 | `autosut/tests/test_supervision_evidence.py` | 3500 | `fd00c4077b48881fd41225ba27e5c38cff1760beb336920512c5e82607277e7f` |
 | `autosut/tests/test_supply_chain_qualification.py` | 1955 | `bff51f571b11c6a3b4ec8f0f7e63c9f93e55363cb0de77cb05ca37a32f20da83` |

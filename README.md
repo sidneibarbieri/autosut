@@ -30,7 +30,7 @@ separately identified optional operational witnesses.
 ## Dependencies
 
 `autosut/requirements-reviewer.txt` pins every Python dependency exactly.
-`./run.sh` creates `autosut/.venv` on first use and enforces those versions.
+`bash run.sh` creates `autosut/.venv` on first use and enforces those versions.
 Pinned ATT&CK, CAPEC, and FiGHT snapshots ship inside the package; the
 measurement path does not download research inputs at runtime.
 
@@ -41,7 +41,7 @@ a passing primary gate does not qualify FAT/ISO files or a Windows VM.
 ### Native Windows Media Qualification
 
 ```bash
-./run.sh windows-media
+bash run.sh windows-media
 ```
 
 This separate path requires `qemu-img`, `mformat`, `mcopy`, `mtype`,
@@ -60,14 +60,15 @@ isolated disposable host; never expose their networks or services publicly.
 
 ## Installation
 
-Nothing is installed by hand. Extract or clone the repository, enter its
-root, and run every path with one command:
+Extract or clone the repository, enter its root, and reproduce the released results without Docker:
 
 ```bash
-./run.sh all
+bash run.sh review
 ```
 
-It ends with `all passed: demo, review, doctor, witness`. Every command
+Use `bash` for both Git clones and downloaded ZIPs; the anonymous ZIP does not preserve executable permissions. To include a new Docker witness execution, run `bash run.sh all`.
+
+The `all` command ends with `all passed: demo, review, doctor, witness`. Every command
 below runs from the repository root; the pinned Python environment is
 created on first use, and every container is started and removed by the
 command itself. Times were measured on an Apple-silicon macOS host with
@@ -75,22 +76,32 @@ colima and vary by host and by whether images are already present.
 
 | Command | What it establishes | Time | Needs |
 | --- | --- | --- | --- |
-| `./run.sh demo` | The environment-semantics gap, read from the generated study values | 1 s | Python 3.10+ |
-| `./run.sh review` | Manifest, measurement pipeline from frozen snapshots, claim ledger, dashboard, tests | 1.5 min | Python 3.10+ |
-| `./run.sh doctor` | Read-only check for the Docker paths; prints the exact fix (daemon, `autosut-` prefix, port 8888, address pool) | 1 s | - |
-| `./run.sh witness` | CVE-2021-41773 executed in two SUT variants sharing one fixed-evidence fingerprint (RQ4) | 75 s, images present | Docker |
-| `./run.sh replay` | Every implemented campaign/SUT pair replayed, one isolated namespace per campaign | 25 min | Docker |
-| `./run.sh windows-media` | Real FAT/ISO media created and checked; no VM boot | < 1 min | qemu-img, mtools, xorriso |
-| `./run.sh dashboard` | Serves the evidence dashboard on 127.0.0.1:8765 | - | Python |
-| `./run.sh all` | demo, review, doctor, then witness | ~3 min | Docker |
+| `bash run.sh demo` | The environment-semantics gap, read from the generated study values | 1 s | Python 3.10+ |
+| `bash run.sh review` | Manifest, measurement pipeline from frozen snapshots, claim ledger, dashboard, tests | 1.5 min | Python 3.10+ |
+| `bash run.sh doctor` | Read-only check for the Docker paths; prints the exact fix (daemon, `autosut-` prefix, port 8888, address pool) | 1 s | - |
+| `bash run.sh witness` | CVE-2021-41773 executed in two SUT variants sharing one fixed-evidence fingerprint (RQ4) | 75 s, images present | Docker |
+| `bash run.sh replay` | Every implemented campaign/SUT pair replayed, one isolated namespace per campaign | 25 min | Docker |
+| `bash run.sh windows-media` | Real FAT/ISO media created and checked; no VM boot | < 1 min | qemu-img, mtools, xorriso |
+| `bash run.sh dashboard` | Serves the evidence dashboard on 127.0.0.1:8765 | - | Python |
+| `bash run.sh all` | demo, review, doctor, then witness | ~3 min | Docker |
 
-`bash run_review_check.sh` remains the same review gate as `./run.sh review`.
+`bash run_review_check.sh` remains the same review gate as `bash run.sh review`.
+
+## Inspect an environment plan
+
+```bash
+bash run.sh workbench --port 8772
+```
+
+Open `http://127.0.0.1:8772`, load the pinned C0045 example, resolve its requirements, inspect the environment map and provenance, and download the planning JSON. You can also import your own procedural-plan JSON. This interface plans requirements; it does not provision a host or execute a campaign. The [planning guide](autosut/README.md) explains the inputs, command-line path and limits.
+
+![AutoSUT resolving the C0045 input, with requirements, provenance and planning export](autosut/docs/img/environment-workbench.png)
 
 ## Minimal Test
 
 ```bash
-./run.sh demo
-./run.sh review
+bash run.sh demo
+bash run.sh review
 ```
 
 Expected result: the demo prints the environment-semantics gap, manifest
@@ -100,7 +111,7 @@ commands exit with status zero.
 ## Fast Reviewer Path
 
 ```bash
-./run.sh review
+bash run.sh review
 ```
 
 The review first verifies every packaged file against
@@ -131,7 +142,7 @@ The reviewer-facing static dashboard is
 extracting the ZIP, the lowest-friction local view is:
 
 ```bash
-./run.sh dashboard
+bash run.sh dashboard
 ```
 
 Then open `http://127.0.0.1:8765/autosut/release/dashboard/` in a browser. Opening
@@ -147,14 +158,14 @@ Dashboard preview:
 ## Full Docker Replay
 
 ```bash
-./run.sh doctor
-./run.sh replay                       # or: ./run.sh replay --campaign 0.web_demo
+bash run.sh doctor
+bash run.sh replay                       # or: bash run.sh replay --campaign 0.web_demo
 ```
 
 This path replays the implemented Docker-backed campaign/SUT pairs
 and writes TSV/JSON reports under `autosut/release/`. It prints
 PASS, PARTIAL, or FAIL per pair and exits non-zero unless every pair
-passes, which this release does not claim. `./run.sh doctor` checks the
+passes, which this release does not claim. `bash run.sh doctor` checks the
 host first without changing it. The replay runs with `--isolate-campaigns`: it cleans
 AutoSUT containers, networks, and volumes around each campaign.
 This includes the AutoSUT Caldera container. No unrelated resource
@@ -172,7 +183,7 @@ campaign/SUT pair, and it must not be used to broaden the bounded claim ledger.
 ## Executable Non-Uniqueness Witness
 
 ```bash
-./run.sh witness
+bash run.sh witness
 ```
 
 This Docker-backed witness varies only analyst-authored SUT elements
@@ -184,7 +195,7 @@ interpretations are listed there explicitly.
 
 ## Experiments and Claims
 
-Run `./run.sh review` from the package root for every claim below.
+Run `bash run.sh review` from the package root for every claim below.
 No configuration edit or credential is required for the primary path.
 
 Ledger claim identifiers are stable and predate the manuscript's grouping

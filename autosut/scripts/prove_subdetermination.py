@@ -36,7 +36,7 @@ def main() -> int:
         seed=args.seed, execute=args.execute,
     )
     print(json.dumps(proof.model_dump(mode="json"), indent=2, default=str))
-    return 0
+    return 1 if args.execute and not proof.executable else 0
 
 
 if __name__ == "__main__":
