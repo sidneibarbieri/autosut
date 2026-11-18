@@ -30,7 +30,7 @@ separately identified optional operational witnesses.
 ## Dependencies
 
 `autosut/requirements-reviewer.txt` pins every Python dependency exactly.
-The reviewer wrapper creates `autosut/.venv` and enforces those versions.
+`./run.sh` creates `autosut/.venv` on first use and enforces those versions.
 Pinned ATT&CK, CAPEC, and FiGHT snapshots ship inside the package; the
 measurement path does not download research inputs at runtime.
 
@@ -40,11 +40,8 @@ a passing primary gate does not qualify FAT/ISO files or a Windows VM.
 
 ### Native Windows Media Qualification
 
-After the primary wrapper installs the reviewer environment, run:
-
 ```bash
-autosut/.venv/bin/python autosut/scripts/qualify_windows_media.py --preflight-only
-autosut/.venv/bin/python autosut/scripts/qualify_windows_media.py
+./run.sh windows-media
 ```
 
 This separate path requires `qemu-img`, `mformat`, `mcopy`, `mtype`,
@@ -63,30 +60,50 @@ isolated disposable host; never expose their networks or services publicly.
 
 ## Installation
 
-Extract or clone the repository, enter its root, and run the reviewer wrapper.
-On first use it creates the pinned local environment automatically:
+Nothing is installed by hand. Extract or clone the repository, enter its
+root, and run every path with one command:
 
 ```bash
-bash run_review_check.sh
+./run.sh all
 ```
+
+It ends with `all passed: demo, review, doctor, witness`. Every command
+below runs from the repository root; the pinned Python environment is
+created on first use, and every container is started and removed by the
+command itself. Times were measured on an Apple-silicon macOS host with
+colima and vary by host and by whether images are already present.
+
+| Command | What it establishes | Time | Needs |
+| --- | --- | --- | --- |
+| `./run.sh demo` | The environment-semantics gap, read from the generated study values | 1 s | Python 3.10+ |
+| `./run.sh review` | Manifest, measurement pipeline from frozen snapshots, claim ledger, dashboard, tests | 1.5 min | Python 3.10+ |
+| `./run.sh doctor` | Read-only check for the Docker paths; prints the exact fix (daemon, `autosut-` prefix, port 8888, address pool) | 1 s | - |
+| `./run.sh witness` | CVE-2021-41773 executed in two SUT variants sharing one fixed-evidence fingerprint (RQ4) | 75 s, images present | Docker |
+| `./run.sh replay` | Every implemented campaign/SUT pair replayed, one isolated namespace per campaign | 25 min | Docker |
+| `./run.sh windows-media` | Real FAT/ISO media created and checked; no VM boot | < 1 min | qemu-img, mtools, xorriso |
+| `./run.sh dashboard` | Serves the evidence dashboard on 127.0.0.1:8765 | - | Python |
+| `./run.sh all` | demo, review, doctor, then witness | ~3 min | Docker |
+
+`bash run_review_check.sh` remains the same review gate as `./run.sh review`.
 
 ## Minimal Test
 
 ```bash
-python3 autosut/scripts/verify_artifact_manifest.py --root .
-bash run_review_check.sh
+./run.sh demo
+./run.sh review
 ```
 
-Expected result: manifest verification succeeds, all measurement and claim
-gates pass, and the command exits with status zero.
+Expected result: the demo prints the environment-semantics gap, manifest
+verification succeeds, all measurement and claim gates pass, and both
+commands exit with status zero.
 
 ## Fast Reviewer Path
 
 ```bash
-bash run_review_check.sh
+./run.sh review
 ```
 
-The wrapper first verifies every packaged file against
+The review first verifies every packaged file against
 `ARTIFACT_MANIFEST.md`, then reruns the measurement pipeline from frozen
 public input snapshots, regenerates figures and traceability outputs, and
 validates numeric invariants. This ZIP is the evidence and reproduction package.
@@ -114,10 +131,9 @@ The reviewer-facing static dashboard is
 extracting the ZIP, the lowest-friction local view is:
 
 ```bash
-python3 -m http.server 8765 --bind 127.0.0.1
+./run.sh dashboard
 ```
 
-Run the command from the extracted repository root, not the dashboard directory.
 Then open `http://127.0.0.1:8765/autosut/release/dashboard/` in a browser. Opening
 `index.html` directly also works after ZIP extraction.
 The dashboard summarizes the canonical claim ledger, historical replay audit,
@@ -131,16 +147,15 @@ Dashboard preview:
 ## Full Docker Replay
 
 ```bash
-cd autosut
-python3 scripts/run_all_orchestrated_campaigns.py --preflight-only
-python3 scripts/run_all_orchestrated_campaigns.py --isolate-campaigns --campaign-timeout-seconds 1200
+./run.sh doctor
+./run.sh replay                       # or: ./run.sh replay --campaign 0.web_demo
 ```
 
 This path replays the implemented Docker-backed campaign/SUT pairs
-and writes TSV/JSON reports under `release/`. It is slower than the
-fast validation path and requires Docker; the preflight separates
-infrastructure readiness from campaign failures before the long run.
-`--isolate-campaigns` is the recommended reviewer mode: it cleans
+and writes TSV/JSON reports under `autosut/release/`. It prints
+PASS, PARTIAL, or FAIL per pair and exits non-zero unless every pair
+passes, which this release does not claim. `./run.sh doctor` checks the
+host first without changing it. The replay runs with `--isolate-campaigns`: it cleans
 AutoSUT containers, networks, and volumes around each campaign.
 This includes the AutoSUT Caldera container. No unrelated resource
 may use the reserved autosut- prefix during the run.
@@ -157,9 +172,7 @@ campaign/SUT pair, and it must not be used to broaden the bounded claim ledger.
 ## Executable Non-Uniqueness Witness
 
 ```bash
-cd autosut
-bash artifact/setup.sh
-.venv/bin/python3 scripts/prove_subdetermination.py 0.cve_2021_41773 --variants 2 --execute
+./run.sh witness
 ```
 
 This Docker-backed witness varies only analyst-authored SUT elements
@@ -171,16 +184,12 @@ interpretations are listed there explicitly.
 
 ## Experiments and Claims
 
-Run `bash run_review_check.sh` from the package root for every claim below.
+Run `./run.sh review` from the package root for every claim below.
 No configuration edit or credential is required for the primary path.
 
-Start from the paper's question; the ledger keeps older, stable identifiers.
-
-| Paper question | Ledger entries below | What to inspect |
-| --- | --- | --- |
-| RQ1: environment information in structured CTI | RQ1, RQ3 | regenerated corpus tables and profile-distance outputs |
-| RQ2: what the routing policy adds | RQ2 | routing labels, rule surface, sensitivity outputs |
-| RQ3: non-uniqueness and its consequence (ShadowRay, C0045) | RQ4 | constructive witnesses and the two-surrogate consequence receipts |
+Ledger claim identifiers are stable and predate the manuscript's grouping
+into three questions: ledger RQ1 and RQ3 support manuscript RQ1, ledger RQ2
+supports RQ2, and ledger RQ4 with the C0045 study supports RQ3.
 
 ### RQ1: Structured Environment Evidence
 

@@ -1,13 +1,13 @@
 # Artifact Manifest
 
-- Files: `2911`
+- Files: `2916`
 - Hash: SHA-256
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
 | `.gitignore` | 1775 | `d8cdb0ed7555244a5ea09c4523d1e5a33bba24e60552b4e78d501f09b5ae6747` |
 | `ARTIFACT_BOUNDARY.md` | 1398 | `3893a366813f8e35fe41897b2b05d66b8bb0a1a6668cbed794118be9c80e6568` |
-| `README.md` | 9247 | `16f96fe8c72b20a36b55125922da8952f38d5299d12660c39ae7bb5f2a69df5c` |
+| `README.md` | 9867 | `c4db03088932593d5d3612259cc4cc25f1148ed63d1ded86923eb201e1fc4242` |
 | `autosut/.docker/dmz-host/Dockerfile` | 550 | `64c0aa877f74db59873815eb6ec2c309f671955a088646190ce4be4ab5be86b3` |
 | `autosut/.flake8` | 31 | `eda03f3b4590bf808a342f504995cb21e869a04c304787550c059f1c1580445f` |
 | `autosut/.gitattributes` | 185 | `57f24c8cd97a5b5d35b47e7b9ce872f2b8343005cb8352b48dac25dd2e77f72e` |
@@ -2459,6 +2459,7 @@
 | `autosut/results/tables/execution_table.tex` | 918 | `8e3f60c222cd7e4f9919f345fbc45e9f8afa246d617f791b59eec2dffa5c9b5e` |
 | `autosut/results/tables/fidelity_table.tex` | 815 | `619d89724ff2063b68d3a91bc74141e72bcf3b92dd7cfb7bf4921b2abe3c83e5` |
 | `autosut/results/values.tex` | 500 | `dac32ccfcf7d8c81e999f51b87cd2d3886c9bc1c8980e4fcabb4e859d8b39f45` |
+| `autosut/run.sh` | 5789 | `79bb4531131f1259924a18c1492f5fa2cea18bb2668feaa93aa8e9d60c1e06d4` |
 | `autosut/run_review_check.sh` | 1006 | `47a60fce37df30df7f04e7ee6eda1205bf17b11890ad44e327d27e4ae009c1d7` |
 | `autosut/run_vm_backed_campaign.sh` | 683 | `2f63e3c871cacd1a9cc8ff0427d227a886f4dc13d37c7a772a1a1280478095c0` |
 | `autosut/scripts/Makefile` | 6041 | `df6afe7e860e07ac76d3e5cf7917e95834b614e7ee5cf3d94fd74ed3dac63506` |
@@ -2497,6 +2498,7 @@
 | `autosut/scripts/destroy.sh` | 265 | `5402875b5a96cf536b78a78875fb75fe20c6e0631f0427bedf040e68413206c9` |
 | `autosut/scripts/destroy_lab.sh` | 3515 | `77e67858364d46b1f424081b7eb314e86ee34195311ba51c2df247c9995cc61a` |
 | `autosut/scripts/docker_image_lock.py` | 2636 | `13ce7820bce838b7bf9e77db3d1aad54d71ceca8c1aa096446d7efd43d4d9af2` |
+| `autosut/scripts/doctor.py` | 10998 | `3b426d65923269d51e7949c525ac436d482b390f9b1e90e378b9327a70c75b65` |
 | `autosut/scripts/emulate.py` | 3953 | `03a57416364a5f1f62cc247be456ea3a7a9d7f3157dfb478c8b68db8064ce766` |
 | `autosut/scripts/evaluate_plan_corpus.py` | 4762 | `67c557ee0ef64bc0b8ac38be6f4be96c00e8b4cc8491ca20c45de0e387a043f9` |
 | `autosut/scripts/evaluate_stix_extensions.py` | 2142 | `6f690c80ec4b8ff4103b84c062da6cb57765bed3fbbbaa21cc693b9b25d6f5ee` |
@@ -2789,6 +2791,7 @@
 | `autosut/tests/test_docker_image_lock.py` | 6370 | `a5c0d3f0df91c795db676a9f6ff7e6c06ed32626f64805f6e8f3703cfc87335d` |
 | `autosut/tests/test_docker_namespace.py` | 3430 | `c185c479582df53ebf7a2dc8b1672e4d068f9b8088c2faab7c73fef7fd4552ce` |
 | `autosut/tests/test_docker_teardown_lifecycle.py` | 3516 | `f0c88a585063db6cb0c9aebec22eb5e4f22c6c0edcbf5b7c38415acae7049bca` |
+| `autosut/tests/test_doctor.py` | 5876 | `7d0a8583295336513a7bed3dc535ebd8613ef7e7a1d2113f7da2f0dad06450ed` |
 | `autosut/tests/test_emulate.py` | 1114 | `386e8b9fe9ac91a19af0c4bf4c03676f5f3488f5bdec5a58773162c8afce5466` |
 | `autosut/tests/test_environment_backend.py` | 2256 | `670cd2f49e504515eec03753974dd686fd7fd668e6894d6752c3f7d5d637db01` |
 | `autosut/tests/test_environment_planning_export.py` | 3758 | `5b775e2a5e3cda281775ec1db48664be01350bcbdfe28c8eeddd271816f51ff3` |
@@ -2807,6 +2810,7 @@
 | `autosut/tests/test_failure_recovery.py` | 8442 | `e46eaa76a376b90a3dc425032cc10ae3c740fe96fc7f64a648717d1dcd97fc1b` |
 | `autosut/tests/test_fight_snapshot.py` | 4819 | `356d752a3d29a5b88ab09cccde09671078bcf4e776d9bc5191c62d6cac45d36f` |
 | `autosut/tests/test_freeze_r4_protocol.py` | 2561 | `28456e19b40ec1a62b711ff2dde46507b9f35fb107fe09719e7df13b315d6ba2` |
+| `autosut/tests/test_front_door.py` | 5519 | `18252992fac3fd27d1d896fca20cc87a3fc47f193826f93268002502ad8e91ea` |
 | `autosut/tests/test_gateway_guard.py` | 1674 | `fc04626a4008be92d71bcd066d25d3403f16d9df6eea9cac8ade2dc48882e2c3` |
 | `autosut/tests/test_generate_compatibility_rule_surface.py` | 1324 | `6e814c0f896d16c212a893a7c42fc7185c550afa621e518544eed903f725ac38` |
 | `autosut/tests/test_generate_corpus_state.py` | 2679 | `3f9acadb4db12982dfaaff05894092c719bca638e21210aeacfeebad63cb8f1b` |
@@ -2915,4 +2919,5 @@
 | `autosut/web/environment-workbench/environment-map.js` | 5049 | `f374f1861ae0dbcf2a5c22280a3b65ede6f335f692e89c964eecc7c6aff8f4a8` |
 | `autosut/web/environment-workbench/index.html` | 4242 | `c5a03b837d973dd1476419fee8bc7b759309fd1119c56aab78928c59b5e66c9f` |
 | `autosut/web/environment-workbench/styles.css` | 9294 | `05fd1fbce58f6b93f3fd63d453d82edf34a801cf1a0cfd4b0e36d53919b16a10` |
+| `run.sh` | 167 | `89a9b2056d663df95e4a7eb4394620471f3f8c495cf1d49deae9e0ac0ca867a8` |
 | `run_review_check.sh` | 490 | `9b94cbc04100a395528cc9432c11549c321f2840b53a7f5d897eb06af279aff9` |
