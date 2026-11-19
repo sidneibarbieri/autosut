@@ -9,7 +9,7 @@ export PYTHONUNBUFFERED=1
 
 usage() {
   cat <<'EOF'
-AutoSUT -- one command per question.  Usage: ./run.sh <command> [options]
+AutoSUT -- one command per question.  Usage: bash run.sh <command> [options]
 
   command        what it establishes                                time      needs
   -------------  -------------------------------------------------  --------  -----------------------
@@ -31,7 +31,7 @@ AutoSUT -- one command per question.  Usage: ./run.sh <command> [options]
   all            demo + review + doctor + witness                    ~3 min    as for witness
 
 Options:
-  replay [--campaign ID ...]   default: all implemented campaigns (./run.sh replay --list)
+  replay [--campaign ID ...]   default: all implemented campaigns (bash run.sh replay --list)
   doctor [--path review|replay|windows-media|all]
 
 Times were measured once on an Apple-silicon macOS host with colima, images
@@ -116,7 +116,7 @@ cmd_all() {
   banner "doctor"; if cmd_doctor --path replay; then
     banner "witness (RQ4)"; cmd_witness "$@" || failed+=(witness)
   else
-    failed+=(doctor); echo "witness skipped: apply the fix printed above, then ./run.sh witness" >&2
+    failed+=(doctor); echo "witness skipped: apply the fix printed above, then bash run.sh witness" >&2
   fi
   echo
   # ${failed[*]-} keeps an empty array safe under set -u on bash 3.2 (macOS).

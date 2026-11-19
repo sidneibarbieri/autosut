@@ -104,7 +104,7 @@ check_dependencies() {
     log_info "Checking dependencies..."
 
     if ! command -v vagrant &> /dev/null; then
-        log_error "Vagrant not found. Run ./setup.sh first."
+        log_error "Vagrant not found. Run: bash \"$ROOT_DIR/setup.sh\""
         exit 1
     fi
 
@@ -114,7 +114,7 @@ check_dependencies() {
             log_warn "vagrant-qemu plugin not found. Installing..."
             vagrant plugin install vagrant-qemu || {
                 log_error "Failed to install vagrant-qemu plugin"
-                log_error "Run ./setup.sh to install QEMU provider automatically"
+                log_error "Run: bash \"$ROOT_DIR/setup.sh\" to install the QEMU provider"
                 exit 1
             }
         fi
