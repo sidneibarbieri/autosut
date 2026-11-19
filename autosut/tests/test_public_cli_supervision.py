@@ -17,6 +17,9 @@ DOCKER = """import os,sys
 from pathlib import Path
 root=Path(os.environ['CLI_FIXTURE'])
 arguments=sys.argv[1:]
+(root/'docker-called').write_text('yes')
+if os.environ.get('DOCKER_UNAVAILABLE')=='1':
+    raise SystemExit(97)
 if arguments[0]=='ps' and (root/'resource').exists():
     print('autosut-fixture')
 if arguments[0]=='ps' and (root/'foreign').exists():
@@ -188,6 +191,7 @@ def test_second_operation_cannot_sweep_the_first_operation(public_cli):
         assert not (directory / "swept").exists()
         os.kill(first.pid, signal.SIGTERM)
         first.communicate(timeout=5)
+
         assert first.returncode == 143
         assert not (directory / "resource").exists()
     finally:
@@ -196,3 +200,27 @@ def test_second_operation_cannot_sweep_the_first_operation(public_cli):
         except ProcessLookupError:
             pass
         first.communicate(timeout=5)
+
+
+@pytest.mark.parametrize(
+    "command,argument",
+    [("replay", "--list"), ("replay", "--help"), ("witness", "--help")],
+)
+def test_read_only_modes_work_without_docker(public_cli, command, argument):
+    directory, environment = public_cli
+    environment["DOCKER_UNAVAILABLE"] = "1"
+    for filename in ("run_all_orchestrated_campaigns.py", "prove_subdetermination.py"):
+        (directory / "autosut/scripts" / filename).write_text(
+            "print('local definitions')\n"
+        )
+    result = subprocess.run(
+        ["bash", "run.sh", command, argument],
+        cwd=directory,
+        env=environment,
+        capture_output=True,
+        text=True,
+        timeout=5,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "local definitions" in result.stdout
+    assert not (directory / "docker-called").exists()

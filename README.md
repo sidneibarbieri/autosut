@@ -89,6 +89,9 @@ colima and vary by host and by whether images are already present.
 
 ### Stop an operational run
 
+`bash run.sh replay --list` and the `replay`/`witness` `--help` options inspect
+local definitions without contacting Docker.
+
 Run `replay`, `witness`, and `all` through the root `bash run.sh` entry point to
 include process supervision. Ctrl+C or SIGTERM stops its child process group,
 then checks and removes resources created in the AutoSUT namespace. Existing

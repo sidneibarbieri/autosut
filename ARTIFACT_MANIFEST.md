@@ -7,7 +7,7 @@
 | --- | ---: | --- |
 | `.gitignore` | 1775 | `d8cdb0ed7555244a5ea09c4523d1e5a33bba24e60552b4e78d501f09b5ae6747` |
 | `ARTIFACT_BOUNDARY.md` | 1398 | `3893a366813f8e35fe41897b2b05d66b8bb0a1a6668cbed794118be9c80e6568` |
-| `README.md` | 11625 | `ff51965f0491511a38b1a2808cfe35fbd21b6bc79b5635dfa29987929908134f` |
+| `README.md` | 11751 | `d1c601b66394d58127d083f45ebe6d7e9421a54c48eb8513aa675c49460b4cbe` |
 | `autosut/.docker/dmz-host/Dockerfile` | 550 | `64c0aa877f74db59873815eb6ec2c309f671955a088646190ce4be4ab5be86b3` |
 | `autosut/.flake8` | 31 | `eda03f3b4590bf808a342f504995cb21e869a04c304787550c059f1c1580445f` |
 | `autosut/.gitattributes` | 185 | `57f24c8cd97a5b5d35b47e7b9ce872f2b8343005cb8352b48dac25dd2e77f72e` |
@@ -2597,7 +2597,7 @@
 | `autosut/scripts/run_prepared_campaign_pair.py` | 919 | `d0889b9489588a6ff3b3b6d32938618b55ddabddf1b5f2a525f14f786c882c49` |
 | `autosut/scripts/run_reproducibility_matrix.py` | 6596 | `6acf108c5e81968e359c25b9f7623dd201c3a25658fa7a3b723ae2fb521b6bda` |
 | `autosut/scripts/run_review_check.sh` | 11840 | `4911271bf08e6fe858e1ac3b212bb01dd2e6b3e0d45c713596f4cff0bcdca1da` |
-| `autosut/scripts/run_reviewer_supervised.py` | 3405 | `0f700fa807f6d46f3500ce4bc62fee937af048c7749e4e7e87b4b066a3bea979` |
+| `autosut/scripts/run_reviewer_supervised.py` | 3683 | `8a7a35c9a444a27ab7fee1925a485e49ef15ecc42e75f98c8f289f3f129002cd` |
 | `autosut/scripts/run_reviewer_workflow.py` | 10099 | `526924d902f6bff6389f15bd39e688a8fc76691fc1af4739c92999d655d94828` |
 | `autosut/scripts/run_reviewer_workflow.sh` | 299 | `ba8114fec0e8fdad8033749847b645306b6317b1e7379e07abd07cd4785cc207` |
 | `autosut/scripts/run_shadowray_via_caldera.py` | 15276 | `3e6179d6524d99b4a39530dfa612f14117c79ae259d148021914b4f00508a798` |
@@ -2849,7 +2849,7 @@
 | `autosut/tests/test_process_supervisor.py` | 7329 | `ec65f47f6ffce2f0b5c7910e7795778f1a4a194bc9d170ce6c67d472fc984703` |
 | `autosut/tests/test_provenance_aggregation.py` | 8404 | `0e66002af02b9eeb4b3d6eacf09fd04b135a0eabe7eabb26cf49419d784d08b8` |
 | `autosut/tests/test_provenance_report.py` | 2201 | `1b1200be69ba9002268ee140bbc59a52d16bd2aca0e4b2f074902665ae5df488` |
-| `autosut/tests/test_public_cli_supervision.py` | 6604 | `0be1a918a9e9efa72f664a9fed677e6908380e80ad12ae4a434f093c02367bd3` |
+| `autosut/tests/test_public_cli_supervision.py` | 7557 | `82e36c97116c728e3ab2edb46b1d0d810356f7d1cdb9b8cfb7fdc12dca5c8e0d` |
 | `autosut/tests/test_publish_study_values.py` | 1321 | `d438b38c5d8a57c02f4df3998b59dde10bfdaa69f37a5cf9292c591067c60a9f` |
 | `autosut/tests/test_qualification.py` | 11257 | `658c071a3da0c7cff271ad261e5fe65dc2d8be64aa4567f2a351cec7348f7bda` |
 | `autosut/tests/test_r4_protocol.py` | 4140 | `9ecc1ee65b3ef1cb81f4bb98ae0aa0f7ee2512c7fa9736aede6d44b0edc22d58` |

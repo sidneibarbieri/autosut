@@ -83,6 +83,12 @@ def main() -> int:
             file=sys.stderr,
         )
         return 2
+    options = set(arguments[1:])
+    if arguments[0] in {"replay", "witness"} and (
+        options.intersection({"--help", "-h"})
+        or (arguments[0] == "replay" and "--list" in options)
+    ):
+        os.execvp("bash", ["bash", str(PROJECT_ROOT / "run.sh"), *arguments])
     try:
         return run(arguments)
     except (DockerInventoryError, ExecutionLockHeld) as error:
