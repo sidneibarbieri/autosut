@@ -1,6 +1,6 @@
 # Artifact Manifest
 
-- Files: `2918`
+- Files: `2920`
 - Hash: SHA-256
 
 | Path | Bytes | SHA-256 |
@@ -2707,7 +2707,7 @@
 | `autosut/src/planning/concretized_plan.py` | 2758 | `429e86f104ccfbd7fec8b99cc9f8212e64f2a7550aba94cce923be56abec1cba` |
 | `autosut/src/planning/corpus_probe_admission.py` | 3053 | `3d5e60515c157169b61662acfec2266fe09c6e9e6a1c3652f53553179a1a96fa` |
 | `autosut/src/planning/environment_workbench.py` | 1393 | `99958e0d6755f722db7abd151ac85923fa6e4ba9309e0a2993d9542976e2dbb7` |
-| `autosut/src/planning/environment_workbench_http.py` | 4410 | `567f28a8363a0c264f12f6389b83112a22c6fb25f9e2d23e4eff3bae6b9ecce3` |
+| `autosut/src/planning/environment_workbench_http.py` | 4464 | `e633a8228fd074ba950bb1501743822acd169b31881c8489817178c46fb595ee` |
 | `autosut/src/planning/executable_contract.py` | 5884 | `efce6e21ee385db410284f2aac999ef6d7a30eded026330a6883d2f69fe1555b` |
 | `autosut/src/planning/execution_admission.py` | 2449 | `6b90f04680be8c7bdb9c2bad8296d22ed6413e94b1af18643ddd82fb56f93891` |
 | `autosut/src/planning/gateway_guard.py` | 5199 | `9a259ab72ab3e9ef4a07c77b79257f3d9e5df3ae6137682c144087fba59706b0` |
@@ -2795,6 +2795,7 @@
 | `autosut/tests/test_emulate.py` | 1114 | `386e8b9fe9ac91a19af0c4bf4c03676f5f3488f5bdec5a58773162c8afce5466` |
 | `autosut/tests/test_environment_backend.py` | 2256 | `670cd2f49e504515eec03753974dd686fd7fd668e6894d6752c3f7d5d637db01` |
 | `autosut/tests/test_environment_planning_export.py` | 3758 | `5b775e2a5e3cda281775ec1db48664be01350bcbdfe28c8eeddd271816f51ff3` |
+| `autosut/tests/test_environment_workbench_assets.py` | 914 | `9f5c5aab17c3f1b4a77ce1fb3bbc5804f1ae5566f614dccceac25502d86830e7` |
 | `autosut/tests/test_environment_workbench_browser_state.py` | 1406 | `b3615568f525080a01e524d84abbc767b1a717c0b3691f07abc231a3c3658781` |
 | `autosut/tests/test_environment_workbench_http.py` | 3602 | `f571b32411f74a5ee71178eea4cdeeb53227bdb9a294a7ebfe756a3fea303be2` |
 | `autosut/tests/test_evaluate_plan_corpus.py` | 504 | `738bad6a7f2e00f6aee96184eaae4a3ac13afb73645508fcf828744713d35522` |
@@ -2919,7 +2920,8 @@
 | `autosut/vagrant-wrapper.sh` | 1005 | `be3e33baef7ae6731a0c751e31568b1f40ffbc63cab798d05f4c5aee8873585e` |
 | `autosut/web/environment-workbench/app.js` | 5270 | `3768d08039c3b978703a075c35e192d0f03b6fedd0e5abb2f238845388ee98d3` |
 | `autosut/web/environment-workbench/environment-map.js` | 5049 | `f374f1861ae0dbcf2a5c22280a3b65ede6f335f692e89c964eecc7c6aff8f4a8` |
-| `autosut/web/environment-workbench/index.html` | 4242 | `c5a03b837d973dd1476419fee8bc7b759309fd1119c56aab78928c59b5e66c9f` |
+| `autosut/web/environment-workbench/favicon.svg` | 340 | `67d02cb47a57be070a7d7d2c6e9fbe9fe301edcad482d29452da4d8776eec0e6` |
+| `autosut/web/environment-workbench/index.html` | 3806 | `205fa3f634d3e6eed574367e2cba168be71cc2608389a46d29dd70407a43b879` |
 | `autosut/web/environment-workbench/styles.css` | 9294 | `05fd1fbce58f6b93f3fd63d453d82edf34a801cf1a0cfd4b0e36d53919b16a10` |
 | `run.sh` | 170 | `8c374f75027517100e77ce6a61d6a1380af1e4901965af347e9cd01fc393db93` |
 | `run_review_check.sh` | 490 | `9b94cbc04100a395528cc9432c11549c321f2840b53a7f5d897eb06af279aff9` |
