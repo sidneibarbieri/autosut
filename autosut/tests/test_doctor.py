@@ -65,20 +65,35 @@ def test_stopped_daemon_names_the_start_command(monkeypatch):
 def test_foreign_resources_under_the_reserved_prefix_block_the_replay(monkeypatch):
     import infrastructure.docker_namespace as namespace
 
+    monkeypatch.setattr(doctor.shutil, "which", lambda name: "/usr/bin/" + name)
+
     monkeypatch.setattr(namespace, "autosut_resources",
                         lambda: {"container:autosut-caldera", "network:autosut-mine"})
     monkeypatch.setattr(doctor, "run", lambda command, timeout=20: completed(""))  # no replay running
     [check] = doctor.check_namespace()
     assert check.status == "FAIL"
     assert "docker network rm autosut-mine" in check.fix
-    assert "autosut-caldera" not in check.detail
+    assert "autosut-caldera" in check.detail
 
 
-def test_the_replays_own_c2_is_not_a_conflict(monkeypatch):
+def test_preexisting_c2_requires_ownership_review(monkeypatch):
     import infrastructure.docker_namespace as namespace
 
+    monkeypatch.setattr(doctor.shutil, "which", lambda name: "/usr/bin/" + name)
+
     monkeypatch.setattr(namespace, "autosut_resources", lambda: {"container:autosut-caldera"})
-    assert doctor.check_namespace()[0].status == "OK"
+    monkeypatch.setattr(doctor, "run", lambda command, timeout=20: completed(""))
+    check = doctor.check_namespace()[0]
+    assert check.status == "FAIL"
+    assert "autosut-caldera" in check.detail
+
+
+def test_preexisting_c2_port_requires_ownership_review(monkeypatch):
+    monkeypatch.setattr(doctor, "port_is_bound", lambda port: True)
+    monkeypatch.setattr(doctor, "run", lambda command, timeout=20: completed("autosut-caldera\n"))
+    check = doctor.check_caldera_port()[0]
+    assert check.status == "FAIL"
+    assert "owner" in check.fix
 
 
 def test_port_held_outside_docker_names_the_lookup(monkeypatch):
@@ -133,8 +148,21 @@ def test_doctor_issues_only_read_only_docker_commands(monkeypatch):
 def test_resources_of_a_running_replay_say_wait_not_delete(monkeypatch):
     import infrastructure.docker_namespace as namespace
 
+    monkeypatch.setattr(doctor.shutil, "which", lambda name: "/usr/bin/" + name)
+
     monkeypatch.setattr(namespace, "autosut_resources", lambda: {"container:autosut-1234"})
     monkeypatch.setattr(doctor, "run", lambda command, timeout=20: completed("4242\n"))
     [check] = doctor.check_namespace()
     assert check.status == "FAIL"
     assert "in progress" in check.detail and "docker rm" not in check.fix
+
+
+def test_missing_process_inspector_does_not_authorize_cleanup(monkeypatch):
+    import infrastructure.docker_namespace as namespace
+
+    monkeypatch.setattr(namespace, "autosut_resources", lambda: {"container:autosut-existing"})
+    monkeypatch.setattr(doctor.shutil, "which", lambda name: None)
+    check = doctor.check_namespace()[0]
+    assert check.status == "FAIL"
+    assert "ownership" in check.detail and "unavailable" in check.fix
+    assert "docker rm" not in check.fix

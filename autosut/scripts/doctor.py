@@ -103,24 +103,26 @@ def check_namespace() -> list[Check]:
         resources = sorted(autosut_resources())
     except DockerInventoryError as error:
         return [Check("autosut- namespace", "FAIL", str(error), "colima start   # or start Docker Desktop")]
-    foreign = [name for name in resources if name != f"container:{CALDERA_CONTAINER}"]
-    if not foreign:
-        detail = "only the replay's own C2" if resources else "empty"
-        return [Check("autosut- namespace", "OK", detail)]
-    running = run(["pgrep", "-f", "run_all_orchestrated_campaigns.py"]).stdout.split()
+    if not resources:
+        return [Check("autosut- namespace", "OK", "empty")]
+    if shutil.which("pgrep") is None:
+        return [Check("autosut- namespace", "FAIL", "occupied; process ownership could not be inspected",
+                      "Inspect the resource owner before cleanup; pgrep is unavailable.")]
+    running = run(["pgrep", "-f",
+                   "run_all_orchestrated_campaigns.py|run_reviewer_supervised.py|prove_subdetermination.py"]).stdout.split()
     if running:
         return [Check("autosut- namespace", "FAIL",
-                      f"a replay is in progress (pid {', '.join(running)}); it owns "
-                      f"{len(foreign)} autosut-* resource(s)",
-                      "Let that replay finish; it removes its own resources.")]
+                      f"an operation is in progress (pid {', '.join(running)}); "
+                      f"{len(resources)} autosut-* resource(s) exist",
+                      "Let that operation finish; it removes its own resources.")]
     commands = []
-    for resource in foreign:
+    for resource in resources:
         kind, _, name = resource.partition(":")
         commands.append({"container": f"docker rm -f {name}", "network": f"docker network rm {name}",
                          "volume": f"docker volume rm {name}"}[kind])
     return [Check("autosut- namespace", "FAIL",
-                  f"{len(foreign)} resource(s) use the reserved prefix: " + ", ".join(foreign[:6]),
-                  "The replay deletes every autosut-* resource. If these are leftovers of an "
+                  f"{len(resources)} resource(s) use the reserved prefix: " + ", ".join(resources[:6]),
+                  "The supervised entry point refuses an occupied namespace. If these are confirmed leftovers of an "
                   "interrupted replay: " + " && ".join(commands[:6])
                   + "; if they belong to something else, rename them first.")]
 
@@ -137,7 +139,8 @@ def check_caldera_port() -> list[Check]:
     owner = run(["docker", "ps", "--filter", f"publish={CALDERA_HOST_PORT}", "--format", "{{.Names}}"])
     names = owner.stdout.split()
     if names == [CALDERA_CONTAINER]:
-        return [Check("port 8888", "OK", f"held by {CALDERA_CONTAINER}, which the replay replaces")]
+        return [Check("port 8888", "FAIL", f"held by existing {CALDERA_CONTAINER}",
+                      "Let its owner finish; remove only confirmed leftovers listed by the namespace check.")]
     holder = ", ".join(names) if names else "a non-Docker process"
     fix = (f"docker stop {' '.join(names)}" if names else
            "lsof -nP -iTCP:8888 -sTCP:LISTEN   # then stop that process")

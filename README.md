@@ -68,7 +68,7 @@ bash run.sh review
 
 Use `bash` for both Git clones and downloaded ZIPs; the anonymous ZIP does not preserve executable permissions. To include a new Docker witness execution, run `bash run.sh all`.
 
-The `all` command ends with `all passed: demo, review, doctor, witness`. Every command
+The `all` command reports `all passed: demo, review, doctor, witness`. Every command
 below runs from the repository root; the pinned Python environment is
 created on first use, and every container is started and removed by the
 command itself. Times were measured on an Apple-silicon macOS host with
@@ -86,6 +86,21 @@ colima and vary by host and by whether images are already present.
 | `bash run.sh all` | demo, review, doctor, then witness | ~3 min | Docker |
 
 `bash run_review_check.sh` remains the same review gate as `bash run.sh review`.
+
+### Stop an operational run
+
+Run `replay`, `witness`, and `all` through the root `bash run.sh` entry point to
+include process supervision. Ctrl+C or SIGTERM stops its child process group,
+then checks and removes resources created in the AutoSUT namespace. Existing
+AutoSUT resources cause refusal before execution; inspect `bash run.sh doctor`
+to identify their owner. Cooperating runs share an execution lock.
+
+For each operational child that starts, the supervisor saves its exit status, signals and cleanup
+verdict under `autosut/release/evidence/_reviewer_runs/supervision/`. A replay that
+reports partial outcomes retains its nonzero exit status. Incomplete cleanup
+also returns failure. The supervisor allows 30 seconds after termination before
+SIGKILL, with outer deadlines of eight hours for replay, 20 minutes for witness
+and 30 minutes for all; the table above reports typical measured durations.
 
 ## Inspect an environment plan
 

@@ -180,6 +180,27 @@ def test_reviewer_generated_pairs_and_runs_are_runtime_state(tmp_path: Path) -> 
     ))
 
 
+def test_canonical_execution_lock_is_an_exact_runtime_exception(tmp_path: Path) -> None:
+    tracked = tmp_path / "tracked.txt"
+    tracked.write_text("immutable\n")
+    manifest = _write_manifest(tmp_path, [tracked])
+    lock = tmp_path / "autosut/release/experiments/lifecycle/experiment.lock"
+    lock.parent.mkdir(parents=True)
+    lock.write_text("12345\n")
+    assert verify_manifest(tmp_path, manifest, allow_runtime_state=True) == []
+    sibling = lock.with_name("unlisted.json")
+    sibling.write_text("{}\n")
+    assert any("unlisted.json" in error for error in verify_manifest(
+        tmp_path, manifest, allow_runtime_state=True
+    ))
+    sibling.unlink()
+    manifest = _write_manifest(tmp_path, [tracked, lock])
+    lock.write_text("different\n")
+    assert any("experiment.lock" in error for error in verify_manifest(
+        tmp_path, manifest, allow_runtime_state=True
+    ))
+
+
 def test_runtime_allowance_does_not_permit_external_symlinks(tmp_path: Path) -> None:
     tracked = tmp_path / "tracked.txt"
     tracked.write_text("tracked\n", encoding="utf-8")
